@@ -1,0 +1,69 @@
+{
+ "problem": "min/tetrahedra_in_tetrahedron",
+ "piece": "tetrahedron",
+ "container": "tetrahedron",
+ "n": 3,
+ "s": 2.0,
+ "s_plus": "2.00000+",
+ "s_full": 2.0000006313194,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000000016940902e-07,
+  "min_wall_gap": 1.0000001920973389e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-09",
+ "pieces": [
+  [
+   -0.35355344059327354,
+   -0.35355344059327376,
+   0.35355344059327354,
+   0.5000000000000001,
+   -0.4999999999999999,
+   -0.5000000000000001,
+   0.4999999999999999
+  ],
+  [
+   -0.3535534405932738,
+   0.35355344059327387,
+   -0.35355344059327404,
+   2.5170297367542285e-17,
+   2.9442918864693204e-17,
+   1.0,
+   1.2568985005915185e-17
+  ],
+  [
+   0.11785114686442442,
+   0.11785114686442472,
+   0.11785114686442477,
+   4.92905733872563e-16,
+   0.40824829046386285,
+   -0.8164965809277261,
+   0.40824829046386296
+  ]
+ ],
+ "source": {
+  "seed": 1,
+  "mode": "improved",
+  "budget": 1,
+  "s_tight": 2.0,
+  "clearance": 1e-07
+ },
+ "record_id": "tetintet_n03",
+ "title": "3 unit tetrahedra in a tetrahedron",
+ "page_convention": "Friedman-style: s = container edge / piece edge, pieces may rotate freely",
+ "s_tight": 2.0,
+ "closed_form_conjecture": "2",
+ "volume_lower_bound": 1.4422495703074083,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "seed": 1,
+  "mode": "improved",
+  "budget": 1
+ },
+ "density": 0.3749996448830618
+}

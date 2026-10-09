@@ -1,0 +1,87 @@
+{
+ "problem": "min/icosahedra_in_icosahedron",
+ "piece": "icosahedron",
+ "container": "icosahedron",
+ "n": 5,
+ "s": 2.23606,
+ "s_plus": "2.23606+",
+ "s_full": 2.2360681915931,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000000033594247e-07,
+  "min_wall_gap": 1.0000004047050481e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-09",
+ "pieces": [
+  [
+   8.034139624224769e-16,
+   -1.6154346526903295e-16,
+   -1.0000000661584556,
+   0.8090169943749476,
+   3.602316712633055e-16,
+   0.3090169943749475,
+   0.4999999999999998
+  ],
+  [
+   -0.6180340296380684,
+   -1.0000000661584556,
+   -8.480945508524509e-16,
+   0.0,
+   0.5,
+   -0.3090169943749474,
+   0.8090169943749475
+  ],
+  [
+   -0.8090170478982618,
+   0.5000000330792272,
+   0.3090170148190343,
+   0.8090169943749475,
+   -0.30901699437494795,
+   0.49999999999999994,
+   2.916161148321997e-16
+  ],
+  [
+   0.6180340296380686,
+   1.0000000661584543,
+   -9.174834898915232e-16,
+   0.8090169943749475,
+   0.30901699437494734,
+   0.49999999999999994,
+   -8.576944553888227e-17
+  ],
+  [
+   0.8090170478982618,
+   -0.5000000330792269,
+   0.30901701481903393,
+   1.0292333464665874e-16,
+   -0.8090169943749473,
+   0.5000000000000001,
+   -0.3090169943749474
+  ]
+ ],
+ "source": {
+  "seed": 14,
+  "mode": "improved",
+  "budget": 1,
+  "s_tight": 2.2360679775,
+  "clearance": 1e-07
+ },
+ "record_id": "icoinico_n05",
+ "title": "5 unit icosahedra in a icosahedron",
+ "page_convention": "Friedman-style: s = container edge / piece edge, pieces may rotate freely",
+ "s_tight": 2.2360679775,
+ "closed_form_conjecture": "\u221a5",
+ "volume_lower_bound": 1.7099759466766968,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "seed": 14,
+  "mode": "improved",
+  "budget": 1
+ },
+ "density": 0.4472134670439963
+}

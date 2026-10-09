@@ -1,0 +1,60 @@
+{
+ "problem": "min/dodecahedra_in_dodecahedron",
+ "piece": "dodecahedron",
+ "container": "dodecahedron",
+ "n": 2,
+ "s": 1.98759,
+ "s_plus": "1.98759+",
+ "s_full": 1.9875982173898,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000000027026092e-07,
+  "min_wall_gap": 1.0000011041455537e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-09",
+ "pieces": [
+  [
+   1.1416566014632505,
+   0.045856674164540485,
+   -0.44500689206699684,
+   0.021519864023725563,
+   -0.4102605292829064,
+   0.49939659632402444,
+   0.762775349067397
+  ],
+  [
+   -1.1416566040089458,
+   -0.045856678283563275,
+   0.4450068871458347,
+   0.34757957302500275,
+   -0.8254563053253013,
+   0.4367156400661192,
+   -0.08420082028163073
+  ]
+ ],
+ "source": {
+  "seed": 1,
+  "mode": "improved",
+  "budget": 1,
+  "s_tight": 1.987598085505,
+  "clearance": 1e-07
+ },
+ "record_id": "dodindod_n02",
+ "title": "2 unit dodecahedra in a dodecahedron",
+ "page_convention": "Friedman-style: s = container edge / piece edge, pieces may rotate freely",
+ "s_tight": 1.987598085505,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "seed": 1,
+  "mode": "improved",
+  "budget": 1
+ },
+ "density": 0.25470894672813743
+}

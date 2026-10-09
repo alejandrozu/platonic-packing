@@ -1,0 +1,114 @@
+{
+ "problem": "min/dodecahedra_in_dodecahedron",
+ "piece": "dodecahedron",
+ "container": "dodecahedron",
+ "n": 8,
+ "s": 2.52786,
+ "s_plus": "2.52786+",
+ "s_full": 2.5278642034114,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 9.999999989185326e-08,
+  "min_wall_gap": 1.0000001315901841e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-09",
+ "pieces": [
+  [
+   1.1180340389527499,
+   -1.1909830591035226,
+   -1.3090170531534742,
+   0.3090169943749473,
+   -4.288472276944118e-16,
+   -0.8090169943749472,
+   -0.5000000000000004
+  ],
+  [
+   -1.9223836362101068,
+   -0.1255860600037323,
+   0.8067471333306738,
+   0.499961598048115,
+   0.00020100214288480477,
+   0.3089164846766774,
+   0.8090790848676771
+  ],
+  [
+   -7.114445812645436e-17,
+   1.0000000449027993,
+   1.618034061404148,
+   0.8090169943749475,
+   0.49999999999999994,
+   -0.3090169943749476,
+   1.0292333464665873e-16
+  ],
+  [
+   -0.28731838421701683,
+   -1.7228409998199528,
+   0.4484528278877633,
+   0.000212650644204637,
+   0.4997215957907271,
+   0.8091232535159906,
+   0.30918900708105834
+  ],
+  [
+   1.3167913958730257,
+   1.076326565221091,
+   -0.6481387749362865,
+   0.4997693984247852,
+   0.03327479560493549,
+   -0.3249522667653486,
+   0.8022028176836826
+  ],
+  [
+   -0.9270510247520249,
+   -0.26393203435149726,
+   -1.427051047203426,
+   0.8090169943749475,
+   -1.715388910777646e-17,
+   0.5000000000000001,
+   -0.3090169943749475
+  ],
+  [
+   -0.9270510247520265,
+   1.7360680554540997,
+   -0.4270510023006267,
+   0.5000000000000001,
+   -1.3877787807814454e-16,
+   0.30901699437494734,
+   0.8090169943749475
+  ],
+  [
+   1.6349463713914765,
+   -0.5906693241135796,
+   0.9895476625023556,
+   0.8090169943749473,
+   5.146166732332937e-17,
+   -0.5000000000000001,
+   -0.3090169943749476
+  ]
+ ],
+ "source": {
+  "seed": 3,
+  "mode": "improved",
+  "budget": 1,
+  "s_tight": 2.527864045,
+  "clearance": 1e-07
+ },
+ "record_id": "dodindod_n08",
+ "title": "8 unit dodecahedra in a dodecahedron",
+ "page_convention": "Friedman-style: s = container edge / piece edge, pieces may rotate freely",
+ "s_tight": 2.527864045,
+ "closed_form_conjecture": "7 - 2\u221a5",
+ "volume_lower_bound": 2.0,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "seed": 3,
+  "mode": "improved",
+  "budget": 1
+ },
+ "density": 0.4952548839680419
+}

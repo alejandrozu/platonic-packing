@@ -1,0 +1,177 @@
+{
+ "problem": "min/tetrahedra_in_tetrahedron",
+ "piece": "tetrahedron",
+ "container": "tetrahedron",
+ "n": 15,
+ "s": 3.0,
+ "s_plus": "3.00000+",
+ "s_full": 3.0000009797959,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000000011389787e-07,
+  "min_wall_gap": 1.0000000005838672e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-09",
+ "pieces": [
+  [
+   3.96843521923398e-17,
+   3.96843521923398e-17,
+   -1.526119163033611e-16,
+   1.9626155733547183e-17,
+   4.5420775500850956e-18,
+   -0.7071067811865476,
+   0.7071067811865475
+  ],
+  [
+   -0.23570231813054288,
+   -0.23570231813054288,
+   0.47140463626108564,
+   0.8164965809277259,
+   0.0,
+   0.40824829046386313,
+   -0.40824829046386313
+  ],
+  [
+   -0.7071069543916287,
+   -0.7071069543916287,
+   0.7071069543916286,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -0.23570231813054288,
+   0.4714046362610858,
+   -0.23570231813054304,
+   0.408248290463863,
+   3.399349888776297e-17,
+   0.816496580927726,
+   0.4082482904638632
+  ],
+  [
+   -0.7071069543916287,
+   3.96843521923398e-17,
+   -1.526119163033611e-16,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -0.7071069543916287,
+   0.7071069543916289,
+   -0.707106954391629,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.4714046362610858,
+   -0.23570231813054288,
+   -0.23570231813054304,
+   0.8164965809277259,
+   0.0,
+   0.40824829046386313,
+   -0.40824829046386313
+  ],
+  [
+   3.96843521923398e-17,
+   -0.7071069543916287,
+   -1.526119163033611e-16,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   3.96843521923398e-17,
+   3.96843521923398e-17,
+   -0.707106954391629,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.7071069543916289,
+   -0.7071069543916287,
+   -0.707106954391629,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.4714046362610858,
+   0.4714046362610858,
+   0.47140463626108564,
+   0.8164965809277259,
+   0.0,
+   0.40824829046386313,
+   -0.40824829046386313
+  ],
+  [
+   3.96843521923398e-17,
+   3.96843521923398e-17,
+   0.7071069543916286,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   3.96843521923398e-17,
+   0.7071069543916289,
+   -1.526119163033611e-16,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.7071069543916289,
+   3.96843521923398e-17,
+   -1.526119163033611e-16,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.7071069543916289,
+   0.7071069543916289,
+   0.7071069543916286,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ]
+ ],
+ "source": {
+  "seed": 3,
+  "mode": "lattice",
+  "budget": 0,
+  "s_tight": 3.0,
+  "clearance": 1e-07
+ },
+ "record_id": "tetintet_n15",
+ "title": "15 unit tetrahedra in a tetrahedron",
+ "page_convention": "Friedman-style: s = container edge / piece edge, pieces may rotate freely",
+ "s_tight": 3.0,
+ "closed_form_conjecture": "3",
+ "volume_lower_bound": 2.4662120743304703,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "seed": 3,
+  "mode": "lattice",
+  "budget": 0
+ },
+ "density": 0.5555550112248556
+}

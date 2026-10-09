@@ -1,0 +1,69 @@
+{
+ "problem": "min/icosahedra_in_icosahedron",
+ "piece": "icosahedron",
+ "container": "icosahedron",
+ "n": 3,
+ "s": 2.0,
+ "s_plus": "2.00000+",
+ "s_full": 2.0000001984754,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000000007118242e-07,
+  "min_wall_gap": 1.0000002714782852e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-09",
+ "pieces": [
+  [
+   -3.835151871831107e-16,
+   -0.5000000330792286,
+   0.8090170478982618,
+   0.4999999999999998,
+   0.5,
+   -0.5000000000000004,
+   -0.4999999999999998
+  ],
+  [
+   0.8053226325414784,
+   -0.0022832742590515953,
+   -0.5014111741769587,
+   0.8090169943749466,
+   2.4015444750887065e-16,
+   -0.3090169943749479,
+   -0.5000000000000011
+  ],
+  [
+   -0.5000000330792289,
+   0.8090170478982605,
+   -1.3152971011131826e-15,
+   0.5000000000000001,
+   0.3090169943749472,
+   -2.4980018054066017e-16,
+   0.8090169943749475
+  ]
+ ],
+ "source": {
+  "seed": 3,
+  "mode": "improved",
+  "budget": 1,
+  "s_tight": 2.0,
+  "clearance": 1e-07
+ },
+ "record_id": "icoinico_n03",
+ "title": "3 unit icosahedra in a icosahedron",
+ "page_convention": "Friedman-style: s = container edge / piece edge, pieces may rotate freely",
+ "s_tight": 2.0,
+ "closed_form_conjecture": "2",
+ "volume_lower_bound": 1.4422495703074083,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "seed": 3,
+  "mode": "improved",
+  "budget": 1
+ },
+ "density": 0.3749998883576096
+}

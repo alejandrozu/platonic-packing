@@ -1,0 +1,87 @@
+{
+ "problem": "min/tetrahedra_in_tetrahedron",
+ "piece": "tetrahedron",
+ "container": "tetrahedron",
+ "n": 5,
+ "s": 2.0,
+ "s_plus": "2.00000+",
+ "s_full": 2.000000734847,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000000000287557e-07,
+  "min_wall_gap": 1.0000001576804252e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-09",
+ "pieces": [
+  [
+   0.11785115906527137,
+   0.11785115906527127,
+   0.11785115906527137,
+   0.816496580927726,
+   -0.4082482904638631,
+   0.0,
+   0.4082482904638629
+  ],
+  [
+   -0.35355347719581415,
+   -0.35355347719581415,
+   0.35355347719581415,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -0.35355347719581415,
+   0.35355347719581415,
+   -0.35355347719581415,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.35355347719581415,
+   -0.35355347719581415,
+   -0.35355347719581415,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.35355347719581415,
+   0.35355347719581415,
+   0.35355347719581415,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ]
+ ],
+ "source": {
+  "seed": 2,
+  "mode": "lattice",
+  "budget": 0,
+  "s_tight": 2.0,
+  "clearance": 1e-07
+ },
+ "record_id": "tetintet_n05",
+ "title": "5 unit tetrahedra in a tetrahedron",
+ "page_convention": "Friedman-style: s = container edge / piece edge, pieces may rotate freely",
+ "s_tight": 2.0,
+ "closed_form_conjecture": "2",
+ "volume_lower_bound": 1.7099759466766968,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "seed": 2,
+  "mode": "lattice",
+  "budget": 0
+ },
+ "density": 0.6249993110814436
+}

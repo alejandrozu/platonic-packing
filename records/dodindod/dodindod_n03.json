@@ -1,0 +1,69 @@
+{
+ "problem": "min/dodecahedra_in_dodecahedron",
+ "piece": "dodecahedron",
+ "container": "dodecahedron",
+ "n": 3,
+ "s": 2.0,
+ "s_plus": "2.00000+",
+ "s_full": 2.0000001347084,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000000035117825e-07,
+  "min_wall_gap": 1.0000000649768026e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-09",
+ "pieces": [
+  [
+   0.5019528074115462,
+   1.3058573807152356,
+   -0.005112457398384488,
+   0.8090169943749475,
+   0.4999999999999999,
+   -0.30901699437494756,
+   6.861555643110582e-17
+  ],
+  [
+   -1.309017053153474,
+   4.40112275135727e-16,
+   0.3817929023089069,
+   0.4999999999999999,
+   0.8090169943749475,
+   0.0,
+   0.30901699437494756
+  ],
+  [
+   0.5018509818190948,
+   -1.3060221379847452,
+   0.004845874536424466,
+   0.4999999999999999,
+   0.30901699437494756,
+   0.8090169943749476,
+   2.23000558401094e-16
+  ]
+ ],
+ "source": {
+  "seed": 8,
+  "mode": "improved",
+  "budget": 1,
+  "s_tight": 2.0,
+  "clearance": 1e-07
+ },
+ "record_id": "dodindod_n03",
+ "title": "3 unit dodecahedra in a dodecahedron",
+ "page_convention": "Friedman-style: s = container edge / piece edge, pieces may rotate freely",
+ "s_tight": 2.0,
+ "closed_form_conjecture": "2",
+ "volume_lower_bound": 1.4422495703074083,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "seed": 8,
+  "mode": "improved",
+  "budget": 1
+ },
+ "density": 0.3749999242265352
+}

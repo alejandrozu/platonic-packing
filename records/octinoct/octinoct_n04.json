@@ -1,0 +1,78 @@
+{
+ "problem": "min/octahedra_in_octahedron",
+ "piece": "octahedron",
+ "container": "octahedron",
+ "n": 4,
+ "s": 2.0,
+ "s_plus": "2.00000+",
+ "s_full": 2.0000003674235,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000000013147556e-07,
+  "min_wall_gap": 1.0000001482435295e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-09",
+ "pieces": [
+  [
+   3.801750881179032e-17,
+   -0.7058114100247307,
+   -0.0012954577643580784,
+   0.5,
+   0.5000000000000002,
+   -0.49999999999999983,
+   -0.5000000000000001
+  ],
+  [
+   0.0015449140308905864,
+   0.7055619537581974,
+   -1.8213689907805116e-18,
+   0.5,
+   -0.4999999999999998,
+   -0.5000000000000001,
+   -0.5000000000000001
+  ],
+  [
+   -1.0076036926635425e-16,
+   1.873449847650783e-18,
+   0.7071068677890888,
+   1.4388522464466404e-17,
+   1.0,
+   -1.3288307317707847e-16,
+   -3.6795973892101625e-17
+  ],
+  [
+   -0.7071068677890886,
+   1.352845271719921e-16,
+   -1.1284367145329617e-16,
+   0.7071067811865475,
+   8.121430982424044e-17,
+   0.7071067811865478,
+   3.519654884191295e-17
+  ]
+ ],
+ "source": {
+  "seed": 12,
+  "mode": "improved",
+  "budget": 1,
+  "s_tight": 2.0,
+  "clearance": 1e-07
+ },
+ "record_id": "octinoct_n04",
+ "title": "4 unit octahedra in a octahedron",
+ "page_convention": "Friedman-style: s = container edge / piece edge, pieces may rotate freely",
+ "s_tight": 2.0,
+ "closed_form_conjecture": "2",
+ "volume_lower_bound": 1.5874010519681994,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "seed": 12,
+  "mode": "improved",
+  "budget": 1
+ },
+ "density": 0.4999997244324762
+}

@@ -1,0 +1,78 @@
+{
+ "problem": "min/dodecahedra_in_dodecahedron",
+ "piece": "dodecahedron",
+ "container": "dodecahedron",
+ "n": 4,
+ "s": 2.0,
+ "s_plus": "2.00000+",
+ "s_full": 2.0000001347084,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000000028940323e-07,
+  "min_wall_gap": 1.0000000472132342e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-09",
+ "pieces": [
+  [
+   0.8090170307020751,
+   -0.8090170307020748,
+   -0.8090170307020745,
+   2.2300055840109404e-16,
+   -0.5000000000000008,
+   -0.8090169943749472,
+   0.30901699437494706
+  ],
+  [
+   0.5000000224514005,
+   1.3090170531534744,
+   -2.236773446466619e-16,
+   0.4999999999999997,
+   0.30901699437494734,
+   0.8090169943749477,
+   -2.0584666929331746e-16
+  ],
+  [
+   -1.2566429003260547e-16,
+   -0.5000000224513991,
+   1.3090170531534744,
+   0.4999999999999998,
+   -0.5000000000000002,
+   -0.5000000000000001,
+   0.5000000000000002
+  ],
+  [
+   -1.3090170531534746,
+   -3.5265357574569066e-16,
+   -0.500000022451399,
+   1.2007722375443518e-16,
+   -0.30901699437494756,
+   -0.5000000000000001,
+   0.8090169943749475
+  ]
+ ],
+ "source": {
+  "seed": 5,
+  "mode": "improved",
+  "budget": 1,
+  "s_tight": 2.0,
+  "clearance": 1e-07
+ },
+ "record_id": "dodindod_n04",
+ "title": "4 unit dodecahedra in a dodecahedron",
+ "page_convention": "Friedman-style: s = container edge / piece edge, pieces may rotate freely",
+ "s_tight": 2.0,
+ "closed_form_conjecture": "2",
+ "volume_lower_bound": 1.5874010519681994,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "seed": 5,
+  "mode": "improved",
+  "budget": 1
+ },
+ "density": 0.49999989896871366
+}
