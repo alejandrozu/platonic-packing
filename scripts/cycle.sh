@@ -35,8 +35,10 @@ flock -u 9
 head=$(git rev-parse HEAD); from=$(cat state/.device_synced 2>/dev/null)
 if [ "$from" != "$head" ]; then
   mkdir -p /mnt/user-data/outputs
-  git bundle create -q /mnt/user-data/outputs/sync.bundle "$from..main" 2>/dev/null || git bundle create -q /mnt/user-data/outputs/sync.bundle main
-  laptop="LAPTOP-BUNDLE-READY $head"
+  rm -f /mnt/user-data/outputs/sync-*.bundle
+  bn=/mnt/user-data/outputs/sync-${head:0:12}.bundle          # unique name per cycle (the upload tool caches by path)
+  git bundle create -q "$bn" "$from..main" 2>/dev/null || git bundle create -q "$bn" main
+  laptop="LAPTOP-BUNDLE-READY $bn"
 else laptop="laptop up to date"; fi
 newb=$(python3 - "$pt" <<'PY'
 import json, sys
