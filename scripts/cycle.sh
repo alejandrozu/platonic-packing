@@ -7,7 +7,7 @@
 #  4. an incremental git bundle (last commit confirmed on the laptop .. HEAD) is written for the laptop copy.
 # usage: scripts/cycle.sh [commit hash confirmed on the laptop by the previous cycle]
 cd "$(dirname "$0")/.."
-[ -n "$1" ] && echo "$1" > state/.device_synced
+[ -n "$1" ] && git rev-parse "$1" > state/.device_synced
 note=""
 if ! pgrep -f run_forever.sh > /dev/null && [ ! -f state/STOP ]; then
   rm -rf state/claims
