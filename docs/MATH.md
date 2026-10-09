@@ -145,6 +145,17 @@ files (shrunk container, a piece pushed through its neighbour, coincident pieces
 5. **Records** (`scripts/records.py`): the best certified packing per (A, B, n) gets ≥ 10⁻⁷ clearance, a record file,
    both checker outputs, a picture and a table row.
 
+### 5b. Basin hopping (since 9 Oct)
+
+The search now alternates local optimization (tightening) with perturbations from the archive, a monotonic basin-
+hopping scheme. A perturbation expands the packing, replaces each piece P by the softer S_r ⊆ P (Lemma 1), and
+diffuses the pieces at fixed container size until the relative arrangement has changed: with d_ij the centre distances
+before and d'_ij during shaking, the change is Δ = RMS over neighbouring pairs of (d'_ij − d_ij), in piece edges, and
+shaking continues (with growing noise and softness) until Δ reaches a random target in [0.04, 0.6]. Re-sharpening
+then follows the same monotone homotopy as a fresh run (r → 0 under pressure), so the new packing is again a local
+optimum, typically in a different basin. Monotonicity across n is enforced as an invariant of the archive (§1:
+deleting a piece never needs a larger container).
+
 ## 6. Observations from the results
 
 (All values: container edge / piece edge. "≈ x" marks a conjectured closed form: the touching limit `s_tight`
@@ -206,5 +217,5 @@ records.
   2) are the next natural targets.
 * **Exact touching certificates.** For the conjectured closed forms, snapping the contact graph to exact algebraic
   coordinates and certifying the touching packing in Q(√2, √5) (or an extension) would prove s ≤ closed form.
-* **More search.** Larger budgets (×3, ×10 as in Nakajima's experiments) and more seeds for n ≥ 13, and the 20
-  mixed pairs (supported and tested, not yet swept; see STATUS.md).
+* **More search.** The basin-hopping engine runs indefinitely on all nine problems up to n = 40 (STATUS.md); the
+  other 16 mixed pairs are supported and can be added to the engine.

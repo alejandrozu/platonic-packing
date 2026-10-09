@@ -1,60 +1,54 @@
-# Status and hand-off (9 Oct 2026, 08:00 Paris)
+# Status and hand-off
 
-## Done
+_Last edited 9 Oct 2026, 12:20 Paris. Live numbers: [PROGRESS.md](PROGRESS.md) and [records/README.md](records/README.md),
+both regenerated automatically every 90 minutes._
 
-* **Method ported and validated.** Nakajima's soft-to-rigid cube packer generalized to every Platonic solid as piece
-  and container (`src/geom.js`, `src/sim.js`, `src/exact.py`). Reproduces the cube behaviour (n ≤ 8 → 2,
-  n = 9 → 2 + 1/√2) and is ~1.5–2.5× faster than the original on cubes.
-* **Rigorous checking.** `certify_exact.py` (standard library, exact arithmetic in Q(√2, √5)) and `verify.py`
-  (floats). Both certify two independent published records (Nakajima's 12 cubes, Hyra's 21 octahedra in a cube)
-  and reject broken files. Test suite: `bash test/run_all.sh` (all passing).
-* **Same-solid problems, n = 2…20, all certified**: `records/tetintet`, `records/octinoct`, `records/icoinico`,
-  `records/dodindod` (76 records, table in `records/README.md`, data in `records/SUMMARY.csv`).
-* Interactive results page (3D viewer, tables, s(n) chart) built from the records: `site/index.html`
-  (also published privately as a Claude artifact, "Platonic Packing Records").
+## Running now
 
-## Compute spent
+The autonomous engine (`scripts/engine.py`, started by `scripts/run_forever.sh`) searches all nine problems for
+n = 2…40 indefinitely:
 
-About 1,770 search runs (budget ×1 = 53,000 steps each) on 2 CPU cores, roughly 6 hours wall time, plus tightening:
-* same-solid, n = 2–12: 24 seeds each; n = 13–20: 24 seeds each (seeds 1–24), all with annealing ("improved" mode);
-* cube-in-cube n = 2–12, 8 seeds (regression only).
-Raw runs: `runs/<piece>_in_<container>/n<N>_improved_x1.jsonl`; tightened results: `results/tight.jsonl`
-(SLSQP, descend, lattice) and `results/tight_slp.jsonl` (sequential-LP screen).
+| id | problem | id | problem |
+|---|---|---|---|
+| tetintet | tetrahedra in a tetrahedron | cubincub | cubes in a cube |
+| octinoct | octahedra in an octahedron | cubinoct | cubes in an octahedron |
+| icoinico | icosahedra in an icosahedron | octincub | octahedra in a cube |
+| dodindod | dodecahedra in a dodecahedron | dodinico | dodecahedra in an icosahedron |
+| | | icoindod | icosahedra in a dodecahedron |
 
-## Not done yet (in priority order)
+* 2 worker processes (the machine has 2 cores), each restarted automatically if it exits.
+* A publisher every 90 minutes: records (with exact certificates) for changed cases, `records/README.md`,
+  `records/SUMMARY.csv`, `PROGRESS.md`, the README results table, `site/index.html`; then `git commit` + `git push`.
+* Stop: `touch state/STOP`. Resume anywhere (also after the cloud machine is reclaimed): clone the repo and run
+  `nohup setsid scripts/run_forever.sh > logs/supervisor.out 2>&1 &`. The archive (`state/best/`) is in git; the pools
+  of alternative packings (`state/pool/`) are not, and refill by themselves.
 
-1. **Mixed pairs (A ≠ B), n = 2…20** — 20 problems (e.g. tetrahedra in a cube, `tetincub`; octahedra in an
-   icosahedron, `octinico`). The code supports them and was tested end to end (three mixed cases certified,
-   including Q(√2, √5) arithmetic), but the sweep was not run. Queue file ready: `runs_queue4.txt`
-   (seeds 1–4 for all 20 pairs, n = 2–20, plus cube-in-cube n = 13–20). Estimated ~5 h on 2 cores plus tightening.
-   For `tetincub` and `octincub`, compare with Friedman's catalogue (values are in images on his pages; the Hyra
-   repo has machine-readable records for octahedra n = 21, 24 only).
-2. **Harder search for n ≥ 13** (same-solid). Budget ×3 runs (`node scripts/batch.js <piece> same <n> 1 24 3`)
-   and more seeds; tetrahedra 16–20 and dodecahedra/icosahedra 15–20 are the least converged. A full `descend`
-   pass from n = 20 down for all four problems was not completed.
-3. **Exact touching certificates** for the conjectured closed forms (see docs/MATH.md §8).
-4. **Lower bounds / optimality** for n = 2 and the plateau values (docs/MATH.md §8).
-5. Rigid-control ablation (Nakajima showed soft-to-rigid beats rigid for cubes; not repeated here).
+## What changed on 9 Oct (second session)
 
-## How to resume
+1. **Basin hopping instead of restarts** (Alejandro's idea): from a tightened packing, relax (expand, soften, shake)
+   until the relative arrangement of the pieces has changed by a target amount, then re-sharpen and re-tighten. Hops
+   cost 0.5–5 s vs 20–60 s for a fresh run. Plus reinsert / ascend / descend moves (README, Method §4).
+2. **Monotonicity is enforced**: s(n) ≤ s(n+1) holds in the archive after every write and in the certified records;
+   the test suite checks both. (The final 9 Oct 08:00 records had one violation at the 13th digit, a clearance-rounding
+   artifact, 14 vs 15 tetrahedra; intermediate snapshots had real ones.)
+3. **Speed**: separating-axis hints (temporal coherence) in the kernel; vectorized Newton legalization (the 20-
+   dodecahedra tightening went from 120 s, unconverged, to 25 s, converged and better); both checkers ≈ 5× faster
+   with a provably safe shortcut for far-apart pairs.
+4. **Scope**: nine problems up to n = 40. Lattice seeds: tetrahedron of edge 4 holds 34 tetrahedra, octahedron of edge
+   4 holds 44 octahedra, cube grids k³.
 
-```bash
-bash test/run_all.sh                                   # sanity
-nohup scripts/runqueue.sh runs_queue4.txt logs/queue4.log &          # mixed-pair sweep (2 workers, idempotent)
-python3 scripts/pipeline.py tighten 2 tetincub,octincub              # tighten selected problems (ids or piece names)
-python3 scripts/pipeline.py descend tetincub,octincub                # n from n+1 minus one piece
-python3 scripts/records.py tetincub octincub                          # records + checker outputs + pictures
-python3 scripts/site.py                                               # rebuild site/index.html
-```
-`scripts/orchestrate.sh` runs the whole thing (phase 1 same-solid, phase 2 mixed) unattended. Everything is
-idempotent: runs skip seeds already present, tightening skips runs already tightened, records rebuild only when the
-underlying packing changed.
+## Things to look at next
+
+* Compare cubes in a cube with the literature (`docs/references.json`: Friedman's catalogue to n = 17, Nakajima's
+  12-cube record) and octahedra in a cube n = 21, 24 with Hyra-results. Cases where we are above the literature
+  mean the search is not converged there; cases below would be new records (to double-check carefully).
+* Optimality: none of the values is proven optimal (docs/MATH.md §8 lists approaches).
+* Exact touching certificates for the conjectured closed forms.
+* Add the remaining 16 mixed pairs if wanted (the engine handles any pair: add it to `PROBLEMS` in scripts/engine.py).
 
 ## Known caveats
 
 * Closed forms in the tables are conjectures from 12-digit numerics (quadratic irrationalities with small
-  coefficients, matched to 1e-11); several larger-coefficient matches (e.g. (149 + 67√5)/122) may be coincidences.
-* Tightening is a local method: two runs of the same arrangement can tighten to slightly different values; the
-  sequential-LP variant sometimes stops at a slightly worse point than SLSQP, so SLSQP is used for the final polish.
-* `s_full` in records includes 10⁻⁷ clearance; `s_tight` is the touching limit. Five-decimal displays are
-  truncations of `s_full`.
+  coefficients, matched to 1e-11); larger-coefficient matches may be coincidences.
+* Tightening is local; the engine's statistics (`state/best/*/nNN.json` → `stats`) show how much effort each case got.
+* `s_full` in records includes 10⁻⁷ clearance; `s_tight` is the touching limit. Five-decimal displays are truncations.

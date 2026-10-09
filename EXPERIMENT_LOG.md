@@ -62,3 +62,19 @@ one record per solution.
 - Clearance in record files reduced from 1e-6 to 1e-7 (tetrahedral containers: wall gap g costs ≈ 4.9 g in edge).
 - 13 tetrahedra: 2.97194 < 3, below the edge-3 lattice construction.
 - Stopped at 07:50 on request; mixed pairs not started (STATUS.md).
+
+## 9 Oct, 11:40–12:20 — Engine rework (Alejandro's requests)
+
+- Timing per phase (budget ×1): compressing balls 0.4–0.5 s; the 45,000-step morph 18 s; the rigid settle 2–8 s.
+  Restarting from scratch is the waste, so the search moved to basin hopping from the archive (README Method §4).
+- Hop smoke tests from the best packings: small hops (minDiff 0.05) return to the best basin (12 dodecahedra raw
+  2.76393 = best), larger ones explore (raw 2.99–3.80); focused hops (5-piece cluster) stay closer (18 icosahedra:
+  raw 3.328 vs 3.357 for a global hop of the same size).
+- Kernel: separating-axis hints, identical results on 731 hinted re-evaluations. Legalization: Newton steps on the
+  scale factor instead of 60-step bisection; SLP tightening of 20 dodecahedra 120 s (not converged, 3.4078) →
+  24.5 s (converged, 3.3951).
+- Archive seeded from all earlier tightened runs (results/*.jsonl) plus lattice constructions; dodecahedra n = 19
+  improved to 3.30068 by a pool member; monotone rule filled cubes in a cube 2–39 and lattice-derived cases at once.
+- First 3 minutes with two workers: ~40 attempts, every new dual problem filled from n = 2 upward by ascend moves,
+  monotone fixes applied (e.g. 4 octahedra in a cube set from 5 minus a piece). Archive check ok, no errors.
+- 12:03: launched `scripts/run_forever.sh` (unattended).

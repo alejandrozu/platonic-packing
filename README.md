@@ -1,8 +1,8 @@
 # platonic-packing
 
 **How small can a Platonic solid be and still hold n unit copies of a Platonic solid?** This repository answers that,
-with proofs of validity, for the four same-solid problems (tetrahedra in a tetrahedron, octahedra in an octahedron,
-icosahedra in an icosahedron, dodecahedra in a dodecahedron) and every n from 2 to 20, using Yohei Nakajima's
+with proofs of validity, for nine problems — each Platonic solid in a copy of itself, and the dual pairs (cubes in an
+octahedron, octahedra in a cube, dodecahedra in an icosahedron, icosahedra in a dodecahedron) — for n = 2 to 40, using Yohei Nakajima's
 *soft-to-rigid* method: start every piece as its inscribed sphere, then sharpen it into the solid while inward
 pressure shrinks the container. Every packing is **certified in exact arithmetic over Q(√2, √5)**.
 
@@ -27,49 +27,49 @@ published one (cubes in a cube: Friedman's catalogue and later records; octahedr
 non-decreasing in n by construction. The search is still running and this table is regenerated automatically.
 
 <!-- RESULTS:START -->
-_Auto-generated 2026-10-09 12:02 CEST from the running search; see [PROGRESS.md](PROGRESS.md) for search statistics._
+_Auto-generated 2026-10-09 12:06 CEST from the running search; see [PROGRESS.md](PROGRESS.md) for search statistics._
 
 ### Same solid
 
 | n | Tetrahedra in a tetrahedron | Octahedra in an octahedron | Icosahedra in an icosahedron | Dodecahedra in a dodecahedron | Cubes in a cube |
 |---:|---|---|---|---|---|
-| 2 |  |  |  |  |  |
-| 3 |  |  |  |  |  |
-| 4 |  |  |  |  |  |
-| 5 |  |  |  |  |  |
-| 6 |  |  |  |  |  |
-| 7 |  |  |  |  |  |
-| 8 |  |  |  |  |  |
-| 9 |  |  |  |  |  |
-| 10 |  |  |  |  |  |
-| 11 |  |  |  |  |  |
-| 12 |  |  |  |  |  |
-| 13 |  |  |  |  |  |
-| 14 |  |  |  |  |  |
-| 15 |  |  |  |  |  |
-| 16 |  |  |  |  |  |
-| 17 |  |  |  |  |  |
-| 18 |  |  |  |  |  |
-| 19 |  |  |  |  |  |
-| 20 |  |  |  |  |  |
-| 21 |  |  |  |  |  |
-| 22 |  |  |  |  |  |
-| 23 |  |  |  |  |  |
-| 24 |  |  |  |  |  |
-| 25 |  |  |  |  |  |
-| 26 |  |  |  |  |  |
-| 27 |  |  |  |  |  |
-| 28 |  |  |  |  |  |
-| 29 |  |  |  |  |  |
-| 30 |  |  |  |  |  |
-| 31 |  |  |  |  |  |
-| 32 |  |  |  |  |  |
-| 33 |  |  |  |  |  |
-| 34 |  |  |  |  |  |
-| 35 |  |  |  |  |  |
-| 36 |  |  |  |  |  |
-| 37 |  |  |  |  |  |
-| 38 |  |  |  |  |  |
+| 2 | [1.95356+](records/tetintet/tetintet_n02.json) |  |  |  |  |
+| 3 | [2.00000+](records/tetintet/tetintet_n03.json) |  |  |  |  |
+| 4 | [2.00000+](records/tetintet/tetintet_n04.json) |  |  |  |  |
+| 5 | [2.00000+](records/tetintet/tetintet_n05.json) |  |  |  |  |
+| 6 | [2.29099+](records/tetintet/tetintet_n06.json) ≈ (3 + √15)/3 |  |  |  |  |
+| 7 | [2.38195+](records/tetintet/tetintet_n07.json) |  |  |  |  |
+| 8 | [2.41421+](records/tetintet/tetintet_n08.json) ≈ 1 + √2 |  |  |  |  |
+| 9 | [2.65503+](records/tetintet/tetintet_n09.json) |  |  |  |  |
+| 10 | [2.74153+](records/tetintet/tetintet_n10.json) |  |  |  |  |
+| 11 | [2.88886+](records/tetintet/tetintet_n11.json) |  |  |  |  |
+| 12 | [2.91844+](records/tetintet/tetintet_n12.json) |  |  |  |  |
+| 13 | [2.97194+](records/tetintet/tetintet_n13.json) |  |  |  |  |
+| 14 | [3.00000+](records/tetintet/tetintet_n14.json) |  |  |  |  |
+| 15 | [3.00000+](records/tetintet/tetintet_n15.json) |  |  |  |  |
+| 16 | [3.10703+](records/tetintet/tetintet_n16.json) |  |  |  |  |
+| 17 | [3.11687+](records/tetintet/tetintet_n17.json) |  |  |  |  |
+| 18 | [3.14314+](records/tetintet/tetintet_n18.json) |  |  |  |  |
+| 19 | [3.24448+](records/tetintet/tetintet_n19.json) |  |  |  |  |
+| 20 | [3.38073+](records/tetintet/tetintet_n20.json) |  |  |  |  |
+| 21 | [4.00000+](records/tetintet/tetintet_n21.json) |  |  |  |  |
+| 22 | [4.00000+](records/tetintet/tetintet_n22.json) |  |  |  |  |
+| 23 | [4.00000+](records/tetintet/tetintet_n23.json) |  |  |  |  |
+| 24 | [4.00000+](records/tetintet/tetintet_n24.json) |  |  |  |  |
+| 25 | [4.00000+](records/tetintet/tetintet_n25.json) |  |  |  |  |
+| 26 | [4.00000+](records/tetintet/tetintet_n26.json) |  |  |  |  |
+| 27 | [4.00000+](records/tetintet/tetintet_n27.json) |  |  |  |  |
+| 28 | [4.00000+](records/tetintet/tetintet_n28.json) |  |  |  |  |
+| 29 | [4.00000+](records/tetintet/tetintet_n29.json) |  |  |  |  |
+| 30 | [4.00000+](records/tetintet/tetintet_n30.json) |  |  |  |  |
+| 31 | [4.00000+](records/tetintet/tetintet_n31.json) |  |  |  |  |
+| 32 | [4.00000+](records/tetintet/tetintet_n32.json) |  |  |  |  |
+| 33 | [4.00000+](records/tetintet/tetintet_n33.json) |  |  |  |  |
+| 34 | [4.00000+](records/tetintet/tetintet_n34.json) |  |  |  |  |
+| 35 | [4.00588+](records/tetintet/tetintet_n35.json) |  |  |  |  |
+| 36 | [4.02362+](records/tetintet/tetintet_n36.json) |  |  |  |  |
+| 37 | [4.04601+](records/tetintet/tetintet_n37.json) |  |  |  |  |
+| 38 | [4.06715+](records/tetintet/tetintet_n38.json) |  |  |  |  |
 | 39 |  |  |  |  |  |
 | 40 |  |  |  |  |  |
 
@@ -200,6 +200,34 @@ term uses the support function of S_r in each N_f.
   clearance, and `s_full` is rounded up at the 13th decimal (Nakajima used 10⁻⁶; for a tetrahedral container that
   shifts the 5th decimal, because a wall gap g costs g / inradius ≈ 4.9 g in edge length).
 
+### 4. Basin hopping: the autonomous engine (`scripts/engine.py`)
+
+Restarting every run from random balls wastes most of the time on reaching a dense packing. The engine instead keeps
+an archive of the best packing and up to six distinct good packings for every (problem, n), and repeatedly applies
+one of these moves to a case, chosen by a scheduler (least effort per piece first, every missing n filled first):
+
+* **hop** (55%): take the best (or a pool) packing, expand it by 1–5%, soften the pieces to S_r (r = 6–20% of the
+  inradius; by Lemma 1 they shrink inside their rigid shapes), and shake them at fixed container size until the
+  *relative arrangement* has changed by at least a random target of 0.04–0.6 piece edges, measured as the RMS change
+  of the distances between neighbouring pieces (noise and softness escalate every 400 steps until it has). For larger
+  n, 60% of hops shake only a cluster of 3 to n/3 neighbouring pieces. Then re-sharpen under pressure and settle.
+* **reinsert** (12%): remove 1–3 random pieces and put them back into the largest holes, re-sharpen.
+* **fresh** (13%): a full soft-to-rigid run from random balls (keeps diversity).
+* **ascend** (10%): the best (n−1)-packing plus one piece in its largest hole, re-sharpened.
+* **descend** (10%): the best (n+1)-packing minus the piece whose removal lets the container shrink most (LP).
+
+A raw result is tightened only if it is within the case's gate of the best (the gate adapts to how much tightening
+typically gains for that case), with a sequential-LP tightener (one sparse HiGHS LP per trust-region round, with an
+optimistic early abort) and an SLSQP polish for n ≤ 14. A hop costs 0.5–5 s instead of 20–60 s for a fresh run.
+
+**Monotonicity is an invariant, not a hope.** s(n) ≤ s(n+1) always holds mathematically (delete a piece). The archive
+enforces it on every write: whenever the best n-packing is worse than the best (n+1)-packing, the (n+1)-packing minus
+one piece (same container, so never larger; LP refit) replaces it and the case is queued for re-tightening. Records
+enforce it once more on the certified sizes (`scripts/publish.py`), and the test suite checks it.
+
+The engine runs unattended (`scripts/run_forever.sh`): two workers restart themselves if they exit, and a publisher
+rebuilds the records, tables, PROGRESS.md and the site, then commits and pushes, every 90 minutes.
+
 ## Rigor: what is checked, and how
 
 `solids.py` builds the five unit-edge solids with coordinates in Q(√2, √5) (exact; e.g. the dodecahedron uses
@@ -246,6 +274,18 @@ Next to each record: `.certify.txt`, `.verify.txt` (checker outputs) and `.png`.
 
 ## Reproduce
 
+The current search (all nine problems, n = 2–40):
+
+```bash
+nohup setsid scripts/run_forever.sh > logs/supervisor.out 2>&1 &   # start (resumes from state/best)
+python3 scripts/engine.py status                                   # current table
+python3 scripts/engine.py check                                    # archive invariants (monotone s(n))
+python3 scripts/publish.py --no-push                               # rebuild records, tables, site now
+touch state/STOP                                                   # stop gracefully
+```
+
+The original batch pipeline (still works):
+
 ```bash
 python3 solids.py src/solids.json                       # exact solids, self-check, float export
 bash test/run_all.sh                                    # tests
@@ -259,8 +299,7 @@ python3 scripts/site.py                                 # site/index.html
 python3 certify_exact.py records/tetintet/tetintet_n07.json
 ```
 
-`scripts/orchestrate.sh` runs everything unattended; `scripts/runqueue.sh <queue>` runs a queue file with two workers.
-All steps are idempotent (see STATUS.md).
+`scripts/runqueue.sh <queue>` runs a queue file with two workers. All steps are idempotent (see STATUS.md).
 
 Requirements: Node ≥ 18; Python ≥ 3.10 with NumPy, SciPy (search/tightening), matplotlib (pictures), mpmath
 (closed-form hints). The checkers need only the Python standard library.
@@ -272,7 +311,12 @@ solids.py            exact solids (Q(√2, √5)), derived faces, self-check
 verify.py            float checker          certify_exact.py   exact checker (proof)
 src/geom.js          signed distances + gradients     src/sim.js   soft-to-rigid dynamics
 src/exact.py         SLSQP tightening, legalization   src/claim.py record files with clearance
-scripts/             batch runner, queue runner, pipeline (tighten/descend), constructions, records, figures, site
+scripts/engine.py    autonomous basin-hopping search with a monotone archive (state/best, state/pool)
+scripts/publish.py   records + tables + PROGRESS.md + site + git push; scripts/run_forever.sh supervisor
+src/server.js        JSON-lines compute server used by the engine (fresh runs and hops)
+scripts/             also: batch runner, queue runner, pipeline (tighten/descend), constructions, figures, site
+state/best/          the archive: best packing per (problem, n), internal units, with search statistics
+PROGRESS.md          search statistics, regenerated by every publish
 docs/MATH.md         mathematical notes: lemmas, certificate, constructions, observations, open questions
 STATUS.md            what is done, what is not, how to resume
 records/<id>/        record files, checker outputs, pictures, per-problem README table; records/SUMMARY.csv
