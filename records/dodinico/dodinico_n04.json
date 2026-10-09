@@ -1,0 +1,75 @@
+{
+ "problem": "min/dodecahedra_in_icosahedron",
+ "piece": "dodecahedron",
+ "container": "icosahedron",
+ "n": 4,
+ "s": 3.37546,
+ "s_plus": "3.37546+",
+ "s_full": 3.3754637404253,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000000014165344e-07,
+  "min_wall_gap": 1.0000003758392495e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-09",
+ "pieces": [
+  [
+   -1.2298087243614892,
+   -0.372653863054301,
+   0.7684143944960502,
+   0.2547764745920907,
+   0.5850797917208177,
+   0.7097346345511758,
+   0.29840799894248726
+  ],
+  [
+   0.10840043501435889,
+   -1.0657223011367059,
+   -1.0460623329334835,
+   0.04809875251932359,
+   0.47524719152444456,
+   0.350592348694084,
+   -0.8055505086531687
+  ],
+  [
+   1.12140828934713,
+   -0.3056587098201547,
+   0.9438099827445582,
+   0.38018621628043986,
+   -0.40286575551214543,
+   0.35458600062169865,
+   -0.7532771018351081
+  ],
+  [
+   4.985212185133844e-24,
+   1.0740985467347155,
+   -0.4102691375857961,
+   0.09463140112321565,
+   0.5990390709539094,
+   -0.3340805276126331,
+   0.7215173528489797
+  ]
+ ],
+ "record_id": "dodinico_n04",
+ "title": "4 unit dodecahedra in an icosahedron",
+ "source": {
+  "hash": "68112d5f07a28a81",
+  "clear": 1e-07,
+  "cap": 3.5884152076612
+ },
+ "s_tight": 3.375463527009,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.412999182605616,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "ascend",
+  "seed": 180787534,
+  "raw": 3.399656134611649
+ },
+ "density": 0.36531809394107323
+}

@@ -1,0 +1,93 @@
+{
+ "problem": "min/icosahedra_in_dodecahedron",
+ "piece": "icosahedron",
+ "container": "dodecahedron",
+ "n": 6,
+ "s": 1.57517,
+ "s_plus": "1.57517+",
+ "s_full": 1.5751797756989,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000000016593957e-07,
+  "min_wall_gap": 1.0000007666377542e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-09",
+ "pieces": [
+  [
+   0.4222040615947802,
+   0.892740889318315,
+   -0.43387677300936034,
+   0.4721773111321313,
+   -0.03537124031856595,
+   -0.847019224444485,
+   -0.2415696496495786
+  ],
+  [
+   -0.4193978060580944,
+   -0.920194424560146,
+   0.4098348128819279,
+   0.9762176817279118,
+   -0.09238560841052917,
+   0.17580377106372125,
+   -0.08693084216877628
+  ],
+  [
+   0.9948172837518192,
+   -0.22402304939952747,
+   0.515665415827801,
+   0.7232191475233934,
+   -0.22013387824130132,
+   -0.3283803589641295,
+   -0.5662697944907265
+  ],
+  [
+   -0.42309985378987436,
+   0.5991820182214805,
+   0.8894541210377722,
+   0.33139999427279676,
+   0.4841404046332112,
+   0.3298426646510005,
+   -0.7395849707596205
+  ],
+  [
+   -0.9910088309583509,
+   0.22641621170579673,
+   -0.5610091259996692,
+   0.5585920735327834,
+   -0.4937011449238897,
+   -0.40568804433591144,
+   0.5288206553928182
+  ],
+  [
+   0.3717532620398112,
+   -0.5570632704524016,
+   -0.8961375553607119,
+   0.8558113592005782,
+   -0.07493529496019483,
+   0.490581902194394,
+   0.14594867684161372
+  ]
+ ],
+ "record_id": "icoindod_n06",
+ "title": "6 unit icosahedra in a dodecahedron",
+ "source": {
+  "hash": "a8f9e02055d5eead",
+  "clear": 1e-07,
+  "cap": 1.6697090876757
+ },
+ "s_tight": 1.57517962504,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.1953999659046974,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "ascend",
+  "seed": 1267089990,
+  "raw": 1.5826340748792935
+ },
+ "density": 0.43706832738526596
+}

@@ -1,0 +1,57 @@
+{
+ "problem": "min/octahedra_in_cube",
+ "piece": "octahedron",
+ "container": "cube",
+ "n": 2,
+ "s": 1.41421,
+ "s_plus": "1.41421+",
+ "s_full": 1.4142138201082,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000000002021964e-07,
+  "min_wall_gap": 1.0000003736188035e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-09",
+ "pieces": [
+  [
+   -0.23570228926302886,
+   -0.2357022892630303,
+   0.23570228926302952,
+   0.4082482904638626,
+   0.816496580927726,
+   2.3795449221434073e-16,
+   -0.40824829046386346
+  ],
+  [
+   0.23570228926302902,
+   0.23570228926302958,
+   -0.23570228926303025,
+   0.40824829046386324,
+   9.68814718301244e-16,
+   0.4082482904638624,
+   -0.8164965809277263
+  ]
+ ],
+ "record_id": "octincub_n02",
+ "title": "2 unit octahedra in a cube",
+ "source": {
+  "hash": "f3754342768f7b86",
+  "clear": 1e-07,
+  "cap": 1.6395960688855
+ },
+ "s_tight": 1.414213562373,
+ "closed_form_conjecture": "\u221a2",
+ "volume_lower_bound": 0.9805609178109601,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "fresh",
+  "seed": 1911591682,
+  "raw": 1.4142135807469107
+ },
+ "density": 0.33333315108715944
+}

@@ -1,0 +1,66 @@
+{
+ "problem": "min/octahedra_in_cube",
+ "piece": "octahedron",
+ "container": "cube",
+ "n": 3,
+ "s": 1.63959,
+ "s_plus": "1.63959+",
+ "s_full": 1.6395960688855,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000000006619297e-07,
+  "min_wall_gap": 1.0000004579957533e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-09",
+ "pieces": [
+  [
+   -0.29542050536429715,
+   0.23889313506635684,
+   0.4115496098907576,
+   0.29630171490493323,
+   0.8848706717046241,
+   -0.0753593322145463,
+   -0.3514685749104477
+  ],
+  [
+   0.24244763086290855,
+   0.4115496439788408,
+   -0.3197979236534078,
+   0.2798481423331209,
+   -0.1159168959592962,
+   0.3647051996310009,
+   -0.8804762392171493
+  ],
+  [
+   0.24492415740407675,
+   -0.4082483234198229,
+   -0.31987149177005597,
+   0.5438988813476556,
+   0.057448062115484866,
+   -0.6986578922250973,
+   -0.4612492565408954
+  ]
+ ],
+ "record_id": "octincub_n03",
+ "title": "3 unit octahedra in a cube",
+ "source": {
+  "hash": "0af4440b61b85a78",
+  "clear": 1e-07,
+  "cap": 1.7198422609854
+ },
+ "s_tight": 1.639595734797,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.122462048309373,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "ascend",
+  "seed": 219893468,
+  "raw": 1.6760471208433068
+ },
+ "density": 0.32085173546550766
+}

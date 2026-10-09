@@ -1,0 +1,75 @@
+{
+ "problem": "min/cubes_in_cube",
+ "piece": "cube",
+ "container": "cube",
+ "n": 4,
+ "s": 2.0,
+ "s_plus": "2.00000+",
+ "s_full": 2.0000003000001,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000000000651237e-07,
+  "min_wall_gap": 1.000000489081998e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-09",
+ "pieces": [
+  [
+   -0.5000000499999998,
+   0.5000000500000004,
+   0.5000000500000001,
+   0.4999999999999999,
+   0.5,
+   -0.5000000000000001,
+   0.5000000000000002
+  ],
+  [
+   -0.5000000500000001,
+   -0.5000000499999997,
+   -0.5000000500000004,
+   0.49999999999999983,
+   0.5,
+   -0.5000000000000001,
+   -0.5
+  ],
+  [
+   0.5000000500000003,
+   -0.5000000499999999,
+   -0.5000000500000005,
+   0.5000000000000002,
+   -0.49999999999999983,
+   -0.5,
+   0.49999999999999983
+  ],
+  [
+   0.49892303595893495,
+   -0.5000000499999999,
+   0.5000000500000004,
+   0.7071067811865477,
+   1.452037943325072e-17,
+   8.792306772331702e-17,
+   0.7071067811865475
+  ]
+ ],
+ "record_id": "cubincub_n04",
+ "title": "4 unit cubes in a cube",
+ "source": {
+  "hash": "c457641476511f8e",
+  "clear": 1e-07,
+  "cap": 2.0000003000001
+ },
+ "s_tight": 2.0,
+ "closed_form_conjecture": "2",
+ "volume_lower_bound": 1.5874010519681994,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "monotone",
+  "from_n": 5,
+  "removed": 0
+ },
+ "density": 0.4999997749999926
+}

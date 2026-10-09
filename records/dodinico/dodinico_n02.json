@@ -1,0 +1,57 @@
+{
+ "problem": "min/dodecahedra_in_icosahedron",
+ "piece": "dodecahedron",
+ "container": "icosahedron",
+ "n": 2,
+ "s": 2.99442,
+ "s_plus": "2.99442+",
+ "s_full": 2.99442737589,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000000037757584e-07,
+  "min_wall_gap": 1.0000004557753073e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-09",
+ "pieces": [
+  [
+   0.0,
+   0.635410222911525,
+   1.0281153374699925,
+   0.050202853971553475,
+   -0.6379881062640321,
+   -0.738393814207142,
+   -0.21266270208801016
+  ],
+  [
+   0.0,
+   -0.6354102229115224,
+   -1.0281153374699947,
+   8.00943596703881e-16,
+   1.0285972312897439e-15,
+   0.22975292054736138,
+   -0.9732489894677302
+  ]
+ ],
+ "record_id": "dodinico_n02",
+ "title": "2 unit dodecahedra in an icosahedron",
+ "source": {
+  "hash": "d2e84eb644936873",
+  "clear": 1e-07,
+  "cap": 3.1506393397144
+ },
+ "s_tight": 2.994427191,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.9151987204332803,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "fresh",
+  "seed": 1705222572,
+  "raw": 2.9944272434237296
+ },
+ "density": 0.2616376110370899
+}

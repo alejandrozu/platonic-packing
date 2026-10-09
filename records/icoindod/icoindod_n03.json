@@ -1,0 +1,66 @@
+{
+ "problem": "min/icosahedra_in_dodecahedron",
+ "piece": "icosahedron",
+ "container": "dodecahedron",
+ "n": 3,
+ "s": 1.37811,
+ "s_plus": "1.37811+",
+ "s_full": 1.3781154280444,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000000008614229e-07,
+  "min_wall_gap": 1.0000008909827329e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-09",
+ "pieces": [
+  [
+   -0.5074408481337457,
+   0.5652147951217739,
+   -0.4717345852309079,
+   0.6724985119639577,
+   -0.07099755695641123,
+   -0.6724985119639569,
+   -0.300750477503773
+  ],
+  [
+   -0.30317528691995244,
+   -0.8567628024633109,
+   6.985387513430695e-16,
+   0.9732489894677302,
+   5.983159940341315e-16,
+   0.22975292054736107,
+   6.897330081188842e-16
+  ],
+  [
+   0.7505761277480724,
+   0.17181364884158226,
+   0.3928812443707181,
+   0.6015009550075455,
+   -0.6015009550075454,
+   -0.37174803446018495,
+   -0.3717480344601849
+  ]
+ ],
+ "record_id": "icoindod_n03",
+ "title": "3 unit icosahedra in a dodecahedron",
+ "source": {
+  "hash": "da1fb7a4c0457b62",
+  "clear": 1e-07,
+  "cap": 1.4121599501039
+ },
+ "s_tight": 1.378115294937,
+ "closed_form_conjecture": "(35 + 9\u221a5)/40",
+ "volume_lower_bound": 0.9487895816999333,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "ascend",
+  "seed": 1926388541,
+  "raw": 1.3889508176572154
+ },
+ "density": 0.326326946804766
+}

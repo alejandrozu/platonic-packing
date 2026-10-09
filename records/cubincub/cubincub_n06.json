@@ -1,0 +1,93 @@
+{
+ "problem": "min/cubes_in_cube",
+ "piece": "cube",
+ "container": "cube",
+ "n": 6,
+ "s": 2.0,
+ "s_plus": "2.00000+",
+ "s_full": 2.0000003000001,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000000016984919e-07,
+  "min_wall_gap": 1.0000004846411059e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-09",
+ "pieces": [
+  [
+   0.5000000500000008,
+   0.5000000500000006,
+   0.4987890184727201,
+   0.7071067811865479,
+   -0.7071067811865474,
+   1.8527814004366458e-16,
+   7.172393369275132e-17
+  ],
+  [
+   -0.500000050000001,
+   0.5000000500000006,
+   -0.5000000500000013,
+   0.5,
+   -0.5,
+   0.5000000000000001,
+   -0.4999999999999999
+  ],
+  [
+   -0.5000000500000003,
+   0.5000000500000004,
+   0.5000000500000007,
+   0.4999999999999999,
+   0.5,
+   -0.5000000000000001,
+   0.5000000000000002
+  ],
+  [
+   -0.5000000500000006,
+   -0.5000000500000007,
+   -0.5000000500000009,
+   0.49999999999999983,
+   0.5,
+   -0.5000000000000001,
+   -0.5
+  ],
+  [
+   0.5000000500000009,
+   -0.5000000500000009,
+   -0.500000050000001,
+   0.5000000000000002,
+   -0.49999999999999983,
+   -0.5,
+   0.49999999999999983
+  ],
+  [
+   0.49892303595893567,
+   -0.500000050000001,
+   0.5000000500000009,
+   0.7071067811865477,
+   1.452037943325072e-17,
+   8.792306772331702e-17,
+   0.7071067811865475
+  ]
+ ],
+ "record_id": "cubincub_n06",
+ "title": "6 unit cubes in a cube",
+ "source": {
+  "hash": "fa2e43e0e9cc3ad8",
+  "clear": 1e-07,
+  "cap": 2.0000003000001
+ },
+ "s_tight": 2.0,
+ "closed_form_conjecture": "2",
+ "volume_lower_bound": 1.8171205928321397,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "import",
+  "mode": "improved",
+  "seed": 6
+ },
+ "density": 0.7499996624999888
+}
