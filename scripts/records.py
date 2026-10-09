@@ -44,6 +44,7 @@ def closed_form(x):
                 if den < 0: num, den = -num, -den
                 return str(num) if den == 1 else f'{num}/{den}'
             continue
+        if len(p) != 3: continue                      # findpoly may return a lower-degree polynomial
         A, B, C = (int(c) for c in p)
         D = B * B - 4 * A * C
         if D <= 0: continue

@@ -50,4 +50,9 @@ for l in open('state/attempts.jsonl'):
 print(' '.join(out[-12:]))
 PY
 )
+if pgrep -f "^python3 scripts/publish.py" > /dev/null; then pub="publishing"; else pub="idle"; fi
+rec=$(ls records/*/*_n[0-9][0-9].json 2>/dev/null | wc -l)
+lastpub=$(grep "publish:" logs/publish.log | tail -1 | cut -c1-60)
+tb=$(tail -n 30 logs/publish.out 2>/dev/null | grep -c Traceback)
+echo "records: $rec files, publisher $pub, last: $lastpub$([ "$tb" -gt 0 ] && echo ' (TRACEBACK in publish.out)')"
 echo "$(date +%H:%M) workers=$w attempts=$a (+$((a - pa))) new bests +$((i - pi)) [$newb] | $chk | github: $push | $laptop$note"

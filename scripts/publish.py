@@ -59,7 +59,8 @@ def build_problem(p, log):
         if old and old.get('source') == src and st is not None:
             rec, (ver, cert) = old, st
         else:
-            cf = closed_form(b['s'])
+            try: cf = closed_form(b['s'])
+            except Exception: cf = None                   # a hint only; never let it stop a publish
             meta = {'record_id': f'{p}_n{n:02d}', 'title': f'{n} unit {PL[piece]} in {art(container)}', 'source': src,
                     's_tight': round(b['s'], 12), 'closed_form_conjecture': cf,
                     'volume_lower_bound': (n * SOL[piece]['volume'] / SOL[container]['volume']) ** (1 / 3),
