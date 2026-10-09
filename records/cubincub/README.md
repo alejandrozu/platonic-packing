@@ -14,7 +14,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 9 | [2.70710+](cubincub_n09.json) | 2.707106781187 | (4 + √2)/2 | 2.70711 (Friedman catalogue (2 + 1/sqrt2)) | 2.08008 | 0.4537 | ![](cubincub_n09.png) |
 | 10 | [2.87182+](cubincub_n10.json) | 2.871822117693 |  | 2.70711 (Friedman catalogue (2 + 1/sqrt2)) | 2.15443 | 0.4222 | ![](cubincub_n10.png) |
 | 11 | [2.91209+](cubincub_n11.json) | 2.912095586463 |  | 2.88295 (Hyra-results (Haowei Lin), 2026) | 2.22398 | 0.4454 | ![](cubincub_n11.png) |
-| 12 | [2.97661+](cubincub_n12.json) | 2.976619590102 |  | 2.93152 (Y. Nakajima, Oct 2026) | 2.28943 | 0.4550 | ![](cubincub_n12.png) |
+| 12 | [2.94280+](cubincub_n12.json) | 2.942809041582 | (6 + 2√2)/3 | 2.93152 (Y. Nakajima, Oct 2026) | 2.28943 | 0.4709 | ![](cubincub_n12.png) |
 | 13 | [2.97661+](cubincub_n13.json) | 2.976619590102 |  | 2.95600 (Friedman catalogue (truncated)) | 2.35133 | 0.4929 | ![](cubincub_n13.png) |
 | 14 | [3.00000+](cubincub_n14.json) | 3.000000000000 | 3 | 2.98995 (Friedman catalogue) | 2.41014 | 0.5185 | ![](cubincub_n14.png) |
 | 15 | [3.00000+](cubincub_n15.json) | 3.000000000000 | 3 | 3.00000 (Friedman catalogue) | 2.46621 | 0.5556 | ![](cubincub_n15.png) |
@@ -30,14 +30,14 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 25 | [3.00000+](cubincub_n25.json) | 3.000000000000 | 3 |  | 2.92402 | 0.9259 | ![](cubincub_n25.png) |
 | 26 | [3.00000+](cubincub_n26.json) | 3.000000000000 | 3 |  | 2.96250 | 0.9630 | ![](cubincub_n26.png) |
 | 27 | [3.00000+](cubincub_n27.json) | 3.000000000000 | 3 |  | 3.00000 | 1.0000 | ![](cubincub_n27.png) |
-| 28 | [3.80747+](cubincub_n28.json) | 3.807470498662 |  |  | 3.03659 | 0.5073 | ![](cubincub_n28.png) |
-| 29 | [3.80748+](cubincub_n29.json) | 3.807482396967 |  |  | 3.07232 | 0.5254 | ![](cubincub_n29.png) |
-| 30 | [3.83089+](cubincub_n30.json) | 3.830893250073 |  |  | 3.10723 | 0.5336 | ![](cubincub_n30.png) |
-| 31 | [3.92328+](cubincub_n31.json) | 3.923287303717 |  |  | 3.14138 | 0.5133 | ![](cubincub_n31.png) |
-| 32 | [3.93967+](cubincub_n32.json) | 3.939677897336 |  |  | 3.17480 | 0.5233 | ![](cubincub_n32.png) |
+| 28 | [3.70710+](cubincub_n28.json) | 3.707106781199 |  |  | 3.03659 | 0.5496 | ![](cubincub_n28.png) |
+| 29 | [3.70710+](cubincub_n29.json) | 3.707106784135 |  |  | 3.07232 | 0.5692 | ![](cubincub_n29.png) |
+| 30 | [3.75909+](cubincub_n30.json) | 3.759092768287 |  |  | 3.10723 | 0.5648 | ![](cubincub_n30.png) |
+| 31 | [3.92247+](cubincub_n31.json) | 3.922469602360 |  |  | 3.14138 | 0.5137 | ![](cubincub_n31.png) |
+| 32 | [3.92267+](cubincub_n32.json) | 3.922677909903 |  |  | 3.17480 | 0.5302 | ![](cubincub_n32.png) |
 | 33 | [3.94675+](cubincub_n33.json) | 3.946750676029 |  |  | 3.20753 | 0.5368 | ![](cubincub_n33.png) |
-| 34 | [3.97662+](cubincub_n34.json) | 3.976619590261 |  |  | 3.23961 | 0.5407 | ![](cubincub_n34.png) |
-| 35 | [4.00000+](cubincub_n35.json) | 4.000000000000 | 4 |  | 3.27107 | 0.5469 | ![](cubincub_n35.png) |
+| 34 | [3.95944+](cubincub_n34.json) | 3.959446348948 |  |  | 3.23961 | 0.5477 | ![](cubincub_n34.png) |
+| 35 | [3.97835+](cubincub_n35.json) | 3.978350919687 |  |  | 3.27107 | 0.5559 | ![](cubincub_n35.png) |
 | 36 | [4.00000+](cubincub_n36.json) | 4.000000000000 | 4 |  | 3.30193 | 0.5625 | ![](cubincub_n36.png) |
 | 37 | [4.00000+](cubincub_n37.json) | 4.000000000000 | 4 |  | 3.33222 | 0.5781 | ![](cubincub_n37.png) |
 | 38 | [4.00000+](cubincub_n38.json) | 4.000000000000 | 4 |  | 3.36198 | 0.5937 | ![](cubincub_n38.png) |
