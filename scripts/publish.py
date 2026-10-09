@@ -176,6 +176,21 @@ def progress():
         last = max([c['stats'].get('last_improve') or 0 for c in cs] + [0])
         lines.append(f"| {title(p)} ({p}) | {len(cs)}/{NMAX - NMIN + 1} | {a} | {e:.1f} | {imp} | "
                      f"{time.strftime('%m-%d %H:%M', time.localtime(last)) if last else '-'} |")
+    # live values straight from the archive (not yet certified records; records follow at the next publish)
+    lines += ['', '## Current best values (live archive, uncertified until the next records publish)', '',
+              's = container edge / piece edge, touching limit from the tightening; s(n) is non-decreasing by construction.', '']
+    ps = list(PID)
+    lines += ['| n | ' + ' | '.join(ps) + ' |', '|---:|' + '---|' * len(ps)]
+    for n in range(NMIN, NMAX + 1):
+        cells = []
+        for p in ps:
+            c = _read(_path('best', p, n))
+            if c and c.get('best'):
+                fresh = c['stats'].get('last_improve') and now - c['stats']['last_improve'] < 86400
+                cells.append(f"{c['best']['s']:.5f}" + (' •' if fresh else ''))
+            else: cells.append('')
+        lines.append(f'| {n} | ' + ' | '.join(cells) + ' |')
+    lines += ['', '• improved in the last 24 hours.']
     open(os.path.join(ROOT, 'PROGRESS.md'), 'w').write('\n'.join(lines) + '\n')
 
 
