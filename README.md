@@ -1,15 +1,61 @@
 # platonic-packing
 
-Smallest Platonic solid **A** that holds **n** unit-edge copies of a Platonic solid **B**, found by Yohei Nakajima's
-*soft-to-rigid* method — start every piece as its inscribed ball, then sharpen it into the solid while inward pressure
-shrinks the container — and **certified in exact arithmetic**.
+**How small can a Platonic solid be and still hold n unit copies of a Platonic solid?** This repository answers that,
+with proofs of validity, for the four same-solid problems (tetrahedra in a tetrahedron, octahedra in an octahedron,
+icosahedra in an icosahedron, dodecahedra in a dodecahedron) and every n from 2 to 20, using Yohei Nakajima's
+*soft-to-rigid* method: start every piece as its inscribed sphere, then sharpen it into the solid while inward
+pressure shrinks the container. Every packing is **certified in exact arithmetic over Q(√2, √5)**.
 
-This generalizes [`yoheinakajima/soft-to-rigid-packing`](https://github.com/yoheinakajima/soft-to-rigid-packing)
+It generalizes [`yoheinakajima/soft-to-rigid-packing`](https://github.com/yoheinakajima/soft-to-rigid-packing)
 (unit cubes in a cube; his 12-cube record 2.9315185094797) from cubes to all five Platonic solids, as pieces and as
 containers.
 
-**Results:** see [`records/`](records/) — one record file per solution, `records/SUMMARY.csv` for everything, and a
-table per problem (e.g. [`records/tetintet/`](records/tetintet/) = tetrahedra in a tetrahedron).
+* **Read first:** [docs/MATH.md](docs/MATH.md) — the problem, the homotopy lemma, why the geometry is exact, what the
+  certificate proves, the lattice constructions, observations, and what is *not* proven.
+* **Records:** [records/README.md](records/README.md) (tables with links), [records/SUMMARY.csv](records/SUMMARY.csv)
+  (all digits), one folder per problem with record files, checker outputs and pictures.
+* **State of the work and next steps:** [STATUS.md](STATUS.md); chronological log: [EXPERIMENT_LOG.md](EXPERIMENT_LOG.md).
+* **Interactive viewer:** open [site/index.html](site/index.html) in a browser (3D view of every record, tables, s(n) chart).
+
+## Results: s = container edge ÷ piece edge, n = 2…20
+
+Each entry is the smallest container found, as certified (10⁻⁷ clearance, truncated to 5 decimals); it links to the
+record file. "≈ x" is a *conjectured* closed form: the touching limit agrees with x to ~11 digits (numerical
+evidence only; small integers omitted). All 76 entries pass `certify_exact.py` and `verify.py`.
+
+| n | tetrahedra in a tetrahedron | octahedra in an octahedron | icosahedra in an icosahedron | dodecahedra in a dodecahedron |
+|---:|---|---|---|---|
+| 2 | [1.95356+](records/tetintet/tetintet_n02.json) | [1.93311+](records/octinoct/octinoct_n02.json) | [1.96308+](records/icoinico/icoinico_n02.json) | [1.98759+](records/dodindod/dodindod_n02.json) |
+| 3 | [2.00000+](records/tetintet/tetintet_n03.json) | [2.00000+](records/octinoct/octinoct_n03.json) | [2.00000+](records/icoinico/icoinico_n03.json) | [2.00000+](records/dodindod/dodindod_n03.json) |
+| 4 | [2.00000+](records/tetintet/tetintet_n04.json) | [2.00000+](records/octinoct/octinoct_n04.json) | [2.14589+](records/icoinico/icoinico_n04.json) ≈ (11 - 3√5)/2 | [2.00000+](records/dodindod/dodindod_n04.json) |
+| 5 | [2.00000+](records/tetintet/tetintet_n05.json) | [2.00000+](records/octinoct/octinoct_n05.json) | [2.23606+](records/icoinico/icoinico_n05.json) ≈ √5 | [2.23606+](records/dodindod/dodindod_n05.json) ≈ √5 |
+| 6 | [2.29099+](records/tetintet/tetintet_n06.json) ≈ (3 + √15)/3 | [2.00000+](records/octinoct/octinoct_n06.json) | [2.34164+](records/icoinico/icoinico_n06.json) ≈ (5 + 3√5)/5 | [2.23606+](records/dodindod/dodindod_n06.json) ≈ √5 |
+| 7 | [2.38195+](records/tetintet/tetintet_n07.json) | [2.50000+](records/octinoct/octinoct_n07.json) ≈ 5/2 | [2.44931+](records/icoinico/icoinico_n07.json) ≈ (149 + 67√5)/122 | [2.49071+](records/dodindod/dodindod_n07.json) ≈ (3 + 2√5)/3 |
+| 8 | [2.41421+](records/tetintet/tetintet_n08.json) ≈ 1 + √2 | [2.50000+](records/octinoct/octinoct_n08.json) ≈ 5/2 | [2.49661+](records/icoinico/icoinico_n08.json) ≈ (81 + 33√5)/62 | [2.52786+](records/dodindod/dodindod_n08.json) ≈ 7 - 2√5 |
+| 9 | [2.65503+](records/tetintet/tetintet_n09.json) | [2.50000+](records/octinoct/octinoct_n09.json) ≈ 5/2 | [2.58359+](records/icoinico/icoinico_n09.json) ≈ 16 - 6√5 | [2.59888+](records/dodindod/dodindod_n09.json) ≈ (35 + 32√5)/41 |
+| 10 | [2.74153+](records/tetintet/tetintet_n10.json) | [2.66666+](records/octinoct/octinoct_n10.json) ≈ 8/3 | [2.60989+](records/icoinico/icoinico_n10.json) | [2.70520+](records/dodindod/dodindod_n10.json) ≈ (101 + 25√5)/58 |
+| 11 | [2.88886+](records/tetintet/tetintet_n11.json) | [2.66666+](records/octinoct/octinoct_n11.json) ≈ 8/3 | [2.61803+](records/icoinico/icoinico_n11.json) ≈ (3 + √5)/2 | [2.76393+](records/dodindod/dodindod_n11.json) ≈ 5 - √5 |
+| 12 | [2.91844+](records/tetintet/tetintet_n12.json) | [2.81649+](records/octinoct/octinoct_n12.json) ≈ (6 + √6)/3 | [2.61803+](records/icoinico/icoinico_n12.json) ≈ (3 + √5)/2 | [2.76393+](records/dodindod/dodindod_n12.json) ≈ 5 - √5 |
+| 13 | [2.97194+](records/tetintet/tetintet_n13.json) | [2.89054+](records/octinoct/octinoct_n13.json) | [2.83144+](records/icoinico/icoinico_n13.json) | [2.94621+](records/dodindod/dodindod_n13.json) |
+| 14 | [3.00000+](records/tetintet/tetintet_n14.json) | [2.95879+](records/octinoct/octinoct_n14.json) | [3.01976+](records/icoinico/icoinico_n14.json) | [3.00000+](records/dodindod/dodindod_n14.json) |
+| 15 | [3.00000+](records/tetintet/tetintet_n15.json) | [2.98859+](records/octinoct/octinoct_n15.json) | [3.06864+](records/icoinico/icoinico_n15.json) | [3.06724+](records/dodindod/dodindod_n15.json) |
+| 16 | [3.10703+](records/tetintet/tetintet_n16.json) | [3.00000+](records/octinoct/octinoct_n16.json) | [3.14053+](records/icoinico/icoinico_n16.json) | [3.11907+](records/dodindod/dodindod_n16.json) |
+| 17 | [3.11687+](records/tetintet/tetintet_n17.json) | [3.00000+](records/octinoct/octinoct_n17.json) | [3.20526+](records/icoinico/icoinico_n17.json) | [3.16774+](records/dodindod/dodindod_n17.json) |
+| 18 | [3.14314+](records/tetintet/tetintet_n18.json) | [3.00000+](records/octinoct/octinoct_n18.json) | [3.30114+](records/icoinico/icoinico_n18.json) | [3.21549+](records/dodindod/dodindod_n18.json) ≈ (53 + 18√5)/29 |
+| 19 | [3.24448+](records/tetintet/tetintet_n19.json) | [3.00000+](records/octinoct/octinoct_n19.json) | [3.32071+](records/icoinico/icoinico_n19.json) | [3.31440+](records/dodindod/dodindod_n19.json) |
+| 20 | [3.38073+](records/tetintet/tetintet_n20.json) | [3.16653+](records/octinoct/octinoct_n20.json) | [3.36304+](records/icoinico/icoinico_n20.json) | [3.35612+](records/dodindod/dodindod_n20.json) |
+
+Upper bounds only — none of these is proven optimal (see [docs/MATH.md](docs/MATH.md) §1 and §8). Highlights:
+two copies of every non-cube solid fit in a container of edge **< 2** (two cubes need exactly 2); 15 tetrahedra fit
+in a tetrahedron of edge 3 and 19 octahedra in an octahedron of edge 3 (exact lattice constructions, §7), yet 13
+tetrahedra fit in 2.97194; 12 icosahedra fit in an icosahedron of edge ≈ φ²; 11–12 dodecahedra in ≈ 5 − √5.
+
+Check any record yourself (standard library only):
+
+```bash
+python3 certify_exact.py records/dodindod/dodindod_n07.json    # exact proof: containment + a separating plane per pair
+python3 verify.py        records/dodindod/dodindod_n07.json    # floating-point separating-axis check
+```
 
 ## What is measured
 
@@ -114,6 +160,17 @@ Test suite (`bash test/run_all.sh`):
 Regression against known cube results with the generalized code: n = 2…8 → exactly 2, n = 9 → 2 + 1/√2 = 2.70711
 (Friedman's value).
 
+## Record file format
+
+`records/<id>/<id>_nNN.json` (same schema as Nakajima's and the Hyra-results claim files, plus a few fields):
+`piece`, `container`, `n`, `s_full` (certified container edge), `s_plus` (5-decimal display), `s_tight` (touching
+limit from tightening), `closed_form_conjecture`, `volume_lower_bound`, `density`, `clearance`, `search` (seed,
+mode, parent for descended packings), and `pieces`: one `[x, y, z, qw, qx, qy, qz]` per piece — a unit-edge copy of
+the canonical solid (coordinates in `solids.py` and docs/MATH.md §4) rotated by the scalar-first quaternion and centred
+at (x, y, z). The container is `s_full` × the canonical unit-edge container solid, centred at the origin, in its
+canonical orientation (`container_center` overrides the centre, e.g. (s/2, s/2, s/2) for Friedman-style [0, s]³ cubes).
+Next to each record: `.certify.txt`, `.verify.txt` (checker outputs) and `.png`.
+
 ## Reproduce
 
 ```bash
@@ -123,9 +180,14 @@ node scripts/batch.js tetrahedron same 7 1 8 1 improved # 8 runs: 7 tetrahedra i
 node scripts/batch.js octahedron icosahedron 5 1 8      # mixed pair: 5 octahedra in an icosahedron
 python3 scripts/pipeline.py tighten 3                   # exact tightening of the best runs
 python3 scripts/pipeline.py descend                     # n from n+1 minus a piece
+python3 scripts/constructions.py                        # exact lattice packings (15 tetrahedra, 19 octahedra in edge 3)
 python3 scripts/records.py                              # record files + checker outputs + pictures + tables
+python3 scripts/site.py                                 # site/index.html
 python3 certify_exact.py records/tetintet/tetintet_n07.json
 ```
+
+`scripts/orchestrate.sh` runs everything unattended; `scripts/runqueue.sh <queue>` runs a queue file with two workers.
+All steps are idempotent (see STATUS.md).
 
 Requirements: Node ≥ 18; Python ≥ 3.10 with NumPy, SciPy (search/tightening), matplotlib (pictures), mpmath
 (closed-form hints). The checkers need only the Python standard library.
@@ -137,7 +199,9 @@ solids.py            exact solids (Q(√2, √5)), derived faces, self-check
 verify.py            float checker          certify_exact.py   exact checker (proof)
 src/geom.js          signed distances + gradients     src/sim.js   soft-to-rigid dynamics
 src/exact.py         SLSQP tightening, legalization   src/claim.py record files with clearance
-scripts/             batch runner, queue runner, pipeline (tighten/descend), records, figures
+scripts/             batch runner, queue runner, pipeline (tighten/descend), constructions, records, figures, site
+docs/MATH.md         mathematical notes: lemmas, certificate, constructions, observations, open questions
+STATUS.md            what is done, what is not, how to resume
 records/<id>/        record files, checker outputs, pictures, per-problem README table; records/SUMMARY.csv
 runs/                raw search output (one JSON line per run)      results/tight.jsonl  tightened runs
 test/                test suite and external fixtures

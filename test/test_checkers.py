@@ -4,7 +4,7 @@
 2. Known-good files certify: Yohei Nakajima's 12 cubes in a cube of side 2.9315185094797 (copied from
    soft-to-rigid-packing, MIT) and the Hyra-results record of 21 unit octahedra in a cube of side 2.592849935818519
    (Tencent-Hunyuan/Hyra-results), both re-expressed with container_center = (s/2, s/2, s/2).
-3. Every claim in claims/ certifies.
+3. Every record in records/ certifies (both checkers).
 4. Broken files are rejected: container shrunk by 3e-5, a piece pushed 1e-4 past its best separating plane, two
    pieces made coincident, a piece moved outside. Each must make BOTH checkers exit nonzero."""
 import json, os, sys, subprocess, glob, copy, math, tempfile
@@ -40,14 +40,14 @@ for name in sorted(os.listdir(fixtures)):
     print(f'external {name}: verify {"ok" if a == 0 else "FAIL"}, certify {"ok" if b == 0 else "FAIL"}')
     fails += (a != 0) + (b != 0)
 
-# 3. our claims
-for p in sorted(glob.glob(os.path.join(ROOT, 'claims', '*', '*.json'))):
+# 3. every record
+for p in sorted(glob.glob(os.path.join(ROOT, 'records', '*', '*_n[0-9][0-9].json'))):
     a, b = run('verify.py', p), run('certify_exact.py', p)
     if a or b: print('claim FAILED', p); fails += 1
-print(f'claims: {len(glob.glob(os.path.join(ROOT, "claims", "*", "*.json")))} files checked')
+print(f'records: {len(glob.glob(os.path.join(ROOT, "records", "*", "*_n[0-9][0-9].json")))} files checked')
 
 # 4. broken files must be rejected
-base = sorted(glob.glob(os.path.join(ROOT, 'claims', '*', '*.json')) + glob.glob(os.path.join(fixtures, '*.json')))
+base = sorted(glob.glob(os.path.join(ROOT, 'records', '*', '*_n[0-9][0-9].json')) + glob.glob(os.path.join(fixtures, '*.json')))
 tmp = tempfile.mkdtemp()
 def rotq(q, ax, th):
     h = th / 2; d = [math.cos(h), *(math.sin(h) * a for a in ax)]; w, x, y, z = q; dw, dx, dy, dz = d

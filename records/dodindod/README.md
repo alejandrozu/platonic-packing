@@ -15,9 +15,11 @@ Smallest dodecahedron found that holds n unit-edge dodecahedra; s = container ed
 | 10 | [2.70520+](dodindod_n10.json) | 2.705201714440 | (101 + 25√5)/58 | 2.15443 | 0.5051 | ![](dodindod_n10.png) |
 | 11 | [2.76393+](dodindod_n11.json) | 2.763932022500 | 5 - √5 | 2.22398 | 0.5210 | ![](dodindod_n11.png) |
 | 12 | [2.76393+](dodindod_n12.json) | 2.763932022500 | 5 - √5 | 2.28943 | 0.5683 | ![](dodindod_n12.png) |
-| 13 | [2.96821+](dodindod_n13.json) | 2.968218298687 |  | 2.35133 | 0.4971 | ![](dodindod_n13.png) |
+| 13 | [2.94621+](dodindod_n13.json) | 2.946218429121 |  | 2.35133 | 0.5083 | ![](dodindod_n13.png) |
 | 14 | [3.00000+](dodindod_n14.json) | 3.000000000000 | 3 | 2.41014 | 0.5185 | ![](dodindod_n14.png) |
-| 15 | [3.09343+](dodindod_n15.json) | 3.093439658735 |  | 2.46621 | 0.5067 | ![](dodindod_n15.png) |
+| 15 | [3.06724+](dodindod_n15.json) | 3.067244419870 |  | 2.46621 | 0.5198 | ![](dodindod_n15.png) |
 | 16 | [3.11907+](dodindod_n16.json) | 3.119070480474 |  | 2.51984 | 0.5273 | ![](dodindod_n16.png) |
-| 17 | [3.19853+](dodindod_n17.json) | 3.198539172791 |  | 2.57128 | 0.5195 | ![](dodindod_n17.png) |
-| 18 | [3.25223+](dodindod_n18.json) | 3.252229891312 |  | 2.62074 | 0.5233 | ![](dodindod_n18.png) |
+| 17 | [3.16774+](dodindod_n17.json) | 3.167739820200 |  | 2.57128 | 0.5348 | ![](dodindod_n17.png) |
+| 18 | [3.21549+](dodindod_n18.json) | 3.215490468793 | (53 + 18√5)/29 | 2.62074 | 0.5414 | ![](dodindod_n18.png) |
+| 19 | [3.31440+](dodindod_n19.json) | 3.314400517265 |  | 2.66840 | 0.5218 | ![](dodindod_n19.png) |
+| 20 | [3.35612+](dodindod_n20.json) | 3.356128803214 |  | 2.71442 | 0.5291 | ![](dodindod_n20.png) |

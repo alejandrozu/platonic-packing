@@ -49,3 +49,16 @@ one record per solution.
   13–15 tetrahedra, so these constructions matter.
 - Faster exact checker: face derivation prescreened in floats, completeness proven exactly (every edge on exactly two
   faces); all five solids build in 0.8 s.
+
+## 9 Oct, 03:10–07:50 — Same-solid sweep to n = 20
+
+- Queue 3: n = 13–20 seeds 1–16, n = 2–12 seeds 9–16, all n seeds 17–24 (budget ×1). Total raw runs ≈ 1,770.
+- Tightening reorganized: a sequential-LP variant (one sparse HiGHS LP per trust-region round) is 2–20× faster than
+  SLSQP but sometimes stops at a slightly worse point (tetrahedra n = 9: 2.76695 vs 2.76643; icosahedra n = 13:
+  2.83362 vs 2.83354), so it is used as a screen over the 6 best raw runs and SLSQP polishes the 2 best.
+  Raw ranking is a poor predictor of tightened ranking (dodecahedra n = 13: raw 3.0001 → 2.968 beat raw 2.987 → 2.980).
+- Descend (n from n + 1 minus a piece) fixed every non-monotone case: 17 dodecahedra 3.2122 → 3.1985 (later 3.1677
+  from a new seed), 7 octahedra 2.6029 → 5/2, 17 tetrahedra 3.1635 → 3.1169, 9 tetrahedra 2.766 → 2.655.
+- Clearance in record files reduced from 1e-6 to 1e-7 (tetrahedral containers: wall gap g costs ≈ 4.9 g in edge).
+- 13 tetrahedra: 2.97194 < 3, below the edge-3 lattice construction.
+- Stopped at 07:50 on request; mixed pairs not started (STATUS.md).

@@ -11,13 +11,15 @@ Smallest tetrahedron found that holds n unit-edge tetrahedra; s = container edge
 | 6 | [2.29099+](tetintet_n06.json) | 2.290994448736 | (3 + √15)/3 | 1.81712 | 0.4990 | ![](tetintet_n06.png) |
 | 7 | [2.38195+](tetintet_n07.json) | 2.381950919771 |  | 1.91293 | 0.5180 | ![](tetintet_n07.png) |
 | 8 | [2.41421+](tetintet_n08.json) | 2.414213562373 | 1 + √2 | 2.00000 | 0.5685 | ![](tetintet_n08.png) |
-| 9 | [2.76643+](tetintet_n09.json) | 2.766430151428 |  | 2.08008 | 0.4251 | ![](tetintet_n09.png) |
+| 9 | [2.65503+](tetintet_n09.json) | 2.655035193536 |  | 2.08008 | 0.4809 | ![](tetintet_n09.png) |
 | 10 | [2.74153+](tetintet_n10.json) | 2.741532153464 |  | 2.15443 | 0.4853 | ![](tetintet_n10.png) |
-| 11 | [2.95645+](tetintet_n11.json) | 2.956451692812 |  | 2.22398 | 0.4257 | ![](tetintet_n11.png) |
-| 12 | [3.00000+](tetintet_n12.json) | 3.000000000000 | 3 | 2.28943 | 0.4444 | ![](tetintet_n12.png) |
-| 13 | [3.00184+](tetintet_n13.json) | 3.001846151425 |  | 2.35133 | 0.4806 | ![](tetintet_n13.png) |
-| 14 | [3.00881+](tetintet_n14.json) | 3.008818950054 |  | 2.41014 | 0.5140 | ![](tetintet_n14.png) |
+| 11 | [2.88886+](tetintet_n11.json) | 2.888860244400 |  | 2.22398 | 0.4563 | ![](tetintet_n11.png) |
+| 12 | [2.91844+](tetintet_n12.json) | 2.918447478009 |  | 2.28943 | 0.4828 | ![](tetintet_n12.png) |
+| 13 | [2.97194+](tetintet_n13.json) | 2.971939147181 |  | 2.35133 | 0.4952 | ![](tetintet_n13.png) |
+| 14 | [3.00000+](tetintet_n14.json) | 3.000000000000 | 3 | 2.41014 | 0.5185 | ![](tetintet_n14.png) |
 | 15 | [3.00000+](tetintet_n15.json) | 3.000000000000 | 3 | 2.46621 | 0.5556 | ![](tetintet_n15.png) |
-| 16 | [3.12965+](tetintet_n16.json) | 3.129651977407 |  | 2.51984 | 0.5220 | ![](tetintet_n16.png) |
-| 17 | [3.20902+](tetintet_n17.json) | 3.209022981898 |  | 2.57128 | 0.5144 | ![](tetintet_n17.png) |
-| 18 | [3.17561+](tetintet_n18.json) | 3.175615325307 |  | 2.62074 | 0.5621 | ![](tetintet_n18.png) |
+| 16 | [3.10703+](tetintet_n16.json) | 3.107036589856 |  | 2.51984 | 0.5334 | ![](tetintet_n16.png) |
+| 17 | [3.11687+](tetintet_n17.json) | 3.116875024143 |  | 2.57128 | 0.5614 | ![](tetintet_n17.png) |
+| 18 | [3.14314+](tetintet_n18.json) | 3.143147696174 |  | 2.62074 | 0.5797 | ![](tetintet_n18.png) |
+| 19 | [3.24448+](tetintet_n19.json) | 3.244488871267 |  | 2.66840 | 0.5563 | ![](tetintet_n19.png) |
+| 20 | [3.38073+](tetintet_n20.json) | 3.380735063400 |  | 2.71442 | 0.5176 | ![](tetintet_n20.png) |
