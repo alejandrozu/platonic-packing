@@ -17,6 +17,10 @@ n = 2…40 indefinitely:
 | | | icoindod | icosahedra in a dodecahedron |
 
 * 2 worker processes (the machine has 2 cores), each restarted automatically if it exits.
+* **Important:** the cloud machine that runs this is suspended a few minutes after the Claude session goes idle
+  (found at 13:24 on 9 Oct: the engine had stopped at 12:11). The search therefore runs only while the session is
+  kept active; it resumes exactly where it stopped (all state is on disk and the best packings are in git).
+  GitHub Actions would make it independent of the session (offered to Alejandro, not set up).
 * A publisher every 90 minutes: records (with exact certificates) for changed cases, `records/README.md`,
   `records/SUMMARY.csv`, `PROGRESS.md`, the README results table, `site/index.html`; then `git commit` + `git push`.
 * Stop: `touch state/STOP`. Resume anywhere (also after the cloud machine is reclaimed): clone the repo and run

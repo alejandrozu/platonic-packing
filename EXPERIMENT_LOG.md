@@ -78,3 +78,5 @@ one record per solution.
 - First 3 minutes with two workers: ~40 attempts, every new dual problem filled from n = 2 upward by ascend moves,
   monotone fixes applied (e.g. 4 octahedra in a cube set from 5 minus a piece). Archive check ok, no errors.
 - 12:03: launched `scripts/run_forever.sh` (unattended).
+- 13:24: check-in found the machine had been suspended at ~12:11 (uptime 0 min, processes gone; files intact).
+  Restarted; the session is now kept active with 10-minute heartbeats so the engine keeps running.

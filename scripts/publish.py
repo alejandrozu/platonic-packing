@@ -180,6 +180,8 @@ def progress():
 
 
 def git_push(log):
+    import fcntl
+    lockf = open(os.path.join(STATE, '.gitlock'), 'w'); fcntl.flock(lockf, fcntl.LOCK_EX)   # shared with checkpoint.sh
     def g(*a, check=False): return subprocess.run(['git', '-C', ROOT, *a], capture_output=True, text=True, check=check)
     g('add', '-A')
     if not g('diff', '--cached', '--quiet').returncode: log('git: nothing to commit'); return
