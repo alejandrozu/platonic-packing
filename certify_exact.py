@@ -54,7 +54,16 @@ for V in pieces:
 # (2) a strictly separating rational plane for every pair, checked exactly
 Vf = [[[float(c) for c in x] for x in V] for V in pieces]
 def propose(A, B):
-    """Float search over SAT axes for the best separating direction (A below B); returns a rational vector."""
+    """Propose a separating direction (A below B) as a rational vector. First the line through the two vertex
+    centroids (it separates any two pieces farther apart than the sum of their circumradii, and most others);
+    otherwise a float search over the separating axes (face normals, edge-edge cross products). Any proposal is
+    then checked exactly below, so this function only affects speed, never correctness."""
+    ca = [sum(x[k] for x in A) / len(A) for k in range(3)]; cb = [sum(y[k] for y in B) / len(B) for k in range(3)]
+    u = [cb[k] - ca[k] for k in range(3)]; l = math.sqrt(sum(c * c for c in u))
+    if l > 0:
+        u = [c / l for c in u]
+        if min(sum(u[k] * y[k] for k in range(3)) for y in B) - max(sum(u[k] * x[k] for k in range(3)) for x in A) > 1e-9:
+            return [Fr(c).limit_denominator(10 ** 12) for c in u]
     def axes(V):
         # face normals and edge directions of a piece, recovered from its float vertices
         out = []
@@ -65,7 +74,13 @@ def propose(A, B):
         return out
     aa, bb = axes(A), axes(B)
     cand = [u for t, u in aa + bb if t == 'f']
-    ea = [u for t, u in aa if t == 'e']; eb = [u for t, u in bb if t == 'e']
+    def dedup(vs):                                   # parallel edges give the same cross products
+        out = []
+        for v in vs:
+            lv = math.sqrt(sum(c * c for c in v))
+            if all(abs(sum(v[k] * w[k] for k in range(3))) < (1 - 1e-9) * lv * math.sqrt(sum(c * c for c in w)) for w in out): out.append(v)
+        return out
+    ea = dedup([u for t, u in aa if t == 'e']); eb = dedup([u for t, u in bb if t == 'e'])
     cand += [[a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]] for a in ea for b in eb]
     best = None
     for u in cand:

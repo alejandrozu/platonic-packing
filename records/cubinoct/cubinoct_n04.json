@@ -1,0 +1,75 @@
+{
+ "problem": "min/cubes_in_octahedron",
+ "piece": "cube",
+ "container": "octahedron",
+ "n": 4,
+ "s": 2.91436,
+ "s_plus": "2.91436+",
+ "s_full": 2.9143658131138,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000000002369225e-07,
+  "min_wall_gap": 1.0000002825805154e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-09",
+ "pieces": [
+  [
+   -0.8087473803376644,
+   -0.03250706362196479,
+   0.05987519491231731,
+   0.629951664438274,
+   0.6725563919802539,
+   0.32118670656091586,
+   -0.21832979550785894
+  ],
+  [
+   -0.13004022184033517,
+   -1.3081357831898862e-08,
+   0.7953817402094411,
+   0.18622097585902914,
+   -0.8071144447180967,
+   -0.44957720551721897,
+   0.33431774938946596
+  ],
+  [
+   0.21016324999643618,
+   0.8152527436134479,
+   -0.0984472693567431,
+   0.2761640423201016,
+   0.34933160371737626,
+   -0.8808183871706551,
+   0.16080989147360691
+  ],
+  [
+   -0.16846523456917475,
+   0.006625273034351424,
+   -0.7882046163219659,
+   0.037074118902713435,
+   -0.5281670968934621,
+   -0.733964682797515,
+   0.42539495985808645
+  ]
+ ],
+ "record_id": "cubinoct_n04",
+ "title": "4 unit cubes in an octahedron",
+ "source": {
+  "hash": "0c40937dbded2f1f",
+  "clear": 1e-07,
+  "cap": 2.9143658342254
+ },
+ "s_tight": 2.914365412135,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.039648902655505,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "monotone",
+  "from_n": 5,
+  "removed": 0
+ },
+ "density": 0.3427946670467281
+}

@@ -130,16 +130,35 @@ function segDist2(X1, a, b, X2, c, e, out) {
 // d sd / d [cA(3), wA(3), cB(3), wB(3)]. If some axis already separates by >= cutoff, returns that lower bound
 // (> 0, no gradient). STAT records which branch ran.
 const GR = new Float64Array(12);
-const STAT = { sat: 0, dist: 0, far: 0, feat: 0 };
+const STAT = { sat: 0, dist: 0, far: 0, feat: 0, hint: 0 };
 
-function sdCores(A, B, cutoff, needGrad) {
+// hint (optional): a unit vector from A towards B that separated the pair recently (temporal coherence). It is tried
+// first; if it still separates, the full axis scan is skipped (the result is unchanged: distSeparated is exact for any
+// separating axis, and a far pair only needs a lower bound). sdCores.lastAxis is set to the best known separating
+// direction A -> B (the closest-point direction when separated) or null when the cores overlap.
+function sdCores(A, B, cutoff, needGrad, hint) {
   if (cutoff === undefined) cutoff = Infinity;
   if (needGrad === undefined) needGrad = true;
   const SA = A.shape, SB = B.shape, k = A.k;
+  sdCores.lastAxis = null;
   if (k <= 1e-12) { // cores are points
     const D = sub(A.c, B.c), d = Math.hypot(...D) || 1e-300;
     GR.fill(0); for (let t = 0; t < 3; t++) { GR[t] = D[t] / d; GR[6 + t] = -D[t] / d; }
     return d;
+  }
+  if (hint) {
+    proj(A.X, SA.nv, hint[0], hint[1], hint[2]); const aMax = PR[1];
+    proj(B.X, SB.nv, hint[0], hint[1], hint[2]); const bMin = PR[0];
+    const gap = bMin - aMax;
+    if (gap > 0) {
+      STAT.hint++;
+      if (gap >= cutoff) { STAT.far++; sdCores.lastAxis = hint; return gap; }
+      STAT.dist++;
+      const d = distSeparated(A, B, hint, gap, needGrad);
+      const { PA, PB } = distSeparated.last;
+      sdCores.lastAxis = [(PB[0] - PA[0]) / d, (PB[1] - PA[1]) / d, (PB[2] - PA[2]) / d];
+      return d;
+    }
   }
   let minO = Infinity, best = null, sepGap = -Infinity, sepU = null;
   // test one axis; returns true if it separates
@@ -171,9 +190,12 @@ function sdCores(A, B, cutoff, needGrad) {
     }
   }
   if (sep) {
-    if (sepGap >= cutoff) { STAT.far++; return sepGap; }
+    if (sepGap >= cutoff) { STAT.far++; sdCores.lastAxis = sepU; return sepGap; }
     STAT.dist++;
-    return distSeparated(A, B, sepU, sepGap, needGrad);
+    const d = distSeparated(A, B, sepU, sepGap, needGrad);
+    const { PA, PB } = distSeparated.last;
+    sdCores.lastAxis = [(PB[0] - PA[0]) / d, (PB[1] - PA[1]) / d, (PB[2] - PA[2]) / d];
+    return d;
   }
   STAT.sat++;
   if (!needGrad) return -minO;

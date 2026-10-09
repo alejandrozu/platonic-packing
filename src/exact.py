@@ -128,30 +128,69 @@ def tight_container(pb, P, R):
     return 2 * z, t
 
 
+def pair_gaps(pb, P, R, pairs, want_axis=False):
+    """Vectorized separating-axis gaps for many pairs at once (same value as sat_gap(...)[0] for each pair).
+    With want_axis, also the oriented best axis u (pair's A below B along u when the gap is from that side)."""
+    if not len(pairs): return (np.zeros(0), np.zeros((0, 3))) if want_axis else np.zeros(0)
+    pi, pj = pairs[:, 0], pairs[:, 1]
+    Rs = np.stack(R)                                               # n x 3 x 3
+    X = P[:, None, :] + pb.V[None, :, :] @ Rs.transpose(0, 2, 1)  # n x nv x 3 world vertices
+    FA = pb.faxes[None, :, :] @ Rs.transpose(0, 2, 1)             # n x F x 3
+    ED = pb.edirs[None, :, :] @ Rs.transpose(0, 2, 1)             # n x E x 3
+    W = np.cross(ED[pi][:, :, None, :], ED[pj][:, None, :, :]).reshape(len(pairs), -1, 3)
+    l = np.linalg.norm(W, axis=2, keepdims=True)
+    W = np.where(l > 1e-9, W / np.maximum(l, 1e-300), FA[pi][:, :1, :])   # degenerate cross products -> a face axis
+    U = np.concatenate([FA[pi], FA[pj], W], axis=1)               # P x axes x 3
+    Ut = U.transpose(0, 2, 1)
+    pa = X[pi] @ Ut; pbv = X[pj] @ Ut                             # P x nv x axes
+    g1 = pbv.min(1) - pa.max(1); g2 = pa.min(1) - pbv.max(1)
+    g = np.maximum(g1, g2)
+    k = g.argmax(1); gap = g[np.arange(len(pairs)), k]
+    if not want_axis: return gap
+    u = U[np.arange(len(pairs)), k] * np.where(g1[np.arange(len(pairs)), k] >= g2[np.arange(len(pairs)), k], 1.0, -1.0)[:, None]
+    return gap, u
+
+
 def certify(pb, C, R):
-    """Legalize: scale centres apart about their mean until no pair overlaps; return tight L and fitted centres."""
+    """Legalize: scale centres apart about their mean until no pair overlaps (separating-axis test, tolerance 1e-12);
+    return the tight container size L, the scale factor and the fitted centres. The factor is found by Newton-like
+    steps (an overlapping pair with best axis u needs at least k = 1 + depth / (u . (c_j - c_i))), each verified by
+    the full overlap test, with bisection as a fallback, so the result is always overlap-free."""
     C = np.array(C, float); n = len(C); cen = C.mean(0)
     lim = (2 * pb.circ) ** 2 + 1e-9
+    near = np.array([(i, j) for i in range(n) for j in range(i + 1, n)
+                     if np.sum((C[i] - C[j]) ** 2) <= lim * 1.1 ** 2], int).reshape(-1, 2)
 
-    def ok(k):
+    def check(k):
         P = cen + k * (C - cen)
-        for i in range(n):
-            for j in range(i + 1, n):
-                if np.sum((P[i] - P[j]) ** 2) > lim: continue
-                if overlap(pb, P[i], R[i], P[j], R[j]): return False
-        return True
+        if not len(near): return True, 0.0
+        d2 = np.sum((P[near[:, 0]] - P[near[:, 1]]) ** 2, axis=1)
+        sel = near[d2 <= lim]
+        g, u = pair_gaps(pb, P, R, sel, want_axis=True)
+        bad = g < -1e-12
+        if not bad.any(): return True, 0.0
+        dc = (C[sel[bad, 1]] - C[sel[bad, 0]])
+        proj = np.abs(np.sum(u[bad] * dc, axis=1))
+        need = np.where(proj > 1e-9, -g[bad] / np.maximum(proj, 1e-9), np.inf)
+        return False, float(need.max())
 
-    lo = hi = 1.0
-    if not ok(1.0):
-        hi = 1.0001
-        while not ok(hi): hi = 1 + (hi - 1) * 2
-        for _ in range(60):
+    k, ok = 1.0, False
+    for _ in range(12):
+        ok, step = check(k)
+        if ok: break
+        k = k + (step * (1 + 1e-6) + 1e-15 if np.isfinite(step) else max(1e-4, (k - 1)))
+    if not ok:                                                   # fallback: doubling + bisection
+        lo, hi = 1.0, max(k, 1.0001)
+        while not check(hi)[0]: hi = 1 + (hi - 1) * 2
+        for _ in range(48):
             m = (lo + hi) / 2
-            if ok(m): hi = m
+            if check(m)[0]: hi = m
             else: lo = m
-    P = cen + hi * (C - cen)
+            if hi - lo < 1e-14: break
+        k = hi
+    P = cen + k * (C - cen)
     L, t = tight_container(pb, P, R)
-    return L, hi, P + t
+    return L, k, P + t
 
 
 def tangent_basis(u):
@@ -160,7 +199,7 @@ def tangent_basis(u):
     return e1, np.cross(u, e1)
 
 
-def solve(pb, C, R, L, outer=40, trust=0.03, verbose=False, tlimit=None, method='slsqp', slp_floor=1e-8):
+def solve(pb, C, R, L, outer=40, trust=0.03, verbose=False, tlimit=None, method='slsqp', slp_floor=1e-8, abort=None):
     """method 'slsqp': each round runs SLSQP to convergence inside the trust region (Nakajima's scheme).
     method 'slp': each round solves ONE sparse LP of the linearized constraints (HiGHS) inside the trust region;
     the trust region grows on success and halves on failure. Both accept a round only if the certified size drops."""
@@ -274,6 +313,7 @@ def solve(pb, C, R, L, outer=40, trust=0.03, verbose=False, tlimit=None, method=
         viol = -min(0.0, cons(z).min())
         hist.append((it, float(z[iL]), Ln, viol, P, res.status))
         if verbose: print(f'  it {it} L {z[iL]:.12f} certified {Ln:.12f} (s {pb.s_of_L(Ln):.12f}) viol {viol:.1e} pairs {P} cons {nc + npr} status {res.status} {time.time() - t_start:.0f}s', flush=True)
+        if abort is not None and abort(it, min(L, Ln)): break       # caller gives up on this start (cannot win)
         if method == 'slp':
             if Ln < L - 1e-14:
                 imp = L - Ln; C, R, L = Cc, Rn, Ln
@@ -294,7 +334,7 @@ def solve(pb, C, R, L, outer=40, trust=0.03, verbose=False, tlimit=None, method=
     return float(L), C, R, hist
 
 
-def tighten_run(row, outer=40, verbose=False, tlimit=None, method='slsqp', slp_floor=1e-8):
+def tighten_run(row, outer=40, verbose=False, tlimit=None, method='slsqp', slp_floor=1e-8, abort=None):
     """row: a runs/*.jsonl record. Returns dict with certified start/end sizes and the tightened configuration."""
     pb = Problem(row['piece'], row['container'])
     C = np.array(row['C']); R = [quat_to_R(q) for q in row['Q']]
@@ -306,7 +346,7 @@ def tighten_run(row, outer=40, verbose=False, tlimit=None, method='slsqp', slp_f
         L, C1, R1, h2 = solve(pb, C1, R1, L1, outer=outer, trust=0.01, verbose=verbose, tlimit=rest, method='slsqp')
         hist = h1 + h2
     else:
-        L, C1, R1, hist = solve(pb, C0, R, L0, outer=outer, verbose=verbose, tlimit=tlimit, method=method, slp_floor=slp_floor)
+        L, C1, R1, hist = solve(pb, C0, R, L0, outer=outer, verbose=verbose, tlimit=tlimit, method=method, slp_floor=slp_floor, abort=abort)
     L2, k, C2 = certify(pb, C1, R1)
     return dict(piece=row['piece'], container=row['container'], n=row['n'], seed=row['seed'], mode=row['mode'],
                 B=row['B'], s_start=pb.s_of_L(L0), s=pb.s_of_L(L2), C=np.asarray(C2).tolist(),

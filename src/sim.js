@@ -51,10 +51,14 @@ function dyn(st, r, mu, noise, moveL) {
   const poses = st.C.map((c, i) => G.pose(P, c, st.Q[i], k));
   const GC = st.C.map(() => [0, 0, 0]), GW = st.C.map(() => [0, 0, 0]);
   const lim = (2 * (k * P.circ + r) + 1e-3) ** 2, GR = G.GR;
+  if (!st.hints) st.hints = new Map();
+  const H = st.hints;
   for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) {
     const a = st.C[i], b = st.C[j];
     if ((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2 + (a[2] - b[2]) ** 2 > lim) continue;
-    const sd = G.sdCores(poses[i], poses[j], 2 * r, true);
+    const key = i * n + j;
+    const sd = G.sdCores(poses[i], poses[j], 2 * r, true, H.get(key));
+    if (G.sdCores.lastAxis) H.set(key, G.sdCores.lastAxis); else H.delete(key);
     const o = 2 * r - sd; if (o <= 0) continue;
     const c = -2 * o;
     for (let t = 0; t < 3; t++) { GC[i][t] += c * GR[t]; GW[i][t] += c * GR[3 + t]; GC[j][t] += c * GR[6 + t]; GW[j][t] += c * GR[9 + t]; }
@@ -80,9 +84,10 @@ function dyn(st, r, mu, noise, moveL) {
     for (let t = 0; t < 3; t++) { V[t] = beta * V[t] - lr * GC[i][t]; W[t] = ball ? 0 : beta * W[t] - lr * GW[i][t]; }
     const vm = Math.hypot(...V); if (vm > cap) for (let t = 0; t < 3; t++) V[t] *= cap / vm;
     const wm = Math.hypot(...W); if (wm > cap) for (let t = 0; t < 3; t++) W[t] *= cap / wm;
-    for (let t = 0; t < 3; t++) st.C[i][t] += V[t] + (noise > 0 ? noise * gauss(st.rng) : 0);
+    const nz = st.mask ? noise * st.mask[i] : noise;           // optional per-piece noise (focused hops)
+    for (let t = 0; t < 3; t++) st.C[i][t] += V[t] + (nz > 0 ? nz * gauss(st.rng) : 0);
     let wx = W[0], wy = W[1], wz = W[2];
-    if (noise > 0 && !ball) { wx += 1.5 * noise * gauss(st.rng); wy += 1.5 * noise * gauss(st.rng); wz += 1.5 * noise * gauss(st.rng); }
+    if (nz > 0 && !ball) { wx += 1.5 * nz * gauss(st.rng); wy += 1.5 * nz * gauss(st.rng); wz += 1.5 * nz * gauss(st.rng); }
     st.Q[i] = G.rotq(st.Q[i], wx, wy, wz);
   }
   if (moveL) {
@@ -184,4 +189,86 @@ function run(cfg) {
   return { cfg: c, s: leg.s, L: leg.L, Lsoft: st.L, scale: leg.k, frames: st.frames, log: st.log, final: leg, edge: pb.P.edge };
 }
 
-module.exports = { run, makeProblem, legalize, tightContainer, defaultL0, dyn, makeState };
+// ---------------------------------------------------------------- basin hopping
+// Relative-arrangement change between two states of the SAME pieces (identities tracked): RMS change of the centre
+// distances of all pairs that were neighbours (distance < 2 x circumradius) in either state, in units of the piece edge.
+function arrangementChange(pb, C0, C1, scale1, focus) {
+  const n = C0.length, R2 = (2 * pb.P.circ) ** 2;
+  let sum = 0, cnt = 0;
+  for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) {
+    if (focus && !focus[i] && !focus[j]) continue;          // focused hop: only pairs touching the shaken cluster
+    const d0 = (C0[i][0] - C0[j][0]) ** 2 + (C0[i][1] - C0[j][1]) ** 2 + (C0[i][2] - C0[j][2]) ** 2;
+    const d1 = ((C1[i][0] - C1[j][0]) ** 2 + (C1[i][1] - C1[j][1]) ** 2 + (C1[i][2] - C1[j][2]) ** 2) * scale1 * scale1;
+    if (d0 > R2 && d1 > R2) continue;
+    sum += (Math.sqrt(d1) - Math.sqrt(d0)) ** 2; cnt++;
+  }
+  return cnt ? Math.sqrt(sum / cnt) / pb.P.edge : 0;
+}
+
+// Best hole: among random points of the container (kept 0.5 inside every wall), the one farthest from all centres.
+function bestHole(pb, C, L, rng, tries) {
+  const Rc = (L / 2) * Math.max(...pb.C.V.map(v => Math.hypot(...v))) / pb.rhoC;
+  let best = null, bd = -1;
+  for (let t = 0; t < tries; t++) {
+    const p = [(2 * rng() - 1) * Rc, (2 * rng() - 1) * Rc, (2 * rng() - 1) * Rc];
+    if (!pb.C.N.every((N, f) => G.dot(N, p) <= (L / 2) * pb.off[f] - 0.5)) continue;
+    let m = Infinity;
+    for (const c of C) m = Math.min(m, (c[0] - p[0]) ** 2 + (c[1] - p[1]) ** 2 + (c[2] - p[2]) ** 2);
+    if (m > bd) { bd = m; best = p; }
+  }
+  return best || [0, 0, 0];
+}
+
+// One hop from a rigid packing (C, Q, L), in internal units with the container centred at the origin:
+//  1. remove the pieces listed in `remove`, scale everything by (1 + expand) (and by ((n+add)/n)^(1/3) when adding),
+//     put `add` new pieces into the largest holes;
+//  2. soften the pieces to S_rh (they shrink inside their rigid shapes, Lemma 1) and shake them at fixed container
+//     size with noise until the relative arrangement has changed by at least minDiff piece edges (escalating the
+//     noise and the softness each block), or maxEsc blocks;
+//  3. re-sharpen under pressure (r: rh -> 0 over `morph` steps), settle rigid pieces, legalize.
+function hop(c) {
+  c = Object.assign({ expand: 0.03, rh: 0.12, noise: 0.004, shake: 400, morph: 6000, settle: 1500, mu: 0.02, minDiff: 0.15,
+    maxEsc: 8, add: 0, remove: [], seed: 1, focus: 0 }, c);
+  const pb = makeProblem(c.piece, c.container);
+  const rng = mulberry32((c.seed * 7919 + 17) | 0);
+  const keep = c.C.map((_, i) => i).filter(i => !c.remove.includes(i));
+  let C = keep.map(i => c.C[i].slice()), Q = keep.map(i => c.Q[i].slice());
+  const n0 = C.length, add = c.add | 0;
+  const f = (1 + c.expand) * (add ? Math.cbrt((n0 + add) / n0) : 1);
+  C = C.map(p => p.map(x => x * f));
+  let L = c.L * f;
+  const ref = C.map(p => p.slice());           // arrangement before shaking (already scaled)
+  for (let a = 0; a < add; a++) {
+    C.push(bestHole(pb, C, L, rng, 4000));
+    const q = [gauss(rng), gauss(rng), gauss(rng), gauss(rng)], m = Math.hypot(...q); Q.push(q.map(v => v / m));
+  }
+  const n = C.length;
+  const st = { pb, n, rng, L, vL: 0, r: c.rh, step: 0, phase: 'hop', frames: [], log: [], C, Q,
+    V: C.map(() => [0, 0, 0]), W: C.map(() => [0, 0, 0]), hints: new Map() };
+  // focus: shake only a cluster (a random piece and its focus-1 nearest neighbours); the rest gets 15% of the noise
+  let focusSet = null;
+  if (c.focus && c.focus < ref.length) {
+    const i0 = Math.floor(rng() * ref.length);
+    const order = ref.map((p, i) => [(p[0] - ref[i0][0]) ** 2 + (p[1] - ref[i0][1]) ** 2 + (p[2] - ref[i0][2]) ** 2, i]).sort((a, b) => a[0] - b[0]);
+    focusSet = new Array(n).fill(false);
+    for (let t = 0; t < c.focus; t++) focusSet[order[t][1]] = true;
+    for (let i = ref.length; i < n; i++) focusSet[i] = true;
+    st.mask = focusSet.map(f => (f ? 1 : 0.15));
+  }
+  let noise = c.noise, rh = c.rh, esc = 0, diff = 0;
+  const structural = add > 0 || c.remove.length > 0;
+  for (;;) {
+    for (let k = 0; k < c.shake; k++) dyn(st, rh, 0, noise, false);
+    diff = arrangementChange(pb, ref, st.C.slice(0, ref.length), 1, focusSet);
+    if (structural || diff >= c.minDiff || esc >= c.maxEsc) break;
+    esc++; noise *= 1.5; rh = Math.min(0.4, rh * 1.3);
+  }
+  const noise0 = noise * 0.25;
+  for (let k = 0; k < c.morph; k++) { const u = k / c.morph; dyn(st, rh * (1 - u), c.mu, noise0 * (1 - u), true); }
+  for (let k = 0; k < c.settle; k++) dyn(st, 0, c.mu * Math.pow(1e-4, k / c.settle), 0, true);
+  const leg = legalize(pb, st.C, st.Q);
+  st.mask = null;
+  return { n, s: leg.s, L: leg.L, C: leg.C, Q: leg.Q, diff, esc, rh, noise, steps: st.step, edge: pb.P.edge };
+}
+
+module.exports = { run, hop, makeProblem, legalize, tightContainer, defaultL0, dyn, makeState, arrangementChange };

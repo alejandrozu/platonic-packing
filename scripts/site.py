@@ -5,7 +5,8 @@ import json, os, glob, csv
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SOL = json.load(open(os.path.join(ROOT, 'src', 'solids.json')))
 AB = {'tet': 'tetrahedron', 'cub': 'cube', 'oct': 'octahedron', 'dod': 'dodecahedron', 'ico': 'icosahedron'}
-ORDER = ['tetintet', 'octinoct', 'icoinico', 'dodindod']
+ORDER = ['tetintet', 'octinoct', 'icoinico', 'dodindod', 'cubincub', 'cubinoct', 'octincub', 'dodinico', 'icoindod']
+REF = json.load(open(os.path.join(ROOT, 'docs', 'references.json')))
 
 
 def load():
@@ -14,7 +15,8 @@ def load():
         r = json.load(open(f)); pid = r['record_id'].split('_')[0]
         cert = open(f.replace('.json', '.certify.txt')).read() if os.path.exists(f.replace('.json', '.certify.txt')) else ''
         p = probs.setdefault(pid, {'id': pid, 'piece': r['piece'], 'container': r['container'], 'rows': []})
-        p['rows'].append({'n': r['n'], 's': r['s_plus'], 'sf': r['s_full'], 'st': r.get('s_tight'), 'cf': r.get('closed_form_conjecture'),
+        ref = REF.get(pid, {}).get(str(r['n']))
+        p['rows'].append({'n': r['n'], 's': r['s_plus'], 'ref': ref[0] if ref else None, 'refsrc': ref[1] if ref else None, 'sf': r['s_full'], 'st': r.get('s_tight'), 'cf': r.get('closed_form_conjecture'),
                           'den': round(r['density'], 4), 'vlb': round(r['volume_lower_bound'], 5),
                           'ok': 'CERTIFIED' in cert and 'NOT CERTIFIED' not in cert,
                           'cert': [l for l in cert.splitlines() if l.startswith('(')],
@@ -22,7 +24,7 @@ def load():
     for p in probs.values(): p['rows'].sort(key=lambda r: r['n'])
     ids = [i for i in ORDER if i in probs] + sorted(i for i in probs if i not in ORDER)
     solids = {k: {'V': v['V'], 'F': v['faces'], 'E': v['edges'], 'vol': v['volume']} for k, v in SOL.items()}
-    return {'problems': [probs[i] for i in ids], 'solids': solids}
+    return {'problems': [probs[i] for i in ids], 'solids': solids, 'nmin': 2, 'nmax': 40}
 
 
 TEMPLATE = r'''<title>Platonic Packing Records</title>
@@ -103,7 +105,7 @@ footer a { color: var(--accent) }
 <div class="wrap">
   <header>
     <h1>How small can the container be? <em>Platonic solids in Platonic solids</em></h1>
-    <p class="lede">Each row is the smallest container found for <b>n unit-edge copies</b> of a solid, reported as
+    <p class="lede">Each row is the smallest container found for <b>n unit-edge copies</b> of a solid (n = 2–40, nine problems: each solid in itself and the dual pairs), reported as
       <b>s = container edge ÷ piece edge</b>. Pieces start as their inscribed spheres and are sharpened into the solid
       under pressure (Yohei Nakajima's soft-to-rigid method), then tightened, and every packing is proven valid in exact
       arithmetic over ℚ(√2, √5).</p>
@@ -115,7 +117,7 @@ footer a { color: var(--accent) }
     <section class="panel" aria-labelledby="ptitle">
       <div class="phead"><h2 id="ptitle"></h2><p id="psub"></p></div>
       <div class="tablewrap"><table>
-        <thead><tr><th>n</th><th>s</th><th>closed form?</th><th>density</th><th>volume bound</th><th>exact check</th></tr></thead>
+        <thead><tr><th>n</th><th>s</th><th>closed form?</th><th>density</th><th title="previous best published value where known, otherwise the volume lower bound">prev. best / vol. bound</th><th>exact check</th></tr></thead>
         <tbody id="rows"></tbody>
       </table></div>
       <div class="chart"><svg id="chart" viewBox="0 0 560 230" role="img" aria-label="s against n"></svg></div>
@@ -184,15 +186,15 @@ footer a { color: var(--accent) }
     document.querySelectorAll('.tab').forEach(t => t.setAttribute('aria-selected', t.id === 'tab-' + p.id));
     document.getElementById('ptitle').textContent = `${cap(NAMES[p.piece][1])} in ${article(p.container)}`;
     const done = p.rows.length;
-    document.getElementById('psub').textContent = `${done} of 19 values of n (2–20) recorded · s = container edge ÷ piece edge`;
+    document.getElementById('psub').textContent = `${done} of ${D.nmax - D.nmin + 1} values of n (${D.nmin}–${D.nmax}) recorded · s = container edge ÷ piece edge`;
     const tb = document.getElementById('rows'); tb.innerHTML = '';
-    for (let n = 2; n <= 20; n++) {
+    for (let n = D.nmin; n <= D.nmax; n++) {
       const r = p.rows.find(r => r.n === n);
       const tr = document.createElement('tr');
       if (!r) { tr.innerHTML = `<td class="n">${n}</td><td class="pending" colspan="5">searching</td>`; tr.style.cursor = 'default'; tb.appendChild(tr); continue; }
       tr.tabIndex = 0; tr.dataset.n = n;
       tr.innerHTML = `<td class="n">${n}</td><td class="s">${r.s}</td><td class="cf">${r.cf ? fmtCF(r.cf) : ''}</td>` +
-        `<td class="den">${r.den.toFixed(3)}</td><td class="vlb">${r.vlb.toFixed(3)}</td>` +
+        `<td class="den">${r.den.toFixed(3)}</td><td class="vlb">${r.ref != null ? r.ref.toFixed(5) : r.vlb.toFixed(3)}</td>` +
         `<td>${r.ok ? '<span class="tick" title="certify_exact.py: CERTIFIED">✓ certified</span>' : '<span class="cross">not certified</span>'}</td>`;
       tr.onclick = () => selectRow(r); tr.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectRow(r) } };
       tb.appendChild(tr);
@@ -207,13 +209,13 @@ footer a { color: var(--accent) }
     const svg = document.getElementById('chart'), W = 560, H = 230, L = 46, R = 14, T = 14, B = 34;
     const rows = prob.rows; if (!rows.length) { svg.innerHTML = ''; return }
     const ys = rows.flatMap(r => [parseFloat(r.s), r.vlb]);
-    let y0 = Math.floor(Math.min(...ys) * 4) / 4, y1 = Math.ceil(Math.max(...ys) * 4) / 4;
-    const X = n => L + (n - 2) / 18 * (W - L - R), Y = v => T + (1 - (v - y0) / (y1 - y0)) * (H - T - B);
+    let y0 = Math.floor(Math.min(...ys) * 2) / 2, y1 = Math.ceil(Math.max(...ys) * 2) / 2;
+    const X = n => L + (n - D.nmin) / (D.nmax - D.nmin) * (W - L - R), Y = v => T + (1 - (v - y0) / (y1 - y0)) * (H - T - B);
     const ink = 'var(--ink)', mut = 'var(--muted)', rule = 'var(--rule)', acc = 'var(--accent)';
     let g = '';
-    for (let v = y0; v <= y1 + 1e-9; v += 0.25) g += `<line x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}" stroke="${rule}" stroke-width="1"/>` +
+    for (let v = y0; v <= y1 + 1e-9; v += 0.5) g += `<line x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}" stroke="${rule}" stroke-width="1"/>` +
       `<text x="${L - 8}" y="${Y(v) + 4}" text-anchor="end" font-size="11" font-family="IBM Plex Mono, monospace" fill="${mut}">${v.toFixed(2)}</text>`;
-    for (let n = 2; n <= 20; n += 2) g += `<text x="${X(n)}" y="${H - B + 18}" text-anchor="middle" font-size="11" font-family="IBM Plex Mono, monospace" fill="${mut}">${n}</text>`;
+    for (let n = 5; n <= D.nmax; n += 5) g += `<text x="${X(n)}" y="${H - B + 18}" text-anchor="middle" font-size="11" font-family="IBM Plex Mono, monospace" fill="${mut}">${n}</text>`;
     g += `<text x="${W - R}" y="${H - 4}" text-anchor="end" font-size="11" fill="${mut}" font-family="IBM Plex Sans, sans-serif">n</text>`;
     const vl = rows.map(r => `${X(r.n)},${Y(r.vlb)}`).join(' ');
     g += `<polyline points="${vl}" fill="none" stroke="${mut}" stroke-width="1.4" stroke-dasharray="4 4"/>`;

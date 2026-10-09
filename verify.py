@@ -7,7 +7,8 @@ unit-edge container solid, centred at `container_center` (default the origin), i
 Checks every vertex lies inside every container face plane and every pair is separated (separating-axis test over
 face normals and edge-direction cross products, which is exact for convex polytopes). Prints the minimum wall gap
 (Euclidean distance from a vertex to the nearest container face plane) and the minimum pair separation (a lower bound
-on the Euclidean distance between the two pieces). Exits 1 on any failure. See certify_exact.py for the proof-grade
+on the Euclidean distance between the two pieces; pairs whose centres are more than two circumradii apart are
+separated by that fact alone and are not run through the axis test). Exits 1 on any failure. See certify_exact.py for the proof-grade
 check in exact arithmetic."""
 import json, sys, itertools, math
 PLURAL = {'tetrahedron': 'tetrahedra', 'cube': 'cubes', 'octahedron': 'octahedra', 'dodecahedron': 'dodecahedra', 'icosahedron': 'icosahedra'}
@@ -44,7 +45,12 @@ for p in d['pieces']:
 wall = min(s * rhoC - dot(N, [v[k] - cc[k] for k in range(3)]) for V, _, _ in pieces for v in V for N in CN)
 if wall < 0: ok = False; print('FAIL: a vertex lies outside the container')
 pair = float('inf')
+Rc = max(math.sqrt(dot(v, v)) for v in PV)            # circumradius of the unit-edge piece
 for (i, (VA, FAa, EDa)), (j, (VB, FAb, EDb)) in itertools.combinations(enumerate(pieces), 2):
+    ci, cj = d['pieces'][i][:3], d['pieces'][j][:3]
+    dc = math.sqrt(sum((ci[k] - cj[k]) ** 2 for k in range(3)))
+    if dc > 2 * Rc + 1e-9:                                # each piece lies in the ball of radius Rc about its centre
+        pair = min(pair, dc - 2 * Rc); continue
     axes = FAa + FAb + [c for a in EDa for b in EDb for c in [cross(a, b)] if dot(c, c) > 1e-18]
     units = [nrm(u) for u in axes]
     gap = max(max(min(dot(u, v) for v in VB) - max(dot(u, v) for v in VA), min(dot(u, v) for v in VA) - max(dot(u, v) for v in VB)) for u in units)

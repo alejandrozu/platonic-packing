@@ -14,7 +14,7 @@ const rq = () => { const q = [gauss(), gauss(), gauss(), gauss()], m = Math.hypo
 const names = ['tetrahedron', 'cube', 'octahedron', 'dodecahedron', 'icosahedron'];
 const shapes = Object.fromEntries(names.map(n => [n, G.prepShape(n)]));
 const supp = (P, u) => { let m = -Infinity; for (let i = 0; i < P.shape.nv; i++) m = Math.max(m, P.X[3 * i] * u[0] + P.X[3 * i + 1] * u[1] + P.X[3 * i + 2] * u[2]); return m; };
-let fails = 0, nSep = 0, nPen = 0, maxGradErr = 0, nGrad = 0;
+let fails = 0, nSep = 0, nPen = 0, maxGradErr = 0, nGrad = 0, nHint = 0;
 const pairs = [];
 for (const a of names) for (const b of names) pairs.push([a, b]);
 for (const [na, nb] of pairs) {
@@ -29,6 +29,16 @@ for (const [na, nb] of pairs) {
     const A = G.pose(SA, cA, qA, k), B = G.pose(SB, cB, qB, k);
     const sd = G.sdCores(A, B, Infinity, true);
     const g = Array.from(G.GR);
+    // the hinted path must give the same value and gradient, with an exact hint and with a perturbed one
+    if (sd > 0) {
+      const ax = G.sdCores.lastAxis;
+      for (const hint of [ax, [ax[0] + 0.05, ax[1] - 0.03, ax[2] + 0.02]]) {
+        const hl = Math.hypot(...hint), h = hint.map(x => x / hl);
+        const sdh = G.sdCores(A, B, Infinity, true, h);
+        if (Math.abs(sdh - sd) > 1e-12 || g.some((v, i) => Math.abs(v - G.GR[i]) > 1e-9)) { fails++; console.log('HINT fail', na, nb, sd, sdh); }
+      }
+      nHint++;
+    }
     if (sd > 0) {
       nSep++;
       const { PA, PB } = G.distSeparated.last;
@@ -80,6 +90,6 @@ for (const [na, nb] of pairs) {
     } else maxGradErr = Math.max(maxGradErr, err);
   }
 }
-console.log(`pairs: ${nSep} separated (KKT-certified distances), ${nPen} overlapping (penetration checked), ${nGrad} gradients (max smooth error ${maxGradErr.toExponential(2)})`);
+console.log(`pairs: ${nSep} separated (KKT-certified distances), ${nPen} overlapping (penetration checked), ${nGrad} gradients (max smooth error ${maxGradErr.toExponential(2)}), ${nHint} hinted re-evaluations`);
 console.log(fails ? `FAILURES: ${fails}` : 'ALL GEOMETRY TESTS PASSED');
 process.exit(fails ? 1 : 0);

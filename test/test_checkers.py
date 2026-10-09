@@ -46,6 +46,21 @@ for p in sorted(glob.glob(os.path.join(ROOT, 'records', '*', '*_n[0-9][0-9].json
     if a or b: print('claim FAILED', p); fails += 1
 print(f'records: {len(glob.glob(os.path.join(ROOT, "records", "*", "*_n[0-9][0-9].json")))} files checked')
 
+# 3b. monotonicity: certified sizes never decrease with n, for every problem (records and archive)
+import csv as _csv
+rows = list(_csv.DictReader(open(os.path.join(ROOT, 'records', 'SUMMARY.csv'))))
+byp = {}
+for r in rows: byp.setdefault(r['problem'], []).append((int(r['n']), float(r['s_full'])))
+mono_bad = 0
+for prob, v in byp.items():
+    v.sort()
+    for (n1, s1), (n2, s2) in zip(v, v[1:]):
+        if n2 == n1 + 1 and s1 > s2: print('NOT MONOTONE', prob, n1, s1, '>', n2, s2); mono_bad += 1
+fails += mono_bad
+r = subprocess.run([sys.executable, os.path.join(ROOT, 'scripts', 'engine.py'), 'check'], capture_output=True, text=True)
+print('monotonicity: records', 'ok' if not mono_bad else 'FAILED', '| archive', r.stdout.strip())
+fails += r.returncode != 0
+
 # 4. broken files must be rejected
 base = sorted(glob.glob(os.path.join(ROOT, 'records', '*', '*_n[0-9][0-9].json')) + glob.glob(os.path.join(fixtures, '*.json')))
 tmp = tempfile.mkdtemp()
