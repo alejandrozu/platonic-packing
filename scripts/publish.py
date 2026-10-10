@@ -290,7 +290,10 @@ def main():
     progress()
     subprocess.run([sys.executable, os.path.join(ROOT, 'scripts', 'site.py')], capture_output=True)
     log(f'publish: {len(rows)} records, {total} rebuilt, {time.time() - t0:.0f}s')
-    if '--no-push' not in sys.argv: git_push(log)
+    if '--no-push' not in sys.argv:
+        git_push(log)
+        r = subprocess.run([os.path.join(ROOT, 'scripts', 'pages.sh')], capture_output=True, text=True)   # live viewer
+        log((r.stdout.strip() or 'pages: ?') + (' ' + r.stderr.strip()[-200:] if r.returncode else ''))
 
 
 def _csv_rows():

@@ -2,7 +2,7 @@
 """Build site/index.html from scripts/site_template.html: record tables (with published values where they exist), s(n)
 chart and an interactive 3D viewer for inspecting each packing, with every record embedded.
 usage: python3 scripts/site.py"""
-import json, os, glob, csv
+import json, os, sys, glob, csv
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SOL = json.load(open(os.path.join(ROOT, 'src', 'solids.json')))
 AB = {'tet': 'tetrahedron', 'cub': 'cube', 'oct': 'octahedron', 'dod': 'dodecahedron', 'ico': 'icosahedron'}
@@ -48,6 +48,13 @@ if __name__ == '__main__':
     import datetime
     data = load(); data['built'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
     os.makedirs(os.path.join(ROOT, 'site'), exist_ok=True)
-    html = open(TEMPLATE).read().replace('__DATA__', json.dumps(data, separators=(',', ':')).replace('</', '<\\/'))
+    page = open(TEMPLATE).read().replace('__DATA__', json.dumps(data, separators=(',', ':')).replace('</', '<\\/'))
+    # site/index.html is a complete document (GitHub Pages, opening the file locally); the head part of the template
+    # (title, fonts, styles) goes into <head>. `--fragment PATH` also writes the bare page for the Claude artifact.
+    k = page.index('</style>') + len('</style>')
+    html = ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
+            '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+            + page[:k] + '\n</head>\n<body>\n' + page[k:] + '\n</body>\n</html>\n')
     out = os.path.join(ROOT, 'site', 'index.html'); open(out, 'w').write(html)
+    if '--fragment' in sys.argv: open(sys.argv[sys.argv.index('--fragment') + 1], 'w').write(page)
     print(out, len(html) // 1024, 'KB', sum(len(p['rows']) for p in data['problems']), 'records')

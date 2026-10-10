@@ -6,19 +6,19 @@
    inspection tools (slice, colour by orientation, isolate a piece and its neighbours), chart under the table. */
 :root {
   --paper: #eef1f0; --sheet: #f8faf9; --ink: #172024; --muted: #59666b; --rule: #d3dad9;
-  --accent: #2c49a8; --exact: #9a4f17; --ok: #2f6b45; --warn: #a33b2b; --chipbg: #e4e9e8;
+  --accent: #2c49a8; --exact: #9a4f17; --ok: #2f6b45; --warn: #a33b2b; --chipbg: #e4e9e8; --zero: #8b5cf6;
   --f-display: "STIX Two Text", "STIX Two Math", Georgia, serif;
   --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
   --paper: #0f1416; --sheet: #151c1f; --ink: #e1e7e8; --muted: #94a3a7; --rule: #27323a;
-  --accent: #91a8ff; --exact: #e3a466; --ok: #7cc79a; --warn: #f08b7a; --chipbg: #1f292d; color-scheme: dark } }
+  --accent: #91a8ff; --exact: #e3a466; --ok: #7cc79a; --warn: #f08b7a; --chipbg: #1f292d; --zero: #b79bff; color-scheme: dark } }
 :root[data-theme="dark"] {
   --paper: #0f1416; --sheet: #151c1f; --ink: #e1e7e8; --muted: #94a3a7; --rule: #27323a;
-  --accent: #91a8ff; --exact: #e3a466; --ok: #7cc79a; --warn: #f08b7a; --chipbg: #1f292d; color-scheme: dark }
+  --accent: #91a8ff; --exact: #e3a466; --ok: #7cc79a; --warn: #f08b7a; --chipbg: #1f292d; --zero: #b79bff; color-scheme: dark }
 * { box-sizing: border-box }
-body { background: var(--paper); color: var(--ink); font: 15px/1.55 var(--f-body); }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 15px/1.55 var(--f-body); }
 .wrap { max-width: 1240px; margin: 0 auto; padding-inline: max(16px, 3vw); padding-block: 28px 56px; display: grid; gap: 26px }
 header { display: grid; gap: 10px; max-width: 72ch }
 h1 { font: 600 clamp(28px, 4.2vw, 44px)/1.08 var(--f-display); margin: 0; text-wrap: balance; letter-spacing: -0.01em }
@@ -63,9 +63,10 @@ td.pending { color: var(--muted); font-style: italic }
 .views { position: absolute; top: 10px; right: 10px; display: flex; gap: 4px }
 .caption { padding: 14px 18px 16px; display: grid; gap: 12px }
 .caprow { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline; justify-content: space-between }
-.caption .big { font: 600 22px/1.15 var(--f-display) }
+.caption .big { font: 600 22px/1.2 var(--f-display); min-height: 2.4em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden }
 .caption .big .cf { color: var(--exact); font-weight: 400; font-style: italic }
-.stepper { display: inline-flex; gap: 4px }
+.stepper { display: flex; gap: 6px; align-items: center }
+.stepper .nnow { font: 500 13px/1 var(--f-mono); color: var(--muted); min-width: 4.5em; text-align: center }
 .meta { font: 12px/1.5 var(--f-mono); color: var(--muted); margin: 0; overflow-wrap: anywhere; white-space: pre-wrap }
 .tools { display: grid; gap: 10px; font-size: 13px; color: var(--muted) }
 .trow { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center }
@@ -86,8 +87,10 @@ button.small:disabled { opacity: .4; cursor: default }
 .pick b { font-weight: 600; color: var(--ink) }
 .links { display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: 13px }
 .links a { color: var(--accent) }
+.charts { display: grid; gap: 24px }
 .chart { padding: 6px 12px 12px }
-.chart svg { width: 100%; height: auto; display: block }
+.chartbox { width: 100%; aspect-ratio: 2 / 1; max-width: 100% }
+.chartbox svg { width: 100%; height: 100%; display: block }
 .notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px }
 .note { display: grid; gap: 6px; align-content: start; min-width: 0 }
 .note h3 { font: 600 16px/1.25 var(--f-display); margin: 0 }
@@ -116,7 +119,6 @@ footer a { color: var(--accent) }
         <thead id="thead"></thead>
         <tbody id="rows"></tbody>
       </table></div>
-      <div class="chart"><svg id="chart" viewBox="0 0 560 240" role="img" aria-label="s against n"></svg></div>
     </section>
 
     <section class="panel viewer" aria-label="3D view of the selected packing">
@@ -130,10 +132,8 @@ footer a { color: var(--accent) }
         </div>
         <span class="hint">drag to turn · scroll or pinch to zoom · click a piece to inspect it</span></div>
       <div class="caption">
-        <div class="caprow">
-          <div class="big" id="cap"></div>
-          <div class="stepper"><button class="small" id="prevn" type="button" aria-label="previous n">◀ n−1</button><button class="small" id="nextn" type="button" aria-label="next n">n+1 ▶</button></div>
-        </div>
+        <div class="big" id="cap"></div>
+        <div class="stepper"><button class="small" id="prevn" type="button" aria-label="previous n" title="previous n (← key)">◀ n−1</button><span class="nnow" id="nnow"></span><button class="small" id="nextn" type="button" aria-label="next n" title="next n (→ key)">n+1 ▶</button></div>
         <div class="tools">
           <div class="trow"><span class="lab">Colour</span>
             <div class="seg" id="colmode" role="group" aria-label="Colour pieces by">
@@ -161,6 +161,17 @@ footer a { color: var(--accent) }
       </div>
     </section>
   </div>
+
+  <section class="charts" aria-label="Charts">
+    <div class="panel">
+      <div class="phead"><h2 id="c1title">s(n)</h2><p>Smallest container found for each n (click a point to open that packing), the volume bound, and published values where they exist.</p></div>
+      <div class="chart"><div class="chartbox" id="box1"><svg id="chart" role="img" aria-label="s against n"></svg></div></div>
+    </div>
+    <div class="panel">
+      <div class="phead"><h2 id="c2title">Increase from n − 1 to n</h2><p>Bars: s(n)/s(n − 1) − 1 in percent (left axis). Line: s(n) − s(n − 1) in piece edges (right axis). Both use the touching limits (no clearance). Shaded columns: no increase, the extra piece fits in the same container.</p></div>
+      <div class="chart"><div class="chartbox" id="box2"><svg id="chart2" role="img" aria-label="increase of s from n-1 to n"></svg></div></div>
+    </div>
+  </section>
 
   <section class="notes" aria-label="Method">
     <div class="note"><h3>Inscribed sphere first</h3><p>Every piece starts as the ball inscribed in it. The intermediate shape is
@@ -284,38 +295,89 @@ footer a { color: var(--accent) }
     selectRow(p.rows.find(r => r.n === want) || p.rows.find(r => r.n === 12) || p.rows[p.rows.length - 1], true);
   }
 
-  function drawChart() {
-    const svg = $('chart'), W = 560, H = 240, L = 46, R = 14, T = 14, B = 44;
+  function niceStep(range, k) { const raw = range / k, p = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / p; return (f < 1.5 ? 1 : f < 3.5 ? 2 : f < 7.5 ? 5 : 10) * p }
+  function txt(x, y, s, o) { o = o || {}; return `<text x="${x}" y="${y}" font-size="${o.fs || 12}" text-anchor="${o.a || 'start'}" fill="${o.c || css('--muted')}" font-family="${o.f || 'IBM Plex Mono, monospace'}"${o.rot ? ` transform="rotate(${o.rot} ${x} ${y})"` : ''}>${s}</text>` }
+  function drawChart() { drawS(); drawInc() }
+  function dims(box) { const W = Math.max(300, Math.round($(box).clientWidth || 800)); return [W, Math.round(W / 2)] }
+  function drawS() {
+    const svg = $('chart'), [W, H] = dims('box1'), L = 62, R = 18, T = 16, B = 62;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    $('c1title').textContent = `s(n): ${NAMES[prob.piece][1]} in ${article(prob.container)}`;
     const rows = prob.rows; if (!rows.length) { svg.innerHTML = ''; return }
-    const ys = rows.flatMap(r => [parseFloat(r.s), r.vlb].concat(r.ref != null ? [r.ref] : []));
-    const y0 = Math.floor(Math.min(...ys) * 2) / 2, y1 = Math.ceil(Math.max(...ys) * 2) / 2;
+    const mut = css('--muted'), rule = css('--rule'), acc = css('--accent'), ex = css('--exact'), sheet = css('--sheet');
+    const ys = rows.flatMap(r => [r.sf, r.vlb].concat(r.ref != null ? [r.ref] : []));
+    const st = niceStep(Math.max(...ys) - Math.min(...ys), 6);
+    const y0 = Math.floor(Math.min(...ys) / st) * st, y1 = Math.ceil(Math.max(...ys) / st) * st;
     const X = n => L + (n - D.nmin) / (D.nmax - D.nmin) * (W - L - R), Y = v => T + (1 - (v - y0) / (y1 - y0)) * (H - T - B);
-    const mut = 'var(--muted)', rule = 'var(--rule)', acc = 'var(--accent)', ex = 'var(--exact)';
     let g = '';
-    for (let v = y0; v <= y1 + 1e-9; v += 0.5) g += `<line x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}" stroke="${rule}" stroke-width="1"/>` +
-      `<text x="${L - 8}" y="${Y(v) + 4}" text-anchor="end" font-size="11" font-family="IBM Plex Mono, monospace" fill="${mut}">${v.toFixed(1)}</text>`;
-    for (let n = 5; n <= D.nmax; n += 5) g += `<text x="${X(n)}" y="${H - B + 18}" text-anchor="middle" font-size="11" font-family="IBM Plex Mono, monospace" fill="${mut}">${n}</text>`;
-    g += `<text x="${W - R}" y="${H - B + 18}" text-anchor="end" font-size="11" fill="${mut}" font-family="IBM Plex Sans, sans-serif"></text>`;
-    const vl = rows.map(r => `${X(r.n)},${Y(r.vlb)}`).join(' ');
-    g += `<polyline points="${vl}" fill="none" stroke="${mut}" stroke-width="1.4" stroke-dasharray="4 4"/>`;
-    const sl = rows.map(r => `${X(r.n)},${Y(parseFloat(r.s))}`).join(' ');
-    g += `<polyline points="${sl}" fill="none" stroke="${acc}" stroke-width="2"/>`;
+    for (let v = y0; v <= y1 + st / 2; v += st) g += `<line x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}" stroke="${rule}" stroke-width="1"/>` + txt(L - 8, Y(v) + 4, v.toFixed(st < 0.1 ? 2 : 1), { a: 'end' });
+    const every = W < 700 ? 5 : W < 1000 ? 2 : 1;
+    for (let n = D.nmin; n <= D.nmax; n++) {
+      g += `<line x1="${X(n)}" x2="${X(n)}" y1="${H - B}" y2="${H - B + 4}" stroke="${mut}" stroke-width="1"/>`;
+      if (n % every === 0 || n === D.nmin) g += txt(X(n), H - B + 18, n, { a: 'middle' });
+    }
+    g += txt((L + W - R) / 2, H - B + 38, 'n (number of pieces)', { a: 'middle', f: 'IBM Plex Sans, sans-serif' });
+    g += txt(16, (T + H - B) / 2, 's = container edge ÷ piece edge', { a: 'middle', f: 'IBM Plex Sans, sans-serif', rot: -90 });
+    g += `<polyline points="${rows.map(r => `${X(r.n)},${Y(r.vlb)}`).join(' ')}" fill="none" stroke="${mut}" stroke-width="1.4" stroke-dasharray="5 5"/>`;
+    g += `<polyline points="${rows.map(r => `${X(r.n)},${Y(r.sf)}`).join(' ')}" fill="none" stroke="${acc}" stroke-width="2.2"/>`;
     rows.filter(r => r.ref != null).forEach(r => { const x = X(r.n), y = Y(r.ref);
-      g += `<path d="M${x} ${y - 5}L${x + 5} ${y}L${x} ${y + 5}L${x - 5} ${y}Z" fill="none" stroke="${ex}" stroke-width="1.5"><title>n = ${r.n}: published ${r.ref.toFixed(5)} (${SRC[r.refcode]})</title></path>` });
-    rows.forEach(r => g += `<circle cx="${X(r.n)}" cy="${Y(parseFloat(r.s))}" r="${row && row.n === r.n ? 5.5 : 3.4}" fill="${row && row.n === r.n ? acc : 'var(--sheet)'}" stroke="${acc}" stroke-width="2" data-n="${r.n}" style="cursor:pointer"><title>n = ${r.n}: s = ${r.s}</title></circle>`);
-    // legend
+      g += `<path d="M${x} ${y - 6}L${x + 6} ${y}L${x} ${y + 6}L${x - 6} ${y}Z" fill="none" stroke="${ex}" stroke-width="1.6"><title>n = ${r.n}: published ${r.ref.toFixed(5)} (${SRC[r.refcode]})</title></path>` });
+    rows.forEach(r => { const on = row && row.n === r.n;
+      g += `<circle cx="${X(r.n)}" cy="${Y(r.sf)}" r="${on ? 6.5 : 4}" fill="${on ? acc : sheet}" stroke="${acc}" stroke-width="2" data-n="${r.n}" style="cursor:pointer"><title>n = ${r.n}: s = ${r.s}</title></circle>` });
     const ly = H - 10; let lx = L;
-    g += `<line x1="${lx}" x2="${lx + 18}" y1="${ly - 4}" y2="${ly - 4}" stroke="${acc}" stroke-width="2"/><text x="${lx + 24}" y="${ly}" font-size="11" fill="${mut}" font-family="IBM Plex Sans, sans-serif">s(n), this search</text>`;
-    lx += 140; g += `<line x1="${lx}" x2="${lx + 18}" y1="${ly - 4}" y2="${ly - 4}" stroke="${mut}" stroke-width="1.4" stroke-dasharray="4 4"/><text x="${lx + 24}" y="${ly}" font-size="11" fill="${mut}" font-family="IBM Plex Sans, sans-serif">volume bound</text>`;
-    if (prob.hasref) { lx += 120; g += `<path d="M${lx + 9} ${ly - 9}L${lx + 14} ${ly - 4}L${lx + 9} ${ly + 1}L${lx + 4} ${ly - 4}Z" fill="none" stroke="${ex}" stroke-width="1.5"/><text x="${lx + 24}" y="${ly}" font-size="11" fill="${mut}" font-family="IBM Plex Sans, sans-serif">published</text>` }
+    g += `<line x1="${lx}" x2="${lx + 22}" y1="${ly - 4}" y2="${ly - 4}" stroke="${acc}" stroke-width="2.2"/>` + txt(lx + 28, ly, 's(n), this search', { f: 'IBM Plex Sans, sans-serif' });
+    lx += 150; g += `<line x1="${lx}" x2="${lx + 22}" y1="${ly - 4}" y2="${ly - 4}" stroke="${mut}" stroke-width="1.4" stroke-dasharray="5 5"/>` + txt(lx + 28, ly, 'volume bound', { f: 'IBM Plex Sans, sans-serif' });
+    if (prob.hasref) { lx += 130; g += `<path d="M${lx + 11} ${ly - 10}L${lx + 17} ${ly - 4}L${lx + 11} ${ly + 2}L${lx + 5} ${ly - 4}Z" fill="none" stroke="${ex}" stroke-width="1.6"/>` + txt(lx + 28, ly, 'published (Friedman\'s Packing Center)', { f: 'IBM Plex Sans, sans-serif' }) }
     svg.innerHTML = g;
     svg.querySelectorAll('circle').forEach(c => c.onclick = () => selectRow(prob.rows.find(r => r.n === +c.dataset.n)));
+  }
+  function drawInc() {
+    const svg = $('chart2'), [W, H] = dims('box2'), L = 62, R = 74, T = 16, B = 62;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    const by = {}; prob.rows.forEach(r => by[r.n] = r);
+    const inc = [];
+    for (let n = D.nmin + 1; n <= D.nmax; n++) if (by[n] && by[n - 1]) {
+      const s1 = by[n].st ?? by[n].sf, s0 = by[n - 1].st ?? by[n - 1].sf, d = s1 - s0;   // touching limits: clearance-free
+      inc.push({ n, pct: 100 * (s1 / s0 - 1), abs: d, zero: Math.abs(d) < 1e-9 * s1 });
+    }
+    if (!inc.length) { svg.innerHTML = ''; return }
+    const mut = css('--muted'), rule = css('--rule'), acc = css('--accent'), ex = css('--exact'), zc = css('--zero'), ink = css('--ink');
+    const pmax = Math.max(1e-6, ...inc.map(d => d.pct)), amax = Math.max(1e-6, ...inc.map(d => d.abs));
+    const ps = niceStep(pmax, 5), as = niceStep(amax, 5);
+    const P1 = Math.ceil(pmax / ps) * ps, A1 = Math.ceil(amax / as) * as;
+    const n0 = D.nmin + 1, slot = (W - L - R) / (D.nmax - n0 + 1);
+    const X = n => L + (n - n0 + 0.5) * slot, YP = v => T + (1 - v / P1) * (H - T - B), YA = v => T + (1 - v / A1) * (H - T - B);
+    let g = '';
+    inc.filter(d => d.zero).forEach(d => g += `<rect x="${X(d.n) - slot / 2}" y="${T}" width="${slot}" height="${H - T - B}" fill="${zc}" fill-opacity="0.16"><title>n = ${d.n}: no increase over n = ${d.n - 1}</title></rect>`);
+    for (let v = 0; v <= P1 + ps / 2; v += ps) g += `<line x1="${L}" x2="${W - R}" y1="${YP(v)}" y2="${YP(v)}" stroke="${rule}" stroke-width="1"/>` + txt(L - 8, YP(v) + 4, (ps < 1 ? v.toFixed(1) : v.toFixed(0)) + '%', { a: 'end' });
+    for (let v = 0; v <= A1 + as / 2; v += as) g += `<line x1="${W - R}" x2="${W - R + 4}" y1="${YA(v)}" y2="${YA(v)}" stroke="${ex}" stroke-width="1"/>` + txt(W - R + 8, YA(v) + 4, v.toFixed(as < 0.01 ? 3 : as < 0.1 ? 2 : 1), { c: ex });
+    const every = W < 700 ? 5 : W < 1000 ? 2 : 1;
+    for (let n = n0; n <= D.nmax; n++) if (n % every === 0 || n === n0) g += txt(X(n), H - B + 18, n, { a: 'middle' });
+    g += txt((L + W - R) / 2, H - B + 38, 'n', { a: 'middle', f: 'IBM Plex Sans, sans-serif' });
+    g += txt(16, (T + H - B) / 2, 'increase over n − 1 (%)', { a: 'middle', f: 'IBM Plex Sans, sans-serif', rot: -90 });
+    g += txt(W - 14, (T + H - B) / 2, 'increase over n − 1 (piece edges)', { a: 'middle', f: 'IBM Plex Sans, sans-serif', rot: 90, c: ex });
+    const bw = Math.max(2, slot * 0.62);
+    inc.forEach(d => { const on = row && row.n === d.n, y = YP(Math.max(0, d.pct));
+      g += `<rect x="${X(d.n) - bw / 2}" y="${y}" width="${bw}" height="${Math.max(0, YP(0) - y)}" fill="${acc}" fill-opacity="${on ? 1 : 0.62}" data-n="${d.n}" style="cursor:pointer"><title>n = ${d.n}: +${d.pct.toFixed(3)}% (+${d.abs.toFixed(5)} piece edges)</title></rect>` });
+    g += `<line x1="${L}" x2="${W - R}" y1="${YP(0)}" y2="${YP(0)}" stroke="${mut}" stroke-width="1"/>`;
+    g += `<polyline points="${inc.map(d => `${X(d.n)},${YA(Math.max(0, d.abs))}`).join(' ')}" fill="none" stroke="${ex}" stroke-width="2"/>`;
+    inc.forEach(d => g += `<circle cx="${X(d.n)}" cy="${YA(Math.max(0, d.abs))}" r="3" fill="${ex}"/>`);
+    const ly = H - 10; let lx = L;
+    g += `<rect x="${lx}" y="${ly - 10}" width="14" height="12" fill="${acc}" fill-opacity="0.62"/>` + txt(lx + 20, ly, '% increase', { f: 'IBM Plex Sans, sans-serif' });
+    lx += 110; g += `<line x1="${lx}" x2="${lx + 22}" y1="${ly - 4}" y2="${ly - 4}" stroke="${ex}" stroke-width="2"/>` + txt(lx + 28, ly, 'absolute increase', { f: 'IBM Plex Sans, sans-serif' });
+    lx += 150; g += `<rect x="${lx}" y="${ly - 10}" width="14" height="12" fill="${zc}" fill-opacity="0.25"/>` + txt(lx + 20, ly, `no increase (${inc.filter(d => d.zero).length} of ${inc.length})`, { f: 'IBM Plex Sans, sans-serif' });
+    svg.innerHTML = g;
+    svg.querySelectorAll('rect[data-n]').forEach(c => c.onclick = () => selectRow(prob.rows.find(r => r.n === +c.dataset.n)));
   }
 
   function selectRow(r, keepView) {
     if (!r) return; row = r; sel = null; isolate = false;
     document.querySelectorAll('#rows tr').forEach(t => t.setAttribute('aria-selected', +t.dataset.n === r.n));
-    const tr = document.querySelector(`#rows tr[data-n="${r.n}"]`); if (tr && !keepView) tr.scrollIntoView({ block: 'nearest' });
+    const tr = document.querySelector(`#rows tr[data-n="${r.n}"]`);
+    if (tr && !keepView) {                       // scroll the table box only, never the page (keeps the n buttons still)
+      const box = document.querySelector('.tablewrap'), top = tr.offsetTop - box.querySelector('thead').offsetHeight;
+      if (top < box.scrollTop || tr.offsetTop + tr.offsetHeight > box.scrollTop + box.clientHeight) box.scrollTop = Math.max(0, top - box.clientHeight / 3);
+    }
     const pl = NAMES[prob.piece][1];
     $('cap').innerHTML = `${r.n} ${pl} · s = ${r.s}` + (r.cf ? ` <span class="cf">≈ ${fmtCF(r.cf)}</span>` : '');
     const oc = orient(r);
@@ -331,12 +393,19 @@ footer a { color: var(--accent) }
       `<button class="small" type="button" id="copy">copy coordinates</button><span id="copied" class="mono"></span>`;
     $('copy').onclick = copyCoords;
     $('prevn').disabled = !prob.rows.find(x => x.n === r.n - 1); $('nextn').disabled = !prob.rows.find(x => x.n === r.n + 1);
+    $('nnow').textContent = `n = ${r.n}`;
     try { history.replaceState(null, '', '#' + prob.id + '_n' + String(r.n).padStart(2, '0')) } catch (e) {}
     $('pick').hidden = true;
     drawChart(); build();
   }
   $('prevn').onclick = () => selectRow(prob.rows.find(x => x.n === row.n - 1));
   $('nextn').onclick = () => selectRow(prob.rows.find(x => x.n === row.n + 1));
+  document.addEventListener('keydown', e => {
+    if (e.target.closest && e.target.closest('input, textarea, select')) return;
+    if (e.key === 'ArrowLeft' && !$('prevn').disabled) { e.preventDefault(); $('prevn').click() }
+    if (e.key === 'ArrowRight' && !$('nextn').disabled) { e.preventDefault(); $('nextn').click() }
+  });
+  new ResizeObserver(() => drawChart()).observe($('box1'));
   function copyCoords() {
     const txt = JSON.stringify({ record_id: `${prob.id}_n${String(row.n).padStart(2, '0')}`, piece: prob.piece, container: prob.container, s_full: row.sf,
       format: '[x, y, z, qw, qx, qy, qz] per unit-edge piece (rounded to 7 decimals); container = s_full x unit-edge container centred at the origin',
@@ -509,8 +578,8 @@ footer a { color: var(--accent) }
       if (spin.checked && ptrs.size === 0) { world.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), dt * 0.00025)); paint() }
       requestAnimationFrame(loop) })(last);
     new ResizeObserver(() => { fit(); paint() }).observe(stage);
-    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => build());
-    new MutationObserver(() => build()).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { build(); drawChart() });
+    new MutationObserver(() => { build(); drawChart() }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
   }
   $('stamp').textContent = 'Built ' + D.built + '.';
   selectProb(prob);
