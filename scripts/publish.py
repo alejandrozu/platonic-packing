@@ -61,10 +61,16 @@ def build_problem(p, log):
         else:
             try: cf = closed_form(b['s'])
             except Exception: cf = None                   # a hint only; never let it stop a publish
+            found_by = 'Alejandro Zarzuelo'
+            bs = b.get('src') or {}
+            if bs.get('move') == 'literature':           # a published packing imported as a starting point (scripts/literature.py)
+                found_by = f"{bs.get('source')} (published packing, imported as a starting point; not improved yet)"
+            elif bs.get('move') == 'monotone' and prev and 'published packing' in str(prev.get('found_by', '')):
+                found_by = prev['found_by'] + f', minus one piece'
             meta = {'record_id': f'{p}_n{n:02d}', 'title': f'{n} unit {PL[piece]} in {art(container)}', 'source': src,
                     's_tight': round(b['s'], 12), 'closed_form_conjecture': cf,
                     'volume_lower_bound': (n * SOL[piece]['volume'] / SOL[container]['volume']) ** (1 / 3),
-                    'found_by': 'Alejandro Zarzuelo',
+                    'found_by': found_by,
                     'credit': "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping "
                               "search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
                     'search': b.get('src', {})}

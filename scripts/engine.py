@@ -334,7 +334,12 @@ def choose(rng, wid):
     for (p, n), c in sorted(idx.items(), key=lambda kv: rng.random()):
         if c and c['stats'].get('needs_tighten') and (p, str(n)) not in claimed: return p, n, 'tighten'
     best_key, best_score = None, None
-    for (p, n), c in idx.items():
+    fc = policy().get('focus') or {}             # optional: a share of attempts on listed cases ("pid:n")
+    if fc.get('cases') and rng.random() < fc.get('share', 0):
+        opts = [(x.split(':')[0], int(x.split(':')[1])) for x in fc['cases']]
+        opts = [k for k in opts if k in idx and idx[k] and idx[k].get('best') and (k[0], str(k[1])) not in claimed]
+        if opts: best_key, best_score = rng.choice(opts), -1.0
+    for (p, n), c in (idx.items() if best_key is None else ()):
         if (p, str(n)) in claimed or not c: continue
         st = c['stats']
         score = (st.get('effort', 0) + 30) / n * (1 + st.get('since', 0) / 40) * rng.uniform(0.7, 1.3)

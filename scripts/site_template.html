@@ -384,7 +384,7 @@ footer a { color: var(--accent) }
     const lines = [`${prob.id}_n${String(r.n).padStart(2, '0')}   s_full = ${r.sf}   touching limit ${r.st}`];
     if (r.ref != null) lines.push(`published: ${r.ref} (${r.refsrc})`);
     lines.push(`${oc.sizes.length} orientation${oc.sizes.length > 1 ? 's' : ''} (${oc.sizes.join(' + ')} pieces) · ` +
-      (r.derived ? `record = ${r.derived}` : `found by: ${r.move || 'n/a'}`));
+      (r.who && r.who.includes('published packing') ? `packing: ${r.who}` : r.derived ? `record = ${r.derived}` : `found by the search (move: ${r.move || 'n/a'})`));
     if (r.cert.length) lines.push(r.cert.join('  '));
     $('meta').textContent = lines.join('\n');
     const url = `${D.repo}/blob/main/${r.file}`;
