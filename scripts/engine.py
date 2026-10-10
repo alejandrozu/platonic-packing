@@ -41,6 +41,26 @@ PROBLEMS = [('tetrahedron', 'tetrahedron'), ('octahedron', 'octahedron'), ('icos
             ('dodecahedron', 'icosahedron'), ('icosahedron', 'dodecahedron')]
 NMIN, NMAX, POOL = 2, 40, 6
 
+# Hop settings. A variant overrides some of HOP_DEFAULT (ranges are sampled uniformly, minDiff log-uniformly).
+# state/policy.json selects what the workers do (re-read before every attempt, so no restart is needed):
+#   {"mode": "experiment", "variants": [...], "weights": {...}}  every hop draws a variant uniformly at random
+#   {"mode": "production", "hop_variant": "<name>", "weights": {...}}
+# weights = relative probabilities of hop / reinsert / fresh / ascend / descend for an ordinary case.
+HOP_DEFAULT = dict(minDiff=(0.04, 0.6), expand=(0.01, 0.05), rh=(0.06, 0.2), noise=0.004, shake=400, morph_mult=1.0,
+                   from_best=0.6, focus_p=0.6, nraw=1)
+VARIANTS = {
+    'base': {},                                                       # the settings used until 10 Oct 19:20
+    'jiggle': dict(noise=0.012, shake=600),                           # shake 3x harder and 1.5x longer
+    'expand': dict(expand=(0.06, 0.15), rh=(0.12, 0.3), morph_mult=1.3),  # let the container grow 6-15% first
+    'volume': dict(nraw=3),                                           # 3 raw hops, tighten only the best one
+    'gentle': dict(minDiff=(0.02, 0.10), expand=(0.005, 0.03), from_best=0.9),  # small hops from the best
+}
+WEIGHTS = {'hop': 0.55, 'reinsert': 0.12, 'fresh': 0.13, 'ascend': 0.10, 'descend': 0.10}
+
+
+def policy():
+    return _read(os.path.join(STATE, 'policy.json'), {}) or {}
+
 
 def pid(piece, container): return f'{AB[piece]}in{AB[container]}'
 
@@ -200,14 +220,15 @@ def tighten(row, best_s, n, gate):
     return out
 
 
-def attempt(sim, p, n, move, rng, log):
+def attempt(sim, p, n, move, rng, log, vname='base'):
     piece, container = PID[p]
     pb = problem(p)
+    V = dict(HOP_DEFAULT, **VARIANTS.get(vname, {}))
     with locked():
         case = load_case(p, n); lo = load_case(p, n - 1) if n > NMIN else None; hi = load_case(p, n + 1) if n < NMAX else None
     best = case['best']; best_s = best['s'] if best else None
     seed = rng.randrange(1, 2 ** 31 - 1)
-    t0 = time.time(); info = {'move': move, 'seed': seed}
+    t0 = time.time(); info = {'move': move, 'seed': seed, 'var': vname}
     base = dict(op='hop', piece=piece, container=container, seed=seed)
     if move == 'fresh':
         B = 1.0 if n <= 16 else 0.7
@@ -215,18 +236,26 @@ def attempt(sim, p, n, move, rng, log):
                             compact=int(5000 * B), morph=int(45000 * B), settle=int(3000 * B)))
     elif move in ('hop', 'reinsert'):
         pool = load_pool(p, n)
-        start = best if (rng.random() < 0.6 or not pool) else rng.choice(pool)
-        L = 2 * pb.rhoC * start['s']
-        prm = dict(base, C=start['C'], Q=start['Q'], L=L, morph=4000 + 150 * n, settle=1000 + 25 * n)
-        if move == 'hop':
-            prm.update(minDiff=math.exp(rng.uniform(math.log(0.04), math.log(0.6))), expand=rng.uniform(0.01, 0.05),
-                       rh=rng.uniform(0.06, 0.2), focus=0 if (n < 8 or rng.random() < 0.4) else rng.randint(3, max(4, n // 3)))
-        else:
-            k = rng.randint(1, 3 if n >= 12 else 2)
-            prm.update(remove=rng.sample(range(n), k), add=k, rh=rng.uniform(0.12, 0.25), expand=rng.uniform(0.0, 0.03))
-        info.update({k: prm[k] for k in ('minDiff', 'expand', 'rh', 'focus', 'remove') if k in prm})
-        info['from'] = 'best' if start is best else 'pool'
-        raw = sim.call(prm)
+        raw = None
+        for k_raw in range(V['nraw'] if move == 'hop' else 1):       # 'volume': several raw hops, keep the best
+            start = best if (rng.random() < V['from_best'] or not pool) else rng.choice(pool)
+            L = 2 * pb.rhoC * start['s']
+            prm = dict(base, seed=seed + 7 * k_raw, C=start['C'], Q=start['Q'], L=L, morph=4000 + 150 * n,
+                       settle=1000 + 25 * n)
+            if move == 'hop':
+                lo, hi = V['minDiff']
+                prm.update(minDiff=math.exp(rng.uniform(math.log(lo), math.log(hi))), expand=rng.uniform(*V['expand']),
+                           rh=rng.uniform(*V['rh']), noise=V['noise'], shake=V['shake'],
+                           focus=0 if (n < 8 or rng.random() >= V['focus_p']) else rng.randint(3, max(4, n // 3)))
+                prm['morph'] = int(prm['morph'] * V['morph_mult'])
+            else:
+                k = rng.randint(1, 3 if n >= 12 else 2)
+                prm.update(remove=rng.sample(range(n), k), add=k, rh=rng.uniform(0.12, 0.25), expand=rng.uniform(0.0, 0.03))
+            r1 = sim.call(prm)
+            if raw is None or r1['s'] < raw['s']:
+                raw = r1
+                info.update({k: prm[k] for k in ('minDiff', 'expand', 'rh', 'focus', 'remove') if k in prm})
+                info['from'] = 'best' if start is best else 'pool'
     elif move == 'ascend':
         src = lo['best']
         raw = sim.call(dict(base, C=src['C'], Q=src['Q'], L=2 * pb.rhoC * src['s'], add=1, rh=rng.uniform(0.15, 0.3),
@@ -272,13 +301,13 @@ def attempt(sim, p, n, move, rng, log):
         save_case(case)
         if out: pool_insert(p, n, {'s': out['s'], 'C': out['C'], 'Q': out['Q'], 'src': move, 't': time.time()})
         fixed = enforce_monotone(p, log) if improved or cur is None else []
-    log(f"{p} n={n:2d} {move:8s} raw {s_raw:.6f}" + (f" -> {s_new:.10f}" if out else " (gated)") +
+    log(f"{p} n={n:2d} {(move if vname == 'base' else move + '/' + vname):8s} raw {s_raw:.6f}" + (f" -> {s_new:.10f}" if out else " (gated)") +
         f"  best {'%.10f' % min(s_new, best_s) if best_s else '%.10f' % s_new}{'  NEW BEST' if improved else ''}"
         f"  {secs:.0f}s" + (f"  monotone-fixed {fixed}" if fixed else ''))
     with open(os.path.join(STATE, 'attempts.jsonl'), 'a') as f:
         f.write(json.dumps({'t': round(time.time()), 'p': p, 'n': n, 'move': move, 'raw': s_raw, 's': s_new if out else None,
                             'best_before': best_s, 'improved': improved, 'secs': round(secs, 1), 'raw_secs': round(t_raw, 1),
-                            **{k: v for k, v in info.items() if k in ('minDiff', 'focus', 'from')}}) + '\n')
+                            **{k: (round(v, 4) if isinstance(v, float) else v) for k, v in info.items() if k in ('minDiff', 'expand', 'focus', 'from', 'var')}}) + '\n')
     return improved
 
 
@@ -318,9 +347,10 @@ def choose(rng, wid):
         r = rng.random()
         if lo_ok and r < 0.5: return p, n, 'ascend'
         if r < 0.8: return p, n, 'fresh'
-    moves = [('hop', 0.55), ('reinsert', 0.12), ('fresh', 0.13)]
-    if n > NMIN and idx[(p, n - 1)] and idx[(p, n - 1)].get('best'): moves.append(('ascend', 0.10))
-    if n < NMAX and idx[(p, n + 1)] and idx[(p, n + 1)].get('best'): moves.append(('descend', 0.10))
+    W = dict(WEIGHTS, **(policy().get('weights') or {}))
+    moves = [('hop', W['hop']), ('reinsert', W['reinsert']), ('fresh', W['fresh'])]
+    if n > NMIN and idx[(p, n - 1)] and idx[(p, n - 1)].get('best'): moves.append(('ascend', W['ascend']))
+    if n < NMAX and idx[(p, n + 1)] and idx[(p, n + 1)].get('best'): moves.append(('descend', W['descend']))
     r = rng.random() * sum(w for _, w in moves)
     for m, w in moves:
         r -= w
@@ -363,8 +393,12 @@ def work(wid):
         p, n, move = choose(rng, wid)
         with claim(p, n) as ok:
             if not ok: time.sleep(0.5); continue
+            pol = policy(); vname = 'base'
+            if move == 'hop':
+                if pol.get('mode') == 'experiment': vname = rng.choice(pol.get('variants') or ['base'])
+                elif pol.get('hop_variant') in VARIANTS: vname = pol['hop_variant']
             try:
-                attempt(sim, p, n, move, rng, log)
+                attempt(sim, p, n, move, rng, log, vname)
             except Exception as e:
                 log(f'ERROR {p} n={n} {move}: {type(e).__name__}: {str(e)[:300]}')
                 time.sleep(2)
