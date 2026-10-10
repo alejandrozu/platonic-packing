@@ -33,15 +33,15 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 28 | [2.75731+](octincub_n28.json) | 2.757319382336 |  | 2.75738 (R. Walsh, June 2026 (Friedman's Packing Center)) | **better** -0.002% | 2.36329 | 0.6296 | ![](octincub_n28.png) |
 | 29 | [2.82842+](octincub_n29.json) | 2.828427124746 | 2√2 | 2.85384 (R. Walsh, June 2026 (Friedman's Packing Center)) | **better** -0.890% | 2.39110 | 0.6042 | ![](octincub_n29.png) |
 | 30 | [2.88782+](octincub_n30.json) | 2.887823646207 |  | 2.89186 (R. Walsh, June 2026 (Friedman's Packing Center)) | **better** -0.140% | 2.41827 | 0.5872 | ![](octincub_n30.png) |
-| 31 | [2.93662+](octincub_n31.json) | 2.936619919814 |  | | | 2.44485 | 0.5770 | ![](octincub_n31.png) |
+| 31 | [2.93422+](octincub_n31.json) | 2.934226545407 |  | | | 2.44485 | 0.5785 | ![](octincub_n31.png) |
 | 32 | [2.99170+](octincub_n32.json) | 2.991706212741 |  | | | 2.47086 | 0.5634 | ![](octincub_n32.png) |
 | 33 | [3.04674+](octincub_n33.json) | 3.046743745392 |  | | | 2.49633 | 0.5500 | ![](octincub_n33.png) |
 | 34 | [3.08638+](octincub_n34.json) | 3.086387914451 |  | | | 2.52130 | 0.5452 | ![](octincub_n34.png) |
 | 35 | [3.10054+](octincub_n35.json) | 3.100547324022 |  | | | 2.54578 | 0.5535 | ![](octincub_n35.png) |
 | 36 | [3.11859+](octincub_n36.json) | 3.118591874675 |  | | | 2.56980 | 0.5595 | ![](octincub_n36.png) |
 | 37 | [3.15351+](octincub_n37.json) | 3.153515576631 |  | | | 2.59337 | 0.5562 | ![](octincub_n37.png) |
-| 38 | [3.18279+](octincub_n38.json) | 3.182798669305 |  | | | 2.61653 | 0.5556 | ![](octincub_n38.png) |
-| 39 | [3.23310+](octincub_n39.json) | 3.233105520976 |  | | | 2.63928 | 0.5440 | ![](octincub_n39.png) |
+| 38 | [3.18266+](octincub_n38.json) | 3.182665445511 |  | | | 2.61653 | 0.5557 | ![](octincub_n38.png) |
+| 39 | [3.23286+](octincub_n39.json) | 3.232860252612 |  | | | 2.63928 | 0.5441 | ![](octincub_n39.png) |
 | 40 | [3.24518+](octincub_n40.json) | 3.245183347064 |  | | | 2.66165 | 0.5517 | ![](octincub_n40.png) |
 
 **Octahedra in a cube vs published values** (n = 2–30): better at 20, 21, 22, 24, 28, 29, 30; equal at 2, 3, 4, 5, 6, 7, 8, 9, 10, 26, 27; behind at 11 (+1.67%), 12 (+1.40%), 13 (+0.18%), 14 (+0.36%), 15 (+0.58%), 16 (+0.60%), 17 (+1.28%), 18 (+1.55%), 19 (+1.26%), 23 (+0.28%), 25 (+0.13%).
