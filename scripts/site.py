@@ -9,22 +9,36 @@ ORDER = ['tetintet', 'octinoct', 'icoinico', 'dodindod', 'cubincub', 'cubinoct',
 REF = json.load(open(os.path.join(ROOT, 'docs', 'references.json')))
 
 
+def compare(s_full, ref):
+    s_full, ref = float(s_full), float(ref)
+    return 'better' if s_full < ref - 1e-5 else ('equal' if s_full <= ref + 1e-5 else 'behind')
+
+
+def src_code(src):
+    return 'T' if 'trivial' in src else 'N' if 'Nakajima' in src else 'W' if 'Walsh' in src else 'L' if 'Lin' in src else 'F'
+
+
 def load():
     probs = {}
     for f in sorted(glob.glob(os.path.join(ROOT, 'records', '*', '*_n[0-9][0-9].json'))):
         r = json.load(open(f)); pid = r['record_id'].split('_')[0]
         cert = open(f.replace('.json', '.certify.txt')).read() if os.path.exists(f.replace('.json', '.certify.txt')) else ''
-        p = probs.setdefault(pid, {'id': pid, 'piece': r['piece'], 'container': r['container'], 'rows': []})
+        p = probs.setdefault(pid, {'id': pid, 'piece': r['piece'], 'container': r['container'], 'rows': [], 'hasref': bool(REF.get(pid))})
         ref = REF.get(pid, {}).get(str(r['n']))
-        p['rows'].append({'n': r['n'], 's': r['s_plus'], 'ref': ref[0] if ref else None, 'refsrc': ref[1] if ref else None, 'sf': r['s_full'], 'st': r.get('s_tight'), 'cf': r.get('closed_form_conjecture'),
+        p['rows'].append({'n': r['n'], 's': r['s_plus'], 'ref': ref[0] if ref else None, 'refsrc': ref[1] if ref else None,
+                          'refcode': src_code(ref[1]) if ref else None, 'cmp': compare(r['s_full'], ref[0]) if ref else None,
+                          'sf': r['s_full'], 'st': r.get('s_tight'), 'cf': r.get('closed_form_conjecture'),
                           'den': round(r['density'], 4), 'vlb': round(r['volume_lower_bound'], 5),
+                          'move': (r.get('search') or {}).get('move'), 'derived': r.get('derived_from'),
+                          'file': os.path.relpath(f, ROOT),
                           'ok': 'CERTIFIED' in cert and 'NOT CERTIFIED' not in cert,
                           'cert': [l for l in cert.splitlines() if l.startswith('(')],
                           'p': [[round(x, 7) for x in q] for q in r['pieces']]})
     for p in probs.values(): p['rows'].sort(key=lambda r: r['n'])
     ids = [i for i in ORDER if i in probs] + sorted(i for i in probs if i not in ORDER)
     solids = {k: {'V': v['V'], 'F': v['faces'], 'E': v['edges'], 'vol': v['volume']} for k, v in SOL.items()}
-    return {'problems': [probs[i] for i in ids], 'solids': solids, 'nmin': 2, 'nmax': 40}
+    return {'problems': [probs[i] for i in ids], 'solids': solids, 'nmin': 2, 'nmax': 40,
+            'repo': 'https://github.com/alejandrozu/platonic-packing'}
 
 
 TEMPLATE = r'''<title>Platonic Packing Records</title>

@@ -5,7 +5,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | n | s | touching limit | closed form (conj.) | previous best | volume bound | density | picture |
 |---|---|---|---|---|---|---|---|
 | 2 | [1.41421+](octincub_n02.json) | 1.414213562373 | √2 |  | 0.98056 | 0.3333 | ![](octincub_n02.png) |
-| 3 | [1.63634+](octincub_n03.json) | 1.636341178385 |  |  | 1.12246 | 0.3228 | ![](octincub_n03.png) |
+| 3 | [1.63299+](octincub_n03.json) | 1.632993161855 | (2√6)/3 |  | 1.12246 | 0.3248 | ![](octincub_n03.png) |
 | 4 | [1.64991+](octincub_n04.json) | 1.649915822769 | (7√2)/6 |  | 1.23543 | 0.4198 | ![](octincub_n04.png) |
 | 5 | [1.75859+](octincub_n05.json) | 1.758593095449 |  |  | 1.33083 | 0.4334 | ![](octincub_n05.png) |
 | 6 | [1.76776+](octincub_n06.json) | 1.767766952966 | (5√2)/4 |  | 1.41421 | 0.5120 | ![](octincub_n06.png) |
@@ -21,13 +21,13 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 16 | [2.47676+](octincub_n16.json) | 2.476762037919 |  |  | 1.96112 | 0.4964 | ![](octincub_n16.png) |
 | 17 | [2.50659+](octincub_n17.json) | 2.506598266404 |  |  | 2.00116 | 0.5088 | ![](octincub_n17.png) |
 | 18 | [2.52117+](octincub_n18.json) | 2.521171789333 |  |  | 2.03965 | 0.5295 | ![](octincub_n18.png) |
-| 19 | [2.56448+](octincub_n19.json) | 2.564485232343 |  |  | 2.07674 | 0.5311 | ![](octincub_n19.png) |
+| 19 | [2.56278+](octincub_n19.json) | 2.562781147431 |  |  | 2.07674 | 0.5321 | ![](octincub_n19.png) |
 | 20 | [2.59027+](octincub_n20.json) | 2.590275986082 |  |  | 2.11255 | 0.5425 | ![](octincub_n20.png) |
 | 21 | [2.60245+](octincub_n21.json) | 2.602456372965 |  | 2.59285 (Hyra-results (Haowei Lin), 2026) | 2.14719 | 0.5616 | ![](octincub_n21.png) |
 | 22 | [2.60792+](octincub_n22.json) | 2.607925893371 |  |  | 2.18075 | 0.5847 | ![](octincub_n22.png) |
 | 23 | [2.62562+](octincub_n23.json) | 2.625620410120 |  |  | 2.21330 | 0.5990 | ![](octincub_n23.png) |
-| 24 | [2.63982+](octincub_n24.json) | 2.639825603913 |  | 2.63319 (Hyra-results (Haowei Lin), 2026) | 2.24492 | 0.6150 | ![](octincub_n24.png) |
-| 25 | [2.64131+](octincub_n25.json) | 2.641316454989 |  |  | 2.27568 | 0.6395 | ![](octincub_n25.png) |
+| 24 | [2.63701+](octincub_n24.json) | 2.637014546953 |  | 2.63319 (Hyra-results (Haowei Lin), 2026) | 2.24492 | 0.6170 | ![](octincub_n24.png) |
+| 25 | [2.63981+](octincub_n25.json) | 2.639810345350 |  |  | 2.27568 | 0.6406 | ![](octincub_n25.png) |
 | 26 | [2.64950+](octincub_n26.json) | 2.649504966822 |  |  | 2.30563 | 0.6590 | ![](octincub_n26.png) |
 | 27 | [2.70076+](octincub_n27.json) | 2.700761987066 |  |  | 2.33482 | 0.6461 | ![](octincub_n27.png) |
 | 28 | [2.75787+](octincub_n28.json) | 2.757874716103 |  |  | 2.36329 | 0.6293 | ![](octincub_n28.png) |
@@ -36,8 +36,8 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 31 | [2.93662+](octincub_n31.json) | 2.936619919814 |  |  | 2.44485 | 0.5770 | ![](octincub_n31.png) |
 | 32 | [2.99220+](octincub_n32.json) | 2.992204907156 |  |  | 2.47086 | 0.5631 | ![](octincub_n32.png) |
 | 33 | [3.04674+](octincub_n33.json) | 3.046743745392 |  |  | 2.49633 | 0.5500 | ![](octincub_n33.png) |
-| 34 | [3.08765+](octincub_n34.json) | 3.087649662602 |  |  | 2.52130 | 0.5445 | ![](octincub_n34.png) |
-| 35 | [3.10233+](octincub_n35.json) | 3.102337497582 |  |  | 2.54578 | 0.5526 | ![](octincub_n35.png) |
+| 34 | [3.08638+](octincub_n34.json) | 3.086387914451 |  |  | 2.52130 | 0.5452 | ![](octincub_n34.png) |
+| 35 | [3.10054+](octincub_n35.json) | 3.100547324118 |  |  | 2.54578 | 0.5535 | ![](octincub_n35.png) |
 | 36 | [3.11859+](octincub_n36.json) | 3.118591874675 |  |  | 2.56980 | 0.5595 | ![](octincub_n36.png) |
 | 37 | [3.15351+](octincub_n37.json) | 3.153515576631 |  |  | 2.59337 | 0.5562 | ![](octincub_n37.png) |
 | 38 | [3.18279+](octincub_n38.json) | 3.182798669305 |  |  | 2.61653 | 0.5556 | ![](octincub_n38.png) |
