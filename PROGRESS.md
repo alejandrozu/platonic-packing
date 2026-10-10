@@ -2,21 +2,21 @@
 
 Updated 2026-10-10 21:19 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
 
-* attempts: 36812 total, 31344 in the last 24 h, 1309 in the last hour
-* improvements: 2581 total, 1554 in the last 24 h
-* by move (attempts / improvements): ascend 4892/489, descend 3318/89, fresh 5026/84, hop 19282/1398, reinsert 4052/371, tighten 242/150
+* attempts: 36822 total, 31350 in the last 24 h, 1303 in the last hour
+* improvements: 2581 total, 1553 in the last 24 h
+* by move (attempts / improvements): ascend 4893/489, descend 3320/89, fresh 5026/84, hop 19287/1398, reinsert 4054/371, tighten 242/150
 
 | problem | n with a packing | attempts | CPU hours | improvements (24 h) | last improvement |
 |---|---|---|---|---|---|
-| Tetrahedra in a tetrahedron (tetintet) | 39/39 | 5715 | 6.3 | 237 | 10-10 21:18 |
+| Tetrahedra in a tetrahedron (tetintet) | 39/39 | 5717 | 6.3 | 237 | 10-10 21:18 |
 | Octahedra in an octahedron (octinoct) | 39/39 | 4128 | 4.8 | 63 | 10-10 19:39 |
 | Icosahedra in an icosahedron (icoinico) | 39/39 | 2570 | 7.8 | 125 | 10-10 20:50 |
 | Dodecahedra in a dodecahedron (dodindod) | 39/39 | 2504 | 8.1 | 140 | 10-10 20:20 |
-| Cubes in a cube (cubincub) | 39/39 | 4599 | 4.6 | 76 | 10-10 21:11 |
+| Cubes in a cube (cubincub) | 39/39 | 4603 | 4.6 | 76 | 10-10 21:11 |
 | Cubes in an octahedron (cubinoct) | 39/39 | 5790 | 6.3 | 250 | 10-10 19:58 |
-| Octahedra in a cube (octincub) | 39/39 | 6175 | 6.9 | 239 | 10-10 21:17 |
+| Octahedra in a cube (octincub) | 39/39 | 6177 | 6.9 | 238 | 10-10 21:17 |
 | Dodecahedra in an icosahedron (dodinico) | 39/39 | 2373 | 9.0 | 236 | 10-10 21:16 |
-| Icosahedra in a dodecahedron (icoindod) | 39/39 | 2958 | 8.1 | 188 | 10-10 21:19 |
+| Icosahedra in a dodecahedron (icoindod) | 39/39 | 2960 | 8.1 | 188 | 10-10 21:19 |
 
 ## Current best values (live archive, uncertified until the next records publish)
 
