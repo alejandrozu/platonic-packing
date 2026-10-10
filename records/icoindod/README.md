@@ -9,7 +9,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 4 | [1.41064+](icoindod_n04.json) | 1.410641457796 |  |  | 1.04428 | 0.4057 | ![](icoindod_n04.png) |
 | 5 | [1.53319+](icoindod_n05.json) | 1.533190267566 |  |  | 1.12491 | 0.3950 | ![](icoindod_n05.png) |
 | 6 | [1.55131+](icoindod_n06.json) | 1.551315641669 |  |  | 1.19540 | 0.4576 | ![](icoindod_n06.png) |
-| 7 | [1.66970+](icoindod_n07.json) | 1.669708930112 |  |  | 1.25843 | 0.4281 | ![](icoindod_n07.png) |
+| 7 | [1.66853+](icoindod_n07.json) | 1.668531743486 |  |  | 1.25843 | 0.4290 | ![](icoindod_n07.png) |
 | 8 | [1.69786+](icoindod_n08.json) | 1.697868484226 |  |  | 1.31571 | 0.4653 | ![](icoindod_n08.png) |
 | 9 | [1.77163+](icoindod_n09.json) | 1.771633823380 |  |  | 1.36839 | 0.4608 | ![](icoindod_n09.png) |
 | 10 | [1.81824+](icoindod_n10.json) | 1.818246222678 |  |  | 1.41730 | 0.4736 | ![](icoindod_n10.png) |
@@ -34,10 +34,10 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 29 | [2.47968+](icoindod_n29.json) | 2.479688589456 |  |  | 2.02114 | 0.5415 | ![](icoindod_n29.png) |
 | 30 | [2.49070+](icoindod_n30.json) | 2.490704882290 |  |  | 2.04411 | 0.5528 | ![](icoindod_n30.png) |
 | 31 | [2.51421+](icoindod_n31.json) | 2.514213188906 |  |  | 2.06657 | 0.5553 | ![](icoindod_n31.png) |
-| 32 | [2.53730+](icoindod_n32.json) | 2.537303759353 |  |  | 2.08856 | 0.5577 | ![](icoindod_n32.png) |
+| 32 | [2.53325+](icoindod_n32.json) | 2.533250137677 |  |  | 2.08856 | 0.5604 | ![](icoindod_n32.png) |
 | 33 | [2.54174+](icoindod_n33.json) | 2.541742376658 |  |  | 2.11009 | 0.5721 | ![](icoindod_n33.png) |
 | 34 | [2.58825+](icoindod_n34.json) | 2.588254020161 |  |  | 2.13119 | 0.5583 | ![](icoindod_n34.png) |
-| 35 | [2.63084+](icoindod_n35.json) | 2.630840512045 |  |  | 2.15188 | 0.5472 | ![](icoindod_n35.png) |
+| 35 | [2.62882+](icoindod_n35.json) | 2.628820379088 |  |  | 2.15188 | 0.5485 | ![](icoindod_n35.png) |
 | 36 | [2.67523+](icoindod_n36.json) | 2.675235951369 |  |  | 2.17219 | 0.5353 | ![](icoindod_n36.png) |
 | 37 | [2.69168+](icoindod_n37.json) | 2.691685589456 |  |  | 2.19212 | 0.5402 | ![](icoindod_n37.png) |
 | 38 | [2.71078+](icoindod_n38.json) | 2.710781038859 |  |  | 2.21169 | 0.5431 | ![](icoindod_n38.png) |

@@ -16,7 +16,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 11 | [2.90266+](cubincub_n11.json) | 2.902668679622 |  | 2.88295 (Hyra-results (Haowei Lin), 2026) | 2.22398 | 0.4498 | ![](cubincub_n11.png) |
 | 12 | [2.93151+](cubincub_n12.json) | 2.931514577965 |  | 2.93152 (Y. Nakajima, Oct 2026) | 2.28943 | 0.4763 | ![](cubincub_n12.png) |
 | 13 | [2.97661+](cubincub_n13.json) | 2.976619590102 |  | 2.95600 (Friedman catalogue (truncated)) | 2.35133 | 0.4929 | ![](cubincub_n13.png) |
-| 14 | [2.99934+](cubincub_n14.json) | 2.999340875485 |  | 2.98995 (Friedman catalogue) | 2.41014 | 0.5189 | ![](cubincub_n14.png) |
+| 14 | [2.99538+](cubincub_n14.json) | 2.995389250386 |  | 2.98995 (Friedman catalogue) | 2.41014 | 0.5209 | ![](cubincub_n14.png) |
 | 15 | [3.00000+](cubincub_n15.json) | 3.000000000000 | 3 | 3.00000 (Friedman catalogue) | 2.46621 | 0.5556 | ![](cubincub_n15.png) |
 | 16 | [3.00000+](cubincub_n16.json) | 3.000000000000 | 3 | 3.00000 (Friedman catalogue) | 2.51984 | 0.5926 | ![](cubincub_n16.png) |
 | 17 | [3.00000+](cubincub_n17.json) | 3.000000000000 | 3 | 3.00000 (Friedman catalogue) | 2.57128 | 0.6296 | ![](cubincub_n17.png) |
@@ -40,6 +40,6 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 35 | [3.90490+](cubincub_n35.json) | 3.904903383894 |  |  | 3.27107 | 0.5878 | ![](cubincub_n35.png) |
 | 36 | [3.94280+](cubincub_n36.json) | 3.942809041675 |  |  | 3.30193 | 0.5873 | ![](cubincub_n36.png) |
 | 37 | [3.94280+](cubincub_n37.json) | 3.942809041677 |  |  | 3.33222 | 0.6036 | ![](cubincub_n37.png) |
-| 38 | [3.98296+](cubincub_n38.json) | 3.982960913965 |  |  | 3.36198 | 0.6014 | ![](cubincub_n38.png) |
+| 38 | [3.98092+](cubincub_n38.json) | 3.980926771786 |  |  | 3.36198 | 0.6023 | ![](cubincub_n38.png) |
 | 39 | [4.00000+](cubincub_n39.json) | 4.000000000000 | 4 |  | 3.39121 | 0.6094 | ![](cubincub_n39.png) |
 | 40 | [4.00000+](cubincub_n40.json) | 4.000000000000 | 4 |  | 3.41995 | 0.6250 | ![](cubincub_n40.png) |

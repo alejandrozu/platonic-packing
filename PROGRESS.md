@@ -1,22 +1,22 @@
 # Search progress
 
-Updated 2026-10-10 17:06 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
+Updated 2026-10-10 17:12 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
 
-* attempts: 31344 total, 30021 in the last 24 h, 1244 in the last hour
-* improvements: 2322 total, 1843 in the last 24 h
-* by move (attempts / improvements): ascend 4304/478, descend 2871/84, fresh 4457/84, hop 15956/1191, reinsert 3519/338, tighten 237/147
+* attempts: 31472 total, 30076 in the last 24 h, 1260 in the last hour
+* improvements: 2325 total, 1829 in the last 24 h
+* by move (attempts / improvements): ascend 4319/478, descend 2883/84, fresh 4478/84, hop 16020/1193, reinsert 3535/339, tighten 237/147
 
 | problem | n with a packing | attempts | CPU hours | improvements (24 h) | last improvement |
 |---|---|---|---|---|---|
-| Tetrahedra in a tetrahedron (tetintet) | 39/39 | 4918 | 5.2 | 275 | 10-10 16:36 |
-| Octahedra in an octahedron (octinoct) | 39/39 | 3708 | 4.4 | 94 | 10-10 17:05 |
-| Icosahedra in an icosahedron (icoinico) | 39/39 | 2310 | 6.8 | 146 | 10-10 16:47 |
-| Dodecahedra in a dodecahedron (dodindod) | 39/39 | 2193 | 7.1 | 156 | 10-10 16:54 |
-| Cubes in a cube (cubincub) | 39/39 | 3968 | 4.0 | 103 | 10-10 15:47 |
-| Cubes in an octahedron (cubinoct) | 39/39 | 4888 | 5.6 | 311 | 10-10 16:37 |
-| Octahedra in a cube (octincub) | 39/39 | 4713 | 5.6 | 267 | 10-10 16:34 |
-| Dodecahedra in an icosahedron (dodinico) | 39/39 | 2074 | 7.7 | 272 | 10-10 16:58 |
-| Icosahedra in a dodecahedron (icoindod) | 39/39 | 2572 | 7.1 | 219 | 10-10 16:51 |
+| Tetrahedra in a tetrahedron (tetintet) | 39/39 | 4931 | 5.3 | 270 | 10-10 16:36 |
+| Octahedra in an octahedron (octinoct) | 39/39 | 3732 | 4.4 | 93 | 10-10 17:05 |
+| Icosahedra in an icosahedron (icoinico) | 39/39 | 2321 | 6.8 | 146 | 10-10 16:47 |
+| Dodecahedra in a dodecahedron (dodindod) | 39/39 | 2197 | 7.1 | 156 | 10-10 16:54 |
+| Cubes in a cube (cubincub) | 39/39 | 3980 | 4.0 | 102 | 10-10 15:47 |
+| Cubes in an octahedron (cubinoct) | 39/39 | 4913 | 5.7 | 311 | 10-10 17:09 |
+| Octahedra in a cube (octincub) | 39/39 | 4729 | 5.6 | 259 | 10-10 16:34 |
+| Dodecahedra in an icosahedron (dodinico) | 39/39 | 2092 | 7.8 | 273 | 10-10 17:11 |
+| Icosahedra in a dodecahedron (icoindod) | 39/39 | 2577 | 7.1 | 219 | 10-10 16:51 |
 
 ## Current best values (live archive, uncertified until the next records publish)
 
@@ -32,7 +32,7 @@ s = container edge / piece edge, touching limit from the tightening; s(n) is non
 | 7 | 2.38195 | 2.50000 | 2.44932 | 2.42705 • | 2.00000 | 3.30067 • | 1.79134 • | 3.85642 • | 1.66853 • |
 | 8 | 2.38743 • | 2.50000 | 2.49662 | 2.52786 | 2.00000 | 3.41421 • | 1.79134 • | 3.96658 • | 1.69787 • |
 | 9 | 2.61556 • | 2.50000 | 2.58295 • | 2.59888 | 2.70711 | 3.61760 • | 1.88562 | 4.02206 • | 1.77163 • |
-| 10 | 2.70630 • | 2.50000 • | 2.60989 | 2.70520 | 2.70711 • | 3.69307 • | 2.14937 • | 4.06525 • | 1.81825 • |
+| 10 | 2.70630 • | 2.50000 | 2.60989 | 2.70520 | 2.70711 • | 3.69307 • | 2.14937 • | 4.06525 • | 1.81825 • |
 | 11 | 2.81135 • | 2.66667 | 2.61803 | 2.76393 | 2.90267 • | 3.70711 • | 2.23199 • | 4.06525 • | 1.87074 • |
 | 12 | 2.86959 • | 2.66667 • | 2.61803 | 2.76393 | 2.93151 • | 3.70711 • | 2.29112 • | 4.06525 • | 1.87485 • |
 | 13 | 2.91746 • | 2.85377 • | 2.80902 • | 2.90557 • | 2.97662 | 3.79737 • | 2.34098 • | 4.06525 • | 1.90402 • |
@@ -45,7 +45,7 @@ s = container edge / piece edge, touching limit from the tightening; s(n) is non
 | 20 | 3.24581 • | 3.16654 | 3.35371 • | 3.34970 • | 3.00000 | 4.32466 • | 2.59028 • | 5.15761 • | 2.26198 • |
 | 21 | 3.30794 • | 3.20000 | 3.40705 • | 3.39149 • | 3.00000 | 4.50718 • | 2.60246 • | 5.26143 • | 2.28456 • |
 | 22 | 3.34569 • | 3.25000 • | 3.48345 • | 3.44721 • | 3.00000 | 4.61841 • | 2.60793 • | 5.33408 • | 2.29500 • |
-| 23 | 3.39619 • | 3.25000 • | 3.56600 • | 3.55488 • | 3.00000 | 4.65995 • | 2.62562 • | 5.40350 • | 2.35155 • |
+| 23 | 3.39619 • | 3.25000 • | 3.56600 • | 3.55488 • | 3.00000 | 4.65995 • | 2.62562 • | 5.40298 • | 2.35155 • |
 | 24 | 3.43388 • | 3.37500 • | 3.59493 • | 3.58214 • | 3.00000 | 4.71198 • | 2.63983 • | 5.49242 • | 2.36822 • |
 | 25 | 3.49565 • | 3.39983 • | 3.60905 • | 3.61571 • | 3.00000 | 4.74195 • | 2.64132 • | 5.53830 • | 2.39941 • |
 | 26 | 3.58091 • | 3.50000 | 3.67329 • | 3.63718 • | 3.00000 | 4.75455 • | 2.64950 • | 5.62256 • | 2.42395 • |
@@ -56,7 +56,7 @@ s = container edge / piece edge, touching limit from the tightening; s(n) is non
 | 31 | 3.85291 • | 3.66667 • | 3.88415 • | 3.76947 • | 3.70711 • | 4.96275 • | 2.93662 • | 5.90496 • | 2.51421 • |
 | 32 | 3.87365 • | 3.71406 • | 3.89329 • | 3.76966 • | 3.85367 • | 5.01487 • | 2.99220 • | 5.96714 • | 2.53325 • |
 | 33 | 3.89637 • | 3.77674 • | 3.91366 • | 3.78381 • | 3.85919 • | 5.05290 • | 3.04674 • | 5.97945 • | 2.54174 • |
-| 34 | 3.94333 • | 3.79709 • | 3.93607 • | 3.91153 • | 3.89443 • | 5.07004 • | 3.08765 • | 6.00094 • | 2.58825 • |
+| 34 | 3.94333 • | 3.79709 • | 3.93607 • | 3.91153 • | 3.89443 • | 5.06884 • | 3.08765 • | 6.00094 • | 2.58825 • |
 | 35 | 3.96564 • | 3.82361 • | 3.94073 • | 3.99108 • | 3.90490 • | 5.08698 • | 3.10234 • | 6.02647 • | 2.62882 • |
 | 36 | 3.98328 • | 3.87232 • | 4.02423 | 4.04018 • | 3.94281 • | 5.11431 • | 3.11859 • | 6.15523 • | 2.67524 • |
 | 37 | 4.01521 • | 3.89374 • | 4.04888 • | 4.09373 • | 3.94281 • | 5.13054 • | 3.15352 • | 6.21296 • | 2.69169 • |
