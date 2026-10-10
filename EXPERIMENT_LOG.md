@@ -115,3 +115,23 @@ one record per solution.
   share raised to 80%): base; jiggle (noise ×3, shaking ×1.5); expand (container grows 6–15% instead of 1–5%,
   softer pieces, morph ×1.3); volume (3 raw hops per attempt, only the best is tightened); gentle (minDiff 0.02–0.10,
   start from the best 90% of the time). Score: new bests per CPU-hour (`scripts/experiment.py`).
+- Result (19:14–20:14, 1,219 attempts, 949 tagged hops; state/experiment_2026-10-10.json):
+
+  | setting | hops | CPU min | new bests | per CPU-hour (90% interval) | > 1e-4 per CPU-hour | near misses (≤ 0.1%) |
+  |---|---|---|---|---|---|---|
+  | base | 196 | 10.1 | 4 | 23.7 (8.1–54.2) | 5.9 | 17.9% |
+  | jiggle | 185 | 11.2 | 5 | 26.8 (10.6–56.4) | 21.5 | 14.1% |
+  | expand | 184 | 15.8 | 5 | 19.0 (7.5–40.0) | 11.4 | 21.2% |
+  | volume | 194 | 40.8 | 14 | 20.6 (12.4–32.2) | 8.8 | 43.3% |
+  | **gentle** | 190 | 23.0 | **18** | **46.9 (30.3–69.6)** | 20.9 | 67.4% |
+
+  Shaking harder or letting the container grow more did not help; three raw hops per attempt cost 3x the raw time
+  for the same rate. Small hops from the current best roughly doubled the rate, in line with the 24-hour logs.
+- 20:14: production settings (state/policy.json): every hop uses "gentle"; move weights hop 0.62, reinsert 0.12,
+  fresh 0.06 (was 0.13), ascend 0.10, descend 0.10; 30% of attempts go to the 41 cases with published values
+  (cubes n = 9–14, 28–33; octahedra in a cube n = 2–30). Published packings with coordinates imported as starting
+  points (scripts/literature.py): Lin's 11 cubes, 21 and 24 octahedra became the starting best; Lin's and Nakajima's
+  12 cubes joined the pool.
+- Within two minutes, three searches from the published packings went below them: 21 octahedra 2.5918357
+  (published 2.5928499), 24 octahedra 2.6279225 (published 2.6331890, by re-tightening Lin's packing), 11 cubes
+  2.8817111 (published 2.8829529). Exact certification running.
