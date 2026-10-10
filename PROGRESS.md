@@ -1,22 +1,22 @@
 # Search progress
 
-Updated 2026-10-10 16:56 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
+Updated 2026-10-10 17:06 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
 
-* attempts: 31108 total, 29895 in the last 24 h, 1180 in the last hour
-* improvements: 2318 total, 1862 in the last 24 h
-* by move (attempts / improvements): ascend 4280/478, descend 2842/84, fresh 4439/84, hop 15826/1188, reinsert 3484/337, tighten 237/147
+* attempts: 31344 total, 30021 in the last 24 h, 1244 in the last hour
+* improvements: 2322 total, 1843 in the last 24 h
+* by move (attempts / improvements): ascend 4304/478, descend 2871/84, fresh 4457/84, hop 15956/1191, reinsert 3519/338, tighten 237/147
 
 | problem | n with a packing | attempts | CPU hours | improvements (24 h) | last improvement |
 |---|---|---|---|---|---|
-| Tetrahedra in a tetrahedron (tetintet) | 39/39 | 4898 | 5.2 | 278 | 10-10 16:36 |
-| Octahedra in an octahedron (octinoct) | 39/39 | 3635 | 4.3 | 92 | 10-10 16:55 |
-| Icosahedra in an icosahedron (icoinico) | 39/39 | 2296 | 6.8 | 148 | 10-10 16:47 |
-| Dodecahedra in a dodecahedron (dodindod) | 39/39 | 2179 | 7.1 | 157 | 10-10 16:54 |
-| Cubes in a cube (cubincub) | 39/39 | 3937 | 3.9 | 103 | 10-10 15:47 |
-| Cubes in an octahedron (cubinoct) | 39/39 | 4866 | 5.6 | 317 | 10-10 16:37 |
-| Octahedra in a cube (octincub) | 39/39 | 4695 | 5.5 | 271 | 10-10 16:34 |
-| Dodecahedra in an icosahedron (dodinico) | 39/39 | 2052 | 7.6 | 274 | 10-10 16:55 |
-| Icosahedra in a dodecahedron (icoindod) | 39/39 | 2550 | 7.0 | 222 | 10-10 16:51 |
+| Tetrahedra in a tetrahedron (tetintet) | 39/39 | 4918 | 5.2 | 275 | 10-10 16:36 |
+| Octahedra in an octahedron (octinoct) | 39/39 | 3708 | 4.4 | 94 | 10-10 17:05 |
+| Icosahedra in an icosahedron (icoinico) | 39/39 | 2310 | 6.8 | 146 | 10-10 16:47 |
+| Dodecahedra in a dodecahedron (dodindod) | 39/39 | 2193 | 7.1 | 156 | 10-10 16:54 |
+| Cubes in a cube (cubincub) | 39/39 | 3968 | 4.0 | 103 | 10-10 15:47 |
+| Cubes in an octahedron (cubinoct) | 39/39 | 4888 | 5.6 | 311 | 10-10 16:37 |
+| Octahedra in a cube (octincub) | 39/39 | 4713 | 5.6 | 267 | 10-10 16:34 |
+| Dodecahedra in an icosahedron (dodinico) | 39/39 | 2074 | 7.7 | 272 | 10-10 16:58 |
+| Icosahedra in a dodecahedron (icoindod) | 39/39 | 2572 | 7.1 | 219 | 10-10 16:51 |
 
 ## Current best values (live archive, uncertified until the next records publish)
 
@@ -49,14 +49,14 @@ s = container edge / piece edge, touching limit from the tightening; s(n) is non
 | 24 | 3.43388 • | 3.37500 • | 3.59493 • | 3.58214 • | 3.00000 | 4.71198 • | 2.63983 • | 5.49242 • | 2.36822 • |
 | 25 | 3.49565 • | 3.39983 • | 3.60905 • | 3.61571 • | 3.00000 | 4.74195 • | 2.64132 • | 5.53830 • | 2.39941 • |
 | 26 | 3.58091 • | 3.50000 | 3.67329 • | 3.63718 • | 3.00000 | 4.75455 • | 2.64950 • | 5.62256 • | 2.42395 • |
-| 27 | 3.67236 • | 3.50000 • | 3.70259 • | 3.70130 • | 3.00000 | 4.81054 • | 2.70076 • | 5.67051 • | 2.44636 • |
+| 27 | 3.67236 • | 3.50000 • | 3.70259 • | 3.70130 • | 3.00000 | 4.81054 • | 2.70076 • | 5.66986 • | 2.44636 • |
 | 28 | 3.72491 • | 3.50000 • | 3.74962 • | 3.73740 • | 3.70711 • | 4.85652 • | 2.75787 • | 5.74818 • | 2.46857 • |
 | 29 | 3.76360 • | 3.54545 • | 3.79140 • | 3.74709 • | 3.70711 • | 4.89715 • | 2.82843 • | 5.78808 • | 2.47969 • |
 | 30 | 3.82326 • | 3.60000 • | 3.83470 • | 3.76444 • | 3.70711 • | 4.94154 • | 2.88782 • | 5.87670 • | 2.49070 • |
 | 31 | 3.85291 • | 3.66667 • | 3.88415 • | 3.76947 • | 3.70711 • | 4.96275 • | 2.93662 • | 5.90496 • | 2.51421 • |
 | 32 | 3.87365 • | 3.71406 • | 3.89329 • | 3.76966 • | 3.85367 • | 5.01487 • | 2.99220 • | 5.96714 • | 2.53325 • |
 | 33 | 3.89637 • | 3.77674 • | 3.91366 • | 3.78381 • | 3.85919 • | 5.05290 • | 3.04674 • | 5.97945 • | 2.54174 • |
-| 34 | 3.94333 • | 3.80261 • | 3.93607 • | 3.91153 • | 3.89443 • | 5.07004 • | 3.08765 • | 6.00094 • | 2.58825 • |
+| 34 | 3.94333 • | 3.79709 • | 3.93607 • | 3.91153 • | 3.89443 • | 5.07004 • | 3.08765 • | 6.00094 • | 2.58825 • |
 | 35 | 3.96564 • | 3.82361 • | 3.94073 • | 3.99108 • | 3.90490 • | 5.08698 • | 3.10234 • | 6.02647 • | 2.62882 • |
 | 36 | 3.98328 • | 3.87232 • | 4.02423 | 4.04018 • | 3.94281 • | 5.11431 • | 3.11859 • | 6.15523 • | 2.67524 • |
 | 37 | 4.01521 • | 3.89374 • | 4.04888 • | 4.09373 • | 3.94281 • | 5.13054 • | 3.15352 • | 6.21296 • | 2.69169 • |
