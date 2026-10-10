@@ -1,22 +1,22 @@
 # Search progress
 
-Updated 2026-10-10 23:22 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
+Updated 2026-10-10 23:23 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
 
-* attempts: 39102 total, 31203 in the last 24 h, 1106 in the last hour
-* improvements: 2743 total, 1504 in the last 24 h
-* by move (attempts / improvements): ascend 5172/497, descend 3538/90, fresh 5174/84, hop 20683/1545, reinsert 4292/377, tighten 243/150
+* attempts: 39109 total, 31174 in the last 24 h, 1086 in the last hour
+* improvements: 2744 total, 1503 in the last 24 h
+* by move (attempts / improvements): ascend 5172/497, descend 3538/90, fresh 5174/84, hop 20688/1546, reinsert 4294/377, tighten 243/150
 
 | problem | n with a packing | attempts | CPU hours | improvements (24 h) | last improvement |
 |---|---|---|---|---|---|
-| Tetrahedra in a tetrahedron (tetintet) | 39/39 | 5997 | 6.7 | 221 | 10-10 23:21 |
+| Tetrahedra in a tetrahedron (tetintet) | 39/39 | 5998 | 6.7 | 222 | 10-10 23:23 |
 | Octahedra in an octahedron (octinoct) | 39/39 | 4233 | 4.9 | 51 | 10-10 22:39 |
-| Icosahedra in an icosahedron (icoinico) | 39/39 | 2719 | 8.5 | 132 | 10-10 22:21 |
+| Icosahedra in an icosahedron (icoinico) | 39/39 | 2720 | 8.5 | 132 | 10-10 22:21 |
 | Dodecahedra in a dodecahedron (dodindod) | 39/39 | 2576 | 8.3 | 131 | 10-10 22:49 |
 | Cubes in a cube (cubincub) | 39/39 | 4920 | 4.9 | 72 | 10-10 22:34 |
-| Cubes in an octahedron (cubinoct) | 39/39 | 6183 | 7.0 | 265 | 10-10 23:21 |
-| Octahedra in a cube (octincub) | 39/39 | 6913 | 7.6 | 224 | 10-10 23:14 |
-| Dodecahedra in an icosahedron (dodinico) | 39/39 | 2465 | 9.3 | 220 | 10-10 22:48 |
-| Icosahedra in a dodecahedron (icoindod) | 39/39 | 3096 | 8.7 | 188 | 10-10 23:20 |
+| Cubes in an octahedron (cubinoct) | 39/39 | 6186 | 7.0 | 265 | 10-10 23:21 |
+| Octahedra in a cube (octincub) | 39/39 | 6914 | 7.6 | 224 | 10-10 23:14 |
+| Dodecahedra in an icosahedron (dodinico) | 39/39 | 2465 | 9.3 | 219 | 10-10 22:48 |
+| Icosahedra in a dodecahedron (icoindod) | 39/39 | 3097 | 8.7 | 187 | 10-10 23:20 |
 
 ## Current best values (live archive, uncertified until the next records publish)
 
@@ -60,7 +60,7 @@ s = container edge / piece edge, touching limit from the tightening; s(n) is non
 | 35 | 3.96564 • | 3.82361 • | 3.93793 • | 3.99108 • | 3.89443 • | 5.07517 • | 3.10055 • | 6.01701 • | 2.62882 • |
 | 36 | 3.98328 • | 3.87232 • | 4.01241 • | 4.04005 • | 3.94281 • | 5.10736 • | 3.11859 • | 6.15191 • | 2.67350 • |
 | 37 | 4.01521 | 3.89374 • | 4.04858 • | 4.08996 • | 3.94281 • | 5.12832 • | 3.15352 • | 6.21296 • | 2.69122 • |
-| 38 | 4.03795 • | 3.93738 • | 4.07744 • | 4.12741 • | 3.98077 • | 5.14768 • | 3.18280 • | 6.28601 • | 2.69779 • |
+| 38 | 4.03736 • | 3.93738 • | 4.07744 • | 4.12741 • | 3.98077 • | 5.14768 • | 3.18280 • | 6.28601 • | 2.69779 • |
 | 39 | 4.04780 • | 3.94549 • | 4.08282 • | 4.14277 • | 4.00000 | 5.17864 • | 3.23286 • | 6.31948 • | 2.74064 • |
 | 40 | 4.05914 • | 3.95635 • | 4.11935 • | 4.18965 • | 4.00000 | 5.20910 • | 3.24518 • | 6.34951 • | 2.74806 • |
 
