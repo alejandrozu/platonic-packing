@@ -22,7 +22,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 17 | [3.16774+](dodindod_n17.json) | 3.167739820200 |  |  | 2.57128 | 0.5348 | ![](dodindod_n17.png) |
 | 18 | [3.21549+](dodindod_n18.json) | 3.215490468793 | (53 + 18√5)/29 |  | 2.62074 | 0.5414 | ![](dodindod_n18.png) |
 | 19 | [3.29218+](dodindod_n19.json) | 3.292182454765 |  |  | 2.66840 | 0.5325 | ![](dodindod_n19.png) |
-| 20 | [3.34969+](dodindod_n20.json) | 3.349698964167 |  |  | 2.71442 | 0.5321 | ![](dodindod_n20.png) |
+| 20 | [3.34969+](dodindod_n20.json) | 3.349698964164 |  |  | 2.71442 | 0.5321 | ![](dodindod_n20.png) |
 | 21 | [3.39148+](dodindod_n21.json) | 3.391485505499 |  |  | 2.75892 | 0.5383 | ![](dodindod_n21.png) |
 | 22 | [3.44721+](dodindod_n22.json) | 3.447213595503 | (15 + √5)/5 |  | 2.80204 | 0.5371 | ![](dodindod_n22.png) |
 | 23 | [3.55488+](dodindod_n23.json) | 3.554882432817 |  |  | 2.84387 | 0.5120 | ![](dodindod_n23.png) |
@@ -32,8 +32,8 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 27 | [3.70130+](dodindod_n27.json) | 3.701301616734 |  |  | 3.00000 | 0.5325 | ![](dodindod_n27.png) |
 | 28 | [3.73740+](dodindod_n28.json) | 3.737403811374 |  |  | 3.03659 | 0.5363 | ![](dodindod_n28.png) |
 | 29 | [3.74709+](dodindod_n29.json) | 3.747090740041 |  |  | 3.07232 | 0.5512 | ![](dodindod_n29.png) |
-| 30 | [3.76881+](dodindod_n30.json) | 3.768812563383 |  |  | 3.10723 | 0.5604 | ![](dodindod_n30.png) |
-| 31 | [3.78132+](dodindod_n31.json) | 3.781324379787 |  |  | 3.14138 | 0.5734 | ![](dodindod_n31.png) |
+| 30 | [3.76444+](dodindod_n30.json) | 3.764443446515 |  |  | 3.10723 | 0.5624 | ![](dodindod_n30.png) |
+| 31 | [3.76947+](dodindod_n31.json) | 3.769471029358 |  |  | 3.14138 | 0.5788 | ![](dodindod_n31.png) |
 | 32 | [3.78251+](dodindod_n32.json) | 3.782515783589 |  |  | 3.17480 | 0.5913 | ![](dodindod_n32.png) |
 | 33 | [3.78382+](dodindod_n33.json) | 3.783819898312 |  |  | 3.20753 | 0.6091 | ![](dodindod_n33.png) |
 | 34 | [3.91152+](dodindod_n34.json) | 3.911527539191 |  |  | 3.23961 | 0.5681 | ![](dodindod_n34.png) |

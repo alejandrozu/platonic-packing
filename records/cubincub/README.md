@@ -40,6 +40,6 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 35 | [3.90490+](cubincub_n35.json) | 3.904903383894 |  |  | 3.27107 | 0.5878 | ![](cubincub_n35.png) |
 | 36 | [3.94280+](cubincub_n36.json) | 3.942809041675 |  |  | 3.30193 | 0.5873 | ![](cubincub_n36.png) |
 | 37 | [3.94280+](cubincub_n37.json) | 3.942809041677 |  |  | 3.33222 | 0.6036 | ![](cubincub_n37.png) |
-| 38 | [4.00000+](cubincub_n38.json) | 4.000000000000 | 4 |  | 3.36198 | 0.5937 | ![](cubincub_n38.png) |
+| 38 | [3.98296+](cubincub_n38.json) | 3.982960913965 |  |  | 3.36198 | 0.6014 | ![](cubincub_n38.png) |
 | 39 | [4.00000+](cubincub_n39.json) | 4.000000000000 | 4 |  | 3.39121 | 0.6094 | ![](cubincub_n39.png) |
 | 40 | [4.00000+](cubincub_n40.json) | 4.000000000000 | 4 |  | 3.41995 | 0.6250 | ![](cubincub_n40.png) |
