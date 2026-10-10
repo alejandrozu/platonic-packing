@@ -1,14 +1,251 @@
 {
-  "_note": "Best previously published values (container edge / piece edge) used for comparison only. cubincub n<=17 from Erich Friedman's Packing Center as transcribed in yoheinakajima/soft-to-rigid-packing (scripts/exbatch3.py), with n=11 updated to the Hyra-results record and n=12 to Nakajima's 2026 record; octincub from Tencent-Hunyuan/Hyra-results (records/octincub_n21.json, n24.json).",
-  "cubincub": {
-    "2": [2, "Friedman catalogue"], "3": [2, "Friedman catalogue"], "4": [2, "Friedman catalogue"], "5": [2, "Friedman catalogue"],
-    "6": [2, "Friedman catalogue"], "7": [2, "Friedman catalogue"], "8": [2, "Friedman catalogue"],
-    "9": [2.70710678118654, "Friedman catalogue (2 + 1/sqrt2)"], "10": [2.70710678118654, "Friedman catalogue (2 + 1/sqrt2)"],
-    "11": [2.8829529104956513, "Hyra-results (Haowei Lin), 2026"], "12": [2.9315185094797, "Y. Nakajima, Oct 2026"],
-    "13": [2.956, "Friedman catalogue (truncated)"], "14": [2.98994949366117, "Friedman catalogue"],
-    "15": [3, "Friedman catalogue"], "16": [3, "Friedman catalogue"], "17": [3, "Friedman catalogue"]
-  },
-  "octincub": {
-    "21": [2.592849935818519, "Hyra-results (Haowei Lin), 2026"], "24": [2.6331889674258844, "Hyra-results (Haowei Lin), 2026"]
-  }
+ "_note": "Best previously published values (container edge / piece edge, unit-edge pieces), used for comparison only. Searched 10 Oct 2026: of the nine problems only cubes in a cube and octahedra in a cube have published values. Source: Erich Friedman's Packing Center, erich-friedman.github.io/packing/cubincub/ (n < 34; 'for all other values of n < 34 the trivial packing is the best known', no values for n >= 34) and /octincub/ (n = 1-30), as of its 8 Oct 2026 revision; full-precision coordinates for H. Lin's entries from Tencent-Hunyuan/Hyra-results; cubes n = 12 from yoheinakajima/soft-to-rigid-packing (its 2.9315185 includes clearance; touching limit 2.9315146). Values given to 5 decimals on Friedman's page are truncations ('2.63986+'); a result counts as better only if it is more than 1e-5 below the listed value. The single-piece case (n = 1) for pairs of Platonic solids is treated in M. Firsching, 'Computing maximal copies of polytopes contained in a polytope' (Experimental Mathematics, 2018; arXiv:1407.0683); no multi-piece results were found for the other seven problems.",
+ "cubincub": {
+  "2": [
+   2,
+   "trivial (2×2×2 grid), Friedman's Packing Center"
+  ],
+  "3": [
+   2,
+   "trivial (2×2×2 grid), Friedman's Packing Center"
+  ],
+  "4": [
+   2,
+   "trivial (2×2×2 grid), Friedman's Packing Center"
+  ],
+  "5": [
+   2,
+   "trivial (2×2×2 grid), Friedman's Packing Center"
+  ],
+  "6": [
+   2,
+   "trivial (2×2×2 grid), Friedman's Packing Center"
+  ],
+  "7": [
+   2,
+   "trivial (2×2×2 grid), Friedman's Packing Center"
+  ],
+  "8": [
+   2,
+   "trivial (2×2×2 grid), Friedman's Packing Center"
+  ],
+  "9": [
+   2.7071067811865475,
+   "E. Friedman, 1998 (Friedman's Packing Center), s = 2 + 1/√2"
+  ],
+  "10": [
+   2.7071067811865475,
+   "E. Friedman, 1998 (Friedman's Packing Center), s = 2 + 1/√2"
+  ],
+  "11": [
+   2.8829529104956513,
+   "H. Lin, July 2026 (Hyra-results; Friedman's Packing Center)"
+  ],
+  "12": [
+   2.9315185094797,
+   "Y. Nakajima, Oct 2026 (soft-to-rigid-packing); Friedman's page lists 2.93277 (H. Lin, July 2026)"
+  ],
+  "13": [
+   2.956,
+   "E. Friedman, 1998 (Friedman's Packing Center), listed as 2.956+"
+  ],
+  "14": [
+   2.9899494936611664,
+   "E. Friedman, 1998 (Friedman's Packing Center), s = 2 + 7√2/10"
+  ],
+  "15": [
+   3,
+   "trivial (3×3×3 grid), Friedman's Packing Center"
+  ],
+  "16": [
+   3,
+   "trivial (3×3×3 grid), Friedman's Packing Center"
+  ],
+  "17": [
+   3,
+   "trivial (3×3×3 grid), Friedman's Packing Center"
+  ],
+  "18": [
+   3,
+   "trivial (3×3×3 grid), Friedman's Packing Center"
+  ],
+  "19": [
+   3,
+   "trivial (3×3×3 grid), Friedman's Packing Center"
+  ],
+  "20": [
+   3,
+   "trivial (3×3×3 grid), Friedman's Packing Center"
+  ],
+  "21": [
+   3,
+   "trivial (3×3×3 grid), Friedman's Packing Center"
+  ],
+  "22": [
+   3,
+   "trivial (3×3×3 grid), Friedman's Packing Center"
+  ],
+  "23": [
+   3,
+   "trivial (3×3×3 grid), Friedman's Packing Center"
+  ],
+  "24": [
+   3,
+   "trivial (3×3×3 grid), Friedman's Packing Center"
+  ],
+  "25": [
+   3,
+   "trivial (3×3×3 grid), Friedman's Packing Center"
+  ],
+  "26": [
+   3,
+   "trivial (3×3×3 grid), Friedman's Packing Center"
+  ],
+  "27": [
+   3,
+   "trivial (3×3×3 grid), Friedman's Packing Center"
+  ],
+  "28": [
+   3.7071067811865475,
+   "E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2"
+  ],
+  "29": [
+   3.7071067811865475,
+   "E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2"
+  ],
+  "30": [
+   3.7071067811865475,
+   "E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2"
+  ],
+  "31": [
+   3.7071067811865475,
+   "E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2"
+  ],
+  "32": [
+   3.7071067811865475,
+   "E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2"
+  ],
+  "33": [
+   3.7071067811865475,
+   "E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2"
+  ]
+ },
+ "octincub": {
+  "2": [
+   1.4142135623730951,
+   "R. Walsh, June 2026 (Friedman's Packing Center), s = √2"
+  ],
+  "3": [
+   1.63299,
+   "R. Walsh, June 2026 (Friedman's Packing Center)"
+  ],
+  "4": [
+   1.64991,
+   "R. Walsh, June 2026 (Friedman's Packing Center)"
+  ],
+  "5": [
+   1.75782,
+   "R. Walsh, June 2026 (Friedman's Packing Center)"
+  ],
+  "6": [
+   1.76776,
+   "R. Walsh, June 2026 (Friedman's Packing Center)"
+  ],
+  "7": [
+   1.79133,
+   "R. Walsh, June 2026 (Friedman's Packing Center)"
+  ],
+  "8": [
+   1.79133,
+   "R. Walsh, June 2026 (Friedman's Packing Center)"
+  ],
+  "9": [
+   1.88561,
+   "R. Walsh, June 2026 (Friedman's Packing Center)"
+  ],
+  "10": [
+   2.14936,
+   "R. Walsh, June 2026 (Friedman's Packing Center)"
+  ],
+  "11": [
+   2.1954,
+   "R. Walsh, June 2026 (Friedman's Packing Center)"
+  ],
+  "12": [
+   2.25949,
+   "H. Lin, July 2026 (Hyra-results; Friedman's Packing Center)"
+  ],
+  "13": [
+   2.33667,
+   "H. Lin, July 2026 (Hyra-results; Friedman's Packing Center)"
+  ],
+  "14": [
+   2.35702,
+   "R. Walsh, June 2026 (Friedman's Packing Center)"
+  ],
+  "15": [
+   2.41976,
+   "R. Walsh, June 2026 (Friedman's Packing Center)"
+  ],
+  "16": [
+   2.46211,
+   "R. Walsh, June 2026 (Friedman's Packing Center)"
+  ],
+  "17": [
+   2.47487,
+   "H. Lin, July 2026 (Hyra-results; Friedman's Packing Center)"
+  ],
+  "18": [
+   2.48257,
+   "R. Walsh, June 2026 (Friedman's Packing Center)"
+  ],
+  "19": [
+   2.52683,
+   "R. Walsh, June 2026 (Friedman's Packing Center)"
+  ],
+  "20": [
+   2.57792,
+   "R. Walsh, June 2026 (Friedman's Packing Center)"
+  ],
+  "21": [
+   2.592849935818519,
+   "H. Lin, July 2026 (Hyra-results; Friedman's Packing Center)"
+  ],
+  "22": [
+   2.60591,
+   "R. Walsh, June 2026 (Friedman's Packing Center)"
+  ],
+  "23": [
+   2.61533,
+   "R. Walsh, June 2026 (Friedman's Packing Center)"
+  ],
+  "24": [
+   2.6331889674258844,
+   "H. Lin, July 2026 (Hyra-results; Friedman's Packing Center)"
+  ],
+  "25": [
+   2.63622,
+   "R. Walsh, June 2026 (Friedman's Packing Center)"
+  ],
+  "26": [
+   2.63986,
+   "R. Walsh, June 2026 (Friedman's Packing Center)"
+  ],
+  "27": [
+   2.63986,
+   "R. Walsh, June 2026 (Friedman's Packing Center)"
+  ],
+  "28": [
+   2.75738,
+   "R. Walsh, June 2026 (Friedman's Packing Center)"
+  ],
+  "29": [
+   2.85384,
+   "R. Walsh, June 2026 (Friedman's Packing Center)"
+  ],
+  "30": [
+   2.89186,
+   "R. Walsh, June 2026 (Friedman's Packing Center)"
+  ]
+ }
 }

@@ -93,15 +93,34 @@ def build_problem(p, log):
     return rows[::-1], rebuilt
 
 
+def compare(s_full, ref):
+    """'better' only if more than 1e-5 below the published value (published values are often 5-decimal truncations
+    and our records carry 1e-7 clearance), 'equal' within 1e-5, else 'behind'."""
+    s_full, ref = float(s_full), float(ref)
+    return 'better' if s_full < ref - 1e-5 else ('equal' if s_full <= ref + 1e-5 else 'behind')
+
+
+def src_code(src):
+    return 'T' if 'trivial' in src else 'N' if 'Nakajima' in src else 'W' if 'Walsh' in src else 'L' if 'Lin' in src else 'F'
+
+
+SRC_LEGEND = ('previous: F = E. Friedman (1998), W = R. Walsh (June 2026), L = H. Lin (July 2026), N = Y. Nakajima '
+              '(Oct 2026), T = trivial grid packing (Friedman: best known); from Erich Friedman\'s Packing Center and '
+              'docs/references.json. ✱ = ours is more than 1e-5 below the previous value.')
+
+
 def fmt_cell(r, link_prefix):
     if not r: return ''
     cf = r['closed_form_conjecture']
     s = f"[{r['s']}]({link_prefix}{r['file'].split('/', 1)[1]})" + (f" ≈ {cf}" if cf and cf not in ('2', '3', '4') else '')
-    if r['reference'] != '':
-        diff = float(r['s_full']) - float(r['reference'])
-        s += ' ✱' if diff < -1e-9 else ''
+    if r['reference'] != '' and compare(r['s_full'], r['reference']) == 'better': s += ' ✱'
     if str(r['certified']) != 'True': s += ' **(not certified)**'
     return s
+
+
+def fmt_ref(r):
+    if not r or r['reference'] == '': return ''
+    return f"{float(r['reference']):.5f} {src_code(r['reference_source'])}"
 
 
 def tables(rows, link_prefix):
@@ -112,11 +131,34 @@ def tables(rows, link_prefix):
     out = []
     for name, ps in groups:
         ps = [p for p in ps if p in PID]
-        out += [f'### {name}', '', '| n | ' + ' | '.join(title(p) for p in ps) + ' |', '|---:|' + '---|' * len(ps)]
+        cols = []
+        for p in ps:
+            cols.append((title(p), p, False))
+            if REF.get(p): cols.append(('previous', p, True))          # only where a published value exists
+        out += [f'### {name}', '', '| n | ' + ' | '.join(c[0] for c in cols) + ' |', '|---:|' + '---|' * len(cols)]
         for n in range(NMIN, NMAX + 1):
-            out.append(f'| {n} | ' + ' | '.join(fmt_cell(by.get(p, {}).get(n), link_prefix) for p in ps) + ' |')
+            out.append(f'| {n} | ' + ' | '.join(fmt_ref(by.get(p, {}).get(n)) if isref else fmt_cell(by.get(p, {}).get(n), link_prefix)
+                                                 for _, p, isref in cols) + ' |')
         out.append('')
+    out.append(SRC_LEGEND)
+    out.append('')
+    out.append(comparison(rows))
     return '\n'.join(out)
+
+
+def comparison(rows):
+    """One line per problem with published values: where ours is better, equal, behind."""
+    out = []
+    for p in PID:
+        rs = sorted((r for r in rows if r['problem'] == p and r['reference'] != ''), key=lambda r: int(r['n']))
+        if not rs: continue
+        g = {'better': [], 'equal': [], 'behind': []}
+        for r in rs: g[compare(r['s_full'], r['reference'])].append(r)
+        def ns(lst): return ', '.join(str(r['n']) for r in lst) or 'none'
+        beh = ', '.join(f"{r['n']} (+{100 * (float(r['s_full']) / float(r['reference']) - 1):.2f}%)" for r in g['behind']) or 'none'
+        out.append(f"**{title(p)} vs published values** (n = {rs[0]['n']}–{rs[-1]['n']}): better at {ns(g['better'])}; "
+                   f"equal at {ns(g['equal'])}; behind at {beh}.")
+    return '\n\n'.join(out) + '\n'
 
 
 def write_tables(rows):
@@ -128,18 +170,27 @@ def write_tables(rows):
             'Smallest container found for n unit-edge pieces; entry = s = container edge / piece edge, certified with 1e-7 '
             'clearance and truncated to 5 decimals. Each entry links to its record file, which `certify_exact.py` proves '
             'valid in exact arithmetic over Q(√2, √5). s(n) is non-decreasing in n by construction. "≈ x" is a '
-            'conjectured closed form (touching limit agrees with x to ~11 digits); ✱ marks an entry below the best '
-            'previously published value (docs/references.json). Full data: [SUMMARY.csv](SUMMARY.csv).', '']
+            'conjectured closed form (touching limit agrees with x to ~11 digits). Published values exist only for cubes in a '
+            'cube and octahedra in a cube; they are shown in the "previous" columns. Full data: [SUMMARY.csv](SUMMARY.csv).', '']
     open(os.path.join(ROOT, 'records', 'README.md'), 'w').write('\n'.join(head) + '\n' + tables(rows, '') + '\n')
     for p in PID:
         rs = [r for r in rows if r['problem'] == p]
         if not rs: continue
+        hasref = bool(REF.get(p))
         lines = [f'# {title(p)}', '', 's = container edge / piece edge; every row certified in exact arithmetic.', '',
-                 '| n | s | touching limit | closed form (conj.) | previous best | volume bound | density | picture |', '|---|---|---|---|---|---|---|---|']
+                 '| n | s | touching limit | closed form (conj.) |' + (' previous best | vs previous |' if hasref else '') +
+                 ' volume bound | density | picture |', '|---|---|---|---|' + ('---|---|' if hasref else '') + '---|---|---|']
         for r in rs:
-            ref = f"{float(r['reference']):.5f} ({r['reference_source']})" if r['reference'] != '' else ''
-            lines.append(f"| {r['n']} | [{r['s']}]({os.path.basename(r['file'])}) | {r['s_tight']} | {r['closed_form_conjecture']} | {ref} | "
+            refc = ''
+            if hasref:
+                if r['reference'] != '':
+                    c = compare(r['s_full'], r['reference'])
+                    d = f"{100 * (float(r['s_full']) / float(r['reference']) - 1):+.3f}%"
+                    refc = f" {float(r['reference']):.5f} ({r['reference_source']}) | {'**better** ' + d if c == 'better' else 'equal' if c == 'equal' else 'behind ' + d} |"
+                else: refc = ' | |'
+            lines.append(f"| {r['n']} | [{r['s']}]({os.path.basename(r['file'])}) | {r['s_tight']} | {r['closed_form_conjecture']} |{refc} "
                          f"{r['volume_lower_bound']} | {r['density']} | ![]({os.path.basename(r['file']).replace('.json', '.png')}) |")
+        if hasref: lines += ['', comparison(rs)]
         open(os.path.join(ROOT, 'records', p, 'README.md'), 'w').write('\n'.join(lines) + '\n')
     # README results block
     rp = os.path.join(ROOT, 'README.md'); s = open(rp).read()
@@ -149,6 +200,18 @@ def write_tables(rows):
                  f"[PROGRESS.md](PROGRESS.md) for search statistics._\n\n" + tables(rows, 'records/') + b)
         s = s[:s.index(a)] + block + s[s.index(b) + len(b):]
         open(rp, 'w').write(s)
+
+
+def retable():
+    """Rewrite the tables (records/README.md, per-problem READMEs, README block, SUMMARY.csv) from SUMMARY.csv with the
+    current docs/references.json, without rebuilding or re-certifying any record."""
+    rows = list(csv.DictReader(open(os.path.join(ROOT, 'records', 'SUMMARY.csv'))))
+    for r in rows:
+        ref = REF.get(r['problem'], {}).get(str(int(r['n'])))
+        r['reference'] = ref[0] if ref else ''; r['reference_source'] = ref[1] if ref else ''
+    rows.sort(key=lambda r: (list(PID).index(r['problem']), int(r['n'])))
+    write_tables(rows)
+    return rows
 
 
 def progress():
