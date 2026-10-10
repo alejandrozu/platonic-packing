@@ -9,7 +9,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 4 | [2.70710+](cubinoct_n04.json) | 2.707106781187 | (4 + √2)/2 | 2.03965 | 0.4277 | ![](cubinoct_n04.png) |
 | 5 | [2.91421+](cubinoct_n05.json) | 2.914213562373 | (3 + 2√2)/2 | 2.19715 | 0.4286 | ![](cubinoct_n05.png) |
 | 6 | [2.93435+](cubinoct_n06.json) | 2.934353214549 |  | 2.33482 | 0.5038 | ![](cubinoct_n06.png) |
-| 7 | [3.30066+](cubinoct_n07.json) | 3.300668860778 |  | 2.45792 | 0.4130 | ![](cubinoct_n07.png) |
+| 7 | [3.29102+](cubinoct_n07.json) | 3.291024682315 |  | 2.45792 | 0.4166 | ![](cubinoct_n07.png) |
 | 8 | [3.41421+](cubinoct_n08.json) | 3.414213562373 | 2 + √2 | 2.56980 | 0.4264 | ![](cubinoct_n08.png) |
 | 9 | [3.61760+](cubinoct_n09.json) | 3.617604106285 |  | 2.67270 | 0.4033 | ![](cubinoct_n09.png) |
 | 10 | [3.69307+](cubinoct_n10.json) | 3.693070427836 |  | 2.76823 | 0.4212 | ![](cubinoct_n10.png) |
@@ -23,7 +23,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 18 | [4.04898+](cubinoct_n18.json) | 4.048988042691 |  | 3.36739 | 0.5752 | ![](cubinoct_n18.png) |
 | 19 | [4.10658+](cubinoct_n19.json) | 4.106580061553 |  | 3.42862 | 0.5820 | ![](cubinoct_n19.png) |
 | 20 | [4.32466+](cubinoct_n20.json) | 4.324662460348 |  | 3.48775 | 0.5245 | ![](cubinoct_n20.png) |
-| 21 | [4.50605+](cubinoct_n21.json) | 4.506054044278 |  | 3.54494 | 0.4869 | ![](cubinoct_n21.png) |
+| 21 | [4.50317+](cubinoct_n21.json) | 4.503177568780 |  | 3.54494 | 0.4878 | ![](cubinoct_n21.png) |
 | 22 | [4.61841+](cubinoct_n22.json) | 4.618409814911 |  | 3.60034 | 0.4738 | ![](cubinoct_n22.png) |
 | 23 | [4.65983+](cubinoct_n23.json) | 4.659838161722 |  | 3.65408 | 0.4822 | ![](cubinoct_n23.png) |
 | 24 | [4.71197+](cubinoct_n24.json) | 4.711977031200 |  | 3.70629 | 0.4866 | ![](cubinoct_n24.png) |

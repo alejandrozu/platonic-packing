@@ -14,27 +14,27 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 9 | [1.88561+](octincub_n09.json) | 1.885618083164 | (4√2)/3 | 1.88561 (R. Walsh, June 2026 (Friedman's Packing Center)) | equal | 1.61887 | 0.6328 | ![](octincub_n09.png) |
 | 10 | [2.14936+](octincub_n10.json) | 2.149365928974 |  | 2.14936 (R. Walsh, June 2026 (Friedman's Packing Center)) | equal | 1.67674 | 0.4747 | ![](octincub_n10.png) |
 | 11 | [2.23198+](octincub_n11.json) | 2.231985360735 |  | 2.19540 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +1.666% | 1.73086 | 0.4664 | ![](octincub_n11.png) |
-| 12 | [2.29112+](octincub_n12.json) | 2.291122696524 |  | 2.25949 (H. Lin, July 2026 (Hyra-results; Friedman's Packing Center)) | behind +1.400% | 1.78180 | 0.4704 | ![](octincub_n12.png) |
+| 12 | [2.29102+](octincub_n12.json) | 2.291026016941 |  | 2.25949 (H. Lin, July 2026 (Hyra-results; Friedman's Packing Center)) | behind +1.396% | 1.78180 | 0.4704 | ![](octincub_n12.png) |
 | 13 | [2.34098+](octincub_n13.json) | 2.340981448837 |  | 2.33667 (H. Lin, July 2026 (Hyra-results; Friedman's Packing Center)) | behind +0.185% | 1.82998 | 0.4777 | ![](octincub_n13.png) |
-| 14 | [2.36794+](octincub_n14.json) | 2.367942819369 |  | 2.35702 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +0.463% | 1.87575 | 0.4971 | ![](octincub_n14.png) |
-| 15 | [2.43907+](octincub_n15.json) | 2.439077504600 |  | 2.41976 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +0.798% | 1.91938 | 0.4873 | ![](octincub_n15.png) |
+| 14 | [2.36547+](octincub_n14.json) | 2.365475173620 |  | 2.35702 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +0.359% | 1.87575 | 0.4986 | ![](octincub_n14.png) |
+| 15 | [2.43847+](octincub_n15.json) | 2.438470369632 |  | 2.41976 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +0.773% | 1.91938 | 0.4877 | ![](octincub_n15.png) |
 | 16 | [2.47676+](octincub_n16.json) | 2.476762037919 |  | 2.46211 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +0.595% | 1.96112 | 0.4964 | ![](octincub_n16.png) |
 | 17 | [2.50659+](octincub_n17.json) | 2.506598266404 |  | 2.47487 (H. Lin, July 2026 (Hyra-results; Friedman's Packing Center)) | behind +1.282% | 2.00116 | 0.5088 | ![](octincub_n17.png) |
 | 18 | [2.52114+](octincub_n18.json) | 2.521143891498 |  | 2.48257 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +1.554% | 2.03965 | 0.5295 | ![](octincub_n18.png) |
-| 19 | [2.56278+](octincub_n19.json) | 2.562781147431 |  | 2.52683 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +1.423% | 2.07674 | 0.5321 | ![](octincub_n19.png) |
-| 20 | [2.59027+](octincub_n20.json) | 2.590275986082 |  | 2.57792 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +0.479% | 2.11255 | 0.5425 | ![](octincub_n20.png) |
-| 21 | [2.59069+](octincub_n21.json) | 2.590691106219 |  | 2.59285 (H. Lin, July 2026 (Hyra-results; Friedman's Packing Center)) | **better** -0.083% | 2.14719 | 0.5693 | ![](octincub_n21.png) |
-| 22 | [2.60792+](octincub_n22.json) | 2.607925893371 |  | 2.60591 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +0.077% | 2.18075 | 0.5847 | ![](octincub_n22.png) |
-| 23 | [2.62562+](octincub_n23.json) | 2.625620410120 |  | 2.61533 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +0.393% | 2.21330 | 0.5990 | ![](octincub_n23.png) |
+| 19 | [2.55868+](octincub_n19.json) | 2.558687100141 |  | 2.52683 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +1.261% | 2.07674 | 0.5347 | ![](octincub_n19.png) |
+| 20 | [2.57736+](octincub_n20.json) | 2.577362253694 |  | 2.57792 (R. Walsh, June 2026 (Friedman's Packing Center)) | **better** -0.022% | 2.11255 | 0.5507 | ![](octincub_n20.png) |
+| 21 | [2.59065+](octincub_n21.json) | 2.590657212265 |  | 2.59285 (H. Lin, July 2026 (Hyra-results; Friedman's Packing Center)) | **better** -0.085% | 2.14719 | 0.5694 | ![](octincub_n21.png) |
+| 22 | [2.60569+](octincub_n22.json) | 2.605692934080 |  | 2.60591 (R. Walsh, June 2026 (Friedman's Packing Center)) | **better** -0.008% | 2.18075 | 0.5862 | ![](octincub_n22.png) |
+| 23 | [2.62268+](octincub_n23.json) | 2.622679645484 |  | 2.61533 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +0.281% | 2.21330 | 0.6010 | ![](octincub_n23.png) |
 | 24 | [2.62792+](octincub_n24.json) | 2.627922547595 |  | 2.63319 (H. Lin, July 2026 (Hyra-results; Friedman's Packing Center)) | **better** -0.200% | 2.24492 | 0.6234 | ![](octincub_n24.png) |
-| 25 | [2.63977+](octincub_n25.json) | 2.639775609423 |  | 2.63622 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +0.135% | 2.27568 | 0.6407 | ![](octincub_n25.png) |
+| 25 | [2.63974+](octincub_n25.json) | 2.639748294363 |  | 2.63622 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +0.134% | 2.27568 | 0.6407 | ![](octincub_n25.png) |
 | 26 | [2.64950+](octincub_n26.json) | 2.649504966822 |  | 2.63986 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +0.365% | 2.30563 | 0.6590 | ![](octincub_n26.png) |
 | 27 | [2.70076+](octincub_n27.json) | 2.700761987066 |  | 2.63986 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +2.307% | 2.33482 | 0.6461 | ![](octincub_n27.png) |
-| 28 | [2.75787+](octincub_n28.json) | 2.757874716103 |  | 2.75738 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +0.018% | 2.36329 | 0.6293 | ![](octincub_n28.png) |
+| 28 | [2.75781+](octincub_n28.json) | 2.757814217067 |  | 2.75738 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +0.016% | 2.36329 | 0.6293 | ![](octincub_n28.png) |
 | 29 | [2.82842+](octincub_n29.json) | 2.828427124746 | 2√2 | 2.85384 (R. Walsh, June 2026 (Friedman's Packing Center)) | **better** -0.890% | 2.39110 | 0.6042 | ![](octincub_n29.png) |
 | 30 | [2.88782+](octincub_n30.json) | 2.887823646207 |  | 2.89186 (R. Walsh, June 2026 (Friedman's Packing Center)) | **better** -0.140% | 2.41827 | 0.5872 | ![](octincub_n30.png) |
 | 31 | [2.93662+](octincub_n31.json) | 2.936619919814 |  | | | 2.44485 | 0.5770 | ![](octincub_n31.png) |
-| 32 | [2.99220+](octincub_n32.json) | 2.992204907156 |  | | | 2.47086 | 0.5631 | ![](octincub_n32.png) |
+| 32 | [2.99218+](octincub_n32.json) | 2.992181112696 |  | | | 2.47086 | 0.5631 | ![](octincub_n32.png) |
 | 33 | [3.04674+](octincub_n33.json) | 3.046743745392 |  | | | 2.49633 | 0.5500 | ![](octincub_n33.png) |
 | 34 | [3.08638+](octincub_n34.json) | 3.086387914451 |  | | | 2.52130 | 0.5452 | ![](octincub_n34.png) |
 | 35 | [3.10054+](octincub_n35.json) | 3.100547324118 |  | | | 2.54578 | 0.5535 | ![](octincub_n35.png) |
@@ -44,5 +44,5 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 39 | [3.23608+](octincub_n39.json) | 3.236082581952 |  | | | 2.63928 | 0.5425 | ![](octincub_n39.png) |
 | 40 | [3.24518+](octincub_n40.json) | 3.245183347064 |  | | | 2.66165 | 0.5517 | ![](octincub_n40.png) |
 
-**Octahedra in a cube vs published values** (n = 2–30): better at 21, 24, 29, 30; equal at 2, 3, 4, 5, 6, 7, 8, 9, 10; behind at 11 (+1.67%), 12 (+1.40%), 13 (+0.18%), 14 (+0.46%), 15 (+0.80%), 16 (+0.60%), 17 (+1.28%), 18 (+1.55%), 19 (+1.42%), 20 (+0.48%), 22 (+0.08%), 23 (+0.39%), 25 (+0.13%), 26 (+0.37%), 27 (+2.31%), 28 (+0.02%).
+**Octahedra in a cube vs published values** (n = 2–30): better at 20, 21, 22, 24, 29, 30; equal at 2, 3, 4, 5, 6, 7, 8, 9, 10; behind at 11 (+1.67%), 12 (+1.40%), 13 (+0.18%), 14 (+0.36%), 15 (+0.77%), 16 (+0.60%), 17 (+1.28%), 18 (+1.55%), 19 (+1.26%), 23 (+0.28%), 25 (+0.13%), 26 (+0.37%), 27 (+2.31%), 28 (+0.02%).
 

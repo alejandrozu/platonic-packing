@@ -19,7 +19,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 14 | [2.94417+](tetintet_n14.json) | 2.944176826254 |  | 2.41014 | 0.5486 | ![](tetintet_n14.png) |
 | 15 | [3.00000+](tetintet_n15.json) | 3.000000000000 | 3 | 2.46621 | 0.5556 | ![](tetintet_n15.png) |
 | 16 | [3.03538+](tetintet_n16.json) | 3.035379871869 |  | 2.51984 | 0.5721 | ![](tetintet_n16.png) |
-| 17 | [3.10062+](tetintet_n17.json) | 3.100622157389 |  | 2.57128 | 0.5703 | ![](tetintet_n17.png) |
+| 17 | [3.09608+](tetintet_n17.json) | 3.096081474492 |  | 2.57128 | 0.5728 | ![](tetintet_n17.png) |
 | 18 | [3.11481+](tetintet_n18.json) | 3.114814352450 |  | 2.62074 | 0.5956 | ![](tetintet_n18.png) |
 | 19 | [3.18727+](tetintet_n19.json) | 3.187270285440 |  | 2.66840 | 0.5868 | ![](tetintet_n19.png) |
 | 20 | [3.24580+](tetintet_n20.json) | 3.245808359088 |  | 2.71442 | 0.5849 | ![](tetintet_n20.png) |
@@ -29,17 +29,17 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 24 | [3.43388+](tetintet_n24.json) | 3.433882755073 |  | 2.88450 | 0.5927 | ![](tetintet_n24.png) |
 | 25 | [3.49565+](tetintet_n25.json) | 3.495651620084 |  | 2.92402 | 0.5853 | ![](tetintet_n25.png) |
 | 26 | [3.58091+](tetintet_n26.json) | 3.580912024531 |  | 2.96250 | 0.5662 | ![](tetintet_n26.png) |
-| 27 | [3.66189+](tetintet_n27.json) | 3.661898604520 |  | 3.00000 | 0.5499 | ![](tetintet_n27.png) |
-| 28 | [3.72490+](tetintet_n28.json) | 3.724907310458 |  | 3.03659 | 0.5418 | ![](tetintet_n28.png) |
-| 29 | [3.76360+](tetintet_n29.json) | 3.763599140868 |  | 3.07232 | 0.5440 | ![](tetintet_n29.png) |
+| 27 | [3.65943+](tetintet_n27.json) | 3.659430482028 |  | 3.00000 | 0.5510 | ![](tetintet_n27.png) |
+| 28 | [3.69379+](tetintet_n28.json) | 3.693794156589 |  | 3.03659 | 0.5556 | ![](tetintet_n28.png) |
+| 29 | [3.75562+](tetintet_n29.json) | 3.755627843216 |  | 3.07232 | 0.5475 | ![](tetintet_n29.png) |
 | 30 | [3.82325+](tetintet_n30.json) | 3.823257672391 |  | 3.10723 | 0.5368 | ![](tetintet_n30.png) |
-| 31 | [3.85290+](tetintet_n31.json) | 3.852907374128 |  | 3.14138 | 0.5420 | ![](tetintet_n31.png) |
-| 32 | [3.87364+](tetintet_n32.json) | 3.873647299602 |  | 3.17480 | 0.5505 | ![](tetintet_n32.png) |
-| 33 | [3.89636+](tetintet_n33.json) | 3.896367611374 |  | 3.20753 | 0.5579 | ![](tetintet_n33.png) |
-| 34 | [3.94333+](tetintet_n34.json) | 3.943334971856 |  | 3.23961 | 0.5545 | ![](tetintet_n34.png) |
+| 31 | [3.83871+](tetintet_n31.json) | 3.838712228528 |  | 3.14138 | 0.5480 | ![](tetintet_n31.png) |
+| 32 | [3.87327+](tetintet_n32.json) | 3.873273721402 |  | 3.17480 | 0.5507 | ![](tetintet_n32.png) |
+| 33 | [3.89213+](tetintet_n33.json) | 3.892137870715 |  | 3.20753 | 0.5597 | ![](tetintet_n33.png) |
+| 34 | [3.92881+](tetintet_n34.json) | 3.928815797760 |  | 3.23961 | 0.5607 | ![](tetintet_n34.png) |
 | 35 | [3.96563+](tetintet_n35.json) | 3.965636714828 |  | 3.27107 | 0.5612 | ![](tetintet_n35.png) |
 | 36 | [3.98328+](tetintet_n36.json) | 3.983280559317 |  | 3.30193 | 0.5696 | ![](tetintet_n36.png) |
 | 37 | [4.01521+](tetintet_n37.json) | 4.015211496729 |  | 3.33222 | 0.5716 | ![](tetintet_n37.png) |
 | 38 | [4.04551+](tetintet_n38.json) | 4.045513955803 |  | 3.36198 | 0.5739 | ![](tetintet_n38.png) |
 | 39 | [4.05826+](tetintet_n39.json) | 4.058267470040 |  | 3.39121 | 0.5835 | ![](tetintet_n39.png) |
-| 40 | [4.08390+](tetintet_n40.json) | 4.083907773743 |  | 3.41995 | 0.5873 | ![](tetintet_n40.png) |
+| 40 | [4.05914+](tetintet_n40.json) | 4.059142742806 |  | 3.41995 | 0.5981 | ![](tetintet_n40.png) |
