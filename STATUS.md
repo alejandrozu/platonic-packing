@@ -1,6 +1,6 @@
 # Status and hand-off
 
-_Last edited 9 Oct 2026, 12:20 Paris. Live numbers: [PROGRESS.md](PROGRESS.md) and [records/README.md](records/README.md),
+_Last edited 10 Oct 2026, 20:25 Paris. Live numbers: [PROGRESS.md](PROGRESS.md) and [records/README.md](records/README.md),
 both regenerated automatically every 90 minutes._
 
 ## Running now
@@ -26,6 +26,20 @@ n = 2…40 indefinitely:
 * Stop: `touch state/STOP`. Resume anywhere (also after the cloud machine is reclaimed): clone the repo and run
   `nohup setsid scripts/run_forever.sh > logs/supervisor.out 2>&1 &`. The archive (`state/best/`) is in git; the pools
   of alternative packings (`state/pool/`) are not, and refill by themselves.
+
+## What changed on 10 Oct (evening)
+
+1. **Search settings chosen by experiment** (19:14–20:14, EXPERIMENT_LOG.md): small "gentle" hops from the current
+   best gave 46.9 new bests per CPU-hour against 19–27 for the old settings, harder shaking, a bigger container
+   expansion, or three candidates per attempt. `state/policy.json` now selects gentle hops, 6% fresh runs, and sends
+   30% of attempts to the 41 cases with published values. `scripts/experiment.py` repeats the comparison.
+2. **Published values** (docs/references.json, Erich Friedman's Packing Center): only cubes in a cube and octahedra in
+   a cube have them. Tables and the viewer show a "previous" column for those two problems.
+3. **Published packings as starting points** (scripts/literature.py, docs/literature/): H. Lin's and Y. Nakajima's
+   packings with public coordinates. Five values are now below the published ones, all exactly certified: octahedra in
+   a cube n = 21, 24, 29, 30 and cubes in a cube n = 11 (n = 11, 21 and 24 refine Lin's packings; the record files say so).
+4. **Viewer**: https://alejandrozu.github.io/platonic-packing/ (gh-pages branch, refreshed by every publish via
+   scripts/pages.sh): slicing, colour by orientation, piece inspection, s(n) and increment charts.
 
 ## What changed on 9 Oct (second session)
 
