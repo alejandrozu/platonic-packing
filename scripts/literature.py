@@ -44,7 +44,7 @@ def main(dry=False):
         for p, fn, src in SOURCES:
             n, s, C, Q, s_pub = load(p, fn)
             case = engine.load_case(p, n); cur = case['best']
-            cand = {'s': s, 'C': C, 'Q': Q, 'src': 'literature', 't': time.time()}
+            cand = {'s': s, 'C': C, 'Q': Q, 'src': 'literature', 'source': src, 't': time.time()}
             take = cur is None or s < cur['s'] - 1e-12
             print(f"{p} n={n:2d} {fn:28s} published {s_pub:.10f} -> tight {s:.10f} | ours {cur['s']:.10f} | "
                   f"{'IMPORT as best' if take else 'pool only'}")

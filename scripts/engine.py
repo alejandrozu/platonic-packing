@@ -65,6 +65,13 @@ def policy():
 def pid(piece, container): return f'{AB[piece]}in{AB[container]}'
 
 
+def lineage_of(x):
+    """Published packing a packing descends from (archive src dict or pool entry), for attribution."""
+    if not isinstance(x, dict): return None
+    if x.get('move') == 'literature' or x.get('src') == 'literature': return x.get('source') or x.get('lineage')
+    return x.get('lineage')
+
+
 PID = {pid(p, c): (p, c) for p, c in PROBLEMS}
 _pb_cache = {}
 
@@ -168,7 +175,8 @@ def enforce_monotone(p, log=None):
         if s_new > s_up:                         # float noise in the LP: keep the parent's container exactly
             keep = [j for j in range(n + 1) if j != i]
             C2 = [up['best']['C'][j] for j in keep]; Q2 = [up['best']['Q'][j] for j in keep]; s_new = s_up
-        cur['best'] = {'s': s_new, 'C': C2, 'Q': Q2, 'src': {'move': 'monotone', 'from_n': n + 1, 'removed': i},
+        lin = lineage_of(up['best'].get('src'))
+        cur['best'] = {'s': s_new, 'C': C2, 'Q': Q2, 'src': {'move': 'monotone', 'from_n': n + 1, 'removed': i, **({'lineage': lin} if lin else {})},
                        't': time.time(), 'tightened': False}
         cur['stats']['needs_tighten'] = True
         save_case(cur); fixed.append(n)
@@ -228,7 +236,7 @@ def attempt(sim, p, n, move, rng, log, vname='base'):
         case = load_case(p, n); lo = load_case(p, n - 1) if n > NMIN else None; hi = load_case(p, n + 1) if n < NMAX else None
     best = case['best']; best_s = best['s'] if best else None
     seed = rng.randrange(1, 2 ** 31 - 1)
-    t0 = time.time(); info = {'move': move, 'seed': seed, 'var': vname}
+    t0 = time.time(); info = {'move': move, 'seed': seed, 'var': vname}; lin = None
     base = dict(op='hop', piece=piece, container=container, seed=seed)
     if move == 'fresh':
         B = 1.0 if n <= 16 else 0.7
@@ -256,16 +264,18 @@ def attempt(sim, p, n, move, rng, log, vname='base'):
                 raw = r1
                 info.update({k: prm[k] for k in ('minDiff', 'expand', 'rh', 'focus', 'remove') if k in prm})
                 info['from'] = 'best' if start is best else 'pool'
+                lin = lineage_of(start['src']) if start is best else lineage_of(start)
     elif move == 'ascend':
         src = lo['best']
+        lin = lineage_of(src.get('src'))
         raw = sim.call(dict(base, C=src['C'], Q=src['Q'], L=2 * pb.rhoC * src['s'], add=1, rh=rng.uniform(0.15, 0.3),
                             expand=rng.uniform(0.0, 0.03), morph=4000 + 150 * n, settle=1000 + 25 * n))
     elif move == 'descend':
         cands = remove_one(pb, hi['best']['C'], hi['best']['Q'])[:3]
         s0, i, C2, Q2 = rng.choice(cands)
-        raw = {'s': s0, 'C': C2, 'Q': Q2}; info['removed'] = i
+        raw = {'s': s0, 'C': C2, 'Q': Q2}; info['removed'] = i; lin = lineage_of(hi['best'].get('src'))
     elif move == 'tighten':
-        raw = {'s': best_s, 'C': best['C'], 'Q': best['Q']}
+        raw = {'s': best_s, 'C': best['C'], 'Q': best['Q']}; lin = lineage_of(best.get('src'))
     else:
         raise ValueError(move)
     t_raw = time.time() - t0
@@ -293,13 +303,13 @@ def attempt(sim, p, n, move, rng, log, vname='base'):
         if move == 'tighten': st['needs_tighten'] = False
         if out and (cur is None or out['s'] < cur['s'] - 1e-12):
             improved = True; mv[1] += 1
-            case['best'] = {'s': out['s'], 'C': out['C'], 'Q': out['Q'], 'src': dict(info, raw=s_raw), 't': time.time(),
+            case['best'] = {'s': out['s'], 'C': out['C'], 'Q': out['Q'], 'src': dict(info, raw=s_raw, **({'lineage': lin} if lin else {})), 't': time.time(),
                             'tightened': True}
             st['improvements'] += 1; st['since'] = 0; st['last_improve'] = time.time(); st['needs_tighten'] = False
         else:
             st['since'] += 1
         save_case(case)
-        if out: pool_insert(p, n, {'s': out['s'], 'C': out['C'], 'Q': out['Q'], 'src': move, 't': time.time()})
+        if out: pool_insert(p, n, {'s': out['s'], 'C': out['C'], 'Q': out['Q'], 'src': move, 't': time.time(), **({'lineage': lin} if lin else {})})
         fixed = enforce_monotone(p, log) if improved or cur is None else []
     log(f"{p} n={n:2d} {(move if vname == 'base' else move + '/' + vname):8s} raw {s_raw:.6f}" + (f" -> {s_new:.10f}" if out else " (gated)") +
         f"  best {'%.10f' % min(s_new, best_s) if best_s else '%.10f' % s_new}{'  NEW BEST' if improved else ''}"
