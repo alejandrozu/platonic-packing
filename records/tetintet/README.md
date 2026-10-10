@@ -19,20 +19,20 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 14 | [2.94417+](tetintet_n14.json) | 2.944176826254 |  | 2.41014 | 0.5486 | ![](tetintet_n14.png) |
 | 15 | [3.00000+](tetintet_n15.json) | 3.000000000000 | 3 | 2.46621 | 0.5556 | ![](tetintet_n15.png) |
 | 16 | [3.03538+](tetintet_n16.json) | 3.035379871869 |  | 2.51984 | 0.5721 | ![](tetintet_n16.png) |
-| 17 | [3.09608+](tetintet_n17.json) | 3.096081474492 |  | 2.57128 | 0.5728 | ![](tetintet_n17.png) |
+| 17 | [3.08936+](tetintet_n17.json) | 3.089367442860 |  | 2.57128 | 0.5766 | ![](tetintet_n17.png) |
 | 18 | [3.11481+](tetintet_n18.json) | 3.114814352450 |  | 2.62074 | 0.5956 | ![](tetintet_n18.png) |
 | 19 | [3.18727+](tetintet_n19.json) | 3.187270285440 |  | 2.66840 | 0.5868 | ![](tetintet_n19.png) |
 | 20 | [3.24580+](tetintet_n20.json) | 3.245808359088 |  | 2.71442 | 0.5849 | ![](tetintet_n20.png) |
 | 21 | [3.30794+](tetintet_n21.json) | 3.307939836785 |  | 2.75892 | 0.5802 | ![](tetintet_n21.png) |
 | 22 | [3.34568+](tetintet_n22.json) | 3.345685873774 |  | 2.80204 | 0.5874 | ![](tetintet_n22.png) |
-| 23 | [3.39618+](tetintet_n23.json) | 3.396186255533 |  | 2.84387 | 0.5872 | ![](tetintet_n23.png) |
+| 23 | [3.38961+](tetintet_n23.json) | 3.389617535829 |  | 2.84387 | 0.5906 | ![](tetintet_n23.png) |
 | 24 | [3.43388+](tetintet_n24.json) | 3.433882755073 |  | 2.88450 | 0.5927 | ![](tetintet_n24.png) |
 | 25 | [3.49565+](tetintet_n25.json) | 3.495651620084 |  | 2.92402 | 0.5853 | ![](tetintet_n25.png) |
 | 26 | [3.58091+](tetintet_n26.json) | 3.580912024531 |  | 2.96250 | 0.5662 | ![](tetintet_n26.png) |
 | 27 | [3.65943+](tetintet_n27.json) | 3.659430482028 |  | 3.00000 | 0.5510 | ![](tetintet_n27.png) |
-| 28 | [3.69379+](tetintet_n28.json) | 3.693794156589 |  | 3.03659 | 0.5556 | ![](tetintet_n28.png) |
+| 28 | [3.68963+](tetintet_n28.json) | 3.689630436626 |  | 3.03659 | 0.5575 | ![](tetintet_n28.png) |
 | 29 | [3.75562+](tetintet_n29.json) | 3.755627843216 |  | 3.07232 | 0.5475 | ![](tetintet_n29.png) |
-| 30 | [3.82325+](tetintet_n30.json) | 3.823257672391 |  | 3.10723 | 0.5368 | ![](tetintet_n30.png) |
+| 30 | [3.78052+](tetintet_n30.json) | 3.780519723436 |  | 3.10723 | 0.5552 | ![](tetintet_n30.png) |
 | 31 | [3.83871+](tetintet_n31.json) | 3.838712228528 |  | 3.14138 | 0.5480 | ![](tetintet_n31.png) |
 | 32 | [3.87327+](tetintet_n32.json) | 3.873273721402 |  | 3.17480 | 0.5507 | ![](tetintet_n32.png) |
 | 33 | [3.89213+](tetintet_n33.json) | 3.892137870715 |  | 3.20753 | 0.5597 | ![](tetintet_n33.png) |
@@ -41,5 +41,5 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 36 | [3.98328+](tetintet_n36.json) | 3.983280559317 |  | 3.30193 | 0.5696 | ![](tetintet_n36.png) |
 | 37 | [4.01521+](tetintet_n37.json) | 4.015211496729 |  | 3.33222 | 0.5716 | ![](tetintet_n37.png) |
 | 38 | [4.04551+](tetintet_n38.json) | 4.045513955803 |  | 3.36198 | 0.5739 | ![](tetintet_n38.png) |
-| 39 | [4.05826+](tetintet_n39.json) | 4.058267470040 |  | 3.39121 | 0.5835 | ![](tetintet_n39.png) |
+| 39 | [4.04780+](tetintet_n39.json) | 4.047804833198 |  | 3.39121 | 0.5880 | ![](tetintet_n39.png) |
 | 40 | [4.05914+](tetintet_n40.json) | 4.059142742806 |  | 3.41995 | 0.5981 | ![](tetintet_n40.png) |
