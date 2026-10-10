@@ -80,3 +80,38 @@ one record per solution.
 - 12:03: launched `scripts/run_forever.sh` (unattended).
 - 13:24: check-in found the machine had been suspended at ~12:11 (uptime 0 min, processes gone; files intact).
   Restarted; the session is now kept active with 10-minute heartbeats so the engine keeps running.
+
+## 9 Oct 14:00 – 10 Oct 19:00 — Unattended run, checked every 10 minutes
+
+- Every 10 minutes (`scripts/cycle.sh`): workers alive and advancing, archive monotone, archive committed and pushed,
+  incremental git bundle mirrored to Alejandro's laptop copy. Interruptions: machine suspended at 14:28 on 9 Oct (a
+  permission prompt left the session idle); publisher crash at 15:56 (`closed_form` on a degree-1 match, fixed);
+  machine reboot on 10 Oct at 01:41 (engine resumed from disk, nothing lost).
+- Benchmarks: 12 cubes in a cube reached Nakajima's touching value 2.931514577965 (03:45); 30 and 31 cubes reached
+  3 + 1/√2; 24 octahedra in a cube 2.6370 (published 2.63318).
+- New bests per 2 hours fell from 240 to about 90 over 24 hours (31,000 attempts): diminishing returns.
+
+## 10 Oct 19:05 — Earlier records, viewer, search-settings experiment (Alejandro's requests)
+
+- Literature (searched 10 Oct): only cubes in a cube (Friedman's Packing Center, n < 34) and octahedra in a cube
+  (Friedman's Packing Center, n = 1–30, R. Walsh June 2026 and H. Lin July 2026) have published values among the nine
+  problems; n = 1 for pairs of Platonic solids is in Firsching (2018). Ours vs published: octahedra in a cube better at
+  n = 29 (2.82843 = 2√2 vs 2.85384) and n = 30 (2.88782 vs 2.89186), equal at 2–4, 6–10, behind elsewhere (up to
+  2.3%); cubes equal at 2–10, 12, 15–31, behind at 11, 13, 14, 32, 33. Tables now have a "previous" column for these
+  two problems only.
+- Viewer (site/index.html, also published as a Claude artifact): slicing, colour by orientation class, piece picking
+  with neighbours, isolation, zoom, axis views, record and certificate links.
+- The last 24 hours of attempts by hop size (minDiff, the relative rearrangement a hop must reach):
+
+  | minDiff | hops | new bests | per CPU-hour |
+  |---|---|---|---|
+  | 0.04–0.08 | 4,051 | 704 | 66.0 |
+  | 0.08–0.15 | 3,779 | 230 | 36.5 |
+  | 0.15–0.3 | 4,157 | 69 | 14.9 |
+  | 0.3–0.6 | 4,118 | 12 | 3.3 |
+
+  Hops from the current best: 49 new bests per CPU-hour; from a pool member: 25. Fresh runs: 5.
+- Experiment from 19:14, one hour: every hop draws one of five settings uniformly at random (state/policy.json, hop
+  share raised to 80%): base; jiggle (noise ×3, shaking ×1.5); expand (container grows 6–15% instead of 1–5%,
+  softer pieces, morph ×1.3); volume (3 raw hops per attempt, only the best is tightened); gentle (minDiff 0.02–0.10,
+  start from the best 90% of the time). Score: new bests per CPU-hour (`scripts/experiment.py`).
