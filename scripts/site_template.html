@@ -420,7 +420,8 @@ footer a { color: var(--accent) }
       if (vis) shown++;
       const m = g.userData.mesh.material;
       g.visible = vis || ghost;
-      m.opacity = vis ? 1 : 0.07; m.depthWrite = vis; g.userData.edges.visible = vis;
+      const dim = vis && sel != null && !isolate && i !== sel;          // a picked piece stands out against dimmed others
+      m.opacity = vis ? (dim ? 0.3 : 1) : 0.07; m.depthWrite = vis && !dim; g.userData.edges.visible = vis;
       m.emissive.set(i === sel ? css('--accent') : '#000000'); m.emissiveIntensity = i === sel ? 0.45 : 0;
       m.needsUpdate = true;
     });
@@ -450,7 +451,7 @@ footer a { color: var(--accent) }
     if (sel == null) { el.hidden = true; return }
     const p = row.p[sel], nb = neighbours(row, sel).slice(0, 4), oc = orient(row);
     el.hidden = false;
-    el.innerHTML = `<div><b>Piece ${sel + 1}</b> of ${row.p.length} · orientation class ${String.fromCharCode(65 + oc.cls[sel])} (${oc.sizes[oc.cls[sel]]} pieces)</div>` +
+    el.innerHTML = `<div><b>Piece ${sel + 1}</b> of ${row.p.length} · orientation class ${oc.cls[sel] < 26 ? String.fromCharCode(65 + oc.cls[sel]) : oc.cls[sel] + 1} (${oc.sizes[oc.cls[sel]]} piece${oc.sizes[oc.cls[sel]] > 1 ? 's' : ''})</div>` +
       `<div class="meta">centre (${p.slice(0, 3).map(v => v.toFixed(4)).join(', ')})   q = (${qn(p).map(v => v.toFixed(4)).join(', ')})</div>` +
       `<div class="meta">nearest centres: ${nb.map(([j, d]) => `#${j + 1} at ${d.toFixed(4)}`).join(' · ')}</div>` +
       `<div class="trow"><label class="inl" for="iso"><input type="checkbox" id="iso" ${isolate ? 'checked' : ''}> isolate this piece and its possible contacts</label>` +
