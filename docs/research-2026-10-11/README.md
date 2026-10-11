@@ -1,6 +1,6 @@
 # Polyhedra in polyhedra packing: manuscripts, analysis, and reference article
 
-Prepared **11 October 2026** by Alejandro Zarzuelo Urdiales. Scientific inputs are frozen at [`e15b496ae7306287e0e70bb5b14be79f5dfdde84`](https://github.com/alejandrozu/platonic-packing/tree/e15b496ae7306287e0e70bb5b14be79f5dfdde84). Everything in this packet is saved locally and in the project repository. No journal, preprint server, Wikipedia, Commons, or new website submission has been made.
+Prepared **11 October 2026** by Alejandro Zarzuelo Urdiales. Scientific inputs are frozen at [`e15b496ae7306287e0e70bb5b14be79f5dfdde84`](https://github.com/alejandrozu/platonic-packing/tree/e15b496ae7306287e0e70bb5b14be79f5dfdde84). Everything in this packet is saved locally and in the project repository. On 12 October 2026, the author approved and published the two preprints and reproducibility dataset on Zenodo. No journal, HAL, Twitter, Wikipedia, Commons, or new website submission was made in this release.
 
 ## Papers
 
@@ -58,4 +58,4 @@ The [12 October verified platform rules](research/tonight-platform-rules.md) upd
 
 The combination of a permanent archive and journal review gives both rapid access and an opportunity for independent recognition. Erich Friedman's Packing Center is the closest relevant catalogue analogue to OEIS for these real-valued finite packing records. Any external deposit, catalogue request, or journal submission remains a later action, outside this task's local/GitHub-only scope.
 
-A [public author-profile register](research/public-author-profile.md) verifies prior research deposits and dated institutional evidence. Three Zenodo records have now been prepared locally: the two preprints and a complete frozen reproducibility ZIP, including the rotating article. No external upload, DOI reservation, or publication has occurred. Private account, enrollment, and legal-dossier evidence are kept locally and excluded from the release.
+A [public author-profile register](research/public-author-profile.md) verifies prior research deposits and dated institutional evidence. Three approved Zenodo records are now published: the [methods preprint](https://doi.org/10.5281/zenodo.23306098), [patterns preprint](https://doi.org/10.5281/zenodo.23306126), and [reproducibility dataset](https://doi.org/10.5281/zenodo.23306130), including the rotating article. All seven public downloads match their approved hashes. Publication receipts and the final local Twitter thread are saved with the packet. Private account, enrollment, and legal-dossier evidence are kept locally and excluded from the release.
