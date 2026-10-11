@@ -5,9 +5,9 @@
 # branches, re-legalizes every packing (engine.py harvest) and only then merges it; records are certified exactly
 # as always. To stop: delete this file.
 name: search
+# Started once an hour by the main machine's 10-minute cycle (scripts/actions_kick.sh, workflow_dispatch). GitHub's own
+# cron trigger was removed: it fired hours late and then overlapped a dispatched run (11 Oct, 10:42).
 on:
-  schedule:
-    - cron: '7 * * * *'
   workflow_dispatch: {}
 permissions:
   contents: write
