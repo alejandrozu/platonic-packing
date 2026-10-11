@@ -1,0 +1,54 @@
+# Extra search capacity ("light", chosen by Alejandro on 11 Oct): every hour, 4 jobs (4 cores each) run the same engine
+# as the main machine for 25 minutes,
+# starting from the archive in main. Each job then pushes the packings that beat that archive to
+# its own branch (search-results-<job>, one file, force-pushed). The main machine's 10-minute cycle fetches those
+# branches, re-legalizes every packing (engine.py harvest) and only then merges it; records are certified exactly
+# as always. To stop: delete this file.
+name: search
+on:
+  schedule:
+    - cron: '7 * * * *'
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        job: [0, 1, 2, 3]
+    env:
+      MINUTES: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install
+        run: pip install --quiet numpy scipy highspy
+      - name: Search
+        run: |
+          export PP_STATE="$RUNNER_TEMP/pp-state"
+          mkdir -p "$PP_STATE" logs && cp -r state/best "$PP_STATE/best" && cp state/policy.json "$PP_STATE/"
+          export PP_DEADLINE=$(( $(date +%s) + MINUTES * 60 ))
+          for w in 0 1 2 3; do
+            timeout $(( MINUTES * 60 + 240 )) python3 scripts/engine.py work "A${{ matrix.job }}$w" > /dev/null 2>&1 &
+          done
+          wait || true
+          python3 scripts/remote.py export "$PP_STATE" state/best > "$RUNNER_TEMP/export.txt"
+          echo "attempts $(wc -l < "$PP_STATE/attempts.jsonl"), exported $(cut -d' ' -f2 "$RUNNER_TEMP/export.txt") cases"
+          { echo "{\"run\": \"$GITHUB_RUN_ID\", \"job\": ${{ matrix.job }}, \"main\": \"$(git rev-parse HEAD)\","
+            echo " \"attempts\": $(wc -l < "$PP_STATE/attempts.jsonl"), \"finished\": \"$(date -u +%FT%TZ)\"}"; } > "$RUNNER_TEMP/meta.json"
+      - name: Push results
+        run: |
+          d="$RUNNER_TEMP/out"; mkdir -p "$d"; cd "$d"
+          git init -q -b "search-results-${{ matrix.job }}"
+          cp "$RUNNER_TEMP/export.txt" "$RUNNER_TEMP/meta.json" .
+          git -c user.name="platonic-packing search" -c user.email="actions@users.noreply.github.com" add -A
+          git -c user.name="platonic-packing search" -c user.email="actions@users.noreply.github.com" commit -q -m "search results, run $GITHUB_RUN_ID job ${{ matrix.job }}"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" "HEAD:refs/heads/search-results-${{ matrix.job }}"
