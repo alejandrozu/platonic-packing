@@ -49,11 +49,13 @@ Certificate replay and shell-evidence checks use the standard library. Structura
 
 ## Rapid dissemination without relying on arXiv sponsorship
 
-The [publication alternatives](research/dissemination-alternatives.md) confirm arXiv's two-submissions-per-calendar-month rule introduced on 1 October 2026. They compare routes that address the sponsorship and volume constraints:
+The [12 October verified platform rules](research/tonight-platform-rules.md) update the earlier [publication alternatives](research/dissemination-alternatives.md) and confirm arXiv's two-submissions-per-calendar-month rule introduced on 1 October 2026. They compare routes that address the sponsorship and volume constraints:
 
 - **Zenodo** is the fastest verified route to an archival DOI for the papers and frozen research package, without endorsement. Its CERN/OpenAIRE infrastructure provides durable citation and preservation.
 - **HAL** offers a recognized academic manuscript archive with moderation normally taking a few days; its required affiliation metadata must be completed honestly, and independent-author handling remains a condition to confirm.
 - **Preprints.org** accepts mathematics and technical/hypothesis papers, with typical screening of 24 working hours; screening is not mathematical peer review.
-- **Experimental Mathematics** is the principal peer-review target for the patterns paper; **Journal of Computational Geometry** is a fee-free alternative for the methods paper. Review timing cannot be guaranteed.
+- **Journal of Computational Geometry** is a fee-free geometric-method candidate; **Discrete & Computational Geometry** is another packing/geometry candidate. **Experimental Mathematics is not ready for these AI-drafted manuscripts under its publisher's current first-draft restriction.** Journal acceptance and timing remain editorial decisions.
 
 The combination of a permanent archive and journal review gives both rapid access and an opportunity for independent recognition. Erich Friedman's Packing Center is the closest relevant catalogue analogue to OEIS for these real-valued finite packing records. Any external deposit, catalogue request, or journal submission remains a later action, outside this task's local/GitHub-only scope.
+
+A [public author-profile register](research/public-author-profile.md) verifies prior research deposits and dated institutional evidence. Three Zenodo records have now been prepared locally: the two preprints and a complete frozen reproducibility ZIP, including the rotating article. No external upload, DOI reservation, or publication has occurred. Private account, enrollment, and legal-dossier evidence are kept locally and excluded from the release.
