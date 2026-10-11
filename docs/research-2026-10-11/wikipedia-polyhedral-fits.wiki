@@ -1,0 +1,181 @@
+<!-- LOCAL REVIEW DRAFT, 11 October 2026. Suggested descriptive title: Packing polyhedra in polyhedral containers. Not submitted. Editorial notes and proposed project additions are in wikipedia-polyhedral-fits.md, outside this article text. -->
+
+'''Packing polyhedra in polyhedral containers''' is a class of finite [[packing problems]] in which three-dimensional [[polyhedron|polyhedra]] are placed inside another polyhedron without overlapping interiors. Depending on the formulation, the objective is to maximize the size or number of the packed objects, or to minimize the dimensions or volume of the container. The objects may be congruent copies of one shape or a collection of different shapes. Allowable motions can be restricted to translations, to a finite set of orientations, or can include arbitrary rotations.<ref name="typology">{{cite journal |last1=Wäscher |first1=Gerhard |last2=Haußner |first2=Heike |last3=Schumann |first3=Holger |title=An improved typology of cutting and packing problems |journal=European Journal of Operational Research |volume=183 |issue=3 |pages=1109–1130 |year=2007 |doi=10.1016/j.ejor.2005.12.047}}</ref><ref name="egeblad">{{cite journal |last1=Egeblad |first1=Jens |last2=Nielsen |first2=Benny K. |last3=Brazil |first3=Marcus |title=Translational packing of arbitrary polytopes |journal=Computational Geometry |volume=42 |issue=4 |pages=269–288 |year=2009 |doi=10.1016/j.comgeo.2008.06.003 |url=https://www.sciencedirect.com/science/article/pii/S0925772108000576}}</ref>
+
+These problems are related to geometric [[optimization]], three-dimensional nesting, and containment of one polyhedron in another. They differ from packing in infinite space: a finite container has walls whose geometry affects feasible arrangements. They also differ from a physical assembly problem, which requires a model of particle interactions and statistical or dynamical behavior in addition to a geometrical configuration.<ref name="handbook">{{cite book |last=Fejes Tóth |first=Gábor |chapter=Packing and covering |title=Handbook of Discrete and Computational Geometry |edition=3 |editor1-last=Goodman |editor1-first=Jacob E. |editor2-last=O'Rourke |editor2-first=Joseph |editor3-last=Tóth |editor3-first=Csaba D. |publisher=CRC Press |year=2017 |chapter-url=https://www.csun.edu/~ctoth/Handbook/chap2.pdf}}</ref><ref name="perspective">{{cite journal |last=Torquato |first=Salvatore |title=Perspective: Basic understanding of condensed phases of matter via packing models |journal=The Journal of Chemical Physics |volume=149 |pages=020901 |year=2018 |doi=10.1063/1.5036657 |arxiv=1805.04468}}</ref>
+
+== Formulation ==
+
+For a fixed particle polyhedron <math>P</math>, container polyhedron <math>C</math>, and positive integer <math>N</math>, a freely rotating congruent packing consists of copies
+
+<math display="block">P_i=t_i+R_iP,\qquad i=1,\ldots,N,</math>
+
+where <math>t_i</math> is a translation and <math>R_i</math> is a rotation. Each copy must be contained in the container, and the interiors of distinct copies must be disjoint:
+
+<math display="block">P_i\subseteq C,\qquad \operatorname{int}(P_i)\cap\operatorname{int}(P_j)=\varnothing\quad(i\ne j).</math>
+
+This convention permits contact at faces, edges, or vertices. A version with a positive clearance imposes additional distance constraints. Continuous rotations, containment, nonoverlap, and prescribed minimum distances appear in mathematical programming formulations for polyhedral packing.<ref name="romanova">{{cite journal |last1=Romanova |first1=Tatiana |last2=Bennell |first2=Julia |last3=Stoyan |first3=Yuri |last4=Pankratov |first4=Alexander |title=Packing of concave polyhedra with continuous rotations using nonlinear optimisation |journal=European Journal of Operational Research |volume=268 |issue=1 |pages=37–53 |year=2018 |doi=10.1016/j.ejor.2018.01.025 |url=https://eprints.soton.ac.uk/418130/}}</ref>
+
+Three related objectives are common. A fixed-size item problem asks how many copies can fit. A fixed-count problem maximizes their common scale in a fixed container. A container minimization problem fixes the objects and optimizes the containing shape's permitted dimensions. The distinction between output maximization and input minimization is part of general cutting-and-packing classification.<ref name="typology" />
+
+For example, with unit-edge particles and a container whose shape is fixed but whose edge scale <math>s</math> varies, define
+
+<math display="block">s_{C,P}(N)=\inf\{s>0:N\text{ congruent copies of }P\text{ fit in }sC\}.</math>
+
+In this notation, a feasible arrangement at scale <math>s</math> establishes an upper bound on the minimum container scale. If instead the container is fixed and the particles' common scale is maximized, a feasible arrangement establishes a lower bound on that maximum. Thus the direction of an improved bound depends on the objective.
+
+== Scale, density, and elementary bounds ==
+
+For <math>N</math> congruent particles of volume <math>V(P)</math> contained without overlap in <math>C</math>, their packing fraction is
+
+<math display="block">\phi=\frac{NV(P)}{V(C)}.</math>
+
+The total particle volume cannot exceed the container volume. For a uniformly scaled three-dimensional container this gives the necessary bound
+
+<math display="block">s_{C,P}(N)\geq\left(\frac{NV(P)}{V(C)}\right)^{1/3}.</math>
+
+The volume comparison gives a bound rather than a placement: unused regions can remain because of particle shape, orientation, or the boundary. Congruent-polyhedron formulations use this distinction between a volume bound and a geometrically feasible packing.<ref name="callisaya">{{cite journal |last1=Callisaya |first1=Hector F. |last2=Kari |first2=Elvis R. V. |title=Packing Polyhedra within Convex Sets |journal=Trends in Computational and Applied Mathematics |volume=26 |pages=e01823 |year=2025 |doi=10.5540/tcam.2025.026.e01823 |url=https://www.scielo.br/j/tcam/a/nbGY4xC4KMxq7XbYZTybvHj/?format=html&lang=en}}</ref>
+
+For identical unit-edge cubes, an <math>m\times m\times m</math> grid is a packing of <math>m^3</math> cubes in a cube of edge <math>m</math>. Its density is one, so the grid meets the volume bound for those counts. For a general count, deleting cubes gives the elementary upper bound <math>\lceil N^{1/3}\rceil</math>. This bound does not restrict the cubes to grid arrangements in the optimization problem.
+
+The normalization of a record is part of the problem definition. Unit edge, unit volume, unit circumradius, and unit inradius describe different particle sizes. A container-edge ratio is a length measure, whereas density depends on volume and therefore on the cube of scale. Numerical values for different particle shapes are not comparable unless the normalization and objective are specified.
+
+== Particle and container representation ==
+
+A convex polyhedron can be described by its vertices or by half-spaces bounded by its face planes. If
+
+<math display="block">C=\{x:a_f\cdot x\leq b_f\text{ for every face }f\},</math>
+
+then a convex particle is contained in <math>C</math> precisely when its vertices satisfy all the container inequalities. Convexity ensures that their convex hull is contained as well. A single-particle containment formulation can combine these linear inequalities with constraints preserving pairwise vertex distances under a common scale.<ref name="firsching">{{cite journal |last=Firsching |first=Moritz |title=Computing Maximal Copies of Polyhedra Contained in a Polyhedron |journal=Experimental Mathematics |volume=24 |issue=1 |pages=98–105 |year=2015 |doi=10.1080/10586458.2014.956374 |url=https://firsching.ch/assets/pdfs/ComputingMaximalCopies.pdf}}</ref>
+
+For two convex polyhedra, nonoverlap can be tested using a separating plane. Separating-axis collision tests compare projections onto candidate directions. The candidates for polyhedra include face-normal directions and directions formed from pairs of edge directions. Such tests are also used in oriented-bounding-box hierarchies for interference detection between complex rigid models.<ref name="obb">{{cite conference |last1=Gottschalk |first1=Stefan |last2=Lin |first2=Ming C. |last3=Manocha |first3=Dinesh |title=OBBTree: A Hierarchical Structure for Rapid Interference Detection |book-title=Proceedings of SIGGRAPH '96 |pages=171–180 |year=1996 |url=https://www.cs.cornell.edu/courses/cs667/2005sp/readings/gottschalk96.pdf}}</ref>
+
+For nonconvex objects, a single separating plane need not describe disjointness. Methods may instead use convex decomposition, detailed intersection calculations, or other geometric representations. Translational polytope search can handle nonconvex objects and holes, while nonlinear polyhedral models can incorporate collections of convex components.<ref name="egeblad" /><ref name="romanova" />
+
+== One polyhedron inside another ==
+
+The case <math>N=1</math> is a containment problem, involving both orientation and scale. It has a history distinct from the packing of several particles. Hallard T. Croft studied maximal regular polyhedra inside regular polyhedra in 1980. Among the twenty ordered pairs of different Platonic solids, his treatment resolved fourteen cases. Firsching's 2015 study considered arbitrary pairs through quadratic optimization and supplied numerical configurations and conjectured exact algebraic solutions for the remaining six Platonic cases.<ref name="croft">{{cite journal |last=Croft |first=Hallard T. |title=On Maximal Regular Polyhedra Inscribed in a Regular Polyhedron |journal=Proceedings of the London Mathematical Society |volume=s3-41 |issue=2 |pages=279–296 |year=1980 |doi=10.1112/plms/s3-41.2.279}}</ref><ref name="firsching" />
+
+Inscription is not the same as a packing of multiple objects. Several polyhedra inscribed in one container can overlap. For example, Bakos's 1959 discussion of octahedra inscribed in a cube concerns configurations and their common intersection; it does not establish a nonoverlapping packing of four octahedra.<ref name="bakos">{{cite journal |last=Bakos |first=T. |title=Octahedra Inscribed in a Cube |journal=The Mathematical Gazette |volume=43 |issue=343 |pages=17–20 |year=1959 |doi=10.2307/3608867}}</ref>
+
+== Shape-pair families ==
+
+Particle and container roles are ordered: cubes in an octahedron and octahedra in a cube are different problems. Among the five Platonic solids, a simple selection of related pairs consists of the five same-solid problems and the four directions between distinct dual solids. This selection is not an exhaustive classification of polyhedral packing: arbitrary pairs, mixed particles, and other convex or nonconvex polyhedra are also possible.<ref name="firsching" /><ref name="egeblad" />
+
+{| class="wikitable"
+|+ Same-solid and distinct-dual Platonic shape pairs
+! Particle !! Container !! Relation defining the pair
+|-
+| Tetrahedron || Tetrahedron || Same solid
+|-
+| Cube || Cube || Same solid
+|-
+| Octahedron || Octahedron || Same solid
+|-
+| Dodecahedron || Dodecahedron || Same solid
+|-
+| Icosahedron || Icosahedron || Same solid
+|-
+| Cube || Octahedron || Distinct dual solids
+|-
+| Octahedron || Cube || Distinct dual solids
+|-
+| Dodecahedron || Icosahedron || Distinct dual solids
+|-
+| Icosahedron || Dodecahedron || Distinct dual solids
+|}
+
+The tetrahedron is self-dual. Geometric duality exchanges faces and vertices, but it does not identify the multiple-particle packing problems in opposite directions. Single-object studies also use polar reciprocity under appropriate conditions; extending such relations to a finite collection requires attention to the complete nonoverlap and containment constraints.<ref name="firsching" />
+
+=== Cubes in cubes ===
+
+Packing freely oriented equal cubes in a containing cube includes arrangements that depart from the elementary cubic grid. Erich Friedman's online packing catalogue records a construction for nine or ten unit cubes with containing edge <math>2+1/\sqrt{2}</math>, attributed to Friedman in 1998. It also lists a common construction size <math>3+1/\sqrt{2}</math> for counts twenty-eight through thirty-three. The catalogue describes its values as smallest known sizes.<ref name="cubes">{{cite web |last=Friedman |first=Erich |title=Cubes in Cubes |url=https://erich-friedman.github.io/packing/cubincub/ |access-date=11 October 2026}}</ref>
+
+A smallest-known numerical entry differs from a proved minimum. A record table can improve when another feasible configuration is found. Equal listed sizes for several counts can describe the capacity of a construction; the equality of true optima requires lower-bound evidence as well as feasible placements.
+
+Some problems described as cube packing have different objectives. Fan, Zhang and Ye's 2008 cube-packing paper, for example, allows unequal axis-parallel small cubes and optimizes the sum of their edge lengths. Its packing function is therefore different from the minimum containing edge for a prescribed number of congruent freely oriented cubes.<ref name="fan">{{cite journal |last1=Fan |first1=Yonghui |last2=Zhang |first2=Yuqin |last3=Ye |first3=Guoyan |title=A Cube-Packing Problem |journal=Ars Combinatoria |volume=87 |pages=353–358 |year=2008 |url=https://combinatorialpress.com/article/ars/Volume%20087/volume-87-paper-27.pdf}}</ref>
+
+=== Octahedra in cubes ===
+
+Friedman's octahedron-in-cube catalogue records equal unit octahedra in a containing cube, with entries for counts one through thirty at the time of retrieval. Its printed entries include a common side of approximately 1.79133 for seven or eight octahedra and approximately 2.63986 for twenty-six or twenty-seven octahedra. The entries are numerical smallest-known constructions, and their rounding should not be interpreted as an exact optimality theorem.<ref name="octahedra">{{cite web |last=Friedman |first=Erich |title=Octahedra in Cubes |url=https://erich-friedman.github.io/packing/octincub/ |access-date=11 October 2026}}</ref>
+
+This finite problem is distinct from the lattice packing of octahedra throughout space. A bulk lattice's repeating unit does not have the same constraints as a cubical box with walls.
+
+=== Tetrahedra in cubes ===
+
+The packing catalogue also includes tetrahedra in cubes. It lists a containing cube of edge one for three unit tetrahedra, attributed to Achille Hui in February 2016, and numerical entries through thirty particles. Consequently, finite packing in cubes is not limited to cubes and octahedra.<ref name="tetrahedra">{{cite web |last=Friedman |first=Erich |title=Tetrahedra in Cubes |url=https://erich-friedman.github.io/packing/tetincub/ |access-date=11 October 2026}}</ref>
+
+Regular tetrahedra lack central symmetry, introducing geometric distinctions from centrally symmetric particles. This distinction also appears in the study of bulk tetrahedral packings, including constructions using pairs of tetrahedra.<ref name="asc">{{cite journal |last1=Torquato |first1=Salvatore |last2=Jiao |first2=Yang |title=Dense packings of polyhedra: Platonic and Archimedean solids |journal=Physical Review E |volume=80 |pages=041104 |year=2009 |doi=10.1103/PhysRevE.80.041104 |arxiv=0909.0940}}</ref>
+
+== Computational methods ==
+
+=== Constructive and optimization approaches ===
+
+A construction provides explicit positions and orientations, sometimes with a scale given by a formula. Numerical search can instead start from trial placements and adjust the objects or container. In general irregular nesting, mathematical models employ continuous, discrete, mixed-integer, nonlinear, or constraint-programming representations. These choices affect permissible orientations and how geometry is enforced. The major survey by Leao and colleagues primarily concerns two-dimensional nesting, with discussion of extensions to three dimensions.<ref name="leao">{{cite journal |last1=Leao |first1=Aline A. S. |last2=Toledo |first2=Franklina M. B. |last3=Oliveira |first3=José Fernando |last4=Carravilla |first4=Maria Antónia |last5=Alvarez-Valdés |first5=Ramón |title=Irregular packing problems: A review of mathematical models |journal=European Journal of Operational Research |volume=282 |issue=3 |pages=803–822 |year=2020 |doi=10.1016/j.ejor.2019.04.045 |url=https://www.sciencedirect.com/science/article/pii/S0377221719303820}}</ref>
+
+Egeblad, Nielsen and Brazil's method uses translations that minimize overlap volume, combined with local search and guided local search to leave local minima. Romanova and colleagues model continuously rotating concave polyhedra with quasi-phi functions, using initial-placement and compaction procedures. Callisaya and Kari use separating hyperplanes and nonlinear optimization for congruent objects in convex sets, with multistart initialization.<ref name="egeblad" /><ref name="romanova" /><ref name="callisaya" />
+
+The distinction between an exact mathematical model and an exact global solution is essential. A nonlinear formulation may express the geometry without approximation while a local solver returns one feasible configuration or local minimum. Failure of that solver to find a configuration does not, by itself, establish infeasibility.
+
+General approximation algorithms have also been developed for finding small-volume containers for three-dimensional convex objects under different allowed motions and container classes. Their approximation guarantees address a different question from computing an exact small-count optimum for one fixed pair of regular solids.<ref name="alt">{{cite arXiv |last1=Alt |first1=Helmut |last2=Scharf |first2=Nadja |title=Approximating Smallest Containers for Packing Three-dimensional Convex Objects |eprint=1601.04585 |class=cs.CG |year=2016}}</ref>
+
+=== Numerical results and proof ===
+
+Several levels of result should be distinguished: a rendered picture, a numerical placement passing a tolerance-based check, a placement verified by exact or rigorously bounded arithmetic, and a globally optimal solution. Verification of one placement addresses feasibility. Global optimality additionally excludes every better placement allowed by the problem definition.
+
+Algebraic reconstruction can turn a numerically suggested single-polyhedron configuration into an exact candidate by solving its contact equations and identifying algebraic values. This still requires distinguishing the exact configuration from a proof that no larger configuration exists.<ref name="firsching" /> Similarly, a tetrahedral dimer study proves maximum density within a specified parameter family; its family result does not imply optimality over all possible packings.<ref name="chen">{{cite journal |last1=Chen |first1=Elizabeth R. |last2=Engel |first2=Michael |last3=Glotzer |first3=Sharon C. |title=Dense crystalline dimer packings of regular tetrahedra |journal=Discrete & Computational Geometry |volume=44 |pages=253–280 |year=2010 |doi=10.1007/s00454-010-9273-0 |arxiv=1001.0586}}</ref>
+
+For reproducibility, a geometric result can specify the canonical particle and container, scale convention, translations, rotations, and contact or separating-plane information. A picture is an illustration of these data: its projection, perspective, and hidden surfaces are not the nonoverlap constraints themselves.
+
+== Finite confinement and infinite packing ==
+
+In infinite-space packing, density describes an arrangement extending without a containing wall. A lattice packing places identically oriented translates at lattice sites. More general periodic packings can have several particles and orientations per repeating cell, while unrestricted packings need not be periodic.<ref name="handbook" />
+
+Torquato and Jiao's adaptive shrinking cell method adjusts particle placements and a periodic fundamental cell. It was applied to dense packings of Platonic and Archimedean solids and led to conjectures relating central symmetry to lattice optimality. The periodic boundary condition is integral to the method; a cell's sides are not the walls of a finite fit problem.<ref name="asc" /><ref name="nature">{{cite journal |last1=Torquato |first1=Salvatore |last2=Jiao |first2=Yang |title=Dense packings of the Platonic and Archimedean solids |journal=Nature |volume=460 |pages=876–879 |year=2009 |doi=10.1038/nature08239 |arxiv=0908.4107}}</ref>
+
+Betke and Henk developed an algorithm for densest lattice packings of three-dimensional polytopes. Such lattice optimization is valuable background, but its restricted arrangement class does not establish optimality for freely rotating finite particles in a prescribed container.<ref name="betke">{{cite journal |last1=Betke |first1=U. |last2=Henk |first2=M. |title=Densest lattice packings of 3-polytopes |journal=Computational Geometry |volume=16 |issue=3 |pages=157–186 |year=2000 |doi=10.1016/S0925-7721(00)00007-9}}</ref>
+
+Confinement can change structural preferences. Teich and colleagues generated dense clusters of Platonic solids containing four to sixty particles in spherical containers. The clusters showed layers, different symmetries, and particularly dense particle counts termed magic numbers. Some icosahedral and dodecahedral clusters resembled sphere clusters, illustrating the importance of the container in the investigated size range. These results concern spherical confinement rather than an interchangeable family of polyhedral walls.<ref name="teich">{{cite journal |last1=Teich |first1=Erin G. |last2=van Anders |first2=Greg |last3=Klotsa |first3=Daphne |last4=Dshemuchadse |first4=Julia |last5=Glotzer |first5=Sharon C. |title=Clusters of polyhedra in spherical confinement |journal=Proceedings of the National Academy of Sciences |volume=113 |issue=6 |pages=E669–E678 |year=2016 |doi=10.1073/pnas.1524875113 |pmc=4760782}}</ref>
+
+== Orientation, contacts, and count dependence ==
+
+Unlike spheres, nonspherical particles have rotational degrees of freedom. Their packings can be compared by density and by structural order, rather than density alone. Reviews of hard-particle packing distinguish equilibrium phases, jammed configurations, and different forms of order.<ref name="jamming">{{cite journal |last1=Torquato |first1=Salvatore |last2=Stillinger |first2=Frank H. |title=Jammed hard-particle packings: From Kepler to Bernal and beyond |journal=Reviews of Modern Physics |volume=82 |pages=2633 |year=2010 |doi=10.1103/RevModPhys.82.2633 |arxiv=1008.2982}}</ref>
+
+Positions, relative orientations, and contacts describe different aspects of an arrangement. Face-to-face alignment can aid local dense packing, but a container can favor an overall cluster shape with other contacts. The spherical-confinement study found a trade-off between tight local alignment and the shape of the complete cluster; its especially dense counts did not share one universal structural rule.<ref name="teich" />
+
+A count-dependent record table is therefore more than a list of densities, but numerical regularities require careful interpretation. Repeated rounded scales may reflect the precision of reporting. A single construction accommodating several counts establishes those feasible scales, without proving that all corresponding optima coincide. Deleting a particle from any feasible arrangement gives a feasible arrangement for the preceding count; this elementary observation concerns the optimization problem, whereas a numerical search's independently found entries can fail to attain the best available construction.
+
+Layer transitions also occur in physical models of confined particles. Khadilkar and Escobedo studied cubes and several truncated or related shapes between parallel hard walls. Changing the wall separation produced several ordered and disordered phases, including frustrated structures near a layer transition. The relevant variable there is a physical confinement width, rather than solely the particle count in a fixed-shape finite container.<ref name="khadilkar">{{cite journal |last1=Khadilkar |first1=Mihir R. |last2=Escobedo |first2=Fernando A. |title=Phase behavior of polyhedral nanoparticles in parallel plate confinement |journal=Soft Matter |volume=12 |issue=5 |pages=1506–1516 |year=2016 |doi=10.1039/C5SM02570B}}</ref>
+
+== Relationship to crystallization ==
+
+Hard-particle packing models provide a geometric setting for examining material structure, but a densest construction and an assembled crystal are different results. Physical studies specify conditions and mechanisms under which order develops; finite fitting specifies the admissible shapes, movements, and boundary.<ref name="perspective" />
+
+Huang, Skye and Dshemuchadse investigated self-assembly of an equal-edge tetrahedron–octahedron mixture using hard-particle Monte Carlo simulations. Their spherical and flat-wall confinement study concerns a two-component system and a specified statistical model. It supplies an example of confinement affecting assembly, rather than establishing that every optimized polyhedral fit is a crystal-growth pathway.<ref name="huang">{{cite journal |last1=Huang |first1=Nathan C. |last2=Skye |first2=Rachael S. |last3=Dshemuchadse |first3=Julia |title=Advancing the self-assembly of binary colloidal crystals of tetrahedra and octahedra with confinement |journal=Molecular Systems Design & Engineering |volume=11 |issue=1 |pages=62–69 |year=2026 |doi=10.1039/D5ME00092K |url=https://pubs.rsc.org/en/content/articlehtml/2026/me/d5me00092k}}</ref>
+
+== Applications and broader nesting problems ==
+
+Finite three-dimensional packing has applications in arranging manufactured parts in a build volume. Araújo and colleagues reviewed classifications relevant to additive manufacturing and introduced a dataset for irregular three-dimensional packing. Practical instances can involve arbitrary shapes, heterogeneous objects, orientation constraints, and manufacturing considerations beyond the congruent regular-polyhedron problem.<ref name="araujo">{{cite journal |last1=Araújo |first1=Luiz J. P. |last2=Özcan |first2=Ender |last3=Atkin |first3=Jason A. D. |last4=Baumers |first4=Martin |title=Analysis of irregular three-dimensional packing problems in additive manufacturing: a new taxonomy and dataset |journal=International Journal of Production Research |volume=57 |issue=18 |pages=5920–5934 |year=2019 |doi=10.1080/00207543.2018.1534016 |url=https://nottingham-repository.worktribe.com/output/1190642/analysis-of-irregular-three-dimensional-packing-problems-in-additive-manufacturing-a-new-taxonomy-and-dataset}}</ref>
+
+Ma and colleagues' hybrid optimization work allows objects and containers of arbitrary shapes with free rotations. This broader setting emphasizes that a regular-polyhedron catalogue is a well-defined special class within three-dimensional packing, rather than the entire subject.<ref name="ma">{{cite journal |last1=Ma |first1=Y. |last2=Chen |first2=Z. |last3=Hu |first3=W. |last4=Wang |first4=W. |title=Packing Irregular Objects in 3D Space via Hybrid Optimization |journal=Computer Graphics Forum |volume=37 |issue=5 |pages=49–59 |year=2018 |doi=10.1111/cgf.13490 |url=https://onlinelibrary.wiley.com/doi/10.1111/cgf.13490}}</ref>
+
+== See also ==
+
+* [[Packing problems]]
+* [[Tetrahedron packing]]
+* [[Sphere packing in a cube]]
+* [[Platonic solid]]
+* [[Convex polytope]]
+* [[Bin packing problem]]
+* [[Tetrahedral-octahedral honeycomb]]
+* [[Discrete geometry]]
+
+== References ==
+
+{{reflist}}
+
+== External links ==
+
+* [https://erich-friedman.github.io/packing/index.html Erich's Packing Center]
+
+<!-- Categories and a possible redirect from Polyhedral fits are editorial decisions for a later independent review. No new project records, repository promotion, or invented claim of accepted terminology is included here. -->
