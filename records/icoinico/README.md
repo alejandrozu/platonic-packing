@@ -34,12 +34,12 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 29 | [3.77348+](icoinico_n29.json) | 3.773486164608 |  | 3.07232 | 0.5397 | ![](icoinico_n29.png) |
 | 30 | [3.82255+](icoinico_n30.json) | 3.822555411805 |  | 3.10723 | 0.5371 | ![](icoinico_n30.png) |
 | 31 | [3.85695+](icoinico_n31.json) | 3.856958605136 |  | 3.14138 | 0.5403 | ![](icoinico_n31.png) |
-| 32 | [3.87928+](icoinico_n32.json) | 3.879286130171 |  | 3.17480 | 0.5481 | ![](icoinico_n32.png) |
+| 32 | [3.87928+](icoinico_n32.json) | 3.879286114900 |  | 3.17480 | 0.5481 | ![](icoinico_n32.png) |
 | 33 | [3.89699+](icoinico_n33.json) | 3.896992855636 |  | 3.20753 | 0.5576 | ![](icoinico_n33.png) |
 | 34 | [3.90016+](icoinico_n34.json) | 3.900159715990 |  | 3.23961 | 0.5731 | ![](icoinico_n34.png) |
-| 35 | [3.93652+](icoinico_n35.json) | 3.936521839036 |  | 3.27107 | 0.5738 | ![](icoinico_n35.png) |
+| 35 | [3.93629+](icoinico_n35.json) | 3.936298837132 |  | 3.27107 | 0.5739 | ![](icoinico_n35.png) |
 | 36 | [4.01231+](icoinico_n36.json) | 4.012313357577 |  | 3.30193 | 0.5573 | ![](icoinico_n36.png) |
 | 37 | [4.04727+](icoinico_n37.json) | 4.047273221450 |  | 3.33222 | 0.5581 | ![](icoinico_n37.png) |
 | 38 | [4.06030+](icoinico_n38.json) | 4.060299746291 |  | 3.36198 | 0.5677 | ![](icoinico_n38.png) |
-| 39 | [4.06976+](icoinico_n39.json) | 4.069768849270 |  | 3.39121 | 0.5786 | ![](icoinico_n39.png) |
+| 39 | [4.06965+](icoinico_n39.json) | 4.069654571491 |  | 3.39121 | 0.5786 | ![](icoinico_n39.png) |
 | 40 | [4.10751+](icoinico_n40.json) | 4.107510630284 |  | 3.41995 | 0.5772 | ![](icoinico_n40.png) |
