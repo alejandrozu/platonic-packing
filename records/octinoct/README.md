@@ -17,7 +17,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 12 | [2.66666+](octinoct_n12.json) | 2.666666666667 | 8/3 | 2.28943 | 0.6328 | ![](octinoct_n12.png) |
 | 13 | [2.84784+](octinoct_n13.json) | 2.847842950887 |  | 2.35133 | 0.5629 | ![](octinoct_n13.png) |
 | 14 | [2.94311+](octinoct_n14.json) | 2.943117400701 |  | 2.41014 | 0.5492 | ![](octinoct_n14.png) |
-| 15 | [2.98538+](octinoct_n15.json) | 2.985385284543 |  | 2.46621 | 0.5638 | ![](octinoct_n15.png) |
+| 15 | [2.98533+](octinoct_n15.json) | 2.985331360499 |  | 2.46621 | 0.5638 | ![](octinoct_n15.png) |
 | 16 | [2.99465+](octinoct_n16.json) | 2.994651162686 |  | 2.51984 | 0.5958 | ![](octinoct_n16.png) |
 | 17 | [3.00000+](octinoct_n17.json) | 3.000000000000 | 3 | 2.57128 | 0.6296 | ![](octinoct_n17.png) |
 | 18 | [3.00000+](octinoct_n18.json) | 3.000000000000 | 3 | 2.62074 | 0.6667 | ![](octinoct_n18.png) |
@@ -35,9 +35,9 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 30 | [3.60000+](octinoct_n30.json) | 3.600000000000 | 18/5 | 3.10723 | 0.6430 | ![](octinoct_n30.png) |
 | 31 | [3.66666+](octinoct_n31.json) | 3.666666666667 | 11/3 | 3.14138 | 0.6289 | ![](octinoct_n31.png) |
 | 32 | [3.69230+](octinoct_n32.json) | 3.692307692308 | 48/13 | 3.17480 | 0.6357 | ![](octinoct_n32.png) |
-| 33 | [3.76747+](octinoct_n33.json) | 3.767476556846 |  | 3.20753 | 0.6171 | ![](octinoct_n33.png) |
+| 33 | [3.73684+](octinoct_n33.json) | 3.736842105263 |  | 3.20753 | 0.6324 | ![](octinoct_n33.png) |
 | 34 | [3.78844+](octinoct_n34.json) | 3.788446562185 |  | 3.23961 | 0.6253 | ![](octinoct_n34.png) |
-| 35 | [3.80434+](octinoct_n35.json) | 3.804347826087 |  | 3.27107 | 0.6357 | ![](octinoct_n35.png) |
+| 35 | [3.80000+](octinoct_n35.json) | 3.800000000000 | 19/5 | 3.27107 | 0.6378 | ![](octinoct_n35.png) |
 | 36 | [3.85433+](octinoct_n36.json) | 3.854335571414 |  | 3.30193 | 0.6287 | ![](octinoct_n36.png) |
 | 37 | [3.88376+](octinoct_n37.json) | 3.883760242921 |  | 3.33222 | 0.6316 | ![](octinoct_n37.png) |
 | 38 | [3.91696+](octinoct_n38.json) | 3.916963233979 |  | 3.36198 | 0.6323 | ![](octinoct_n38.png) |
