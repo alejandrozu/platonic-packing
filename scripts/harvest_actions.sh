@@ -13,4 +13,5 @@ for ref in $(git for-each-ref --format='%(refname:short)' 'refs/remotes/origin/s
   k=$(python3 scripts/remote.py import /tmp/actions_export.txt actions | grep -o 'harvest from actions: [0-9]*' | grep -o '[0-9]*$')
   tot=$((tot + ${k:-0}))
 done
+[ "$new" -gt 0 ] && echo "{\"t\": $(date +%s), \"local\": \"$(date '+%Y-%m-%d %H:%M')\", \"jobs\": $new, \"attempts\": $att, \"merged\": $tot}" >> state/actions_log.jsonl
 echo "actions: $new new job results, $att attempts, $tot improvements merged"

@@ -27,7 +27,7 @@ kick=$(scripts/actions_kick.sh 2>&1 | tail -1)
 chk=$(python3 scripts/engine.py check 2>&1 | tail -1)
 python3 -c "import sys; sys.path.insert(0, 'scripts'); import publish; publish.progress()" 2>/dev/null
 exec 9> state/.gitlock; flock 9
-git add state/best state/attempts.jsonl state/policy.json state/snapshot_*.json state/experiment_*.json PROGRESS.md STATUS.md EXPERIMENT_LOG.md README.md docs scripts src test .gitignore 2>/dev/null
+git add state/best state/attempts.jsonl state/policy.json state/snapshot_*.json state/experiment_*.json state/actions_log.jsonl PROGRESS.md STATUS.md EXPERIMENT_LOG.md README.md docs scripts src test .gitignore 2>/dev/null
 git diff --cached --quiet || git commit -q -m "Checkpoint: search archive $(date '+%Y-%m-%d %H:%M') ($a attempts)
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
