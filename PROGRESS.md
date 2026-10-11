@@ -2,19 +2,19 @@
 
 Updated 2026-10-11 06:15 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
 
-* attempts: 47275 total, 30366 in the last 24 h, 1028 in the last hour
-* improvements: 3279 total, 1523 in the last 24 h
-* by move (attempts / improvements): ascend 6131/508, descend 4341/95, fresh 5726/84, harvest 202/202, hop 25457/1848, reinsert 5173/391, tighten 245/151
+* attempts: 47283 total, 30368 in the last 24 h, 1024 in the last hour
+* improvements: 3281 total, 1524 in the last 24 h
+* by move (attempts / improvements): ascend 6132/508, descend 4341/95, fresh 5726/84, harvest 204/204, hop 25462/1848, reinsert 5173/391, tighten 245/151
 
 | problem | n with a packing | attempts | CPU hours | improvements (24 h) | last improvement |
 |---|---|---|---|---|---|
 | Tetrahedra in a tetrahedron (tetintet) | 39/39 | 7101 | 8.0 | 208 | 10-11 06:07 |
-| Octahedra in an octahedron (octinoct) | 39/39 | 5039 | 6.2 | 71 | 10-11 06:07 |
-| Icosahedra in an icosahedron (icoinico) | 39/39 | 3117 | 9.9 | 158 | 10-11 06:07 |
-| Dodecahedra in a dodecahedron (dodindod) | 39/39 | 2970 | 10.0 | 141 | 10-11 06:14 |
-| Cubes in a cube (cubincub) | 39/39 | 6172 | 6.1 | 70 | 10-11 06:07 |
-| Cubes in an octahedron (cubinoct) | 39/39 | 7138 | 8.3 | 246 | 10-11 06:07 |
-| Octahedra in a cube (octincub) | 39/39 | 8976 | 9.3 | 198 | 10-11 06:07 |
+| Octahedra in an octahedron (octinoct) | 39/39 | 5041 | 6.2 | 71 | 10-11 06:07 |
+| Icosahedra in an icosahedron (icoinico) | 39/39 | 3118 | 9.9 | 158 | 10-11 06:07 |
+| Dodecahedra in a dodecahedron (dodindod) | 39/39 | 2970 | 10.0 | 143 | 10-11 06:15 |
+| Cubes in a cube (cubincub) | 39/39 | 6173 | 6.1 | 70 | 10-11 06:07 |
+| Cubes in an octahedron (cubinoct) | 39/39 | 7138 | 8.3 | 245 | 10-11 06:07 |
+| Octahedra in a cube (octincub) | 39/39 | 8978 | 9.4 | 198 | 10-11 06:07 |
 | Dodecahedra in an icosahedron (dodinico) | 39/39 | 2829 | 10.8 | 208 | 10-11 06:07 |
 | Icosahedra in a dodecahedron (icoindod) | 39/39 | 3731 | 10.9 | 223 | 10-11 06:07 |
 
