@@ -1,20 +1,20 @@
 # Search progress
 
-Updated 2026-10-11 11:13 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
+Updated 2026-10-11 11:14 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
 
-* attempts: 53461 total, 29493 in the last 24 h, 1289 in the last hour
+* attempts: 53475 total, 29484 in the last 24 h, 1296 in the last hour
 * improvements: 3702 total, 1634 in the last 24 h
-* by move (attempts / improvements): ascend 6826/510, descend 4930/98, fresh 6126/84, harvest 450/450, hop 28976/2011, reinsert 5904/398, tighten 249/151
+* by move (attempts / improvements): ascend 6827/510, descend 4931/98, fresh 6127/84, harvest 450/450, hop 28984/2011, reinsert 5907/398, tighten 249/151
 
 | problem | n with a packing | attempts | CPU hours | improvements (24 h) | last improvement |
 |---|---|---|---|---|---|
-| Tetrahedra in a tetrahedron (tetintet) | 39/39 | 7711 | 8.6 | 201 | 10-11 11:12 |
-| Octahedra in an octahedron (octinoct) | 39/39 | 5576 | 6.9 | 73 | 10-11 11:13 |
-| Icosahedra in an icosahedron (icoinico) | 39/39 | 3431 | 11.1 | 168 | 10-11 11:06 |
+| Tetrahedra in a tetrahedron (tetintet) | 39/39 | 7713 | 8.6 | 201 | 10-11 11:12 |
+| Octahedra in an octahedron (octinoct) | 39/39 | 5580 | 6.9 | 73 | 10-11 11:13 |
+| Icosahedra in an icosahedron (icoinico) | 39/39 | 3432 | 11.1 | 168 | 10-11 11:06 |
 | Dodecahedra in a dodecahedron (dodindod) | 39/39 | 3255 | 11.0 | 130 | 10-11 11:06 |
-| Cubes in a cube (cubincub) | 39/39 | 6955 | 6.7 | 65 | 10-11 11:10 |
-| Cubes in an octahedron (cubinoct) | 39/39 | 8089 | 9.9 | 321 | 10-11 11:13 |
-| Octahedra in a cube (octincub) | 39/39 | 10654 | 10.9 | 186 | 10-11 11:06 |
+| Cubes in a cube (cubincub) | 39/39 | 6957 | 6.7 | 65 | 10-11 11:10 |
+| Cubes in an octahedron (cubinoct) | 39/39 | 8091 | 9.9 | 321 | 10-11 11:13 |
+| Octahedra in a cube (octincub) | 39/39 | 10657 | 10.9 | 186 | 10-11 11:06 |
 | Dodecahedra in an icosahedron (dodinico) | 39/39 | 3248 | 12.4 | 256 | 10-11 11:06 |
 | Icosahedra in a dodecahedron (icoindod) | 39/39 | 4092 | 11.9 | 234 | 10-11 11:06 |
 

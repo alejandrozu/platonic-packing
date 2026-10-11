@@ -35,12 +35,12 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 30 | [2.88658+](octincub_n30.json) | 2.886589169442 |  | 2.89186 (R. Walsh, June 2026 (Friedman's Packing Center)) | **better** -0.182% | 2.41827 | 0.5880 | ![](octincub_n30.png) |
 | 31 | [2.93422+](octincub_n31.json) | 2.934222950959 |  | | | 2.44485 | 0.5785 | ![](octincub_n31.png) |
 | 32 | [2.99146+](octincub_n32.json) | 2.991466949129 |  | | | 2.47086 | 0.5635 | ![](octincub_n32.png) |
-| 33 | [3.04326+](octincub_n33.json) | 3.043261242212 |  | | | 2.49633 | 0.5519 | ![](octincub_n33.png) |
+| 33 | [3.04025+](octincub_n33.json) | 3.040253060081 |  | | | 2.49633 | 0.5536 | ![](octincub_n33.png) |
 | 34 | [3.08053+](octincub_n34.json) | 3.080532238259 |  | | | 2.52130 | 0.5483 | ![](octincub_n34.png) |
 | 35 | [3.08910+](octincub_n35.json) | 3.089102927030 |  | | | 2.54578 | 0.5597 | ![](octincub_n35.png) |
 | 36 | [3.11859+](octincub_n36.json) | 3.118591874675 |  | | | 2.56980 | 0.5595 | ![](octincub_n36.png) |
 | 37 | [3.15314+](octincub_n37.json) | 3.153140031166 |  | | | 2.59337 | 0.5564 | ![](octincub_n37.png) |
-| 38 | [3.18266+](octincub_n38.json) | 3.182665445511 |  | | | 2.61653 | 0.5557 | ![](octincub_n38.png) |
+| 38 | [3.18242+](octincub_n38.json) | 3.182428309033 |  | | | 2.61653 | 0.5558 | ![](octincub_n38.png) |
 | 39 | [3.23286+](octincub_n39.json) | 3.232860252612 |  | | | 2.63928 | 0.5441 | ![](octincub_n39.png) |
 | 40 | [3.24518+](octincub_n40.json) | 3.245183347064 |  | | | 2.66165 | 0.5517 | ![](octincub_n40.png) |
 
