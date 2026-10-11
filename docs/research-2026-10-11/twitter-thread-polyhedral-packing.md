@@ -1,8 +1,8 @@
 # Twitter thread: polyhedra inside polyhedra
 
-**LOCAL DRAFT — NOT POSTED.** Condensed to five posts on 12 October 2026. Posts 1 and 2 retain the approved wording; only their numbering changes from /10 to /5. The rest is condensed into three posts, each below 2,000 literal characters including full URLs as well as below 2,000 X-weighted characters.
+**PUBLISHED — 12 October 2026.** [Live thread](https://x.com/AlejandroZarUrd/status/2109430713577865667). [Publication receipt](twitter-publication/receipt.md). Condensed to five posts on 12 October 2026. Posts 1 and 2 retain the approved wording; only their numbering changes from /10 to /5. The rest is condensed into three posts, each below 2,000 literal characters including full URLs as well as below 2,000 X-weighted characters.
 
-Publish as one reply chain: 1 is the root; 2 replies to 1; 3 replies to 2; 4 replies to 3; 5 replies to 4. Posts 1–2 fit the ordinary 280-character limit. Posts 3–5 use the user's Premium long-post capability.
+Published as one reply chain: 1 is the root; 2 replies to 1; 3 replies to 2; 4 replies to 3; 5 replies to 4. Posts 1–2 fit the ordinary 280-character limit. Posts 3–5 use the user's Premium long-post capability.
 
 ## Approved pictures and placement
 
@@ -14,7 +14,7 @@ Publish as one reply chain: 1 is the root; 2 replies to 1; 3 replies to 2; 4 rep
 
 The three approved pictures are unchanged. [Alt text](twitter-assets/alt-text.md) and [scientific image checks](twitter-assets/qa-report.md) are included. [Mention evidence](research/twitter-mention-evidence-2026-10-12.md) substantiates the selected handles and their roles.
 
-## Copy-ready posts
+## Submitted posts
 
 ### Post 1 — 257 literal / 225 X-weighted characters
 

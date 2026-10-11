@@ -1,6 +1,6 @@
 # Completed Zenodo publication — 12 October 2026
 
-All three approved records are **published, public, and independently verified**. No HAL, journal, Twitter, or Wikipedia submission was made in this release.
+All three approved records are **published, public, and independently verified**. The approved [X thread](https://x.com/AlejandroZarUrd/status/2109430713577865667) was subsequently published on 12 October 2026. No HAL, journal or Wikipedia submission was made.
 
 | Record | Version DOI | All-versions DOI | License |
 |---|---|---|---|
@@ -16,4 +16,4 @@ The dataset ZIP is 36,432,835 bytes, with SHA-256 `f567826993d61f4ba561c1bb9d506
 
 [Verification details](publication-verification.json) record the actual URLs, HTTP results, public metadata and downloaded-file hashes. The metadata files now include the issued DOI information and must not be used to create duplicate records. The original pre-release [package audit](package-audit.json) remains as the dated preparation check.
 
-The local [Twitter thread](../twitter-thread-polyhedral-packing.md) contains five connected posts with these DOI links. The first two preserve the approved wording apart from numbering; the other three are each below 2,000 characters including full URLs. The three approved pictures are attached to posts 1, 4 and 5. It has not been posted. The Wikipedia article remains saved for the later step.
+The published [Twitter thread](../twitter-thread-polyhedral-packing.md) contains five connected posts with these DOI links. The first two preserve the approved wording apart from numbering; the other three are each below 2,000 characters including full URLs. The three approved pictures are attached to posts 1, 4 and 5. [Live thread](https://x.com/AlejandroZarUrd/status/2109430713577865667) and [publication receipts](../twitter-publication/receipt.md) confirm publication and verification. The Wikipedia article remains saved for the later step.
