@@ -35,11 +35,11 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 30 | [3.74709+](dodindod_n30.json) | 3.747090740000 | (55 + 24√5)/29 | 3.10723 | 0.5702 | ![](dodindod_n30.png) |
 | 31 | [3.74709+](dodindod_n31.json) | 3.747090740000 | (55 + 24√5)/29 | 3.14138 | 0.5892 | ![](dodindod_n31.png) |
 | 32 | [3.76855+](dodindod_n32.json) | 3.768559214198 |  | 3.17480 | 0.5979 | ![](dodindod_n32.png) |
-| 33 | [3.78381+](dodindod_n33.json) | 3.783813182639 |  | 3.20753 | 0.6092 | ![](dodindod_n33.png) |
-| 34 | [3.91152+](dodindod_n34.json) | 3.911527539191 |  | 3.23961 | 0.5681 | ![](dodindod_n34.png) |
-| 35 | [3.99098+](dodindod_n35.json) | 3.990982194880 |  | 3.27107 | 0.5506 | ![](dodindod_n35.png) |
+| 33 | [3.76966+](dodindod_n33.json) | 3.769663178088 |  | 3.20753 | 0.6160 | ![](dodindod_n33.png) |
+| 34 | [3.91152+](dodindod_n34.json) | 3.911520561677 |  | 3.23961 | 0.5681 | ![](dodindod_n34.png) |
+| 35 | [3.98949+](dodindod_n35.json) | 3.989490246177 |  | 3.27107 | 0.5512 | ![](dodindod_n35.png) |
 | 36 | [4.04004+](dodindod_n36.json) | 4.040047118310 |  | 3.30193 | 0.5459 | ![](dodindod_n36.png) |
-| 37 | [4.08612+](dodindod_n37.json) | 4.086121315757 |  | 3.33222 | 0.5423 | ![](dodindod_n37.png) |
+| 37 | [4.08115+](dodindod_n37.json) | 4.081158352964 |  | 3.33222 | 0.5443 | ![](dodindod_n37.png) |
 | 38 | [4.12119+](dodindod_n38.json) | 4.121194679300 |  | 3.36198 | 0.5429 | ![](dodindod_n38.png) |
 | 39 | [4.14221+](dodindod_n39.json) | 4.142219102800 |  | 3.39121 | 0.5487 | ![](dodindod_n39.png) |
-| 40 | [4.18633+](dodindod_n40.json) | 4.186336932722 |  | 3.41995 | 0.5452 | ![](dodindod_n40.png) |
+| 40 | [4.18448+](dodindod_n40.json) | 4.184481387104 |  | 3.41995 | 0.5459 | ![](dodindod_n40.png) |
