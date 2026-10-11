@@ -18,7 +18,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 13 | [2.33944+](octincub_n13.json) | 2.339442888887 |  | 2.33667 (H. Lin, July 2026 (Hyra-results; Friedman's Packing Center)) | behind +0.119% | 1.82998 | 0.4786 | ![](octincub_n13.png) |
 | 14 | [2.36547+](octincub_n14.json) | 2.365475173620 |  | 2.35702 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +0.359% | 1.87575 | 0.4986 | ![](octincub_n14.png) |
 | 15 | [2.43388+](octincub_n15.json) | 2.433883950057 |  | 2.41976 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +0.584% | 1.91938 | 0.4904 | ![](octincub_n15.png) |
-| 16 | [2.47414+](octincub_n16.json) | 2.474142235620 |  | 2.46211 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +0.489% | 1.96112 | 0.4980 | ![](octincub_n16.png) |
+| 16 | [2.46125+](octincub_n16.json) | 2.461255089447 |  | 2.46211 (R. Walsh, June 2026 (Friedman's Packing Center)) | **better** -0.035% | 1.96112 | 0.5059 | ![](octincub_n16.png) |
 | 17 | [2.50659+](octincub_n17.json) | 2.506598266404 |  | 2.47487 (H. Lin, July 2026 (Hyra-results; Friedman's Packing Center)) | behind +1.282% | 2.00116 | 0.5088 | ![](octincub_n17.png) |
 | 18 | [2.52114+](octincub_n18.json) | 2.521143891498 |  | 2.48257 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +1.554% | 2.03965 | 0.5295 | ![](octincub_n18.png) |
 | 19 | [2.55868+](octincub_n19.json) | 2.558687100141 |  | 2.52683 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +1.261% | 2.07674 | 0.5347 | ![](octincub_n19.png) |
@@ -44,5 +44,5 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 39 | [3.23286+](octincub_n39.json) | 3.232860252612 |  | | | 2.63928 | 0.5441 | ![](octincub_n39.png) |
 | 40 | [3.24518+](octincub_n40.json) | 3.245183347064 |  | | | 2.66165 | 0.5517 | ![](octincub_n40.png) |
 
-**Octahedra in a cube vs published values** (n = 2–30): better at 20, 21, 22, 24, 28, 29, 30; equal at 2, 3, 4, 5, 6, 7, 8, 9, 10, 26, 27; behind at 11 (+1.61%), 12 (+1.40%), 13 (+0.12%), 14 (+0.36%), 15 (+0.58%), 16 (+0.49%), 17 (+1.28%), 18 (+1.55%), 19 (+1.26%), 23 (+0.28%), 25 (+0.13%).
+**Octahedra in a cube vs published values** (n = 2–30): better at 16, 20, 21, 22, 24, 28, 29, 30; equal at 2, 3, 4, 5, 6, 7, 8, 9, 10, 26, 27; behind at 11 (+1.61%), 12 (+1.40%), 13 (+0.12%), 14 (+0.36%), 15 (+0.58%), 17 (+1.28%), 18 (+1.55%), 19 (+1.26%), 23 (+0.28%), 25 (+0.13%).
 
