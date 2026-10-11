@@ -42,4 +42,4 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 37 | [3.88376+](octinoct_n37.json) | 3.883760242921 |  | 3.33222 | 0.6316 | ![](octinoct_n37.png) |
 | 38 | [3.91696+](octinoct_n38.json) | 3.916963233979 |  | 3.36198 | 0.6323 | ![](octinoct_n38.png) |
 | 39 | [3.93182+](octinoct_n39.json) | 3.931821484531 |  | 3.39121 | 0.6416 | ![](octinoct_n39.png) |
-| 40 | [3.95554+](octinoct_n40.json) | 3.955547136544 |  | 3.41995 | 0.6463 | ![](octinoct_n40.png) |
+| 40 | [3.95554+](octinoct_n40.json) | 3.955547136533 |  | 3.41995 | 0.6463 | ![](octinoct_n40.png) |

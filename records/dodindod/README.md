@@ -27,7 +27,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 22 | [3.44428+](dodindod_n22.json) | 3.444286634785 |  | 2.80204 | 0.5384 | ![](dodindod_n22.png) |
 | 23 | [3.55488+](dodindod_n23.json) | 3.554882432817 |  | 2.84387 | 0.5120 | ![](dodindod_n23.png) |
 | 24 | [3.57860+](dodindod_n24.json) | 3.578599942831 |  | 2.88450 | 0.5237 | ![](dodindod_n24.png) |
-| 25 | [3.60244+](dodindod_n25.json) | 3.602439971381 |  | 2.92402 | 0.5347 | ![](dodindod_n25.png) |
+| 25 | [3.60237+](dodindod_n25.json) | 3.602375616426 |  | 2.92402 | 0.5348 | ![](dodindod_n25.png) |
 | 26 | [3.63718+](dodindod_n26.json) | 3.637181141214 |  | 2.96250 | 0.5404 | ![](dodindod_n26.png) |
 | 27 | [3.70130+](dodindod_n27.json) | 3.701301616719 |  | 3.00000 | 0.5325 | ![](dodindod_n27.png) |
 | 28 | [3.73369+](dodindod_n28.json) | 3.733694741730 |  | 3.03659 | 0.5379 | ![](dodindod_n28.png) |
@@ -37,9 +37,9 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 32 | [3.74709+](dodindod_n32.json) | 3.747090740000 | (55 + 24√5)/29 | 3.17480 | 0.6082 | ![](dodindod_n32.png) |
 | 33 | [3.74709+](dodindod_n33.json) | 3.747090740000 | (55 + 24√5)/29 | 3.20753 | 0.6272 | ![](dodindod_n33.png) |
 | 34 | [3.91148+](dodindod_n34.json) | 3.911488202894 |  | 3.23961 | 0.5681 | ![](dodindod_n34.png) |
-| 35 | [3.98597+](dodindod_n35.json) | 3.985970397853 |  | 3.27107 | 0.5527 | ![](dodindod_n35.png) |
+| 35 | [3.98595+](dodindod_n35.json) | 3.985952316033 |  | 3.27107 | 0.5527 | ![](dodindod_n35.png) |
 | 36 | [4.04004+](dodindod_n36.json) | 4.040047118310 |  | 3.30193 | 0.5459 | ![](dodindod_n36.png) |
 | 37 | [4.07872+](dodindod_n37.json) | 4.078724980810 |  | 3.33222 | 0.5453 | ![](dodindod_n37.png) |
 | 38 | [4.12050+](dodindod_n38.json) | 4.120500635173 |  | 3.36198 | 0.5432 | ![](dodindod_n38.png) |
-| 39 | [4.14221+](dodindod_n39.json) | 4.142217133829 |  | 3.39121 | 0.5487 | ![](dodindod_n39.png) |
-| 40 | [4.17903+](dodindod_n40.json) | 4.179031558815 |  | 3.41995 | 0.5481 | ![](dodindod_n40.png) |
+| 39 | [4.14221+](dodindod_n39.json) | 4.142216273526 |  | 3.39121 | 0.5487 | ![](dodindod_n39.png) |
+| 40 | [4.17903+](dodindod_n40.json) | 4.179031506318 |  | 3.41995 | 0.5481 | ![](dodindod_n40.png) |
