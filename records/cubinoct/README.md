@@ -12,7 +12,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 7 | [3.29102+](cubinoct_n07.json) | 3.291024682315 |  | 2.45792 | 0.4166 | ![](cubinoct_n07.png) |
 | 8 | [3.41421+](cubinoct_n08.json) | 3.414213562373 | 2 + √2 | 2.56980 | 0.4264 | ![](cubinoct_n08.png) |
 | 9 | [3.61760+](cubinoct_n09.json) | 3.617604106285 |  | 2.67270 | 0.4033 | ![](cubinoct_n09.png) |
-| 10 | [3.69182+](cubinoct_n10.json) | 3.691826376143 |  | 2.76823 | 0.4216 | ![](cubinoct_n10.png) |
+| 10 | [3.69181+](cubinoct_n10.json) | 3.691811969946 |  | 2.76823 | 0.4216 | ![](cubinoct_n10.png) |
 | 11 | [3.70710+](cubinoct_n11.json) | 3.707106781187 | (6 + √2)/2 | 2.85759 | 0.4580 | ![](cubinoct_n11.png) |
 | 12 | [3.70710+](cubinoct_n12.json) | 3.707106781187 | (6 + √2)/2 | 2.94168 | 0.4997 | ![](cubinoct_n12.png) |
 | 13 | [3.79737+](cubinoct_n13.json) | 3.797373821506 |  | 3.02123 | 0.5036 | ![](cubinoct_n13.png) |
@@ -25,21 +25,21 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 20 | [4.32269+](cubinoct_n20.json) | 4.322696356085 |  | 3.48775 | 0.5253 | ![](cubinoct_n20.png) |
 | 21 | [4.50317+](cubinoct_n21.json) | 4.503177568780 |  | 3.54494 | 0.4878 | ![](cubinoct_n21.png) |
 | 22 | [4.61841+](cubinoct_n22.json) | 4.618409814911 |  | 3.60034 | 0.4738 | ![](cubinoct_n22.png) |
-| 23 | [4.65983+](cubinoct_n23.json) | 4.659838161722 |  | 3.65408 | 0.4822 | ![](cubinoct_n23.png) |
+| 23 | [4.65032+](cubinoct_n23.json) | 4.650322764876 |  | 3.65408 | 0.4852 | ![](cubinoct_n23.png) |
 | 24 | [4.70710+](cubinoct_n24.json) | 4.707106781199 |  | 3.70629 | 0.4882 | ![](cubinoct_n24.png) |
-| 25 | [4.74161+](cubinoct_n25.json) | 4.741617671168 |  | 3.75707 | 0.4975 | ![](cubinoct_n25.png) |
+| 25 | [4.73556+](cubinoct_n25.json) | 4.735567589353 |  | 3.75707 | 0.4994 | ![](cubinoct_n25.png) |
 | 26 | [4.75455+](cubinoct_n26.json) | 4.754551039166 |  | 3.80651 | 0.5132 | ![](cubinoct_n26.png) |
 | 27 | [4.81053+](cubinoct_n27.json) | 4.810536448819 |  | 3.85469 | 0.5145 | ![](cubinoct_n27.png) |
 | 28 | [4.84419+](cubinoct_n28.json) | 4.844192997311 |  | 3.90171 | 0.5225 | ![](cubinoct_n28.png) |
 | 29 | [4.89249+](cubinoct_n29.json) | 4.892491134759 |  | 3.94761 | 0.5253 | ![](cubinoct_n29.png) |
-| 30 | [4.94153+](cubinoct_n30.json) | 4.941539234755 |  | 3.99248 | 0.5274 | ![](cubinoct_n30.png) |
+| 30 | [4.92138+](cubinoct_n30.json) | 4.921380506252 |  | 3.99248 | 0.5339 | ![](cubinoct_n30.png) |
 | 31 | [4.96097+](cubinoct_n31.json) | 4.960973667915 |  | 4.03635 | 0.5386 | ![](cubinoct_n31.png) |
 | 32 | [5.01487+](cubinoct_n32.json) | 5.014870028503 |  | 4.07930 | 0.5382 | ![](cubinoct_n32.png) |
 | 33 | [5.05290+](cubinoct_n33.json) | 5.052903972786 |  | 4.12136 | 0.5426 | ![](cubinoct_n33.png) |
 | 34 | [5.06884+](cubinoct_n34.json) | 5.068843484272 |  | 4.16257 | 0.5538 | ![](cubinoct_n34.png) |
 | 35 | [5.07516+](cubinoct_n35.json) | 5.075165648988 |  | 4.20299 | 0.5680 | ![](cubinoct_n35.png) |
-| 36 | [5.10736+](cubinoct_n36.json) | 5.107363920292 |  | 4.24264 | 0.5732 | ![](cubinoct_n36.png) |
+| 36 | [5.10716+](cubinoct_n36.json) | 5.107163852379 |  | 4.24264 | 0.5733 | ![](cubinoct_n36.png) |
 | 37 | [5.12831+](cubinoct_n37.json) | 5.128315892525 |  | 4.28157 | 0.5819 | ![](cubinoct_n37.png) |
 | 38 | [5.14768+](cubinoct_n38.json) | 5.147679625765 |  | 4.31980 | 0.5910 | ![](cubinoct_n38.png) |
-| 39 | [5.17376+](cubinoct_n39.json) | 5.173760387219 |  | 4.35736 | 0.5974 | ![](cubinoct_n39.png) |
+| 39 | [5.17048+](cubinoct_n39.json) | 5.170484949881 |  | 4.35736 | 0.5985 | ![](cubinoct_n39.png) |
 | 40 | [5.20910+](cubinoct_n40.json) | 5.209102726886 |  | 4.39429 | 0.6003 | ![](cubinoct_n40.png) |
