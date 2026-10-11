@@ -148,3 +148,16 @@ one record per solution.
   minutes, results force-pushed to search-results-<job> and merged by scripts/harvest_actions.sh in the cycle.
   First run dispatched 03:22.
 - Baseline for the 14-hour run (until ~17:20): state/snapshot_2026-10-11_0322.json (every case's s, 44,128 attempts).
+
+## 11 Oct, 17:20 — Analysis of the 14-hour run (`docs/analysis-2026-10-11.md`)
+
+- 03:23–17:20: 75,757 attempts (cloud 15,931, laptop 13,291, 14 Actions runs 46,535), 1,097 improvement steps,
+  157 of 351 cases smaller. Cubes in a cube n = 32 reached 3 + 1/√2 (published value); octahedra in a cube 16 and 25
+  moved ahead of the published values (9 better, 11 equal, 9 behind); cubes in a cube: 1 better, 29 equal, 2 behind
+  (13 and 33).
+- Improvement steps per hour 110 → 57, median step size 0.0038% → 0.0006%. Shrink per attempt is the same for all
+  three compute sources.
+- Per CPU-hour (cloud workers): hops 21 improvements / 31e-4 log-shrink, ascend 3.0 / 89e-4, descend 7.5 / 41e-4,
+  reinsert 5.8 / 14e-4, fresh 0 / 0.
+- Policy changed at 17:20: fresh 6% → 0, reinsert 12% → 4%, hops 62% → 76%; focus share 25% on the 11 cases still
+  behind published values plus octincub 25.
