@@ -56,7 +56,13 @@ for l in open('state/attempts.jsonl'):
 print(' '.join(out[-12:]))
 PY
 )
-if pgrep -f "^python3 scripts/publish.py" > /dev/null; then pub="publishing"; else pub="idle"; fi
+if pgrep -f "^python3 scripts/publish.py" > /dev/null; then pub="publishing"; else pub="idle"
+  # hourly records + viewer refresh (Alejandro, 11 Oct): start a publish when the last one ended > 50 min ago
+  if [ $(( $(date +%s) - $(stat -c %Y logs/publish.log 2>/dev/null || echo 0) )) -gt 3000 ]; then
+    nohup nice -n 10 python3 scripts/publish.py >> logs/publish.out 2>&1 < /dev/null &
+    pub="idle -> hourly publish started"
+  fi
+fi
 rec=$(ls records/*/*_n[0-9][0-9].json 2>/dev/null | wc -l)
 lastpub=$(grep "publish:" logs/publish.log | tail -1 | cut -c1-60)
 tb=$(tail -n 30 logs/publish.out 2>/dev/null | grep -c Traceback)

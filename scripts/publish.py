@@ -283,6 +283,11 @@ def git_push(log):
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith('--')]
     only = set(args) or set(PID)
+    import fcntl
+    lockf = open(os.path.join(STATE, '.publock'), 'w')          # one publish at a time (hourly + the 90-minute loop)
+    try: fcntl.flock(lockf, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError:
+        print('another publish is running; skipped'); return
     logf = open(os.path.join(ROOT, 'logs', 'publish.log'), 'a')
     def log(m): logf.write(time.strftime('%m-%d %H:%M:%S ') + m + '\n'); logf.flush(); print(m, flush=True)
     t0 = time.time()
