@@ -16,7 +16,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 11 | [2.88171+](cubincub_n11.json) | 2.881711124829 |  | 2.88295 (H. Lin, July 2026 (Hyra-results; Friedman's Packing Center)) | **better** -0.043% | 2.22398 | 0.4597 | ![](cubincub_n11.png) |
 | 12 | [2.93151+](cubincub_n12.json) | 2.931514577965 |  | 2.93152 (Y. Nakajima, Oct 2026 (soft-to-rigid-packing); Friedman's page lists 2.93277 (H. Lin, July 2026)) | equal | 2.28943 | 0.4763 | ![](cubincub_n12.png) |
 | 13 | [2.97661+](cubincub_n13.json) | 2.976619590102 |  | 2.95600 (E. Friedman, 1998 (Friedman's Packing Center), listed as 2.956+) | behind +0.698% | 2.35133 | 0.4929 | ![](cubincub_n13.png) |
-| 14 | [2.99538+](cubincub_n14.json) | 2.995389250386 |  | 2.98995 (E. Friedman, 1998 (Friedman's Packing Center), s = 2 + 7√2/10) | behind +0.182% | 2.41014 | 0.5209 | ![](cubincub_n14.png) |
+| 14 | [2.98994+](cubincub_n14.json) | 2.989949493661 |  | 2.98995 (E. Friedman, 1998 (Friedman's Packing Center), s = 2 + 7√2/10) | equal | 2.41014 | 0.5238 | ![](cubincub_n14.png) |
 | 15 | [3.00000+](cubincub_n15.json) | 3.000000000000 | 3 | 3.00000 (trivial (3×3×3 grid), Friedman's Packing Center) | equal | 2.46621 | 0.5556 | ![](cubincub_n15.png) |
 | 16 | [3.00000+](cubincub_n16.json) | 3.000000000000 | 3 | 3.00000 (trivial (3×3×3 grid), Friedman's Packing Center) | equal | 2.51984 | 0.5926 | ![](cubincub_n16.png) |
 | 17 | [3.00000+](cubincub_n17.json) | 3.000000000000 | 3 | 3.00000 (trivial (3×3×3 grid), Friedman's Packing Center) | equal | 2.57128 | 0.6296 | ![](cubincub_n17.png) |
@@ -33,9 +33,9 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 28 | [3.70710+](cubincub_n28.json) | 3.707106781189 | (6 + √2)/2 | 3.70711 (E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2) | equal | 3.03659 | 0.5496 | ![](cubincub_n28.png) |
 | 29 | [3.70710+](cubincub_n29.json) | 3.707106781216 |  | 3.70711 (E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2) | equal | 3.07232 | 0.5692 | ![](cubincub_n29.png) |
 | 30 | [3.70710+](cubincub_n30.json) | 3.707106781482 |  | 3.70711 (E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2) | equal | 3.10723 | 0.5889 | ![](cubincub_n30.png) |
-| 31 | [3.70710+](cubincub_n31.json) | 3.707106781994 |  | 3.70711 (E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2) | equal | 3.14138 | 0.6085 | ![](cubincub_n31.png) |
-| 32 | [3.82287+](cubincub_n32.json) | 3.822875655545 |  | 3.70711 (E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2) | behind +3.123% | 3.17480 | 0.5728 | ![](cubincub_n32.png) |
-| 33 | [3.82288+](cubincub_n33.json) | 3.822881486642 |  | 3.70711 (E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2) | behind +3.123% | 3.20753 | 0.5907 | ![](cubincub_n33.png) |
+| 31 | [3.70710+](cubincub_n31.json) | 3.707106781764 |  | 3.70711 (E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2) | equal | 3.14138 | 0.6085 | ![](cubincub_n31.png) |
+| 32 | [3.76776+](cubincub_n32.json) | 3.767766952982 |  | 3.70711 (E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2) | behind +1.636% | 3.17480 | 0.5983 | ![](cubincub_n32.png) |
+| 33 | [3.82288+](cubincub_n33.json) | 3.822881486628 |  | 3.70711 (E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2) | behind +3.123% | 3.20753 | 0.5907 | ![](cubincub_n33.png) |
 | 34 | [3.89442+](cubincub_n34.json) | 3.894427191012 |  | | | 3.23961 | 0.5756 | ![](cubincub_n34.png) |
 | 35 | [3.89442+](cubincub_n35.json) | 3.894427191274 |  | | | 3.27107 | 0.5926 | ![](cubincub_n35.png) |
 | 36 | [3.91548+](cubincub_n36.json) | 3.915480410172 |  | | | 3.30193 | 0.5997 | ![](cubincub_n36.png) |
@@ -44,5 +44,5 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 39 | [4.00000+](cubincub_n39.json) | 4.000000000000 | 4 | | | 3.39121 | 0.6094 | ![](cubincub_n39.png) |
 | 40 | [4.00000+](cubincub_n40.json) | 4.000000000000 | 4 | | | 3.41995 | 0.6250 | ![](cubincub_n40.png) |
 
-**Cubes in a cube vs published values** (n = 2–33): better at 11; equal at 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31; behind at 13 (+0.70%), 14 (+0.18%), 32 (+3.12%), 33 (+3.12%).
+**Cubes in a cube vs published values** (n = 2–33): better at 11; equal at 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31; behind at 13 (+0.70%), 32 (+1.64%), 33 (+3.12%).
 
