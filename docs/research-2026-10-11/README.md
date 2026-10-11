@@ -1,52 +1,59 @@
-# Polyhedral packing manuscript and encyclopedia review packet
+# Polyhedra in polyhedra packing: manuscripts, analysis, and reference article
 
-Prepared **11 October 2026** for Alejandro Zarzuelo Urdiales. Scientific inputs are frozen at [`e15b496ae7306287e0e70bb5b14be79f5dfdde84`](https://github.com/alejandrozu/platonic-packing/tree/e15b496ae7306287e0e70bb5b14be79f5dfdde84). This package is for author review. No journal, preprint server, Wikipedia, Commons, or new website submission has been made.
+Prepared **11 October 2026** by Alejandro Zarzuelo Urdiales. Scientific inputs are frozen at [`e15b496ae7306287e0e70bb5b14be79f5dfdde84`](https://github.com/alejandrozu/platonic-packing/tree/e15b496ae7306287e0e70bb5b14be79f5dfdde84). Everything in this packet is saved locally and in the project repository. No journal, preprint server, Wikipedia, Commons, or new website submission has been made.
 
-## Read the two papers
+## Papers
 
-| Paper | Purpose | Formats |
+| Paper | Contents | Formats |
 |---|---|---|
-| **Certified finite packings of Platonic solids** | Scientific reconstruction of the construction and its development: Nakajima's starting point, generalized homotopy, geometry, tightening, jiggling, archive search, certification, experiments, failures, and results | [PDF](paper-1-methods.pdf), [Markdown](paper-1-methods.md), [LaTeX](paper-1-methods.tex) |
-| **Finite polyhedral fits** | Dense cross-family analysis: jumps, plateaus, scale and volume increments, symmetry-correct orientations, contact graphs, operational grains, construction classes, and evidence for future proof targets | [PDF](paper-2-patterns.pdf), [Markdown](paper-2-patterns.md), [LaTeX](paper-2-patterns.tex) |
+| **Certified finite packings of Platonic solids** | Construction and development: Nakajima's starting point, generalized homotopy, geometric distances, tightening, jiggling, archive search, exact certification, experiments, failures, and results | [PDF](paper-1-methods.pdf), [Markdown](paper-1-methods.md), [LaTeX](paper-1-methods.tex) |
+| **Finite polyhedral fits** | Cross-family analysis of jumps, plateaus, volume-normalized scales, symmetry-reduced orientations, contacts, operational grains, and **20 testable hypotheses** | [PDF](paper-2-patterns.pdf), [Markdown](paper-2-patterns.md), [LaTeX](paper-2-patterns.tex) |
 
-The dataset covers **nine ordered shape pairs**, every count from **2 to 40**, **351 constructions**, **7,371 pieces**, and **95,940 within-record piece pairs**. It contains a single piece species in each configuration. It does not contain all 25 Platonic pairs or two-species mixtures. Both papers distinguish the archived feasible upper bound from numerical touching estimates, conjectured formulas, and the unknown optimum.
+The papers have no draft watermark or front-matter tool credits. Computational tools are described within their methodology sections. The dataset covers nine ordered shape pairs, every count from 2 to 40, 351 constructions, 7,371 pieces, and 95,940 piece pairs. Each construction uses one particle species; the archive does not contain all 25 Platonic pairs or mixtures.
 
-## Findings worth reviewing first
+Paper 2's hypothesis section explains the observations and proposes tests for other shapes, counts, and conditions. The evidence distinguishes confirmed arrangements, measured descriptors, reusable constructions, and conjectures about optimal or near-optimal arrangements.
 
-- Dodecahedra in a dodecahedron at counts **29–33** share exactly the same stored certified scale, `3.7470909531576`. Both these feasible bounds and their orientation/contact structure can be inspected. This is not a proof of an optimal-scale plateau.
-- The archived octahedron-in-octahedron scale jumps about **25% in edge length** from six to seven pieces, corresponding to about **95.3% in container volume**. The patterns paper interprets this as an archive capacity transition without asserting global infeasibility below it.
-- Repeated orientation and a spatially connected orientation domain are different. At count 33, the dodecahedral example has seven orientation components under the stated angular criterion, while all 33 operational grains are singletons under the stated contact criterion.
-- Raw edge ratios can mislead across dual mixed pairs. Volume-normalized scale and occupied fraction reveal much closer efficiencies than the raw edge lengths suggest.
+## Reference article and rotating constructions
 
-The findings are numerical structural analyses of exactly feasible configurations. Physical grain growth and crystallization remain research motivations, requiring an appropriate physical model and further evidence.
+Open **[Polyhedra in polyhedra packing](polyhedra-in-polyhedra-packing.html)** for the illustrated local article. It includes a slowly rotating construction, shape/count selectors, and two source-linked tables for counts 2–12: five identical-solid families and four distinct dual-solid families. The [Markdown article](wikipedia-polyhedral-fits.md) and [MediaWiki source](wikipedia-polyhedral-fits.wiki) contain the same text and tables, with a substantial cube-packing history and named, linked explanations of Nakajima's method and Zarzuelo Urdiales's generalization and analysis.
 
-## Visual material and reproducibility
+Tables use the best comparable results located in the cited sources. The attribution/precision key preserves the roles of Friedman, Walsh, Lin, Nakajima, and Zarzuelo Urdiales. Two superior external octahedra-in-cube entries, counts 11 and 12, have published diagrams but no located public pose files or originating manuscripts. Their diagrams and original catalogue are shown; no substitute 3D geometry is presented as their result. For the other seven families, no competing finite-container bounds were found in the targeted search, and the scope of that comparison remains explicit.
 
-Open [the frozen rotating explorer](packing-explorer.html) locally. It includes the nine-family dataset, rotation, slicing, and piece inspection, and links to immutable source coordinate files. Its displayed coordinates are rounded; exact certification applies to the full-precision originals. Three.js and fonts load from external CDNs. The existing public project viewer has not been changed or redeployed by this task.
+The [full explorer](packing-explorer.html) uses the full-precision stored poses, rotation, slicing, and immutable construction/certificate links. Its visual rendering is numerical; exact validity comes from the linked JSON and verifier. Three.js, MathJax, and fonts load from external CDNs. No existing public viewer has been redeployed by this task. [Viewer license attribution](LICENSE-viewer.txt) is retained.
 
-The [analysis directory](analysis/README.md) includes a portable Python script, every metric, per-pair measurements, plateau intervals, largest jumps, descriptive correlations, input hashes, and three figure sets in PNG/SVG/PDF. Seven [STL models](models/) illustrate selected plateau, jump, and lattice examples; these are visualization meshes and were not uploaded anywhere. [MIT attribution for the reused explorer](LICENSE-viewer.txt) is preserved.
+Wikipedia supports neither arbitrary JavaScript nor this full application inside normal article wikitext. The HTML file is a local/repository article preview; the MediaWiki version links the external viewer. [Wikipedia editing notes](research/wikipedia-editing-notes.md) separately document source-weight, independent-review, and supported illustration considerations.
 
-[Fresh verification](research/verification.json) reran **both checkers on all 351 records**, checked declared population against pose count, and recorded each input SHA-256. **351 passed, zero failed**. The original geometric regression suite also passed: 1,500 gradient cases, with maximum smooth discrepancy about `1.43e-9`. The [technical review](research/technical-review.md) and [geometry crosscheck](research/geometry-crosscheck.json) document symmetry invariance, group closure, and 3,082 separated-distance comparisons from 3,511 requests. Maximum distance disagreement was about `2e-15`; no contact classification differed at the three tested tolerances.
+## The shell oddity and other findings
 
-To rerun the data checks without changing the original research archive:
+The 29–33 dodecahedron-in-dodecahedron constructions have the same certified scale, `3.7470909531576`. At 33 pieces, one central piece, 12 inner icosahedral positions, and 20 outer dodecahedral positions form a nested shell. The center and outer shell share an orientation; the inner shell supplies six antipodal orientation pairs. All 102 near contacts join dissimilar orientation classes, explaining why seven orientation components coexist with 33 singleton operational grains. Deleting only outer pieces accounts for the smaller plateau members and removes three contacts per deleted piece. This measured mechanism is reproduced in [hypothesis-evidence.json](research/hypothesis-evidence.json).
+
+Other notable transitions include an approximately 25% edge/95.3% volume increase from six to seven octahedra in an octahedron, and close volume-normalized efficiencies when reversing the dodecahedron–icosahedron pair despite very different raw edge ratios. The hypotheses develop conditional explanations of capacity, shell completion, orientation interlocking, boundary accommodation, contact constraints, and how those mechanisms could extend beyond the sampled solids.
+
+## Data and verification
+
+The [analysis directory](analysis/README.md) includes all metrics, pair measurements, plateau intervals, jumps, correlations, input hashes, and three PNG/SVG/PDF figure sets. Seven [STL meshes](models/) illustrate selected constructions.
+
+[Fresh verification](research/verification.json): **351 of 351 configurations passed** both exact and floating checkers, with declared population matching pose count. The original geometry suite passed 1,500 gradient cases. [Technical checks](research/technical-review.md) include proper-symmetry invariance and 3,082 separated-distance comparisons from 3,511 requests, with maximum disagreement about `2e-15` and no contact-classification differences. The new shell-evidence script reproduces its supplied JSON exactly. These checks establish stored feasibility and measurement consistency; the general optima remain unresolved.
+
+From this packet's directory, with Python and Git installed:
 
 ```bash
 git clone https://github.com/alejandrozu/platonic-packing.git frozen-source
 git -C frozen-source checkout e15b496ae7306287e0e70bb5b14be79f5dfdde84
 python research/verify_snapshot.py --repo frozen-source --out verification-rerun.json
 python analysis/analyze_records.py --repo frozen-source --out regenerated-analysis
+python research/hypothesis_evidence.py --repo frozen-source --analysis analysis --out hypothesis-rerun.json
 ```
 
-Run those commands from this packet's directory; Python and Git must be available. Certificate replay uses the Python standard library. Structural analysis requires NumPy, and plotting additionally requires Matplotlib. Source environment versions and all thresholds are recorded in `analysis/analysis-metadata.json`. The full historical adaptive search was not rerun; its archive pools and runtime environment were not fully preserved.
+Certificate replay and shell-evidence checks use the standard library. Structural analysis requires NumPy; plotting additionally requires Matplotlib. All source versions and thresholds are recorded. The full historical adaptive search was not repeated. PDFs were built with the existing Tectonic compiler and rendered for visual inspection; the built-in LaTeX compiler still returned a platform-directory error. [Build checks](research/build-checks.json) record the final PDF hashes and page counts.
 
-Both PDFs were built with the already-installed Tectonic 0.17.0 and inspected after Poppler rendering. The built-in LaTeX compiler returned a platform-directory error, so native compilation is unverified. The editable LaTeX sources remain available; their figure guards and inline-data fallback allow a standalone text/plot preview if companion PNGs are unavailable. Build and review checks are recorded in [build-checks.json](research/build-checks.json).
+## Rapid dissemination without relying on arXiv sponsorship
 
-## Wikipedia draft and next publication step
+The [publication alternatives](research/dissemination-alternatives.md) confirm arXiv's two-submissions-per-calendar-month rule introduced on 1 October 2026. They compare routes that address the sponsorship and volume constraints:
 
-Read the [annotated Wikipedia draft](wikipedia-polyhedral-fits.md), or use the [clean MediaWiki source](wikipedia-polyhedral-fits.wiki). The working article title is **Packing polyhedra in polyhedral containers**; “polyhedral fits” is used descriptively, since established usage of that title has not been demonstrated. The draft covers finite and infinite problems, single-object inclusion, cubes, octahedra and tetrahedra in cubes, general polyhedral methods, shape-pair taxonomy, validation, and physical context. The separate editorial annex explains what evidence would be needed to include the new archive findings.
+- **Zenodo** is the fastest verified route to an archival DOI for the papers and frozen research package, without endorsement. Its CERN/OpenAIRE infrastructure provides durable citation and preservation.
+- **HAL** offers a recognized academic manuscript archive with moderation normally taking a few days; its required affiliation metadata must be completed honestly, and independent-author handling remains a condition to confirm.
+- **Preprints.org** accepts mathematics and technical/hypothesis papers, with typical screening of 24 working hours; screening is not mathematical peer review.
+- **Experimental Mathematics** is the principal peer-review target for the patterns paper; **Journal of Computational Geometry** is a fee-free alternative for the methods paper. Review timing cannot be guaranteed.
 
-The literature check found existing related coverage in Wikipedia's *Packing problems* and *Tetrahedron packing* articles, rather than establishing that the subject has never been covered. New results cannot become encyclopedia facts through a GitHub upload alone: significant independent sources and careful treatment of primary research are needed. The rich repository viewer remains separate from the encyclopedia; portable STL and static figures could support a later, separately reviewed Wikimedia workflow.
-
-The fastest recommended scholarly path is author review, a frozen reproducibility release, and **arXiv dissemination**, followed by peer review. arXiv endorsement and moderation apply; announcement is not guaranteed immediately, and **12 October 2026 is a listed deferred-mailing holiday**. **Experimental Mathematics** is the strongest apparent fit for the patterns paper; **Journal of Computational Geometry** is a fee-free alternative for an algorithmic geometry paper. The [verified literature and publication plan](research/literature-and-publication.md) gives sources, scope, current timing, and other options. [Public Twitter context](research/social-context.md) records the relevant replies and newer announced cube comparisons without treating them as independently checked geometry.
-
-Before external submission, the author should confirm the name, affiliation, acknowledgments, AI-assistance statement, release version, scope, and venue. The historical software was developed with Claude under the author's direction; OpenAI Codex assisted this packet's source review, structural analysis, drafting, and checks. Human authorship and responsibility belong to the author who reviews and submits the work.
+The combination of a permanent archive and journal review gives both rapid access and an opportunity for independent recognition. Erich Friedman's Packing Center is the closest relevant catalogue analogue to OEIS for these real-valued finite packing records. Any external deposit, catalogue request, or journal submission remains a later action, outside this task's local/GitHub-only scope.

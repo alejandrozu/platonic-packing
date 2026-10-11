@@ -37,7 +37,7 @@ def convert(path):
         if listenv: out.append(r'\end{'+listenv+'}'); listenv=None
     while i<len(lines):
         line=lines[i]; stripped=line.strip()
-        if stripped.startswith('**Alejandro Zarzuelo**') or stripped.startswith('**Research manuscript draft for author review'):
+        if re.match(r'^\*\*Alejandro Zarzuelo(?: Urdiales)?\*\*',stripped):
             i+=1; continue
         if stripped.startswith('```'):
             endlist(); code=[]; i+=1
@@ -69,6 +69,7 @@ def convert(path):
             if level==1 and not title: title=val
             else:
                 cmd={1:'section',2:'section',3:'subsection',4:'subsubsection',5:'paragraph',6:'paragraph'}[level]
+                if level==3 and re.match(r'^9\.\d+',val): out.append(r'\Needspace{10\baselineskip}')
                 val=re.sub(r'^\d+(?:\.\d+)*(?:\.)?\s+','',val)
                 if val.startswith('Appendix A.'):
                     out.append(r'\appendix'); val=val.removeprefix('Appendix A.').strip()
@@ -95,7 +96,9 @@ def convert(path):
             out.append(''); i+=1; continue
         if stripped=='---': endlist(); i+=1; continue
         if stripped.startswith('>'): stripped=stripped.lstrip('> ')
-        endlist(); out.append(inline(stripped)); i+=1
+        endlist()
+        if re.match(r'^\*\*H\d+\.',stripped): out.append(r'\Needspace{5\baselineskip}')
+        out.append(inline(stripped)); i+=1
     endlist()
     head=r'''\documentclass[11pt,a4paper]{article}
 \usepackage[margin=24mm]{geometry}
@@ -105,6 +108,7 @@ def convert(path):
 \usepackage{fvextra}
 \usepackage{adjustbox}
 \usepackage{graphicx,pdflscape}
+\usepackage{needspace}
 \usepackage{microtype}
 \usepackage{xcolor}
 \usepackage{hyperref}
@@ -120,7 +124,7 @@ def convert(path):
 \DeclareMathOperator{\SO}{SO}
 \title{'''+inline(title)+r'''}
 \author{Alejandro Zarzuelo Urdiales}
-\date{Review draft --- 11 October 2026}
+\date{11 October 2026}
 \begin{document}
 \maketitle
 '''

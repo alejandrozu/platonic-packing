@@ -1,7 +1,6 @@
 # Certified finite packings of Platonic solids: a generalized soft-to-rigid search and its computational development
 
-**Alejandro Zarzuelo**
-**Research manuscript draft for author review — 11 October 2026**
+**Alejandro Zarzuelo Urdiales**
 
 **Source snapshot.** All project-specific algorithms, records, and historical quantities in this manuscript refer to [alejandrozu/platonic-packing, commit `e15b496ae7306287e0e70bb5b14be79f5dfdde84`](https://github.com/alejandrozu/platonic-packing/tree/e15b496ae7306287e0e70bb5b14be79f5dfdde84). The numerical search described here ended on 11 October 2026 at 17:38 CEST, with its final records published at 17:39 CEST. The subsequent documentary commit contains the full project report. This manuscript is a scientific reconstruction of that experiment, rather than a claim that all historical computations have been rerun.
 
@@ -35,7 +34,7 @@ For the same-solid problems this reduces to \(n^{1/3}\). Deleting any piece prov
 
 The immediate starting point was Nakajima's open-source square/cube packing project. Its three-dimensional implementation rounds cubes, compresses the rounded objects, gradually removes the rounding, and tightens promising configurations using hard contact constraints. Its released cube record is a strictly separated placement of 12 unit cubes in a cube of side 2.9315185094797. The present work adopts this search architecture and extends its geometric representation and certification to general Platonic pieces and containers. Nakajima's software and credited release are cited explicitly, including the retained MIT attribution. [Nakajima repository](https://github.com/yoheinakajima/soft-to-rigid-packing).
 
-The project report attributes the expansion of scope and the decision to perturb already dense configurations to Zarzuelo, and implementation and experiment execution to a collaboration with Claude under his direction. This historical attribution does not claim that basin hopping itself is new. Perturbation followed by local minimization is an established global-search strategy; the contribution here is its particular use with polyhedral rounding, a structural shaking criterion, a monotone finite-packing archive, and exact validation. [Wales and Doye, 1997](https://doi.org/10.1021/jp970984n).
+Zarzuelo expanded the scope to the Platonic solids and their dual-pair containers and introduced perturbations of already dense configurations into the experimental program. Basin hopping itself is an established technique. Perturbation followed by local minimization is an established global-search strategy; the contribution here is its particular use with polyhedral rounding, a structural shaking criterion, a monotone finite-packing archive, and exact validation. [Wales and Doye, 1997](https://doi.org/10.1021/jp970984n).
 
 General polyhedral fitting also has substantial antecedents. Egeblad, Nielsen, and Brazil studied translational packing of arbitrary polytopes in polytope containers using local and guided local search. Romanova, Bennell, Stoyan, and Pankratov developed nonlinear optimization for concave polyhedra with continuous rotations in a minimum-volume cuboid. Callisaya and Kari formulated congruent-polytope packing in bounded convex domains using isometries and separating hyperplanes, with multistart numerical optimization. These differ in rotation assumptions, container objectives, and experimental coverage, but establish that generic geometry, nonlinear fitting, and separator variables predate this project. The present claim is the documented generalization of Nakajima's specific continuation implementation, coupled to the finite Platonic dataset and exact checking, not the invention of polyhedron packing or the first generic packing optimizer. [Egeblad et al., 2009](https://doi.org/10.1016/j.comgeo.2008.06.003), [Romanova et al., 2018](https://doi.org/10.1016/j.ejor.2018.01.025), [Callisaya and Kari, 2025/2026](https://www.scielo.br/j/tcam/a/nbGY4xC4KMxq7XbYZTybvHj/?format=html&lang=en).
 
@@ -53,7 +52,11 @@ The next day, at 19:14–20:14, five perturbation settings were compared by rand
 
 The chronology matters because the method was adaptive. Initial schedules, final policy weights, preliminary numerical values, and the mature archive should not be described as one unchanged experiment. In particular, the old mathematical notes contain first-night values later improved by the autonomous engine. This manuscript distinguishes historical observations from the final frozen configurations.
 
-## 3. Exact canonical geometry and numerical units
+## 3. Methodology: computational tools and exact geometry
+
+The numerical implementation uses Node.js for soft-shape dynamics and geometric distance kernels, Python for orchestration and exact checking, NumPy for numerical arrays, and SciPy for constrained local optimization and linear programming. The certificate replay requires only the Python standard library. Claude (Anthropic) was used as a computational development tool for implementing, debugging, and operating the search software under the author's direction. OpenAI Codex was used as a research tool for source inspection, verification replay, structural-analysis review, and preparation of the mathematical exposition. These tools generated candidate code and analysis; feasibility is established by the independently rerunnable exact checks of the stored coordinates. Tool use is reported here as part of the computational procedure.
+
+### Canonical geometry and numerical units
 
 The exact representation in `solids.py` uses the biquadratic field
 
@@ -434,7 +437,3 @@ The repository includes raw run files, tightened batch results, best archive ent
 11. Egeblad, J., Nielsen, B. K., and Brazil, M. “Translational packing of arbitrary polytopes.” *Computational Geometry* **42**(4) (2009), 269–288. [DOI: 10.1016/j.comgeo.2008.06.003](https://doi.org/10.1016/j.comgeo.2008.06.003).
 12. Romanova, T., Bennell, J., Stoyan, Y., and Pankratov, A. “Packing of concave polyhedra with continuous rotations using nonlinear optimisation.” *European Journal of Operational Research* **268**(1) (2018), 37–53. [DOI: 10.1016/j.ejor.2018.01.025](https://doi.org/10.1016/j.ejor.2018.01.025).
 13. Callisaya, H. F., and Kari, E. R. V. “Packing Polyhedra within Convex Sets.” *Trends in Computational and Applied Mathematics* **26**, e01823 (issue year 2025; online collection publication 19 January 2026). [DOI: 10.5540/tcam.2025.026.e01823](https://doi.org/10.5540/tcam.2025.026.e01823).
-
-**Assistance disclosure.** The historical software and experiment were developed with Claude under the author's direction, as recorded in the source project. OpenAI Codex assisted the present source review, verification replay, analysis review, and manuscript drafting. The named author must review the scientific content and take responsibility for any submitted version.
-
-**Author-review items.** Confirm preferred author name and affiliation; review the historical attribution and AI-assistance disclosure; choose the release/archive version and publication venue before submission. No journal, preprint server, or encyclopedia submission is represented by this draft.
