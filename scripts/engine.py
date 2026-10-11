@@ -5,6 +5,7 @@ usage:  python3 scripts/engine.py seed            # import earlier results + lat
         python3 scripts/engine.py work <id>       # one worker (run two, see scripts/run_forever.sh)
         python3 scripts/engine.py status          # print the current table
         python3 scripts/engine.py check           # verify the archive invariants (monotone s(n), files readable)
+        python3 scripts/engine.py harvest DIR HOST  # merge another machine's state/best tree (re-legalized here)
 
 Archive: state/best/<problem>/nNN.json = best packing found (internal units of src/sim.js / src/exact.py: piece
 inradius 1/2, container {N_f . x <= L/2} centred at the origin; s = container edge / piece edge) plus statistics;
@@ -34,7 +35,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'src')); sys.path.insert(0, os.path.join(ROOT, 'scripts'))
 import exact
 
-STATE = os.path.join(ROOT, 'state')
+STATE = os.environ.get('PP_STATE') or os.path.join(ROOT, 'state')     # PP_STATE: separate archive (remote workers)
 AB = {'tetrahedron': 'tet', 'cube': 'cub', 'octahedron': 'oct', 'dodecahedron': 'dod', 'icosahedron': 'ico'}
 PROBLEMS = [('tetrahedron', 'tetrahedron'), ('octahedron', 'octahedron'), ('icosahedron', 'icosahedron'),
             ('dodecahedron', 'dodecahedron'), ('cube', 'cube'), ('cube', 'octahedron'), ('octahedron', 'cube'),
@@ -470,6 +471,43 @@ def seed():
     print(f'seeded {n_imp} cases')
 
 
+def harvest(src_dir, host):
+    """Merge packings found elsewhere (another machine's state/best tree) into this archive. Each candidate is
+    re-legalized here (scaled apart until no pair overlaps, then the tightest container computed), so a corrupt or
+    overlapping file can never enter the archive; it replaces our best only if it is still smaller."""
+    taken = []
+    for p in PID:
+        pb = problem(p)
+        for n in range(NMIN, NMAX + 1):
+            c = _read(os.path.join(src_dir, p, f'n{n:02d}.json'))
+            b = c and c.get('best')
+            if not b or len(b['C']) != n: continue
+            cur = load_case(p, n)['best']
+            if cur and b['s'] >= cur['s'] - 1e-12: continue
+            R = [exact.quat_to_R(np.array(q) / np.linalg.norm(q)) for q in b['Q']]
+            L, _, C0 = exact.certify(pb, np.array(b['C'], float), R)
+            Lt, t = exact.tight_container(pb, C0, R)
+            s = pb.s_of_L(Lt)
+            with locked():
+                case = load_case(p, n); cur = case['best']
+                if cur and s >= cur['s'] - 1e-12: continue
+                src = dict(b.get('src') or {}, host=host)
+                case['best'] = {'s': s, 'C': (C0 + t).tolist(), 'Q': [list(map(float, q)) for q in b['Q']], 'src': src,
+                                't': time.time(), 'tightened': True}
+                st = case['stats']; st['improvements'] += 1; st['since'] = 0; st['last_improve'] = time.time()
+                save_case(case)
+                pool_insert(p, n, {'s': s, 'C': case['best']['C'], 'Q': case['best']['Q'], 'src': 'harvest', 't': time.time(),
+                                   **({'lineage': src['lineage']} if src.get('lineage') else {})})
+                enforce_monotone(p, print)
+                with open(os.path.join(STATE, 'attempts.jsonl'), 'a') as f:
+                    f.write(json.dumps({'t': round(time.time()), 'p': p, 'n': n, 'move': 'harvest', 'raw': b['s'], 's': s,
+                                        'best_before': cur['s'] if cur else None, 'improved': True, 'secs': 0, 'raw_secs': 0,
+                                        'host': host, 'var': src.get('var')}) + '\n')
+            taken.append(f'{p}{n}:{s:.4f}')
+    print(f'harvest from {host}: {len(taken)} improvements ' + ' '.join(taken))
+    return taken
+
+
 def table():
     lines = []
     for p in PID:
@@ -502,3 +540,4 @@ if __name__ == '__main__':
     elif cmd == 'work': work(sys.argv[2] if len(sys.argv) > 2 else '0')
     elif cmd == 'status': print(table())
     elif cmd == 'check': sys.exit(1 if check() else 0)
+    elif cmd == 'harvest': harvest(sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else 'remote')
