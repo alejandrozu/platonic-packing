@@ -35,7 +35,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 30 | [3.70710+](cubincub_n30.json) | 3.707106781301 |  | 3.70711 (E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2) | equal | 3.10723 | 0.5889 | ![](cubincub_n30.png) |
 | 31 | [3.70710+](cubincub_n31.json) | 3.707106781303 |  | 3.70711 (E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2) | equal | 3.14138 | 0.6085 | ![](cubincub_n31.png) |
 | 32 | [3.70710+](cubincub_n32.json) | 3.707106782464 |  | 3.70711 (E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2) | equal | 3.17480 | 0.6281 | ![](cubincub_n32.png) |
-| 33 | [3.82288+](cubincub_n33.json) | 3.822881486616 |  | 3.70711 (E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2) | behind +3.123% | 3.20753 | 0.5907 | ![](cubincub_n33.png) |
+| 33 | [3.78230+](cubincub_n33.json) | 3.782308372340 |  | 3.70711 (E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2) | behind +2.029% | 3.20753 | 0.6099 | ![](cubincub_n33.png) |
 | 34 | [3.89442+](cubincub_n34.json) | 3.894427191012 |  | | | 3.23961 | 0.5756 | ![](cubincub_n34.png) |
 | 35 | [3.89442+](cubincub_n35.json) | 3.894427191274 |  | | | 3.27107 | 0.5926 | ![](cubincub_n35.png) |
 | 36 | [3.91228+](cubincub_n36.json) | 3.912281999614 |  | | | 3.30193 | 0.6012 | ![](cubincub_n36.png) |
@@ -44,5 +44,5 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 39 | [4.00000+](cubincub_n39.json) | 4.000000000000 | 4 | | | 3.39121 | 0.6094 | ![](cubincub_n39.png) |
 | 40 | [4.00000+](cubincub_n40.json) | 4.000000000000 | 4 | | | 3.41995 | 0.6250 | ![](cubincub_n40.png) |
 
-**Cubes in a cube vs published values** (n = 2–33): better at 11; equal at 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32; behind at 13 (+0.70%), 33 (+3.12%).
+**Cubes in a cube vs published values** (n = 2–33): better at 11; equal at 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32; behind at 13 (+0.70%), 33 (+2.03%).
 

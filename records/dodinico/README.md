@@ -42,4 +42,4 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 37 | [6.21295+](dodinico_n37.json) | 6.212956929974 |  | 5.06529 | 0.5419 | ![](dodinico_n37.png) |
 | 38 | [6.26922+](dodinico_n38.json) | 6.269229097909 |  | 5.11052 | 0.5417 | ![](dodinico_n38.png) |
 | 39 | [6.30736+](dodinico_n39.json) | 6.307365601947 |  | 5.15496 | 0.5459 | ![](dodinico_n39.png) |
-| 40 | [6.32472+](dodinico_n40.json) | 6.324721135069 |  | 5.19865 | 0.5553 | ![](dodinico_n40.png) |
+| 40 | [6.32472+](dodinico_n40.json) | 6.324721135065 |  | 5.19865 | 0.5553 | ![](dodinico_n40.png) |

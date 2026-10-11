@@ -113,6 +113,47 @@ def main():
     for h in range(int(hours) + 1):
         w(f"| {time.strftime('%H:%M', time.localtime(t0 + 3600 * h))} | {per.get(h, 0)} |")
     w('')
+    w('(The last row is a partial hour.)\n')
+    # ---------------- where the cloud compute went
+    band = lambda n: '2–10' if n <= 10 else ('11–20' if n <= 20 else ('21–30' if n <= 30 else '31–40'))
+    sec = collections.defaultdict(float); cnt = collections.Counter(); imp = collections.Counter()
+    for a in cloud:
+        k = ('hop' if a['move'] == 'hop' else 'other moves', band(a['n']))
+        sec[k] += a.get('secs', 0); cnt[k] += 1; imp[k] += a['improved']
+    tot = sum(sec.values()) or 1
+    w('## Where the compute went (cloud workers, which log every attempt)\n')
+    w('"other moves" = ascend, descend, reinsert, fresh start, tighten.\n')
+    w('| move | n | attempts | CPU-hours | share of CPU | improvements | improvements per CPU-hour |')
+    w('|---|---|---|---|---|---|---|')
+    for k in sorted(sec, key=lambda k: (k[0], int(k[1].split('–')[0]))):
+        w(f"| {k[0]} | {k[1]} | {cnt[k]:,} | {sec[k] / 3600:.1f} | {100 * sec[k] / tot:.0f}% | {imp[k]} | "
+          f"{imp[k] / max(sec[k] / 3600, 1e-9):.1f} |")
+    w('')
+    msec = collections.defaultdict(float); mimp = collections.Counter(); mcnt = collections.Counter()
+    for a in cloud: msec[a['move']] += a.get('secs', 0); mimp[a['move']] += a['improved']; mcnt[a['move']] += 1
+    w('| move | attempts | CPU-hours | improvements | improvements per CPU-hour |')
+    w('|---|---|---|---|---|')
+    for m in sorted(msec, key=lambda m: -msec[m]):
+        w(f"| {m} | {mcnt[m]:,} | {msec[m] / 3600:.1f} | {mimp[m]} | {mimp[m] / max(msec[m] / 3600, 1e-9):.1f} |")
+    w('')
+    # ---------------- size of the improvements
+    w('## Size of the improvements\n')
+    w('Relative shrink of each improvement step (cloud steps and remote merges).\n')
+    w('| period | steps | > 0.1% | 0.001–0.1% | ≤ 0.001% | median |')
+    w('|---|---|---|---|---|---|')
+    steps = [a for a in att if a['improved'] and a.get('best_before') and a.get('s')]
+    edges = list(range(0, int(hours) + 1, 4)) + [hours]
+    for lo, hi in zip(edges[:-1], edges[1:]):
+        g = sorted((a['best_before'] - a['s']) / a['best_before'] for a in steps if t0 + lo * 3600 <= a['t'] < t0 + hi * 3600)
+        if not g: continue
+        w(f"| {time.strftime('%H:%M', time.localtime(t0 + lo * 3600))}–{time.strftime('%H:%M', time.localtime(t0 + hi * 3600))} | "
+          f"{len(g)} | {sum(x > 1e-3 for x in g)} | {sum(1e-5 < x <= 1e-3 for x in g)} | {sum(x <= 1e-5 for x in g)} | "
+          f"{100 * g[len(g) // 2]:.4f}% |")
+    big = collections.Counter((a.get('host', 'remote') if a['move'] == 'harvest' else 'cloud') for a in steps
+                              if (a['best_before'] - a['s']) / a['best_before'] > 1e-3)
+    w('')
+    w('Steps larger than 0.1% by source: ' + ', '.join(f'{k} {v}' for k, v in big.most_common()) +
+      ' (a remote merge can bundle several steps, which favours the remote sources here).\n')
     # ---------------- stalled
     last = {}
     for a in att:
