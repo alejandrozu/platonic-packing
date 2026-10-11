@@ -405,7 +405,8 @@ def work(wid):
     def log(msg):
         logf.write(time.strftime('%m-%d %H:%M:%S ') + msg + '\n'); logf.flush()
     log(f'worker {wid} started (pid {os.getpid()})')
-    while not os.path.exists(os.path.join(STATE, 'STOP')):
+    deadline = float(os.environ.get('PP_DEADLINE') or 0)      # bounded runs (laptop workspace): no new attempt after it
+    while not os.path.exists(os.path.join(STATE, 'STOP')) and not (deadline and time.time() > deadline):
         p, n, move = choose(rng, wid)
         with claim(p, n) as ok:
             if not ok: time.sleep(0.5); continue
