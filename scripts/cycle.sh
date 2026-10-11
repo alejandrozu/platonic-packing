@@ -23,6 +23,7 @@ fi
 echo "$a $i $now" > state/.cycle
 w=$(pgrep -c -f "^python3 scripts/engine.py work")
 act=$(scripts/harvest_actions.sh 2>&1 | tail -1)
+kick=$(scripts/actions_kick.sh 2>&1 | tail -1)
 chk=$(python3 scripts/engine.py check 2>&1 | tail -1)
 python3 -c "import sys; sys.path.insert(0, 'scripts'); import publish; publish.progress()" 2>/dev/null
 exec 9> state/.gitlock; flock 9
@@ -67,4 +68,4 @@ rec=$(ls records/*/*_n[0-9][0-9].json 2>/dev/null | wc -l)
 lastpub=$(grep "publish:" logs/publish.log | tail -1 | cut -c1-60)
 tb=$(tail -n 30 logs/publish.out 2>/dev/null | grep -c Traceback)
 echo "records: $rec files, publisher $pub, last: $lastpub$([ "$tb" -gt 0 ] && echo ' (TRACEBACK in publish.out)')"
-echo "$(date +%H:%M) workers=$w attempts=$a (+$((a - pa))) new bests +$((i - pi)) [$newb] | $chk | github: $push | $act | $laptop$note"
+echo "$(date +%H:%M) workers=$w attempts=$a (+$((a - pa))) new bests +$((i - pi)) [$newb] | $chk | github: $push | $act; $kick | $laptop$note"
