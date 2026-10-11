@@ -1,22 +1,22 @@
 # Search progress
 
-Updated 2026-10-11 09:56 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
+Updated 2026-10-11 10:02 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
 
-* attempts: 51808 total, 29642 in the last 24 h, 1182 in the last hour
-* improvements: 3587 total, 1594 in the last 24 h
-* by move (attempts / improvements): ascend 6644/509, descend 4746/98, fresh 6029/84, harvest 370/370, hop 28069/1979, reinsert 5705/396, tighten 245/151
+* attempts: 51887 total, 29603 in the last 24 h, 1083 in the last hour
+* improvements: 3587 total, 1590 in the last 24 h
+* by move (attempts / improvements): ascend 6653/509, descend 4756/98, fresh 6033/84, harvest 370/370, hop 28113/1979, reinsert 5717/396, tighten 245/151
 
 | problem | n with a packing | attempts | CPU hours | improvements (24 h) | last improvement |
 |---|---|---|---|---|---|
-| Tetrahedra in a tetrahedron (tetintet) | 39/39 | 7443 | 8.3 | 193 | 10-11 09:33 |
-| Octahedra in an octahedron (octinoct) | 39/39 | 5403 | 6.7 | 70 | 10-11 08:06 |
-| Icosahedra in an icosahedron (icoinico) | 39/39 | 3370 | 10.9 | 158 | 10-11 09:48 |
-| Dodecahedra in a dodecahedron (dodindod) | 39/39 | 3149 | 10.6 | 119 | 10-11 09:01 |
-| Cubes in a cube (cubincub) | 39/39 | 6754 | 6.6 | 67 | 10-11 08:53 |
-| Cubes in an octahedron (cubinoct) | 39/39 | 7871 | 9.5 | 310 | 10-11 09:43 |
-| Octahedra in a cube (octincub) | 39/39 | 10254 | 10.5 | 192 | 10-11 09:32 |
-| Dodecahedra in an icosahedron (dodinico) | 39/39 | 3179 | 12.2 | 251 | 10-11 09:56 |
-| Icosahedra in a dodecahedron (icoindod) | 39/39 | 4015 | 11.7 | 234 | 10-11 09:13 |
+| Tetrahedra in a tetrahedron (tetintet) | 39/39 | 7453 | 8.3 | 192 | 10-11 09:33 |
+| Octahedra in an octahedron (octinoct) | 39/39 | 5409 | 6.7 | 70 | 10-11 08:06 |
+| Icosahedra in an icosahedron (icoinico) | 39/39 | 3374 | 10.9 | 158 | 10-11 09:48 |
+| Dodecahedra in a dodecahedron (dodindod) | 39/39 | 3155 | 10.6 | 119 | 10-11 09:01 |
+| Cubes in a cube (cubincub) | 39/39 | 6765 | 6.6 | 67 | 10-11 08:53 |
+| Cubes in an octahedron (cubinoct) | 39/39 | 7879 | 9.6 | 310 | 10-11 09:43 |
+| Octahedra in a cube (octincub) | 39/39 | 10274 | 10.5 | 190 | 10-11 09:32 |
+| Dodecahedra in an icosahedron (dodinico) | 39/39 | 3187 | 12.2 | 250 | 10-11 09:56 |
+| Icosahedra in a dodecahedron (icoindod) | 39/39 | 4021 | 11.7 | 234 | 10-11 09:13 |
 
 ## Current best values (live archive, uncertified until the next records publish)
 
