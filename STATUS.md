@@ -1,5 +1,12 @@
 # Status and hand-off
 
+> **Final state (11 Oct 2026, 17:39 Paris): the search is stopped.** The workers were stopped with `state/STOP`;
+> the laptop and GitHub Actions runs ended, and Actions dispatch is disabled while `state/STOP` exists. All 351
+> records (nine problems × n = 2…40) are exactly certified. Everything that happened, every result and every
+> lesson is in **[docs/FINAL_REPORT.md](docs/FINAL_REPORT.md)**, the complete report of the project. Its chapter 9.4
+> explains how to resume and chapter 9.5 lists the places where the text below is out of date.
+
+
 _Last edited 10 Oct 2026, 20:25 Paris. Live numbers: [PROGRESS.md](PROGRESS.md) and [records/README.md](records/README.md),
 both regenerated automatically every 90 minutes._
 

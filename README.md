@@ -10,6 +10,8 @@ It generalizes [`yoheinakajima/soft-to-rigid-packing`](https://github.com/yohein
 (unit cubes in a cube; his 12-cube record 2.9315185094797) from cubes to all five Platonic solids, as pieces and as
 containers.
 
+* **Complete report of the project (9–11 Oct 2026):** [docs/FINAL_REPORT.md](docs/FINAL_REPORT.md) — everything that
+  was tried, every result (including what did not work), incidents, lessons, and data appendices.
 * **Read first:** [docs/MATH.md](docs/MATH.md) — the problem, the homotopy lemma, why the geometry is exact, what the
   certificate proves, the lattice constructions, observations, and what is *not* proven.
 * **Records:** [records/README.md](records/README.md) (tables with links), [records/SUMMARY.csv](records/SUMMARY.csv)
