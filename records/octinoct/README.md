@@ -22,7 +22,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 17 | [3.00000+](octinoct_n17.json) | 3.000000000000 | 3 | 2.57128 | 0.6296 | ![](octinoct_n17.png) |
 | 18 | [3.00000+](octinoct_n18.json) | 3.000000000000 | 3 | 2.62074 | 0.6667 | ![](octinoct_n18.png) |
 | 19 | [3.00000+](octinoct_n19.json) | 3.000000000000 | 3 | 2.66840 | 0.7037 | ![](octinoct_n19.png) |
-| 20 | [3.16653+](octinoct_n20.json) | 3.166536535529 |  | 2.71442 | 0.6299 | ![](octinoct_n20.png) |
+| 20 | [3.16653+](octinoct_n20.json) | 3.166536535520 |  | 2.71442 | 0.6299 | ![](octinoct_n20.png) |
 | 21 | [3.20000+](octinoct_n21.json) | 3.200000000000 | 16/5 | 2.75892 | 0.6409 | ![](octinoct_n21.png) |
 | 22 | [3.25000+](octinoct_n22.json) | 3.250000000000 | 13/4 | 2.80204 | 0.6409 | ![](octinoct_n22.png) |
 | 23 | [3.25000+](octinoct_n23.json) | 3.250000000000 | 13/4 | 2.84387 | 0.6700 | ![](octinoct_n23.png) |
@@ -39,7 +39,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 34 | [3.79709+](octinoct_n34.json) | 3.797092643801 |  | 3.23961 | 0.6210 | ![](octinoct_n34.png) |
 | 35 | [3.82361+](octinoct_n35.json) | 3.823613351397 |  | 3.27107 | 0.6261 | ![](octinoct_n35.png) |
 | 36 | [3.87000+](octinoct_n36.json) | 3.870008204278 |  | 3.30193 | 0.6211 | ![](octinoct_n36.png) |
-| 37 | [3.89374+](octinoct_n37.json) | 3.893744369743 |  | 3.33222 | 0.6268 | ![](octinoct_n37.png) |
+| 37 | [3.88389+](octinoct_n37.json) | 3.883893384739 |  | 3.33222 | 0.6315 | ![](octinoct_n37.png) |
 | 38 | [3.92928+](octinoct_n38.json) | 3.929288811174 |  | 3.36198 | 0.6264 | ![](octinoct_n38.png) |
 | 39 | [3.94548+](octinoct_n39.json) | 3.945486584587 |  | 3.39121 | 0.6350 | ![](octinoct_n39.png) |
 | 40 | [3.95635+](octinoct_n40.json) | 3.956353674062 |  | 3.41995 | 0.6459 | ![](octinoct_n40.png) |

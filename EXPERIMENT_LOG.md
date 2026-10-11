@@ -135,3 +135,16 @@ one record per solution.
 - Within two minutes, three searches from the published packings went below them: 21 octahedra 2.5918357
   (published 2.5928499), 24 octahedra 2.6279225 (published 2.6331890, by re-tightening Lin's packing), 11 cubes
   2.8817111 (published 2.8829529). Exact certification running.
+
+## 11 Oct, 02:45–03:25 — More compute (Alejandro's requests)
+
+- The cloud machine has 2 cores, both saturated by the 2 workers; more workers there would only time-share.
+- Laptop: 2 extra workers in the linked workspace of the Claude desktop app (Python 3.10, scipy and highspy
+  installed there). That workspace ends background processes when each command returns, so the workers run in
+  back-to-back bounded runs of ~2.5 minutes (scripts/laptop_run.sh, PP_DEADLINE) with their own archive
+  (PP_STATE=~/pp-state); each 10-minute cycle merges both ways (scripts/remote.py, engine.py harvest, every packing
+  re-legalized on import). First runs: ~30 attempts per minute, faster per core than the cloud machine.
+- GitHub Actions, "light" (Alejandro, 03:19): .github/workflows/search.yml, every hour 4 jobs x 4 workers for 25
+  minutes, results force-pushed to search-results-<job> and merged by scripts/harvest_actions.sh in the cycle.
+  First run dispatched 03:22.
+- Baseline for the 14-hour run (until ~17:20): state/snapshot_2026-10-11_0322.json (every case's s, 44,128 attempts).
