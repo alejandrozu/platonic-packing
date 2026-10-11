@@ -15,7 +15,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 10 | [2.50000+](octinoct_n10.json) | 2.500000000000 | 5/2 | 2.15443 | 0.6400 | ![](octinoct_n10.png) |
 | 11 | [2.66666+](octinoct_n11.json) | 2.666666666667 | 8/3 | 2.22398 | 0.5801 | ![](octinoct_n11.png) |
 | 12 | [2.66666+](octinoct_n12.json) | 2.666666666667 | 8/3 | 2.28943 | 0.6328 | ![](octinoct_n12.png) |
-| 13 | [2.84784+](octinoct_n13.json) | 2.847842950887 |  | 2.35133 | 0.5629 | ![](octinoct_n13.png) |
+| 13 | [2.83333+](octinoct_n13.json) | 2.833333333333 | 17/6 | 2.35133 | 0.5715 | ![](octinoct_n13.png) |
 | 14 | [2.94311+](octinoct_n14.json) | 2.943117400701 |  | 2.41014 | 0.5492 | ![](octinoct_n14.png) |
 | 15 | [2.98533+](octinoct_n15.json) | 2.985331360499 |  | 2.46621 | 0.5638 | ![](octinoct_n15.png) |
 | 16 | [2.99465+](octinoct_n16.json) | 2.994651162686 |  | 2.51984 | 0.5958 | ![](octinoct_n16.png) |
@@ -31,7 +31,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 26 | [3.42857+](octinoct_n26.json) | 3.428571428571 | 24/7 | 2.96250 | 0.6451 | ![](octinoct_n26.png) |
 | 27 | [3.50000+](octinoct_n27.json) | 3.500000000000 | 7/2 | 3.00000 | 0.6297 | ![](octinoct_n27.png) |
 | 28 | [3.50000+](octinoct_n28.json) | 3.500000000000 | 7/2 | 3.03659 | 0.6531 | ![](octinoct_n28.png) |
-| 29 | [3.54545+](octinoct_n29.json) | 3.545454545455 | 39/11 | 3.07232 | 0.6507 | ![](octinoct_n29.png) |
+| 29 | [3.50000+](octinoct_n29.json) | 3.500000000000 | 7/2 | 3.07232 | 0.6764 | ![](octinoct_n29.png) |
 | 30 | [3.60000+](octinoct_n30.json) | 3.600000000000 | 18/5 | 3.10723 | 0.6430 | ![](octinoct_n30.png) |
 | 31 | [3.66666+](octinoct_n31.json) | 3.666666666667 | 11/3 | 3.14138 | 0.6289 | ![](octinoct_n31.png) |
 | 32 | [3.69230+](octinoct_n32.json) | 3.692307692308 | 48/13 | 3.17480 | 0.6357 | ![](octinoct_n32.png) |
@@ -39,7 +39,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 34 | [3.78844+](octinoct_n34.json) | 3.788446562185 |  | 3.23961 | 0.6253 | ![](octinoct_n34.png) |
 | 35 | [3.80000+](octinoct_n35.json) | 3.800000000000 | 19/5 | 3.27107 | 0.6378 | ![](octinoct_n35.png) |
 | 36 | [3.85433+](octinoct_n36.json) | 3.854335571414 |  | 3.30193 | 0.6287 | ![](octinoct_n36.png) |
-| 37 | [3.88376+](octinoct_n37.json) | 3.883760242921 |  | 3.33222 | 0.6316 | ![](octinoct_n37.png) |
+| 37 | [3.88376+](octinoct_n37.json) | 3.883760074562 |  | 3.33222 | 0.6316 | ![](octinoct_n37.png) |
 | 38 | [3.91696+](octinoct_n38.json) | 3.916963233979 |  | 3.36198 | 0.6323 | ![](octinoct_n38.png) |
 | 39 | [3.93182+](octinoct_n39.json) | 3.931821484531 |  | 3.39121 | 0.6416 | ![](octinoct_n39.png) |
 | 40 | [3.95554+](octinoct_n40.json) | 3.955547136533 |  | 3.41995 | 0.6463 | ![](octinoct_n40.png) |

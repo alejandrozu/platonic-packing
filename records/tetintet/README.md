@@ -27,7 +27,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 22 | [3.34340+](tetintet_n22.json) | 3.343400290311 |  | 2.80204 | 0.5886 | ![](tetintet_n22.png) |
 | 23 | [3.38259+](tetintet_n23.json) | 3.382591178958 |  | 2.84387 | 0.5943 | ![](tetintet_n23.png) |
 | 24 | [3.43388+](tetintet_n24.json) | 3.433882755073 |  | 2.88450 | 0.5927 | ![](tetintet_n24.png) |
-| 25 | [3.49021+](tetintet_n25.json) | 3.490215165298 |  | 2.92402 | 0.5880 | ![](tetintet_n25.png) |
+| 25 | [3.48910+](tetintet_n25.json) | 3.489101258581 |  | 2.92402 | 0.5886 | ![](tetintet_n25.png) |
 | 26 | [3.58091+](tetintet_n26.json) | 3.580912024531 |  | 2.96250 | 0.5662 | ![](tetintet_n26.png) |
 | 27 | [3.64501+](tetintet_n27.json) | 3.645015584268 |  | 3.00000 | 0.5575 | ![](tetintet_n27.png) |
 | 28 | [3.68963+](tetintet_n28.json) | 3.689630436626 |  | 3.03659 | 0.5575 | ![](tetintet_n28.png) |
@@ -36,7 +36,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 31 | [3.82327+](tetintet_n31.json) | 3.823270957861 |  | 3.14138 | 0.5547 | ![](tetintet_n31.png) |
 | 32 | [3.85650+](tetintet_n32.json) | 3.856499250301 |  | 3.17480 | 0.5579 | ![](tetintet_n32.png) |
 | 33 | [3.89213+](tetintet_n33.json) | 3.892137870715 |  | 3.20753 | 0.5597 | ![](tetintet_n33.png) |
-| 34 | [3.92772+](tetintet_n34.json) | 3.927720614251 |  | 3.23961 | 0.5611 | ![](tetintet_n34.png) |
+| 34 | [3.92757+](tetintet_n34.json) | 3.927572375367 |  | 3.23961 | 0.5612 | ![](tetintet_n34.png) |
 | 35 | [3.96007+](tetintet_n35.json) | 3.960071527184 |  | 3.27107 | 0.5636 | ![](tetintet_n35.png) |
 | 36 | [3.97146+](tetintet_n36.json) | 3.971463794690 |  | 3.30193 | 0.5747 | ![](tetintet_n36.png) |
 | 37 | [3.99818+](tetintet_n37.json) | 3.998180842462 |  | 3.33222 | 0.5789 | ![](tetintet_n37.png) |
