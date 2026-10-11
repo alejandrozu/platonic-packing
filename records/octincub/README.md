@@ -18,7 +18,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 13 | [2.33944+](octincub_n13.json) | 2.339442888887 |  | 2.33667 (H. Lin, July 2026 (Hyra-results; Friedman's Packing Center)) | behind +0.119% | 1.82998 | 0.4786 | ![](octincub_n13.png) |
 | 14 | [2.36547+](octincub_n14.json) | 2.365475173620 |  | 2.35702 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +0.359% | 1.87575 | 0.4986 | ![](octincub_n14.png) |
 | 15 | [2.43388+](octincub_n15.json) | 2.433883950057 |  | 2.41976 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +0.584% | 1.91938 | 0.4904 | ![](octincub_n15.png) |
-| 16 | [2.46048+](octincub_n16.json) | 2.460480656055 |  | 2.46211 (R. Walsh, June 2026 (Friedman's Packing Center)) | **better** -0.066% | 1.96112 | 0.5064 | ![](octincub_n16.png) |
+| 16 | [2.45865+](octincub_n16.json) | 2.458657514093 |  | 2.46211 (R. Walsh, June 2026 (Friedman's Packing Center)) | **better** -0.140% | 1.96112 | 0.5075 | ![](octincub_n16.png) |
 | 17 | [2.50659+](octincub_n17.json) | 2.506598266404 |  | 2.47487 (H. Lin, July 2026 (Hyra-results; Friedman's Packing Center)) | behind +1.282% | 2.00116 | 0.5088 | ![](octincub_n17.png) |
 | 18 | [2.51875+](octincub_n18.json) | 2.518753560920 |  | 2.48257 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +1.458% | 2.03965 | 0.5310 | ![](octincub_n18.png) |
 | 19 | [2.55868+](octincub_n19.json) | 2.558687100141 |  | 2.52683 (R. Walsh, June 2026 (Friedman's Packing Center)) | behind +1.261% | 2.07674 | 0.5347 | ![](octincub_n19.png) |
@@ -35,14 +35,14 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 30 | [2.88658+](octincub_n30.json) | 2.886589169442 |  | 2.89186 (R. Walsh, June 2026 (Friedman's Packing Center)) | **better** -0.182% | 2.41827 | 0.5880 | ![](octincub_n30.png) |
 | 31 | [2.93422+](octincub_n31.json) | 2.934222950959 |  | | | 2.44485 | 0.5785 | ![](octincub_n31.png) |
 | 32 | [2.99146+](octincub_n32.json) | 2.991466949129 |  | | | 2.47086 | 0.5635 | ![](octincub_n32.png) |
-| 33 | [3.03730+](octincub_n33.json) | 3.037302326314 |  | | | 2.49633 | 0.5552 | ![](octincub_n33.png) |
+| 33 | [3.03494+](octincub_n33.json) | 3.034940115798 |  | | | 2.49633 | 0.5565 | ![](octincub_n33.png) |
 | 34 | [3.08053+](octincub_n34.json) | 3.080532238259 |  | | | 2.52130 | 0.5483 | ![](octincub_n34.png) |
 | 35 | [3.08910+](octincub_n35.json) | 3.089102927030 |  | | | 2.54578 | 0.5597 | ![](octincub_n35.png) |
 | 36 | [3.11859+](octincub_n36.json) | 3.118591874672 |  | | | 2.56980 | 0.5595 | ![](octincub_n36.png) |
 | 37 | [3.15314+](octincub_n37.json) | 3.153140031065 |  | | | 2.59337 | 0.5564 | ![](octincub_n37.png) |
-| 38 | [3.18239+](octincub_n38.json) | 3.182392505871 |  | | | 2.61653 | 0.5558 | ![](octincub_n38.png) |
+| 38 | [3.18238+](octincub_n38.json) | 3.182382583229 |  | | | 2.61653 | 0.5558 | ![](octincub_n38.png) |
 | 39 | [3.23286+](octincub_n39.json) | 3.232860252612 |  | | | 2.63928 | 0.5441 | ![](octincub_n39.png) |
-| 40 | [3.24518+](octincub_n40.json) | 3.245183347064 |  | | | 2.66165 | 0.5517 | ![](octincub_n40.png) |
+| 40 | [3.24518+](octincub_n40.json) | 3.245183342197 |  | | | 2.66165 | 0.5517 | ![](octincub_n40.png) |
 
 **Octahedra in a cube vs published values** (n = 2–30): better at 16, 20, 21, 22, 24, 25, 28, 29, 30; equal at 2, 3, 4, 5, 6, 7, 8, 9, 10, 26, 27; behind at 11 (+1.61%), 12 (+1.40%), 13 (+0.12%), 14 (+0.36%), 15 (+0.58%), 17 (+1.28%), 18 (+1.46%), 19 (+1.26%), 23 (+0.27%).
 
