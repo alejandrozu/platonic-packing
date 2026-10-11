@@ -16,4 +16,4 @@ The dataset ZIP is 36,432,835 bytes, with SHA-256 `f567826993d61f4ba561c1bb9d506
 
 [Verification details](publication-verification.json) record the actual URLs, HTTP results, public metadata and downloaded-file hashes. The metadata files now include the issued DOI information and must not be used to create duplicate records. The original pre-release [package audit](package-audit.json) remains as the dated preparation check.
 
-The local [Twitter thread](../twitter-thread-polyhedral-packing.md) contains ten connected posts with these DOI links. The first two fit ordinary limits; the later posts use the approved longer Premium format. It has not been posted. The Wikipedia article remains saved for the later step.
+The local [Twitter thread](../twitter-thread-polyhedral-packing.md) contains five connected posts with these DOI links. The first two preserve the approved wording apart from numbering; the other three are each below 2,000 characters including full URLs. The three approved pictures are attached to posts 1, 4 and 5. It has not been posted. The Wikipedia article remains saved for the later step.

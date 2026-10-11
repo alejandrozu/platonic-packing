@@ -3,7 +3,7 @@
 Checked **12 October 2026**, Europe/Paris. Public read-only research only: nothing posted, sent, or notified. Topic and identity evidence determine this mention list; follower counts are not used to rank it.
 
 
-The opening mentions are **@yoheinakajima, @small_LM, and @konoha_ily2** from the method lineage and packing discussion. **@AndyLin2001 and @TencentHunyuan** appear in the construction-credit post. **@keenanisalive, @mathematics_inc, and @AlexKontorovich** are adjacent geometry/formalization audiences in post 4, with their roles and primary work linked explicitly. This is the selected list for the current draft.
+The opening mentions are **@yoheinakajima, @small_LM, and @konoha_ily2** from the method lineage and packing discussion. **@AndyLin2001 and @TencentHunyuan** appear in the construction-credit post. **@keenanisalive, @mathematics_inc, and @AlexKontorovich** are adjacent geometry/formalization audiences in post 3, with their roles and primary work linked explicitly. This is the selected list for the current draft.
 
 ## Verified conversations and prior credits
 
