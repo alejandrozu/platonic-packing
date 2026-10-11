@@ -34,11 +34,16 @@ if timeout 90 git push -q origin HEAD:main > /dev/null 2>&1; then push=pushed; e
 flock -u 9
 head=$(git rev-parse HEAD); from=$(cat state/.device_synced 2>/dev/null)
 if [ "$from" != "$head" ]; then
-  mkdir -p /mnt/user-data/outputs
-  rm -f /mnt/user-data/outputs/sync-*.bundle
+  mkdir -p /mnt/user-data/outputs .sync
+  rm -f /mnt/user-data/outputs/sync-*.bundle .sync/sync-*.bundle 2>/dev/null
   bn=/mnt/user-data/outputs/sync-${head:0:12}.bundle          # unique name per cycle (the upload tool caches by path)
-  git bundle create -q "$bn" "$from..main" 2>/dev/null || git bundle create -q "$bn" main
-  laptop="LAPTOP-BUNDLE-READY $bn"
+  if (git bundle create -q "$bn" "$from..main" 2>/dev/null || git bundle create -q "$bn" main 2>/dev/null) && [ -s "$bn" ]; then
+    laptop="LAPTOP-BUNDLE-READY $bn"
+  else                                                          # outputs folder unavailable: keep a local copy instead
+    bn=.sync/sync-${head:0:12}.bundle
+    git bundle create -q "$bn" "$from..main" 2>/dev/null || git bundle create -q "$bn" main
+    laptop="LAPTOP-BUNDLE-LOCAL $bn (outputs folder unavailable; laptop can fetch from GitHub)"
+  fi
 else laptop="laptop up to date"; fi
 newb=$(python3 - "$pt" <<'PY'
 import json, sys
