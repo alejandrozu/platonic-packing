@@ -2,7 +2,7 @@
 
 Updated 2026-10-12 18:36 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
 
-* attempts: 62757 total, 1670 in the last 24 h, 1379 in the last hour
+* attempts: 62757 total, 1670 in the last 24 h, 1375 in the last hour
 * improvements: 5737 total, 1670 in the last 24 h
 * by move (attempts / improvements): ascend 7989/803, descend 5619/99, fresh 6637/95, harvest 2029/2029, hop 33457/2157, reinsert 6775/403, tighten 251/151
 
