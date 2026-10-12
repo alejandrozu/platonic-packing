@@ -380,7 +380,8 @@ def choose(rng, wid):
     sh = shard()
     if sh: order.sort(key=lambda p: 0 if PID_INDEX[p] % sh[1] == sh[0] else 1)
     claimed = {tuple(x.split('|')) for x in _claims()}
-    for p in order:
+    fast = bool(os.environ.get('PP_FAST'))       # laptop: short bounded runs -> skip the slow fill phase, small n first
+    for p in (order if not fast else ()):
         for n in range(NMIN, NMAX + 1):
             if idx[(p, n)] and idx[(p, n)].get('best'): continue
             if (p, str(n)) in claimed: break
@@ -388,7 +389,8 @@ def choose(rng, wid):
             if n < NMAX and idx[(p, n + 1)] and idx[(p, n + 1)].get('best'): return p, n, 'descend'
             if n == NMIN or rng.random() < 0.3: return p, n, 'fresh'
             break
-    for (p, n), c in sorted(idx.items(), key=lambda kv: rng.random()):
+    for (p, n), c in sorted(idx.items(), key=(lambda kv: kv[0][1]) if fast else (lambda kv: rng.random())):
+        if fast and n > 20: break                # fast mode: only quick re-tightenings, smallest n first
         if c and c['stats'].get('needs_tighten') and (p, str(n)) not in claimed: return p, n, 'tighten'
     best_key, best_score = None, None
     need = int(policy().get('min_attempts', 0))
@@ -397,7 +399,7 @@ def choose(rng, wid):
                for (p, n), c in idx.items() if c and c.get('best') and total_attempts(c['stats']) < need
                and (p, str(n)) not in claimed]
         if low:
-            low.sort(key=lambda x: (x[1], x[0], x[2]))
+            low.sort(key=(lambda x: (x[0], x[4], x[2])) if fast else (lambda x: (x[1], x[0], x[2])))
             best_key, best_score = (low[0][3], low[0][4]), -1.0
     fc = policy().get('focus') or {}             # optional: a share of attempts on listed cases ("pid:n")
     if best_key is None and fc.get('cases') and rng.random() < fc.get('share', 0):
