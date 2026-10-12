@@ -1,0 +1,106 @@
+{
+ "problem": "min/rhombic_dodecahedron_in_rhombic_dodecahedron",
+ "piece": "rhombic_dodecahedron",
+ "container": "rhombic_dodecahedron",
+ "n": 7,
+ "s": 2.50852,
+ "s_plus": "2.50852+",
+ "s_full": 2.5085207018334,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020144243504e-07,
+  "min_wall_gap": 1.000000040551896e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   1.0008188999628453,
+   -0.4430742188616534,
+   0.38657189256045654,
+   0.4315303046850789,
+   -0.16621750983123282,
+   0.3665901245240297,
+   0.8073196493120698
+  ],
+  [
+   -1.0019929700738825,
+   -0.4449021617092426,
+   0.43085846294675473,
+   0.5322611517745339,
+   -0.4556821479238242,
+   -0.7098197116862938,
+   0.07216524978660749
+  ],
+  [
+   1.187657355725132e-09,
+   -1.6000276769024782,
+   1.1876575197144905e-09,
+   0.7071067811865476,
+   -0.7071067811865475,
+   -1.8123681939255782e-17,
+   -4.838905744709498e-17
+  ],
+  [
+   0.27869069327473733,
+   -0.46764805385552427,
+   -1.1310447829031163,
+   0.010562923154963553,
+   -0.7170663947108881,
+   0.009672432263714474,
+   0.6968577001690197
+  ],
+  [
+   1.187657355725132e-09,
+   3.61426446581355e-09,
+   1.6000276817044004,
+   1.0,
+   -1.9974344926921336e-15,
+   1.2487020593564249e-16,
+   -9.63685309156593e-18
+  ],
+  [
+   0.48250688235450373,
+   0.973463705557565,
+   0.31562810358191945,
+   0.18904315850555145,
+   -0.9330327005623673,
+   0.2012252685338151,
+   -0.23069689032805574
+  ],
+  [
+   -0.6961913631166213,
+   0.7954086068891949,
+   -0.6283793827798653,
+   0.3464231832411517,
+   0.8183702587127948,
+   0.4075241210109583,
+   0.21020273205091006
+  ]
+ ],
+ "record_id": "rdoinrdo_n07",
+ "title": "7 rhombic dodecahedra in a rhombic dodecahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "caa0a8b917b7b43a",
+  "clear": 1e-07,
+  "cap": 2.6479520316502
+ },
+ "s_tight": 2.508520463405,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.912931182772389,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 1126958210,
+  "var": "base",
+  "raw": 2.5398662717649803,
+  "host": "actions"
+ },
+ "density": 0.44345031904812565
+}

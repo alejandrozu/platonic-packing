@@ -1,0 +1,61 @@
+{
+ "problem": "min/antiprism12_in_antiprism12",
+ "piece": "antiprism12",
+ "container": "antiprism12",
+ "n": 2,
+ "s": 1.98287,
+ "s_plus": "1.98287+",
+ "s_full": 1.9828718838924,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000002008298972e-07,
+  "min_wall_gap": 1.0000001493537525e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -1.8489449558491353,
+   0.00010461493153860209,
+   0.007555027115788744,
+   0.9172874378808696,
+   -0.044104548709926285,
+   -0.10679827570386582,
+   0.3810940479668037
+  ],
+  [
+   1.8488577922764844,
+   -0.0001046149073148655,
+   -0.007555120985001783,
+   0.25810369911895215,
+   0.11164140045287159,
+   -0.029787255918374857,
+   -0.95918267164857
+  ]
+ ],
+ "record_id": "ap12inap12_n02",
+ "title": "2 antiprism12s in a antiprism12",
+ "family": "prisms",
+ "source": {
+  "hash": "d82ea37ae1ce9ad1",
+  "clear": 1e-07,
+  "cap": 2.0000003474156
+ },
+ "s_tight": 1.982871541551,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "fresh",
+  "seed": 2083802433,
+  "var": "base",
+  "raw": 1.9828717382562082,
+  "host": "actions"
+ },
+ "density": 0.25653464887876437
+}

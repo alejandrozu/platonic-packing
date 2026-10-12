@@ -1,0 +1,160 @@
+{
+ "problem": "min/snub_dodecahedron_in_snub_dodecahedron",
+ "piece": "snub_dodecahedron",
+ "container": "snub_dodecahedron",
+ "n": 13,
+ "s": 2.8973,
+ "s_plus": "2.89730+",
+ "s_full": 2.8973015124427,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020325293861e-07,
+  "min_wall_gap": 1.0000002070853498e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -3.3676101460979257,
+   -2.087192564904818,
+   -0.08807952295751084,
+   0.09759140330176187,
+   0.13392507081364077,
+   -0.8681892997076875,
+   0.467747082601516
+  ],
+  [
+   3.3891963319325615,
+   2.1329469175850813,
+   0.13538622252918814,
+   0.4489376498694282,
+   0.6068455250156684,
+   0.313013279113493,
+   -0.5763819761206894
+  ],
+  [
+   3.3924147636547017,
+   -2.1923857875032997,
+   -0.07566585070702857,
+   0.1862660161977718,
+   0.5386486863507914,
+   0.5291651838326358,
+   -0.6286070092846173
+  ],
+  [
+   2.167769976476809,
+   0.02437906553110661,
+   -3.3625275342331973,
+   0.06465521924880847,
+   -0.6702519938776136,
+   -0.3025856039721561,
+   -0.6745546083126092
+  ],
+  [
+   -1.8675242976916484,
+   -0.05191527858565379,
+   -3.5105864154981314,
+   0.4981870478709098,
+   0.49944293624357355,
+   -0.1474781746982773,
+   -0.6932651778055279
+  ],
+  [
+   0.0009715298873084016,
+   -3.3893513111432187,
+   -2.121090678601913,
+   0.483883334126564,
+   -0.13092364813942045,
+   0.8558732368862234,
+   0.12726711945480632
+  ],
+  [
+   -3.3493346380838545,
+   2.1729814043086715,
+   -0.3695840467091087,
+   0.03301450049894574,
+   -0.07901013623734823,
+   -0.985723574625793,
+   0.1449706023837588
+  ],
+  [
+   -2.2140469571870605,
+   -0.08016774291280243,
+   3.327293995578863,
+   0.37284333847658163,
+   0.1831556916209679,
+   -0.39811804608047147,
+   0.8178898819312719
+  ],
+  [
+   0.05081180792869877,
+   -0.02296732622869389,
+   0.027930427796169253,
+   0.3181416830675455,
+   -0.3529041856228138,
+   -0.8037620504650468,
+   0.35806573627906885
+  ],
+  [
+   0.18028515973989526,
+   3.35812994803172,
+   -2.1546725813499754,
+   0.4458624502248222,
+   0.1215673794387116,
+   -0.7313870274028242,
+   -0.5014988174290972
+  ],
+  [
+   -0.03179272313182733,
+   -3.3396147733554127,
+   2.1949209519711346,
+   0.35728901908160593,
+   -0.3656288121433574,
+   -0.8385969071033392,
+   -0.18818968083041893
+  ],
+  [
+   -0.19784227662682527,
+   3.465044718932925,
+   1.9001150331901737,
+   0.21818866722281738,
+   0.7702988247719964,
+   0.5577268781939563,
+   0.2190300330786527
+  ],
+  [
+   2.0047816080540657,
+   0.19906844265297008,
+   3.4693425684082797,
+   0.6595946471264307,
+   0.2738957964921589,
+   -0.6937509441750733,
+   0.09287422463891454
+  ]
+ ],
+ "record_id": "sndinsnd_n13",
+ "title": "13 snub dodecahedra in a snub dodecahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "d676f0c7a0593257",
+  "clear": 1e-07,
+  "cap": 3.0282884440633
+ },
+ "s_tight": 2.897301415118,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.3513346877207573,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 64530121,
+  "var": "base",
+  "raw": 2.9145415773369834,
+  "host": "actions"
+ },
+ "density": 0.5345179239249772
+}

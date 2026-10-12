@@ -1,0 +1,60 @@
+{
+ "problem": "min/antiprism8_in_cube",
+ "piece": "antiprism8",
+ "container": "cube",
+ "n": 2,
+ "s": 2.56291,
+ "s_plus": "2.56291+",
+ "s_full": 2.5629156477416,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000002009345933e-07,
+  "min_wall_gap": 1.0000004602161994e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -6.685840167932328e-16,
+   3.357843990172156e-16,
+   -0.008985730923904487,
+   0.29028467725446283,
+   4.8159302742346783e-17,
+   4.8580772888541164e-17,
+   -0.9569403357322087
+  ],
+  [
+   2.268410400824707e-16,
+   -3.8204802157813993e-16,
+   0.8513099389392681,
+   0.4713967368259984,
+   -1.474368280460645e-17,
+   -3.6928699818313676e-17,
+   0.8819212643483547
+  ]
+ ],
+ "record_id": "ap8incub_n02",
+ "title": "2 antiprism8s in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "b1297687eb243a48",
+  "clear": 1e-07,
+  "cap": 2.5808871095894
+ },
+ "s_tight": 2.562915447742,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.04369775799839,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "monotone",
+  "from_n": 3,
+  "removed": 0,
+  "host": "actions"
+ },
+ "density": 0.5070456573911656
+}

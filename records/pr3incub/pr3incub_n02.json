@@ -1,0 +1,61 @@
+{
+ "problem": "min/prism3_in_cube",
+ "piece": "prism3",
+ "container": "cube",
+ "n": 2,
+ "s": 1.22474,
+ "s_plus": "1.22474+",
+ "s_full": 1.2247451421026,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020057258773e-07,
+  "min_wall_gap": 1.0000002970134148e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -0.04731813225715515,
+   -0.20412427240245556,
+   -0.20412408877225077,
+   0.5609854783917394,
+   0.43045939765974284,
+   0.5609854783917442,
+   0.43045939765974306
+  ],
+  [
+   0.11237247105120478,
+   0.20412427240251907,
+   0.2041240887722497,
+   0.5609854783917424,
+   0.4304593976597427,
+   -0.5609854783917432,
+   -0.4304593976597406
+  ]
+ ],
+ "record_id": "pr3incub_n02",
+ "title": "2 prism3s in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "66ee4118aafaf157",
+  "clear": 1e-07,
+  "cap": 1.4783981516125
+ },
+ "s_tight": 1.224744871392,
+ "closed_form_conjecture": "(\u221a6)/2",
+ "volume_lower_bound": 0.9531842929969365,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "fresh",
+  "seed": 463287437,
+  "var": "base",
+  "raw": 1.2247449848135283,
+  "host": "actions"
+ },
+ "density": 0.47140420820101964
+}

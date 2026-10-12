@@ -1,0 +1,151 @@
+{
+ "problem": "min/pentagonal_icositetrahedron_in_pentagonal_icositetrahedron",
+ "piece": "pentagonal_icositetrahedron",
+ "container": "pentagonal_icositetrahedron",
+ "n": 12,
+ "s": 2.93454,
+ "s_plus": "2.93454+",
+ "s_full": 2.9345496225411,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020226022005e-07,
+  "min_wall_gap": 1.00000111746823e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   1.519564979464219,
+   -1.3408740818414002,
+   -1.3028918398909668,
+   0.2637868792128831,
+   -0.07797480600227398,
+   0.2885148867610354,
+   0.9171126278169451
+  ],
+  [
+   -1.4993613554119156,
+   -1.36317313549763,
+   -1.3452600537408081,
+   0.7626750059585029,
+   0.2523446421309598,
+   0.4641341580207314,
+   -0.373133354489226
+  ],
+  [
+   1.4319221127426138,
+   -1.1071785262463498,
+   1.6084816235612802,
+   0.41964337760708104,
+   -0.7718445063460383,
+   0.41964337760708004,
+   0.22815549365396184
+  ],
+  [
+   0.7476148685665095,
+   1.259682465317769,
+   1.8548860894041834,
+   0.2237686590227826,
+   -0.06614551045432934,
+   0.12166056129552652,
+   -0.9647544073551255
+  ],
+  [
+   0.1357604278199133,
+   0.19206242365354628,
+   -2.489162670717089,
+   0.5373843942811363,
+   0.12419347297708982,
+   0.6794470145097516,
+   -0.48388609044564473
+  ],
+  [
+   2.284263953619028,
+   0.7658185584942309,
+   -0.22637423739391774,
+   0.771844506346038,
+   -0.41964337760708087,
+   0.41964337760708087,
+   0.2281554936539618
+  ],
+  [
+   -1.6026358314896387,
+   -1.1346073833323773,
+   1.395832514324613,
+   0.2393715485033484,
+   -0.7689799206372206,
+   0.4385545556346328,
+   -0.3987995049595635
+  ],
+  [
+   -1.5401562431749531,
+   1.3819626393800024,
+   1.2321496126738043,
+   0.852263846116512,
+   -0.07576344317009898,
+   0.4601786627582993,
+   -0.23694268425863066
+  ],
+  [
+   -0.011713377156081102,
+   -2.4996138877143057,
+   0.24028263499852634,
+   0.8242870142930206,
+   0.2436573806152866,
+   -0.482921313472124,
+   0.16723936119811478
+  ],
+  [
+   0.011221171014672559,
+   -0.03593254612696103,
+   -0.02760663301148714,
+   0.7268614072688888,
+   -0.6429746162825006,
+   0.20907418587706728,
+   0.12059901425510626
+  ],
+  [
+   0.2484238775547998,
+   2.452174465240434,
+   -0.15722576085636256,
+   0.4655371810326238,
+   0.26867488968204595,
+   -0.16164302486135135,
+   -0.8276233861148506
+  ],
+  [
+   -1.6038665422314926,
+   1.2568324684785306,
+   -1.1722783196059676,
+   0.30820487571472593,
+   0.91367957740583,
+   -0.07510649389917128,
+   0.25408344887329454
+  ]
+ ],
+ "record_id": "pitinpit_n12",
+ "title": "12 pentagonal icositetrahedra in a pentagonal icositetrahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "f386eb99a87a9f4e",
+  "clear": 1e-07,
+  "cap": 2.9730359263473
+ },
+ "s_tight": 2.934549447685,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.2894284851066637,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 1734669667,
+  "var": "base",
+  "raw": 2.9737937965206798,
+  "host": "actions"
+ },
+ "density": 0.47485047072472614
+}

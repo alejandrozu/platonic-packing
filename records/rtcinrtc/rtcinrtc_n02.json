@@ -1,0 +1,61 @@
+{
+ "problem": "min/rhombic_triacontahedron_in_rhombic_triacontahedron",
+ "piece": "rhombic_triacontahedron",
+ "container": "rhombic_triacontahedron",
+ "n": 2,
+ "s": 1.94815,
+ "s_plus": "1.94815+",
+ "s_full": 1.9481527791682,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020291241109e-07,
+  "min_wall_gap": 1.0000012684585613e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   0.0776966066270594,
+   -1.3148829635282209,
+   0.6869266123555158,
+   0.3206391051591734,
+   -0.8652377124286261,
+   0.283710782813344,
+   -0.26088782445611064
+  ],
+  [
+   -0.07769661193593604,
+   1.314882972118163,
+   -0.6869266090744516,
+   0.19816586511072093,
+   -0.4818766479240641,
+   0.6572195546775508,
+   -0.5445986072694541
+  ]
+ ],
+ "record_id": "rtcinrtc_n02",
+ "title": "2 rhombic triacontahedra in a rhombic triacontahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "359d691a2018abb7",
+  "clear": 1e-07,
+  "cap": 2.0000001024924
+ },
+ "s_tight": 1.948152677211,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "fresh",
+  "seed": 733707291,
+  "var": "base",
+  "raw": 1.9481728708304658,
+  "host": "actions"
+ },
+ "density": 0.2704960692922456
+}

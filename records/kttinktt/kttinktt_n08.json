@@ -1,0 +1,115 @@
+{
+ "problem": "min/triakis_tetrahedron_in_triakis_tetrahedron",
+ "piece": "triakis_tetrahedron",
+ "container": "triakis_tetrahedron",
+ "n": 8,
+ "s": 2.51345,
+ "s_plus": "2.51345+",
+ "s_full": 2.513459691691,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020186679484e-07,
+  "min_wall_gap": 1.0000004557753073e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -1.605266306016585,
+   1.6052663060165842,
+   1.6052663060165866,
+   0.49999999999999933,
+   0.5000000000000001,
+   -0.5000000000000012,
+   -0.49999999999999933
+  ],
+  [
+   1.6052663060165848,
+   -1.6052663060165846,
+   1.6052663060165864,
+   0.5000000000000002,
+   0.5,
+   0.4999999999999999,
+   0.5
+  ],
+  [
+   -1.6052663060165866,
+   -1.6052663060165864,
+   -1.6052663060165833,
+   0.5000000000000002,
+   0.49999999999999967,
+   0.5000000000000002,
+   -0.4999999999999999
+  ],
+  [
+   1.6052663060165855,
+   1.605266306016585,
+   -1.6052663060165835,
+   3.3171106340116325e-15,
+   0.5773502691896251,
+   0.577350269189624,
+   -0.5773502691896284
+  ],
+  [
+   -0.10407414089998397,
+   1.1161214642395352,
+   -0.648332640413778,
+   0.14642663106932272,
+   0.8042108967445307,
+   0.18787521886487576,
+   0.5445245425208318
+  ],
+  [
+   -1.1540435214244826,
+   -0.8939116570476234,
+   0.459756696728586,
+   0.4674049109704003,
+   -0.5511099443580243,
+   0.5092574276642247,
+   0.46740491097041836
+  ],
+  [
+   1.0101385531530502,
+   -1.0332612811242836,
+   -0.6698816288293954,
+   0.5061011092876274,
+   0.5299606739376099,
+   0.48977271715959886,
+   -0.4723621881390709
+  ],
+  [
+   0.4838583561939408,
+   0.29987996246492277,
+   1.338977010339838,
+   0.17289441773821007,
+   -0.43529465216067725,
+   0.7690053387077268,
+   0.43503663656558245
+  ]
+ ],
+ "record_id": "kttinktt_n08",
+ "title": "8 triakis tetrahedra in a triakis tetrahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "62a6d6354d7bfba4",
+  "clear": 1e-07,
+  "cap": 2.6004922738368
+ },
+ "s_tight": 2.513459508801,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.0,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 1685201226,
+  "var": "base",
+  "raw": 2.5288858435902806,
+  "host": "actions"
+ },
+ "density": 0.5038186181992598
+}

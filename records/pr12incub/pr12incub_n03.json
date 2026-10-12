@@ -1,0 +1,70 @@
+{
+ "problem": "min/prism12_in_cube",
+ "piece": "prism12",
+ "container": "cube",
+ "n": 3,
+ "s": 4.4913,
+ "s_plus": "4.49130+",
+ "s_full": 4.4913090510382,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020117528763e-07,
+  "min_wall_gap": 1.0000001804399972e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   0.04717610312352083,
+   -0.6561987949434454,
+   -0.5000001122829593,
+   0.720078840069694,
+   0.3330104902779185,
+   -0.2555279364703599,
+   0.5525359274580652
+  ],
+  [
+   0.10711044758930298,
+   0.656198701617528,
+   -0.5000001122829669,
+   0.8998745319570203,
+   0.4161595125425682,
+   0.05478843922098213,
+   -0.11847072964743054
+  ],
+  [
+   0.327556700050195,
+   -0.24416714818575666,
+   1.7456544255190727,
+   0.663658355061645,
+   -2.0925151793542716e-15,
+   -1.1288387430999175e-15,
+   -0.7480358198354353
+  ]
+ ],
+ "record_id": "pr12incub_n03",
+ "title": "3 prism12s in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "3121386c6a931e38",
+  "clear": 1e-07,
+  "cap": 4.7320512075693
+ },
+ "s_tight": 4.491308626472,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 3.226487738333585,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 687991495,
+  "var": "base",
+  "raw": 4.491309202945809,
+  "host": "actions"
+ },
+ "density": 0.3707415284934279
+}

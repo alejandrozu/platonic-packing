@@ -1,0 +1,169 @@
+{
+ "problem": "min/pentakis_dodecahedron_in_pentakis_dodecahedron",
+ "piece": "pentakis_dodecahedron",
+ "container": "pentakis_dodecahedron",
+ "n": 14,
+ "s": 3.08386,
+ "s_plus": "3.08386+",
+ "s_full": 3.0838622708736,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000002042301391e-07,
+  "min_wall_gap": 1.0000000738585868e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -4.157892949487305,
+   2.785317510503238,
+   -0.25135390939324453,
+   0.5510414903008014,
+   0.5543751596875165,
+   -0.41215568848784623,
+   -0.4681336846837899
+  ],
+  [
+   0.5805300295061939,
+   -4.888039275066737,
+   0.5071979254426415,
+   0.5650150301958979,
+   -0.5495625329424075,
+   0.481894169460744,
+   0.38277545307711874
+  ],
+  [
+   -3.105526693359404,
+   -3.099422899758988,
+   3.0146779355314584,
+   0.7816646571676782,
+   -0.3338225362532544,
+   0.3571004684613929,
+   -0.3873527248504063
+  ],
+  [
+   -4.334134234789513,
+   -1.9103887139435032,
+   -1.5497692638084197,
+   0.04696775630109384,
+   -0.9662207494644448,
+   -0.11523126991595867,
+   0.22568395513629944
+  ],
+  [
+   -0.2209670025997281,
+   3.8238270952105773,
+   -3.074108370673527,
+   0.102642304773522,
+   0.2606747977969212,
+   -0.7061301851197747,
+   0.6503025209293185
+  ],
+  [
+   1.2179945202966809,
+   -1.664866863116181,
+   4.54426356872751,
+   0.1790691938587627,
+   -0.18600624826845613,
+   0.5837674194100416,
+   0.7697736676784983
+  ],
+  [
+   -0.24629592268889006,
+   5.006900120058076,
+   1.5372794914258003,
+   0.5077193421490621,
+   0.49219427967174445,
+   -0.4948462769493501,
+   -0.5050673448714571
+  ],
+  [
+   4.189138233257818,
+   2.067204510848931,
+   -1.7030593253692579,
+   0.7478993430398254,
+   0.10345938190835777,
+   0.012218121064373115,
+   0.6555863379398587
+  ],
+  [
+   -0.0049893663124299355,
+   -0.04756441980494,
+   -0.004967270107577567,
+   0.524226838578536,
+   -0.3132289339486597,
+   0.7728623323659394,
+   0.17250412128763778
+  ],
+  [
+   2.829428782063237,
+   -2.941280333209602,
+   -3.326109756993188,
+   0.26319213321999985,
+   0.2523828413619668,
+   0.8878346996211037,
+   0.2806819348406141
+  ],
+  [
+   -2.4870404702219786,
+   1.5022696578399592,
+   4.081242209774015,
+   0.040386460398561225,
+   -0.0015699644501969887,
+   -0.7087784417291916,
+   0.7042723830791888
+  ],
+  [
+   4.521465651168578,
+   -1.9612708831731458,
+   1.027734470446735,
+   0.5938990567647909,
+   -0.05336118537155914,
+   -0.5552991214903507,
+   -0.5797235375087669
+  ],
+  [
+   3.4513361419640476,
+   2.2615317421699284,
+   3.047367544062425,
+   0.8775984789713678,
+   -0.4457069820250049,
+   -0.17174427119275207,
+   -0.040866871592698736
+  ],
+  [
+   -1.1211050683689487,
+   -0.5722427117317629,
+   -4.852150662021337,
+   0.36981610126196035,
+   -0.3607309630373087,
+   0.15915165843393703,
+   0.8412966023771323
+  ]
+ ],
+ "record_id": "pkdinpkd_n14",
+ "title": "14 pentakis dodecahedra in a pentakis dodecahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "dd053bfee51ae613",
+  "clear": 1e-07,
+  "cap": 3.1195323281171
+ },
+ "s_tight": 3.083862184728,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.4101422641752297,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 1411669757,
+  "var": "base",
+  "raw": 3.098589544453714,
+  "host": "actions"
+ },
+ "density": 0.47735680123161994
+}

@@ -3,104 +3,104 @@
  "piece": "rhombicosidodecahedron",
  "container": "rhombicosidodecahedron",
  "n": 7,
- "s": 2.57868,
- "s_plus": "2.57868+",
- "s_full": 2.5786888935643,
+ "s": 2.56245,
+ "s_plus": "2.56245+",
+ "s_full": 2.5624596975524,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020431664047e-07,
-  "min_wall_gap": 1.0000020633782469e-07
+  "min_pair_gap": 1.0000020390835369e-07,
+  "min_wall_gap": 1.0000008643373803e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-12",
  "pieces": [
   [
-   -2.992602324550101,
-   -0.14063996467238982,
-   1.6399321115475913,
-   0.18254034505565506,
-   0.2220747468380795,
-   -0.3791376401901188,
-   -0.8795547049699828
+   1.2068835191940046,
+   2.5492098111703463,
+   1.9094615118807376,
+   0.8229203365396425,
+   -0.29697823133646273,
+   0.45187029565276654,
+   -0.17441125459221202
   ],
   [
-   -0.7203049872631645,
-   3.303489489770133,
-   0.8117085724800152,
-   0.4235328677464622,
-   0.0757241924226834,
-   -0.359035063322602,
-   -0.8282388423186426
+   -1.0909734172080368,
+   2.791315309184372,
+   -1.6192936274028056,
+   0.008661523885928592,
+   -0.30462067352974276,
+   0.49831570448407636,
+   -0.8116727677622295
   ],
   [
-   0.5869094703783204,
-   -2.181701542239195,
-   -2.5667019580201,
-   0.5851341306042844,
-   0.4769729417405511,
-   0.6042072154478964,
-   0.25504607985623423
+   3.1232580858389363,
+   0.34872049747962613,
+   -1.2178609024728086,
+   0.26066866301587976,
+   0.04079404875637495,
+   -0.11887778364423617,
+   0.957212497966575
   ],
   [
-   2.6260954827904057,
-   1.005501919613049,
-   1.9238093681363408,
-   0.6052140421781398,
-   -0.05990107968308758,
-   0.059352622947748415,
-   0.7915839121359276
+   -3.300969428970585,
+   -0.5566850807927337,
+   -0.15419908923185086,
+   0.2851444087768427,
+   -0.5097654711325088,
+   -0.022701307716891696,
+   -0.8113670446920427
   ],
   [
-   -2.258099442878654,
-   0.8683019693615927,
-   -2.413497343843972,
-   0.407181792072041,
-   -0.8403308995882552,
-   0.05565856299752488,
-   -0.3534813881482951
+   -0.35403988791687924,
+   -1.1567087645915948,
+   -3.1923599491158527,
+   0.7001208340303717,
+   0.16595195793578135,
+   0.1974119954174391,
+   0.6658222506639461
   ],
   [
-   1.9396176912583405,
-   1.8290947877062587,
-   -2.1993982943858126,
-   0.7767845267122152,
-   0.028711570162335553,
-   0.2685620519641259,
-   0.5689076102884469
+   1.2684165597420036,
+   -3.1406736970957057,
+   0.1773328391924345,
+   0.4533500200043933,
+   0.8514115880559329,
+   -0.23172982840662,
+   -0.12598949842240487
   ],
   [
-   0.32743639611456243,
-   -2.7044502783614286,
-   1.7220100396897875,
-   0.06351885317060034,
-   -0.45096090051437265,
-   -0.6443998451299022,
-   0.6142869533823065
+   -0.7459073584014035,
+   -0.8514719982971197,
+   3.205403193631418,
+   0.4869250029165776,
+   -0.008844236216989291,
+   0.8727768307454367,
+   -0.0329609577285098
   ]
  ],
  "record_id": "ridinrid_n07",
  "title": "7 rhombicosidodecahedra in a rhombicosidodecahedron",
  "family": "archimedean",
  "source": {
-  "hash": "d9b89eb8ab407ea0",
+  "hash": "3199282eede7262e",
   "clear": 1e-07,
   "cap": 2.6303109304191
  },
- "s_tight": 2.578688806827,
+ "s_tight": 2.562459611536,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.912931182772389,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
- "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
   "move": "ascend",
-  "seed": 77735136,
+  "seed": 1217045038,
   "var": "base",
-  "raw": 2.5815011868083904,
-  "host": "laptop"
+  "raw": 2.5649629271820054,
+  "host": "actions"
  },
- "density": 0.40822649742040057
+ "density": 0.4160321655759634
 }

@@ -1,0 +1,61 @@
+{
+ "problem": "min/prism5_in_prism5",
+ "piece": "prism5",
+ "container": "prism5",
+ "n": 2,
+ "s": 1.66295,
+ "s_plus": "1.66295+",
+ "s_full": 1.6629503139184,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000002009809986e-07,
+  "min_wall_gap": 1.00000003833145e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -0.22061377651960037,
+   -0.6059091333797624,
+   0.022401233079750997,
+   0.6946325221181401,
+   0.7014971393889403,
+   -0.08889186368355491,
+   -0.1322333513747184
+  ],
+  [
+   0.18713230639446396,
+   0.313068462604361,
+   0.02245806258423194,
+   0.6984011233337141,
+   -0.6300367553350444,
+   0.3210197609600998,
+   0.11061587104125727
+  ]
+ ],
+ "record_id": "pr5inpr5_n02",
+ "title": "2 prism5s in a prism5",
+ "family": "prisms",
+ "source": {
+  "hash": "d17163fb3318f289",
+  "clear": 1e-07,
+  "cap": 1.9720769090888
+ },
+ "s_tight": 1.662950048934,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "fresh",
+  "seed": 607799201,
+  "var": "base",
+  "raw": 1.6629500931338095,
+  "host": "actions"
+ },
+ "density": 0.4349027715320334
+}

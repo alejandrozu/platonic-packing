@@ -1,0 +1,70 @@
+{
+ "problem": "min/snub_dodecahedron_in_snub_dodecahedron",
+ "piece": "snub_dodecahedron",
+ "container": "snub_dodecahedron",
+ "n": 3,
+ "s": 2.11922,
+ "s_plus": "2.11922+",
+ "s_full": 2.1192213411174,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020408453322e-07,
+  "min_wall_gap": 1.0000013261901586e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   1.041789496291978,
+   0.5339666450577198,
+   -2.0077045837362975,
+   0.39047309557415383,
+   0.45552655875783393,
+   -0.2520665076284308,
+   0.7592685899146558
+  ],
+  [
+   1.290343779819969,
+   0.2120804114511242,
+   1.9365214128505033,
+   0.684058941337288,
+   -0.6661131161759013,
+   0.12375768072850785,
+   0.27026046269412
+  ],
+  [
+   -2.2980987381747595,
+   -0.4793528593101528,
+   0.133558831907271,
+   0.3592774817635985,
+   -0.1741732973283686,
+   -0.8825744156560777,
+   0.24828563072538806
+  ]
+ ],
+ "record_id": "sndinsnd_n03",
+ "title": "3 snub dodecahedra in a snub dodecahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "6b0bc01217ff9f3c",
+  "clear": 1e-07,
+  "cap": 2.1921193677283
+ },
+ "s_tight": 2.119221262937,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.4422495703074083,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 1526804798,
+  "var": "base",
+  "raw": 2.1200704160919823,
+  "host": "actions"
+ },
+ "density": 0.31520441970128193
+}

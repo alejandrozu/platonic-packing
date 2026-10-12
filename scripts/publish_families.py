@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.join(ROOT, 'src')); sys.path.insert(0, os.path.join(R
 import claim, engine
 from engine import PID, NMIN, NMAX, _read, _path, FAM
 from records import closed_form
-import verify_general
+import verify_general, certify_general
 
 CLEAR = 1e-7
 SOL = json.load(open(os.path.join(ROOT, 'src', 'solids.json')))
@@ -47,6 +47,22 @@ def verify(fn):
     return rc == 0
 
 
+def certify(fn):
+    import io, contextlib
+    buf = io.StringIO()
+    with contextlib.redirect_stdout(buf):
+        try: rc = certify_general.main(fn)
+        except Exception as e: print('ERROR', type(e).__name__, e); print('NOT CERTIFIED'); rc = 1
+    open(fn.replace('.json', '.certify.txt'), 'w').write(buf.getvalue())
+    return rc == 0
+
+
+def cert_status(fn):
+    t = fn.replace('.json', '.certify.txt')
+    if not os.path.exists(t): return None
+    x = open(t).read(); return 'CERTIFIED' in x and 'NOT CERTIFIED' not in x
+
+
 def build_problem(p, log, deadline):
     piece, container = PID[p]
     d = os.path.join(ROOT, 'records', p); os.makedirs(d, exist_ok=True)
@@ -61,8 +77,14 @@ def build_problem(p, log, deadline):
         vtxt = fn.replace('.json', '.verify.txt')
         if old and old.get('source') == src and os.path.exists(vtxt):
             rec = old; ver = 'VALID' in open(vtxt).read() and 'INVALID' not in open(vtxt).read()
+            cert = cert_status(fn)
+            if cert is None and time.time() < deadline:          # records built before the exact certifier existed
+                cert = certify(fn)
+                rec['certificate'] = 'exact certificate: certify_general.py (src/solids_exact.json)' if cert else 'exact certification FAILED'
+                json.dump(rec, open(fn, 'w'), indent=1)
+                log(f"certify {p}_n{n:02d}  {'CERTIFIED' if cert else 'NOT CERTIFIED'}")
         elif time.time() > deadline:
-            if old: rec = old; ver = os.path.exists(vtxt) and 'INVALID' not in open(vtxt).read()
+            if old: rec = old; ver = os.path.exists(vtxt) and 'INVALID' not in open(vtxt).read(); cert = cert_status(fn)
             else: prev = None; continue
         else:
             try: cf = closed_form(b['s'])
@@ -74,7 +96,7 @@ def build_problem(p, log, deadline):
                     'credit': "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and "
                               "antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under "
                               "Alejandro Zarzuelo's direction",
-                    'certificate': 'float-verified (verify_general.py); exact certificate pending (general certifier)',
+                    'certificate': 'pending',
                     'search': b.get('src', {})}
             try:
                 rec = claim.make_claim_fast({'piece': piece, 'container': container, 'C': b['C'], 'Q': b['Q']}, GAP=CLEAR, WALL=CLEAR, meta=meta)
@@ -87,13 +109,15 @@ def build_problem(p, log, deadline):
             rec['density'] = n * SOL[piece]['volume'] / (SOL[container]['volume'] * rec['s_full'] ** 3)
             rec['date'] = time.strftime('%Y-%m-%d')
             json.dump(rec, open(fn, 'w'), indent=1)
-            ver = verify(fn); rebuilt += 1
-            log(f"record {p}_n{n:02d}  s_full {rec['s_full']:.13f}  {'VERIFIED' if ver else 'FAILED'}")
+            ver = verify(fn); cert = certify(fn); rebuilt += 1
+            rec['certificate'] = 'exact certificate: certify_general.py (src/solids_exact.json)' if cert else 'exact certification FAILED'
+            json.dump(rec, open(fn, 'w'), indent=1)
+            log(f"record {p}_n{n:02d}  s_full {rec['s_full']:.13f}  {'CERTIFIED' if ver and cert else 'VERIFIED, NOT CERTIFIED' if ver else 'FAILED'}")
         rows.append(dict(record_id=f'{p}_n{n:02d}', problem=p, family=FAM[p], piece=piece, container=container, n=n,
                          s=rec['s_plus'], s_full=rec['s_full'], s_tight=f"{rec.get('s_tight', b['s']):.12f}",
                          closed_form_conjecture=rec.get('closed_form_conjecture') or '',
                          volume_lower_bound=f"{rec['volume_lower_bound']:.5f}", density=f"{rec['density']:.4f}",
-                         verified=ver, certified=False, derived=bool(rec.get('derived_from')), file=os.path.relpath(fn, ROOT)))
+                         verified=ver, certified=bool(cert), derived=bool(rec.get('derived_from')), file=os.path.relpath(fn, ROOT)))
         prev = rec
     return rows[::-1], rebuilt
 
@@ -104,8 +128,9 @@ def write_tables(rows):
     L = ['# Records: Archimedean, Catalan, prism and antiprism families', '',
          f'_Generated {time.strftime("%Y-%m-%d %H:%M %Z")} from the running search._ s = container size ÷ piece size '
          '(edge ratio; for Catalan solids the ratio of the same canonical solid). Each entry: the record\'s container, '
-         'with 10⁻⁷ clearance, truncated to 5 decimals, linking to the record file. Checked by `verify_general.py` '
-         '(floating point, exact separating-axis set); the exact certificate for these solids is in preparation. '
+         'with 10⁻⁷ clearance, truncated to 5 decimals, linking to the record file. Every record is proven by '
+         '`certify_general.py` (exact number fields for the solids, rigorous interval arithmetic for the packing) and '
+         'checked by `verify_general.py` (floating point). '
          '"≈ x" = conjectured closed form. The square prism is the cube and the triangular antiprism the octahedron: '
          'see the Platonic tables (cubes in a cube, octahedra in an octahedron, octahedra in a cube).', '']
     for fam in FAMILIES:
@@ -121,7 +146,7 @@ def write_tables(rows):
                     if not r: cells.append(''); continue
                     c = f"[{r['s']}]({os.path.relpath(os.path.join(ROOT, r['file']), os.path.join(ROOT, 'records'))})"
                     if r['closed_form_conjecture'] and not r['closed_form_conjecture'].isdigit(): c += f" ≈ {r['closed_form_conjecture']}"
-                    if not r['verified']: c += ' (unverified)'
+                    if not r['certified']: c += ' (not certified)'
                     cells.append(c)
                 L.append(f'| {n} | ' + ' | '.join(cells) + ' |')
             L.append('')

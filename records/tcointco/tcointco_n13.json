@@ -1,0 +1,160 @@
+{
+ "problem": "min/truncated_cuboctahedron_in_truncated_cuboctahedron",
+ "piece": "truncated_cuboctahedron",
+ "container": "truncated_cuboctahedron",
+ "n": 13,
+ "s": 2.83673,
+ "s_plus": "2.83673+",
+ "s_full": 2.8367359403223,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020405533263e-07,
+  "min_wall_gap": 1.0000003136667601e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -3.186336755653261,
+   -2.9609179215735724,
+   0.03568642137585002,
+   0.38197202712105255,
+   0.02332337676581625,
+   -0.056307612508371734,
+   -0.9221620483227885
+  ],
+  [
+   -0.02502547172014841,
+   -3.1790170693114486,
+   -2.9682376079153823,
+   0.6013114780893134,
+   -0.24907136943520544,
+   -0.2905340984022318,
+   -0.7014113606945065
+  ],
+  [
+   3.1944389773564033,
+   -2.9528156998704214,
+   0.029012880046837705,
+   0.017388877527063258,
+   -0.9229252576665963,
+   -0.38228815878218814,
+   -0.0419804639602795
+  ],
+  [
+   -0.10728741601260938,
+   3.184192327568058,
+   -2.9630623496587356,
+   0.6534586960959881,
+   0.2701698215873208,
+   -0.6531039881511607,
+   -0.2710261623184286
+  ],
+  [
+   0.007810857025672286,
+   -3.1184565431561193,
+   3.028798134070629,
+   0.6904589604946938,
+   -0.28599746569894896,
+   0.6138565096713116,
+   -0.25426769165688434
+  ],
+  [
+   2.8365614764209575,
+   2.890365763620465,
+   -0.05571444867271881,
+   0.37181928638104805,
+   0.008510562111260623,
+   0.9282222305738947,
+   0.009026587176886465
+  ],
+  [
+   -0.01005219008157256,
+   3.2534992265322535,
+   2.6092470162335935,
+   0.6500812522608012,
+   -0.33946329215663096,
+   0.2189574022905122,
+   -0.6435966863800662
+  ],
+  [
+   -3.167986452205232,
+   2.6406443708900618,
+   -0.004725759218929644,
+   0.19631926386502693,
+   -0.6456978480760223,
+   -0.2819848358250792,
+   0.6819219808674533
+  ],
+  [
+   0.1495825186989296,
+   -0.28756613686788374,
+   0.038611587688467466,
+   0.21023757205624247,
+   -0.6370744164186843,
+   -0.2904604417292968,
+   -0.682326229183014
+  ],
+  [
+   2.9529118858543755,
+   0.02792689385717473,
+   -3.1943427913724323,
+   0.92346940876458,
+   0.02752529144751705,
+   0.38251355354695293,
+   -0.011401349025833365
+  ],
+  [
+   -2.7860358243422825,
+   -0.015264127528410606,
+   -3.1115299487206083,
+   0.28950520827052445,
+   0.7070769889051703,
+   0.2803256918571439,
+   -0.5810734657767912
+  ],
+  [
+   3.0333772975763442,
+   0.14875911833672908,
+   3.113877379650433,
+   0.6576818299367704,
+   0.2814013286791483,
+   -0.2597202544489384,
+   -0.6487012349437989
+  ],
+  [
+   -2.9242431493034267,
+   0.12297135057225005,
+   3.223011527923382,
+   3.6853590965547207e-16,
+   0.9238795325112866,
+   1.4770049556279274e-16,
+   -0.38268343236509017
+  ]
+ ],
+ "record_id": "tcointco_n13",
+ "title": "13 truncated cuboctahedra in a truncated cuboctahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "1e183c3bffc8e98a",
+  "clear": 1e-07,
+  "cap": 3.0000001044817
+ },
+ "s_tight": 2.836735844613,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.3513346877207573,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 1477812272,
+  "var": "base",
+  "raw": 2.8575014013771587,
+  "host": "actions"
+ },
+ "density": 0.5694906775401003
+}

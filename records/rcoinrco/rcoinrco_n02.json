@@ -1,0 +1,61 @@
+{
+ "problem": "min/rhombicuboctahedron_in_rhombicuboctahedron",
+ "piece": "rhombicuboctahedron",
+ "container": "rhombicuboctahedron",
+ "n": 2,
+ "s": 1.92961,
+ "s_plus": "1.92961+",
+ "s_full": 1.929618670144,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020268686189e-07,
+  "min_wall_gap": 1.0000007177879411e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   0.7767059455436848,
+   -0.5982273177203289,
+   0.7283364549897314,
+   0.21492171300904495,
+   -0.6581231533492349,
+   -0.6426080613580726,
+   0.3282338370438625
+  ],
+  [
+   -0.7767059455436783,
+   0.7283364549897037,
+   -0.5982273177203479,
+   0.20446624187153292,
+   -0.8330519691664088,
+   0.32530430484598855,
+   0.39798879613824384
+  ]
+ ],
+ "record_id": "rcoinrco_n02",
+ "title": "2 rhombicuboctahedra in a rhombicuboctahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "ff41ec47365cf302",
+  "clear": 1e-07,
+  "cap": 2.1208356535828
+ },
+ "s_tight": 1.929618549609,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "fresh",
+  "seed": 158307132,
+  "var": "base",
+  "raw": 1.9296367742471194,
+  "host": "actions"
+ },
+ "density": 0.2783655700639628
+}

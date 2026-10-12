@@ -1,0 +1,60 @@
+{
+ "problem": "min/triakis_tetrahedron_in_triakis_tetrahedron",
+ "piece": "triakis_tetrahedron",
+ "container": "triakis_tetrahedron",
+ "n": 2,
+ "s": 1.66666,
+ "s_plus": "1.66666+",
+ "s_full": 1.6666668044012,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020194668122e-07,
+  "min_wall_gap": 1.0000002537147168e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -0.7071068167218857,
+   0.7071068167218898,
+   0.7071068167218881,
+   0.2886751345948141,
+   0.8660254037844382,
+   0.28867513459481303,
+   -0.2886751345948135
+  ],
+  [
+   -0.707106816721885,
+   -0.7071068167218854,
+   -0.7071068167218886,
+   0.28867513459481187,
+   -0.2886751345948128,
+   0.28867513459481076,
+   0.8660254037844398
+  ]
+ ],
+ "record_id": "kttinktt_n02",
+ "title": "2 triakis tetrahedra in a triakis tetrahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "3bdfc086c1cd67c7",
+  "clear": 1e-07,
+  "cap": 1.6666668044012
+ },
+ "s_tight": 1.666666666667,
+ "closed_form_conjecture": "5/3",
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "monotone",
+  "from_n": 3,
+  "removed": 1
+ },
+ "density": 0.43199989289764457,
+ "derived_from": "kttinktt_n03 minus its last piece"
+}

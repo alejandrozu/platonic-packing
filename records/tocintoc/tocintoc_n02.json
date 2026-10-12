@@ -1,0 +1,61 @@
+{
+ "problem": "min/truncated_octahedron_in_truncated_octahedron",
+ "piece": "truncated_octahedron",
+ "container": "truncated_octahedron",
+ "n": 2,
+ "s": 1.79862,
+ "s_plus": "1.79862+",
+ "s_full": 1.7986293329966,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020261903909e-07,
+  "min_wall_gap": 1.0000008687782724e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   0.0,
+   0.008976705780590271,
+   1.2253532855387994,
+   0.7052520067800244,
+   -0.05118209582216697,
+   -0.4624972694083821,
+   0.5348796834707684
+  ],
+  [
+   0.0,
+   -0.008976706513511212,
+   -1.2253532848058601,
+   0.43494163945079195,
+   -0.8150945717308727,
+   -0.33762322622760815,
+   -0.18015872590131152
+  ]
+ ],
+ "record_id": "tocintoc_n02",
+ "title": "2 truncated octahedra in a truncated octahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "dfbf968cd3ecde40",
+  "clear": 1e-07,
+  "cap": 2.0000001224746
+ },
+ "s_tight": 1.798629227592,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "fresh",
+  "seed": 133070496,
+  "var": "base",
+  "raw": 1.7986500082424162,
+  "host": "actions"
+ },
+ "density": 0.3437201401070607
+}

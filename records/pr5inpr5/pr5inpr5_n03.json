@@ -1,0 +1,70 @@
+{
+ "problem": "min/prism5_in_prism5",
+ "piece": "prism5",
+ "container": "prism5",
+ "n": 3,
+ "s": 1.97207,
+ "s_plus": "1.97207+",
+ "s_full": 1.9720769090888,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020134182108e-07,
+  "min_wall_gap": 1.0000000749688098e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -0.6618980959443489,
+   0.488337599922804,
+   -0.17702136016944475,
+   0.21850801222441057,
+   0.7071067811865476,
+   -1.1775693440128312e-16,
+   -0.6724985119639575
+  ],
+  [
+   0.6961007893941096,
+   0.5001963224969262,
+   0.01985982024333144,
+   0.39479076969840404,
+   -0.24254523370336473,
+   -0.6642076554871783,
+   0.5866346803257954
+  ],
+  [
+   0.13336364411460747,
+   -0.74673381649529,
+   0.48603835454439237,
+   0.8090169943749473,
+   2.9918375607312097e-17,
+   7.001935341218835e-17,
+   -0.5877852522924732
+  ]
+ ],
+ "record_id": "pr5inpr5_n03",
+ "title": "3 prism5s in a prism5",
+ "family": "prisms",
+ "source": {
+  "hash": "4670fd29c6134d0b",
+  "clear": 1e-07,
+  "cap": 2.2399055851685
+ },
+ "s_tight": 1.972076653285,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.4422495703074083,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 599487034,
+  "var": "base",
+  "raw": 1.9720766961169167,
+  "host": "actions"
+ },
+ "density": 0.391155742751147
+}

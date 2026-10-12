@@ -1,0 +1,70 @@
+{
+ "problem": "min/rhombic_triacontahedron_in_rhombic_triacontahedron",
+ "piece": "rhombic_triacontahedron",
+ "container": "rhombic_triacontahedron",
+ "n": 3,
+ "s": 2.0,
+ "s_plus": "2.00000+",
+ "s_full": 2.0000001024924,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020321076401e-07,
+  "min_wall_gap": 1.0000010952637695e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -1.4635255415625315,
+   -0.9045085280892435,
+   2.116823381947258e-15,
+   5.026089508578465e-15,
+   0.8090169943749532,
+   -0.30901699437494523,
+   0.4999999999999922
+  ],
+  [
+   3.3306762634012234e-23,
+   1.4635255415625206,
+   -0.9045085280892489,
+   5.832322296643974e-15,
+   0.4999999999999996,
+   -0.8090169943749503,
+   0.30901699437494057
+  ],
+  [
+   1.4635255415625286,
+   -0.9045085280892474,
+   2.116823381947258e-15,
+   0.8090169943749485,
+   0.4999999999999977,
+   -0.3090169943749486,
+   2.178543916687607e-15
+  ]
+ ],
+ "record_id": "rtcinrtc_n03",
+ "title": "3 rhombic triacontahedra in a rhombic triacontahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "06ef60a84f1848b6",
+  "clear": 1e-07,
+  "cap": 2.1458981412272
+ },
+ "s_tight": 2.0,
+ "closed_form_conjecture": "2",
+ "volume_lower_bound": 1.4422495703074083,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 1440714353,
+  "var": "base",
+  "raw": 2.111201035458621,
+  "host": "actions"
+ },
+ "density": 0.37499994234803097
+}

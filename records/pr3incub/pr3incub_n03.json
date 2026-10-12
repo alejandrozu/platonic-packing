@@ -1,0 +1,70 @@
+{
+ "problem": "min/prism3_in_cube",
+ "piece": "prism3",
+ "container": "cube",
+ "n": 3,
+ "s": 1.47839,
+ "s_plus": "1.47839+",
+ "s_full": 1.4783981516125,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020073738304e-07,
+  "min_wall_gap": 1.0000000305598888e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   0.23919897580624624,
+   0.12682651082107144,
+   0.45052384121143363,
+   0.3535533905932743,
+   0.6123724356957947,
+   0.3535533905932736,
+   0.6123724356957942
+  ],
+  [
+   0.17392260676674406,
+   -0.45052384121143385,
+   -0.12682651082107135,
+   0.18301270189221946,
+   -0.6830127018922194,
+   0.18301270189221938,
+   -0.6830127018922193
+  ],
+  [
+   -0.10607873451602744,
+   0.3309506853423837,
+   -0.33095068534238364,
+   0.6532814824381884,
+   0.2705980500730985,
+   0.6532814824381884,
+   0.27059805007309845
+  ]
+ ],
+ "record_id": "pr3incub_n03",
+ "title": "3 prism3s in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "6f045907f36d6dde",
+  "clear": 1e-07,
+  "cap": 1.6301900915946
+ },
+ "s_tight": 1.47839783948,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.0911236359717214,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 712717275,
+  "var": "base",
+  "raw": 1.4783980663844392,
+  "host": "actions"
+ },
+ "density": 0.4020199989193625
+}

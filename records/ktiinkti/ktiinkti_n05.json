@@ -1,0 +1,88 @@
+{
+ "problem": "min/triakis_icosahedron_in_triakis_icosahedron",
+ "piece": "triakis_icosahedron",
+ "container": "triakis_icosahedron",
+ "n": 5,
+ "s": 2.29773,
+ "s_plus": "2.29773+",
+ "s_full": 2.297731733507,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020567579025e-07,
+  "min_wall_gap": 1.000001255135885e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   1.8663825690631557,
+   -3.037918180563712,
+   1.1829699155772566,
+   0.36307142739498127,
+   -0.8520895044111063,
+   0.366507913551678,
+   -0.08828683019455415
+  ],
+  [
+   2.347618697694691,
+   -2.2451203696793045e-10,
+   -3.7985268441804716,
+   0.3090169943749477,
+   -0.8090169943749476,
+   -0.49999999999999983,
+   -3.0877000393997623e-16
+  ],
+  [
+   2.151923084226414,
+   2.7894359331099405,
+   1.3148423187031966,
+   0.8095676421620706,
+   -0.3092722803763842,
+   -9.706631554438608e-05,
+   0.49894977696464327
+  ],
+  [
+   -3.2111947739968696,
+   0.054198447731314346,
+   -2.05067272504662,
+   0.013456113042766971,
+   0.9998835241907933,
+   -0.0067280565213839105,
+   -0.002569888912937854
+  ],
+  [
+   -2.353548092099883,
+   0.009593962708047656,
+   3.783003487445151,
+   0.5877852522924726,
+   0.42532540417602016,
+   1.8888242266968741e-16,
+   -0.6881909602355872
+  ]
+ ],
+ "record_id": "ktiinkti_n05",
+ "title": "5 triakis icosahedra in a triakis icosahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "f9c85a24cf5fe4f4",
+  "clear": 1e-07,
+  "cap": 2.37171533102
+ },
+ "s_tight": 2.297731676356,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.7099759466766968,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 1383055702,
+  "var": "base",
+  "raw": 2.313733852474613,
+  "host": "actions"
+ },
+ "density": 0.4121658805174476
+}

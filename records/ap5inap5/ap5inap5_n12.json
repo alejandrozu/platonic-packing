@@ -1,0 +1,151 @@
+{
+ "problem": "min/antiprism5_in_antiprism5",
+ "piece": "antiprism5",
+ "container": "antiprism5",
+ "n": 12,
+ "s": 2.83566,
+ "s_plus": "2.83566+",
+ "s_full": 2.8356653819793,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020103896132e-07,
+  "min_wall_gap": 1.0000003114463141e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -1.0024214053446165,
+   1.2105594315365067,
+   -0.42532544350441814,
+   0.40835483929697625,
+   -0.11158068550683045,
+   0.6470528067441608,
+   -0.6341283317508141
+  ],
+  [
+   -1.0462260919212354,
+   -1.0308440840364952,
+   0.4490992913685771,
+   0.05297281677844407,
+   0.29521238684122664,
+   0.7110566933616957,
+   0.6359574719771715
+  ],
+  [
+   -1.3748231933730533,
+   -0.044092733180351826,
+   -0.39713362041388617,
+   0.4605980303852564,
+   -0.5277973571201853,
+   -0.5687018413782718,
+   -0.43111207340450686
+  ],
+  [
+   -0.6523121802411315,
+   -1.2702792595912058,
+   -0.722661399023604,
+   0.03492482567948863,
+   0.5930482163329687,
+   0.8043290980148603,
+   -0.01134776375076458
+  ],
+  [
+   0.5075267567440878,
+   -1.4669253581192658,
+   0.7307677642813376,
+   2.389431881242293e-16,
+   -0.587785252292473,
+   0.8090169943749476,
+   1.0508165344101724e-16
+  ],
+  [
+   1.0546035528156386,
+   -1.1671809348880524,
+   -0.4503190716248691,
+   0.7610675399136472,
+   -0.4507693899462077,
+   -0.4505671093688312,
+   -0.12071634823970054
+  ],
+  [
+   -0.05934589958245589,
+   -0.043117311187193065,
+   0.7807550205222396,
+   2.9245397342037075e-16,
+   -0.951056516295154,
+   -0.30901699437494634,
+   2.546447334236336e-16
+  ],
+  [
+   0.3254335907664624,
+   1.5421055125268202,
+   0.4503190777056992,
+   0.2770024957664267,
+   0.36459828197976035,
+   0.6788698916728803,
+   -0.5739977180238872
+  ],
+  [
+   -1.2632881642397615,
+   0.9178325719928626,
+   0.7807550205222396,
+   0.3090169943749476,
+   1.2240389887438686e-15,
+   1.3162301144250494e-15,
+   -0.9510565162951536
+  ],
+  [
+   0.6492251256383584,
+   1.10049930473529,
+   -0.7236542400768949,
+   0.7796706216773116,
+   -0.021110947878548544,
+   0.01849358308203518,
+   0.6255605781679116
+  ],
+  [
+   1.4699122258166355,
+   0.1423784865655548,
+   0.7305736106686533,
+   1.0205459713849078e-15,
+   0.5877852522924809,
+   -0.8090169943749418,
+   2.2534820248714126e-15
+  ],
+  [
+   0.5192771788466426,
+   -0.29835731222880485,
+   -0.4253254435044185,
+   0.7352700140907416,
+   -0.5303405478790058,
+   -0.3871259321836578,
+   -0.16807861935811721
+  ]
+ ],
+ "record_id": "ap5inap5_n12",
+ "title": "12 antiprism5s in a antiprism5",
+ "family": "prisms",
+ "source": {
+  "hash": "543cc2051f98aa29",
+  "clear": 1e-07,
+  "cap": 2.873215384427
+ },
+ "s_tight": 2.835664956857,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.2894284851066637,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 1214605517,
+  "var": "base",
+  "raw": 2.958135088498836,
+  "host": "actions"
+ },
+ "density": 0.5262793165910329
+}

@@ -1,0 +1,169 @@
+{
+ "problem": "min/disdyakis_dodecahedron_in_disdyakis_dodecahedron",
+ "piece": "disdyakis_dodecahedron",
+ "container": "disdyakis_dodecahedron",
+ "n": 14,
+ "s": 2.9653,
+ "s_plus": "2.96530+",
+ "s_full": 2.9653060711175,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020480826772e-07,
+  "min_wall_gap": 1.0000015215894109e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   0.26719179509572977,
+   0.3555489080010869,
+   4.854905744414281,
+   0.70015374260533,
+   0.26051656955053387,
+   -0.07789964120670623,
+   0.6601874730750634
+  ],
+  [
+   0.3647839413923799,
+   -4.8218425863948555,
+   -0.001143230082046235,
+   0.5924340690625517,
+   -0.21908003695997993,
+   -0.26637102957239633,
+   -0.7280606333432287
+  ],
+  [
+   -4.970937276895774,
+   -0.24581537882420623,
+   -0.014904472530582228,
+   0.4019363524868465,
+   0.4394541350700102,
+   -0.5715939141975014,
+   -0.5644533895476387
+  ],
+  [
+   0.11684029353842677,
+   0.36368709685882844,
+   -4.91974771938481,
+   0.10884509314566199,
+   -0.030983430827406046,
+   0.9711307480475171,
+   -0.20999486400611245
+  ],
+  [
+   3.194640763007497,
+   2.3409734568060436,
+   2.176444262472802,
+   0.1997798476895096,
+   -0.4511591948632649,
+   0.20149723442641754,
+   0.8461337115763633
+  ],
+  [
+   0.36400601412641564,
+   5.003649766910883,
+   0.00870144676697568,
+   0.6649212058451545,
+   -0.6634686073263694,
+   0.24786204079165167,
+   0.23717842617833404
+  ],
+  [
+   3.011106398300954,
+   -2.225283976074977,
+   -2.582977776663058,
+   0.40541080534359675,
+   -0.6669471645965542,
+   -0.33594678304747116,
+   0.5272222657545188
+  ],
+  [
+   3.159573280700548,
+   2.327439417770075,
+   -2.32241958875994,
+   0.7430453481476497,
+   0.4584584641889979,
+   0.171919357393567,
+   0.45622711642666136
+  ],
+  [
+   3.3539385919252,
+   -2.1657501262290895,
+   2.0610306487442123,
+   0.15500451039355687,
+   0.8583511506530797,
+   -0.4518582342980277,
+   -0.18716580891620294
+  ],
+  [
+   -0.0407687741064722,
+   0.0008969714780451205,
+   -0.01896130023009218,
+   0.8819706383223489,
+   0.4706121462902928,
+   0.014521052593712351,
+   -0.021003331471059206
+  ],
+  [
+   -2.6283027631360385,
+   2.7092348793545318,
+   2.4404296595455697,
+   0.08769102398443272,
+   -0.10214097270036449,
+   -0.5434365238367175,
+   0.8285856929543558
+  ],
+  [
+   -2.664965762587914,
+   2.7332888427013353,
+   -2.3644029919557426,
+   0.14051833304006378,
+   -0.6974690785409634,
+   -0.2855230681678444,
+   0.6420810385791516
+  ],
+  [
+   -2.3472767746405294,
+   -2.6054389277092196,
+   2.7556079905355704,
+   0.6875490896844997,
+   -0.2506079258746512,
+   0.21794828628413282,
+   -0.6457324997772925
+  ],
+  [
+   -2.415046525668251,
+   -2.6940475992419954,
+   -2.8472356166151087,
+   0.9908820066998629,
+   -0.012492724074766698,
+   0.05663047431101367,
+   -0.12161319839126883
+  ]
+ ],
+ "record_id": "ddoinddo_n14",
+ "title": "14 disdyakis dodecahedra in a disdyakis dodecahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "7b826a92d516f697",
+  "clear": 1e-07,
+  "cap": 2.9872825915944
+ },
+ "s_tight": 2.965305981219,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.41014226417523,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 83217155,
+  "var": "base",
+  "raw": 2.992812989820824,
+  "host": "laptop"
+ },
+ "density": 0.5369322072905075
+}

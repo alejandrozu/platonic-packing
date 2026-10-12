@@ -1,0 +1,151 @@
+{
+ "problem": "min/rhombic_triacontahedron_in_rhombic_triacontahedron",
+ "piece": "rhombic_triacontahedron",
+ "container": "rhombic_triacontahedron",
+ "n": 12,
+ "s": 2.85599,
+ "s_plus": "2.85599+",
+ "s_full": 2.8559919895933,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020253461784e-07,
+  "min_wall_gap": 1.0000004380117389e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -1.6483357250405666,
+   0.07203439906488446,
+   2.5629646548925167,
+   0.019027165924444898,
+   -0.7967732268002748,
+   0.5282999633379216,
+   -0.29272775875941826
+  ],
+  [
+   1.5729021940290853,
+   0.12367244764350104,
+   -2.588294365032718,
+   0.17177445674504602,
+   0.6467110533922031,
+   -0.6268694628384254,
+   0.39911530413021695
+  ],
+  [
+   2.5947943792578667,
+   -1.6205625497396126,
+   -0.10821666183591977,
+   0.923387586619978,
+   0.21251043700010344,
+   -0.31896572119390254,
+   0.02134356449638873
+  ],
+  [
+   1.5646506832901725,
+   -0.1275394913008709,
+   2.569463252232691,
+   0.49355137162358503,
+   -0.6404902194792922,
+   -0.5669331712216834,
+   0.157372493429988
+  ],
+  [
+   -1.6531914546435016,
+   -0.09584300016081256,
+   -2.5749005576645754,
+   0.3188195674325707,
+   -0.16202871905444619,
+   0.6270388819387948,
+   0.6920426418658246
+  ],
+  [
+   0.08470961211137926,
+   2.5652644207206166,
+   1.6507571679118462,
+   0.12512489357952325,
+   -0.37243314209305695,
+   -0.9164633860382073,
+   -0.07571114666143926
+  ],
+  [
+   -0.11596289775798777,
+   -2.5451117314037623,
+   -1.5757252107746451,
+   0.32011270373348183,
+   0.8382805266348613,
+   -0.24624987510991986,
+   0.366298532049432
+  ],
+  [
+   0.014055163118238555,
+   0.020050505575448505,
+   -0.021450997819673804,
+   0.1184185415002936,
+   -0.5843924143862067,
+   -0.5583493701423172,
+   0.5768089249469716
+  ],
+  [
+   -2.5239012756643686,
+   1.5942209251442936,
+   0.12140665075991397,
+   0.04911686616830607,
+   -0.7981285381788433,
+   -0.006703464699931251,
+   0.6004443634203956
+  ],
+  [
+   -2.5791133894798506,
+   -1.5152968496158228,
+   -0.07651101437832072,
+   0.5421580864135473,
+   -0.0164153169377552,
+   -0.7634717082397393,
+   0.35057965916996375
+  ],
+  [
+   0.10283502554532621,
+   -2.609352503884509,
+   1.549311925866831,
+   0.747181719732009,
+   -0.6600352074067057,
+   0.06582586211405916,
+   -0.04171281048845291
+  ],
+  [
+   2.5878948195981804,
+   1.5889202112431602,
+   0.11283510748324918,
+   0.32249976210059567,
+   -0.649251944894655,
+   0.6591835697392205,
+   0.19985704111045322
+  ]
+ ],
+ "record_id": "rtcinrtc_n12",
+ "title": "12 rhombic triacontahedra in a rhombic triacontahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "b90cc3c7448c2e05",
+  "clear": 1e-07,
+  "cap": 2.8562293047942
+ },
+ "s_tight": 2.855991858352,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.2894284851066637,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 1370135081,
+  "var": "base",
+  "raw": 2.8807118360854465,
+  "host": "actions"
+ },
+ "density": 0.5151222286265554
+}

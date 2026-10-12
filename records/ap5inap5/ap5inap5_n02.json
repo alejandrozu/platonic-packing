@@ -1,0 +1,61 @@
+{
+ "problem": "min/antiprism5_in_antiprism5",
+ "piece": "antiprism5",
+ "container": "antiprism5",
+ "n": 2,
+ "s": 1.84943,
+ "s_plus": "1.84943+",
+ "s_full": 1.8494306916046,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020083109652e-07,
+  "min_wall_gap": 1.0000002970134148e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   0.5474034832440586,
+   0.2552073432431821,
+   3.8526830538364794e-08,
+   0.19325656234042565,
+   0.920398281240511,
+   -0.08865987356827641,
+   -0.3281132911369666
+  ],
+  [
+   -0.5474034792169822,
+   -0.2552073738222299,
+   3.852683036259344e-08,
+   0.6127238803843821,
+   0.15185587135765774,
+   0.3492079968193417,
+   0.6925048849635176
+  ]
+ ],
+ "record_id": "ap5inap5_n02",
+ "title": "2 antiprism5s in a antiprism5",
+ "family": "prisms",
+ "source": {
+  "hash": "d2ebbabdaa7fc352",
+  "clear": 1e-07,
+  "cap": 1.8744871000955
+ },
+ "s_tight": 1.849430365908,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "fresh",
+  "seed": 1508190873,
+  "var": "base",
+  "raw": 1.8494380829694521,
+  "host": "actions"
+ },
+ "density": 0.3161664726818752
+}

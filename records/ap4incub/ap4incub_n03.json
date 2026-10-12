@@ -1,0 +1,70 @@
+{
+ "problem": "min/antiprism4_in_cube",
+ "piece": "antiprism4",
+ "container": "cube",
+ "n": 3,
+ "s": 2.00162,
+ "s_plus": "2.00162+",
+ "s_full": 2.0016210451002,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020107048242e-07,
+  "min_wall_gap": 1.0000002093057958e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   0.3475289301188183,
+   -0.5803622104655963,
+   0.3475289313744978,
+   0.1379496896414717,
+   -0.13794968964146956,
+   -0.6935199226610717,
+   -0.6935199226610763
+  ],
+  [
+   0.40459436933391396,
+   0.45054830869936086,
+   0.39164939973289986,
+   0.37506368925919975,
+   -0.5860669426353118,
+   0.5042648648549934,
+   0.5114388661630557
+  ],
+  [
+   -0.580362210465601,
+   0.12713306577644234,
+   -0.34752891181332907,
+   0.6935199226610738,
+   0.13794968964147195,
+   0.6935199226610738,
+   0.13794968964147114
+  ]
+ ],
+ "record_id": "ap4incub_n03",
+ "title": "3 antiprism4s in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "1fd40b513e310720",
+  "clear": 1e-07,
+  "cap": 2.0985234849082
+ },
+ "s_tight": 2.001620740642,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.4212737274512295,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 437111436,
+  "var": "base",
+  "raw": 2.001620904852254,
+  "host": "actions"
+ },
+ "density": 0.3580037770269268
+}

@@ -1,0 +1,151 @@
+{
+ "problem": "min/rhombic_dodecahedron_in_rhombic_dodecahedron",
+ "piece": "rhombic_dodecahedron",
+ "container": "rhombic_dodecahedron",
+ "n": 12,
+ "s": 2.91878,
+ "s_plus": "2.91878+",
+ "s_full": 2.9187857912864,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020153611011e-07,
+  "min_wall_gap": 1.0000006778199122e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -0.3453706488388098,
+   -0.4874986226602507,
+   -1.5272555959476721,
+   0.6227298473637652,
+   -0.07862851112006645,
+   -0.7725716957606793,
+   -0.09569780222560921
+  ],
+  [
+   0.34854832283773785,
+   0.09258147128696237,
+   1.5295407041473683,
+   0.7597421958120678,
+   -0.10774763030380488,
+   0.5117089036804766,
+   0.3864404766075847
+  ],
+  [
+   0.23249122540735112,
+   1.785036387744784,
+   0.09919599265635798,
+   0.9953381965585621,
+   -0.059464325956293494,
+   -0.07531720111751665,
+   0.009653373811079334
+  ],
+  [
+   -1.8820417875753972,
+   -0.13994726955278386,
+   -0.15313773799766367,
+   0.7070790934938593,
+   6.329683071104733e-16,
+   0.7070790934938593,
+   0.00884935521968736
+  ],
+  [
+   1.5966983318423316,
+   0.4384811918342597,
+   0.43848118993778806,
+   0.5000000000000001,
+   0.5000000000000002,
+   -0.49999999999999994,
+   -0.49999999999999994
+  ],
+  [
+   -0.17683864631730195,
+   -1.8583408773592882,
+   -0.17683864631730223,
+   2.3795449221434063e-16,
+   0.4082482904638632,
+   -0.40824829046386246,
+   -0.8164965809277264
+  ],
+  [
+   -0.004855976964440196,
+   -0.053142803257600624,
+   0.03337067712637226,
+   0.3956278977566304,
+   0.4202355073534589,
+   -0.7207975902513798,
+   -0.38383788083493564
+  ],
+  [
+   0.7747270058723223,
+   0.7553156433185965,
+   -1.0663343690406855,
+   0.16444036617807764,
+   0.8221962585283653,
+   0.5436673590577382,
+   0.03712790228873165
+  ],
+  [
+   -0.8460834802370246,
+   1.0347374652372496,
+   -0.8811640777243963,
+   0.10210783058993175,
+   -0.301330428409945,
+   -0.269405948424295,
+   0.9089523633283005
+  ],
+  [
+   -1.0338042681363913,
+   0.97292827504676,
+   0.958052893227814,
+   0.689538849711834,
+   0.02995835883355372,
+   -0.7223361996484348,
+   -0.043232929018717815
+  ],
+  [
+   1.2610265380716532,
+   -0.7741529837084669,
+   -0.693333374624834,
+   0.3913788728690216,
+   -0.39137887286902207,
+   -0.8314301832221989,
+   -0.04867243748415572
+  ],
+  [
+   -0.9745192821341832,
+   -0.9745192802377136,
+   1.0606602415424071,
+   0.5000000000000002,
+   0.4999999999999999,
+   0.49999999999999983,
+   0.5000000000000001
+  ]
+ ],
+ "record_id": "rdoinrdo_n12",
+ "title": "12 rhombic dodecahedra in a rhombic dodecahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "486b2c7968e428c5",
+  "clear": 1e-07,
+  "cap": 2.9490247835876
+ },
+ "s_tight": 2.918785528246,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.2894284851066637,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 1451315252,
+  "var": "base",
+  "raw": 2.929160205608187,
+  "host": "actions"
+ },
+ "density": 0.48258584114927855
+}

@@ -1,0 +1,151 @@
+{
+ "problem": "min/disdyakis_dodecahedron_in_disdyakis_dodecahedron",
+ "piece": "disdyakis_dodecahedron",
+ "container": "disdyakis_dodecahedron",
+ "n": 12,
+ "s": 2.94144,
+ "s_plus": "2.94144+",
+ "s_full": 2.9414420077644,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020450160453e-07,
+  "min_wall_gap": 1.0000003847210337e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -0.16455038688028104,
+   0.02542846919937062,
+   4.742973849631478,
+   0.5716655182561654,
+   0.22082760797635667,
+   -0.23735904869179922,
+   0.7537203624663955
+  ],
+  [
+   -0.624238553276272,
+   -4.679542582479355,
+   0.23028649975628188,
+   0.42802964041607927,
+   -0.22853869573777252,
+   -0.3661309365893486,
+   -0.7940458606075383
+  ],
+  [
+   -4.689667311610803,
+   -0.7623232019623932,
+   0.036973412868655804,
+   0.3657091250890034,
+   0.37988957537163126,
+   -0.6029633382962319,
+   -0.5986451027288715
+  ],
+  [
+   -0.5977781600053447,
+   -0.9272981765366048,
+   -4.393185353716626,
+   0.25454770368325685,
+   -0.021292400732858912,
+   0.9514188088832107,
+   -0.17191378747460895
+  ],
+  [
+   3.23499184388002,
+   2.0158459571614946,
+   2.0607383243040656,
+   0.21306940433539653,
+   -0.47067499476841085,
+   0.15086146959303273,
+   0.8427973037617921
+  ],
+  [
+   0.5025089147717419,
+   4.683890972788505,
+   -0.3456219371163466,
+   0.6942631668811929,
+   -0.36076596529108124,
+   0.3833563719216809,
+   0.49079982223584506
+  ],
+  [
+   2.8535524354270203,
+   -2.697778764403439,
+   -2.2117571785895405,
+   0.2297249000092783,
+   -0.7027894374569419,
+   -0.39997660372734306,
+   0.5416015079238815
+  ],
+  [
+   3.034433742835059,
+   1.7589506282322243,
+   -2.647446738807577,
+   0.7895920884857892,
+   0.5112345650193356,
+   -0.08585599513802145,
+   0.3283478360352031
+  ],
+  [
+   2.9109826258934866,
+   -2.47556237677269,
+   2.4929165016943147,
+   0.24511799990934294,
+   0.856607747963494,
+   -0.3832189442944049,
+   -0.24348218206521058
+  ],
+  [
+   -0.1686251619282556,
+   -0.24895674964900888,
+   0.02575492950024018,
+   0.8559642656780343,
+   0.48200728010181254,
+   -0.14512038293391136,
+   0.11804334910629796
+  ],
+  [
+   -2.5940560999572493,
+   2.940454131553857,
+   2.3655726296622,
+   0.19962558589240717,
+   0.2722627697835879,
+   0.4819387968581253,
+   -0.8085527847517594
+  ],
+  [
+   -2.8355233048321926,
+   2.4800142136558265,
+   -2.5143782744050895,
+   0.32839386962648903,
+   -0.6406736528364743,
+   -0.21886864270874992,
+   0.6586283126253678
+  ]
+ ],
+ "record_id": "ddoinddo_n12",
+ "title": "12 disdyakis dodecahedra in a disdyakis dodecahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "c49c1c00d4c0f8df",
+  "clear": 1e-07,
+  "cap": 2.95393758901
+ },
+ "s_tight": 2.941441915435,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.2894284851066637,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 173567478,
+  "var": "base",
+  "raw": 2.9538366652754804,
+  "host": "laptop"
+ },
+ "density": 0.47152027818319453
+}

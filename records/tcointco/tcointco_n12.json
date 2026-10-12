@@ -1,0 +1,151 @@
+{
+ "problem": "min/truncated_cuboctahedron_in_truncated_cuboctahedron",
+ "piece": "truncated_cuboctahedron",
+ "container": "truncated_cuboctahedron",
+ "n": 12,
+ "s": 2.83493,
+ "s_plus": "2.83493+",
+ "s_full": 2.8349387867117,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020426785303e-07,
+  "min_wall_gap": 1.0000002692578391e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -3.1833739089689956,
+   -2.7876053665740406,
+   0.03714573940045924,
+   0.38493031551102597,
+   0.13123872502273906,
+   -0.17894720013790835,
+   -0.8958699396775133
+  ],
+  [
+   -0.20723908165534172,
+   -3.021340330191778,
+   -3.1203048242638056,
+   0.6553344023110985,
+   -0.2714483973269226,
+   -0.26974502218830887,
+   -0.6512220909496461
+  ],
+  [
+   2.9695155050331126,
+   -3.1721296421382617,
+   -0.14326981600125974,
+   0.032424433565573146,
+   -0.9205572819414465,
+   -0.38130731112146,
+   -0.07827950726627124
+  ],
+  [
+   0.052775919963318915,
+   3.2181154947100388,
+   -2.9235296531943717,
+   0.6538400220191386,
+   0.26924566032902425,
+   -0.6527201456045973,
+   -0.271949281157192
+  ],
+  [
+   -0.1748592328840699,
+   -2.9749997486665656,
+   3.16664541380627,
+   0.6271343977777861,
+   -0.2597675729902427,
+   0.6784215781629941,
+   -0.2810114186816708
+  ],
+  [
+   2.7878056502392026,
+   3.0078343358732083,
+   0.16227832593603606,
+   0.40747443536103056,
+   -0.04804725827410444,
+   0.9106874440987844,
+   0.04800442334175277
+  ],
+  [
+   -0.029999024098984764,
+   2.6877504778194674,
+   3.126394582459624,
+   0.6318414217123327,
+   -0.36308227112385955,
+   0.2581233334667176,
+   -0.6342870225096113
+  ],
+  [
+   -3.51246461164794,
+   1.7005673529462733,
+   0.9779258910813754,
+   0.1991190396210751,
+   -0.6784921576999845,
+   -0.1991190396210753,
+   0.6784921576999847
+  ],
+  [
+   0.286584555508965,
+   -0.27732463006529345,
+   -0.03916767196640541,
+   0.3089381656002544,
+   -0.6620661258461288,
+   -0.26049438082346793,
+   -0.6311642673678904
+  ],
+  [
+   3.049059731999133,
+   0.05651298438013961,
+   -3.0925854078880275,
+   0.9181709598185003,
+   0.10254501030887574,
+   0.38031886413394533,
+   -0.04247553402362531
+  ],
+  [
+   -2.9516005788936517,
+   0.24406115057052333,
+   -2.935129501929012,
+   0.3014955025550475,
+   0.6948536458954266,
+   0.12644658894520372,
+   -0.6405389393854484
+  ],
+  [
+   3.135139893402714,
+   -0.1270618281638308,
+   3.006505254501699,
+   0.6625477800904489,
+   0.2938059681898551,
+   -0.24704339517019752,
+   -0.6431780881342444
+  ]
+ ],
+ "record_id": "tcointco_n12",
+ "title": "12 truncated cuboctahedra in a truncated cuboctahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "cc43d67315e17b6c",
+  "clear": 1e-07,
+  "cap": 2.8367359403223
+ },
+ "s_tight": 2.834938683652,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.2894284851066637,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 436661042,
+  "var": "base",
+  "raw": 2.8424548054488747,
+  "host": "actions"
+ },
+ "density": 0.5266840767341974
+}

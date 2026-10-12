@@ -1,0 +1,106 @@
+{
+ "problem": "min/rhombic_triacontahedron_in_rhombic_triacontahedron",
+ "piece": "rhombic_triacontahedron",
+ "container": "rhombic_triacontahedron",
+ "n": 7,
+ "s": 2.53262,
+ "s_plus": "2.53262+",
+ "s_full": 2.5326239128139,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000002027783438e-07,
+  "min_wall_gap": 1.0000003136667601e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -1.7984089585488265,
+   -0.6223098846684639,
+   1.1915726498980546,
+   0.004296979138755367,
+   0.808938775708689,
+   -0.2977374800687801,
+   0.5069043165011533
+  ],
+  [
+   1.4227458000131632,
+   1.3567627921338639,
+   -1.3454915487801065,
+   2.401544475088701e-16,
+   -0.4999999999999997,
+   0.8090169943749483,
+   -0.3090169943749459
+  ],
+  [
+   2.2430340653812513,
+   -1.1952882781796257,
+   0.11803399278243076,
+   0.8090169943749469,
+   0.5000000000000008,
+   -0.30901699437494784,
+   -4.116933385866352e-16
+  ],
+  [
+   0.8272542768561737,
+   0.3454915146159497,
+   2.2430340653812473,
+   0.49999999999999767,
+   -0.49999999999999745,
+   -0.5000000000000023,
+   0.5000000000000027
+  ],
+  [
+   -1.3862712903294645,
+   0.3454915146159462,
+   -2.029508566523905,
+   0.5000000000000089,
+   -2.7200464103315826e-15,
+   0.3090169943749578,
+   0.8090169943749381
+  ],
+  [
+   -0.827254276856183,
+   2.1067628177569704,
+   0.4045085110071645,
+   1.7838682879901562e-15,
+   -0.2628655560595649,
+   -0.9510565162951536,
+   0.1624598481164559
+  ],
+  [
+   -0.3225846328535669,
+   -2.2065595556975603,
+   -0.9598098961988678,
+   3.2189559946403395e-15,
+   -0.8506508083520407,
+   -1.1718232006436064e-15,
+   -0.5257311121191326
+  ]
+ ],
+ "record_id": "rtcinrtc_n07",
+ "title": "7 rhombic triacontahedra in a rhombic triacontahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "c4038904a858aa62",
+  "clear": 1e-07,
+  "cap": 2.8559919895933
+ },
+ "s_tight": 2.532623792125,
+ "closed_form_conjecture": "(35 + 7\u221a5)/20",
+ "volume_lower_bound": 1.912931182772389,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 1906173262,
+  "var": "base",
+  "raw": 2.549108926860933,
+  "host": "actions"
+ },
+ "density": 0.43090936288681936
+}

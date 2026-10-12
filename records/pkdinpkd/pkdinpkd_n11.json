@@ -1,0 +1,142 @@
+{
+ "problem": "min/pentakis_dodecahedron_in_pentakis_dodecahedron",
+ "piece": "pentakis_dodecahedron",
+ "container": "pentakis_dodecahedron",
+ "n": 11,
+ "s": 2.96951,
+ "s_plus": "2.96951+",
+ "s_full": 2.9695138082741,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020535177625e-07,
+  "min_wall_gap": 1.000000713347049e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -4.7294251545485135,
+   1.328035842247389,
+   -0.0012366577458334121,
+   0.4668721355499402,
+   0.7550078951850564,
+   -0.15634131051560057,
+   -0.4330714512427872
+  ],
+  [
+   1.2963857723165746,
+   -4.5130401659417405,
+   0.9226174773398342,
+   0.4999999999999989,
+   -0.49999999999999944,
+   0.5000000000000013,
+   0.5000000000000003
+  ],
+  [
+   -2.931926673259279,
+   -2.9835432049800334,
+   2.8619889081460967,
+   0.7635468578104169,
+   -0.29711645789143476,
+   0.43154472659775067,
+   -0.3774747081905744
+  ],
+  [
+   -2.8109065533803186,
+   -2.7548581397594534,
+   -2.8949098387532626,
+   0.14400683698960445,
+   -0.8366809438039213,
+   -0.31926661077828455,
+   0.42106514984949367
+  ],
+  [
+   -0.31527919228933665,
+   2.5177407007896937,
+   -4.118936936846014,
+   0.23294354173885493,
+   0.20868054301341002,
+   -0.7724591332533559,
+   0.5527174909329908
+  ],
+  [
+   3.447342941488934,
+   -0.45453054322640557,
+   3.2041645521062447,
+   0.41455366342753486,
+   -0.150913271420512,
+   0.5774923864952217,
+   0.6869301188534557
+  ],
+  [
+   0.0007579528851447926,
+   4.699814361119283,
+   1.2279371628584812,
+   0.4366097089139578,
+   0.6228877569723082,
+   -0.5310626084004832,
+   -0.37330324168824275
+  ],
+  [
+   4.249573947657996,
+   2.1537291817689423,
+   -0.8584258855828515,
+   0.7557613140761712,
+   0.11026408970826945,
+   -5.508797903255375e-16,
+   0.6454972243679021
+  ],
+  [
+   -0.055741933407568986,
+   -0.004162811374675475,
+   -0.05987990378324687,
+   0.5690449823230066,
+   -0.14276968970590032,
+   0.7572461085245695,
+   0.2870243106753958
+  ],
+  [
+   2.7367785422053497,
+   -2.3556238807714185,
+   -3.120355779832597,
+   0.42926059167826924,
+   0.21228991134582667,
+   0.8224454278151817,
+   0.30700465181932685
+  ],
+  [
+   -0.9770513577866068,
+   1.1442739391220305,
+   4.529461848637224,
+   0.25690138506744786,
+   0.06898159591369513,
+   -0.4947612986731892,
+   0.827317638583178
+  ]
+ ],
+ "record_id": "pkdinpkd_n11",
+ "title": "11 pentakis dodecahedra in a pentakis dodecahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "b2d11aed0e71ee2a",
+  "clear": 1e-07,
+  "cap": 2.9864517855637
+ },
+ "s_tight": 2.969513724243,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.2239800905693152,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 1034872660,
+  "var": "base",
+  "raw": 2.9837258941046505,
+  "host": "actions"
+ },
+ "density": 0.42008448100124846
+}

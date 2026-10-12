@@ -1,0 +1,61 @@
+{
+ "problem": "min/rhombic_dodecahedron_in_rhombic_dodecahedron",
+ "piece": "rhombic_dodecahedron",
+ "container": "rhombic_dodecahedron",
+ "n": 2,
+ "s": 1.89379,
+ "s_plus": "1.89379+",
+ "s_full": 1.8937985385585,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020154096186e-07,
+  "min_wall_gap": 1.0000007444332937e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -0.04255291130394069,
+   -0.04255291130394069,
+   -0.7525981389360055,
+   0.43494163945079367,
+   0.33762322622761604,
+   -0.8150945717308696,
+   0.18015872590130708
+  ],
+  [
+   0.042552905630213085,
+   0.04255290563020915,
+   0.7525981446097371,
+   0.8150945717308697,
+   -0.18015872590130813,
+   0.43494163945079317,
+   0.33762322622761565
+  ]
+ ],
+ "record_id": "rdoinrdo_n02",
+ "title": "2 rhombic dodecahedra in a rhombic dodecahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "961c6c330261e65f",
+  "clear": 1e-07,
+  "cap": 2.0000002000002
+ },
+ "s_tight": 1.893798355247,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "fresh",
+  "seed": 260294545,
+  "var": "base",
+  "raw": 1.8937984296717505,
+  "host": "actions"
+ },
+ "density": 0.2944615978908341
+}

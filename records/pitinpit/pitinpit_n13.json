@@ -1,0 +1,160 @@
+{
+ "problem": "min/pentagonal_icositetrahedron_in_pentagonal_icositetrahedron",
+ "piece": "pentagonal_icositetrahedron",
+ "container": "pentagonal_icositetrahedron",
+ "n": 13,
+ "s": 2.97303,
+ "s_plus": "2.97303+",
+ "s_full": 2.9730359263473,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020232448318e-07,
+  "min_wall_gap": 1.0000003847210337e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   1.541665940375187,
+   -1.3386406661006987,
+   -1.4094859313178962,
+   0.25356752446585,
+   -0.07495398780901855,
+   0.30924028659155123,
+   0.9134855529216439
+  ],
+  [
+   -1.420419128462072,
+   -1.3853324300603758,
+   -1.4879816762911096,
+   0.7545081816832621,
+   0.2393171648358432,
+   0.3676112619171077,
+   -0.4881666298505697
+  ],
+  [
+   1.7302233490521037,
+   -1.2155352189680384,
+   1.0149191395829489,
+   0.3221501453647473,
+   -0.7746818515512273,
+   0.4942131604444551,
+   0.22768545136248286
+  ],
+  [
+   1.0113602297227215,
+   1.454038840064596,
+   1.617231592938847,
+   0.3865772192008894,
+   -0.07624210737736405,
+   0.16399431900593409,
+   -0.9043511806767027
+  ],
+  [
+   0.13703881832411702,
+   0.2750032613504795,
+   -2.4960864053715075,
+   0.5605639013061537,
+   0.108986333743829,
+   0.6709309779718081,
+   -0.47301343998590206
+  ],
+  [
+   2.261132774173557,
+   0.7891050546914323,
+   -0.3526291155717057,
+   0.8083117615865469,
+   -0.3104964111743156,
+   0.4394702236043826,
+   0.23893513197903282
+  ],
+  [
+   -1.9454486582269257,
+   -0.8858600736530556,
+   0.8762921211923062,
+   0.22635728448951217,
+   -0.772365430545652,
+   0.41633595530780365,
+   -0.4229401775363771
+  ],
+  [
+   -1.3680296753097176,
+   1.426868838789902,
+   1.398604595932445,
+   0.8820085484093755,
+   -0.16683300395330625,
+   0.4284600148533988,
+   -0.10319731099465698
+  ],
+  [
+   -0.08240734532665624,
+   -2.5059792859308527,
+   0.1140676477721591,
+   0.8627641466277247,
+   0.23045532540744126,
+   -0.3822953974415248,
+   0.23744178103297436
+  ],
+  [
+   0.02878785624758647,
+   0.019748476662778593,
+   -0.07799745856201076,
+   0.7615324895267597,
+   -0.6086218072430329,
+   0.16821446945988003,
+   0.14612205654086366
+  ],
+  [
+   0.23992410879800136,
+   2.322315250952413,
+   -0.7176805816452605,
+   0.4802886821649848,
+   0.26553666891510336,
+   -0.1748206624278244,
+   -0.8174660820082934
+  ],
+  [
+   -1.7798755248258658,
+   1.0464995255770468,
+   -1.1409600066297685,
+   0.42746443692384817,
+   0.8818907423930349,
+   -0.05636959966125419,
+   0.19069698970059623
+  ],
+  [
+   -0.08524211839685561,
+   -0.6060046638508938,
+   2.3736749140973483,
+   0.2623479160868104,
+   0.8883078755299091,
+   0.3742223587263736,
+   0.045169850848955605
+  ]
+ ],
+ "record_id": "pitinpit_n13",
+ "title": "13 pentagonal icositetrahedra in a pentagonal icositetrahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "8a426454f6c03884",
+  "clear": 1e-07,
+  "cap": 3.0825252719391
+ },
+ "s_tight": 2.973035753772,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.3513346877207573,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 786681982,
+  "var": "base",
+  "raw": 2.986796833871518,
+  "host": "actions"
+ },
+ "density": 0.49470110504244535
+}

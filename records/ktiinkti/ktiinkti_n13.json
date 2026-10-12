@@ -1,0 +1,160 @@
+{
+ "problem": "min/triakis_icosahedron_in_triakis_icosahedron",
+ "piece": "triakis_icosahedron",
+ "container": "triakis_icosahedron",
+ "n": 13,
+ "s": 2.86113,
+ "s_plus": "2.86113+",
+ "s_full": 2.8611378813944,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020535546223e-07,
+  "min_wall_gap": 1.0000013794808638e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -0.07507153010026474,
+   -4.9441856394399935,
+   -3.124739017282969,
+   0.1396350823635181,
+   -0.8016496281050215,
+   0.5768249546691296,
+   -0.07164418471426019
+  ],
+  [
+   3.3509063637260605,
+   0.005419697925796189,
+   -5.4370644866532025,
+   0.311161797861695,
+   -0.8095741501224812,
+   -0.4977627058009414,
+   -0.0005654367034498147
+  ],
+  [
+   4.886779908633106,
+   3.2004529199615894,
+   -0.20874750476012205,
+   0.4443206831613642,
+   -0.42875915146031396,
+   0.15594468610583673,
+   0.7709902563777329
+  ],
+  [
+   -3.286294838993858,
+   -0.07677805682820373,
+   -4.879234813084879,
+   0.16652310131598158,
+   -0.9821374412844927,
+   0.08532504632671728,
+   0.01989320548832622
+  ],
+  [
+   -3.1415532516749662,
+   -0.13675269673136448,
+   4.8947128400202855,
+   0.7654337767932208,
+   0.27282686656509647,
+   0.30770134164033736,
+   -0.49497123004986215
+  ],
+  [
+   -6.726965205458756e-06,
+   5.394469485921574,
+   -3.3881680502544964,
+   0.004561191822380074,
+   -0.5046250499211922,
+   0.8055901621155803,
+   -0.31041463435828365
+  ],
+  [
+   -0.0014357425770798412,
+   5.436419998858757,
+   3.369355887427601,
+   0.3087386229639602,
+   -0.0004437657004084197,
+   -0.8095239849719364,
+   -0.49935076200750605
+  ],
+  [
+   3.366829993641288,
+   -5.325036559955998e-09,
+   5.447645359680193,
+   0.5000000000000001,
+   -0.5000000000000001,
+   -0.49999999999999983,
+   -0.5000000000000002
+  ],
+  [
+   -0.00881888255594563,
+   0.03625759900195509,
+   0.01504059148929783,
+   0.9244941941542167,
+   -0.34365455697176484,
+   0.060771710441872566,
+   0.15335850044146523
+  ],
+  [
+   -5.447645355728532,
+   3.36682998513613,
+   7.715405268651212e-10,
+   0.4253254041760198,
+   -2.82318485036322e-16,
+   -0.587785252292474,
+   0.6881909602355861
+  ],
+  [
+   -4.863152315593195,
+   -3.177378036392265,
+   -0.11843248703554284,
+   0.5780975679934007,
+   0.6118857970558124,
+   0.3355898986919411,
+   0.42282194022711406
+  ],
+  [
+   3.180121157331173e-09,
+   -4.89733894153862,
+   3.161294609270501,
+   0.2944725696414601,
+   -0.40408650772916854,
+   0.47183164710809966,
+   0.7262058226062759
+  ],
+  [
+   4.882150705049921,
+   -3.1522620661309433,
+   -0.08479770482844762,
+   0.9079631466093142,
+   0.2841404953614596,
+   -0.23313094965190848,
+   0.20128850838897078
+  ]
+ ],
+ "record_id": "ktiinkti_n13",
+ "title": "13 triakis icosahedra in a triakis icosahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "0587eea0d141c94a",
+  "clear": 1e-07,
+  "cap": 3.0341050340782
+ },
+ "s_tight": 2.861137812737,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.3513346877207573,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 466861189,
+  "var": "base",
+  "raw": 2.871293290176168,
+  "host": "actions"
+ },
+ "density": 0.555043460253016
+}

@@ -3,94 +3,95 @@
  "piece": "deltoidal_hexecontahedron",
  "container": "deltoidal_hexecontahedron",
  "n": 6,
- "s": 2.40538,
- "s_plus": "2.40538+",
- "s_full": 2.4053800101492,
+ "s": 2.40044,
+ "s_plus": "2.40044+",
+ "s_full": 2.4004451445117,
  "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020440116012e-07,
-  "min_wall_gap": 1.0000009798005749e-07
+  "min_pair_gap": 1.0000020423191081e-07,
+  "min_wall_gap": 1.0000008732191645e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-12",
  "pieces": [
   [
-   -2.6453015176870807,
-   0.05679792222380963,
-   -1.3377982274116973,
-   0.2538584886816726,
-   0.44771660688861326,
-   0.8520870239168179,
-   -0.09514941572592199
+   0.9620937810074619,
+   -1.4649921960042245,
+   -2.5163890802464524,
+   0.2602580788640417,
+   0.6865525364051668,
+   -0.08119216056528634,
+   0.6740320320313948
   ],
   [
-   2.6942117881387877,
-   -0.14952602676323978,
-   1.3614033505463508,
-   0.6354109857248535,
-   0.6794380820029594,
-   0.12542293107848493,
-   -0.34479828929968803
+   -0.3886212038009133,
+   -2.6489776530685663,
+   1.495552559557813,
+   0.0199878673562382,
+   0.8859008802907625,
+   -0.056939473605782547,
+   0.4599326165908414
   ],
   [
-   1.3756046482625066,
-   -0.08383252554254822,
-   -2.753380414711101,
-   0.04337914393730603,
-   0.5779198963629475,
-   0.6817557701517777,
-   -0.4464705064434415
+   2.8331013956491415,
+   0.09373127400132676,
+   1.0270874101460818,
+   0.43340785282252015,
+   0.3987709755217799,
+   -0.3616836269570146,
+   -0.7227200676502624
   ],
   [
-   -0.09259814506576614,
-   -3.112186145243863,
-   0.021654624447608146,
-   0.34883554490006957,
-   -0.3239368400593517,
-   0.3590319552756512,
-   0.802791841860377
+   0.374714262063631,
+   2.7065445298893174,
+   -1.4090689678390818,
+   0.45778958212898,
+   -0.45939156359437444,
+   0.18047328609667262,
+   -0.7394710831384539
   ],
   [
-   -1.3490223807606163,
-   0.029562559369783685,
-   2.7736897574336856,
-   0.14097122842002144,
-   -0.8260069131020445,
-   0.48818553910623097,
-   0.2439560855419278
+   -2.86498723438791,
+   -0.11299249313808035,
+   -1.0159331844321486,
+   0.4880980179129991,
+   -0.3337987844100373,
+   0.802034661155545,
+   -0.08413738016418852
   ],
   [
-   0.1619719323915972,
-   3.0636652278132126,
-   0.015959790375096133,
-   0.44503053898384265,
-   -0.6302875481029452,
-   -0.3375766237555534,
-   -0.5391914772805015
+   -0.9676837616526348,
+   1.5657452173842916,
+   2.5334289807042216,
+   0.5000000000000001,
+   -3.8857805861880454e-16,
+   0.30901699437494773,
+   -0.8090169943749473
   ]
  ],
  "record_id": "dhcindhc_n06",
  "title": "6 deltoidal hexecontahedra in a deltoidal hexecontahedron",
  "family": "catalan",
  "source": {
-  "hash": "4f252f8f35cfd558",
+  "hash": "3e38fa4ba454ab72",
   "clear": 1e-07,
   "cap": 2.5663624184092
  },
- "s_tight": 2.40537992941,
+ "s_tight": 2.400445064404,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.8171205928321397,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
- "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
   "move": "ascend",
-  "seed": 205319663,
+  "seed": 562616792,
   "var": "base",
-  "raw": 2.4131710990137947
+  "raw": 2.4039667885285008,
+  "host": "actions"
  },
- "density": 0.43112197290606136
+ "density": 0.4337863609837776
 }

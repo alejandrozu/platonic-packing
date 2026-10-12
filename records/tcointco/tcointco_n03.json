@@ -1,0 +1,70 @@
+{
+ "problem": "min/truncated_cuboctahedron_in_truncated_cuboctahedron",
+ "piece": "truncated_cuboctahedron",
+ "container": "truncated_cuboctahedron",
+ "n": 3,
+ "s": 2.07252,
+ "s_plus": "2.07252+",
+ "s_full": 2.0725219895115,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020394907243e-07,
+  "min_wall_gap": 1.0000009664778986e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -0.15298530493109658,
+   1.6703768333476634,
+   1.672939344628131,
+   0.0710091463963103,
+   0.43141481317890157,
+   -0.79119845165542,
+   -0.42760258441214666
+  ],
+  [
+   -1.68931894861423,
+   -1.6874169059990607,
+   0.1791000384303845,
+   0.5920511056846745,
+   0.3429092606545002,
+   0.7219237598125944,
+   -0.1035123771970581
+  ],
+  [
+   1.6047697002269454,
+   -0.2481041121761397,
+   -1.6959544745613684,
+   0.4604338268892979,
+   -0.27222646622293456,
+   -0.41438644896805027,
+   0.7363269063775268
+  ]
+ ],
+ "record_id": "tcointco_n03",
+ "title": "3 truncated cuboctahedra in a truncated cuboctahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "4371ad9ab1ac21ed",
+  "clear": 1e-07,
+  "cap": 2.1526259889129
+ },
+ "s_tight": 2.072521914285,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.4422495703074083,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 302345293,
+  "var": "base",
+  "raw": 2.0730960045308673,
+  "host": "actions"
+ },
+ "density": 0.3369952762940269
+}
