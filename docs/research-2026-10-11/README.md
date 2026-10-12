@@ -13,7 +13,11 @@ The papers have no draft watermark or front-matter tool credits. Computational t
 
 Paper 2's hypothesis section explains the observations and proposes tests for other shapes, counts, and conditions. The evidence distinguishes confirmed arrangements, measured descriptors, reusable constructions, and conjectures about optimal or near-optimal arrangements.
 
-## Reference article and rotating constructions
+## Wikipedia draft and rotating constructions
+
+The article remains a **draft**. Open the [complete Wikipedia-style preview](wikipedia-article-preview.html) to read it with a rotating, selectable construction, or review the [Markdown](wikipedia-polyhedral-fits.md) and [MediaWiki source](wikipedia-polyhedral-fits.wiki). The 12 October rebuild adds expanded cube history, detailed methodological attribution, construction-family analysis, all twenty hypotheses from the Patterns paper and the published DOI links. All 99 table values and construction links are preserved, and 35 references are defined. [Rebuild notes and checks](research/wikipedia-draft-rebuild-2026-10-12.md) record the changes and comparison scope.
+
+Two [24-second rotating illustrations](wikipedia-assets/README.md) are also prepared for possible later use: twelve cubes in a cube, and the 33-dodecahedron shell. Both use actual frozen poses and include static posters, source hashes and licensing manifests. The local interactive preview is a companion to the proposed Wikipedia article; no media or article has been submitted to Wikipedia or Commons.
 
 Open **[Polyhedra in polyhedra packing](polyhedra-in-polyhedra-packing.html)** for the illustrated local article. It includes a slowly rotating construction, shape/count selectors, and two source-linked tables for counts 2–12: five identical-solid families and four distinct dual-solid families. The [Markdown article](wikipedia-polyhedral-fits.md) and [MediaWiki source](wikipedia-polyhedral-fits.wiki) contain the same text and tables, with a substantial cube-packing history and named, linked explanations of Nakajima's method and Zarzuelo Urdiales's generalization and analysis.
 

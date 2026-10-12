@@ -1,5 +1,7 @@
 # Wikipedia editing notes for Polyhedra in polyhedra packing
 
+**12 October draft rebuild:** the [revision record](wikipedia-draft-rebuild-2026-10-12.md) and [full visual preview](../wikipedia-article-preview.html) now accompany the draft. All 99 table entries were preserved, the methods and patterns manuscripts cite their published Zenodo DOIs, and 35 reference definitions resolve. Live cube and octahedron catalogue checks did not identify a change in the compared n=2–12 entries. Two actual-pose 24-second [animations](../wikipedia-assets/README.md) are prepared locally with source and licensing manifests; neither has been uploaded to Commons.
+
 The main Markdown article and MediaWiki source contain the requested detailed treatment: same-solid and dual-solid tables, expanded cube history, named methodological attribution, and findings from the certified archive. These editorial notes are a separate document. They do not belong in an article pasted into Wikipedia.
 
 ## Scope, title, and existing coverage
