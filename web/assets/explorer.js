@@ -233,7 +233,9 @@
     const oc = orient(r), id = `${prob.id}_n${pad(r.n)}`;
     const facts = [['Record', id], ['s_full', String(r.sf)], ['Touching limit', r.st != null ? String(r.st) : '—']];
     if (r.ref != null) facts.push(['Published', `${r.ref} (${r.refsrc})`]);
-    facts.push(['Orientations', `${oc.sizes.length} (${oc.sizes.join(' + ')} pieces)`]);
+    const k = oc.sizes.length;
+    facts.push(['Orientations', k === 1 ? 'all pieces are translates of one another' : k === r.n ? `${k}, every piece oriented differently` :
+      k <= 8 ? `${k} (${oc.sizes.join(' + ')} pieces)` : `${k} (largest groups: ${oc.sizes.slice(0, 5).join(', ')} pieces)`]);
     facts.push(['Origin', r.who && /published packing/.test(r.who) ? r.who : r.derived ? `record = ${r.derived}` : `found by ${r.who || 'the search'}` + (r.move ? ` (move: ${r.move})` : '')]);
     if (r.issue) facts.push(['Submitted in', `<a href="${r.issue}" target="_blank" rel="noopener">${r.issue.replace(/^https:\/\/github.com\//, '')}</a>`]);
     if (r.cert.length) facts.push(['Certificate', r.cert.join(' ')]);

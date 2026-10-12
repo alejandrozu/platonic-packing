@@ -13,6 +13,8 @@
 
   const POLY = { 3: 'triangular', 4: 'square', 5: 'pentagonal', 6: 'hexagonal', 8: 'octagonal', 12: 'dodecagonal' };
   const dn = s => { const m = /^(anti)?prism(\d+)$/.exec(s); return m ? `${POLY[m[2]]} ${m[1] ? 'antiprism' : 'prism'}` : s.replace(/_/g, ' ') };
+  const pl = s => { const w = dn(s); return w.endsWith('hedron') ? w.slice(0, -6) + 'hedra' : w + 's' };
+  const art = s => (/^[aeiou]/.test(s) ? 'an ' : 'a ') + s;
   const names = Object.keys(D.solids).sort((a, b) => dn(a).localeCompare(dn(b)));
   $('names').innerHTML = names.map(n => `<code>${n}</code>`).join(', ');
 
@@ -185,7 +187,7 @@
     else cmp = `${cap(dn(pk.piece))} in ${dn(pk.container)} is not a tracked problem yet. You can still submit it, or <a href="#category">propose the category</a>.`;
     const thin = ok && Math.min(res.wall, res.minGap) < 1e-12;
     out.innerHTML = `<p class="verdict ${ok ? 'ok' : 'bad'}">${ok ? (thin ? 'Valid, with almost no clearance' : 'Valid in floating point') : 'Not valid'}</p>` +
-      `<dl><dt>Pieces</dt><dd>${pk.n} ${esc(dn(pk.piece))} in ${esc(dn(pk.container))}</dd><dt>s</dt><dd>${pk.s}</dd>` +
+      `<dl><dt>Pieces</dt><dd>${pk.n} ${esc(pk.n > 1 ? pl(pk.piece) : dn(pk.piece))} in ${esc(art(dn(pk.container)))}</dd><dt>s</dt><dd>${pk.s}</dd>` +
       `<dt>Smallest s for these positions</dt><dd>${fmt(res.sNeed, 14)}</dd><dt>Wall clearance</dt><dd>${fmt(res.wall, 4)}</dd>` +
       `<dt>Closest pair</dt><dd>${res.pairs ? (res.over.length ? `${res.over.length} overlapping pair${res.over.length > 1 ? 's' : ''}` : `separated by ≥ ${fmt(res.minGap, 4)}`) : 'no pieces close enough to touch'}</dd>` +
       `<dt>Pairs checked</dt><dd>${res.pairs} near, ${res.far} farther apart than two circumradii</dd></dl>` +
