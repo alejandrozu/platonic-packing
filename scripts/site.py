@@ -73,7 +73,7 @@ def load():
                           'group': FAMILY_GROUP[FAM[pid]], 'title': ptitle(pc, cc), 'unit': 'edge' if SOL[pc].get('unit', 'edge') == 'edge' else 'size'}
     ids = [i for i in PID if i in probs]
     out = [probs[i] for i in ids]
-    for a, src, t, note in ALIASES:                 # prism-family names for problems that are Platonic ones
+    for a, src, t, note in []:                      # (alias tabs removed at Alejandro's request, 12 Oct 18:04)
         if src in probs:
             q = dict(probs[src]); q.update(id=a, family='prisms', group='prisms', title=t + ' (= ' + probs[src]['title'].lower() + ')',
                                           alias=src, note=note, hasref=False)
