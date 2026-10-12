@@ -2,9 +2,9 @@
 
 Updated 2026-10-12 17:24 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
 
-* attempts: 61320 total, 552 in the last 24 h, 233 in the last hour
-* improvements: 4300 total, 242 in the last 24 h
-* by move (attempts / improvements): ascend 7796/610, descend 5619/99, fresh 6637/95, harvest 785/785, hop 33457/2157, reinsert 6775/403, tighten 251/151
+* attempts: 61326 total, 546 in the last 24 h, 239 in the last hour
+* improvements: 4306 total, 248 in the last 24 h
+* by move (attempts / improvements): ascend 7802/616, descend 5619/99, fresh 6637/95, harvest 785/785, hop 33457/2157, reinsert 6775/403, tighten 251/151
 
 | problem | n with a packing | attempts | CPU hours | improvements (24 h) | last improvement |
 |---|---|---|---|---|---|
