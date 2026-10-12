@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en" data-root="../" data-repo="https://github.com/alejandrozu/platonic-packing">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contribute: Polyhedra in Polyhedra</title>
+<meta name="description" content="Check a packing in your browser, submit it for exact certification, propose a new category or share another construction.">
+<link rel="canonical" href="https://polyhedrainpolyhedra.wiki/contribute/">
+<meta property="og:title" content="Contribute: Polyhedra in Polyhedra">
+<meta property="og:description" content="Check a packing in your browser, submit it for exact certification, propose a new category or share another construction.">
+<meta property="og:url" content="https://polyhedrainpolyhedra.wiki/contribute/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#eef1f0">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+<header class="top"><div class="in">
+  <a class="mark" href="../"><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke-width="1.3" stroke-linecap="round"><path class="c" d="M2.53 25.17L14.30 17.64 M2.53 25.17L2.53 8.51 M2.53 25.17L17.70 31.02 M14.30 17.64L14.30 0.98 M14.30 17.64L29.47 23.49 M2.53 8.51L14.30 0.98 M2.53 8.51L17.70 14.36 M14.30 0.98L29.47 6.83 M17.70 31.02L29.47 23.49 M17.70 31.02L17.70 14.36 M29.47 23.49L29.47 6.83 M17.70 14.36L29.47 6.83"/><path class="p" d="M22.98 18.69L16.00 8.34 M22.98 18.69L16.00 23.66 M22.98 18.69L21.42 12.53 M22.98 18.69L10.58 19.47 M9.02 13.31L16.00 8.34 M9.02 13.31L16.00 23.66 M9.02 13.31L21.42 12.53 M9.02 13.31L10.58 19.47 M16.00 8.34L21.42 12.53 M16.00 8.34L10.58 19.47 M16.00 23.66L21.42 12.53 M16.00 23.66L10.58 19.47"/></svg>Polyhedra in Polyhedra</a>
+  <nav class="nav" aria-label="Site"><a href="../">Records</a><a href="../constructions/">All constructions</a><a href="../method/">Method</a><a href="../certification/">Certification</a><a href="../contribute/" aria-current="page">Contribute</a><a href="../about/">About</a><a href="https://github.com/alejandrozu/platonic-packing" rel="noopener">GitHub</a></nav>
+</div></header>
+<main class="wrap">
+<div class="doc">
+<article>
+<h1>Contribute</h1>
+<p class="lede">Found a smaller container, want a new category tracked, or have a different polyhedra-in-polyhedra
+construction? Submissions go through public GitHub issues, so every check and every review is visible to everyone.</p>
+
+<h2 id="submit">Check and submit a packing</h2>
+<p>Paste a packing below. Your browser checks it in floating point: every vertex inside the container, every pair of
+pieces separated by a plane. When it passes, <b>Submit on GitHub</b> opens a pre-filled issue. A GitHub Action then
+runs the same exact certifier that proves every record on this site and posts the result on the issue, usually
+within a few minutes.</p>
+<p class="note">You need a GitHub account to submit. The check on this page runs entirely in your browser and sends nothing anywhere.</p>
+</article>
+</div>
+
+<section class="panel tool" id="tool" aria-label="Packing checker">
+  <div class="toolgrid">
+    <div class="toolin">
+      <label class="field"><span>Problem</span>
+        <select id="prob"></select>
+        <small>Pick one of the tracked problems, or “Another pair of solids” to check any piece and container from the library.</small></label>
+      <div class="pair" id="pair" hidden>
+        <label class="field"><span>Piece</span><select id="piece"></select></label>
+        <label class="field"><span>Container</span><select id="container"></select></label>
+      </div>
+      <label class="field"><span>Packing (JSON)</span>
+        <textarea id="json" rows="12" spellcheck="false" placeholder='{"s_full": 2.93152, "pieces": [[x, y, z, qw, qx, qy, qz], ...]}'></textarea>
+        <small>A record file, or an object with <code>s_full</code> and <code>pieces</code>, or just the list of pieces (then fill in s below). Format: <a href="#format">see below</a>.</small></label>
+      <div class="row2">
+        <label class="field"><span>s (container scale)</span><input type="text" id="sval" inputmode="decimal" placeholder="taken from the JSON"></label>
+        <label class="field"><span>Example</span><button class="secondary" type="button" id="loadrec">Load the current record</button></label>
+      </div>
+      <div class="actions"><button class="primary" type="button" id="check">Check packing</button><span id="busy" class="busy" aria-live="polite"></span></div>
+    </div>
+    <div class="toolout">
+      <div class="prev" id="prev"><canvas id="pcv" aria-label="Preview of the pasted packing"></canvas><span class="hint">Drag to turn. Overlapping pieces are drawn in red.</span></div>
+      <div class="result" id="result" aria-live="polite"><p class="mut">Results appear here after you check a packing.</p></div>
+    </div>
+  </div>
+  <div class="sendrow" id="sendrow">
+    <label class="field"><span>Credit</span><input type="text" id="credit" placeholder="How the record should credit you (name, handle or team)"></label>
+    <label class="field"><span>How you found it</span><input type="text" id="how" placeholder="Method, software, or a link to your write-up (optional)"></label>
+    <div class="actions"><button class="primary" type="button" id="send" disabled>Submit on GitHub</button><span id="sendnote" class="busy"></span></div>
+  </div>
+</section>
+
+<div class="doc">
+<article>
+<h2 id="after">What happens after you submit</h2>
+<ol>
+  <li>The issue is labelled <code>submission</code> and the <a href="https://github.com/alejandrozu/platonic-packing/blob/main/.github/workflows/submission.yml">submission workflow</a> starts. It runs the floating-point check (<a href="https://github.com/alejandrozu/platonic-packing/blob/main/verify_general.py"><code>verify_general.py</code></a>) and the exact certifier (<a href="https://github.com/alejandrozu/platonic-packing/blob/main/certify_general.py"><code>certify_general.py</code></a>), compares the size with the current record, and comments with the result.</li>
+  <li>A maintainer reviews it. Certified packings that beat the record, or fill a case with no record, are accepted by adding the <code>accepted</code> label.</li>
+  <li>The workflow then writes the record file with your credit, its exact certificate and float check, and rebuilds this site. The issue is closed with a link to the new record.</li>
+</ol>
+<p>A packing has to be strictly valid, not just touching: the certifier needs a positive clearance between pieces and
+from the walls. Spread the centres by about 10<sup>−7</sup> and round s up before you submit; <a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/claim.py"><code>src/claim.py</code></a> does exactly that for the packings here.</p>
+
+<h2 id="category">Propose a new category</h2>
+<p>New categories are new (piece, container) problems: a solid that is not in the library yet, a different container,
+mixed pieces, or a different measure. Describe it and it becomes a GitHub issue where it can be discussed and,
+if adopted, added to the search.</p>
+</article>
+</div>
+
+<section class="panel formbox" aria-label="Propose a new category">
+  <div class="fgrid">
+    <label class="field"><span>Pieces</span><input type="text" id="c_pieces" placeholder="e.g. regular dodecahedra, or a solid not in the library"></label>
+    <label class="field"><span>Container</span><input type="text" id="c_container" placeholder="e.g. a sphere, a cube, a truncated octahedron"></label>
+    <label class="field wide"><span>What to minimize</span><input type="text" id="c_measure" placeholder="e.g. container edge ÷ piece edge, for n = 2–40"></label>
+    <label class="field wide"><span>Why it is interesting</span><textarea id="c_motivation" rows="3" style="font-family:var(--f-body)"></textarea></label>
+    <label class="field wide"><span>Definitions, coordinates or known results</span><textarea id="c_details" rows="4" placeholder="Vertex coordinates, references, links"></textarea></label>
+  </div>
+  <div class="actions"><button class="primary" type="button" id="c_send">Open the proposal on GitHub</button></div>
+</section>
+
+<div class="doc">
+<article>
+<h2 id="other">Share another construction</h2>
+<p>Any packing of polyhedra inside a polyhedron is welcome here, even if it does not fit a tracked category: a beautiful
+symmetric arrangement, a proof of optimality for small n, a lattice construction, a lower bound, a physical model.</p>
+</article>
+</div>
+
+<section class="panel formbox" aria-label="Share another construction">
+  <div class="fgrid">
+    <label class="field wide"><span>Title</span><input type="text" id="o_title" placeholder="e.g. 27 truncated octahedra in a truncated octahedron by a lattice"></label>
+    <label class="field wide"><span>Description</span><textarea id="o_description" rows="4" style="font-family:var(--f-body)"></textarea></label>
+    <label class="field wide"><span>Data</span><textarea id="o_data" rows="4" placeholder="Coordinates (JSON or text), or where to find them"></textarea></label>
+    <label class="field wide"><span>Links and references</span><input type="text" id="o_links" placeholder="Paper, code, pictures"></label>
+  </div>
+  <div class="actions"><button class="primary" type="button" id="o_send">Open it on GitHub</button></div>
+</section>
+
+<div class="doc">
+<article>
+<h2 id="code">Improve the code or add a solid</h2>
+<p>Pull requests are welcome; <a href="https://github.com/alejandrozu/platonic-packing/blob/main/CONTRIBUTING.md"><code>CONTRIBUTING.md</code></a> has the details. Adding a solid takes four steps:</p>
+<ol>
+  <li>Define it in <a href="https://github.com/alejandrozu/platonic-packing/blob/main/polyhedra.py"><code>polyhedra.py</code></a> (high-precision vertices; faces are derived from the hull and checked) and run it to regenerate <a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/solids.json"><code>src/solids.json</code></a>, including the r-rounding cores used by the soft shapes.</li>
+  <li>Give its number field in <a href="https://github.com/alejandrozu/platonic-packing/blob/main/scripts/exact_solids.py"><code>scripts/exact_solids.py</code></a> and run it; it finds exact coordinates and proves them right, writing <a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/solids_exact.json"><code>src/solids_exact.json</code></a>.</li>
+  <li>Add the problem id to <a href="https://github.com/alejandrozu/platonic-packing/blob/main/scripts/engine.py"><code>scripts/engine.py</code></a> (<code>AB</code>, the family lists) and start the search with <code>scripts/run_forever.sh</code>.</li>
+  <li>Publish with <code>python3 scripts/publish.py</code>: record files, certificates and this site are rebuilt from the archive.</li>
+</ol>
+
+<h2 id="format">Format of a packing</h2>
+<p>The same JSON as the record files. Pieces are copies of the canonical piece solid of
+<a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/solids.json"><code>src/solids.json</code></a> (50-digit coordinates in
+<a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/solids_hp.json"><code>src/solids_hp.json</code></a>, exact ones in
+<a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/solids_exact.json"><code>src/solids_exact.json</code></a>), each rotated by a
+scalar-first quaternion and then moved to its centre. The container is <code>s_full</code> times the canonical container
+solid, centred at the origin (or at <code>container_center</code>) in its canonical orientation.</p>
+<pre><code>{
+  "piece": "truncated_octahedron",
+  "container": "truncated_octahedron",
+  "n": 2,
+  "s_full": 2.0000001,
+  "pieces": [
+    [x, y, z, qw, qx, qy, qz],
+    [x, y, z, qw, qx, qy, qz]
+  ]
+}</code></pre>
+<p>Canonical solids have unit edges (Platonic and Archimedean solids, prisms, antiprisms). A Catalan solid is the
+canonical dual of the unit-edge Archimedean solid, reflected in their common midsphere, and its s is a ratio of sizes of
+that same solid. Names are the keys of <code>src/solids.json</code>: <span id="names"></span>.</p>
+</article>
+</div>
+
+</main>
+<footer class="foot"><div class="in">
+  <p>Upper bounds with proofs, not optimality claims. Method after Yohei Nakajima's soft-to-rigid packing. Code, records and certificates: <a href="https://github.com/alejandrozu/platonic-packing">github.com/alejandrozu/platonic-packing</a>. MIT license.</p>
+  <p>Built 2026-10-12 20:12 UTC+00</p>
+</div></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script><script src="../assets/contribute.js"></script>
+</body>
+</html>

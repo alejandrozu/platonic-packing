@@ -1,0 +1,155 @@
+/* polyhedrainpolyhedra.wiki — shared styles.
+   Identity: a drafting-sheet record book. Cool grey-green paper, drafting blue for interaction, copper for anything
+   that is proved or exact (closed forms, certificates). STIX Two Text carries headings and long-form prose (it was
+   drawn for mathematics), IBM Plex Sans the interface and tables, IBM Plex Mono only code and coordinates. */
+:root {
+  --paper: #eef1f0; --sheet: #f8faf9; --ink: #172024; --muted: #59666b; --rule: #d3dad9;
+  --accent: #2c49a8; --exact: #9a4f17; --ok: #2f6b45; --warn: #a33b2b; --chipbg: #e4e9e8; --zero: #8b5cf6;
+  --codebg: #e9eeed;
+  --f-display: "STIX Two Text", "STIX Two Math", Georgia, serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --measure: 68ch;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0f1416; --sheet: #151c1f; --ink: #e1e7e8; --muted: #94a3a7; --rule: #27323a;
+  --accent: #91a8ff; --exact: #e3a466; --ok: #7cc79a; --warn: #f08b7a; --chipbg: #1f292d; --zero: #b79bff; --codebg: #1a2226;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #0f1416; --sheet: #151c1f; --ink: #e1e7e8; --muted: #94a3a7; --rule: #27323a;
+  --accent: #91a8ff; --exact: #e3a466; --ok: #7cc79a; --warn: #f08b7a; --chipbg: #1f292d; --zero: #b79bff; --codebg: #1a2226;
+  color-scheme: dark }
+
+* { box-sizing: border-box }
+html { -webkit-text-size-adjust: 100% }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 15px/1.55 var(--f-body); }
+a { color: var(--accent); text-underline-offset: 2px; text-decoration-thickness: 1px }
+a:hover { text-decoration-thickness: 2px }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+img, svg, canvas { max-width: 100% }
+code, kbd, pre { font-family: var(--f-mono) }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap }
+
+/* ---------- top bar */
+.top { border-bottom: 1px solid var(--rule); background: var(--sheet) }
+.top .in { max-width: 1240px; margin: 0 auto; padding: 10px max(16px, 3vw); display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px }
+.mark { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font: 600 19px/1 var(--f-display); letter-spacing: -0.005em; white-space: nowrap }
+.mark svg { width: 30px; height: 30px; flex: none }
+.mark svg .c { stroke: var(--ink) } .mark svg .p { stroke: var(--accent) }
+.nav { display: flex; flex-wrap: wrap; gap: 2px 4px; margin-left: auto; font-size: 14px }
+.nav a { color: var(--muted); text-decoration: none; padding: 7px 9px; border-radius: 6px; white-space: nowrap }
+.nav a:hover { color: var(--ink); background: var(--chipbg) }
+.nav a[aria-current="page"] { color: var(--ink); box-shadow: inset 0 -2px 0 var(--accent); border-radius: 0 }
+@media (max-width: 760px) {
+  .nav { margin-left: 0; width: 100%; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: -9px }
+  .nav::-webkit-scrollbar { display: none }
+}
+
+/* ---------- page frame */
+.wrap { max-width: 1240px; margin: 0 auto; padding-inline: max(16px, 3vw); padding-block: 28px 56px; display: grid; gap: 26px; min-width: 0 }
+.foot { border-top: 1px solid var(--rule); color: var(--muted); font-size: 13px }
+.foot .in { max-width: 1240px; margin: 0 auto; padding: 18px max(16px, 3vw) 28px; display: flex; flex-wrap: wrap; gap: 6px 22px; justify-content: space-between }
+.foot a { color: var(--muted) }
+.foot p { margin: 0; max-width: 80ch }
+
+/* ---------- headings, lede */
+h1 { font: 600 clamp(30px, 4.4vw, 46px)/1.08 var(--f-display); margin: 0; text-wrap: balance; letter-spacing: -0.012em }
+.lede { margin: 0; color: var(--muted); max-width: 70ch; font-size: 16px }
+.lede b { color: var(--ink); font-weight: 500 }
+.intro { display: grid; gap: 12px }
+
+/* ---------- article pages */
+.doc { display: grid; grid-template-columns: minmax(0, var(--measure)) minmax(0, 1fr); gap: 48px; align-items: start }
+.doc article { min-width: 0; font: 17px/1.65 var(--f-display) }
+.doc article > * + * { margin-top: 0.85em }
+.doc article h1 { margin-bottom: 0.4em }
+.doc article h2 { font: 600 26px/1.2 var(--f-display); margin: 1.8em 0 0; scroll-margin-top: 16px; text-wrap: balance }
+.doc article h3 { font: 600 20px/1.25 var(--f-display); margin: 1.4em 0 0; scroll-margin-top: 16px }
+.doc article p, .doc article li { max-width: var(--measure) }
+.doc article ul, .doc article ol { padding-left: 1.3em }
+.doc article li + li { margin-top: 0.3em }
+.doc article .lede { font: 19px/1.55 var(--f-display); color: var(--muted) }
+.doc article code { font-size: 0.82em; background: var(--codebg); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere }
+.doc article pre { background: var(--codebg); border: 1px solid var(--rule); border-radius: 8px; padding: 12px 14px; overflow-x: auto; font-size: 13px; line-height: 1.5 }
+.doc article pre code { background: none; padding: 0; font-size: inherit; overflow-wrap: normal }
+.doc article .eq { font: italic 19px/1.4 var(--f-display); text-align: left; padding: 6px 0 6px 1.2em; border-left: 2px solid var(--exact); color: var(--ink) }
+.doc article .eq span { font-style: normal }
+.doc article .note { font: 15px/1.55 var(--f-body); color: var(--muted); border-left: 2px solid var(--rule); padding-left: 12px }
+.doc article table { font: 14px/1.4 var(--f-body) }
+.doc article .tablewrap { border: 1px solid var(--rule); border-radius: 8px; background: var(--sheet) }
+.toc { position: sticky; top: 18px; font-size: 14px; color: var(--muted); display: grid; gap: 4px; border-left: 1px solid var(--rule); padding-left: 16px; max-height: calc(100vh - 36px); overflow: auto }
+.toc b { color: var(--ink); font-weight: 600; margin-bottom: 4px }
+.toc a { color: var(--muted); text-decoration: none; padding: 2px 0 }
+.toc a:hover { color: var(--accent) }
+.toc .sub { padding-left: 12px; font-size: 13px }
+@media (max-width: 1080px) { .doc { grid-template-columns: minmax(0, 1fr) } .toc { display: none } }
+.files { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 16px; font: 14px/1.45 var(--f-body); margin-top: 1em }
+.files dt { font-family: var(--f-mono); font-size: 13px } .files dd { margin: 0; color: var(--muted) }
+@media (max-width: 560px) { .files { grid-template-columns: minmax(0, 1fr) } .files dd { margin-bottom: 8px } }
+
+/* ---------- shared bits */
+.panel { background: var(--sheet); border: 1px solid var(--rule); border-radius: 10px; min-width: 0 }
+.panel h2 { font: 600 19px/1.2 var(--f-display); margin: 0; text-wrap: balance }
+.phead { padding: 16px 18px 12px; display: grid; gap: 6px; border-bottom: 1px solid var(--rule) }
+.phead p { margin: 0; color: var(--muted); font-size: 13px }
+.tablewrap { overflow-x: auto }
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; font-size: 14px }
+th { position: sticky; top: 0; background: var(--sheet); text-align: left; font: 500 12px/1.2 var(--f-body); color: var(--muted); padding: 10px 10px; border-bottom: 1px solid var(--rule); white-space: nowrap; z-index: 1 }
+td { padding: 7px 10px; border-bottom: 1px solid var(--rule); white-space: nowrap }
+.chip { display: inline-block; font: 500 11px/1 var(--f-body); padding: 4px 7px; border-radius: 999px; background: var(--chipbg); color: var(--muted); letter-spacing: .02em }
+.chip.better { color: var(--ok); box-shadow: inset 0 0 0 1px var(--ok) }
+.chip.behind { color: var(--warn) }
+.tick { color: var(--ok); font-weight: 600 } .cross { color: var(--warn); font-weight: 600 }
+button.small, a.small { font: 500 12.5px/1 var(--f-body); padding: 7px 10px; border-radius: 6px; border: 1px solid var(--rule); background: var(--sheet); color: var(--ink); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px }
+button.small:disabled { opacity: .4; cursor: default }
+button.primary, a.primary { font: 600 14px/1 var(--f-body); padding: 11px 16px; border-radius: 7px; border: 1px solid var(--accent); background: var(--accent); color: var(--sheet); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px }
+button.primary:disabled { opacity: .45; cursor: default }
+button.secondary { font: 500 14px/1 var(--f-body); padding: 11px 16px; border-radius: 7px; border: 1px solid var(--rule); background: var(--sheet); color: var(--ink); cursor: pointer }
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 7px; overflow: hidden; background: var(--sheet) }
+.seg button { font: 500 12.5px/1 var(--f-body); padding: 7px 10px; border: 0; background: transparent; color: var(--ink); cursor: pointer }
+.seg button + button { border-left: 1px solid var(--rule) }
+.seg button[aria-pressed="true"] { background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent) }
+
+/* ---------- forms */
+.field { display: grid; gap: 5px; font: 14px/1.4 var(--f-body) }
+.field > span { font-weight: 500 }
+.field small { color: var(--muted); font-size: 12.5px }
+input[type=text], input[type=number], input[type=search], select, textarea {
+  font: 14px/1.4 var(--f-body); color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 7px; padding: 9px 10px; width: 100%; min-width: 0 }
+textarea { font: 12.5px/1.45 var(--f-mono); resize: vertical }
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: transparent }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important } }
+
+/* ---------- contribute page: checker tool and proposal forms */
+.tool, .formbox { display: grid; gap: 16px; padding: 18px }
+.toolgrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 22px }
+@media (max-width: 900px) { .toolgrid { grid-template-columns: minmax(0, 1fr) } }
+.toolin, .toolout { display: grid; gap: 14px; align-content: start; min-width: 0 }
+.pair, .row2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px }
+.actions { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center }
+.busy { color: var(--muted); font-size: 13px }
+.prev { position: relative; aspect-ratio: 4 / 3; border: 1px solid var(--rule); border-radius: 8px; background: var(--paper); touch-action: none; cursor: grab; overflow: hidden }
+.prev canvas { width: 100%; height: 100%; display: block }
+.prev .hint { position: absolute; left: 10px; bottom: 8px; font-size: 12px; color: var(--muted); pointer-events: none }
+.result { display: grid; gap: 8px; font-size: 14px }
+.result .mut { color: var(--muted); margin: 0 }
+.result .verdict { font: 600 19px/1.3 var(--f-display); margin: 0 }
+.result .verdict.ok { color: var(--ok) } .result .verdict.bad { color: var(--warn) }
+.result dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 3px 14px; margin: 0; font-size: 13.5px }
+.result dt { color: var(--muted) } .result dd { margin: 0; overflow-wrap: anywhere; font-variant-numeric: tabular-nums }
+.result ul { margin: 0; padding-left: 1.2em; font-size: 13.5px }
+.sendrow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto; gap: 12px; align-items: end; border-top: 1px solid var(--rule); padding-top: 16px }
+@media (max-width: 900px) { .sendrow { grid-template-columns: minmax(0, 1fr) } }
+.fgrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px }
+.fgrid .wide { grid-column: 1 / -1 }
+@media (max-width: 640px) { .fgrid, .pair, .row2 { grid-template-columns: minmax(0, 1fr) } }
+.tool, .formbox { max-width: calc(var(--measure) + 48px + 300px) }
+.op { font-family: "Cambria Math", "STIX Two Math", "Latin Modern Math", "DejaVu Serif", "Times New Roman", serif; font-size: 0.95em; font-style: normal; padding-inline: 0.12em; vertical-align: 0.04em }
+[hidden] { display: none !important }
+.doc article td { white-space: normal; vertical-align: top }
+.doc article td .mut, .doc article .mut { color: var(--muted) }
+.doc details { border-top: 1px solid var(--rule); padding: 10px 0 }
+.doc details summary { cursor: pointer; font: 16px/1.4 var(--f-display) }
+.doc details summary .mut { font: 13px var(--f-body); margin-left: 6px }
+.doc details .tablewrap { margin-top: 10px }
+.doc details td { white-space: nowrap }
