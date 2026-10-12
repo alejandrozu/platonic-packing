@@ -3,95 +3,100 @@
  "piece": "snub_dodecahedron",
  "container": "snub_dodecahedron",
  "n": 6,
- "s": 2.38277,
- "s_plus": "2.38277+",
- "s_full": 2.3827703563538,
+ "s": 2.37965,
+ "s_plus": "2.37965+",
+ "s_full": 2.3796545410191,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020428040468e-07,
-  "min_wall_gap": 1.0000000205678816e-07
+  "min_pair_gap": 1.0000020352440958e-07,
+  "min_wall_gap": 1.0000012373723166e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-12",
  "pieces": [
   [
-   1.7763831550935891,
-   2.1167931598277367,
-   -0.9979127025332974,
-   0.4972897923793477,
-   0.49725928236988565,
-   -0.4997979768310413,
-   0.5056066166971013
+   1.6811136046785053,
+   2.1447697139434436,
+   -1.0273740421879212,
+   0.4981114882708216,
+   0.49819807627758,
+   -0.49973269293566924,
+   0.5039353705161109
   ],
   [
-   1.6365210816960598,
-   0.029038149017687927,
-   2.3792962294183875,
-   0.8504516347879852,
-   -0.44370135090288076,
-   0.22060528446138128,
-   0.1766194682392492
+   1.7313750935703014,
+   0.10397873294851782,
+   2.3688363186245533,
+   0.8091317552299989,
+   -0.5016747298077141,
+   0.002416522212461175,
+   0.30597782365912546
   ],
   [
-   -1.6926213550036515,
-   2.055468324701414,
-   1.1383785483211288,
-   0.389544486376867,
-   -0.21438988217301405,
-   -0.8877410849806973,
-   0.11919663414928508
+   -1.7969983688285904,
+   1.9737432522452476,
+   1.1354589494507399,
+   0.37147391806936825,
+   -0.23424429994934493,
+   -0.8889087652347885,
+   0.13029943677620934
   ],
   [
-   -1.7417272361368323,
-   -2.035325592592071,
-   1.0695825265945005,
-   0.2843308702033137,
-   0.023316420487426732,
-   0.9557386339487799,
-   -0.07194417532225988
+   -1.6372888616772803,
+   -2.081132997211106,
+   1.2051187050959402,
+   0.26846491313402926,
+   0.029258913736236455,
+   0.9617826178164698,
+   -0.04521838618319031
   ],
   [
-   -1.5019708058168084,
-   0.19650689100171395,
-   -2.4845888305242165,
-   0.8857229927693002,
-   -0.12626714055031155,
-   -0.35689571333020603,
-   -0.2686574754284076
+   -1.5145180241687486,
+   0.03771057182754194,
+   -2.449132822208162,
+   0.8864711865442995,
+   -0.10940695620134967,
+   -0.36086501250942693,
+   -0.2682823067368942
   ],
   [
-   1.7638810833365683,
-   -1.952959241336974,
-   -1.2237600727512061,
-   0.7180695575814071,
-   -0.38673600707320177,
-   -0.477968143247348,
-   -0.32612547485377685
+   1.8154691742325197,
+   -1.9592210811882527,
+   -1.1594547261239292,
+   0.7335873451403321,
+   -0.4080157526590594,
+   -0.44720798496488795,
+   -0.3088329173123634
   ]
  ],
  "record_id": "sndinsnd_n06",
  "title": "6 snub dodecahedra in a snub dodecahedron",
  "family": "archimedean",
  "source": {
-  "hash": "8c9ebf7823549428",
+  "hash": "b7f98fb45a0a157d",
   "clear": 1e-07,
-  "cap": 2.5681566399808
+  "cap": 2.5618445069511
  },
- "s_tight": 2.382770271227,
+ "s_tight": 2.37965445604,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.8171205928321397,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "ascend",
-  "seed": 1164425310,
-  "var": "base",
-  "raw": 2.3964623017781417,
-  "host": "actions"
+  "move": "hop",
+  "seed": 868115977,
+  "var": "gentle",
+  "minDiff": 0.026483743597411163,
+  "expand": 0.029236389628571738,
+  "rh": 0.1701699066419528,
+  "focus": 0,
+  "from": "best",
+  "raw": 2.3922612272123622,
+  "host": "laptop"
  },
- "density": 0.44351129538271605
+ "density": 0.44525572020508397
 }
