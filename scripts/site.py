@@ -18,7 +18,8 @@ WEB = os.path.join(ROOT, 'web')
 OUT = os.path.join(ROOT, 'site')
 REPO = 'https://github.com/alejandrozu/platonic-packing'
 DOMAIN = 'polyhedrainpolyhedra.wiki'
-SITE_URL = f'https://{DOMAIN}/'
+HAS_DOMAIN = os.path.exists(os.path.join(WEB, 'CNAME'))     # web/CNAME switches the site to the custom domain
+SITE_URL = f'https://{DOMAIN}/' if HAS_DOMAIN else 'https://alejandrozu.github.io/platonic-packing/'
 from engine import FAM, PID
 POLY = {3: 'triangular', 4: 'square', 5: 'pentagonal', 6: 'hexagonal', 8: 'octagonal', 12: 'dodecagonal'}
 FAMILY_GROUP = {'platonic': 'platonic', 'archimedean': 'archcat', 'catalan': 'archcat', 'prisms': 'prisms'}
@@ -265,7 +266,7 @@ def build(fragment=None):
     stats_sentence = (f"{st['records']:,} packings in {st['problems']} problems, every one certified in exact arithmetic."
                       if st['certified'] == st['records'] else
                       f"{st['records']:,} packings in {st['problems']} problems, {st['certified']:,} of them certified in exact arithmetic so far.")
-    vals = {'STATS_SENTENCE': stats_sentence, 'N_RECORDS': f"{st['records']:,}", 'N_PROBLEMS': str(st['problems']),
+    vals = {'SITE': SITE_URL.rstrip('/'), 'STATS_SENTENCE': stats_sentence, 'N_RECORDS': f"{st['records']:,}", 'N_PROBLEMS': str(st['problems']),
             'N_CASES': f"{st['cases']:,}", 'N_SOLIDS': str(st['solids']), 'CERT_SENTENCE': cert_sentence(st),
             'N_ATTEMPTS': f"{st['attempts']:,}" if st['attempts'] else 'many thousands of',
             'FIELDS_TABLE': fields_table()}
@@ -304,7 +305,9 @@ def build(fragment=None):
     nf = ('<div class="doc"><article><h1>Not found</h1><p class="lede">There is no page at this address.</p>'
           '<p>Try the <a href="/">records</a>, <a href="/constructions/">all constructions</a> or the '
           '<a href="/contribute/">contribute page</a>. Record ids such as <code>cubincub_n12</code> open directly as <a href="/#cubincub_n12">/#cubincub_n12</a>.</p></article></div>')
-    write('404.html', page('404.html', 'Not found: Polyhedra in Polyhedra', desc, nf, None, root='/'))
+    base = '/' if HAS_DOMAIN else '/platonic-packing/'
+    nf = nf.replace('href="/', f'href="{base}')
+    write('404.html', page('404.html', 'Not found: Polyhedra in Polyhedra', desc, nf, None, root=base))
     if os.path.exists(os.path.join(WEB, 'CNAME')):   # custom domain (added once its DNS points at GitHub Pages)
         write('CNAME', open(os.path.join(WEB, 'CNAME')).read().strip() + '\n')
     write('.nojekyll', '')

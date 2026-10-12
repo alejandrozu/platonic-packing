@@ -1,5 +1,29 @@
 # Status and hand-off
 
+> **Current state (12 Oct 2026, 22:40 Paris): the search is stopped and the website is live.** The project now
+> covers 55 problems (Platonic, Archimedean and Catalan solids, prisms and antiprisms; n = 2…40). All 2,145 cases
+> have a record, and every record is certified exactly by `certify_general.py`. The search was stopped with
+> `state/STOP` after the last cases were filled (cloud workers stopped, laptop runs ended, the last GitHub Actions run
+> merged; dispatch is disabled while `state/STOP` exists).
+>
+> * Website: **https://alejandrozu.github.io/platonic-packing/** (GitHub Pages from the `gh-pages` branch; sources in `web/`,
+>   built by `scripts/site.py`, deployed by `.github/workflows/site.yml` on every push that touches `web/`,
+>   `scripts/site.py` or `records/`).
+> * **Pending: the custom domain polyhedrainpolyhedra.wiki** (registered at Porkbun on 12 Oct). Set its DNS to GitHub
+>   Pages (Porkbun: Quick DNS Config, GitHub: A records 185.199.108-111.153, AAAA 2606:50c0:8000-8003::153, `www` CNAME
+>   alejandrozu.github.io), then `echo polyhedrainpolyhedra.wiki > web/CNAME`, replace the github.io links in README.md,
+>   CONTRIBUTING.md and `.github/ISSUE_TEMPLATE/`, and push; enable HTTPS in the Pages settings once the certificate
+>   is issued. Everything else switches automatically (site.py and check_submission.py read `web/CNAME`).
+> * Contributions: issue forms in `.github/ISSUE_TEMPLATE/`; `.github/workflows/submission.yml` runs
+>   `scripts/check_submission.py` (float check + exact certificate + comparison) on every submitted packing, and on
+>   the `accepted` label writes the record with the contributor's credit, rebuilds the site and closes the issue.
+>   See [CONTRIBUTING.md](CONTRIBUTING.md).
+> * To resume the search: `rm state/STOP` and `nohup setsid scripts/run_forever.sh > logs/supervisor.out 2>&1 &`.
+>   The policy (`state/policy.json`) searches the three new families and brings every case to 10 attempts
+>   (`min_attempts`).
+
+## Earlier state (11 Oct 2026)
+
 > **Final state (11 Oct 2026, 17:39 Paris): the search is stopped.** The workers were stopped with `state/STOP`;
 > the laptop and GitHub Actions runs ended, and Actions dispatch is disabled while `state/STOP` exists. All 351
 > records (nine problems × n = 2…40) are exactly certified. Everything that happened, every result and every

@@ -1,11 +1,11 @@
 # Contributing to Polyhedra in Polyhedra
 
-Everything on [polyhedrainpolyhedra.wiki](https://polyhedrainpolyhedra.wiki) is built from this repository, and every
+Everything on [the website](https://alejandrozu.github.io/platonic-packing/) (moving to polyhedrainpolyhedra.wiki) is built from this repository, and every
 contribution goes through a public GitHub issue or pull request.
 
 ## Submit a better packing
 
-1. Check it in your browser on the [contribute page](https://polyhedrainpolyhedra.wiki/contribute/): paste the JSON,
+1. Check it in your browser on the [contribute page](https://alejandrozu.github.io/platonic-packing/contribute/): paste the JSON,
    press **Check packing**, then **Submit on GitHub**. This opens the
    [Submit a packing](../../issues/new?template=submit-packing.yml) form already filled in.
 2. The [submission workflow](.github/workflows/submission.yml) runs `verify_general.py` (floating point) and

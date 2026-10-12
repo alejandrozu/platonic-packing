@@ -16,7 +16,8 @@ sys.path.insert(0, os.path.join(ROOT, 'scripts'))
 SOL = json.load(open(os.path.join(ROOT, 'src', 'solids.json')))
 EXACT = json.load(open(os.path.join(ROOT, 'src', 'solids_exact.json')))
 from engine import PID, FAM
-SITE = 'https://polyhedrainpolyhedra.wiki/'
+SITE = ('https://polyhedrainpolyhedra.wiki/' if os.path.exists(os.path.join(ROOT, 'web', 'CNAME'))
+        else 'https://alejandrozu.github.io/platonic-packing/')
 REPO = 'https://github.com/alejandrozu/platonic-packing'
 MAX_N = 200
 LABELS = {'Problem': 'problem', 'Number of pieces': 'n', 'Container scale s': 's', 'Packing': 'packing',

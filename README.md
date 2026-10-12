@@ -6,15 +6,15 @@ octahedron, octahedra in a cube, dodecahedra in an icosahedron, icosahedra in a 
 *soft-to-rigid* method: start every piece as its inscribed sphere, then sharpen it into the solid while inward
 pressure shrinks the container. Every packing is **certified in exact arithmetic over Q(√2, √5)**.
 
-**Website: [polyhedrainpolyhedra.wiki](https://polyhedrainpolyhedra.wiki)**: every record in 3D, the method, the
-certificates, and a page to [check and submit your own packings](https://polyhedrainpolyhedra.wiki/contribute/)
+**Website: [https://alejandrozu.github.io/platonic-packing/](https://alejandrozu.github.io/platonic-packing/)** (moving to polyhedrainpolyhedra.wiki): every record in 3D, the method, the
+certificates, and a page to [check and submit your own packings](https://alejandrozu.github.io/platonic-packing/contribute/)
 (see [CONTRIBUTING.md](CONTRIBUTING.md)).
 
 **Since 12 Oct 2026 the project also covers every Archimedean and Catalan solid packed in itself, and the regular
 prisms and antiprisms (triangular to dodecagonal) packed in themselves and in a cube**: 55 problems and 2,145 cases in
 all, every one with a packing certified exactly by `certify_general.py` (number fields, rational rotations, interval
 arithmetic). Their tables are in [records/families.md](records/families.md); the method is described on the
-[website](https://polyhedrainpolyhedra.wiki/method/). The rest of this README describes the original nine Platonic
+[website](https://alejandrozu.github.io/platonic-packing/method/). The rest of this README describes the original nine Platonic
 problems.
 
 It generalizes [`yoheinakajima/soft-to-rigid-packing`](https://github.com/yoheinakajima/soft-to-rigid-packing)
@@ -28,7 +28,7 @@ containers.
 * **Records:** [records/README.md](records/README.md) (tables with links), [records/SUMMARY.csv](records/SUMMARY.csv)
   (all digits), one folder per problem with record files, checker outputs and pictures.
 * **State of the work and next steps:** [STATUS.md](STATUS.md); chronological log: [EXPERIMENT_LOG.md](EXPERIMENT_LOG.md).
-* **Interactive viewer:** [polyhedrainpolyhedra.wiki](https://polyhedrainpolyhedra.wiki) (built from `web/` by `scripts/site.py`).
+* **Interactive viewer:** [the website](https://alejandrozu.github.io/platonic-packing/) (built from `web/` by `scripts/site.py`).
 
 ## Results: s = container edge ÷ piece edge, n = 2…40
 
