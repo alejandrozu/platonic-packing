@@ -41,6 +41,11 @@ class Problem:
         self.faxes = _uniq(P['normals'])
         self.edirs = _uniq([self.V[j] - self.V[i] for i, j in P['edges']])
         self.circ = float(np.linalg.norm(self.V, axis=1).max())
+        # Gauss-map pruning of edge-edge axes for solids with many edge directions (see geom.js edgeAxes)
+        self.FNl = np.array(P['normals'], float)             # all face normals (local)
+        self.eface = _edge_faces(P['faces'], P['edges'])
+        nd, ne = len(self.edirs), len(self.edges)
+        self.prune = nd * nd * self.nv * 6 > 2 * ne * ne * 20
         self.CN = np.array(C['normals'])                     # container face normals
         CV = np.array(C['V']) * self.edge
         beta = np.array([self.CN[f] @ CV[F[0]] for f, F in enumerate(C['faces'])])
@@ -50,6 +55,33 @@ class Problem:
     def s_of_L(self, L): return L / (2 * self.rhoC)
 
     def verts(self, c, R): return c + self.V @ R.T
+
+
+def _edge_faces(faces, edges):
+    m = {}
+    for fi, f in enumerate(faces):
+        for t, a in enumerate(f):
+            b = f[(t + 1) % len(f)]; m.setdefault((min(a, b), max(a, b)), []).append(fi)
+    out = []
+    for i, j in edges:
+        l = m.get((min(i, j), max(i, j)), [0])
+        out.append((l[0], l[1] if len(l) > 1 else l[0]))
+    return np.array(out, int)
+
+
+def edge_axes(pb, RA, RB):
+    """Edge-edge separating-axis candidates with Gauss-map pruning: e_A x e_B is a face normal of the Minkowski
+    difference only if the Gauss arcs of the two edges (B's normals negated) intersect; only those are needed."""
+    FA, FB = pb.FNl @ RA.T, pb.FNl @ RB.T
+    a1, a2 = FA[pb.eface[:, 0]], FA[pb.eface[:, 1]]; b1, b2 = FB[pb.eface[:, 0]], FB[pb.eface[:, 1]]
+    cA = np.cross(a2, a1); cB = np.cross(b2, b1)
+    CBA = -(cA @ b1.T); DBA = -(cA @ b2.T); ADC = a1 @ cB.T; BDC = a2 @ cB.T
+    ok = (CBA * DBA < 0) & (ADC * BDC < 0) & (CBA * BDC > 0)
+    i, j = np.nonzero(ok)
+    if not len(i): return np.zeros((0, 3))
+    W = np.cross(cA[i], cB[j]); l = np.linalg.norm(W, axis=1)
+    keep = l > 1e-12 * np.linalg.norm(cA[i], axis=1) * np.linalg.norm(cB[j], axis=1)
+    return W[keep] / l[keep, None]
 
 
 def quat_to_R(q):
@@ -92,6 +124,7 @@ def jac_left(phi):
 
 # ------------------------------------------------------------------ separating-axis machinery (floats)
 def sat_axes(pb, RA, RB):
+    if pb.prune: return np.concatenate([pb.faxes @ RA.T, pb.faxes @ RB.T, edge_axes(pb, RA, RB)])
     EA, EB = pb.edirs @ RA.T, pb.edirs @ RB.T                     # world edge directions
     W = np.cross(EA[:, None, :], EB[None, :, :]).reshape(-1, 3)
     l = np.linalg.norm(W, axis=1); W = W[l > 1e-9] / l[l > 1e-9, None]
@@ -132,6 +165,11 @@ def pair_gaps(pb, P, R, pairs, want_axis=False):
     """Vectorized separating-axis gaps for many pairs at once (same value as sat_gap(...)[0] for each pair).
     With want_axis, also the oriented best axis u (pair's A below B along u when the gap is from that side)."""
     if not len(pairs): return (np.zeros(0), np.zeros((0, 3))) if want_axis else np.zeros(0)
+    if pb.prune:                                                   # per pair, with Gauss-map pruned edge axes
+        gs, us = [], []
+        for i, j in pairs:
+            g, u, _ = sat_gap(pb, P[i], R[i], P[j], R[j]); gs.append(g); us.append(u)
+        return (np.array(gs), np.array(us)) if want_axis else np.array(gs)
     pi, pj = pairs[:, 0], pairs[:, 1]
     Rs = np.stack(R)                                               # n x 3 x 3
     X = P[:, None, :] + pb.V[None, :, :] @ Rs.transpose(0, 2, 1)  # n x nv x 3 world vertices

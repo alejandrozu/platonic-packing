@@ -1,44 +1,51 @@
 {
  "mode": "production",
  "hop_variant": "gentle",
+ "families": [
+  "archimedean",
+  "catalan",
+  "prisms"
+ ],
+ "min_attempts": 10,
  "weights": {
-  "hop": 0.76,
-  "reinsert": 0.04,
-  "fresh": 0.0,
-  "ascend": 0.1,
+  "hop": 0.55,
+  "reinsert": 0.05,
+  "fresh": 0.15,
+  "ascend": 0.15,
   "descend": 0.1
  },
- "focus": {
-  "cases": [
-   "cubincub:13",
-   "cubincub:33",
-   "octincub:11",
-   "octincub:12",
-   "octincub:13",
-   "octincub:14",
-   "octincub:15",
-   "octincub:17",
-   "octincub:18",
-   "octincub:19",
-   "octincub:23",
-   "octincub:25"
-  ],
-  "share": 0.25,
-  "note": "the 11 cases still behind published values on 11 Oct 17:20 (docs/analysis-2026-10-11.md), plus octincub 25 where our lead is only 1.7e-5"
- },
- "started": 1791732037,
- "started_local": "2026-10-11 17:20",
- "note": "11 Oct 17:20 analysis (docs/analysis-2026-10-11.md): fresh starts (0 improvements in 2.2 CPU-h) and most reinserts (5.8 improvements and 14e-4 log-shrink per CPU-h vs 21.2 and 31e-4 for hops) moved to gentle hops; focus narrowed from 41 literature cases (34% of attempts, of which only 4% of CPU reached the 11 cases still behind) to the cases still behind. Before that: gentle hops chosen by the 10 Oct 19:14-20:14 experiment.",
- "previous": {
+ "started": 1791818083,
+ "started_local": "2026-10-12 17:14",
+ "note": "12 Oct: Archimedean, Catalan, prism and antiprism problems (46 new problems, n = 2-40). Alejandro: first 1 packing per case, then 10 attempts per case (min_attempts); the Platonic search stays stopped (families). Fresh runs at 15% for diversity while the new cases are young.",
+ "previous_platonic": {
+  "mode": "production",
+  "hop_variant": "gentle",
   "weights": {
-   "hop": 0.62,
-   "reinsert": 0.12,
-   "fresh": 0.06,
+   "hop": 0.76,
+   "reinsert": 0.04,
+   "fresh": 0.0,
    "ascend": 0.1,
    "descend": 0.1
   },
-  "focus_cases": 41,
-  "focus_share": 0.3,
-  "started_local": "2026-10-10 20:14"
+  "focus": {
+   "cases": [
+    "cubincub:13",
+    "cubincub:33",
+    "octincub:11",
+    "octincub:12",
+    "octincub:13",
+    "octincub:14",
+    "octincub:15",
+    "octincub:17",
+    "octincub:18",
+    "octincub:19",
+    "octincub:23",
+    "octincub:25"
+   ],
+   "share": 0.25,
+   "note": "the 11 cases still behind published values on 11 Oct 17:20 (docs/analysis-2026-10-11.md), plus octincub 25 where our lead is only 1.7e-5"
+  },
+  "started_local": "2026-10-11 17:20",
+  "note": "11 Oct 17:20 analysis (docs/analysis-2026-10-11.md): fresh starts (0 improvements in 2.2 CPU-h) and most reinserts (5.8 improvements and 14e-4 log-shrink per CPU-h vs 21.2 and 31e-4 for hops) moved to gentle hops; focus narrowed from 41 literature cases (34% of attempts, of which only 4% of CPU reached the 11 cases still behind) to the cases still behind. Before that: gentle hops chosen by the 10 Oct 19:14-20:14 experiment."
  }
 }

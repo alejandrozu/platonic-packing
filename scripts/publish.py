@@ -14,6 +14,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'src')); sys.path.insert(0, os.path.join(ROOT, 'scripts'))
 import claim
 from engine import PID, PROBLEMS, NMIN, NMAX, STATE, _read, _path, AB
+import engine as _engine
+# the records pipeline (exact certificates) covers the Platonic problems; the new families get their own records
+# (scripts/records_new.py) until the general certifier is in place
+PID = {p: v for p, v in PID.items() if _engine.FAM[p] == 'platonic'}
+PROBLEMS = [pc for pc in PROBLEMS if _engine.FAMILY[pc] == 'platonic']
 from records import closed_form
 
 CLEAR = 1e-7

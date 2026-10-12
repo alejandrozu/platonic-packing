@@ -23,8 +23,20 @@ function gauss(rng) { let u = 0; while (u === 0) u = rng(); return Math.sqrt(-2 
 function makeProblem(piece, container) {
   const P = G.prepShape(piece);
   const C = G.prepShape(container || piece, P.edge);
-  const rhoC = C.inradius;
-  return { P, C, off: C.beta.map(b => b / rhoC), rhoC, sOfL: L => L / (2 * rhoC), LofS: s => 2 * rhoC * s };
+  const rhoC = Math.min(...C.beta);                 // container inradius (smallest face distance)
+  const rcap = P.cores ? P.cores[P.cores.length - 1].r1 : 0.5;
+  return { P, C, off: C.beta.map(b => b / rhoC), rhoC, rcap, sOfL: L => L / (2 * rhoC), LofS: s => 2 * rhoC * s };
+}
+
+// Soft shape at softness r: (core shape, core scale k, rounding radius rr) with S_r = k * core (+) B(rr).
+// Tangential solids (an insphere touching every face: Platonic, Catalan): Nakajima's (1 - 2r) P (+) B(r).
+// Others: the r-rounding (P (-) B(r)) (+) B(r), whose core is a polytope precomputed by polyhedra.py; it is capped at
+// rcap < 1/2 where the core would become flat (a polygon or a segment).
+function softShape(pb, r) {
+  const P = pb.P;
+  if (P.tangential || r <= 0) return { S: P, k: P.tangential ? 1 - 2 * r : 1, rr: r };
+  const rr = Math.min(r, pb.rcap);
+  return { S: G.coreShape(P, rr), k: 1, rr };
 }
 
 function makeState(pb, n, seed, L0) {
@@ -45,9 +57,10 @@ function makeState(pb, n, seed, L0) {
   return st;
 }
 
-function dyn(st, r, mu, noise, moveL) {
-  const { pb, n } = st, P = pb.P;
-  const beta = 0.85, cap = 0.03, lr = 0.04, k = 1 - 2 * r;
+function dyn(st, r0, mu, noise, moveL) {
+  const { pb, n } = st;
+  const sh = softShape(pb, r0), P = sh.S, k = sh.k, r = sh.rr;
+  const beta = 0.85, cap = 0.03, lr = 0.04;
   const poses = st.C.map((c, i) => G.pose(P, c, st.Q[i], k));
   const GC = st.C.map(() => [0, 0, 0]), GW = st.C.map(() => [0, 0, 0]);
   const lim = (2 * (k * P.circ + r) + 1e-3) ** 2, GR = G.GR;
@@ -78,7 +91,7 @@ function dyn(st, r, mu, noise, moveL) {
       if (moveL) gL -= 2 * q * pb.off[f];
     }
   }
-  const ball = r >= 0.4999;
+  const ball = pb.P.tangential && r0 >= 0.4999;
   for (let i = 0; i < n; i++) {
     const V = st.V[i], W = st.W[i];
     for (let t = 0; t < 3; t++) { V[t] = beta * V[t] - lr * GC[i][t]; W[t] = ball ? 0 : beta * W[t] - lr * GW[i][t]; }
@@ -95,7 +108,7 @@ function dyn(st, r, mu, noise, moveL) {
     if (Math.abs(st.vL) > cap) st.vL = Math.sign(st.vL) * cap;
     st.L += st.vL;
   }
-  st.r = r; st.step++;
+  st.r = r0; st.step++;
 }
 
 function snap(st) {
@@ -106,9 +119,46 @@ function snap(st) {
 
 // Smallest container (any translation) holding all given world vertices: min z s.t. N_f.(x + t) <= z off_f.
 // LP in (t, z); its optimum is a vertex = 4 active constraints, so enumerate 4-subsets of faces.
+// Dual of  min z s.t. N_f.t - off_f z <= -S_f :  max sum_f S_f lam_f  s.t. sum_f lam_f N_f = 0, sum_f lam_f off_f = 1,
+// lam >= 0 (4 equality rows). Two-phase tableau simplex with Bland's rule; the optimal multipliers y of the 4 rows give
+// the primal solution t = -y[0..2]. Only used to choose t: the reported size is recomputed exactly at that t.
+function lpTranslation(N, off, S) {
+  const F = N.length, m = 4, nc = F + m, eps = 1e-12;
+  const T = [0, 1, 2, 3].map(i => { const row = new Float64Array(nc + 1); for (let f = 0; f < F; f++) row[f] = i < 3 ? N[f][i] : off[f]; row[F + i] = 1; row[nc] = i === 3 ? 1 : 0; return row; });
+  const basis = [F, F + 1, F + 2, F + 3];
+  const run = (cost, allowArt) => {
+    const rc = new Float64Array(nc);
+    for (let j = 0; j < nc; j++) { let v = cost[j]; for (let i = 0; i < m; i++) v -= cost[basis[i]] * T[i][j]; rc[j] = v; }
+    for (let it = 0; it < 500; it++) {
+      let e = -1; for (let j = 0; j < nc; j++) if (rc[j] > eps && (allowArt || j < F)) { e = j; break; }
+      if (e < 0) return rc;
+      let r = -1, best = Infinity;
+      for (let i = 0; i < m; i++) if (T[i][e] > eps) { const q = T[i][nc] / T[i][e]; if (q < best - 1e-15 || (Math.abs(q - best) <= 1e-15 && basis[i] < basis[r])) { best = q; r = i; } }
+      if (r < 0) return rc;                                   // unbounded (cannot happen: the feasible set is bounded)
+      const pv = T[r][e]; for (let j = 0; j <= nc; j++) T[r][j] /= pv;
+      for (let i = 0; i < m; i++) if (i !== r && T[i][e] !== 0) { const f = T[i][e]; for (let j = 0; j <= nc; j++) T[i][j] -= f * T[r][j]; }
+      const f = rc[e]; for (let j = 0; j < nc; j++) rc[j] -= f * T[r][j];
+      basis[r] = e;
+    }
+    return rc;
+  };
+  const c1 = new Float64Array(nc); for (let j = F; j < nc; j++) c1[j] = -1;
+  run(c1, true);
+  const c2 = new Float64Array(nc); for (let f = 0; f < F; f++) c2[f] = S[f];
+  const rc = run(c2, false);
+  return [rc[F], rc[F + 1], rc[F + 2]];                     // t = -y = reduced costs of the artificial columns
+}
+
 function tightContainer(pb, Xs) {
   const N = pb.C.N, F = N.length, off = pb.off;
   const S = N.map(u => { let m = -Infinity; for (const X of Xs) for (let v = 0; v < X.length; v += 3) m = Math.max(m, X[v] * u[0] + X[v + 1] * u[1] + X[v + 2] * u[2]); return m; });
+  if (F > 14) {
+    const zAt = t => { let z = -Infinity; for (let f = 0; f < F; f++) z = Math.max(z, (S[f] + G.dot(N[f], t)) / off[f]); return z; };
+    const t = lpTranslation(N, off, S), tn = t.map(x => -x);
+    const z1 = zAt(t), z2 = zAt(tn), z0 = zAt([0, 0, 0]);
+    const tb = z1 <= z2 && z1 <= z0 ? t : (z2 <= z0 ? tn : [0, 0, 0]);
+    return { L: 2 * Math.min(z0, z1, z2), t: tb };
+  }
   let best = null;
   const solve4 = (M, b) => {   // Gaussian elimination with partial pivoting
     const A = M.map((row, i) => [...row, b[i]]);
@@ -159,9 +209,11 @@ function legalize(pb, C, Q) {
 }
 
 function defaultL0(pb, n) {
-  // initial container: balls (diameter 1) at packing fraction ~0.07, centres at least 0.7 inside every wall
+  // initial container: balls (diameter 1) at packing fraction ~0.07, centres at least 0.7 inside every wall; for a
+  // non-tangential piece the starting shape is its rcap-rounding, so the piece's own volume is used instead
   const volAtL = L => pb.C.volume * Math.pow(pb.sOfL(L), 3);
-  let L = 2; while (n * Math.PI / 6 / volAtL(L) > 0.07) L *= 1.02;
+  const vp = pb.P.tangential ? Math.PI / 6 : pb.P.volume;
+  let L = 2; while (n * vp / volAtL(L) > 0.07) L *= 1.02;
   return Math.max(L, 2 * (0.7 + 0.35));
 }
 
@@ -271,4 +323,4 @@ function hop(c) {
   return { n, s: leg.s, L: leg.L, C: leg.C, Q: leg.Q, diff, esc, rh, noise, steps: st.step, edge: pb.P.edge };
 }
 
-module.exports = { run, hop, makeProblem, legalize, tightContainer, defaultL0, dyn, makeState, arrangementChange };
+module.exports = { run, hop, makeProblem, softShape, legalize, tightContainer, lpTranslation, defaultL0, dyn, makeState, arrangementChange };

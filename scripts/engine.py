@@ -36,10 +36,36 @@ sys.path.insert(0, os.path.join(ROOT, 'src')); sys.path.insert(0, os.path.join(R
 import exact
 
 STATE = os.environ.get('PP_STATE') or os.path.join(ROOT, 'state')     # PP_STATE: separate archive (remote workers)
-AB = {'tetrahedron': 'tet', 'cube': 'cub', 'octahedron': 'oct', 'dodecahedron': 'dod', 'icosahedron': 'ico'}
+AB = {'tetrahedron': 'tet', 'cube': 'cub', 'octahedron': 'oct', 'dodecahedron': 'dod', 'icosahedron': 'ico',
+      # Archimedean
+      'truncated_tetrahedron': 'tte', 'cuboctahedron': 'cbo', 'truncated_cube': 'tcu', 'truncated_octahedron': 'toc',
+      'rhombicuboctahedron': 'rco', 'truncated_cuboctahedron': 'tco', 'snub_cube': 'snc', 'icosidodecahedron': 'ido',
+      'truncated_dodecahedron': 'tdo', 'truncated_icosahedron': 'tic', 'rhombicosidodecahedron': 'rid',
+      'truncated_icosidodecahedron': 'tid', 'snub_dodecahedron': 'snd',
+      # Catalan
+      'triakis_tetrahedron': 'ktt', 'rhombic_dodecahedron': 'rdo', 'triakis_octahedron': 'kto',
+      'tetrakis_hexahedron': 'kth', 'deltoidal_icositetrahedron': 'dit', 'disdyakis_dodecahedron': 'ddo',
+      'pentagonal_icositetrahedron': 'pit', 'rhombic_triacontahedron': 'rtc', 'triakis_icosahedron': 'kti',
+      'pentakis_dodecahedron': 'pkd', 'deltoidal_hexecontahedron': 'dhc', 'disdyakis_triacontahedron': 'dtc',
+      'pentagonal_hexecontahedron': 'phc'}
+for _k in (3, 5, 6, 8, 12): AB[f'prism{_k}'] = f'pr{_k}'
+for _k in (4, 5, 6, 8, 12): AB[f'antiprism{_k}'] = f'ap{_k}'
+ARCHIMEDEAN = ['truncated_tetrahedron', 'cuboctahedron', 'truncated_cube', 'truncated_octahedron', 'rhombicuboctahedron',
+               'truncated_cuboctahedron', 'snub_cube', 'icosidodecahedron', 'truncated_dodecahedron',
+               'truncated_icosahedron', 'rhombicosidodecahedron', 'truncated_icosidodecahedron', 'snub_dodecahedron']
+CATALAN = ['triakis_tetrahedron', 'rhombic_dodecahedron', 'triakis_octahedron', 'tetrakis_hexahedron',
+           'deltoidal_icositetrahedron', 'disdyakis_dodecahedron', 'pentagonal_icositetrahedron',
+           'rhombic_triacontahedron', 'triakis_icosahedron', 'pentakis_dodecahedron', 'deltoidal_hexecontahedron',
+           'disdyakis_triacontahedron', 'pentagonal_hexecontahedron']
+PRISMS = [f'prism{k}' for k in (3, 5, 6, 8, 12)] + [f'antiprism{k}' for k in (4, 5, 6, 8, 12)]
 PROBLEMS = [('tetrahedron', 'tetrahedron'), ('octahedron', 'octahedron'), ('icosahedron', 'icosahedron'),
             ('dodecahedron', 'dodecahedron'), ('cube', 'cube'), ('cube', 'octahedron'), ('octahedron', 'cube'),
             ('dodecahedron', 'icosahedron'), ('icosahedron', 'dodecahedron')]
+FAMILY = {p: 'platonic' for p in PROBLEMS}
+for _s in ARCHIMEDEAN: PROBLEMS.append((_s, _s)); FAMILY[(_s, _s)] = 'archimedean'
+for _s in CATALAN: PROBLEMS.append((_s, _s)); FAMILY[(_s, _s)] = 'catalan'
+for _s in PRISMS:
+    for _c in (_s, 'cube'): PROBLEMS.append((_s, _c)); FAMILY[(_s, _c)] = 'prisms'
 NMIN, NMAX, POOL = 2, 40, 6
 
 # Hop settings. A variant overrides some of HOP_DEFAULT (ranges are sampled uniformly, minDiff log-uniformly).
@@ -74,6 +100,22 @@ def lineage_of(x):
 
 
 PID = {pid(p, c): (p, c) for p, c in PROBLEMS}
+FAM = {pid(p, c): FAMILY[(p, c)] for p, c in PROBLEMS}
+PID_INDEX = {p: i for i, p in enumerate(PID)}
+
+
+def active_problems():
+    """Problems the workers work on: policy 'families' (default: all)."""
+    fams = policy().get('families')
+    return [p for p in PID if not fams or FAM[p] in fams]
+
+
+def shard():
+    """PP_SHARD='k/m': this worker prefers the problems with index = k (mod m) while filling cases (so machines that
+    do not share an archive do not all fill the same cases); it helps elsewhere when its own share is done."""
+    v = os.environ.get('PP_SHARD')
+    if not v: return None
+    k, m = v.split('/'); return int(k), int(m)
 _pb_cache = {}
 
 
@@ -325,14 +367,18 @@ def attempt(sim, p, n, move, rng, log, vname='base'):
 # ------------------------------------------------------------------ scheduling
 def choose(rng, wid):
     """Pick (problem, n, move). First fill every missing case (ascending n per problem, so 'ascend' can build each n
-    from n-1); then pick the case with the least effort per piece, discounted when it keeps failing; flagged cases are
-    re-tightened first."""
+    from n-1); then bring every case to policy 'min_attempts' attempts (fewest first); then pick the case with the
+    least effort per piece, discounted when it keeps failing; flagged cases are re-tightened first. Only the policy's
+    active families are searched; a sharded worker (PP_SHARD) prefers its own problems in the first two phases."""
+    act = active_problems()
     idx = {}
-    for p in PID:
+    for p in act:
         for n in range(NMIN, NMAX + 1):
             c = _read(_path('best', p, n))
             idx[(p, n)] = c
-    order = list(PID); rng.shuffle(order)
+    order = list(act); rng.shuffle(order)
+    sh = shard()
+    if sh: order.sort(key=lambda p: 0 if PID_INDEX[p] % sh[1] == sh[0] else 1)
     claimed = {tuple(x.split('|')) for x in _claims()}
     for p in order:
         for n in range(NMIN, NMAX + 1):
@@ -345,8 +391,16 @@ def choose(rng, wid):
     for (p, n), c in sorted(idx.items(), key=lambda kv: rng.random()):
         if c and c['stats'].get('needs_tighten') and (p, str(n)) not in claimed: return p, n, 'tighten'
     best_key, best_score = None, None
+    need = int(policy().get('min_attempts', 0))
+    if need:                                     # bring every case to `need` attempts, fewest first (own shard first)
+        low = [(c['stats'].get('attempts', 0), 0 if not sh or PID_INDEX[p] % sh[1] == sh[0] else 1, rng.random(), p, n)
+               for (p, n), c in idx.items() if c and c.get('best') and c['stats'].get('attempts', 0) < need
+               and (p, str(n)) not in claimed]
+        if low:
+            low.sort(key=lambda x: (x[1], x[0], x[2]))
+            best_key, best_score = (low[0][3], low[0][4]), -1.0
     fc = policy().get('focus') or {}             # optional: a share of attempts on listed cases ("pid:n")
-    if fc.get('cases') and rng.random() < fc.get('share', 0):
+    if best_key is None and fc.get('cases') and rng.random() < fc.get('share', 0):
         opts = [(x.split(':')[0], int(x.split(':')[1])) for x in fc['cases']]
         opts = [k for k in opts if k in idx and idx[k] and idx[k].get('best') and (k[0], str(k[1])) not in claimed]
         if opts: best_key, best_score = rng.choice(opts), -1.0

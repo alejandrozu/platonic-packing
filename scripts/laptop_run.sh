@@ -11,8 +11,8 @@ secs=${1:-140}; clone=${2:-$HOME/mnt/Desktop/platonic-packing}
 export PP_DEADLINE=$(( $(date +%s) + secs ))
 t0=$(date +%s); a0=$(wc -l < "$PP_STATE/attempts.jsonl" 2>/dev/null || echo 0)
 mkdir -p logs
-timeout $((secs + 28)) nice -n 5 python3 scripts/engine.py work L0 >> logs/workerL0.out 2>&1 &
-timeout $((secs + 28)) nice -n 5 python3 scripts/engine.py work L1 >> logs/workerL1.out 2>&1 &
+PP_SHARD=2/8 timeout $((secs + 28)) nice -n 5 python3 scripts/engine.py work L0 >> logs/workerL0.out 2>&1 &
+PP_SHARD=3/8 timeout $((secs + 28)) nice -n 5 python3 scripts/engine.py work L1 >> logs/workerL1.out 2>&1 &
 wait
 a1=$(wc -l < "$PP_STATE/attempts.jsonl"); imp=$(tail -n $((a1 - a0)) "$PP_STATE/attempts.jsonl" | grep -c '"improved": true')
 mkdir -p "$clone/.laptop"

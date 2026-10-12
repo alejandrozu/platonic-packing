@@ -10,7 +10,7 @@ rm -f state/STOP
 [ -d state/best ] || python3 scripts/engine.py seed >> logs/seed.log 2>&1
 worker() {
   while [ ! -f state/STOP ]; do
-    python3 scripts/engine.py work "$1" >> "logs/worker$1.out" 2>&1
+    PP_SHARD="$1/8" python3 scripts/engine.py work "$1" >> "logs/worker$1.out" 2>&1
     echo "$(date) worker $1 exited ($?)" >> logs/supervisor.out; sleep 10
   done
 }

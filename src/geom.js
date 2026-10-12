@@ -36,10 +36,74 @@ function prepShape(name, scale) {
     return { p, m: m.map(x => x / l) };
   }));
   const circ = Math.max(...V.map(v => Math.hypot(...v)));
+  const emax = Math.max(...S.edges.map(([i, j]) => Math.hypot(V[j][0] - V[i][0], V[j][1] - V[i][1], V[j][2] - V[i][2])));
+  const eface = edgeFaces(S.faces, S.edges);
   return {
-    name, scale, V, nv, faces: S.faces, N, beta, faxes, edirs, fedges, edges: S.edges, circ,
+    name, scale, V, nv, faces: S.faces, N, beta, faxes, edirs, fedges, edges: S.edges, circ, emax, eface,
+    prune: pruneFlag(edirs.length, nv, S.edges.length),
     inradius: S.inradius * scale, edge: scale, volume: S.volume * scale ** 3,
+    tangential: S.tangential !== false, cores: S.cores ? prepCores(S.cores, N) : null,
   };
+}
+
+// for each edge [i, j] the two faces containing it (indices into faces)
+function edgeFaces(faces, edges) {
+  const m = new Map();
+  faces.forEach((f, fi) => f.forEach((a, t) => {
+    const b = f[(t + 1) % f.length], k = a < b ? a * 100000 + b : b * 100000 + a;
+    if (!m.has(k)) m.set(k, []); m.get(k).push(fi);
+  }));
+  return edges.map(([i, j]) => { const k = i < j ? i * 100000 + j : j * 100000 + i, l = m.get(k) || []; return [l[0], l[1] === undefined ? l[0] : l[1]]; });
+}
+
+// Gauss-map pruning of the edge-edge axes pays off when the full scan (unique directions squared, every vertex
+// projected) is more expensive than one cheap arc test per pair of edges
+function pruneFlag(nd, nv, ne) { return nd * nd * nv * 6 > 2 * ne * ne * 20; }
+
+// ---------------------------------------------------------------- cores of the r-rounding (non-tangential solids)
+// cores: intervals [r0, r1] of constant combinatorial type of P (-) B(r) (internal units, inradius 1/2); in each the
+// vertices move linearly, v(r) = V0 + r W (polyhedra.py). The static parts are prepared once.
+function prepCores(cores, Nall) {
+  return cores.map(c => {
+    const N = c.fid.map(f => Nall[f]);
+    const uniq = (list) => { const out = []; for (const u of list) if (!out.some(w => Math.abs(u[0] * w[0] + u[1] * w[1] + u[2] * w[2]) > 1 - 1e-9)) out.push(u); return out; };
+    const eface = edgeFaces(c.faces, c.edges);
+    // edge directions from the two face normals (exact even for very short edges)
+    const edirOf = ([f1, f2]) => { const a = N[f1], b = N[f2], w = [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]], l = Math.hypot(...w) || 1; return w.map(x => x / l); };
+    const edirs = uniq(eface.filter(([a, b]) => a !== b).map(edirOf));
+    // inward in-plane normals of each face edge: m = n x (q - p) / |.|, constant inside the interval
+    const fm = c.faces.map((f, fi) => f.map((a, t) => {
+      const b = f[(t + 1) % f.length], n = N[fi];
+      // direction q - p is +-(n x n_other); use the vertex difference at the interval's midpoint for the sign
+      const rm = (c.r0 + c.r1) / 2, p = c.V0[a].map((x, k) => x + rm * c.W[a][k]), q = c.V0[b].map((x, k) => x + rm * c.W[b][k]);
+      const e = [q[0] - p[0], q[1] - p[1], q[2] - p[2]];
+      const m = [n[1] * e[2] - n[2] * e[1], n[2] * e[0] - n[0] * e[2], n[0] * e[1] - n[1] * e[0]], l = Math.hypot(...m) || 1;
+      return m.map(x => x / l);
+    }));
+    return { r0: c.r0, r1: c.r1, V0: c.V0, W: c.W, faces: c.faces, edges: c.edges, N, faxes: uniq(N), edirs, eface, fm,
+      beta0: c.faces.map((f, fi) => N[fi][0] * c.V0[f[0]][0] + N[fi][1] * c.V0[f[0]][1] + N[fi][2] * c.V0[f[0]][2]),
+      betaW: c.faces.map((f, fi) => N[fi][0] * c.W[f[0]][0] + N[fi][1] * c.W[f[0]][1] + N[fi][2] * c.W[f[0]][2]) };
+  });
+}
+
+// the core polytope of the r-rounding at softness r (0 < r <= last r1), as a shape object like prepShape's
+function coreShape(P, r) {
+  const cs = P.cores;
+  let c = cs[cs.length - 1];
+  for (const x of cs) if (r <= x.r1) { c = x; break; }
+  const nv = c.V0.length, V = new Array(nv);
+  let circ = 0;
+  for (let i = 0; i < nv; i++) {
+    const a = c.V0[i], w = c.W[i], v = [a[0] + r * w[0], a[1] + r * w[1], a[2] + r * w[2]];
+    V[i] = v; const h = Math.hypot(v[0], v[1], v[2]); if (h > circ) circ = h;
+  }
+  let emax = 0;
+  for (const [i, j] of c.edges) { const l = Math.hypot(V[j][0] - V[i][0], V[j][1] - V[i][1], V[j][2] - V[i][2]); if (l > emax) emax = l; }
+  const fedges = c.faces.map((f, fi) => f.map((a, t) => ({ p: V[a], m: c.fm[fi][t] })));
+  const beta = c.beta0.map((b, fi) => b + r * c.betaW[fi]);
+  return { name: P.name + '@' + r.toFixed(4), scale: P.scale, V, nv, faces: c.faces, N: c.N, beta, faxes: c.faxes,
+    edirs: c.edirs, fedges, edges: c.edges, circ, emax: Math.max(emax, 1e-9), eface: c.eface,
+    prune: P.prune, edge: P.edge, tangential: false };
 }
 
 // ---------------------------------------------------------------- rotations
@@ -72,7 +136,9 @@ function pose(shape, c, q, k) {
     X[3 * i + 2] = c[2] + k * (R[6] * v[0] + R[7] * v[1] + R[8] * v[2]);
   }
   const rot = u => [R[0] * u[0] + R[1] * u[1] + R[2] * u[2], R[3] * u[0] + R[4] * u[1] + R[5] * u[2], R[6] * u[0] + R[7] * u[1] + R[8] * u[2]];
-  return { shape, c, R, k, X, FA: shape.faxes.map(rot), ED: shape.edirs.map(rot) };
+  const out = { shape, c, R, k, X, FA: shape.faxes.map(rot), ED: shape.edirs.map(rot) };
+  if (shape.prune) out.FN = shape.N.map(rot);
+  return out;
 }
 
 // ---------------------------------------------------------------- small vector helpers
@@ -183,10 +249,19 @@ function sdCores(A, B, cutoff, needGrad, hint) {
   for (let i = 0; i < A.FA.length; i++) if (test(A.FA[i], 'A', i)) sep = true;
   for (let i = 0; i < B.FA.length; i++) if (test(B.FA[i], 'B', i)) sep = true;
   if (!sep) {
-    for (let i = 0; i < A.ED.length && !sep; i++) for (let j = 0; j < B.ED.length; j++) {
-      const w = cross(A.ED[i], B.ED[j]), l = Math.hypot(w[0], w[1], w[2]);
-      if (l < 1e-9) continue;
-      if (test([w[0] / l, w[1] / l, w[2] / l], 'X', i, j, w, l)) { sep = true; break; }
+    if (SA.prune || SB.prune) {
+      edgeAxes(A, B, (ea, eb) => {
+        const w = cross(ea, eb), l = Math.hypot(w[0], w[1], w[2]);
+        if (l < 1e-9) return false;
+        if (test([w[0] / l, w[1] / l, w[2] / l], 'X', ea, eb, w, l)) { sep = true; return true; }
+        return false;
+      });
+    } else {
+      for (let i = 0; i < A.ED.length && !sep; i++) for (let j = 0; j < B.ED.length; j++) {
+        const w = cross(A.ED[i], B.ED[j]), l = Math.hypot(w[0], w[1], w[2]);
+        if (l < 1e-9) continue;
+        if (test([w[0] / l, w[1] / l, w[2] / l], 'X', A.ED[i], B.ED[j], w, l)) { sep = true; break; }
+      }
     }
   }
   if (sep) {
@@ -206,7 +281,7 @@ function sdCores(A, B, cutoff, needGrad, hint) {
   if (best.kind === 'A') { const t = cross(u, g); dA = [dA[0] + t[0], dA[1] + t[1], dA[2] + t[2]]; }
   else if (best.kind === 'B') { const t = cross(u, g); dB = [dB[0] + t[0], dB[1] + t[1], dB[2] + t[2]]; }
   else {
-    const a = A.ED[best.i], b = B.ED[best.j], ug = dot(u, g);
+    const a = best.i, b = best.j, ug = dot(u, g);
     const h = [best.sg * (g[0] - u[0] * ug) / best.l, best.sg * (g[1] - u[1] * ug) / best.l, best.sg * (g[2] - u[2] * ug) / best.l];
     const tA = cross(a, cross(b, h)), tB = cross(b, cross(h, a));
     dA = [dA[0] + tA[0], dA[1] + tA[1], dA[2] + tA[2]]; dB = [dB[0] + tB[0], dB[1] + tB[1], dB[2] + tB[2]];
@@ -214,6 +289,34 @@ function sdCores(A, B, cutoff, needGrad, hint) {
   for (let t = 0; t < 3; t++) { GR[t] = -u[t]; GR[3 + t] = -dA[t]; GR[6 + t] = u[t]; GR[9 + t] = -dB[t]; }
   return -minO;
 }
+
+// Edge-edge separating-axis candidates with Gauss-map pruning (D. Gregorius, GDC 2013): the cross product of an edge
+// of A and an edge of B is a face normal of the Minkowski difference A - B only if the arcs of the two edges on the
+// Gauss map (between their adjacent face normals; B's negated) intersect. Only those axes are needed for the exact
+// penetration depth and for a separating axis, so the others are skipped. fn(ea, eb) gets unit world edge
+// directions and returns true to stop.
+function edgeAxes(A, B, fn) {
+  const SA = A.shape, SB = B.shape;
+  const FNA = A.FN || SA.N.map(u => rotR(A.R, u)), FNB = B.FN || SB.N.map(u => rotR(B.R, u));
+  const ea = SA.eface, eb = SB.eface;
+  const prepE = (FNs, ef) => ef.map(([f1, f2]) => { const a = FNs[f1], b = FNs[f2], c = cross(b, a), l = Math.hypot(c[0], c[1], c[2]); return { a, b, c, d: l > 1e-12 ? [-c[0] / l, -c[1] / l, -c[2] / l] : null }; });
+  const EA = A._E || (A._E = prepE(FNA, ea)), EB = B._E || (B._E = prepE(FNB, eb));
+  for (let i = 0; i < EA.length; i++) {
+    const p = EA[i]; if (!p.d) continue;
+    for (let j = 0; j < EB.length; j++) {
+      const q = EB[j]; if (!q.d) continue;
+      // A = p.a, B = p.b, BxA = p.c ; C = -q.a, D = -q.b, DxC = q.c (= (-q.b) x (-q.a))
+      const CBA = -(q.a[0] * p.c[0] + q.a[1] * p.c[1] + q.a[2] * p.c[2]);
+      const DBA = -(q.b[0] * p.c[0] + q.b[1] * p.c[1] + q.b[2] * p.c[2]);
+      if (CBA * DBA >= 0) continue;
+      const ADC = p.a[0] * q.c[0] + p.a[1] * q.c[1] + p.a[2] * q.c[2];
+      const BDC = p.b[0] * q.c[0] + p.b[1] * q.c[1] + p.b[2] * q.c[2];
+      if (ADC * BDC >= 0 || CBA * BDC <= 0) continue;
+      if (fn(p.d, q.d)) return;
+    }
+  }
+}
+function rotR(R, u) { return [R[0] * u[0] + R[1] * u[1] + R[2] * u[2], R[3] * u[0] + R[4] * u[1] + R[5] * u[2], R[6] * u[0] + R[7] * u[1] + R[8] * u[2]]; }
 
 // Exact distance between disjoint cores. u: unit axis with max_A u.x + gap <= min_B u.x (gap > 0).
 // The closest pair lies in the slabs  u.x >= h_A - delta (on A)  and  u.x <= m_B + delta (on B),  delta = D - gap,
@@ -255,7 +358,7 @@ function distSeparated(A, B, u, gap, needGrad) {
   const delta2 = Math.sqrt(d2) - (mB - hA) + 1e-12 * (1 + Math.sqrt(d2));
   const thA2 = hA - delta2, thB2 = mB + delta2;
   const eA = SA.edges.filter(([i, j]) => pa_[i] >= thA2 || pa_[j] >= thA2), eB = SB.edges.filter(([i, j]) => pb_[i] <= thB2 || pb_[j] <= thB2);
-  const XA = A.X, XB = B.X, halfSum = 0.5 * k * (SA.edge + SB.edge) * (1 + 1e-12);
+  const XA = A.X, XB = B.X, halfSum = 0.5 * k * ((SA.emax || SA.edge) + (SB.emax || SB.edge)) * (1 + 1e-12);
   for (const [i1, j1] of eA) {
     const a = 3 * i1, b = 3 * j1;
     const mx1 = 0.5 * (XA[a] + XA[b]), my1 = 0.5 * (XA[a + 1] + XA[b + 1]), mz1 = 0.5 * (XA[a + 2] + XA[b + 2]);
@@ -290,6 +393,11 @@ function overlaps(A, B, tol) {
   };
   for (const u of A.FA) if (!chk(u)) return false;
   for (const u of B.FA) if (!chk(u)) return false;
+  if (SA.prune || SB.prune) {
+    let res = true;
+    edgeAxes(A, B, (a, b) => { const w = cross(a, b), l = Math.hypot(...w); if (l < 1e-9) return false; if (!chk([w[0] / l, w[1] / l, w[2] / l])) { res = false; return true; } return false; });
+    return res;
+  }
   for (const a of A.ED) for (const b of B.ED) {
     const w = cross(a, b), l = Math.hypot(...w);
     if (l < 1e-9) continue;
@@ -298,4 +406,4 @@ function overlaps(A, B, tol) {
   return true;
 }
 
-module.exports = { SOLIDS, prepShape, quatToR, rotq, pose, sdCores, distSeparated, overlaps, GR, STAT, segClosest, dot, cross, sub };
+module.exports = { SOLIDS, prepShape, coreShape, quatToR, rotq, pose, sdCores, distSeparated, overlaps, edgeAxes, GR, STAT, segClosest, dot, cross, sub };
