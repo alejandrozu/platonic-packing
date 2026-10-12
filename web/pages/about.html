@@ -1,0 +1,47 @@
+<div class="doc">
+<article>
+<h1>About</h1>
+<p class="lede">Polyhedra in Polyhedra is an open record book for one family of questions: how small can a polyhedron
+be and still hold n copies of a polyhedron? It holds the best packings found so far, each with a proof that it is
+valid, and it is open to better ones from anyone.</p>
+
+<h2 id="history">How it started</h2>
+<p>In October 2026 Yohei Nakajima packed 12 unit cubes in a cube of side 2.9315 with a soft-to-rigid method: start every
+cube as a ball and sharpen it into a cube under pressure. The project began by generalizing that method from cubes to
+all five Platonic solids, as pieces and as containers (9–11 October 2026, nine problems), with every packing certified
+in exact arithmetic. On 12 October it grew to every Archimedean and Catalan solid packed in itself and to regular
+prisms and antiprisms packed in themselves and in a cube, which needed a new soft shape (the r-rounding) for solids
+without an insphere and a certifier that works in any number field. The search ran in the cloud, on a laptop and on
+GitHub Actions until every one of the {{N_CASES}} cases had a certified packing.</p>
+<p>The full account of the Platonic phase, including every idea that did not work, is in the
+<a href="{{REPO}}/blob/main/docs/FINAL_REPORT.md">final report</a>.</p>
+
+<h2 id="people">People and credit</h2>
+<ul>
+  <li><b>Alejandro Zarzuelo</b> (<a href="https://github.com/alejandrozu">@alejandrozu</a>) runs the project and the site, and is credited for the packings found by the search.</li>
+  <li><b>Yohei Nakajima</b> created the soft-to-rigid method and the original simulator, tightening and checker (<a href="https://github.com/yoheinakajima/soft-to-rigid-packing">soft-to-rigid-packing</a>, MIT).</li>
+  <li>The generalization to other solids, the search engine and the certifiers were developed with <b>Claude</b> (Anthropic) under Alejandro Zarzuelo's direction.</li>
+  <li>Previously published values come from <a href="https://erich-friedman.github.io/packing/">Erich Friedman's Packing Center</a>, with packings by E. Friedman, R. Walsh, H. Lin and Y. Nakajima; published coordinates from Tencent Hunyuan's <a href="https://github.com/Tencent-Hunyuan/Hyra-results">Hyra-results</a> are used as starting points and as test cases.</li>
+  <li>Contributors whose submissions become records are credited in the record file and on this site.</li>
+</ul>
+
+<h2 id="cite">How to cite</h2>
+<pre><code>@misc{polyhedrainpolyhedra,
+  author       = {Zarzuelo, Alejandro},
+  title        = {Polyhedra in Polyhedra: certified packings of n copies of a polyhedron in the smallest container},
+  year         = {2026},
+  howpublished = {\url{https://polyhedrainpolyhedra.wiki}},
+  note         = {Records, certificates and code: \url{{{REPO}}}}
+}</code></pre>
+<p>To cite one packing, give its record id (for example <code>ktoinkto_n20</code>) and the date of the record file.</p>
+
+<h2 id="license">License</h2>
+<p>Code and data are under the <a href="{{REPO}}/blob/main/LICENSE">MIT license</a>, which keeps Yohei Nakajima's copyright
+notice for the method, simulator, tightening and checker design.</p>
+
+<h2 id="contact">Questions and corrections</h2>
+<p>Open an <a href="{{REPO}}/issues">issue on GitHub</a>. To submit a packing or propose a new category, use the
+<a href="{{ROOT}}contribute/">contribute page</a>.</p>
+</article>
+{{TOC}}
+</div>

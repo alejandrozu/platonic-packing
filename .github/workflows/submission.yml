@@ -1,0 +1,81 @@
+# Packings submitted through the "Submit a packing" issue form (label: submission).
+#  * opened / edited: float check + exact certificate (scripts/check_submission.py check), reply on the issue, labels
+#    certified / not-certified / new-record / needs-fix.
+#  * labeled "accepted" (maintainers only): the same check, then the record file is written with the submitter's
+#    credit, committed to main, the site is rebuilt and deployed to gh-pages, and the issue is closed.
+# Issue text is only read from the event file by the Python script; it never reaches a shell command.
+name: submission
+on:
+  issues:
+    types: [opened, edited, labeled]
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: submission-${{ github.event.issue.number }}
+  cancel-in-progress: false
+jobs:
+  check:
+    if: >-
+      contains(github.event.issue.labels.*.name, 'submission') && github.event.issue.state == 'open' &&
+      (github.event.action == 'opened' || github.event.action == 'edited' ||
+       (github.event.action == 'labeled' && github.event.label.name == 'accepted'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      GH_TOKEN: ${{ github.token }}
+      NUM: ${{ github.event.issue.number }}
+      MODE: ${{ github.event.action == 'labeled' && 'accept' || 'check' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install --quiet numpy scipy
+      - name: Labels
+        run: |
+          gh label create submission    --color 2c49a8 --description "Packing submitted for certification" --force
+          gh label create certified     --color 2f6b45 --description "Exact certificate passed" --force
+          gh label create not-certified --color a33b2b --description "Exact certificate failed" --force
+          gh label create new-record    --color 9a4f17 --description "Certified and better than (or filling) the record" --force
+          gh label create needs-fix     --color d9822b --description "The submission could not be read" --force
+          gh label create accepted      --color 3f9a6a --description "Maintainer: write this packing to the records" --force
+          gh label create category      --color 7a5fc4 --description "Proposal for a new category" --force
+          gh label create construction  --color 2a9fb0 --description "Another polyhedra-in-polyhedra construction" --force
+      - name: Check the packing
+        run: python3 scripts/check_submission.py "$MODE" "$GITHUB_EVENT_PATH" "$RUNNER_TEMP/out"
+      - name: Reply
+        run: |
+          gh issue comment "$NUM" --body-file "$RUNNER_TEMP/out/comment.md"
+          add=$(python3 -c "import json,sys; print(','.join(json.load(open(sys.argv[1]))['labels_add']))" "$RUNNER_TEMP/out/result.json")
+          rem=$(python3 -c "import json,sys; print(','.join(json.load(open(sys.argv[1]))['labels_remove']))" "$RUNNER_TEMP/out/result.json")
+          [ -n "$add" ] && gh issue edit "$NUM" --add-label "$add" || true
+          [ -n "$rem" ] && gh issue edit "$NUM" --remove-label "$rem" || true
+          echo "ACCEPTED=$(python3 -c "import json,sys; print('1' if json.load(open(sys.argv[1]))['accepted'] else '')" "$RUNNER_TEMP/out/result.json")" >> "$GITHUB_ENV"
+      - name: Commit the record
+        if: env.ACCEPTED == '1'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add records
+          git commit -q -m "Record from submission #$NUM"
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep 5; done
+      - name: Rebuild and deploy the site
+        if: env.ACCEPTED == '1'
+        run: |
+          python3 scripts/site.py
+          git fetch -q origin gh-pages:refs/remotes/origin/gh-pages
+          git worktree add -q -f "$RUNNER_TEMP/pages" origin/gh-pages
+          cd "$RUNNER_TEMP/pages"
+          git checkout -q -B gh-pages
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -r "$GITHUB_WORKSPACE/site/." .
+          git add -A
+          git commit -q -m "Site: record from submission #$NUM" || exit 0
+          git push -q origin gh-pages
+      - name: Close
+        if: env.ACCEPTED == '1'
+        run: gh issue close "$NUM" --reason completed

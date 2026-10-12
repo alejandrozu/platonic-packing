@@ -1,0 +1,33 @@
+name: Propose a new category
+description: A new (piece, container) problem, a new solid, mixed pieces, or a different measure.
+title: "[category] "
+labels: ["category"]
+body:
+  - type: input
+    id: pieces
+    attributes:
+      label: Pieces
+      placeholder: e.g. regular dodecahedra, or a solid not in the library
+    validations:
+      required: true
+  - type: input
+    id: container
+    attributes:
+      label: Container
+      placeholder: e.g. a sphere, a cube, a truncated octahedron
+    validations:
+      required: true
+  - type: input
+    id: measure
+    attributes:
+      label: What to minimize
+      placeholder: e.g. container edge ÷ piece edge, for n = 2–40
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Why it is interesting
+  - type: textarea
+    id: details
+    attributes:
+      label: Definitions, coordinates or known results
+      description: Vertex coordinates, references, links. Packings you already have can go here too.

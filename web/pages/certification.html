@@ -1,0 +1,76 @@
+<div class="doc">
+<article>
+<h1>Certification</h1>
+<p class="lede">A number on this site is not a measurement. Each one comes with a certificate, checked with no rounding
+anywhere, that the n pieces really are pairwise disjoint copies of the piece solid inside the container of that size.
+Floating point only proposes; exact arithmetic decides.</p>
+<p>{{CERT_SENTENCE}}</p>
+
+<h2 id="claim">What a certificate proves</h2>
+<p>Let P be the canonical piece solid and C the canonical container solid. For a record with scale s and pieces
+(c<sub>i</sub>, q<sub>i</sub>), <a href="{{REPO}}/blob/main/certify_general.py"><code>certify_general.py</code></a> proves:</p>
+<ol>
+  <li><b>The solids are what they claim to be.</b> In exact arithmetic: every face is planar, every face plane supports the solid strictly (all other vertices strictly inside), every edge lies on exactly two faces, so C is the intersection of its face half-spaces, and either all edges have length exactly 1 or all faces touch one sphere (Catalan solids).</li>
+  <li><b>Containment.</b> Each piece c<sub>i</sub> + R<sub>i</sub>P lies in the interior of s·C: every vertex is strictly inside every face half-space.</li>
+  <li><b>Disjointness.</b> For every pair whose centres are closer than twice an upper bound of the circumradius there is an explicit rational vector u and rational t with u·x &lt; t on every vertex of one piece and u·x &gt; t on every vertex of the other. Every other pair is farther apart than the sum of the circumradii.</li>
+</ol>
+<p>Because the pieces and the container are convex, the three facts together say exactly that the packing is valid.</p>
+
+<h2 id="solids">Exact solids</h2>
+<p>Every vertex coordinate of every solid is an exact element of a real number field ℚ(α), given by the minimal
+polynomial of α and a rational interval that contains α and no other root (checked with a
+<a href="https://en.wikipedia.org/wiki/Sturm%27s_theorem">Sturm sequence</a>). The snub cube, the snub dodecahedron and
+their duals also need one common scale λ = 1/√D with D in the field. The data are in
+<a href="{{REPO}}/blob/main/src/solids_exact.json"><code>src/solids_exact.json</code></a>:</p>
+{{FIELDS_TABLE}}
+<p>Elements are coefficient vectors in the power basis 1, α, …, α<sup>d−1</sup>, so an element is zero exactly when all
+its coefficients are. The sign of a nonzero element is found by evaluating it on the isolating interval with interval
+arithmetic and halving the interval (with exact signs of the minimal polynomial) until the result excludes 0, which
+always happens because the value is not 0. This is <a href="{{REPO}}/blob/main/algebraic.py"><code>algebraic.py</code></a>,
+standard library only.</p>
+
+<h2 id="pslq">Finding the coordinates, then proving them</h2>
+<p><a href="{{REPO}}/blob/main/scripts/exact_solids.py"><code>scripts/exact_solids.py</code></a> writes each 60-digit
+coordinate as a rational combination of powers of α with the <a href="https://en.wikipedia.org/wiki/Integer_relation_algorithm">PSLQ</a>
+integer relation algorithm. A wrong relation cannot survive the next step: the whole solid is checked exactly in
+ℚ(α) (planar faces, supporting planes, a closed surface, all edges equal to 1 or D, or an insphere), and the exact
+solid must match the floating-point solid used by the search to 10<sup>−12</sup>.</p>
+
+<h2 id="rotations">Rotations without rounding</h2>
+<p>A record stores each rotation as a quaternion q = (w, x, y, z) of floating-point numbers, and every float is an exact
+rational. The certificate uses R = H(q)/|q|<sup>2</sup>, where H(q) is the usual matrix of quadratic forms in the
+components; this R is exactly orthogonal with determinant 1 for any rational q ≠ 0. So each piece is exactly congruent to
+the canonical solid, with no normalization error.</p>
+
+<h2 id="intervals">Interval arithmetic</h2>
+<p>Vertex coordinates of the pieces are products of exact field elements, the scale λ and rational rotations. The
+certifier encloses each of them in a fixed-point interval with 170 fractional bits and outward rounding, refining α by
+exact bisection until the enclosures are tight enough. Every inequality of the certificate (a vertex strictly inside a
+face, a vertex strictly on one side of a separating plane) is then decided on these enclosures: it counts only if it
+holds for the whole interval.</p>
+
+<h2 id="planes">Separating planes</h2>
+<p>For each near pair the certifier ranks candidate directions in floating point (the face normals of both pieces and the cross products of edge pairs that pass the Gauss-map test), rounds each of the best six to a rational vector u with denominators up to 10<sup>12</sup>, and proves with interval arithmetic that the largest u·x over one piece is smaller than the smallest u·y over the other. Any t between the two gives the separating plane. A poor proposal can only make the certificate fail, never pass.</p>
+
+<h2 id="tests">How the certifier is tested</h2>
+<ul>
+  <li>Records from other people certify: Y. Nakajima's 12 cubes in a cube (s = 2.9315185094797) and the record of 21 octahedra in a cube from Tencent Hunyuan's <a href="https://github.com/Tencent-Hunyuan/Hyra-results">Hyra-results</a>.</li>
+  <li>Deliberately broken files are rejected: the container shrunk by 3·10<sup>−5</sup>, a piece pushed 10<sup>−4</sup> into its neighbour, two coincident pieces, a piece outside.</li>
+  <li>The Platonic records are certified twice: by the original <a href="{{REPO}}/blob/main/certify_exact.py"><code>certify_exact.py</code></a> over ℚ(√2, √5) and by the general certifier.</li>
+</ul>
+
+<h2 id="float">The float check</h2>
+<p><a href="{{REPO}}/blob/main/verify_general.py"><code>verify_general.py</code></a> runs the same containment and
+separating-axis tests in double precision with NumPy, using face normals and Gauss-map-pruned edge cross products.
+It is fast and catches gross errors; it is not a proof.</p>
+
+<h2 id="run">Check a record yourself</h2>
+<pre><code>git clone {{REPO}}.git && cd platonic-packing
+python3 certify_general.py records/ktoinkto/ktoinkto_n20.json    # exact; Python standard library only
+python3 verify_general.py  records/ktoinkto/ktoinkto_n20.json    # floating point; needs NumPy</code></pre>
+<p>The certifier prints the solid checks, the smallest containment slack, the number of near pairs separated by rational
+planes and <code>CERTIFIED</code> or <code>NOT CERTIFIED</code>, and exits with status 0 only when certified. The output
+for every record is stored next to it as <code>.certify.txt</code>.</p>
+</article>
+{{TOC}}
+</div>

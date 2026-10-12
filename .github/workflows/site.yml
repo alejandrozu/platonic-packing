@@ -1,0 +1,45 @@
+# Rebuild polyhedrainpolyhedra.wiki from main and deploy it to the gh-pages branch (GitHub Pages, custom domain in
+# site/CNAME). Runs when the site sources or the records change, or by hand (Actions > site > Run workflow).
+name: site
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - 'web/**'
+      - 'scripts/site.py'
+      - 'records/**'
+      - 'src/solids.json'
+      - 'src/solids_exact.json'
+permissions:
+  contents: write
+concurrency:
+  group: site
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install --quiet numpy scipy
+      - run: python3 scripts/site.py
+      - name: Deploy to gh-pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch -q origin gh-pages:refs/remotes/origin/gh-pages
+          git worktree add -q -f "$RUNNER_TEMP/pages" origin/gh-pages
+          cd "$RUNNER_TEMP/pages"
+          git checkout -q -B gh-pages
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -r "$GITHUB_WORKSPACE/site/." .
+          git add -A
+          git commit -q -m "Site: rebuild from ${GITHUB_SHA::12}" || exit 0
+          git push -q origin gh-pages

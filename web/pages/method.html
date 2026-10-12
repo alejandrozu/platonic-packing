@@ -1,0 +1,175 @@
+<div class="doc">
+<article>
+<h1>Method</h1>
+<p class="lede">Every packing on this site was found the same way: each piece starts as a soft, rounded body that is
+sharpened into the solid while pressure shrinks the container, a search then hops between arrangements, and the best
+one is tightened, given a small clearance and proved valid in exact arithmetic. This page explains each step and links
+the code that does it, so the method can be reused for other solids and containers.</p>
+
+<h2 id="problem">The problem</h2>
+<p>For a container solid A, a piece solid B and a number n, find the smallest scale s such that n copies of B, free to
+translate and rotate, fit inside s·A with pairwise disjoint interiors. Pieces and containers are fixed canonical solids, so</p>
+<p class="eq">s(A, B, n) = size of the container ÷ size of each piece.</p>
+<p>For solids with all edges equal (Platonic and Archimedean solids, regular prisms and antiprisms) this is container
+edge ÷ piece edge. Catalan solids have edges of two or three lengths, so their s is the ratio of sizes of the same
+canonical solid (defined <a href="#solids">below</a>); Catalan solids are only packed in themselves.</p>
+<p>The site tracks {{N_PROBLEMS}} problems for n = 2–40, {{N_CASES}} cases in all:</p>
+<ul>
+  <li><b>Platonic</b> (9): each Platonic solid in itself, and the dual pairs: cubes in an octahedron, octahedra in a cube, dodecahedra in an icosahedron, icosahedra in a dodecahedron.</li>
+  <li><b>Archimedean</b> (13) and <b>Catalan</b> (13): each solid in itself.</li>
+  <li><b>Prisms and antiprisms</b> (20): the regular triangular, pentagonal, hexagonal, octagonal and dodecagonal prisms and the square, pentagonal, hexagonal, octagonal and dodecagonal antiprisms, each in itself and in a cube. The square prism with unit edges is the cube and the triangular antiprism is the octahedron, so those cases are the Platonic problems and are not repeated.</li>
+</ul>
+<p>Every value is an <b>upper bound with a proof</b>: the packing exists. None is claimed optimal. The only general lower
+bound used is the volume bound s ≥ (n · vol B / vol A)<sup>1/3</sup>, drawn as a dashed line in every chart.</p>
+
+<h2 id="solids">The solids</h2>
+<p>All solids are centred at the origin.</p>
+<ul>
+  <li><b>Platonic</b>: exact unit-edge coordinates in ℚ(√2, √5), built and self-checked by <a href="{{REPO}}/blob/main/solids.py"><code>solids.py</code></a>.</li>
+  <li><b>Archimedean</b>: the classical coordinates (permutations and sign patterns) for the eleven non-snub solids. The snub cube and snub dodecahedron are built as the orbit of one point under the rotation group, with the point chosen by Newton's method so the three Wythoff rotations move it by equal distances. All are scaled to unit edge.</li>
+  <li><b>Catalan</b>: the canonical duals of the unit-edge Archimedean solids, by polar reciprocity in their common midsphere: a face with unit normal m at distance h becomes the vertex (r<sub>m</sub><sup>2</sup>/h)·m. Every Catalan solid has an insphere.</li>
+  <li><b>Prisms and antiprisms</b>: the regular ones, with all edges equal to 1.</li>
+</ul>
+<p><a href="{{REPO}}/blob/main/polyhedra.py"><code>polyhedra.py</code></a> builds the non-Platonic solids in 60-digit
+arithmetic, derives the faces from the convex hull and checks the vertex, edge and face counts, Euler's formula, equal
+edges or an insphere, planarity, and that every face plane supports the solid. The floats used by the search go to
+<a href="{{REPO}}/blob/main/src/solids.json"><code>src/solids.json</code></a> and 50-digit coordinates to
+<a href="{{REPO}}/blob/main/src/solids_hp.json"><code>src/solids_hp.json</code></a>. Exact coordinates for the
+certificates are on the <a href="{{ROOT}}certification/#solids">certification page</a>.</p>
+
+<h2 id="soft">Soft shapes: from balls to polyhedra</h2>
+<p>The idea comes from Yohei Nakajima's <a href="https://github.com/yoheinakajima/soft-to-rigid-packing">soft-to-rigid
+packing</a> of unit cubes. Packing hard polyhedra directly gets stuck: sharp corners lock against each other long before
+the arrangement is good. Balls slide past each other easily. So every piece starts as a ball and is sharpened into
+the polyhedron through a family of convex shapes S<sub>r</sub> that grows as the softness r goes to 0.</p>
+<h3 id="tangential">Solids with an insphere</h3>
+<p>Platonic and Catalan solids have an inscribed ball of radius ρ touching every face. For them</p>
+<p class="eq">S<sub>r</sub> = (1 − r/ρ)·P <span class="op">⊕</span> B(r),&nbsp;&nbsp;<span>0 ≤ r ≤ ρ,</span></p>
+<p>a shrunken copy of P dilated by a ball of radius r. S<sub>ρ</sub> is the insphere, S<sub>0</sub> = P, every
+S<sub>r</sub> lies inside P, and S<sub>r</sub> only grows as r decreases (its support function is
+h<sub>P</sub>(u) − (r/ρ)(h<sub>P</sub>(u) − ρ), non-increasing in r because h<sub>P</sub> ≥ ρ). So a packing of the
+polyhedra is a packing of every S<sub>r</sub>, and the smallest container grows monotonically along the path: the search
+never has to undo anything, only make room.</p>
+<h3 id="rounding">Solids without one: the r-rounding</h3>
+<p>Archimedean solids, prisms and antiprisms have no ball touching every face, so the generalization uses the r-rounding</p>
+<p class="eq">S<sub>r</sub> = (P <span class="op">⊖</span> B(r)) <span class="op">⊕</span> B(r),</p>
+<p>the union of all balls of radius r inside P. Its core P <span class="op">⊖</span> B(r) = {x : n<sub>f</sub>·x ≤ h<sub>f</sub> − r} is again
+a polytope; faces vanish from it at finitely many values of r, and between those values every core vertex moves
+linearly, V(r) = V<sub>0</sub> + r·W. <a href="{{REPO}}/blob/main/polyhedra.py"><code>polyhedra.py</code></a> precomputes
+these intervals ("cores"), and the simulator reads the core for any r in constant time. The r-rounding also lies inside P
+and grows as r decreases, and for a solid with an insphere it is exactly Nakajima's shape, so this is one homotopy, not
+two. The search starts at r = 0.49 in internal units, where every solid is scaled so its inradius is ½; for solids
+without an insphere the starting shape is a rounded body rather than a ball.</p>
+<h3 id="contacts">Contacts between soft shapes</h3>
+<p>Two rounded bodies K <span class="op">⊕</span> B(r) and L <span class="op">⊕</span> B(r) overlap exactly when their cores come closer than 2r, and the overlap depth
+is 2r minus the signed distance of the cores. So all contact geometry is computed on the cores, which are polytopes:</p>
+<ul>
+  <li><b>overlapping cores</b>: the exact penetration depth by the separating axis test over the face normals of both cores and the cross products of their edges. For solids with many faces the edge pairs are pruned with the Gauss map (an edge pair can only give a face of the Minkowski difference when the arcs of the two edges on the sphere of normals cross, as in <a href="https://gdcvault.com/play/1017646/">D. Gregorius, “The Separating Axis Test between Convex Polyhedra”, GDC 2013</a>), which keeps the test exact;</li>
+  <li><b>disjoint cores</b>: the exact Euclidean distance by enumerating vertex–face, face–vertex and edge–edge features, limited to the slabs between the two support planes of a separating direction.</li>
+</ul>
+<p>Both come with analytic gradients with respect to the centres and the rotation vectors of the two pieces. This is
+<a href="{{REPO}}/blob/main/src/geom.js"><code>src/geom.js</code></a>.</p>
+
+<h2 id="dynamics">Dynamics: sharpening under pressure</h2>
+<p><a href="{{REPO}}/blob/main/src/sim.js"><code>src/sim.js</code></a> minimizes</p>
+<p class="eq">E = Σ<sub>pairs</sub> (2r − d<sub>core</sub>)<sub>+</sub><sup>2</sup> + Σ<sub>walls</sub> (violation)<sub>+</sub><sup>2</sup> + μ · (container size)</p>
+<p>by heavy-ball descent on all centres, quaternions and the container size, with a velocity cap and annealed noise.
+The wall term uses the support function of S<sub>r</sub> in each container face normal. A fresh run spends 5,000 steps
+compressing the soft bodies, 45,000 steps lowering r linearly to 0 and 3,000 steps settling the rigid pieces. Then the
+packing is legalized: centres are scaled apart until no pair overlaps, and the container is shrunk to the smallest one
+over all translations, a four-variable linear program (solved with a small simplex method for containers with many faces).
+<a href="{{REPO}}/blob/main/src/server.js"><code>src/server.js</code></a> runs these simulations for the search engine.</p>
+
+<h2 id="search">The search engine</h2>
+<p>A fresh run takes 20–60 seconds and mostly re-discovers dense packings. The engine,
+<a href="{{REPO}}/blob/main/scripts/engine.py"><code>scripts/engine.py</code></a>, instead keeps an archive with the
+best packing and a pool of distinct good packings for every (problem, n), and repeatedly applies one move:</p>
+<ul>
+  <li><b>hop</b> (55%): expand the best packing slightly, soften the pieces, shake them at fixed container size until their relative arrangement has changed by a random target, then re-sharpen under pressure. For larger n many hops shake only a cluster of neighbouring pieces.</li>
+  <li><b>fresh</b> (15%): a full soft-to-rigid run from random balls, which keeps the archive diverse.</li>
+  <li><b>ascend</b> (15%): the best (n − 1)-packing plus one piece in its largest hole, re-sharpened.</li>
+  <li><b>descend</b> (10%): the best (n + 1)-packing minus the piece whose removal lets the container shrink most.</li>
+  <li><b>reinsert</b> (5%): remove one to three pieces and put them back into the largest holes.</li>
+</ul>
+<p>Removing a piece never makes a packing invalid, so s(n) ≤ s(n + 1) always holds, and the archive enforces it on every
+write: whenever the best n-packing is worse than the best (n + 1)-packing minus a piece, the latter replaces it and is
+queued for re-tightening. The scheduler fills every empty case first, then brings every case to a minimum number of
+attempts, then spends effort where it pays most per piece.</p>
+<p>For the Archimedean, Catalan and prism families the engine ran on three kinds of machines at once: two workers in the
+cloud, two on a laptop in short bounded runs, and four GitHub Actions jobs of four workers each, started every hour by
+<a href="{{REPO}}/blob/main/.github/workflows/search.yml"><code>.github/workflows/search.yml</code></a>. Remote results come back
+through <a href="{{REPO}}/blob/main/scripts/remote.py"><code>scripts/remote.py</code></a> and are re-legalized before they can
+enter the archive. In total the archive records {{N_ATTEMPTS}} attempts.</p>
+
+<h2 id="tightening">Tightening and record files</h2>
+<p>Promising results are tightened by <a href="{{REPO}}/blob/main/src/exact.py"><code>src/exact.py</code></a>: the container
+size is minimized subject to hard constraints (every vertex inside every container face, and a separating plane for
+every nearby pair, with its normal and offset as variables), first by sequential linear programming with trust regions
+and then, for small n, by SLSQP. A round is accepted only if the legalized size went down, and tightening stops when
+50 rounds gain less than 10<sup>−7</sup> relative.</p>
+<p><a href="{{REPO}}/blob/main/src/claim.py"><code>src/claim.py</code></a> then turns the tightened packing into a record
+file: centres are spread until every pair has a separation of at least 10<sup>−7</sup>, the container is refitted with
+at least 10<sup>−7</sup> clearance on every wall, and s is rounded up at the 13th decimal. The displayed value
+(“4.10646+”) is s truncated to five decimals. Record files live in
+<a href="{{REPO}}/tree/main/records"><code>records/</code></a>, one folder per problem, next to their certificate and
+float check; the <a href="{{ROOT}}constructions/">constructions page</a> links every one.</p>
+
+<h2 id="verification">Verification</h2>
+<p>Every record is checked twice. <a href="{{REPO}}/blob/main/verify_general.py"><code>verify_general.py</code></a> is a
+floating-point separating-axis check. <a href="{{REPO}}/blob/main/certify_general.py"><code>certify_general.py</code></a> is a
+proof: exact coordinates in number fields, exactly orthogonal rational rotations, and rigorous interval arithmetic for
+containment and for a separating plane between every pair. The <a href="{{ROOT}}certification/">certification page</a>
+explains what it proves and how. {{CERT_SENTENCE}}</p>
+
+<h2 id="generalize">Generalizing it</h2>
+<p>Nothing in the pipeline is specific to these {{N_SOLIDS}} solids. To pack other convex polyhedra:</p>
+<ul>
+  <li><b>A new solid</b>: add it to <a href="{{REPO}}/blob/main/polyhedra.py"><code>polyhedra.py</code></a> (vertices in high precision; faces, checks and r-rounding cores are derived) and give its number field in <a href="{{REPO}}/blob/main/scripts/exact_solids.py"><code>scripts/exact_solids.py</code></a>. Everything downstream reads <code>src/solids.json</code>.</li>
+  <li><b>A new pair</b>: any piece can go in any container. Add the problem id to <code>PROBLEMS</code> in <a href="{{REPO}}/blob/main/scripts/engine.py"><code>scripts/engine.py</code></a>.</li>
+  <li><b>Mixed pieces</b> or <b>non-polyhedral containers</b> (a sphere, a cylinder) need changes in the energy (<code>src/sim.js</code>), in the tightening constraints (<code>src/exact.py</code>) and in the certificate, but the homotopy itself carries over unchanged.</li>
+  <li><b>Other measures</b>, such as volume ratios or a container of fixed shape but free aspect, only change the objective.</li>
+</ul>
+<p>Ideas and questions are welcome as <a href="{{ROOT}}contribute/#category">category proposals</a>.</p>
+
+<h2 id="code">Code map</h2>
+<dl class="files">
+  <dt><a href="{{REPO}}/blob/main/polyhedra.py">polyhedra.py</a></dt><dd>Archimedean, Catalan, prism and antiprism solids; faces, checks, r-rounding cores</dd>
+  <dt><a href="{{REPO}}/blob/main/solids.py">solids.py</a></dt><dd>exact Platonic solids in ℚ(√2, √5) with self-check</dd>
+  <dt><a href="{{REPO}}/blob/main/src/geom.js">src/geom.js</a></dt><dd>signed distances, penetration depths and gradients; pruned separating axis test</dd>
+  <dt><a href="{{REPO}}/blob/main/src/sim.js">src/sim.js</a></dt><dd>soft-to-rigid dynamics, hops, legalization, container LP</dd>
+  <dt><a href="{{REPO}}/blob/main/src/server.js">src/server.js</a></dt><dd>JSON-lines compute server used by the engine</dd>
+  <dt><a href="{{REPO}}/blob/main/scripts/engine.py">scripts/engine.py</a></dt><dd>basin-hopping search, monotone archive, scheduler</dd>
+  <dt><a href="{{REPO}}/blob/main/src/exact.py">src/exact.py</a></dt><dd>sequential LP and SLSQP tightening, legalization</dd>
+  <dt><a href="{{REPO}}/blob/main/src/claim.py">src/claim.py</a></dt><dd>record files with explicit clearance</dd>
+  <dt><a href="{{REPO}}/blob/main/verify_general.py">verify_general.py</a></dt><dd>floating-point check of any record</dd>
+  <dt><a href="{{REPO}}/blob/main/certify_general.py">certify_general.py</a></dt><dd>exact certificate of any record (standard library only)</dd>
+  <dt><a href="{{REPO}}/blob/main/algebraic.py">algebraic.py</a></dt><dd>number fields, Sturm sequences, rational interval arithmetic</dd>
+  <dt><a href="{{REPO}}/blob/main/scripts/exact_solids.py">scripts/exact_solids.py</a></dt><dd>exact coordinates of every solid by PSLQ, proved by self-check</dd>
+  <dt><a href="{{REPO}}/blob/main/certify_exact.py">certify_exact.py</a></dt><dd>the original certifier for Platonic records, over ℚ(√2, √5)</dd>
+  <dt><a href="{{REPO}}/blob/main/scripts/publish.py">scripts/publish.py</a></dt><dd>records, certificates, tables and this site from the archive</dd>
+  <dt><a href="{{REPO}}/blob/main/scripts/site.py">scripts/site.py</a></dt><dd>builds this website from <code>web/</code> and the records</dd>
+  <dt><a href="{{REPO}}/blob/main/scripts/check_submission.py">scripts/check_submission.py</a></dt><dd>checks and accepts packings submitted through GitHub issues</dd>
+  <dt><a href="{{REPO}}/tree/main/test">test/</a></dt><dd>test suite: gradients, optimality conditions, broken files that must be rejected</dd>
+</dl>
+
+<h2 id="reproduce">Reproduce</h2>
+<pre><code>git clone {{REPO}}.git && cd platonic-packing
+pip install numpy scipy mpmath sympy        # Node ≥ 18 for the simulator
+python3 certify_general.py records/phcinphc/phcinphc_n12.json   # check one record exactly
+nohup setsid scripts/run_forever.sh &gt; logs/supervisor.out 2&gt;&amp;1 &amp;   # run the search (resumes from state/best)
+python3 scripts/engine.py status                                    # current table
+touch state/STOP                                                    # stop gracefully
+python3 scripts/publish.py --no-push                                # records, certificates, site</code></pre>
+
+<h2 id="reading">Further reading</h2>
+<ul>
+  <li><a href="{{REPO}}/blob/main/docs/FINAL_REPORT.md">Full report of the Platonic project</a>: everything that was tried, including what did not work.</li>
+  <li><a href="{{REPO}}/blob/main/docs/MATH.md">Mathematical notes</a>: the homotopy lemma, the certificate, lattice constructions, open questions.</li>
+  <li>Y. Nakajima, <i>Twelve unit cubes in a cube of side 2.9315: soft-to-rigid packing</i>, 2026, <a href="https://doi.org/10.5281/zenodo.23248095">doi:10.5281/zenodo.23248095</a>, code at <a href="https://github.com/yoheinakajima/soft-to-rigid-packing">yoheinakajima/soft-to-rigid-packing</a>.</li>
+  <li><a href="https://erich-friedman.github.io/packing/">Erich Friedman's Packing Center</a>, the source of the previously published values for cubes in a cube and octahedra in a cube.</li>
+  <li>M. Firsching, <i>Computing maximal copies of polytopes contained in a polytope</i>, Experimental Mathematics, 2018, <a href="https://arxiv.org/abs/1407.0683">arXiv:1407.0683</a> (the case n = 1).</li>
+  <li>Background: <a href="https://en.wikipedia.org/wiki/Archimedean_solid">Archimedean solids</a>, <a href="https://en.wikipedia.org/wiki/Catalan_solid">Catalan solids</a>, <a href="https://en.wikipedia.org/wiki/Antiprism">antiprisms</a>, <a href="https://en.wikipedia.org/wiki/Minkowski_addition">Minkowski sums</a>, <a href="https://en.wikipedia.org/wiki/Hyperplane_separation_theorem">the separating axis theorem</a>, <a href="https://en.wikipedia.org/wiki/Basin-hopping">basin hopping</a>.</li>
+</ul>
+</article>
+{{TOC}}
+</div>

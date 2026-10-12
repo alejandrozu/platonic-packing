@@ -1,0 +1,61 @@
+name: Submit a packing
+description: A packing of n copies of a solid in a container, to be certified and compared with the current record.
+title: "[packing] "
+labels: ["submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for submitting! Check your packing first on https://polyhedrainpolyhedra.wiki/contribute/ (it can fill in this form for you).
+        After you open the issue, a GitHub Action runs the float check and the exact certifier on it and comments with the result.
+  - type: input
+    id: problem
+    attributes:
+      label: Problem
+      description: Problem id (for example `ktoinkto`), or "piece in container" using names from src/solids.json.
+      placeholder: ktoinkto
+    validations:
+      required: true
+  - type: input
+    id: n
+    attributes:
+      label: Number of pieces
+      placeholder: "20"
+    validations:
+      required: true
+  - type: input
+    id: s
+    attributes:
+      label: Container scale s
+      description: s_full, the container size in units of the piece size (container edge ÷ piece edge for unit-edge solids).
+    validations:
+      required: true
+  - type: textarea
+    id: packing
+    attributes:
+      label: Packing
+      description: |
+        JSON with "piece", "container", "n", "s_full" and "pieces" (one [x, y, z, qw, qx, qy, qz] per piece; see the format on the contribute page).
+        Pieces must not touch: leave a small positive clearance (about 1e-7) between pieces and from the walls.
+      render: json
+    validations:
+      required: true
+  - type: input
+    id: credit
+    attributes:
+      label: Credit
+      description: How the record should credit you (name, handle or team).
+    validations:
+      required: true
+  - type: textarea
+    id: method
+    attributes:
+      label: How you found it
+      description: Method, software, or a link to a write-up. Optional.
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Permission
+      options:
+        - label: This packing is my own work (or I credit its source above), and it may be published in the repository under its MIT license.
+          required: true
