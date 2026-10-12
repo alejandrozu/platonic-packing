@@ -1,6 +1,6 @@
 # Records: Archimedean, Catalan, prism and antiprism families
 
-_Generated 2026-10-12 22:31 CEST from the running search._ s = container size ÷ piece size (edge ratio; for Catalan solids the ratio of the same canonical solid). Each entry: the record's container, with 10⁻⁷ clearance, truncated to 5 decimals, linking to the record file. Every record is proven by `certify_general.py` (exact number fields for the solids, rigorous interval arithmetic for the packing) and checked by `verify_general.py` (floating point). "≈ x" = conjectured closed form. The square prism is the cube and the triangular antiprism the octahedron: see the Platonic tables (cubes in a cube, octahedra in an octahedron, octahedra in a cube).
+_Generated 2026-10-13 01:38 CEST from the running search._ s = container size ÷ piece size (edge ratio; for Catalan solids the ratio of the same canonical solid). Each entry: the record's container, with 10⁻⁷ clearance, truncated to 5 decimals, linking to the record file. Every record is proven by `certify_general.py` (exact number fields for the solids, rigorous interval arithmetic for the packing) and checked by `verify_general.py` (floating point). "≈ x" = conjectured closed form. The square prism is the cube and the triangular antiprism the octahedron: see the Platonic tables (cubes in a cube, octahedra in an octahedron, octahedra in a cube).
 
 ## Archimedean solids
 
@@ -18,8 +18,8 @@ _Generated 2026-10-12 22:31 CEST from the running search._ s = container size ÷
 | 11 | [2.70609+](tteintte/tteintte_n11.json) | [2.85458+](cboincbo/cboincbo_n11.json) | [2.94003+](tcuintcu/tcuintcu_n11.json) | [2.87865+](tocintoc/tocintoc_n11.json) | [2.93992+](rcoinrco/rcoinrco_n11.json) |
 | 12 | [2.86980+](tteintte/tteintte_n12.json) | [2.85458+](cboincbo/cboincbo_n12.json) | [3.00000+](tcuintcu/tcuintcu_n12.json) | [2.89456+](tocintoc/tocintoc_n12.json) | [2.94827+](rcoinrco/rcoinrco_n12.json) |
 | 13 | [2.91701+](tteintte/tteintte_n13.json) | [2.88158+](cboincbo/cboincbo_n13.json) | [3.00000+](tcuintcu/tcuintcu_n13.json) | [2.94332+](tocintoc/tocintoc_n13.json) | [2.96426+](rcoinrco/rcoinrco_n13.json) |
-| 14 | [2.94717+](tteintte/tteintte_n14.json) | [3.00000+](cboincbo/cboincbo_n14.json) | [3.00000+](tcuintcu/tcuintcu_n14.json) | [3.05553+](tocintoc/tocintoc_n14.json) | [3.03797+](rcoinrco/rcoinrco_n14.json) |
-| 15 | [3.04234+](tteintte/tteintte_n15.json) | [3.00000+](cboincbo/cboincbo_n15.json) | [3.00000+](tcuintcu/tcuintcu_n15.json) | [3.06620+](tocintoc/tocintoc_n15.json) | [3.15774+](rcoinrco/rcoinrco_n15.json) |
+| 14 | [2.94460+](tteintte/tteintte_n14.json) | [3.00000+](cboincbo/cboincbo_n14.json) | [3.00000+](tcuintcu/tcuintcu_n14.json) | [3.05553+](tocintoc/tocintoc_n14.json) | [3.03797+](rcoinrco/rcoinrco_n14.json) |
+| 15 | [3.03930+](tteintte/tteintte_n15.json) | [3.00000+](cboincbo/cboincbo_n15.json) | [3.00000+](tcuintcu/tcuintcu_n15.json) | [3.06620+](tocintoc/tocintoc_n15.json) | [3.15774+](rcoinrco/rcoinrco_n15.json) |
 | 16 | [3.06792+](tteintte/tteintte_n16.json) | [3.06585+](cboincbo/cboincbo_n16.json) | [3.00000+](tcuintcu/tcuintcu_n16.json) | [3.08853+](tocintoc/tocintoc_n16.json) | [3.17928+](rcoinrco/rcoinrco_n16.json) |
 | 17 | [3.11853+](tteintte/tteintte_n17.json) | [3.15240+](cboincbo/cboincbo_n17.json) | [3.00000+](tcuintcu/tcuintcu_n17.json) | [3.20321+](tocintoc/tocintoc_n17.json) | [3.21916+](rcoinrco/rcoinrco_n17.json) |
 | 18 | [3.15021+](tteintte/tteintte_n18.json) | [3.21549+](cboincbo/cboincbo_n18.json) | [3.00000+](tcuintcu/tcuintcu_n18.json) | [3.29125+](tocintoc/tocintoc_n18.json) | [3.27455+](rcoinrco/rcoinrco_n18.json) |
