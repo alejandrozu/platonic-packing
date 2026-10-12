@@ -1,0 +1,150 @@
+{
+ "problem": "min/tetrakis_hexahedron_in_tetrakis_hexahedron",
+ "piece": "tetrakis_hexahedron",
+ "container": "tetrakis_hexahedron",
+ "n": 12,
+ "s": 2.92735,
+ "s_plus": "2.92735+",
+ "s_full": 2.9273592690846,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020284208049e-07,
+  "min_wall_gap": 1.0000002514942707e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   1.2659959412765738,
+   -1.5787954711365606,
+   -2.2760439822305405,
+   0.384478431849977,
+   0.7672008207879516,
+   -0.5133994694993372,
+   -0.00046983217772869027
+  ],
+  [
+   -2.044273138029005,
+   -2.0442731328418255,
+   2.0442731366342333,
+   2.215038197913735e-17,
+   -0.7071067811865477,
+   0.7071067811865476,
+   -2.2508349821796623e-16
+  ],
+  [
+   1.3274885151899356,
+   1.9049789035296225,
+   1.9949433619023522,
+   0.3040617714449639,
+   -0.7540834800418617,
+   -0.2898545828881468,
+   0.5048651949307305
+  ],
+  [
+   -0.9899718016282243,
+   0.725202826078508,
+   -2.5714238068481228,
+   0.7947334302545456,
+   -0.47769630430079474,
+   -0.3705901854027656,
+   -0.05355305944901473
+  ],
+  [
+   -1.908704351653554,
+   -2.1120575260295515,
+   -1.7721188856042107,
+   0.443634791137677,
+   -0.02690962885048176,
+   0.8065406957239101,
+   0.3898155334367143
+  ],
+  [
+   1.1097354471864418,
+   -2.022703997341969,
+   1.9514076460479328,
+   0.0005571742849725463,
+   -0.05903925566498068,
+   -0.9165759913802931,
+   0.39547756936718187
+  ],
+  [
+   -1.6047003868750276,
+   1.4932386925428767,
+   2.192013648804784,
+   0.34609627798975984,
+   -0.8951651526363239,
+   0.08449151754221185,
+   -0.2678766494688107
+  ],
+  [
+   -0.018233581375017984,
+   -0.14579319340241664,
+   0.1264901162714182,
+   0.5831902850559036,
+   -0.7872960306494489,
+   -0.1218867964914428,
+   0.15873770938592238
+  ],
+  [
+   1.6857052712636436,
+   1.903951675036399,
+   -2.030230847740283,
+   0.7354465170722781,
+   0.041304630925052266,
+   0.4993814664076744,
+   0.45610360555352064
+  ],
+  [
+   -2.835241994383898,
+   0.30273085552842877,
+   -0.2529234000296987,
+   0.8916098572070871,
+   -0.3724757942913248,
+   -0.0883141740346927,
+   -0.24185584934579216
+  ],
+  [
+   -0.49794975981345946,
+   2.7287801319907414,
+   -0.21476167760938766,
+   0.10408361364992372,
+   -0.5080967706287359,
+   -0.7120465967071098,
+   0.47327995643598275
+  ],
+  [
+   3.0005527065162463,
+   -0.13171399431524738,
+   0.09317230460464448,
+   0.48116780463781544,
+   0.5060200022126518,
+   -0.5184461010000693,
+   0.4935939034252338
+  ]
+ ],
+ "record_id": "kthinkth_n12",
+ "title": "12 tetrakis hexahedra in a tetrakis hexahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "1ffc303c0c3a06ad",
+  "clear": 1e-07,
+  "cap": 2.9624402053371
+ },
+ "s_tight": 2.927359129911,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.2894284851066637,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "ascend",
+  "seed": 129521941,
+  "var": "base",
+  "raw": 2.961125948568861
+ },
+ "density": 0.478358140046929
+}

@@ -1,0 +1,160 @@
+{
+ "problem": "min/pentagonal_hexecontahedron_in_pentagonal_hexecontahedron",
+ "piece": "pentagonal_hexecontahedron",
+ "container": "pentagonal_hexecontahedron",
+ "n": 13,
+ "s": 2.97285,
+ "s_plus": "2.97285+",
+ "s_full": 2.9728586903375,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020410286757e-07,
+  "min_wall_gap": 1.0000002692578391e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -1.8625266519389623,
+   -2.750891918199586,
+   2.4668272287571034,
+   0.5000000000000048,
+   0.49999999999999306,
+   0.4999999999999979,
+   0.5000000000000042
+  ],
+  [
+   2.0223948281025326,
+   -1.4315243539182496,
+   3.315753436670999,
+   0.4186629883150449,
+   -0.45174127348408305,
+   0.7620163156320813,
+   -0.19995564197242294
+  ],
+  [
+   1.9787039054169302,
+   -3.75949459436798,
+   -0.15226640947658754,
+   0.25025205278099133,
+   -0.5194625628354498,
+   -0.2617231012602859,
+   -0.7739725926400912
+  ],
+  [
+   -1.817454372926904,
+   -3.2491362908209727,
+   -1.8939200322473566,
+   0.5000000000000006,
+   0.8090169943749475,
+   0.309016994374947,
+   4.71844785465691e-16
+  ],
+  [
+   1.932279916816686,
+   3.0872571101086743,
+   -1.9939668680020728,
+   0.7630253969944291,
+   0.4512362445262692,
+   -0.2020811370079022,
+   -0.41634277852860185
+  ],
+  [
+   -1.8754781728590715,
+   3.7310707560360488,
+   -0.44796345810403815,
+   0.7565888528605347,
+   -0.6473039437250601,
+   -0.022248245926334738,
+   -0.08986616559287403
+  ],
+  [
+   -0.03690685119697584,
+   -0.023206472295111674,
+   -0.012248353693078248,
+   0.37643930678528964,
+   -0.7966982308718306,
+   0.1959561732068608,
+   -0.43030983653041077
+  ],
+  [
+   1.9466780367772043,
+   -1.234667481131206,
+   -3.439134835315338,
+   0.26302539699443295,
+   -0.4715756296219402,
+   0.8090169943749476,
+   0.23221879530976336
+  ],
+  [
+   -1.6176430994986626,
+   1.0392929042124197,
+   -3.6961617583145445,
+   0.15331738153416796,
+   -0.04876375547373304,
+   -0.9715756296219411,
+   -0.17365676662984697
+  ],
+  [
+   -4.127280369700601,
+   -0.1959714813734147,
+   -0.19508364628868358,
+   0.4231330761043333,
+   -0.8530314164441876,
+   0.03859656859278134,
+   0.30299522662670836
+  ],
+  [
+   -1.8939200322428111,
+   1.817454372931194,
+   3.2491362908207058,
+   0.2979188629920968,
+   0.857780749848682,
+   0.4163427785286037,
+   0.04599159738051371
+  ],
+  [
+   4.1113708519594905,
+   -0.02572237007233911,
+   -0.12174778442634088,
+   0.3760882001211015,
+   -0.16697418106444128,
+   -0.8001627464298899,
+   -0.43636781253124657
+  ],
+  [
+   2.124328579683504,
+   2.6314030464285616,
+   2.358255210231612,
+   0.40091619433504533,
+   0.9077434731075062,
+   0.11901845907311286,
+   -0.03320539941768894
+  ]
+ ],
+ "record_id": "phcinphc_n13",
+ "title": "13 pentagonal hexecontahedra in a pentagonal hexecontahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "5990c3d64bc57927",
+  "clear": 1e-07,
+  "cap": null
+ },
+ "s_tight": 2.972858593079,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.3513346877207573,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "ascend",
+  "seed": 271923239,
+  "var": "base",
+  "raw": 2.9943668664091536,
+  "host": "laptop"
+ },
+ "density": 0.4947895896490613
+}
