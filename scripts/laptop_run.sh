@@ -10,6 +10,8 @@
 cd "$(dirname "$0")/.."
 export PP_STATE=$HOME/pp-state
 secs=${1:-140}; clone=${2:-$HOME/mnt/Desktop/platonic-packing}
+# REF: state/best tree to compare against (default: the clone); EXPORT: file to write (default: a new file in the clone)
+ref=${REF:-$clone/state/best}
 export PP_DEADLINE=$(( $(date +%s) + secs ))
 t0=$(date +%s); a0=$(wc -l < "$PP_STATE/attempts.jsonl" 2>/dev/null || echo 0)
 mkdir -p logs
@@ -17,7 +19,6 @@ PP_FAST=1 PP_SHARD=2/8 timeout $((secs + 28)) nice -n 5 python3 scripts/engine.p
 PP_FAST=1 PP_SHARD=3/8 timeout $((secs + 28)) nice -n 5 python3 scripts/engine.py work L1 >> logs/workerL1.out 2>&1 &
 wait
 a1=$(wc -l < "$PP_STATE/attempts.jsonl"); imp=$(tail -n $((a1 - a0)) "$PP_STATE/attempts.jsonl" | grep -c '"improved": true')
-mkdir -p "$clone/.laptop"
-out="$clone/.laptop/export-$(date +%s).txt"
-python3 scripts/remote.py export "$PP_STATE" "$clone/state/best" > "$out"
+if [ -n "$EXPORT" ]; then out=$EXPORT; else mkdir -p "$clone/.laptop"; out="$clone/.laptop/export-$(date +%s).txt"; fi
+python3 scripts/remote.py export "$PP_STATE" "$ref" > "$out"
 echo "laptop run: $((a1 - a0)) attempts, $imp improvements in $(( $(date +%s) - t0 ))s; export $(cut -d' ' -f2 "$out") cases -> $(basename "$out")"
