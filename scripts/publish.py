@@ -280,6 +280,9 @@ def git_push(log):
            "Claude-Session: https://claude.ai/code/session_015sjhNzKTinVQnSnofRcCoP")
     g('commit', '-q', '-m', msg)
     for attempt in range(3):
+        # other machines/agents also push to main (13 Oct): merge theirs first -- never rebase or reset here, the
+        # workers keep writing state/ while this runs
+        g('fetch', '-q', 'origin'); g('merge', '-q', '--no-edit', 'origin/main')
         r = g('push', '-q', 'origin', 'HEAD:main')
         if r.returncode == 0: log('git: pushed'); return
         log(f'git push failed: {r.stderr.strip()[:300]}'); time.sleep(30)

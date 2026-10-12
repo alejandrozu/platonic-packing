@@ -32,6 +32,8 @@ git diff --cached --quiet || git commit -q -m "Checkpoint: search archive $(date
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_015sjhNzKTinVQnSnofRcCoP"
+# other agents push to main too (13 Oct): merge theirs (never rebase/reset: the workers keep writing state/)
+timeout 60 git fetch -q origin && git merge -q --no-edit origin/main > /dev/null 2>&1 || git merge --abort > /dev/null 2>&1
 if timeout 90 git push -q origin HEAD:main > /dev/null 2>&1; then push=pushed; else push=PUSH-FAILED; fi
 flock -u 9
 head=$(git rev-parse HEAD); from=$(cat state/.device_synced 2>/dev/null)
