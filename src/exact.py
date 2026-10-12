@@ -165,7 +165,7 @@ def pair_gaps(pb, P, R, pairs, want_axis=False):
     """Vectorized separating-axis gaps for many pairs at once (same value as sat_gap(...)[0] for each pair).
     With want_axis, also the oriented best axis u (pair's A below B along u when the gap is from that side)."""
     if not len(pairs): return (np.zeros(0), np.zeros((0, 3))) if want_axis else np.zeros(0)
-    if pb.prune:                                                   # per pair, with Gauss-map pruned edge axes
+    if pb.prune:                                                   # per pair (faster than the vectorized form here)
         gs, us = [], []
         for i, j in pairs:
             g, u, _ = sat_gap(pb, P[i], R[i], P[j], R[j]); gs.append(g); us.append(u)
@@ -187,6 +187,51 @@ def pair_gaps(pb, P, R, pairs, want_axis=False):
     if not want_axis: return gap
     u = U[np.arange(len(pairs)), k] * np.where(g1[np.arange(len(pairs)), k] >= g2[np.arange(len(pairs)), k], 1.0, -1.0)[:, None]
     return gap, u
+
+
+def pair_gaps_pruned(pb, P, R, pairs, chunk=48):
+    """Vectorized separating-axis gaps with Gauss-map pruned edge axes, for many pairs at once (the same values as
+    sat_gap for each pair). Returns gap, oriented axis u (A below B) and the mid-plane offset c (plane u.x = c)."""
+    P = np.asarray(P, float); pairs = np.asarray(pairs, int)
+    Rs = np.stack(R)
+    X = P[:, None, :] + pb.V[None, :, :] @ Rs.transpose(0, 2, 1)          # n x nv x 3
+    FAu = pb.faxes[None, :, :] @ Rs.transpose(0, 2, 1)                     # n x Fu x 3
+    FN = pb.FNl[None, :, :] @ Rs.transpose(0, 2, 1)                        # n x F x 3
+    e0, e1 = pb.eface[:, 0], pb.eface[:, 1]
+    G = np.empty(len(pairs)); Uo = np.empty((len(pairs), 3)); Co = np.empty(len(pairs))
+    for s0 in range(0, len(pairs), chunk):
+        pc = pairs[s0:s0 + chunk]; pi, pj = pc[:, 0], pc[:, 1]; m = len(pc)
+        XA, XB = X[pi], X[pj]
+        # face axes of both pieces
+        U = np.concatenate([FAu[pi], FAu[pj]], axis=1)                     # m x 2Fu x 3
+        pa = np.einsum('mvd,mad->mva', XA, U); pbv = np.einsum('mvd,mad->mva', XB, U)
+        aMx, aMn, bMx, bMn = pa.max(1), pa.min(1), pbv.max(1), pbv.min(1)
+        g1, g2 = bMn - aMx, aMn - bMx
+        gf = np.maximum(g1, g2); kf = gf.argmax(1); gbest = gf[np.arange(m), kf]
+        sgn = np.where(g1[np.arange(m), kf] >= g2[np.arange(m), kf], 1.0, -1.0)
+        ubest = U[np.arange(m), kf] * sgn[:, None]
+        cbest = np.where(sgn > 0, (bMn[np.arange(m), kf] + aMx[np.arange(m), kf]) / 2, -(aMn[np.arange(m), kf] + bMx[np.arange(m), kf]) / 2)
+        # pruned edge-edge axes
+        a1, a2 = FN[pi][:, e0], FN[pi][:, e1]; b1, b2 = FN[pj][:, e0], FN[pj][:, e1]
+        cA = np.cross(a2, a1); cB = np.cross(b2, b1)
+        CBA = -np.einsum('mid,mjd->mij', cA, b1); DBA = -np.einsum('mid,mjd->mij', cA, b2)
+        ADC = np.einsum('mid,mjd->mij', a1, cB); BDC = np.einsum('mid,mjd->mij', a2, cB)
+        k, i, j = np.nonzero((CBA * DBA < 0) & (ADC * BDC < 0) & (CBA * BDC > 0))
+        if len(k):
+            W = np.cross(cA[k, i], cB[k, j]); l = np.linalg.norm(W, axis=1)
+            ok = l > 1e-12 * np.linalg.norm(cA[k, i], axis=1) * np.linalg.norm(cB[k, j], axis=1)
+            k, W = k[ok], W[ok] / l[ok, None]
+            qa = np.einsum('svd,sd->sv', XA[k], W); qb = np.einsum('svd,sd->sv', XB[k], W)
+            h1, h2 = qb.min(1) - qa.max(1), qa.min(1) - qb.max(1)
+            ge = np.maximum(h1, h2)
+            better = np.full(m, -np.inf); np.maximum.at(better, k, ge)
+            for t in np.nonzero(better > gbest)[0]:
+                sel = np.nonzero(k == t)[0]; b = sel[ge[sel].argmax()]
+                gbest[t] = ge[b]
+                if h1[b] >= h2[b]: ubest[t] = W[b]; cbest[t] = (qb[b].min() + qa[b].max()) / 2
+                else: ubest[t] = -W[b]; cbest[t] = -(qa[b].min() + qb[b].max()) / 2
+        G[s0:s0 + m] = gbest; Uo[s0:s0 + m] = ubest; Co[s0:s0 + m] = cbest
+    return G, Uo, Co
 
 
 def certify(pb, C, R):
@@ -242,7 +287,7 @@ def solve(pb, C, R, L, outer=40, trust=0.03, verbose=False, tlimit=None, method=
     method 'slp': each round solves ONE sparse LP of the linearized constraints (HiGHS) inside the trust region;
     the trust region grows on success and halves on failure. Both accept a round only if the certified size drops."""
     if method == 'slp' and outer == 40: outer = 600
-    trust0 = trust; small = 0
+    trust0 = trust; small = 0; acc = []
     C = np.array(C, float); R = [np.array(r) for r in R]; n = len(C); nv = pb.nv
     t_start = time.time(); hist = []; fails = 0
     Fc = len(pb.CN)
@@ -252,8 +297,9 @@ def solve(pb, C, R, L, outer=40, trust=0.03, verbose=False, tlimit=None, method=
         pairs = [(i, j) for i in range(n) for j in range(i + 1, n) if np.sum((C[i] - C[j]) ** 2) < lim]
         P = len(pairs)
         U0, E1, E2, c0, M0 = [], [], [], [], []
-        for i, j in pairs:
-            _, u, c = sat_gap(pb, C[i], R[i], C[j], R[j]); e1, e2 = tangent_basis(u)
+        for t, (i, j) in enumerate(pairs):
+            _, u, c = sat_gap(pb, C[i], R[i], C[j], R[j])
+            e1, e2 = tangent_basis(u)
             m0 = (C[i] + C[j]) / 2                                   # planes are u.(x - m0) = c
             U0.append(u); E1.append(e1); E2.append(e2); c0.append(c - u @ m0); M0.append(m0)
         U0, E1, E2, M0 = (np.array(A).reshape(P, 3) for A in (U0, E1, E2, M0)); c0 = np.array(c0)
@@ -353,6 +399,10 @@ def solve(pb, C, R, L, outer=40, trust=0.03, verbose=False, tlimit=None, method=
         if verbose: print(f'  it {it} L {z[iL]:.12f} certified {Ln:.12f} (s {pb.s_of_L(Ln):.12f}) viol {viol:.1e} pairs {P} cons {nc + npr} status {res.status} {time.time() - t_start:.0f}s', flush=True)
         if abort is not None and abort(it, min(L, Ln)): break       # caller gives up on this start (cannot win)
         if method == 'slp':
+            acc.append(min(L, Ln))                                  # stop when 50 rounds gained < 1e-7 L in total
+            if len(acc) > 50 and acc[-51] - min(L, Ln) < 1e-7 * L:
+                if Ln < L - 1e-14: C, R, L = Cc, Rn, Ln
+                break
             if Ln < L - 1e-14:
                 imp = L - Ln; C, R, L = Cc, Rn, Ln
                 trust = min(trust0, trust * 1.5)
