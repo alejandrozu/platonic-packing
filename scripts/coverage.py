@@ -14,7 +14,7 @@ for p in engine.PID:
         c = engine._read(engine._path('best', p, n)); d[2] += 1
         if c and c.get('best'):
             d[0] += 1
-            if c['stats'].get('attempts', 0) >= need: d[1] += 1
+            if engine.total_attempts(c['stats']) >= need: d[1] += 1
 tot = [sum(v[i] for v in fams.values()) for i in range(3)]
 print(f"filled {tot[0]}/{tot[2]}, >={need} attempts {tot[1]}/{tot[2]} | " +
       ', '.join(f"{f} {v[0]}/{v[2]} ({v[1]} at {need}+)" for f, v in fams.items()))

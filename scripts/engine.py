@@ -393,8 +393,8 @@ def choose(rng, wid):
     best_key, best_score = None, None
     need = int(policy().get('min_attempts', 0))
     if need:                                     # bring every case to `need` attempts, fewest first (own shard first)
-        low = [(c['stats'].get('attempts', 0), 0 if not sh or PID_INDEX[p] % sh[1] == sh[0] else 1, rng.random(), p, n)
-               for (p, n), c in idx.items() if c and c.get('best') and c['stats'].get('attempts', 0) < need
+        low = [(total_attempts(c['stats']), 0 if not sh or PID_INDEX[p] % sh[1] == sh[0] else 1, rng.random(), p, n)
+               for (p, n), c in idx.items() if c and c.get('best') and total_attempts(c['stats']) < need
                and (p, str(n)) not in claimed]
         if low:
             low.sort(key=lambda x: (x[1], x[0], x[2]))
@@ -561,6 +561,23 @@ def harvest(src_dir, host):
             taken.append(f'{p}{n}:{s:.4f}')
     print(f'harvest from {host}: {len(taken)} improvements ' + ' '.join(taken))
     return taken
+
+
+def add_remote_counts(counts, host):
+    """Add attempts made on other machines ({'pid:n': k}) to the cases' statistics (attempts_remote), so that the
+    policy's min_attempts counts every machine's work."""
+    with locked():
+        for key, k in counts.items():
+            p, n = key.split(':'); n = int(n)
+            if p not in PID: continue
+            c = load_case(p, n)
+            if not c.get('best'): continue
+            c['stats']['attempts_remote'] = c['stats'].get('attempts_remote', 0) + int(k)
+            save_case(c)
+    print(f'remote attempts from {host}: {sum(counts.values())} on {len(counts)} cases')
+
+
+def total_attempts(st): return st.get('attempts', 0) + st.get('attempts_remote', 0)
 
 
 def table():

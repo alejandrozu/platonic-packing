@@ -23,8 +23,22 @@ def export(state, ref):
             continue
         if b and (r is None or b['s'] < r['s'] - 1e-12):
             out.setdefault(p, {})[nn] = {'best': {k: b[k] for k in ('s', 'C', 'Q', 'src') if k in b}}
+    # attempts made here per case since the last export (so the main archive can count remote attempts toward the
+    # policy's min_attempts); the line offset is remembered in STATE/.exported_lines
+    counts = {}
+    ap, op = os.path.join(state, 'attempts.jsonl'), os.path.join(state, '.exported_lines')
+    try: start = int(open(op).read().strip())
+    except (OSError, ValueError): start = 0
+    lines = open(ap).read().splitlines() if os.path.exists(ap) else []
+    for l in lines[start:]:
+        try: a = json.loads(l)
+        except json.JSONDecodeError: continue
+        if a.get('move') == 'harvest': continue
+        k = f"{a['p']}:{a['n']}"; counts[k] = counts.get(k, 0) + 1
+    with open(op, 'w') as f: f.write(str(len(lines)))
+    out['_counts'] = counts
     blob = base64.b64encode(gzip.compress(json.dumps(out, separators=(',', ':')).encode())).decode()
-    print(f'EXPORT {sum(len(v) for v in out.values())} {blob}')
+    print(f'EXPORT {sum(len(v) for k, v in out.items() if not k.startswith("_"))} {blob}')
 
 
 def do_import(blobfile, host):
@@ -33,6 +47,8 @@ def do_import(blobfile, host):
     txt = open(blobfile).read().strip()
     if txt.startswith('EXPORT'): txt = txt.split(None, 2)[2] if len(txt.split(None, 2)) > 2 else ''
     data = json.loads(gzip.decompress(base64.b64decode(txt))) if txt else {}
+    counts = data.pop('_counts', {})
+    if counts: engine.add_remote_counts(counts, host)
     with tempfile.TemporaryDirectory() as d:
         for p, cases in data.items():
             os.makedirs(os.path.join(d, p), exist_ok=True)
