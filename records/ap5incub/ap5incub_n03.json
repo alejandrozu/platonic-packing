@@ -1,0 +1,69 @@
+{
+ "problem": "min/antiprism5_in_cube",
+ "piece": "antiprism5",
+ "container": "cube",
+ "n": 3,
+ "s": 2.36217,
+ "s_plus": "2.36217+",
+ "s_full": 2.3621737365047,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020113340252e-07,
+  "min_wall_gap": 1.0000001604559827e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -0.37198823398781194,
+   -0.7557612707159487,
+   0.3304359895203571,
+   0.11061539760365889,
+   -0.11061547009934788,
+   -0.6984012117646894,
+   -0.698401173390551
+  ],
+  [
+   -0.42532545417614687,
+   0.4742394683871336,
+   0.305267889480248,
+   0.4714184480262638,
+   0.3549635858913188,
+   0.6030874638093101,
+   -0.5367038387674709
+  ],
+  [
+   0.7557613640762803,
+   0.2804241546217559,
+   -0.21924863830979816,
+   0.018154066531797266,
+   -0.7068737014972192,
+   -0.01815406653178873,
+   0.7068737014971903
+  ]
+ ],
+ "record_id": "ap5incub_n03",
+ "title": "3 antiprism5s in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "074e805da16e9179",
+  "clear": 1e-07,
+  "cap": 2.4428501365615
+ },
+ "s_tight": 2.362173436504,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.6793426161813014,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "ascend",
+  "seed": 699089921,
+  "var": "base",
+  "raw": 2.3621734896245354
+ },
+ "density": 0.3593208493477434
+}

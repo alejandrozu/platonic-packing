@@ -1,0 +1,78 @@
+{
+ "problem": "min/antiprism8_in_antiprism8",
+ "piece": "antiprism8",
+ "container": "antiprism8",
+ "n": 4,
+ "s": 3.00124,
+ "s_plus": "3.00124+",
+ "s_full": 3.0012461202529,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 0.011546978068294016,
+  "min_wall_gap": 1.0000003891619258e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   1.5434766921123813,
+   -0.5788026358502671,
+   0.22113848474522457,
+   0.012743410387001415,
+   0.46053438526296514,
+   0.8679148127618954,
+   0.18565980521010816
+  ],
+  [
+   -1.1902560785372727,
+   -2.089104041095972,
+   -0.12284798265187154,
+   0.24036769962912927,
+   -0.008523812901659303,
+   0.057440726073253096,
+   -0.9689433815124576
+  ],
+  [
+   -0.03118343111863118,
+   2.544611730872749,
+   0.7051577326472179,
+   0.052525647849524945,
+   -0.533742968603231,
+   -0.843171137697237,
+   -0.03770851812183985
+  ],
+  [
+   2.1306037146930765,
+   1.2995196483993499,
+   0.008159518662756406,
+   0.24056757881766147,
+   0.03188836954393973,
+   -0.44309285723960806,
+   0.8630058468937959
+  ]
+ ],
+ "record_id": "ap8inap8_n04",
+ "title": "4 antiprism8s in a antiprism8",
+ "family": "prisms",
+ "source": {
+  "hash": "aa3b0001bf793c82",
+  "clear": 1e-07,
+  "cap": 3.0027083933979
+ },
+ "s_tight": 3.001245887775,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.5874010519681994,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "monotone",
+  "from_n": 5,
+  "removed": 4,
+  "host": "laptop"
+ },
+ "density": 0.1479636909987167
+}

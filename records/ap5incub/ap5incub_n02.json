@@ -1,0 +1,60 @@
+{
+ "problem": "min/antiprism5_in_cube",
+ "piece": "antiprism5",
+ "container": "cube",
+ "n": 2,
+ "s": 1.7013,
+ "s_plus": "1.70130+",
+ "s_full": 1.7013019167044,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020079866748e-07,
+  "min_wall_gap": 1.000000444673077e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -0.006860712510159774,
+   -0.4253254541761306,
+   0.010888801596203224,
+   0.05438814769284533,
+   -0.05438814769284203,
+   -0.7050120065577203,
+   -0.705012006557718
+  ],
+  [
+   0.0056960961034343135,
+   0.42532545417612494,
+   0.006421921172968563,
+   0.25705426375738644,
+   0.2570542637573964,
+   0.6587284003928686,
+   -0.6587284003928656
+  ]
+ ],
+ "record_id": "ap5incub_n02",
+ "title": "2 antiprism5s in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "7cb3a980dfa80ba6",
+  "clear": 1e-07,
+  "cap": 2.3621737365047
+ },
+ "s_tight": 1.701301616704,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.4670409030951332,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "fresh",
+  "seed": 1077054859,
+  "var": "base",
+  "raw": 1.701301779203368
+ },
+ "density": 0.6411837310539158
+}

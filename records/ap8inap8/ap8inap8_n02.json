@@ -1,0 +1,61 @@
+{
+ "problem": "min/antiprism8_in_antiprism8",
+ "piece": "antiprism8",
+ "container": "antiprism8",
+ "n": 2,
+ "s": 1.96133,
+ "s_plus": "1.96133+",
+ "s_full": 1.9613306494113,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020091157808e-07,
+  "min_wall_gap": 1.0000003303201055e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   0.8341840461192822,
+   0.8348648111870439,
+   0.017442405324557906,
+   0.06874028469223886,
+   -0.3795035600560629,
+   -0.9078603575440584,
+   0.16444267197165977
+  ],
+  [
+   -0.8336285932701759,
+   -0.8343093584961973,
+   -0.01744248486282742,
+   0.3736046743897755,
+   -0.16488524991417067,
+   -0.06767180702102082,
+   -0.910303755989923
+  ]
+ ],
+ "record_id": "ap8inap8_n02",
+ "title": "2 antiprism8s in a antiprism8",
+ "family": "prisms",
+ "source": {
+  "hash": "9251716190e844d4",
+  "clear": 1e-07,
+  "cap": 2.9449889129624
+ },
+ "s_tight": 1.961330319765,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "fresh",
+  "seed": 71050762,
+  "var": "base",
+  "raw": 1.9613316374231482,
+  "host": "laptop"
+ },
+ "density": 0.2650803592798308
+}

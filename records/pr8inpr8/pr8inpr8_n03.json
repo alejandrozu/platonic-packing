@@ -1,0 +1,69 @@
+{
+ "problem": "min/prism8_in_prism8",
+ "piece": "prism8",
+ "container": "prism8",
+ "n": 3,
+ "s": 2.11022,
+ "s_plus": "2.11022+",
+ "s_full": 2.1102281642109,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020136957666e-07,
+  "min_wall_gap": 1.000000260376055e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   1.0283953237528551,
+   1.0192507106343696,
+   -0.5314973378617878,
+   0.004983473111219996,
+   0.9238565876742463,
+   -0.3826739283024092,
+   0.004983473111205373
+  ],
+  [
+   -1.306563044288561,
+   0.3476944048668978,
+   -0.555113982105424,
+   1.82775553327534e-17,
+   -9.556277238452072e-16,
+   1.0,
+   1.1150672829372688e-17
+  ],
+  [
+   0.06332046478268531,
+   -1.333568166686206,
+   1.7848052258351288e-08,
+   2.4143610516108155e-16,
+   -0.10341661867980166,
+   0.24966980339154388,
+   -0.9627928085809867
+  ]
+ ],
+ "record_id": "pr8inpr8_n03",
+ "title": "3 prism8s in a prism8",
+ "family": "prisms",
+ "source": {
+  "hash": "4660059e7587095a",
+  "clear": 1e-07,
+  "cap": 2.167661060101
+ },
+ "s_tight": 2.110227928515,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.4422495703074083,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "ascend",
+  "seed": 1588827976,
+  "var": "base",
+  "raw": 2.237294447563623
+ },
+ "density": 0.31925154636159453
+}

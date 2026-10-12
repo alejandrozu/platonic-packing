@@ -1,0 +1,70 @@
+{
+ "problem": "min/truncated_cube_in_truncated_cube",
+ "piece": "truncated_cube",
+ "container": "truncated_cube",
+ "n": 3,
+ "s": 2.06991,
+ "s_plus": "2.06991+",
+ "s_full": 2.069919166422,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020238899911e-07,
+  "min_wall_gap": 1.0000006112065307e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -1.1227070812639297,
+   0.927343425127675,
+   -0.9273434518849418,
+   0.13485462214139193,
+   -0.6941283965428117,
+   -0.6941283965428234,
+   -0.13485462214138863
+  ],
+  [
+   1.2915065811093898,
+   -0.8390971122510676,
+   0.6940370952701008,
+   0.6821624335656991,
+   0.1861569612765653,
+   -0.6821624335656973,
+   -0.18615696127656495
+  ],
+  [
+   -1.1227070812639202,
+   -0.9273434518849548,
+   0.927343425127668,
+   0.6941283965428158,
+   0.13485462214139235,
+   0.6941283965428192,
+   0.13485462214138874
+  ]
+ ],
+ "record_id": "tcuintcu_n03",
+ "title": "3 truncated cubes in a truncated cube",
+ "family": "archimedean",
+ "source": {
+  "hash": "506c06ea9bd5974a",
+  "clear": 1e-07,
+  "cap": 2.0831444500335
+ },
+ "s_tight": 2.069919040675,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.4422495703074083,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "ascend",
+  "seed": 819780929,
+  "var": "base",
+  "raw": 2.0699192228633345,
+  "host": "laptop"
+ },
+ "density": 0.33826814122903176
+}

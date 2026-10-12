@@ -1,0 +1,60 @@
+{
+ "problem": "min/antiprism6_in_antiprism6",
+ "piece": "antiprism6",
+ "container": "antiprism6",
+ "n": 2,
+ "s": 1.93011,
+ "s_plus": "1.93011+",
+ "s_full": 1.9301182122366,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000002009317475e-07,
+  "min_wall_gap": 1.0000001571253136e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -0.8237481954786615,
+   -0.0011871331376331264,
+   -0.03239996268437081,
+   0.4791121999039351,
+   -0.21553709985450206,
+   0.12617163773002174,
+   -0.8414725047926678
+  ],
+  [
+   0.8281026467941274,
+   0.0011871328601271928,
+   0.032399898163919326,
+   0.21553709985450936,
+   0.4791121999039645,
+   -0.8414725047926501,
+   -0.126171637730016
+  ]
+ ],
+ "record_id": "ap6inap6_n02",
+ "title": "2 antiprism6s in a antiprism6",
+ "family": "prisms",
+ "source": {
+  "hash": "8acea39173559ff3",
+  "clear": 1e-07,
+  "cap": 2.1066709705443
+ },
+ "s_tight": 1.930117894221,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "fresh",
+  "seed": 818133349,
+  "var": "base",
+  "raw": 1.9301253599094952
+ },
+ "density": 0.27814949107133435
+}

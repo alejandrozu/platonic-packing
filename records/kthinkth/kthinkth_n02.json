@@ -1,0 +1,60 @@
+{
+ "problem": "min/tetrakis_hexahedron_in_tetrakis_hexahedron",
+ "piece": "tetrakis_hexahedron",
+ "container": "tetrakis_hexahedron",
+ "n": 2,
+ "s": 1.94751,
+ "s_plus": "1.94751+",
+ "s_full": 1.9475133140867,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020264849034e-07,
+  "min_wall_gap": 1.0000000738585868e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   0.9209394851803292,
+   0.7580471576898675,
+   -0.964841296674628,
+   0.5186191281496462,
+   0.68531882090662,
+   -0.5109098144211227,
+   0.01853308276124155
+  ],
+  [
+   -0.920939487237074,
+   -0.7580471711935464,
+   0.9648412956462546,
+   0.11787448317017013,
+   -0.8513126879055102,
+   0.3481629258551704,
+   -0.3743726628487021
+  ]
+ ],
+ "record_id": "kthinkth_n02",
+ "title": "2 tetrakis hexahedra in a tetrakis hexahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "5ceb55d3c9ea9a43",
+  "clear": 1e-07,
+  "cap": 2.033142358185
+ },
+ "s_tight": 1.947513212336,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "fresh",
+  "seed": 1721964051,
+  "var": "base",
+  "raw": 1.9475155019105341
+ },
+ "density": 0.27076260856285506
+}

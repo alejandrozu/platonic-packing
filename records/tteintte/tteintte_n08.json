@@ -1,0 +1,114 @@
+{
+ "problem": "min/truncated_tetrahedron_in_truncated_tetrahedron",
+ "piece": "truncated_tetrahedron",
+ "container": "truncated_tetrahedron",
+ "n": 8,
+ "s": 2.33333,
+ "s_plus": "2.33333+",
+ "s_full": 2.3333336054992,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020120438187e-07,
+  "min_wall_gap": 1.000000442452631e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   1.4142136778434067,
+   -1.8729927852163806e-15,
+   -2.8349323915445037e-16,
+   0.4999999999999982,
+   0.5000000000000007,
+   -0.5000000000000018,
+   0.49999999999999956
+  ],
+  [
+   -0.3999244447552699,
+   -1.3822164999897206,
+   0.3679272669015819,
+   0.007378258452469146,
+   0.9999183386190224,
+   -0.007378258452469252,
+   0.007378258452469137
+  ],
+  [
+   4.538757822005245e-16,
+   -1.8729927852163806e-15,
+   -1.4142136778434065,
+   8.729715040097155e-15,
+   1.0375617105815582e-15,
+   1.0,
+   1.5274683433262737e-16
+  ],
+  [
+   0.42959424676477714,
+   -0.7071068389216948,
+   -0.4295942467647773,
+   5.949739190766158e-15,
+   0.707106781186553,
+   -5.882252124686081e-15,
+   -0.7071067811865421
+  ],
+  [
+   -0.7071068389217026,
+   0.7071068389217064,
+   -0.7071068389217025,
+   3.1481685735782536e-15,
+   0.7071067811865496,
+   -3.486161786523129e-15,
+   0.7071067811865456
+  ],
+  [
+   4.538757822005245e-16,
+   1.4142136778434051,
+   -2.8349323915445037e-16,
+   0.5,
+   0.5,
+   -0.5000000000000001,
+   -0.5
+  ],
+  [
+   4.538757822005245e-16,
+   -1.8729927852163806e-15,
+   1.4142136778434107,
+   0.5000000000000006,
+   0.500000000000006,
+   0.4999999999999977,
+   0.4999999999999959
+  ],
+  [
+   0.7071068389216993,
+   0.7071068389217026,
+   0.7071068389216985,
+   5.699656246441443e-15,
+   -0.7071067811865454,
+   0.7071067811865498,
+   -1.307259858827472e-15
+  ]
+ ],
+ "record_id": "tteintte_n08",
+ "title": "8 truncated tetrahedra in a truncated tetrahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "675414465be7e53e",
+  "clear": 1e-07,
+  "cap": 2.5000002857742
+ },
+ "s_tight": 2.333333333333,
+ "closed_form_conjecture": "7/3",
+ "volume_lower_bound": 2.0,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "ascend",
+  "seed": 1468901997,
+  "var": "base",
+  "raw": 2.3333333878304923
+ },
+ "density": 0.629737388966963
+}

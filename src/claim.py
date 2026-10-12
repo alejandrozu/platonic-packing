@@ -67,6 +67,62 @@ def make_claim(rec, GAP=1e-6, WALL=1e-6, meta=None):
     return claim
 
 
+def make_claim_fast(rec, GAP=1e-7, WALL=1e-7, meta=None):
+    """Same claim as make_claim for any solid of src/solids.json, with the centres spread by Newton-like steps on the
+    vectorized separating-axis gaps (exact.pair_gaps) instead of bisection: every near pair ends with a separating
+    axis showing a gap >= GAP (unit edge), then the container is fitted with wall gap >= WALL."""
+    from exact import pair_gaps
+    piece, container = rec['piece'], rec['container']
+    pbi = Problem(piece, container); e = pbi.edge
+    Vu = np.array(SOL[piece]['V']); CN = np.array(SOL[container]['normals']); CV = np.array(SOL[container]['V'])
+    beta = np.array([CN[f] @ CV[F[0]] for f, F in enumerate(SOL[container]['faces'])])
+    C = np.array(rec['C'], float)
+    Q = [np.array(q) / np.linalg.norm(q) for q in rec['Q']]
+    Q = [q if q[0] >= 0 else -q for q in Q]
+    R = [quat_to_R(q) for q in Q]
+    n = len(C); cen = C.mean(0); lim = (2 * pbi.circ) ** 2 * 1.0001
+    k = 1.0
+    for _ in range(60):
+        P = cen + k * (C - cen)
+        pairs = np.array([(i, j) for i in range(n) for j in range(i + 1, n) if np.sum((P[i] - P[j]) ** 2) <= lim], int).reshape(-1, 2)
+        if not len(pairs): break
+        g, u = pair_gaps(pbi, P, R, pairs, want_axis=True)
+        bad = g < GAP * e * (1 + 1e-9)
+        if not bad.any(): break
+        dc = C[pairs[bad, 1]] - C[pairs[bad, 0]]
+        proj = np.abs(np.sum(u[bad] * dc, axis=1))
+        need = np.where(proj > 1e-9, (GAP * e * (1 + 1e-6) - g[bad]) / np.maximum(proj, 1e-9), 1e-4)
+        k += float(need.max()) * (1 + 1e-6) + 1e-15
+    else:
+        raise RuntimeError('could not spread the centres to the clearance')
+    P = cen + k * (C - cen)
+    pairs = np.array([(i, j) for i in range(n) for j in range(i + 1, n) if np.sum((P[i] - P[j]) ** 2) <= lim], int).reshape(-1, 2)
+    pg = float(pair_gaps(pbi, P, R, pairs).min()) / e if len(pairs) else float('inf')
+    C2 = P / e
+    X = np.concatenate([C2[i] + Vu @ R[i].T for i in range(n)])
+    S = (X @ CN.T).max(0)
+    res = linprog([0, 0, 0, 1], A_ub=np.hstack([CN, -beta[:, None]]), b_ub=-S, bounds=[(None, None)] * 4, method='highs')
+    t = res.x[:3]; C2 = C2 + t
+    X = np.concatenate([C2[i] + Vu @ R[i].T for i in range(n)])
+    s = math.ceil(float(((X @ CN.T).max(0) + WALL).__truediv__(beta).max()) * 1e13) / 1e13
+    wall = float((s * beta[None, :] - X @ CN.T).min())
+    claim = {
+        'problem': f'min/{piece}_in_{container}', 'piece': piece, 'container': container, 'n': n,
+        's': math.floor(s * 1e5) / 1e5, 's_plus': f'{math.floor(s * 1e5) / 1e5:.5f}+', 's_full': s,
+        'measure': ('edge length of the container divided by the edge length of the pieces' if SOL[piece].get('unit', 'edge') == 'edge'
+                    else 'linear size of the container divided by the linear size of the pieces (same canonical solid)'),
+        'clearance': {'min_pair_gap_target': GAP, 'wall_gap_target': WALL, 'min_pair_gap': pg, 'min_wall_gap': wall},
+        'format': '[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit '
+                  'coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); '
+                  'container = s_full x canonical container solid, centred at the origin, canonical orientation',
+        'method': 'generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin '
+                  'hopping, then sequential-LP / SLSQP tightening with per-pair separating planes',
+        'date': datetime.date.today().isoformat(),
+        'pieces': [[*map(float, C2[i]), *map(float, Q[i])] for i in range(n)]}
+    if meta: claim.update(meta)
+    return claim
+
+
 if __name__ == '__main__':
     rec = json.load(open(sys.argv[1]))
     GAP = float(sys.argv[3]) if len(sys.argv) > 3 else 1e-6

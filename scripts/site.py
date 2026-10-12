@@ -19,12 +19,42 @@ def src_code(src):
     return 'T' if 'trivial' in src else 'N' if 'Nakajima' in src else 'W' if 'Walsh' in src else 'L' if 'Lin' in src else 'F'
 
 
+sys.path.insert(0, os.path.join(ROOT, 'scripts'))
+from engine import FAM, PID
+POLY = {3: 'triangular', 4: 'square', 5: 'pentagonal', 6: 'hexagonal', 8: 'octagonal', 12: 'dodecagonal'}
+FAMILY_GROUP = {'platonic': 'platonic', 'archimedean': 'archcat', 'catalan': 'archcat', 'prisms': 'prisms'}
+ALIASES = [('pr4inpr4', 'cubincub', 'Square prisms in a square prism', 'the square prism with unit edges is the cube: same problem as cubes in a cube'),
+           ('pr4incub', 'cubincub', 'Square prisms in a cube', 'the square prism with unit edges is the cube: same problem as cubes in a cube'),
+           ('ap3inap3', 'octinoct', 'Triangular antiprisms in a triangular antiprism', 'the triangular antiprism is the octahedron: same problem as octahedra in an octahedron'),
+           ('ap3incub', 'octincub', 'Triangular antiprisms in a cube', 'the triangular antiprism is the octahedron: same problem as octahedra in a cube')]
+
+
+def disp(s):
+    for pre in ('antiprism', 'prism'):
+        if s.startswith(pre) and s[len(pre):].isdigit(): return f'{POLY[int(s[len(pre):])]} {pre}'
+    return s.replace('_', ' ')
+
+
+def plural(s):
+    w = disp(s)
+    if w.endswith('hedron'): return w[:-6] + 'hedra'
+    return w + 's'
+
+
+def ptitle(piece, container):
+    c = disp(container); return f"{plural(piece)[0].upper() + plural(piece)[1:]} in {'an' if c[0] in 'aeiou' else 'a'} {c}"
+
+
 def load():
     probs = {}
     for f in sorted(glob.glob(os.path.join(ROOT, 'records', '*', '*_n[0-9][0-9].json'))):
         r = json.load(open(f)); pid = r['record_id'].split('_')[0]
+        if pid not in FAM: continue
         cert = open(f.replace('.json', '.certify.txt')).read() if os.path.exists(f.replace('.json', '.certify.txt')) else ''
-        p = probs.setdefault(pid, {'id': pid, 'piece': r['piece'], 'container': r['container'], 'rows': [], 'hasref': bool(REF.get(pid))})
+        vtxt = open(f.replace('.json', '.verify.txt')).read() if os.path.exists(f.replace('.json', '.verify.txt')) else ''
+        p = probs.setdefault(pid, {'id': pid, 'piece': r['piece'], 'container': r['container'], 'rows': [], 'hasref': bool(REF.get(pid)),
+                                   'family': FAM[pid], 'group': FAMILY_GROUP[FAM[pid]], 'title': ptitle(r['piece'], r['container']),
+                                   'unit': 'edge' if SOL[r['piece']].get('unit', 'edge') == 'edge' else 'size'})
         ref = REF.get(pid, {}).get(str(r['n']))
         p['rows'].append({'n': r['n'], 's': r['s_plus'], 'ref': ref[0] if ref else None, 'refsrc': ref[1] if ref else None,
                           'refcode': src_code(ref[1]) if ref else None, 'cmp': compare(r['s_full'], ref[0]) if ref else None,
@@ -33,12 +63,24 @@ def load():
                           'move': (r.get('search') or {}).get('move'), 'derived': r.get('derived_from'), 'who': r.get('found_by'),
                           'file': os.path.relpath(f, ROOT),
                           'ok': 'CERTIFIED' in cert and 'NOT CERTIFIED' not in cert,
+                          'ver': 'VALID' in vtxt and 'INVALID' not in vtxt,
                           'cert': [l for l in cert.splitlines() if l.startswith('(')],
                           'p': [[round(x, 7) for x in q] for q in r['pieces']]})
     for p in probs.values(): p['rows'].sort(key=lambda r: r['n'])
-    ids = [i for i in ORDER if i in probs] + sorted(i for i in probs if i not in ORDER)
+    for pid, (pc, cc) in PID.items():                # problems without records yet (still searching)
+        if pid not in probs:
+            probs[pid] = {'id': pid, 'piece': pc, 'container': cc, 'rows': [], 'hasref': bool(REF.get(pid)), 'family': FAM[pid],
+                          'group': FAMILY_GROUP[FAM[pid]], 'title': ptitle(pc, cc), 'unit': 'edge' if SOL[pc].get('unit', 'edge') == 'edge' else 'size'}
+    ids = [i for i in PID if i in probs]
+    out = [probs[i] for i in ids]
+    for a, src, t, note in ALIASES:                 # prism-family names for problems that are Platonic ones
+        if src in probs:
+            q = dict(probs[src]); q.update(id=a, family='prisms', group='prisms', title=t + ' (= ' + probs[src]['title'].lower() + ')',
+                                          alias=src, note=note, hasref=False)
+            k = next((i for i, x in enumerate(out) if x['group'] == 'prisms'), len(out))
+            out.insert(k, q)
     solids = {k: {'V': v['V'], 'F': v['faces'], 'E': v['edges'], 'vol': v['volume']} for k, v in SOL.items()}
-    return {'problems': [probs[i] for i in ids], 'solids': solids, 'nmin': 2, 'nmax': 40,
+    return {'problems': out, 'solids': solids, 'nmin': 2, 'nmax': 40,
             'repo': 'https://github.com/alejandrozu/platonic-packing'}
 
 

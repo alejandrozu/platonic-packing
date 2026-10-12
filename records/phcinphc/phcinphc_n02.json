@@ -1,0 +1,61 @@
+{
+ "problem": "min/pentagonal_hexecontahedron_in_pentagonal_hexecontahedron",
+ "piece": "pentagonal_hexecontahedron",
+ "container": "pentagonal_hexecontahedron",
+ "n": 2,
+ "s": 1.95734,
+ "s_plus": "1.95734+",
+ "s_full": 1.9573468023869,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020429023041e-07,
+  "min_wall_gap": 1.0000016281708213e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -1.0976854507525462,
+   -1.716975885534562,
+   0.11967705177536866,
+   0.252051858561342,
+   0.6419474955734127,
+   0.4388241608859767,
+   0.5760265873599195
+  ],
+  [
+   0.9900206856810886,
+   1.783516369739496,
+   -0.07855277090883285,
+   0.12193234826632113,
+   -0.051505066616039485,
+   0.7904139132952649,
+   -0.5981016437265522
+  ]
+ ],
+ "record_id": "phcinphc_n02",
+ "title": "2 pentagonal hexecontahedra in a pentagonal hexecontahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "cf440f1cce86d77f",
+  "clear": 1e-07,
+  "cap": 2.1462398345915
+ },
+ "s_tight": 1.95734673033,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "fresh",
+  "seed": 1835770992,
+  "var": "base",
+  "raw": 1.9573907338991003,
+  "host": "laptop"
+ },
+ "density": 0.26670223402389537
+}

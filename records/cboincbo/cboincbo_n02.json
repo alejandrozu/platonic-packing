@@ -1,0 +1,61 @@
+{
+ "problem": "min/cuboctahedron_in_cuboctahedron",
+ "piece": "cuboctahedron",
+ "container": "cuboctahedron",
+ "n": 2,
+ "s": 1.87114,
+ "s_plus": "1.87114+",
+ "s_full": 1.8711435740504,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000002013922326e-07,
+  "min_wall_gap": 1.000000442452631e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   0.32362927597950375,
+   -0.4412393164246574,
+   -0.5066016288568882,
+   0.4217850894125801,
+   -0.8259023672445078,
+   -0.3264359269056063,
+   -0.18281740550182202
+  ],
+  [
+   -0.3236292926121085,
+   0.4412393164246546,
+   0.50660161961325,
+   0.5520344676266518,
+   -0.45668530511968747,
+   -0.05256802728774253,
+   0.6956529890304307
+  ]
+ ],
+ "record_id": "cboincbo_n02",
+ "title": "2 cuboctahedra in a cuboctahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "cb65f42e49aecf71",
+  "clear": 1e-07,
+  "cap": 2.1110581970616
+ },
+ "s_tight": 1.871143375432,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "fresh",
+  "seed": 1503636269,
+  "var": "base",
+  "raw": 1.8726376670519536,
+  "host": "laptop"
+ },
+ "density": 0.30528724396643125
+}

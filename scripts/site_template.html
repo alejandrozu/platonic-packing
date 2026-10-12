@@ -30,6 +30,9 @@ h1 em { font-style: italic; font-weight: 400; color: var(--accent) }
 .tab .id { font-family: var(--f-mono); color: var(--muted); font-size: 12px }
 .tab .lit { font: 500 10px/1 var(--f-body); letter-spacing: .06em; text-transform: uppercase; color: var(--exact) }
 .tab[aria-selected="true"] { border-color: var(--accent); color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent) }
+.fams { margin-bottom: 10px }
+.fams .tab { font-weight: 600; font-size: 14px; padding: 10px 16px }
+.fams .tab .id { font-weight: 400 }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
 .grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px }
 .panel { background: var(--sheet); border: 1px solid var(--rule); border-radius: 10px; min-width: 0 }
@@ -103,13 +106,16 @@ footer a { color: var(--accent) }
 
 <div class="wrap">
   <header>
-    <h1>How small can the container be? <em>Platonic solids in Platonic solids</em></h1>
-    <p class="lede">Each row is the smallest container found for <b>n unit-edge copies</b> of a solid (n = 2–40; each solid in itself, cubes in a cube, and the four dual pairs), reported as
-      <b>s = container edge ÷ piece edge</b>. Pieces start as their inscribed spheres and are sharpened into the solid
-      under pressure (Yohei Nakajima's soft-to-rigid method), then improved by basin hopping and tightened. Every packing is proven valid in exact
-      arithmetic over ℚ(√2, √5).</p>
+    <h1>How small can the container be? <em>Polyhedra packed in polyhedra</em></h1>
+    <p class="lede">Each row is the smallest container found for <b>n copies</b> of a solid (n = 2–40), reported as
+      <b>s = container edge ÷ piece edge</b> (for Catalan solids, the ratio of sizes). Three families: the <b>Platonic</b> solids (each in itself, cubes in a cube and the four dual pairs),
+      the <b>Archimedean and Catalan</b> solids (each in itself), and regular <b>prisms and antiprisms</b> (in themselves and in a cube).
+      Pieces start soft (their inscribed sphere, or their rounded shape when there is no insphere) and are sharpened into the solid
+      under pressure (Yohei Nakajima's soft-to-rigid method, generalized), then improved by basin hopping and tightened. Platonic packings are proven valid in exact
+      arithmetic over ℚ(√2, √5); the newer families are float-verified while their exact certificates are prepared.</p>
   </header>
 
+  <nav class="tabs fams" id="fams" role="tablist" aria-label="Family"></nav>
   <nav class="tabs" id="tabs" role="tablist" aria-label="Packing problem"></nav>
 
   <div class="grid">
@@ -218,6 +224,9 @@ footer a { color: var(--accent) }
   let colMode = store.get('ppr-col') || 'orient', axis = 2;
   const PAL = ['#4c6fd6', '#d9822b', '#3f9a6a', '#c8524a', '#7a5fc4', '#2a9fb0', '#c9a227', '#b5577f', '#6d8a2f', '#8a6a4b',
                '#5a86c2', '#d36b3b', '#4aa087', '#a8484a', '#8c76d1', '#3b8fa0', '#b8962e', '#9c5c8f', '#7f9a3a', '#a37b5a'];
+  const POLY = { 3: 'triangular', 4: 'square', 5: 'pentagonal', 6: 'hexagonal', 8: 'octagonal', 12: 'dodecagonal' };
+  function dn(s) { const m = /^(anti)?prism(\d+)$/.exec(s); return m ? `${POLY[m[2]]} ${m[1] ? 'antiprism' : 'prism'}` : s.replace(/_/g, ' ') }
+  function pl(s) { if (NAMES[s]) return NAMES[s][1]; const w = dn(s); return w.endsWith('hedron') ? w.slice(0, -6) + 'hedra' : w + 's' }
   function cap(s) { return s[0].toUpperCase() + s.slice(1) }
   function article(s) { return (/^[aeiou]/.test(s) ? 'an ' : 'a ') + s }
   function fmtCF(s) { return s.replace(/√(\d+)/g, '√<span style="text-decoration:overline">$1</span>') }
@@ -256,22 +265,41 @@ footer a { color: var(--accent) }
     return r.p.map((p, j) => [j, Math.hypot(p[0] - c[0], p[1] - c[1], p[2] - c[2])]).filter(x => x[0] !== i).sort((a, b) => a[1] - b[1]);
   }
 
-  // ---------- tabs
-  const tabs = $('tabs');
-  D.problems.forEach(p => {
+  // ---------- families + tabs
+  const GROUPS = [['platonic', 'Platonic'], ['archcat', 'Archimedean / Catalan'], ['prisms', 'Prisms']];
+  const tabs = $('tabs'), fams = $('fams');
+  const ptitle = p => p.title || `${cap(pl(p.piece))} in ${article(dn(p.container))}`;
+  function showGroup(g, pick) {
+    document.querySelectorAll('#fams .tab').forEach(t => t.setAttribute('aria-selected', t.dataset.g === g));
+    tabs.innerHTML = '';
+    D.problems.filter(p => (p.group || 'platonic') === g).forEach(p => {
+      const b = document.createElement('button');
+      b.className = 'tab'; b.type = 'button'; b.setAttribute('role', 'tab'); b.id = 'tab-' + p.id;
+      b.innerHTML = `${ptitle(p)} <span class="id">${p.id}</span>` + (p.hasref ? ' <span class="lit">published</span>' : '') + (p.alias ? ' <span class="lit">= ' + p.alias + '</span>' : '');
+      b.onclick = () => selectProb(p);
+      tabs.appendChild(b);
+    });
+    if (pick) { const p = D.problems.find(p => (p.group || 'platonic') === g); if (p) selectProb(p) }
+  }
+  GROUPS.forEach(([g, label]) => {
+    const n = D.problems.filter(p => (p.group || 'platonic') === g && !p.alias).length;
+    if (!n && g !== 'platonic') return;
     const b = document.createElement('button');
-    b.className = 'tab'; b.type = 'button'; b.setAttribute('role', 'tab'); b.id = 'tab-' + p.id;
-    b.innerHTML = `${cap(NAMES[p.piece][1])} in ${article(p.container)} <span class="id">${p.id}</span>` + (p.hasref ? ' <span class="lit">published</span>' : '');
-    b.onclick = () => selectProb(p);
-    tabs.appendChild(b);
+    b.className = 'tab'; b.type = 'button'; b.setAttribute('role', 'tab'); b.dataset.g = g;
+    b.innerHTML = `${label} <span class="id">${n} problems</span>`;
+    b.onclick = () => showGroup(g, true);
+    fams.appendChild(b);
   });
+  showGroup(prob.group || 'platonic', false);
 
   // ---------- table + chart
   function selectProb(p, wantN) {
     prob = p; store.set('ppr-prob', p.id);
     document.querySelectorAll('.tab').forEach(t => t.setAttribute('aria-selected', t.id === 'tab-' + p.id));
-    $('ptitle').textContent = `${cap(NAMES[p.piece][1])} in ${article(p.container)}`;
-    $('psub').textContent = `${p.rows.length} of ${D.nmax - D.nmin + 1} values of n (${D.nmin}–${D.nmax}) recorded · s = container edge ÷ piece edge`;
+    if ((p.group || 'platonic') !== (document.querySelector('#fams .tab[aria-selected="true"]') || {}).dataset?.g) showGroup(p.group || 'platonic', false);
+    document.querySelectorAll('.tab').forEach(t => { if (t.id) t.setAttribute('aria-selected', t.id === 'tab-' + p.id) });
+    $('ptitle').textContent = ptitle(p);
+    $('psub').textContent = `${p.rows.length} of ${D.nmax - D.nmin + 1} values of n (${D.nmin}–${D.nmax}) recorded · ` + (p.unit === 'size' ? 's = container size ÷ piece size (same canonical solid)' : 's = container edge ÷ piece edge') + (p.note ? ' · ' + p.note : '');
     const refs = p.rows.filter(r => r.cmp);
     if (p.hasref && refs.length) {
       const g = k => refs.filter(r => r.cmp === k).map(r => r.n);
@@ -291,7 +319,7 @@ footer a { color: var(--accent) }
       tr.innerHTML = `<td class="n">${n}</td><td class="s">${r.s}</td><td class="cf">${r.cf ? fmtCF(r.cf) : ''}</td>` +
         (p.hasref ? `<td class="mono" title="${r.refsrc || ''}">${r.ref != null ? r.ref.toFixed(5) + ' ' + r.refcode : ''}</td><td>${chip(r)}</td>` : '') +
         `<td class="mono">${r.den.toFixed(3)}</td><td class="mono">${r.vlb.toFixed(3)}</td>` +
-        `<td>${r.ok ? '<span class="tick" title="certify_exact.py: CERTIFIED">✓ certified</span>' : '<span class="cross">not certified</span>'}</td>`;
+        `<td>${r.ok ? '<span class="tick" title="certify_exact.py: CERTIFIED">✓ certified</span>' : r.ver ? '<span class="tick" title="verify_general.py: VALID (floating point); exact certificate pending">✓ float-verified</span>' : '<span class="cross">not certified</span>'}</td>`;
       const open = () => { selectRow(r, true); document.querySelector('.viewer').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' }) };
       tr.onclick = open; tr.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open() } };
       tb.appendChild(tr);
@@ -307,7 +335,7 @@ footer a { color: var(--accent) }
   function drawS() {
     const svg = $('chart'), [W, H] = dims('box1'), L = 62, R = 18, T = 16, B = 62;
     svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
-    $('c1title').textContent = `s(n): ${NAMES[prob.piece][1]} in ${article(prob.container)}`;
+    $('c1title').textContent = `s(n): ${pl(prob.piece)} in ${article(dn(prob.container))}`;
     const rows = prob.rows; if (!rows.length) { svg.innerHTML = ''; return }
     const mut = css('--muted'), rule = css('--rule'), acc = css('--accent'), ex = css('--exact'), sheet = css('--sheet');
     const ys = rows.flatMap(r => [r.sf, r.vlb].concat(r.ref != null ? [r.ref] : []));
@@ -379,8 +407,8 @@ footer a { color: var(--accent) }
     if (!r) return; row = r; sel = null; isolate = false;
     document.querySelectorAll('#rows tr').forEach(t => t.setAttribute('aria-selected', +t.dataset.n === r.n));
     const tr = document.querySelector(`#rows tr[data-n="${r.n}"]`);
-    const pl = NAMES[prob.piece][1];
-    $('cap').innerHTML = `${r.n} ${pl} · s = ${r.s}` + (r.cf ? ` <span class="cf">≈ ${fmtCF(r.cf)}</span>` : '');
+    const plN = pl(prob.piece);
+    $('cap').innerHTML = `${r.n} ${plN} · s = ${r.s}` + (r.cf ? ` <span class="cf">≈ ${fmtCF(r.cf)}</span>` : '');
     const oc = orient(r);
     const lines = [`${prob.id}_n${String(r.n).padStart(2, '0')}   s_full = ${r.sf}   touching limit ${r.st}`];
     if (r.ref != null) lines.push(`published: ${r.ref} (${r.refsrc})`);
@@ -390,7 +418,7 @@ footer a { color: var(--accent) }
     $('meta').textContent = lines.join('\n');
     const url = `${D.repo}/blob/main/${r.file}`;
     $('links').innerHTML = `<a href="${url}" target="_blank" rel="noopener">record file</a>` +
-      `<a href="${url.replace('.json', '.certify.txt')}" target="_blank" rel="noopener">exact certificate</a>` +
+      (r.ok ? `<a href="${url.replace('.json', '.certify.txt')}" target="_blank" rel="noopener">exact certificate</a>` : `<a href="${url.replace('.json', '.verify.txt')}" target="_blank" rel="noopener">float check</a>`) +
       `<button class="small" type="button" id="copy">copy coordinates</button><span id="copied" class="mono"></span>`;
     $('copy').onclick = copyCoords;
     $('prevn').disabled = !prob.rows.find(x => x.n === r.n - 1); $('nextn').disabled = !prob.rows.find(x => x.n === r.n + 1);

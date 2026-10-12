@@ -1,0 +1,151 @@
+{
+ "problem": "min/deltoidal_icositetrahedron_in_deltoidal_icositetrahedron",
+ "piece": "deltoidal_icositetrahedron",
+ "container": "deltoidal_icositetrahedron",
+ "n": 12,
+ "s": 2.99117,
+ "s_plus": "2.99117+",
+ "s_full": 2.9911756955971,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020266057431e-07,
+  "min_wall_gap": 1.000000846573812e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   2.503492259366841,
+   0.7543338122688052,
+   -1.80432639726715e-09,
+   0.2705980500730987,
+   0.2705980500730987,
+   -0.6532814824381887,
+   0.6532814824381877
+  ],
+  [
+   -1.5082127463316695,
+   1.5064579935891809,
+   -1.4390437593144894,
+   0.549826226525415,
+   0.003361130777618794,
+   0.6329791664028707,
+   -0.5449928424526749
+  ],
+  [
+   1.6148500743567589,
+   -1.4378476825603002,
+   1.4493567899095798,
+   0.23987809391411422,
+   0.35797122947696763,
+   -0.2591193346677143,
+   0.8643912709694845
+  ],
+  [
+   -1.5378409542035818,
+   1.5224190601347358,
+   1.3624867452383838,
+   0.35780483278628145,
+   -0.6288358242649836,
+   0.6842962559772456,
+   0.09099363610321204
+  ],
+  [
+   1.611952988891341,
+   -1.4944568091886443,
+   -1.171291278209341,
+   0.9816524285142483,
+   0.06453147511051198,
+   -0.060321417622578796,
+   0.1689838006678231
+  ],
+  [
+   -1.295873788600558,
+   -1.5335758252560885,
+   -1.5846576971011945,
+   0.6316382371643606,
+   0.7351667372800884,
+   0.24408287143413956,
+   0.031409514821371
+  ],
+  [
+   -0.029033511687681923,
+   0.019864933151682165,
+   0.03190097205992791,
+   0.7424796065366743,
+   -0.38856108986649085,
+   -0.4184054570908999,
+   -0.35025874263958845
+  ],
+  [
+   0.2420191258178732,
+   0.16503393917741616,
+   -2.6473406577602505,
+   0.055098276846184055,
+   0.1330190072254468,
+   0.6596934487604249,
+   0.7376141791396872
+  ],
+  [
+   -1.1868636278777664,
+   -1.6829853635176715,
+   1.3833681120484118,
+   0.36046484877641133,
+   -0.07432915334545255,
+   -0.8939063447385401,
+   0.2558744156724727
+  ],
+  [
+   0.1628743020261724,
+   0.1363795329676825,
+   2.6821385172705248,
+   0.1709361425546958,
+   -0.06742070420983709,
+   0.06089390446653815,
+   -0.9810847140849717
+  ],
+  [
+   0.37339588304081006,
+   2.5513710314523834,
+   -0.05855036751877376,
+   0.816854637861364,
+   0.23174688883798494,
+   -0.5280571950346143,
+   -0.014052718259110048
+  ],
+  [
+   -2.6830401809918816,
+   -0.23884631824986924,
+   0.023385648235368074,
+   0.4960325593606491,
+   0.7270227258925099,
+   -0.028655407852325714,
+   0.4738866148043912
+  ]
+ ],
+ "record_id": "ditindit_n12",
+ "title": "12 deltoidal icositetrahedra in a deltoidal icositetrahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "9223770d322bd4ff",
+  "clear": 1e-07,
+  "cap": 3.0127329761506
+ },
+ "s_tight": 2.991175530874,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.2894284851066637,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "ascend",
+  "seed": 902975702,
+  "var": "base",
+  "raw": 3.0094491768683977,
+  "host": "laptop"
+ },
+ "density": 0.44838954322516256
+}

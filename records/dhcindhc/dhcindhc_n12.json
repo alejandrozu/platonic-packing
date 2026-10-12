@@ -1,0 +1,150 @@
+{
+ "problem": "min/deltoidal_hexecontahedron_in_deltoidal_hexecontahedron",
+ "piece": "deltoidal_hexecontahedron",
+ "container": "deltoidal_hexecontahedron",
+ "n": 12,
+ "s": 2.94573,
+ "s_plus": "2.94573+",
+ "s_full": 2.945734865519,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020455569211e-07,
+  "min_wall_gap": 1.0000015215894109e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -3.7259568407004533,
+   -2.1888281480184695,
+   0.16218090577025146,
+   0.3785431298367866,
+   0.39763729901545697,
+   0.7604276267635083,
+   -0.34689984396058793
+  ],
+  [
+   2.4411778506837525,
+   0.25592357365644613,
+   3.5433581835409727,
+   0.6129756230623371,
+   0.7785641456858218,
+   0.09294085199452802,
+   -0.09726641051451107
+  ],
+  [
+   2.4040938772846956,
+   0.06039795576876574,
+   -3.655153425655436,
+   0.22938631572119741,
+   0.5841988826556462,
+   0.6885546803377375,
+   -0.36329882445274453
+  ],
+  [
+   3.7895477214436672,
+   -2.130259807980122,
+   -0.11369129609048603,
+   0.5792439418980417,
+   -0.16791520991554998,
+   -0.06890046315910706,
+   0.7946909237117885
+  ],
+  [
+   -1.140291913302024,
+   -2.0765340710957663,
+   3.591405713126325,
+   0.2185080122244111,
+   -0.707106781186546,
+   0.5720614028176858,
+   0.3535533905932743
+  ],
+  [
+   -0.19978525186188673,
+   3.7434647470750875,
+   2.064648840013161,
+   0.1924821885281815,
+   -0.9142632684436,
+   -0.2853050517604085,
+   -0.21371548964503773
+  ],
+  [
+   0.18857998734450285,
+   3.6889960683075835,
+   -2.2735198602118656,
+   0.5169473320502114,
+   -0.19366329820329267,
+   -0.05676237153780444,
+   -0.8318882232563432
+  ],
+  [
+   -1.3501508577236685,
+   -2.12281772043663,
+   -3.4728385321230095,
+   0.1702462995630743,
+   0.6437941206488818,
+   0.7252501099674563,
+   0.17480733879104035
+  ],
+  [
+   0.07675101293098764,
+   0.062264101114519715,
+   -0.041578292554780856,
+   0.31069650611039834,
+   -0.23158188903738253,
+   -0.6038448773519997,
+   -0.6965693604059952
+  ],
+  [
+   0.09941920021075717,
+   -4.2679753139160095,
+   0.1269750273074908,
+   0.3684224203602844,
+   0.39595594999293593,
+   -0.6855614611541407,
+   -0.48732872767902885
+  ],
+  [
+   -3.4412059040249896,
+   1.4630470321735942,
+   -2.094631919060966,
+   0.08006222608776706,
+   -0.3032143208606142,
+   0.9185017058075572,
+   0.2408437917147036
+  ],
+  [
+   3.738397979534429,
+   2.254712861947447,
+   -0.10492852707866462,
+   0.7189955536340983,
+   -0.6302740557183952,
+   -0.21353609337902096,
+   -0.2005052252862946
+  ]
+ ],
+ "record_id": "dhcindhc_n12",
+ "title": "12 deltoidal hexecontahedra in a deltoidal hexecontahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "fadf1981d5d6217c",
+  "clear": 1e-07,
+  "cap": 2.9500158961787
+ },
+ "s_tight": 2.94573477141,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.2894284851066637,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "ascend",
+  "seed": 443972099,
+  "var": "base",
+  "raw": 2.9737227373262525
+ },
+ "density": 0.46946182300034955
+}

@@ -1,0 +1,68 @@
+{
+ "problem": "min/truncated_tetrahedron_in_truncated_tetrahedron",
+ "piece": "truncated_tetrahedron",
+ "container": "truncated_tetrahedron",
+ "n": 3,
+ "s": 2.0,
+ "s_plus": "2.00000+",
+ "s_full": 2.0000002245367,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020151032336e-07,
+  "min_wall_gap": 1.0000000871812631e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   1.0606602367318563,
+   0.3535534122439533,
+   0.3535534122439545,
+   0.5000000000000012,
+   0.4999999999999999,
+   -0.4999999999999999,
+   0.499999999999999
+  ],
+  [
+   -0.4647897946571836,
+   -0.4707203786346358,
+   0.8322568879279464,
+   0.0156961855021008,
+   -0.9996303763301968,
+   0.01569618550210079,
+   0.015696185502100498
+  ],
+  [
+   -0.28006871545598006,
+   0.28006871545597944,
+   -1.0606602367318572,
+   5.330056506494752e-16,
+   -2.5495741411804974e-16,
+   1.0,
+   -4.3252768899831677e-16
+  ]
+ ],
+ "record_id": "tteintte_n03",
+ "title": "3 truncated tetrahedra in a truncated tetrahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "47bfcabdb70fd5c1",
+  "clear": 1e-07,
+  "cap": 2.0000002449492
+ },
+ "s_tight": 2.0,
+ "closed_form_conjecture": "2",
+ "volume_lower_bound": 1.4422495703074083,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "monotone",
+  "from_n": 4,
+  "removed": 3
+ },
+ "density": 0.3749998736981347
+}

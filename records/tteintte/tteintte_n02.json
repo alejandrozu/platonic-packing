@@ -1,0 +1,60 @@
+{
+ "problem": "min/truncated_tetrahedron_in_truncated_tetrahedron",
+ "piece": "truncated_tetrahedron",
+ "container": "truncated_tetrahedron",
+ "n": 2,
+ "s": 1.97311,
+ "s_plus": "1.97311+",
+ "s_full": 1.9731167259458,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020121077793e-07,
+  "min_wall_gap": 1.0000002759191773e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   0.5951299560495736,
+   0.15811389591846406,
+   0.5951299203672478,
+   0.1350453783689349,
+   -0.5720614028176781,
+   0.5720614028176787,
+   -0.5720614028176793
+  ],
+  [
+   -0.595129956049519,
+   -0.1581138959183521,
+   0.5951299203671889,
+   0.21850801222442912,
+   -0.9256147934109444,
+   0.21850801222443073,
+   -0.21850801222443006
+  ]
+ ],
+ "record_id": "tteintte_n02",
+ "title": "2 truncated tetrahedra in a truncated tetrahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "6c15c62aa5c96eb4",
+  "clear": 1e-07,
+  "cap": 2.0000002245367
+ },
+ "s_tight": 1.973116516833,
+ "closed_form_conjecture": "(5 + 11\u221a5)/15",
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "fresh",
+  "seed": 1974091978,
+  "var": "base",
+  "raw": 1.9731166040536314
+ },
+ "density": 0.2603584404484449
+}

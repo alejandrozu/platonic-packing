@@ -1,0 +1,70 @@
+{
+ "problem": "min/disdyakis_dodecahedron_in_disdyakis_dodecahedron",
+ "piece": "disdyakis_dodecahedron",
+ "container": "disdyakis_dodecahedron",
+ "n": 3,
+ "s": 2.09041,
+ "s_plus": "2.09041+",
+ "s_full": 2.090417587611,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020428694029e-07,
+  "min_wall_gap": 1.0000003136667601e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   0.9450194942436717,
+   2.2813699378556973,
+   0.13664441453015871,
+   0.24291908374198892,
+   0.29802958428375037,
+   0.3206748450199644,
+   0.8656421485908767
+  ],
+  [
+   0.8693143995008997,
+   -2.1328958363121218,
+   0.8700241922409957,
+   0.4101408536395875,
+   -0.411486529825815,
+   -0.0061443379377315475,
+   -0.8138953022711252
+  ],
+  [
+   -2.9173220976754615,
+   -4.380242204826286e-09,
+   -1.6199916969465484e-15,
+   0.27059805007310106,
+   0.6532814824381851,
+   -0.27059805007309506,
+   -0.653281482438192
+  ]
+ ],
+ "record_id": "ddoinddo_n03",
+ "title": "3 disdyakis dodecahedra in a disdyakis dodecahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "7b89d90959e75b53",
+  "clear": 1e-07,
+  "cap": 2.1769774019259
+ },
+ "s_tight": 2.090417515446,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.4422495703074083,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "ascend",
+  "seed": 97263014,
+  "var": "base",
+  "raw": 2.1176329804064986,
+  "host": "laptop"
+ },
+ "density": 0.3284143329897095
+}

@@ -1,0 +1,159 @@
+{
+ "problem": "min/truncated_dodecahedron_in_truncated_dodecahedron",
+ "piece": "truncated_dodecahedron",
+ "container": "truncated_dodecahedron",
+ "n": 13,
+ "s": 2.93008,
+ "s_plus": "2.93008+",
+ "s_full": 2.930088321052,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020563866247e-07,
+  "min_wall_gap": 1.000001974560405e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   5.16458129328129,
+   -0.03041566777784125,
+   -1.9300498091468714,
+   0.18337693069541786,
+   -0.9293554768626348,
+   0.023842855728405093,
+   -0.3195353143939921
+  ],
+  [
+   -4.3223798404470815,
+   1.6359250301376287,
+   -2.9780891462462935,
+   0.5000000000000001,
+   -0.30901699437494706,
+   0.8090169943749476,
+   -3.8857805861880454e-16
+  ],
+  [
+   -5.127315109183292,
+   0.4585539697092169,
+   2.2974660950618193,
+   0.30541731218121654,
+   0.06931301576768206,
+   -0.7930458303705002,
+   0.5224885474315721
+  ],
+  [
+   2.9958391102501976,
+   4.293659795236507,
+   1.6468951112496302,
+   4.803088950177409e-16,
+   0.3090169943749471,
+   0.5000000000000003,
+   -0.8090169943749475
+  ],
+  [
+   3.694262405257637,
+   -1.5666991599359374,
+   2.8989865197594384,
+   0.5988784576237288,
+   -0.6883751336263251,
+   0.030330708062912333,
+   0.40812291842968756
+  ],
+  [
+   -2.9270510420337374,
+   -4.4049612279453285,
+   -0.80331638344841,
+   0.3090169943749466,
+   3.7738556037108137e-16,
+   0.8090169943749488,
+   -0.49999999999999845
+  ],
+  [
+   -0.041438360621150805,
+   0.1385419312330626,
+   -0.018699278099386707,
+   0.009257821760673926,
+   0.11771892765412832,
+   0.7510112797702821,
+   -0.6496449834071013
+  ],
+  [
+   -0.3311068447368839,
+   -2.526518360201726,
+   -5.053036720427866,
+   0.5000000000000009,
+   -0.8090169943749478,
+   3.6082248300317543e-16,
+   -0.3090169943749451
+  ],
+  [
+   -1.2867307638182366,
+   -3.1348903194880386,
+   4.068670212666054,
+   0.31447967066799554,
+   -0.8123416563232513,
+   0.49107794382871817,
+   -0.006784041826536357
+  ],
+  [
+   2.526518360125138,
+   -5.053036720457116,
+   -0.9650441403339953,
+   0.49999999999999856,
+   0.3090169943749479,
+   0.8090169943749482,
+   -1.372311128622115e-15
+  ],
+  [
+   -2.3464288590925264,
+   5.121824789041378,
+   0.8537427076836588,
+   0.4999999999999998,
+   0.5000000000000002,
+   -0.4999999999999998,
+   -0.5000000000000002
+  ],
+  [
+   -0.6617081606158698,
+   2.0102345587928876,
+   5.240508666201966,
+   0.5024949687828195,
+   0.2940103725499785,
+   0.8130539386664185,
+   1.9332435285871989e-16
+  ],
+  [
+   1.4527025616970448,
+   2.6044366890711466,
+   -4.164148311583342,
+   0.407479197190052,
+   -0.008067603198561615,
+   0.8501965852547103,
+   0.33325873440498355
+  ]
+ ],
+ "record_id": "tdointdo_n13",
+ "title": "13 truncated dodecahedra in a truncated dodecahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "d4731ca67866e7db",
+  "clear": 1e-07,
+  "cap": 3.0159037189382
+ },
+ "s_tight": 2.930088242075,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.3513346877207573,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "ascend",
+  "seed": 2096603504,
+  "var": "base",
+  "raw": 2.945125084078335
+ },
+ "density": 0.5167746697411509
+}

@@ -1,0 +1,61 @@
+{
+ "problem": "min/truncated_icosahedron_in_truncated_icosahedron",
+ "piece": "truncated_icosahedron",
+ "container": "truncated_icosahedron",
+ "n": 2,
+ "s": 1.9483,
+ "s_plus": "1.94830+",
+ "s_full": 1.9483084774567,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020404138062e-07,
+  "min_wall_gap": 1.000000846573812e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   0.028490655861201974,
+   -1.028971026004074,
+   -2.02941311927221,
+   0.12179412289136951,
+   -0.4514070735399519,
+   -0.01729478161539958,
+   -0.8837979045664762
+  ],
+  [
+   0.4238247076181379,
+   1.1534451627719673,
+   1.9524838720293574,
+   0.19760817511973147,
+   -0.2373258996961611,
+   -0.9421914170452089,
+   -0.13001061535735617
+  ]
+ ],
+ "record_id": "ticintic_n02",
+ "title": "2 truncated icosahedra in a truncated icosahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "c6e796580be6d602",
+  "clear": 1e-07,
+  "cap": 2.1277681481286
+ },
+ "s_tight": 1.948308411868,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "fresh",
+  "seed": 1327146637,
+  "var": "base",
+  "raw": 1.948308415518016,
+  "host": "laptop"
+ },
+ "density": 0.2704312247207419
+}

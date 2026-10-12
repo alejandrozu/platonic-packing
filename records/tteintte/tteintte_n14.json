@@ -1,0 +1,168 @@
+{
+ "problem": "min/truncated_tetrahedron_in_truncated_tetrahedron",
+ "piece": "truncated_tetrahedron",
+ "container": "truncated_tetrahedron",
+ "n": 14,
+ "s": 2.94717,
+ "s_plus": "2.94717+",
+ "s_full": 2.9471734924273,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020140834287e-07,
+  "min_wall_gap": 1.0000003891619258e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   2.0652891867416305,
+   -0.6510754978819633,
+   -0.6510755088982237,
+   0.49999999999999994,
+   0.4999999999999997,
+   -0.5000000000000011,
+   0.4999999999999993
+  ],
+  [
+   0.651075508898217,
+   -2.065289175725367,
+   -0.6510755088982173,
+   3.501430443662037e-15,
+   1.0,
+   3.685787477136848e-15,
+   -3.5637917623262174e-15
+  ],
+  [
+   -0.3898440302351273,
+   0.389844041251402,
+   -2.065289186741616,
+   5.734150814824658e-16,
+   7.569738800257981e-16,
+   1.0,
+   4.784625802303963e-16
+  ],
+  [
+   1.358182347819933,
+   -1.3581823368036547,
+   -1.3581823478199146,
+   4.009173373553184e-15,
+   -0.7071067811865461,
+   -3.406510769227132e-15,
+   0.7071067811865489
+  ],
+  [
+   -1.0314322065080126,
+   1.026586805219373,
+   -1.2042359190668068,
+   0.005942638608015959,
+   -0.49093620141927813,
+   0.3204067217713947,
+   -0.8101147226325989
+  ],
+  [
+   0.43509208600719784,
+   2.065289186741625,
+   0.43509207499093916,
+   0.499999999999999,
+   0.49999999999999545,
+   -0.5000000000000048,
+   -0.500000000000001
+  ],
+  [
+   -0.41458984751978034,
+   -0.131532724089705,
+   1.7822320522952755,
+   0.5477571531021334,
+   0.5477571531021317,
+   0.3160479452176995,
+   0.5477571531021427
+  ],
+  [
+   0.9255398190350226,
+   1.125421633358782,
+   1.164940023078446,
+   0.4147863243582392,
+   0.4092311663852175,
+   -0.8126220719029682,
+   0.01129273396938598
+  ],
+  [
+   -0.5704992889146193,
+   -1.7924740591914712,
+   0.8433144054485151,
+   0.43531461399873195,
+   -0.6568893061371949,
+   -0.4353146139987318,
+   -0.43531461399873195
+  ],
+  [
+   -2.053633296395731,
+   -0.6517121320596929,
+   0.6407648974847654,
+   0.0011975047485678146,
+   -0.0014523567740593844,
+   0.001206065221049984,
+   -0.9999975010213079
+  ],
+  [
+   0.7660052312220379,
+   0.11411943734133603,
+   -0.5349197681279303,
+   0.08147147889262882,
+   0.41706643535174953,
+   0.7837164688593039,
+   -0.4529972219216546
+  ],
+  [
+   -1.0169565540057794,
+   0.9575581960857295,
+   0.09077442563386214,
+   0.1184838986007896,
+   0.5732833987282878,
+   -0.5732833987282807,
+   -0.5732833987282835
+  ],
+  [
+   0.9620966686489973,
+   -0.10285268803489951,
+   0.9222920386314194,
+   0.8594397044823994,
+   -0.3053592428113184,
+   0.30582557514562125,
+   -0.27311141458341565
+  ],
+  [
+   -0.39277669289392386,
+   -0.7743421051337589,
+   -0.21062418403939018,
+   0.531865228217029,
+   -0.14489834768944873,
+   0.14489834768944418,
+   -0.8216619235959426
+  ]
+ ],
+ "record_id": "tteintte_n14",
+ "title": "14 truncated tetrahedra in a truncated tetrahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "2868848069bccc7b",
+  "clear": 1e-07,
+  "cap": 3.0423476333439
+ },
+ "s_tight": 2.947173154562,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.4101422641752297,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "ascend",
+  "seed": 428978009,
+  "var": "base",
+  "raw": 2.9948841049504686
+ },
+ "density": 0.5469037843387929
+}

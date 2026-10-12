@@ -1,0 +1,69 @@
+{
+ "problem": "min/triakis_octahedron_in_triakis_octahedron",
+ "piece": "triakis_octahedron",
+ "container": "triakis_octahedron",
+ "n": 3,
+ "s": 2.0,
+ "s_plus": "2.00000+",
+ "s_full": 2.0000000915595,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0420128693597032e-07,
+  "min_wall_gap": 1.000001121909122e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   1.1108172546336024e-15,
+   0.0,
+   2.4142136360545314,
+   8.047217570194392e-16,
+   0.7071067811865485,
+   0.7071067811865467,
+   -7.816578471471717e-16
+  ],
+  [
+   -0.5842357009347051,
+   0.0,
+   -1.8299779351198313,
+   0.27059805007309856,
+   0.6532814824381884,
+   0.27059805007309845,
+   -0.6532814824381882
+  ],
+  [
+   2.414213636054536,
+   0.0,
+   -7.506654587700712e-16,
+   3.5032868926615303e-16,
+   5.319415240177934e-16,
+   -0.7071067811865469,
+   0.7071067811865481
+  ]
+ ],
+ "record_id": "ktoinkto_n03",
+ "title": "3 triakis octahedra in a triakis octahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "788e24c872c8547b",
+  "clear": 1e-07,
+  "cap": 2.0000000915595
+ },
+ "s_tight": 2.0,
+ "closed_form_conjecture": "2",
+ "volume_lower_bound": 1.4422495703074083,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "ascend",
+  "seed": 696057254,
+  "var": "base",
+  "raw": 2.002302401665136
+ },
+ "density": 0.37499994849778595
+}

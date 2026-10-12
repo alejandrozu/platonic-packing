@@ -1,0 +1,69 @@
+{
+ "problem": "min/deltoidal_hexecontahedron_in_deltoidal_hexecontahedron",
+ "piece": "deltoidal_hexecontahedron",
+ "container": "deltoidal_hexecontahedron",
+ "n": 3,
+ "s": 2.14585,
+ "s_plus": "2.14585+",
+ "s_full": 2.1458514693219,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020396699884e-07,
+  "min_wall_gap": 1.0000020633782469e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -2.205778532019054,
+   -0.22883905161310564,
+   -1.0383008057628453,
+   0.24376346906619237,
+   0.5547630944169257,
+   0.6974355320553786,
+   -0.38262378238735234
+  ],
+  [
+   0.27677829383925007,
+   0.760231519216812,
+   2.3173968627334616,
+   0.661034072787455,
+   0.5861269113925872,
+   0.057743700001897436,
+   -0.46492457825491096
+  ],
+  [
+   2.072864695370961,
+   -0.7917638597443084,
+   -1.2811008363223841,
+   2.0584666929331741e-16,
+   -0.4999999999999999,
+   -0.8090169943749477,
+   0.309016994374947
+  ]
+ ],
+ "record_id": "dhcindhc_n03",
+ "title": "3 deltoidal hexecontahedra in a deltoidal hexecontahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "96ff17f5a21db797",
+  "clear": 1e-07,
+  "cap": 2.2143378988938
+ },
+ "s_tight": 2.145851395277,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.4422495703074083,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "ascend",
+  "seed": 1476437236,
+  "var": "base",
+  "raw": 2.146066627471857
+ },
+ "density": 0.30361434091572337
+}

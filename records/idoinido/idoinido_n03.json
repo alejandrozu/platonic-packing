@@ -1,0 +1,69 @@
+{
+ "problem": "min/icosidodecahedron_in_icosidodecahedron",
+ "piece": "icosidodecahedron",
+ "container": "icosidodecahedron",
+ "n": 3,
+ "s": 2.0,
+ "s_plus": "2.00000+",
+ "s_full": 2.0000001089815,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020302951447e-07,
+  "min_wall_gap": 1.0000003181076522e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   0.8090170237642615,
+   1.3090170419278855,
+   -0.5000000181635866,
+   0.8090169943749419,
+   0.30901699437495095,
+   -3.3964700433397623e-15,
+   -0.500000000000007
+  ],
+  [
+   0.8090170237642822,
+   -1.3090170419278824,
+   0.5000000181636219,
+   0.8090169943749468,
+   0.4999999999999967,
+   -0.3090169943749544,
+   4.477165057129659e-15
+  ],
+  [
+   -1.6180340475285537,
+   -7.473930538463396e-15,
+   1.4218218054060477e-14,
+   9.826300026643022e-15,
+   -1.0,
+   -2.84829724029707e-16,
+   -6.052018719761098e-15
+  ]
+ ],
+ "record_id": "idoinido_n03",
+ "title": "3 icosidodecahedra in a icosidodecahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "87b2db86c3f4f3db",
+  "clear": 1e-07,
+  "cap": 2.1332325802599
+ },
+ "s_tight": 2.0,
+ "closed_form_conjecture": "2",
+ "volume_lower_bound": 1.4422495703074083,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "ascend",
+  "seed": 2029606815,
+  "var": "base",
+  "raw": 2.0670583078494333
+ },
+ "density": 0.37499993869791304
+}

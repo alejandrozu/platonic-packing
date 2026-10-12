@@ -1,0 +1,115 @@
+{
+ "problem": "min/disdyakis_dodecahedron_in_disdyakis_dodecahedron",
+ "piece": "disdyakis_dodecahedron",
+ "container": "disdyakis_dodecahedron",
+ "n": 8,
+ "s": 2.61757,
+ "s_plus": "2.61757+",
+ "s_full": 2.6175738768385,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020456293716e-07,
+  "min_wall_gap": 1.0000019923239734e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -1.1534425302548943,
+   -0.17729928838720985,
+   3.52857998492859,
+   0.6313233455973067,
+   -0.0395049243202488,
+   0.010581187144352688,
+   0.7744405934201094
+  ],
+  [
+   -1.243064183976336,
+   -3.423448072798227,
+   0.3709414700114235,
+   0.3517958858742746,
+   -0.42389414944720183,
+   -0.016572710784770555,
+   -0.8344331908568907
+  ],
+  [
+   -4.327685229061952,
+   -3.071990452580596e-09,
+   5.510365340461368e-09,
+   0.2705980500730991,
+   0.6532814824381881,
+   -0.27059805007309884,
+   -0.6532814824381883
+  ],
+  [
+   -1.243936213423266,
+   -0.04711893101510526,
+   -3.498214909392764,
+   0.20503613446766736,
+   0.11333033730065825,
+   0.8684850333283796,
+   -0.4368640121301814
+  ],
+  [
+   3.083015224558516,
+   -0.007562926672775619,
+   1.904660147361276,
+   0.16972183379152755,
+   -0.49933033669637994,
+   0.2654475967424042,
+   0.8070943484951453
+  ],
+  [
+   -1.211328431768461,
+   3.311759233699487,
+   0.7205944967866031,
+   0.781351984251911,
+   -0.26096918006316,
+   0.37741106664686414,
+   0.423018971838427
+  ],
+  [
+   2.429684487503852,
+   -2.152871511824557,
+   -1.9297040936225756,
+   0.27657177178433484,
+   -0.8485224148425768,
+   -0.36610423719110247,
+   0.2636009371616816
+  ],
+  [
+   2.3147841629235297,
+   2.307813482083681,
+   -1.88775207295375,
+   0.9000059338069779,
+   0.22683096089087,
+   -0.3309451192552789,
+   0.1703301568562177
+  ]
+ ],
+ "record_id": "ddoinddo_n08",
+ "title": "8 disdyakis dodecahedra in a disdyakis dodecahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "862cf2aaaf95b3ca",
+  "clear": 1e-07,
+  "cap": 2.6684638213438
+ },
+ "s_tight": 2.617573793251,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.0,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "ascend",
+  "seed": 116764788,
+  "var": "base",
+  "raw": 2.6290229805914227,
+  "host": "laptop"
+ },
+ "density": 0.44605985987255353
+}

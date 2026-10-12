@@ -1,0 +1,70 @@
+{
+ "problem": "min/antiprism6_in_cube",
+ "piece": "antiprism6",
+ "container": "cube",
+ "n": 3,
+ "s": 2.56679,
+ "s_plus": "2.56679+",
+ "s_full": 2.5667994315025,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020071783302e-07,
+  "min_wall_gap": 1.0000000694176947e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   0.02095545154870853,
+   -0.041008047773422256,
+   0.8555997771675627,
+   0.33635132485439184,
+   -1.2434012915257193e-15,
+   -1.8586417210202948e-15,
+   -0.9417365800842057
+  ],
+  [
+   0.23137586777596322,
+   -0.021622506047682167,
+   -0.8555997771675605,
+   1.1251886193563385e-15,
+   -0.5873642858325702,
+   0.80932267713712,
+   6.873833506361018e-16
+  ],
+  [
+   0.2996532246736703,
+   -0.29965322467367556,
+   -8.511727860300378e-23,
+   5.839765946531754e-16,
+   -0.9386606503269366,
+   0.34484225890660875,
+   4.5057209878842506e-15
+  ]
+ ],
+ "record_id": "ap6incub_n03",
+ "title": "3 antiprism6s in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "7f72b651dad10ca2",
+  "clear": 1e-07,
+  "cap": 2.7708064680539
+ },
+ "s_tight": 2.566799031502,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.9140805614622103,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "ascend",
+  "seed": 2080841701,
+  "var": "base",
+  "raw": 2.566799245349733,
+  "host": "laptop"
+ },
+ "density": 0.4146721180891714
+}

@@ -1,0 +1,61 @@
+{
+ "problem": "min/disdyakis_dodecahedron_in_disdyakis_dodecahedron",
+ "piece": "disdyakis_dodecahedron",
+ "container": "disdyakis_dodecahedron",
+ "n": 2,
+ "s": 1.95485,
+ "s_plus": "1.95485+",
+ "s_full": 1.954850105169,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020453993743e-07,
+  "min_wall_gap": 1.0000005534749334e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   0.027777006594151166,
+   2.2048324679794242,
+   0.2599335145590895,
+   0.03227846336531632,
+   -0.5154560982200915,
+   -0.29967522145373515,
+   -0.8021582594832195
+  ],
+  [
+   0.39452768648453795,
+   -2.2354317347296715,
+   0.07410641683498966,
+   0.5114517270710887,
+   -0.12427589616409379,
+   -0.058604501446877524,
+   -0.8482559430494874
+  ]
+ ],
+ "record_id": "ddoinddo_n02",
+ "title": "2 disdyakis dodecahedra in a disdyakis dodecahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "4ee8d6fa21aec92d",
+  "clear": 1e-07,
+  "cap": 2.090417587611
+ },
+ "s_tight": 1.954850039503,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "fresh",
+  "seed": 434087035,
+  "var": "base",
+  "raw": 1.954853689183357,
+  "host": "laptop"
+ },
+ "density": 0.26772542070476224
+}

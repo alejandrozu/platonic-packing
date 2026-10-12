@@ -1,0 +1,69 @@
+{
+ "problem": "min/antiprism6_in_antiprism6",
+ "piece": "antiprism6",
+ "container": "antiprism6",
+ "n": 3,
+ "s": 2.10667,
+ "s_plus": "2.10667+",
+ "s_full": 2.1066709705443,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020093156197e-07,
+  "min_wall_gap": 1.0000000072452053e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   -0.8430319089833246,
+   0.6551644226099972,
+   -0.16049613096353416,
+   0.5041111692297514,
+   -0.02796060720629775,
+   -0.01614306409726178,
+   -0.8630350716998817
+  ],
+  [
+   0.9982157481728029,
+   0.11565273080543192,
+   0.0009736722981975945,
+   0.2831729214965091,
+   0.4675480362333727,
+   -0.8367715241532891,
+   0.032021035455308565
+  ],
+  [
+   -0.01610132051985911,
+   -1.0313466995703424,
+   -0.04690230040019821,
+   0.9249432259643967,
+   -0.09948773839687756,
+   0.2670476363669456,
+   0.251530869998251
+  ]
+ ],
+ "record_id": "ap6inap6_n03",
+ "title": "3 antiprism6s in a antiprism6",
+ "family": "prisms",
+ "source": {
+  "hash": "602a7f81177660e7",
+  "clear": 1e-07,
+  "cap": 2.2961176167337
+ },
+ "s_tight": 2.106670621754,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.4422495703074083,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "ascend",
+  "seed": 1182574968,
+  "var": "base",
+  "raw": 2.10687874951962
+ },
+ "density": 0.32087148356733136
+}

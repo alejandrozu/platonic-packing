@@ -1,0 +1,70 @@
+{
+ "problem": "min/cuboctahedron_in_cuboctahedron",
+ "piece": "cuboctahedron",
+ "container": "cuboctahedron",
+ "n": 3,
+ "s": 2.11105,
+ "s_plus": "2.11105+",
+ "s_full": 2.1110581970616,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020173685014e-07,
+  "min_wall_gap": 1.0000001915422274e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   0.7856366854351368,
+   -0.7856366853828957,
+   2.7170647923508665e-09,
+   0.5000000000000002,
+   -0.5,
+   -0.5,
+   -0.4999999999999997
+  ],
+  [
+   0.07398774667226124,
+   0.6275655159852552,
+   0.6642782319578583,
+   0.5304114093760641,
+   -0.46761494501747597,
+   -0.04440380578249717,
+   0.7057112029945611
+  ],
+  [
+   -0.6283871568578725,
+   -0.06705736588421748,
+   -0.6603036080530028,
+   0.33633618163142154,
+   -0.5721801097367152,
+   0.5377778353700194,
+   -0.519887386586761
+  ]
+ ],
+ "record_id": "cboincbo_n03",
+ "title": "3 cuboctahedra in a cuboctahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "a8fa2b784d394965",
+  "clear": 1e-07,
+  "cap": 2.1760497000094
+ },
+ "s_tight": 2.111057992067,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.4422495703074083,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "ascend",
+  "seed": 1898108621,
+  "var": "base",
+  "raw": 2.1682345600346036,
+  "host": "laptop"
+ },
+ "density": 0.31887512126476625
+}

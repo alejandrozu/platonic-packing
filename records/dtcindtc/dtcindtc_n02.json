@@ -1,0 +1,60 @@
+{
+ "problem": "min/disdyakis_triacontahedron_in_disdyakis_triacontahedron",
+ "piece": "disdyakis_triacontahedron",
+ "container": "disdyakis_triacontahedron",
+ "n": 2,
+ "s": 1.95611,
+ "s_plus": "1.95611+",
+ "s_full": 1.9561181205369,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020735079288e-07,
+  "min_wall_gap": 1.0000014594169215e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   3.10774621164426,
+   2.047290951594922,
+   -0.3541916717457249,
+   0.3406844692020361,
+   0.39822368611542036,
+   0.8005897068001883,
+   0.29053073783467864
+  ],
+  [
+   -3.100715033251544,
+   -2.0586676372153,
+   0.349846158081047,
+   0.027152166932951787,
+   -0.2883084356758423,
+   0.7656933140833588,
+   -0.5743298307741266
+  ]
+ ],
+ "record_id": "dtcindtc_n02",
+ "title": "2 disdyakis triacontahedra in a disdyakis triacontahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "54294410a2e86bbb",
+  "clear": 1e-07,
+  "cap": 2.1070316356926
+ },
+ "s_tight": 1.956118080647,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "fresh",
+  "seed": 904297259,
+  "var": "base",
+  "raw": 1.9562945451190739
+ },
+ "density": 0.26720511480312964
+}

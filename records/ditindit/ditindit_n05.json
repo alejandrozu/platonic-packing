@@ -1,0 +1,88 @@
+{
+ "problem": "min/deltoidal_icositetrahedron_in_deltoidal_icositetrahedron",
+ "piece": "deltoidal_icositetrahedron",
+ "container": "deltoidal_icositetrahedron",
+ "n": 5,
+ "s": 2.36375,
+ "s_plus": "2.36375+",
+ "s_full": 2.3637563901489,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020262670521e-07,
+  "min_wall_gap": 1.0000010997046616e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   1.2934297253821019,
+   1.282374816289801,
+   0.03587223945881961,
+   0.3087812703627453,
+   0.20102901583879706,
+   -0.6879412755830174,
+   0.6252825467044999
+  ],
+  [
+   -1.363756306273549,
+   -2.399800466245656e-10,
+   -1.363756303243227,
+   0.4999999999999998,
+   7.850462293418868e-17,
+   0.4999999999999996,
+   -0.7071067811865481
+  ],
+  [
+   -0.012625726327774249,
+   -1.2176177662831373,
+   1.3058640362136842,
+   0.36348476569105137,
+   -0.1431151878461468,
+   0.4456964525974584,
+   -0.8054511408275025
+  ],
+  [
+   -0.9770295211590878,
+   0.9904895617773721,
+   0.9180753162633666,
+   0.6298669138381014,
+   -0.44997047632086695,
+   0.6274973495823999,
+   0.08391255900460551
+  ],
+  [
+   0.965344853952236,
+   -1.0088991821616453,
+   -1.0257784127476868,
+   0.812420001094134,
+   0.380109508024733,
+   -0.43515927960826906,
+   -0.07827454951780384
+  ]
+ ],
+ "record_id": "ditindit_n05",
+ "title": "5 deltoidal icositetrahedra in a deltoidal icositetrahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "88a3718b1ce723a0",
+  "clear": 1e-07,
+  "cap": 2.4271944420137
+ },
+ "s_tight": 2.363756252042,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.7099759466766968,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "ascend",
+  "seed": 1991123662,
+  "var": "base",
+  "raw": 2.382666281480152,
+  "host": "laptop"
+ },
+ "density": 0.3785836522144044
+}

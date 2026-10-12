@@ -1,0 +1,61 @@
+{
+ "problem": "min/antiprism6_in_cube",
+ "piece": "antiprism6",
+ "container": "cube",
+ "n": 2,
+ "s": 1.93185,
+ "s_plus": "1.93185+",
+ "s_full": 1.9318518525782,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 0.04873476557143633,
+  "min_wall_gap": 1.0000003114463141e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   0.0,
+   0.0,
+   0.5381259877053922,
+   0.38268343236509006,
+   -1.332243035994833e-17,
+   1.1425334900011626e-16,
+   -0.9238795325112867
+  ],
+  [
+   0.0,
+   0.0,
+   -0.366208455033397,
+   1.967363228059803e-16,
+   -0.6087614290087205,
+   0.7933533402912354,
+   -6.421019806026795e-17
+  ]
+ ],
+ "record_id": "ap6incub_n02",
+ "title": "2 antiprism6s in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "3904db2471a040aa",
+  "clear": 1e-07,
+  "cap": 2.5667994315025
+ },
+ "s_tight": 1.931851652578,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.6721033864248736,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "float-verified (verify_general.py); exact certificate pending (general certifier)",
+ "search": {
+  "move": "fresh",
+  "seed": 2014018390,
+  "var": "base",
+  "raw": 1.931851660640558,
+  "host": "laptop"
+ },
+ "density": 0.6484372019548277
+}
