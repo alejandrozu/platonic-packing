@@ -3,86 +3,91 @@
  "piece": "disdyakis_triacontahedron",
  "container": "disdyakis_triacontahedron",
  "n": 5,
- "s": 2.35451,
- "s_plus": "2.35451+",
- "s_full": 2.354516751043,
+ "s": 2.35264,
+ "s_plus": "2.35264+",
+ "s_full": 2.3526497819327,
  "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020818653284e-07,
-  "min_wall_gap": 1.0000021077871679e-07
+  "min_pair_gap": 1.0000020735683065e-07,
+  "min_wall_gap": 1.0000013794808638e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-12",
  "pieces": [
   [
-   2.487104218968741,
-   3.9881370978107857,
-   1.8952799756040055,
-   0.14939629853828035,
-   0.697004128295323,
-   -0.041018684110042364,
-   0.7001310296481784
+   2.6385978657595244,
+   4.3402824030848794,
+   0.1662143716390627,
+   0.24354977450751836,
+   0.49883068979315137,
+   -0.12107782854418236,
+   0.822916526564421
   ],
   [
-   -1.9673329785782738,
-   -3.138668098649289,
-   3.4193998608421388,
-   0.8636692633217851,
-   0.031510816264249356,
-   0.05897866150658177,
-   -0.4996038325898411
+   -2.176381368334187,
+   -3.461601918292018,
+   3.01168353379008,
+   0.8410562340351078,
+   0.024846322772659024,
+   0.0923863062538871,
+   -0.5324207376240355
   ],
   [
-   -4.688711573991156,
-   2.96592173599634,
-   0.013056034002450496,
-   0.47113018320770167,
-   0.8158814239403017,
-   -0.02965813534524658,
-   0.3339075434123436
+   -4.7085236007391265,
+   2.9220631292431016,
+   -0.029237185126080492,
+   0.43938711693552696,
+   0.8251810300935404,
+   -0.04853164345250634,
+   0.35165310837336267
   ],
   [
-   -0.765204865906446,
-   -1.2727149981076449,
-   -4.859750019488924,
-   0.301554733524028,
-   -0.5022365773297227,
-   -0.3904156993487035,
-   -0.7102103524896273
+   -0.7243569810821971,
+   -1.2739820221574523,
+   -4.859572568637982,
+   0.3044957570490673,
+   -0.4989837118003237,
+   -0.39713556644973996,
+   -0.7075174422992915
   ],
   [
-   4.755906927451056,
-   -2.9102566361445006,
-   -0.02769841189905286,
-   0.308831924833455,
-   -0.0005888702758063993,
-   -0.8113909123886935,
-   0.49625324455211894
+   4.704248065730288,
+   -2.915658135587699,
+   0.03630442901846359,
+   0.35487283425077454,
+   -0.008576360110473835,
+   -0.7315763854117262,
+   0.5820547309884108
   ]
  ],
  "record_id": "dtcindtc_n05",
  "title": "5 disdyakis triacontahedra in a disdyakis triacontahedron",
  "family": "catalan",
  "source": {
-  "hash": "7a39de9fef5c3be9",
+  "hash": "f409754dc7f1fee9",
   "clear": 1e-07,
   "cap": 2.4089644489523
  },
- "s_tight": 2.354516705545,
+ "s_tight": 2.352649736496,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.7099759466766968,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "ascend",
-  "seed": 1753209110,
-  "var": "base",
-  "raw": 2.3757468928877294,
-  "host": "actions"
+  "move": "hop",
+  "seed": 1611293136,
+  "var": "gentle",
+  "minDiff": 0.03660541860154712,
+  "expand": 0.023868252681655943,
+  "rh": 0.12780229392018866,
+  "focus": 0,
+  "from": "best",
+  "raw": 2.355329150619814,
+  "host": "laptop"
  },
- "density": 0.3830581004382991
+ "density": 0.3839707632373132
 }

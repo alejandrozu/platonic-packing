@@ -3,95 +3,102 @@
  "piece": "pentagonal_icositetrahedron",
  "container": "pentagonal_icositetrahedron",
  "n": 6,
- "s": 2.33355,
- "s_plus": "2.33355+",
- "s_full": 2.3335538423287,
+ "s": 2.32992,
+ "s_plus": "2.32992+",
+ "s_full": 2.3299272264644,
  "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020193890435e-07,
-  "min_wall_gap": 1.0000001671173209e-07
+  "min_pair_gap": 1.0000020206743063e-07,
+  "min_wall_gap": 1.0000010819410932e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-12",
  "pieces": [
   [
-   0.018315394930580986,
-   -0.08675824547078605,
-   -1.735270160814063,
-   0.6015629363121142,
-   0.6947898421995259,
-   -0.07635754193619104,
-   0.3867281145990916
+   -1.6929201996319783,
+   -0.015884180211570946,
+   -0.016453615318585756,
+   0.8341783742223204,
+   -0.5351423618125903,
+   -0.09804701402984319,
+   0.09030988657550684
   ],
   [
-   -1.697357417039807,
-   -0.013362184271067536,
-   -0.04402505437150221,
-   0.8728368813484313,
-   -0.47850714183391485,
-   -0.03641488769376049,
-   0.08866030524498023
+   -4.505333353190385e-09,
+   3.2291640083467488e-09,
+   1.8105763067444656,
+   1.5563864313897931e-15,
+   1.5966292633394989e-15,
+   -0.7071067811865479,
+   -0.7071067811865474
   ],
   [
-   -0.0767586520194845,
-   0.031114538241609802,
-   1.770599143580483,
-   0.01556923658411525,
-   0.007862131090246473,
-   -0.7073713496214745,
-   -0.7066268884649107
+   -0.04896799295801112,
+   -1.7809848755769393,
+   -0.010040905225633345,
+   0.6990154616388412,
+   0.7147866115981135,
+   0.018791134092481756,
+   -0.010216533142105137
   ],
   [
-   -3.619455016042509e-09,
-   -1.8155136195741441,
-   8.698877836486682e-10,
-   0.7071067811865475,
-   0.7071067811865476,
-   3.116104854951122e-16,
-   1.2510735770982185e-16
+   1.6998734047024817,
+   -0.08181884517622323,
+   -0.06267084507816216,
+   0.6436104626213207,
+   -0.5762509653182349,
+   -0.1386608026537268,
+   -0.4842247197134778
   ],
   [
-   0.01886032890295863,
-   1.8069074415061184,
-   0.0055750725867295325,
-   0.707106781186548,
-   0.707106781186547,
-   -3.312458746401509e-17,
-   1.7660511252416477e-16
+   -0.014195958085828032,
+   1.7109205377087477,
+   0.0038623955376591275,
+   0.32074054000481583,
+   0.06822829663602581,
+   -0.20231880486393033,
+   0.9227878991046624
   ],
   [
-   1.7143128843376954,
-   -0.038685983015781605,
-   0.040925968112593934,
-   0.6332962403537948,
-   -0.5553601080976426,
-   -0.21112078602423745,
-   -0.4959224092497045
+   -4.505333353190385e-09,
+   3.2291640083467488e-09,
+   -1.8105763040809346,
+   7.828186321921916e-16,
+   -4.1057986696553503e-16,
+   6.7782268401036806e-18,
+   1.0
   ]
  ],
  "record_id": "pitinpit_n06",
  "title": "6 pentagonal icositetrahedra in a pentagonal icositetrahedron",
  "family": "catalan",
  "source": {
-  "hash": "6dc3dcd16c8c569b",
+  "hash": "30a8b89458c72707",
   "clear": 1e-07,
   "cap": 2.559867533051
  },
- "s_tight": 2.333553696734,
+ "s_tight": 2.329927079627,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.8171205928321397,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "ascend",
-  "seed": 2052912960,
+  "move": "reinsert",
+  "seed": 1176612254,
   "var": "base",
-  "raw": 2.3379010606643718,
-  "host": "actions"
+  "expand": 0.010096166918282122,
+  "rh": 0.17362316107804315,
+  "remove": [
+   0,
+   4
+  ],
+  "from": "best",
+  "raw": 2.3394080212480053,
+  "host": "laptop"
  },
- "density": 0.472169328880285
+ "density": 0.4743776084159927
 }

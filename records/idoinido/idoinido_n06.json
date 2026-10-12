@@ -3,95 +3,95 @@
  "piece": "icosidodecahedron",
  "container": "icosidodecahedron",
  "n": 6,
- "s": 2.35294,
- "s_plus": "2.35294+",
- "s_full": 2.3529497442508,
+ "s": 2.23606,
+ "s_plus": "2.23606+",
+ "s_full": 2.236068095057,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020236832456e-07,
-  "min_wall_gap": 1.0000008643373803e-07
+  "min_pair_gap": 1.0000020286495411e-07,
+  "min_wall_gap": 1.0000008776600566e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-12",
  "pieces": [
   [
-   -0.8480682452516746,
-   0.9556272499706828,
-   -1.6649835490782185,
-   0.3090169943749282,
-   -4.3210646662488667e-14,
-   0.8090169943749517,
-   -0.500000000000005
-  ],
-  [
-   0.9707116216152489,
-   1.6247799810973895,
-   0.604101990338857,
-   0.5720614028176793,
-   0.21850801222441232,
-   0.7071067811865476,
-   -0.3535533905932809
-  ],
-  [
-   -1.1316105828373915,
-   -1.7110838333097078,
-   -0.6993493578358058,
-   9.860491537794495e-06,
-   -0.5000018831527525,
-   -0.8090139472611151,
-   -0.3090219245999577
-  ],
-  [
-   -1.8179836118065174,
-   0.6005089434765464,
-   0.971643883237267,
-   0.4999999999999999,
+   -1.0000000363271995,
+   -1.6180340475285415,
+   -0.6180340112013424,
+   0.5,
+   0.3090169943749477,
    -0.8090169943749475,
-   5.1461667323329365e-17,
-   0.3090169943749478
+   -1.110223024625156e-16
   ],
   [
-   1.613152649753707,
-   -0.6071188614015094,
-   -1.0011523772085171,
-   2.477601321377253e-15,
-   -0.9256147934109649,
-   -0.3535533905932594,
-   0.13504537836885455
+   -0.6180340112013407,
+   1.000000036327201,
+   -1.6180340475285424,
+   0.8090169943749473,
+   0.3090169943749474,
+   0.0,
+   -0.5000000000000002
   ],
   [
-   0.6198985469954469,
-   -1.0000000363272712,
-   1.6150171764661054,
-   2.639269060002363e-14,
-   0.5720614028176135,
-   0.21850801222441088,
-   0.790569415042146
+   1.0000000363272021,
+   1.618034047528539,
+   0.6180340112013397,
+   0.3090169943749475,
+   -9.949255682510334e-16,
+   0.8090169943749482,
+   -0.4999999999999987
+  ],
+  [
+   -1.6180340475285426,
+   0.618034011201342,
+   1.000000036327197,
+   1.945900815464438e-15,
+   6.006356184547065e-16,
+   -1.0,
+   2.88534176345239e-18
+  ],
+  [
+   1.618034047528542,
+   -0.6180340112013396,
+   -1.000000036327201,
+   0.49999999999999983,
+   1.149310570221023e-15,
+   -0.3090169943749484,
+   0.8090169943749472
+  ],
+  [
+   0.6180340112013404,
+   -1.0000000363272017,
+   1.618034047528542,
+   2.916161148321995e-16,
+   0.30901699437494745,
+   -0.49999999999999895,
+   -0.8090169943749481
   ]
  ],
  "record_id": "idoinido_n06",
  "title": "6 icosidodecahedra in a icosidodecahedron",
  "family": "archimedean",
  "source": {
-  "hash": "03de2595bc81cdfe",
+  "hash": "bce4d545e566bfed",
   "clear": 1e-07,
   "cap": 2.5191438187042
  },
- "s_tight": 2.352949623266,
- "closed_form_conjecture": null,
+ "s_tight": 2.2360679775,
+ "closed_form_conjecture": "\u221a5",
  "volume_lower_bound": 1.8171205928321397,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
   "move": "ascend",
-  "seed": 1136187246,
+  "seed": 155083313,
   "var": "base",
-  "raw": 2.409683356433952,
-  "host": "actions"
+  "raw": 2.2360679814078894,
+  "host": "laptop"
  },
- "density": 0.46058871854747074
+ "density": 0.5366562299587669
 }

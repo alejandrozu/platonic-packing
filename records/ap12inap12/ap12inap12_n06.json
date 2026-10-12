@@ -3,94 +3,95 @@
  "piece": "antiprism12",
  "container": "antiprism12",
  "n": 6,
- "s": 4.18329,
- "s_plus": "4.18329+",
- "s_full": 4.1832974557031,
+ "s": 2.16378,
+ "s_plus": "2.16378+",
+ "s_full": 2.1637817852672,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 0.00599755058728083,
-  "min_wall_gap": 1.00000039804371e-07
+  "min_pair_gap": 1.0000020098741794e-07,
+  "min_wall_gap": 1.0000003158872062e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-12",
  "pieces": [
   [
-   -0.3683862246651962,
-   -2.3731046656247323,
-   1.035337190514559,
-   0.9044343180849044,
-   0.08904484044119307,
-   -0.013894336295891804,
-   0.41698504539131037
+   -2.173244076734158,
+   0.07194049442270306,
+   0.4405742697528481,
+   0.9232651456666049,
+   0.01650444040723351,
+   0.002172850800873309,
+   0.3838024921277403
   ],
   [
-   -0.6816383900453431,
-   -1.8641246137450802,
-   -0.7534516505870785,
-   0.381695916163637,
-   0.027944166120249702,
-   0.01861607592663747,
-   0.9236778620714796
+   1.147744056258603,
+   -1.845535221465932,
+   0.43297740044937083,
+   0.38129923489195156,
+   0.017275344844949195,
+   -0.007155682129461829,
+   -0.9242625450295834
   ],
   [
-   1.187177410203037,
-   -5.559376058683648,
-   -0.4959319492087627,
-   0.5982289094189923,
-   0.20869821137186376,
-   -0.14860557208581227,
-   0.7592651792691381
+   -1.6043331465631434,
+   1.5577956871298808,
+   -0.47990605753714366,
+   0.25820967336448,
+   0.004275489853536514,
+   -0.0042739864403398995,
+   0.966069985977946
   ],
   [
-   4.904423764185768,
-   -3.526153055248815,
-   -0.3426942374749457,
-   0.2775047324460865,
-   -0.9342601749681279,
-   -0.17911969226071414,
-   0.13440678845570317
+   -0.5610801554318076,
+   -2.0996750322619824,
+   -0.5024743622088728,
+   0.792878995995148,
+   -7.047688821808811e-17,
+   1.655393367467807e-17,
+   0.6093791083633622
   ],
   [
-   -5.0150826429275135,
-   -3.116709622490171,
-   -0.8558831408562763,
-   0.6175605408163719,
-   -0.036750741608052535,
-   -0.04421538197099197,
-   -0.7844191235653347
+   2.170307466949268,
+   0.5457223187781157,
+   -0.48513701838913353,
+   0.0002152467552126768,
+   -0.9914345325647305,
+   0.13052560961952778,
+   -0.00453723929715186
   ],
   [
-   -0.3745398903470901,
-   3.632160869485658,
-   -0.7630300434104531,
-   0.0020412200109877635,
-   -0.5205858130665568,
-   0.8526072986979287,
-   0.04524421357167954
+   1.1241266537217538,
+   1.9470444784832606,
+   0.5024743599411219,
+   0.49999999999999806,
+   3.7577704056458933e-17,
+   -8.571678268082455e-15,
+   -0.8660254037844398
   ]
  ],
  "record_id": "ap12inap12_n06",
  "title": "6 antiprism12s in a antiprism12",
  "family": "prisms",
  "source": {
-  "hash": "4c67b74adbef45c8",
+  "hash": "edf6ddb11753bf46",
   "clear": 1e-07,
   "cap": 4.4165333888637
  },
- "s_tight": 4.183297224093,
+ "s_tight": 2.163781426622,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.8171205928321397,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "monotone",
-  "from_n": 7,
-  "removed": 4,
-  "host": "actions"
+  "move": "ascend",
+  "seed": 510739516,
+  "var": "base",
+  "raw": 2.1647265952107593,
+  "host": "laptop"
  },
- "density": 0.08195869055182022
+ "density": 0.5922579085302644
 }

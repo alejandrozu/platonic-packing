@@ -1,14 +1,14 @@
 # Records: Archimedean, Catalan, prism and antiprism families
 
-_Generated 2026-10-12 20:49 CEST from the running search._ s = container size ÷ piece size (edge ratio; for Catalan solids the ratio of the same canonical solid). Each entry: the record's container, with 10⁻⁷ clearance, truncated to 5 decimals, linking to the record file. Every record is proven by `certify_general.py` (exact number fields for the solids, rigorous interval arithmetic for the packing) and checked by `verify_general.py` (floating point). "≈ x" = conjectured closed form. The square prism is the cube and the triangular antiprism the octahedron: see the Platonic tables (cubes in a cube, octahedra in an octahedron, octahedra in a cube).
+_Generated 2026-10-12 21:42 CEST from the running search._ s = container size ÷ piece size (edge ratio; for Catalan solids the ratio of the same canonical solid). Each entry: the record's container, with 10⁻⁷ clearance, truncated to 5 decimals, linking to the record file. Every record is proven by `certify_general.py` (exact number fields for the solids, rigorous interval arithmetic for the packing) and checked by `verify_general.py` (floating point). "≈ x" = conjectured closed form. The square prism is the cube and the triangular antiprism the octahedron: see the Platonic tables (cubes in a cube, octahedra in an octahedron, octahedra in a cube).
 
 ## Archimedean solids
 
 | n | Truncated tetrahedra in a truncated tetrahedron | Cuboctahedra in a cuboctahedron | Truncated cubes in a truncated cube | Truncated octahedra in a truncated octahedron | Rhombicuboctahedra in a rhombicuboctahedron |
 |---:|---|---|---|---|---|
-| 2 | [1.97311+](tteintte/tteintte_n02.json) ≈ (5 + 11√5)/15 | [1.87114+](cboincbo/cboincbo_n02.json) | [2.00000+](tcuintcu/tcuintcu_n02.json) | [1.79862+](tocintoc/tocintoc_n02.json) | [1.92961+](rcoinrco/rcoinrco_n02.json) |
+| 2 | [1.97311+](tteintte/tteintte_n02.json) ≈ (5 + 11√5)/15 | [1.87114+](cboincbo/cboincbo_n02.json) | [2.00000+](tcuintcu/tcuintcu_n02.json) | [1.79829+](tocintoc/tocintoc_n02.json) | [1.92961+](rcoinrco/rcoinrco_n02.json) |
 | 3 | [2.00000+](tteintte/tteintte_n03.json) | [2.00000+](cboincbo/cboincbo_n03.json) | [2.00000+](tcuintcu/tcuintcu_n03.json) | [2.00000+](tocintoc/tocintoc_n03.json) | [2.12083+](rcoinrco/rcoinrco_n03.json) |
-| 4 | [2.00000+](tteintte/tteintte_n04.json) | [2.17604+](cboincbo/cboincbo_n04.json) | [2.00000+](tcuintcu/tcuintcu_n04.json) | [2.20000+](tocintoc/tocintoc_n04.json) ≈ 11/5 | [2.19189+](rcoinrco/rcoinrco_n04.json) |
+| 4 | [2.00000+](tteintte/tteintte_n04.json) | [2.17604+](cboincbo/cboincbo_n04.json) | [2.00000+](tcuintcu/tcuintcu_n04.json) | [2.18023+](tocintoc/tocintoc_n04.json) | [2.19189+](rcoinrco/rcoinrco_n04.json) |
 | 5 | [2.22116+](tteintte/tteintte_n05.json) | [2.29132+](cboincbo/cboincbo_n05.json) | [2.13270+](tcuintcu/tcuintcu_n05.json) ≈ (22 - 5√2)/7 | [2.32489+](tocintoc/tocintoc_n05.json) | [2.34170+](rcoinrco/rcoinrco_n05.json) |
 | 6 | [2.33333+](tteintte/tteintte_n06.json) ≈ 7/3 | [2.33585+](cboincbo/cboincbo_n06.json) | [2.15519+](tcuintcu/tcuintcu_n06.json) | [2.34705+](tocintoc/tocintoc_n06.json) | [2.38033+](rcoinrco/rcoinrco_n06.json) |
 | 7 | [2.33333+](tteintte/tteintte_n07.json) ≈ 7/3 | [2.40301+](cboincbo/cboincbo_n07.json) | [2.19013+](tcuintcu/tcuintcu_n07.json) | [2.71409+](tocintoc/tocintoc_n07.json) | [2.57599+](rcoinrco/rcoinrco_n07.json) |
@@ -41,18 +41,18 @@ _Generated 2026-10-12 20:49 CEST from the running search._ s = container size ÷
 | 34 | [3.85811+](tteintte/tteintte_n34.json) | [3.97269+](cboincbo/cboincbo_n34.json) | [3.94758+](tcuintcu/tcuintcu_n34.json) | [3.96796+](tocintoc/tocintoc_n34.json) | [4.06567+](rcoinrco/rcoinrco_n34.json) |
 | 35 | [3.92447+](tteintte/tteintte_n35.json) | [3.99981+](cboincbo/cboincbo_n35.json) | [3.96561+](tcuintcu/tcuintcu_n35.json) | [3.96796+](tocintoc/tocintoc_n35.json) | [4.08732+](rcoinrco/rcoinrco_n35.json) |
 | 36 | [3.92447+](tteintte/tteintte_n36.json) | [4.01798+](cboincbo/cboincbo_n36.json) | [3.97614+](tcuintcu/tcuintcu_n36.json) | [3.96796+](tocintoc/tocintoc_n36.json) | [4.08880+](rcoinrco/rcoinrco_n36.json) |
-| 37 | [3.97425+](tteintte/tteintte_n37.json) | [4.05683+](cboincbo/cboincbo_n37.json) |  | [3.96796+](tocintoc/tocintoc_n37.json) | [4.14937+](rcoinrco/rcoinrco_n37.json) |
-| 38 | [4.04638+](tteintte/tteintte_n38.json) | [4.10117+](cboincbo/cboincbo_n38.json) |  | [3.96796+](tocintoc/tocintoc_n38.json) | [4.19994+](rcoinrco/rcoinrco_n38.json) |
-| 39 | [4.05082+](tteintte/tteintte_n39.json) | [4.12407+](cboincbo/cboincbo_n39.json) |  | [4.12426+](tocintoc/tocintoc_n39.json) | [4.22143+](rcoinrco/rcoinrco_n39.json) |
-| 40 | [4.08638+](tteintte/tteintte_n40.json) |  |  | [4.12705+](tocintoc/tocintoc_n40.json) | [4.24315+](rcoinrco/rcoinrco_n40.json) |
+| 37 | [3.97425+](tteintte/tteintte_n37.json) | [4.03626+](cboincbo/cboincbo_n37.json) | [4.00000+](tcuintcu/tcuintcu_n37.json) | [3.96796+](tocintoc/tocintoc_n37.json) | [4.14937+](rcoinrco/rcoinrco_n37.json) |
+| 38 | [3.98264+](tteintte/tteintte_n38.json) | [4.06079+](cboincbo/cboincbo_n38.json) | [4.00000+](tcuintcu/tcuintcu_n38.json) | [3.96796+](tocintoc/tocintoc_n38.json) | [4.19994+](rcoinrco/rcoinrco_n38.json) |
+| 39 | [4.01814+](tteintte/tteintte_n39.json) | [4.06745+](cboincbo/cboincbo_n39.json) | [4.00000+](tcuintcu/tcuintcu_n39.json) | [4.12426+](tocintoc/tocintoc_n39.json) | [4.22143+](rcoinrco/rcoinrco_n39.json) |
+| 40 | [4.03212+](tteintte/tteintte_n40.json) | [4.11078+](cboincbo/cboincbo_n40.json) | [4.00000+](tcuintcu/tcuintcu_n40.json) | [4.12705+](tocintoc/tocintoc_n40.json) | [4.24315+](rcoinrco/rcoinrco_n40.json) |
 
 | n | Truncated cuboctahedra in a truncated cuboctahedron | Snub cubes in a snub cube | Icosidodecahedra in an icosidodecahedron | Truncated dodecahedra in a truncated dodecahedron | Truncated icosahedra in a truncated icosahedron |
 |---:|---|---|---|---|---|
 | 2 | [1.83110+](tcointco/tcointco_n02.json) | [1.91180+](sncinsnc/sncinsnc_n02.json) | [1.91992+](idoinido/idoinido_n02.json) | [1.97277+](tdointdo/tdointdo_n02.json) | [1.94830+](ticintic/ticintic_n02.json) |
 | 3 | [2.07252+](tcointco/tcointco_n03.json) | [2.10359+](sncinsnc/sncinsnc_n03.json) | [2.00000+](idoinido/idoinido_n03.json) | [2.00000+](tdointdo/tdointdo_n03.json) | [2.12595+](ticintic/ticintic_n03.json) |
-| 4 | [2.15262+](tcointco/tcointco_n04.json) | [2.19089+](sncinsnc/sncinsnc_n04.json) | [2.13323+](idoinido/idoinido_n04.json) | [2.07115+](tdointdo/tdointdo_n04.json) | [2.21742+](ticintic/ticintic_n04.json) |
-| 5 | [2.30107+](tcointco/tcointco_n05.json) | [2.37384+](sncinsnc/sncinsnc_n05.json) | [2.31935+](idoinido/idoinido_n05.json) | [2.23606+](tdointdo/tdointdo_n05.json) ≈ √5 | [2.37851+](ticintic/ticintic_n05.json) |
-| 6 | [2.36771+](tcointco/tcointco_n06.json) | [2.38324+](sncinsnc/sncinsnc_n06.json) | [2.35294+](idoinido/idoinido_n06.json) | [2.23606+](tdointdo/tdointdo_n06.json) ≈ √5 | [2.39164+](ticintic/ticintic_n06.json) |
+| 4 | [2.15262+](tcointco/tcointco_n04.json) | [2.19089+](sncinsnc/sncinsnc_n04.json) | [2.13319+](idoinido/idoinido_n04.json) | [2.07115+](tdointdo/tdointdo_n04.json) | [2.21742+](ticintic/ticintic_n04.json) |
+| 5 | [2.30107+](tcointco/tcointco_n05.json) | [2.34487+](sncinsnc/sncinsnc_n05.json) | [2.23606+](idoinido/idoinido_n05.json) ≈ √5 | [2.23606+](tdointdo/tdointdo_n05.json) ≈ √5 | [2.37851+](ticintic/ticintic_n05.json) |
+| 6 | [2.36771+](tcointco/tcointco_n06.json) | [2.37698+](sncinsnc/sncinsnc_n06.json) | [2.23606+](idoinido/idoinido_n06.json) ≈ √5 | [2.23606+](tdointdo/tdointdo_n06.json) ≈ √5 | [2.39164+](ticintic/ticintic_n06.json) |
 | 7 | [2.49906+](tcointco/tcointco_n07.json) | [2.54809+](sncinsnc/sncinsnc_n07.json) | [2.51914+](idoinido/idoinido_n07.json) | [2.56279+](tdointdo/tdointdo_n07.json) | [2.56575+](ticintic/ticintic_n07.json) |
 | 8 | [2.59269+](tcointco/tcointco_n08.json) | [2.64024+](sncinsnc/sncinsnc_n08.json) | [2.57878+](idoinido/idoinido_n08.json) | [2.58776+](tdointdo/tdointdo_n08.json) | [2.62829+](ticintic/ticintic_n08.json) |
 | 9 | [2.76220+](tcointco/tcointco_n09.json) | [2.87313+](sncinsnc/sncinsnc_n09.json) | [2.68492+](idoinido/idoinido_n09.json) | [2.86363+](tdointdo/tdointdo_n09.json) | [2.93977+](ticintic/ticintic_n09.json) |
@@ -77,27 +77,27 @@ _Generated 2026-10-12 20:49 CEST from the running search._ s = container size ÷
 | 28 | [3.77066+](tcointco/tcointco_n28.json) | [3.78836+](sncinsnc/sncinsnc_n28.json) | [3.78152+](idoinido/idoinido_n28.json) | [3.73235+](tdointdo/tdointdo_n28.json) | [3.81323+](ticintic/ticintic_n28.json) |
 | 29 | [3.80198+](tcointco/tcointco_n29.json) | [3.86512+](sncinsnc/sncinsnc_n29.json) | [3.81154+](idoinido/idoinido_n29.json) | [3.79358+](tdointdo/tdointdo_n29.json) | [3.83304+](ticintic/ticintic_n29.json) |
 | 30 | [3.87294+](tcointco/tcointco_n30.json) | [3.92560+](sncinsnc/sncinsnc_n30.json) | [3.85037+](idoinido/idoinido_n30.json) | [3.84993+](tdointdo/tdointdo_n30.json) | [3.85345+](ticintic/ticintic_n30.json) |
-| 31 | [3.87294+](tcointco/tcointco_n31.json) | [3.95216+](sncinsnc/sncinsnc_n31.json) | [3.87061+](idoinido/idoinido_n31.json) | [3.88597+](tdointdo/tdointdo_n31.json) | [3.90766+](ticintic/ticintic_n31.json) |
-| 32 | [3.90974+](tcointco/tcointco_n32.json) | [3.99166+](sncinsnc/sncinsnc_n32.json) | [3.91354+](idoinido/idoinido_n32.json) | [3.92853+](tdointdo/tdointdo_n32.json) | [4.00214+](ticintic/ticintic_n32.json) |
+| 31 | [3.87294+](tcointco/tcointco_n31.json) | [3.95216+](sncinsnc/sncinsnc_n31.json) | [3.87061+](idoinido/idoinido_n31.json) | [3.88597+](tdointdo/tdointdo_n31.json) | [3.90233+](ticintic/ticintic_n31.json) |
+| 32 | [3.90974+](tcointco/tcointco_n32.json) | [3.99166+](sncinsnc/sncinsnc_n32.json) | [3.91354+](idoinido/idoinido_n32.json) | [3.92853+](tdointdo/tdointdo_n32.json) | [3.98575+](ticintic/ticintic_n32.json) |
 | 33 | [3.96570+](tcointco/tcointco_n33.json) | [4.00914+](sncinsnc/sncinsnc_n33.json) | [3.95816+](idoinido/idoinido_n33.json) | [3.99004+](tdointdo/tdointdo_n33.json) | [4.01083+](ticintic/ticintic_n33.json) |
-| 34 | [3.96570+](tcointco/tcointco_n34.json) | [4.06476+](sncinsnc/sncinsnc_n34.json) | [4.00441+](idoinido/idoinido_n34.json) | [3.99004+](tdointdo/tdointdo_n34.json) |  |
-| 35 | [4.05563+](tcointco/tcointco_n35.json) | [4.07220+](sncinsnc/sncinsnc_n35.json) | [4.00718+](idoinido/idoinido_n35.json) | [4.01168+](tdointdo/tdointdo_n35.json) |  |
-| 36 | [4.07835+](tcointco/tcointco_n36.json) | [4.10550+](sncinsnc/sncinsnc_n36.json) | [4.00718+](idoinido/idoinido_n36.json) | [4.03737+](tdointdo/tdointdo_n36.json) |  |
-| 37 | [4.10639+](tcointco/tcointco_n37.json) | [4.14109+](sncinsnc/sncinsnc_n37.json) | [4.03802+](idoinido/idoinido_n37.json) | [4.09668+](tdointdo/tdointdo_n37.json) |  |
-| 38 | [4.11963+](tcointco/tcointco_n38.json) | [4.18493+](sncinsnc/sncinsnc_n38.json) | [4.05265+](idoinido/idoinido_n38.json) | [4.17232+](tdointdo/tdointdo_n38.json) |  |
-| 39 | [4.16257+](tcointco/tcointco_n39.json) | [4.23275+](sncinsnc/sncinsnc_n39.json) | [4.12136+](idoinido/idoinido_n39.json) |  |  |
-| 40 | [4.17091+](tcointco/tcointco_n40.json) | [4.23359+](sncinsnc/sncinsnc_n40.json) | [4.15822+](idoinido/idoinido_n40.json) |  |  |
+| 34 | [3.96570+](tcointco/tcointco_n34.json) | [4.06476+](sncinsnc/sncinsnc_n34.json) | [4.00441+](idoinido/idoinido_n34.json) | [3.99004+](tdointdo/tdointdo_n34.json) | [4.04099+](ticintic/ticintic_n34.json) |
+| 35 | [4.05563+](tcointco/tcointco_n35.json) | [4.07220+](sncinsnc/sncinsnc_n35.json) | [4.00718+](idoinido/idoinido_n35.json) | [4.01168+](tdointdo/tdointdo_n35.json) | [4.05248+](ticintic/ticintic_n35.json) |
+| 36 | [4.07835+](tcointco/tcointco_n36.json) | [4.10550+](sncinsnc/sncinsnc_n36.json) | [4.00718+](idoinido/idoinido_n36.json) | [4.03737+](tdointdo/tdointdo_n36.json) | [4.08400+](ticintic/ticintic_n36.json) |
+| 37 | [4.10639+](tcointco/tcointco_n37.json) | [4.14109+](sncinsnc/sncinsnc_n37.json) | [4.03802+](idoinido/idoinido_n37.json) | [4.08479+](tdointdo/tdointdo_n37.json) | [4.09828+](ticintic/ticintic_n37.json) |
+| 38 | [4.11963+](tcointco/tcointco_n38.json) | [4.18493+](sncinsnc/sncinsnc_n38.json) | [4.05265+](idoinido/idoinido_n38.json) | [4.09410+](tdointdo/tdointdo_n38.json) | [4.13650+](ticintic/ticintic_n38.json) |
+| 39 | [4.16257+](tcointco/tcointco_n39.json) | [4.23275+](sncinsnc/sncinsnc_n39.json) | [4.12136+](idoinido/idoinido_n39.json) | [4.09410+](tdointdo/tdointdo_n39.json) | [4.20416+](ticintic/ticintic_n39.json) |
+| 40 | [4.17091+](tcointco/tcointco_n40.json) | [4.23359+](sncinsnc/sncinsnc_n40.json) | [4.15822+](idoinido/idoinido_n40.json) | [4.11561+](tdointdo/tdointdo_n40.json) | [4.23756+](ticintic/ticintic_n40.json) |
 
 | n | Rhombicosidodecahedra in a rhombicosidodecahedron | Truncated icosidodecahedra in a truncated icosidodecahedron | Snub dodecahedra in a snub dodecahedron |
 |---:|---|---|---|
-| 2 | [1.94579+](ridinrid/ridinrid_n02.json) | [1.88598+](tidintid/tidintid_n02.json) | [1.93231+](sndinsnd/sndinsnd_n02.json) |
+| 2 | [1.94579+](ridinrid/ridinrid_n02.json) | [1.88573+](tidintid/tidintid_n02.json) | [1.93072+](sndinsnd/sndinsnd_n02.json) |
 | 3 | [2.13303+](ridinrid/ridinrid_n03.json) | [2.09344+](tidintid/tidintid_n03.json) | [2.11922+](sndinsnd/sndinsnd_n03.json) |
-| 4 | [2.20637+](ridinrid/ridinrid_n04.json) | [2.14959+](tidintid/tidintid_n04.json) | [2.19211+](sndinsnd/sndinsnd_n04.json) |
-| 5 | [2.35624+](ridinrid/ridinrid_n05.json) | [2.35666+](tidintid/tidintid_n05.json) | [2.37200+](sndinsnd/sndinsnd_n05.json) |
+| 4 | [2.20637+](ridinrid/ridinrid_n04.json) | [2.14959+](tidintid/tidintid_n04.json) | [2.18353+](sndinsnd/sndinsnd_n04.json) |
+| 5 | [2.35624+](ridinrid/ridinrid_n05.json) | [2.34111+](tidintid/tidintid_n05.json) | [2.37200+](sndinsnd/sndinsnd_n05.json) |
 | 6 | [2.35769+](ridinrid/ridinrid_n06.json) | [2.36905+](tidintid/tidintid_n06.json) | [2.38277+](sndinsnd/sndinsnd_n06.json) |
 | 7 | [2.56245+](ridinrid/ridinrid_n07.json) | [2.54349+](tidintid/tidintid_n07.json) | [2.56815+](sndinsnd/sndinsnd_n07.json) |
 | 8 | [2.63031+](ridinrid/ridinrid_n08.json) | [2.61108+](tidintid/tidintid_n08.json) | [2.60009+](sndinsnd/sndinsnd_n08.json) |
-| 9 | [2.91615+](ridinrid/ridinrid_n09.json) | [2.87197+](tidintid/tidintid_n09.json) | [2.89650+](sndinsnd/sndinsnd_n09.json) |
+| 9 | [2.90497+](ridinrid/ridinrid_n09.json) | [2.87197+](tidintid/tidintid_n09.json) | [2.89650+](sndinsnd/sndinsnd_n09.json) |
 | 10 | [2.91615+](ridinrid/ridinrid_n10.json) | [2.87208+](tidintid/tidintid_n10.json) | [2.89693+](sndinsnd/sndinsnd_n10.json) |
 | 11 | [2.91615+](ridinrid/ridinrid_n11.json) | [2.87214+](tidintid/tidintid_n11.json) | [2.89698+](sndinsnd/sndinsnd_n11.json) |
 | 12 | [2.91615+](ridinrid/ridinrid_n12.json) | [2.87214+](tidintid/tidintid_n12.json) | [2.89721+](sndinsnd/sndinsnd_n12.json) |
@@ -123,22 +123,22 @@ _Generated 2026-10-12 20:49 CEST from the running search._ s = container size ÷
 | 32 | [3.96262+](ridinrid/ridinrid_n32.json) | [3.91139+](tidintid/tidintid_n32.json) | [3.95069+](sndinsnd/sndinsnd_n32.json) |
 | 33 | [3.99991+](ridinrid/ridinrid_n33.json) | [3.96983+](tidintid/tidintid_n33.json) | [3.96621+](sndinsnd/sndinsnd_n33.json) |
 | 34 | [4.02424+](ridinrid/ridinrid_n34.json) | [3.99110+](tidintid/tidintid_n34.json) | [3.98651+](sndinsnd/sndinsnd_n34.json) |
-| 35 | [4.06350+](ridinrid/ridinrid_n35.json) | [4.01029+](tidintid/tidintid_n35.json) | [4.05552+](sndinsnd/sndinsnd_n35.json) |
-| 36 | [4.08892+](ridinrid/ridinrid_n36.json) | [4.05664+](tidintid/tidintid_n36.json) | [4.10096+](sndinsnd/sndinsnd_n36.json) |
-| 37 | [4.09305+](ridinrid/ridinrid_n37.json) | [4.08241+](tidintid/tidintid_n37.json) | [4.10594+](sndinsnd/sndinsnd_n37.json) |
-| 38 | [4.10162+](ridinrid/ridinrid_n38.json) | [4.13847+](tidintid/tidintid_n38.json) | [4.13069+](sndinsnd/sndinsnd_n38.json) |
-| 39 | [4.22020+](ridinrid/ridinrid_n39.json) | [4.16707+](tidintid/tidintid_n39.json) | [4.19153+](sndinsnd/sndinsnd_n39.json) |
+| 35 | [4.05947+](ridinrid/ridinrid_n35.json) | [4.01029+](tidintid/tidintid_n35.json) | [4.05552+](sndinsnd/sndinsnd_n35.json) |
+| 36 | [4.08341+](ridinrid/ridinrid_n36.json) | [4.05664+](tidintid/tidintid_n36.json) | [4.10096+](sndinsnd/sndinsnd_n36.json) |
+| 37 | [4.09293+](ridinrid/ridinrid_n37.json) | [4.08241+](tidintid/tidintid_n37.json) | [4.10594+](sndinsnd/sndinsnd_n37.json) |
+| 38 | [4.09293+](ridinrid/ridinrid_n38.json) | [4.13847+](tidintid/tidintid_n38.json) | [4.13069+](sndinsnd/sndinsnd_n38.json) |
+| 39 | [4.20623+](ridinrid/ridinrid_n39.json) | [4.16707+](tidintid/tidintid_n39.json) | [4.19153+](sndinsnd/sndinsnd_n39.json) |
 | 40 | [4.22547+](ridinrid/ridinrid_n40.json) | [4.18268+](tidintid/tidintid_n40.json) | [4.19760+](sndinsnd/sndinsnd_n40.json) |
 
 ## Catalan solids
 
 | n | Triakis tetrahedra in a triakis tetrahedron | Rhombic dodecahedra in a rhombic dodecahedron | Triakis octahedra in a triakis octahedron | Tetrakis hexahedra in a tetrakis hexahedron | Deltoidal icositetrahedra in a deltoidal icositetrahedron |
 |---:|---|---|---|---|---|
-| 2 | [1.66666+](kttinktt/kttinktt_n02.json) ≈ 5/3 | [1.89379+](rdoinrdo/rdoinrdo_n02.json) | [1.97976+](ktoinkto/ktoinkto_n02.json) | [1.94751+](kthinkth/kthinkth_n02.json) | [1.94548+](ditindit/ditindit_n02.json) |
+| 2 | [1.66666+](kttinktt/kttinktt_n02.json) ≈ 5/3 | [1.89379+](rdoinrdo/rdoinrdo_n02.json) | [1.97917+](ktoinkto/ktoinkto_n02.json) | [1.94751+](kthinkth/kthinkth_n02.json) | [1.94548+](ditindit/ditindit_n02.json) |
 | 3 | [1.66666+](kttinktt/kttinktt_n03.json) ≈ 5/3 | [2.00000+](rdoinrdo/rdoinrdo_n03.json) | [2.00000+](ktoinkto/ktoinkto_n03.json) | [2.00000+](kthinkth/kthinkth_n03.json) | [2.07398+](ditindit/ditindit_n03.json) |
 | 4 | [1.66666+](kttinktt/kttinktt_n04.json) ≈ 5/3 | [2.00000+](rdoinrdo/rdoinrdo_n04.json) | [2.00000+](ktoinkto/ktoinkto_n04.json) | [2.00000+](kthinkth/kthinkth_n04.json) | [2.20983+](ditindit/ditindit_n04.json) |
-| 5 | [2.14856+](kttinktt/kttinktt_n05.json) | [2.16344+](rdoinrdo/rdoinrdo_n05.json) | [2.00000+](ktoinkto/ktoinkto_n05.json) | [2.24841+](kthinkth/kthinkth_n05.json) | [2.32635+](ditindit/ditindit_n05.json) |
-| 6 | [2.34764+](kttinktt/kttinktt_n06.json) | [2.18900+](rdoinrdo/rdoinrdo_n06.json) | [2.00000+](ktoinkto/ktoinkto_n06.json) | [2.31987+](kthinkth/kthinkth_n06.json) | [2.35124+](ditindit/ditindit_n06.json) |
+| 5 | [2.14856+](kttinktt/kttinktt_n05.json) | [2.16344+](rdoinrdo/rdoinrdo_n05.json) | [2.00000+](ktoinkto/ktoinkto_n05.json) | [2.24309+](kthinkth/kthinkth_n05.json) | [2.32635+](ditindit/ditindit_n05.json) |
+| 6 | [2.34764+](kttinktt/kttinktt_n06.json) | [2.18743+](rdoinrdo/rdoinrdo_n06.json) | [2.00000+](ktoinkto/ktoinkto_n06.json) | [2.31987+](kthinkth/kthinkth_n06.json) | [2.35124+](ditindit/ditindit_n06.json) |
 | 7 | [2.40804+](kttinktt/kttinktt_n07.json) | [2.50852+](rdoinrdo/rdoinrdo_n07.json) | [2.37377+](ktoinkto/ktoinkto_n07.json) ≈ (10 + 3√2)/6 | [2.44651+](kthinkth/kthinkth_n07.json) | [2.83199+](ditindit/ditindit_n07.json) |
 | 8 | [2.51345+](kttinktt/kttinktt_n08.json) | [2.64795+](rdoinrdo/rdoinrdo_n08.json) | [2.53525+](ktoinkto/ktoinkto_n08.json) | [2.57545+](kthinkth/kthinkth_n08.json) | [2.87030+](ditindit/ditindit_n08.json) |
 | 9 | [2.60049+](kttinktt/kttinktt_n09.json) | [2.70522+](rdoinrdo/rdoinrdo_n09.json) | [2.82268+](ktoinkto/ktoinkto_n09.json) | [2.77432+](kthinkth/kthinkth_n09.json) | [2.88594+](ditindit/ditindit_n09.json) |
@@ -164,23 +164,23 @@ _Generated 2026-10-12 20:49 CEST from the running search._ s = container size ÷
 | 29 | [3.75892+](kttinktt/kttinktt_n29.json) | [3.85294+](rdoinrdo/rdoinrdo_n29.json) | [3.72347+](ktoinkto/ktoinkto_n29.json) | [3.79587+](kthinkth/kthinkth_n29.json) | [3.87491+](ditindit/ditindit_n29.json) |
 | 30 | [3.75892+](kttinktt/kttinktt_n30.json) | [3.90561+](rdoinrdo/rdoinrdo_n30.json) | [3.75695+](ktoinkto/ktoinkto_n30.json) | [3.84478+](kthinkth/kthinkth_n30.json) | [3.89383+](ditindit/ditindit_n30.json) |
 | 31 | [3.75970+](kttinktt/kttinktt_n31.json) | [3.93457+](rdoinrdo/rdoinrdo_n31.json) | [3.77458+](ktoinkto/ktoinkto_n31.json) | [3.87212+](kthinkth/kthinkth_n31.json) | [3.92729+](ditindit/ditindit_n31.json) |
-| 32 | [3.81214+](kttinktt/kttinktt_n32.json) | [3.93457+](rdoinrdo/rdoinrdo_n32.json) | [3.78599+](ktoinkto/ktoinkto_n32.json) | [3.93490+](kthinkth/kthinkth_n32.json) | [3.96094+](ditindit/ditindit_n32.json) |
-| 33 | [3.84105+](kttinktt/kttinktt_n33.json) | [3.96977+](rdoinrdo/rdoinrdo_n33.json) | [3.82256+](ktoinkto/ktoinkto_n33.json) | [3.93490+](kthinkth/kthinkth_n33.json) | [4.00746+](ditindit/ditindit_n33.json) |
-| 34 | [3.85904+](kttinktt/kttinktt_n34.json) | [4.00469+](rdoinrdo/rdoinrdo_n34.json) | [3.87193+](ktoinkto/ktoinkto_n34.json) | [4.01236+](kthinkth/kthinkth_n34.json) | [4.01924+](ditindit/ditindit_n34.json) |
-| 35 | [3.88183+](kttinktt/kttinktt_n35.json) | [4.03136+](rdoinrdo/rdoinrdo_n35.json) | [3.94376+](ktoinkto/ktoinkto_n35.json) | [4.03794+](kthinkth/kthinkth_n35.json) |  |
-| 36 | [3.91069+](kttinktt/kttinktt_n36.json) | [4.05925+](rdoinrdo/rdoinrdo_n36.json) | [3.96100+](ktoinkto/ktoinkto_n36.json) | [4.07158+](kthinkth/kthinkth_n36.json) |  |
-| 37 | [3.91531+](kttinktt/kttinktt_n37.json) | [4.13247+](rdoinrdo/rdoinrdo_n37.json) | [3.98745+](ktoinkto/ktoinkto_n37.json) | [4.12827+](kthinkth/kthinkth_n37.json) |  |
-| 38 | [3.97496+](kttinktt/kttinktt_n38.json) | [4.15308+](rdoinrdo/rdoinrdo_n38.json) | [3.99061+](ktoinkto/ktoinkto_n38.json) |  |  |
-| 39 | [3.98580+](kttinktt/kttinktt_n39.json) | [4.18025+](rdoinrdo/rdoinrdo_n39.json) | [4.00000+](ktoinkto/ktoinkto_n39.json) |  |  |
-| 40 | [4.00804+](kttinktt/kttinktt_n40.json) | [4.21007+](rdoinrdo/rdoinrdo_n40.json) | [4.01666+](ktoinkto/ktoinkto_n40.json) |  |  |
+| 32 | [3.81214+](kttinktt/kttinktt_n32.json) | [3.93457+](rdoinrdo/rdoinrdo_n32.json) | [3.78599+](ktoinkto/ktoinkto_n32.json) | [3.92183+](kthinkth/kthinkth_n32.json) | [3.96094+](ditindit/ditindit_n32.json) |
+| 33 | [3.84105+](kttinktt/kttinktt_n33.json) | [3.96977+](rdoinrdo/rdoinrdo_n33.json) | [3.82256+](ktoinkto/ktoinkto_n33.json) | [3.93490+](kthinkth/kthinkth_n33.json) | [3.99806+](ditindit/ditindit_n33.json) |
+| 34 | [3.85904+](kttinktt/kttinktt_n34.json) | [4.00469+](rdoinrdo/rdoinrdo_n34.json) | [3.87193+](ktoinkto/ktoinkto_n34.json) | [3.97683+](kthinkth/kthinkth_n34.json) | [4.00742+](ditindit/ditindit_n34.json) |
+| 35 | [3.88183+](kttinktt/kttinktt_n35.json) | [4.03136+](rdoinrdo/rdoinrdo_n35.json) | [3.94376+](ktoinkto/ktoinkto_n35.json) | [4.01978+](kthinkth/kthinkth_n35.json) | [4.05773+](ditindit/ditindit_n35.json) |
+| 36 | [3.91069+](kttinktt/kttinktt_n36.json) | [4.05925+](rdoinrdo/rdoinrdo_n36.json) | [3.96100+](ktoinkto/ktoinkto_n36.json) | [4.06484+](kthinkth/kthinkth_n36.json) | [4.05851+](ditindit/ditindit_n36.json) |
+| 37 | [3.91531+](kttinktt/kttinktt_n37.json) | [4.13247+](rdoinrdo/rdoinrdo_n37.json) | [3.98745+](ktoinkto/ktoinkto_n37.json) | [4.09353+](kthinkth/kthinkth_n37.json) | [4.07702+](ditindit/ditindit_n37.json) |
+| 38 | [3.97496+](kttinktt/kttinktt_n38.json) | [4.15308+](rdoinrdo/rdoinrdo_n38.json) | [3.99061+](ktoinkto/ktoinkto_n38.json) | [4.12317+](kthinkth/kthinkth_n38.json) | [4.08137+](ditindit/ditindit_n38.json) |
+| 39 | [3.98580+](kttinktt/kttinktt_n39.json) | [4.18025+](rdoinrdo/rdoinrdo_n39.json) | [4.00000+](ktoinkto/ktoinkto_n39.json) | [4.16352+](kthinkth/kthinkth_n39.json) | [4.16950+](ditindit/ditindit_n39.json) |
+| 40 | [4.00804+](kttinktt/kttinktt_n40.json) | [4.21007+](rdoinrdo/rdoinrdo_n40.json) | [4.01666+](ktoinkto/ktoinkto_n40.json) | [4.19540+](kthinkth/kthinkth_n40.json) | [4.23480+](ditindit/ditindit_n40.json) |
 
 | n | Disdyakis dodecahedra in a disdyakis dodecahedron | Pentagonal icositetrahedra in a pentagonal icositetrahedron | Rhombic triacontahedra in a rhombic triacontahedron | Triakis icosahedra in a triakis icosahedron | Pentakis dodecahedra in a pentakis dodecahedron |
 |---:|---|---|---|---|---|
-| 2 | [1.94152+](ddoinddo/ddoinddo_n02.json) | [1.91277+](pitinpit/pitinpit_n02.json) | [1.94815+](rtcinrtc/rtcinrtc_n02.json) | [1.99185+](ktiinkti/ktiinkti_n02.json) | [1.97902+](pkdinpkd/pkdinpkd_n02.json) |
-| 3 | [2.09041+](ddoinddo/ddoinddo_n03.json) | [2.10724+](pitinpit/pitinpit_n03.json) | [2.00000+](rtcinrtc/rtcinrtc_n03.json) | [2.00000+](ktiinkti/ktiinkti_n03.json) | [2.12399+](pkdinpkd/pkdinpkd_n03.json) |
-| 4 | [2.16373+](ddoinddo/ddoinddo_n04.json) | [2.20400+](pitinpit/pitinpit_n04.json) | [2.14589+](rtcinrtc/rtcinrtc_n04.json) ≈ (11 - 3√5)/2 | [2.14589+](ktiinkti/ktiinkti_n04.json) ≈ (11 - 3√5)/2 | [2.21085+](pkdinpkd/pkdinpkd_n04.json) |
-| 5 | [2.26002+](ddoinddo/ddoinddo_n05.json) | [2.33010+](pitinpit/pitinpit_n05.json) | [2.30901+](rtcinrtc/rtcinrtc_n05.json) ≈ (7 + √5)/4 | [2.29773+](ktiinkti/ktiinkti_n05.json) | [2.36813+](pkdinpkd/pkdinpkd_n05.json) |
-| 6 | [2.27571+](ddoinddo/ddoinddo_n06.json) | [2.33355+](pitinpit/pitinpit_n06.json) | [2.38130+](rtcinrtc/rtcinrtc_n06.json) | [2.37171+](ktiinkti/ktiinkti_n06.json) | [2.41563+](pkdinpkd/pkdinpkd_n06.json) |
+| 2 | [1.94152+](ddoinddo/ddoinddo_n02.json) | [1.91277+](pitinpit/pitinpit_n02.json) | [1.94815+](rtcinrtc/rtcinrtc_n02.json) | [1.99179+](ktiinkti/ktiinkti_n02.json) | [1.97902+](pkdinpkd/pkdinpkd_n02.json) |
+| 3 | [2.09041+](ddoinddo/ddoinddo_n03.json) | [2.10724+](pitinpit/pitinpit_n03.json) | [2.00000+](rtcinrtc/rtcinrtc_n03.json) | [2.00000+](ktiinkti/ktiinkti_n03.json) | [2.10515+](pkdinpkd/pkdinpkd_n03.json) |
+| 4 | [2.16373+](ddoinddo/ddoinddo_n04.json) | [2.20400+](pitinpit/pitinpit_n04.json) | [2.14589+](rtcinrtc/rtcinrtc_n04.json) ≈ (11 - 3√5)/2 | [2.14589+](ktiinkti/ktiinkti_n04.json) ≈ (11 - 3√5)/2 | [2.18036+](pkdinpkd/pkdinpkd_n04.json) |
+| 5 | [2.26002+](ddoinddo/ddoinddo_n05.json) | [2.31841+](pitinpit/pitinpit_n05.json) | [2.30901+](rtcinrtc/rtcinrtc_n05.json) ≈ (7 + √5)/4 | [2.29773+](ktiinkti/ktiinkti_n05.json) | [2.36813+](pkdinpkd/pkdinpkd_n05.json) |
+| 6 | [2.27571+](ddoinddo/ddoinddo_n06.json) | [2.32992+](pitinpit/pitinpit_n06.json) | [2.38130+](rtcinrtc/rtcinrtc_n06.json) | [2.35792+](ktiinkti/ktiinkti_n06.json) | [2.41528+](pkdinpkd/pkdinpkd_n06.json) |
 | 7 | [2.53593+](ddoinddo/ddoinddo_n07.json) | [2.55986+](pitinpit/pitinpit_n07.json) | [2.53262+](rtcinrtc/rtcinrtc_n07.json) ≈ (35 + 7√5)/20 | [2.50231+](ktiinkti/ktiinkti_n07.json) | [2.55809+](pkdinpkd/pkdinpkd_n07.json) |
 | 8 | [2.61757+](ddoinddo/ddoinddo_n08.json) | [2.62949+](pitinpit/pitinpit_n08.json) | [2.85599+](rtcinrtc/rtcinrtc_n08.json) | [2.53404+](ktiinkti/ktiinkti_n08.json) | [2.59573+](pkdinpkd/pkdinpkd_n08.json) |
 | 9 | [2.66846+](ddoinddo/ddoinddo_n09.json) | [2.71563+](pitinpit/pitinpit_n09.json) | [2.85599+](rtcinrtc/rtcinrtc_n09.json) | [2.58869+](ktiinkti/ktiinkti_n09.json) | [2.93496+](pkdinpkd/pkdinpkd_n09.json) |
@@ -201,33 +201,33 @@ _Generated 2026-10-12 20:49 CEST from the running search._ s = container size ÷
 | 24 | [3.64293+](ddoinddo/ddoinddo_n24.json) | [3.62152+](pitinpit/pitinpit_n24.json) | [3.68696+](rtcinrtc/rtcinrtc_n24.json) | [3.64955+](ktiinkti/ktiinkti_n24.json) | [3.64754+](pkdinpkd/pkdinpkd_n24.json) |
 | 25 | [3.69895+](ddoinddo/ddoinddo_n25.json) | [3.70293+](pitinpit/pitinpit_n25.json) | [3.72974+](rtcinrtc/rtcinrtc_n25.json) | [3.67072+](ktiinkti/ktiinkti_n25.json) | [3.73062+](pkdinpkd/pkdinpkd_n25.json) |
 | 26 | [3.75967+](ddoinddo/ddoinddo_n26.json) | [3.74766+](pitinpit/pitinpit_n26.json) | [3.74345+](rtcinrtc/rtcinrtc_n26.json) | [3.72228+](ktiinkti/ktiinkti_n26.json) | [3.75431+](pkdinpkd/pkdinpkd_n26.json) |
-| 27 | [3.77814+](ddoinddo/ddoinddo_n27.json) | [3.77969+](pitinpit/pitinpit_n27.json) | [3.79661+](rtcinrtc/rtcinrtc_n27.json) | [3.73958+](ktiinkti/ktiinkti_n27.json) | [3.77596+](pkdinpkd/pkdinpkd_n27.json) |
+| 27 | [3.77671+](ddoinddo/ddoinddo_n27.json) | [3.77969+](pitinpit/pitinpit_n27.json) | [3.79661+](rtcinrtc/rtcinrtc_n27.json) | [3.73958+](ktiinkti/ktiinkti_n27.json) | [3.77596+](pkdinpkd/pkdinpkd_n27.json) |
 | 28 | [3.80046+](ddoinddo/ddoinddo_n28.json) | [3.80185+](pitinpit/pitinpit_n28.json) | [3.79661+](rtcinrtc/rtcinrtc_n28.json) | [3.76068+](ktiinkti/ktiinkti_n28.json) | [3.81934+](pkdinpkd/pkdinpkd_n28.json) |
-| 29 | [3.85856+](ddoinddo/ddoinddo_n29.json) | [3.85523+](pitinpit/pitinpit_n29.json) | [3.82424+](rtcinrtc/rtcinrtc_n29.json) | [3.81575+](ktiinkti/ktiinkti_n29.json) | [3.88786+](pkdinpkd/pkdinpkd_n29.json) |
-| 30 | [3.87673+](ddoinddo/ddoinddo_n30.json) | [3.88320+](pitinpit/pitinpit_n30.json) | [3.87274+](rtcinrtc/rtcinrtc_n30.json) | [3.81575+](ktiinkti/ktiinkti_n30.json) | [3.88968+](pkdinpkd/pkdinpkd_n30.json) |
-| 31 | [3.91730+](ddoinddo/ddoinddo_n31.json) | [3.91905+](pitinpit/pitinpit_n31.json) | [3.87529+](rtcinrtc/rtcinrtc_n31.json) | [3.84753+](ktiinkti/ktiinkti_n31.json) | [3.89983+](pkdinpkd/pkdinpkd_n31.json) |
-| 32 | [3.96852+](ddoinddo/ddoinddo_n32.json) | [3.95606+](pitinpit/pitinpit_n32.json) | [3.87529+](rtcinrtc/rtcinrtc_n32.json) | [3.85014+](ktiinkti/ktiinkti_n32.json) | [3.93067+](pkdinpkd/pkdinpkd_n32.json) |
-| 33 |  | [3.97990+](pitinpit/pitinpit_n33.json) | [3.87529+](rtcinrtc/rtcinrtc_n33.json) | [3.85014+](ktiinkti/ktiinkti_n33.json) | [3.93417+](pkdinpkd/pkdinpkd_n33.json) |
-| 34 |  | [4.00937+](pitinpit/pitinpit_n34.json) | [3.88610+](rtcinrtc/rtcinrtc_n34.json) | [3.85014+](ktiinkti/ktiinkti_n34.json) | [3.97582+](pkdinpkd/pkdinpkd_n34.json) |
-| 35 |  | [4.00937+](pitinpit/pitinpit_n35.json) | [3.88610+](rtcinrtc/rtcinrtc_n35.json) | [3.86011+](ktiinkti/ktiinkti_n35.json) | [3.97779+](pkdinpkd/pkdinpkd_n35.json) |
-| 36 |  | [4.02094+](pitinpit/pitinpit_n36.json) | [4.03543+](rtcinrtc/rtcinrtc_n36.json) | [3.98488+](ktiinkti/ktiinkti_n36.json) | [4.03932+](pkdinpkd/pkdinpkd_n36.json) |
-| 37 |  | [4.12494+](pitinpit/pitinpit_n37.json) | [4.03750+](rtcinrtc/rtcinrtc_n37.json) | [4.06243+](ktiinkti/ktiinkti_n37.json) | [4.03932+](pkdinpkd/pkdinpkd_n37.json) |
-| 38 |  | [4.17542+](pitinpit/pitinpit_n38.json) | [4.11581+](rtcinrtc/rtcinrtc_n38.json) | [4.11938+](ktiinkti/ktiinkti_n38.json) | [4.03932+](pkdinpkd/pkdinpkd_n38.json) |
-| 39 |  | [4.21515+](pitinpit/pitinpit_n39.json) | [4.18375+](rtcinrtc/rtcinrtc_n39.json) | [4.16007+](ktiinkti/ktiinkti_n39.json) | [4.20802+](pkdinpkd/pkdinpkd_n39.json) |
-| 40 |  | [4.25271+](pitinpit/pitinpit_n40.json) | [4.23241+](rtcinrtc/rtcinrtc_n40.json) | [4.19838+](ktiinkti/ktiinkti_n40.json) | [4.25250+](pkdinpkd/pkdinpkd_n40.json) |
+| 29 | [3.84915+](ddoinddo/ddoinddo_n29.json) | [3.85523+](pitinpit/pitinpit_n29.json) | [3.82424+](rtcinrtc/rtcinrtc_n29.json) | [3.81575+](ktiinkti/ktiinkti_n29.json) | [3.88786+](pkdinpkd/pkdinpkd_n29.json) |
+| 30 | [3.86307+](ddoinddo/ddoinddo_n30.json) | [3.88320+](pitinpit/pitinpit_n30.json) | [3.87274+](rtcinrtc/rtcinrtc_n30.json) | [3.81575+](ktiinkti/ktiinkti_n30.json) | [3.88968+](pkdinpkd/pkdinpkd_n30.json) |
+| 31 | [3.91357+](ddoinddo/ddoinddo_n31.json) | [3.91905+](pitinpit/pitinpit_n31.json) | [3.87529+](rtcinrtc/rtcinrtc_n31.json) | [3.84753+](ktiinkti/ktiinkti_n31.json) | [3.89983+](pkdinpkd/pkdinpkd_n31.json) |
+| 32 | [3.94493+](ddoinddo/ddoinddo_n32.json) | [3.95606+](pitinpit/pitinpit_n32.json) | [3.87529+](rtcinrtc/rtcinrtc_n32.json) | [3.85014+](ktiinkti/ktiinkti_n32.json) | [3.93067+](pkdinpkd/pkdinpkd_n32.json) |
+| 33 | [3.96992+](ddoinddo/ddoinddo_n33.json) | [3.97990+](pitinpit/pitinpit_n33.json) | [3.87529+](rtcinrtc/rtcinrtc_n33.json) | [3.85014+](ktiinkti/ktiinkti_n33.json) | [3.93417+](pkdinpkd/pkdinpkd_n33.json) |
+| 34 | [4.02564+](ddoinddo/ddoinddo_n34.json) | [4.00937+](pitinpit/pitinpit_n34.json) | [3.88610+](rtcinrtc/rtcinrtc_n34.json) | [3.85014+](ktiinkti/ktiinkti_n34.json) | [3.97582+](pkdinpkd/pkdinpkd_n34.json) |
+| 35 | [4.06107+](ddoinddo/ddoinddo_n35.json) | [4.00937+](pitinpit/pitinpit_n35.json) | [3.88610+](rtcinrtc/rtcinrtc_n35.json) | [3.86011+](ktiinkti/ktiinkti_n35.json) | [3.97779+](pkdinpkd/pkdinpkd_n35.json) |
+| 36 | [4.06396+](ddoinddo/ddoinddo_n36.json) | [4.02094+](pitinpit/pitinpit_n36.json) | [4.03543+](rtcinrtc/rtcinrtc_n36.json) | [3.98488+](ktiinkti/ktiinkti_n36.json) | [4.03932+](pkdinpkd/pkdinpkd_n36.json) |
+| 37 | [4.09166+](ddoinddo/ddoinddo_n37.json) | [4.12494+](pitinpit/pitinpit_n37.json) | [4.03750+](rtcinrtc/rtcinrtc_n37.json) | [4.06243+](ktiinkti/ktiinkti_n37.json) | [4.03932+](pkdinpkd/pkdinpkd_n37.json) |
+| 38 | [4.11381+](ddoinddo/ddoinddo_n38.json) | [4.17542+](pitinpit/pitinpit_n38.json) | [4.11581+](rtcinrtc/rtcinrtc_n38.json) | [4.11938+](ktiinkti/ktiinkti_n38.json) | [4.03932+](pkdinpkd/pkdinpkd_n38.json) |
+| 39 | [4.19070+](ddoinddo/ddoinddo_n39.json) | [4.21515+](pitinpit/pitinpit_n39.json) | [4.18375+](rtcinrtc/rtcinrtc_n39.json) | [4.16007+](ktiinkti/ktiinkti_n39.json) | [4.20802+](pkdinpkd/pkdinpkd_n39.json) |
+| 40 | [4.23173+](ddoinddo/ddoinddo_n40.json) | [4.25271+](pitinpit/pitinpit_n40.json) | [4.23241+](rtcinrtc/rtcinrtc_n40.json) | [4.19838+](ktiinkti/ktiinkti_n40.json) | [4.25250+](pkdinpkd/pkdinpkd_n40.json) |
 
 | n | Deltoidal hexecontahedra in a deltoidal hexecontahedron | Disdyakis triacontahedra in a disdyakis triacontahedron | Pentagonal hexecontahedra in a pentagonal hexecontahedron |
 |---:|---|---|---|
 | 2 | [1.96616+](dhcindhc/dhcindhc_n02.json) | [1.95611+](dtcindtc/dtcindtc_n02.json) | [1.95734+](phcinphc/phcinphc_n02.json) |
 | 3 | [2.12222+](dhcindhc/dhcindhc_n03.json) | [2.08961+](dtcindtc/dtcindtc_n03.json) | [2.14550+](phcinphc/phcinphc_n03.json) |
-| 4 | [2.21433+](dhcindhc/dhcindhc_n04.json) | [2.19208+](dtcindtc/dtcindtc_n04.json) | [2.22385+](phcinphc/phcinphc_n04.json) |
-| 5 | [2.35891+](dhcindhc/dhcindhc_n05.json) | [2.35451+](dtcindtc/dtcindtc_n05.json) | [2.38734+](phcinphc/phcinphc_n05.json) |
+| 4 | [2.21328+](dhcindhc/dhcindhc_n04.json) | [2.19208+](dtcindtc/dtcindtc_n04.json) | [2.22385+](phcinphc/phcinphc_n04.json) |
+| 5 | [2.35891+](dhcindhc/dhcindhc_n05.json) | [2.35264+](dtcindtc/dtcindtc_n05.json) | [2.38734+](phcinphc/phcinphc_n05.json) |
 | 6 | [2.40044+](dhcindhc/dhcindhc_n06.json) | [2.40896+](dtcindtc/dtcindtc_n06.json) | [2.40297+](phcinphc/phcinphc_n06.json) |
 | 7 | [2.56636+](dhcindhc/dhcindhc_n07.json) | [2.54386+](dtcindtc/dtcindtc_n07.json) | [2.55896+](phcinphc/phcinphc_n07.json) |
-| 8 | [2.65618+](dhcindhc/dhcindhc_n08.json) | [2.87673+](dtcindtc/dtcindtc_n08.json) | [2.65606+](phcinphc/phcinphc_n08.json) |
-| 9 | [2.94189+](dhcindhc/dhcindhc_n09.json) | [2.87673+](dtcindtc/dtcindtc_n09.json) | [2.93362+](phcinphc/phcinphc_n09.json) |
-| 10 | [2.94207+](dhcindhc/dhcindhc_n10.json) | [2.87673+](dtcindtc/dtcindtc_n10.json) | [2.93362+](phcinphc/phcinphc_n10.json) |
-| 11 | [2.94573+](dhcindhc/dhcindhc_n11.json) | [2.87673+](dtcindtc/dtcindtc_n11.json) | [2.93362+](phcinphc/phcinphc_n11.json) |
+| 8 | [2.65618+](dhcindhc/dhcindhc_n08.json) | [2.87538+](dtcindtc/dtcindtc_n08.json) | [2.65606+](phcinphc/phcinphc_n08.json) |
+| 9 | [2.93896+](dhcindhc/dhcindhc_n09.json) | [2.87538+](dtcindtc/dtcindtc_n09.json) | [2.93362+](phcinphc/phcinphc_n09.json) |
+| 10 | [2.93896+](dhcindhc/dhcindhc_n10.json) | [2.87538+](dtcindtc/dtcindtc_n10.json) | [2.93362+](phcinphc/phcinphc_n10.json) |
+| 11 | [2.93896+](dhcindhc/dhcindhc_n11.json) | [2.87673+](dtcindtc/dtcindtc_n11.json) | [2.93362+](phcinphc/phcinphc_n11.json) |
 | 12 | [2.94573+](dhcindhc/dhcindhc_n12.json) | [2.87673+](dtcindtc/dtcindtc_n12.json) | [2.93362+](phcinphc/phcinphc_n12.json) |
 | 13 | [2.95001+](dhcindhc/dhcindhc_n13.json) | [2.88063+](dtcindtc/dtcindtc_n13.json) | [2.95984+](phcinphc/phcinphc_n13.json) |
 | 14 | [3.08772+](dhcindhc/dhcindhc_n14.json) | [3.06815+](dtcindtc/dtcindtc_n14.json) | [3.07734+](phcinphc/phcinphc_n14.json) |
@@ -241,22 +241,22 @@ _Generated 2026-10-12 20:49 CEST from the running search._ s = container size ÷
 | 22 | [3.58618+](dhcindhc/dhcindhc_n22.json) | [3.59386+](dtcindtc/dtcindtc_n22.json) | [3.59893+](phcinphc/phcinphc_n22.json) |
 | 23 | [3.64218+](dhcindhc/dhcindhc_n23.json) | [3.59572+](dtcindtc/dtcindtc_n23.json) | [3.60945+](phcinphc/phcinphc_n23.json) |
 | 24 | [3.70638+](dhcindhc/dhcindhc_n24.json) | [3.64581+](dtcindtc/dtcindtc_n24.json) | [3.65884+](phcinphc/phcinphc_n24.json) |
-| 25 | [3.75428+](dhcindhc/dhcindhc_n25.json) | [3.72646+](dtcindtc/dtcindtc_n25.json) | [3.70021+](phcinphc/phcinphc_n25.json) |
-| 26 | [3.76111+](dhcindhc/dhcindhc_n26.json) | [3.73911+](dtcindtc/dtcindtc_n26.json) | [3.76134+](phcinphc/phcinphc_n26.json) |
+| 25 | [3.75428+](dhcindhc/dhcindhc_n25.json) | [3.72646+](dtcindtc/dtcindtc_n25.json) | [3.68167+](phcinphc/phcinphc_n25.json) |
+| 26 | [3.76111+](dhcindhc/dhcindhc_n26.json) | [3.73911+](dtcindtc/dtcindtc_n26.json) | [3.73395+](phcinphc/phcinphc_n26.json) |
 | 27 | [3.79379+](dhcindhc/dhcindhc_n27.json) | [3.75678+](dtcindtc/dtcindtc_n27.json) | [3.79950+](phcinphc/phcinphc_n27.json) |
-| 28 | [3.84312+](dhcindhc/dhcindhc_n28.json) | [3.80370+](dtcindtc/dtcindtc_n28.json) | [3.84846+](phcinphc/phcinphc_n28.json) |
-| 29 | [3.89500+](dhcindhc/dhcindhc_n29.json) | [3.81894+](dtcindtc/dtcindtc_n29.json) |  |
-| 30 | [3.92324+](dhcindhc/dhcindhc_n30.json) | [3.85824+](dtcindtc/dtcindtc_n30.json) |  |
-| 31 | [3.94685+](dhcindhc/dhcindhc_n31.json) | [3.88461+](dtcindtc/dtcindtc_n31.json) |  |
-| 32 | [3.97913+](dhcindhc/dhcindhc_n32.json) | [3.90511+](dtcindtc/dtcindtc_n32.json) |  |
-| 33 | [4.01331+](dhcindhc/dhcindhc_n33.json) | [3.91136+](dtcindtc/dtcindtc_n33.json) |  |
-| 34 | [4.07547+](dhcindhc/dhcindhc_n34.json) | [3.94329+](dtcindtc/dtcindtc_n34.json) |  |
-| 35 | [4.08652+](dhcindhc/dhcindhc_n35.json) | [3.95615+](dtcindtc/dtcindtc_n35.json) |  |
-| 36 | [4.12504+](dhcindhc/dhcindhc_n36.json) | [3.99343+](dtcindtc/dtcindtc_n36.json) |  |
-| 37 | [4.13922+](dhcindhc/dhcindhc_n37.json) | [4.07373+](dtcindtc/dtcindtc_n37.json) |  |
-| 38 | [4.20389+](dhcindhc/dhcindhc_n38.json) | [4.08385+](dtcindtc/dtcindtc_n38.json) |  |
-| 39 | [4.20463+](dhcindhc/dhcindhc_n39.json) | [4.19632+](dtcindtc/dtcindtc_n39.json) |  |
-| 40 | [4.27131+](dhcindhc/dhcindhc_n40.json) | [4.23835+](dtcindtc/dtcindtc_n40.json) |  |
+| 28 | [3.84312+](dhcindhc/dhcindhc_n28.json) | [3.80370+](dtcindtc/dtcindtc_n28.json) | [3.83646+](phcinphc/phcinphc_n28.json) |
+| 29 | [3.89500+](dhcindhc/dhcindhc_n29.json) | [3.81894+](dtcindtc/dtcindtc_n29.json) | [3.85857+](phcinphc/phcinphc_n29.json) |
+| 30 | [3.92324+](dhcindhc/dhcindhc_n30.json) | [3.85824+](dtcindtc/dtcindtc_n30.json) | [3.89314+](phcinphc/phcinphc_n30.json) |
+| 31 | [3.94685+](dhcindhc/dhcindhc_n31.json) | [3.88461+](dtcindtc/dtcindtc_n31.json) | [3.92591+](phcinphc/phcinphc_n31.json) |
+| 32 | [3.97913+](dhcindhc/dhcindhc_n32.json) | [3.90511+](dtcindtc/dtcindtc_n32.json) | [3.96797+](phcinphc/phcinphc_n32.json) |
+| 33 | [4.01331+](dhcindhc/dhcindhc_n33.json) | [3.91136+](dtcindtc/dtcindtc_n33.json) | [3.98718+](phcinphc/phcinphc_n33.json) |
+| 34 | [4.07547+](dhcindhc/dhcindhc_n34.json) | [3.94329+](dtcindtc/dtcindtc_n34.json) | [3.99668+](phcinphc/phcinphc_n34.json) |
+| 35 | [4.08652+](dhcindhc/dhcindhc_n35.json) | [3.95615+](dtcindtc/dtcindtc_n35.json) | [4.01185+](phcinphc/phcinphc_n35.json) |
+| 36 | [4.12504+](dhcindhc/dhcindhc_n36.json) | [3.99343+](dtcindtc/dtcindtc_n36.json) | [4.01248+](phcinphc/phcinphc_n36.json) |
+| 37 | [4.13922+](dhcindhc/dhcindhc_n37.json) | [4.07373+](dtcindtc/dtcindtc_n37.json) | [4.10646+](phcinphc/phcinphc_n37.json) |
+| 38 | [4.20389+](dhcindhc/dhcindhc_n38.json) | [4.08286+](dtcindtc/dtcindtc_n38.json) |  |
+| 39 | [4.20463+](dhcindhc/dhcindhc_n39.json) | [4.19349+](dtcindtc/dtcindtc_n39.json) |  |
+| 40 | [4.27131+](dhcindhc/dhcindhc_n40.json) | [4.22869+](dtcindtc/dtcindtc_n40.json) |  |
 
 ## Prisms and antiprisms
 
@@ -264,11 +264,11 @@ _Generated 2026-10-12 20:49 CEST from the running search._ s = container size ÷
 |---:|---|---|---|---|---|
 | 2 | [1.88755+](pr3inpr3/pr3inpr3_n02.json) ≈ (63 + 14√7)/53 | [1.22474+](pr3incub/pr3incub_n02.json) ≈ (√6)/2 | [1.66295+](pr5inpr5/pr5inpr5_n02.json) | [2.00000+](pr5incub/pr5incub_n02.json) | [1.73205+](pr6inpr6/pr6inpr6_n02.json) ≈ √3 |
 | 3 | [2.00280+](pr3inpr3/pr3inpr3_n03.json) | [1.47839+](pr3incub/pr3incub_n03.json) | [1.97207+](pr5inpr5/pr5inpr5_n03.json) | [2.39768+](pr5incub/pr5incub_n03.json) | [1.98846+](pr6inpr6/pr6inpr6_n03.json) |
-| 4 | [2.11752+](pr3inpr3/pr3inpr3_n04.json) | [1.63019+](pr3incub/pr3incub_n04.json) | [2.23990+](pr5inpr5/pr5inpr5_n04.json) | [2.53884+](pr5incub/pr5incub_n04.json) | [2.00000+](pr6inpr6/pr6inpr6_n04.json) |
-| 5 | [2.32567+](pr3inpr3/pr3inpr3_n05.json) | [1.73741+](pr3incub/pr3incub_n05.json) | [2.31201+](pr5inpr5/pr5inpr5_n05.json) | [2.57257+](pr5incub/pr5incub_n05.json) | [2.15404+](pr6inpr6/pr6inpr6_n05.json) |
+| 4 | [2.11752+](pr3inpr3/pr3inpr3_n04.json) | [1.63019+](pr3incub/pr3incub_n04.json) | [2.21356+](pr5inpr5/pr5inpr5_n04.json) | [2.53884+](pr5incub/pr5incub_n04.json) | [2.00000+](pr6inpr6/pr6inpr6_n04.json) |
+| 5 | [2.32567+](pr3inpr3/pr3inpr3_n05.json) | [1.73741+](pr3incub/pr3incub_n05.json) | [2.30542+](pr5inpr5/pr5inpr5_n05.json) | [2.56953+](pr5incub/pr5incub_n05.json) | [2.15404+](pr6inpr6/pr6inpr6_n05.json) |
 | 6 | [2.41021+](pr3inpr3/pr3inpr3_n06.json) | [1.86602+](pr3incub/pr3incub_n06.json) ≈ (2 + √3)/2 | [2.53884+](pr5inpr5/pr5inpr5_n06.json) | [2.57257+](pr5incub/pr5incub_n06.json) | [2.15470+](pr6inpr6/pr6inpr6_n06.json) ≈ (3 + 2√3)/3 |
 | 7 | [2.45684+](pr3inpr3/pr3inpr3_n07.json) | [1.89359+](pr3incub/pr3incub_n07.json) | [2.53884+](pr5inpr5/pr5inpr5_n07.json) | [2.96462+](pr5incub/pr5incub_n07.json) | [2.43646+](pr6inpr6/pr6inpr6_n07.json) ≈ (15 + 4√3)/9 |
-| 8 | [2.50000+](pr3inpr3/pr3inpr3_n08.json) ≈ 5/2 | [1.95096+](pr3incub/pr3incub_n08.json) ≈ (13 - 3√3)/4 | [2.54842+](pr5inpr5/pr5inpr5_n08.json) | [3.00000+](pr5incub/pr5incub_n08.json) | [2.72007+](pr6inpr6/pr6inpr6_n08.json) |
+| 8 | [2.46400+](pr3inpr3/pr3inpr3_n08.json) | [1.95096+](pr3incub/pr3incub_n08.json) ≈ (13 - 3√3)/4 | [2.54842+](pr5inpr5/pr5inpr5_n08.json) | [3.00000+](pr5incub/pr5incub_n08.json) | [2.72007+](pr6inpr6/pr6inpr6_n08.json) |
 | 9 | [2.50000+](pr3inpr3/pr3inpr3_n09.json) ≈ 5/2 | [1.98168+](pr3incub/pr3incub_n09.json) | [2.64983+](pr5inpr5/pr5inpr5_n09.json) | [3.10369+](pr5incub/pr5incub_n09.json) | [2.85369+](pr6inpr6/pr6inpr6_n09.json) |
 | 10 | [2.72384+](pr3inpr3/pr3inpr3_n10.json) | [2.00000+](pr3incub/pr3incub_n10.json) | [2.64983+](pr5inpr5/pr5inpr5_n10.json) | [3.23652+](pr5incub/pr5incub_n10.json) | [2.85623+](pr6inpr6/pr6inpr6_n10.json) |
 | 11 | [2.79118+](pr3inpr3/pr3inpr3_n11.json) | [2.16285+](pr3incub/pr3incub_n11.json) | [2.78013+](pr5inpr5/pr5inpr5_n11.json) | [3.43292+](pr5incub/pr5incub_n11.json) | [2.85623+](pr6inpr6/pr6inpr6_n11.json) |
@@ -305,18 +305,18 @@ _Generated 2026-10-12 20:49 CEST from the running search._ s = container size ÷
 | n | Prism6s in a cube | Prism8s in a prism8 | Prism8s in a cube | Prism12s in a prism12 | Prism12s in a cube |
 |---:|---|---|---|---|---|
 | 2 | [2.00000+](pr6incub/pr6incub_n02.json) | [1.98912+](pr8inpr8/pr8inpr8_n02.json) | [2.41421+](pr8incub/pr8incub_n02.json) ≈ 1 + √2 | [1.99850+](pr12inpr12/pr12inpr12_n02.json) | [3.76526+](pr12incub/pr12incub_n02.json) |
-| 3 | [2.73205+](pr6incub/pr6incub_n03.json) ≈ 1 + √3 | [2.11022+](pr8inpr8/pr8inpr8_n03.json) | [3.00000+](pr8incub/pr8incub_n03.json) | [2.00000+](pr12inpr12/pr12inpr12_n03.json) | [4.49130+](pr12incub/pr12incub_n03.json) |
-| 4 | [2.84705+](pr6incub/pr6incub_n04.json) | [2.16766+](pr8inpr8/pr8inpr8_n04.json) | [3.41421+](pr8incub/pr8incub_n04.json) ≈ 2 + √2 | [2.00000+](pr12inpr12/pr12inpr12_n04.json) | [4.73205+](pr12incub/pr12incub_n04.json) ≈ 3 + √3 |
+| 3 | [2.73205+](pr6incub/pr6incub_n03.json) ≈ 1 + √3 | [2.00000+](pr8inpr8/pr8inpr8_n03.json) | [3.00000+](pr8incub/pr8incub_n03.json) | [2.00000+](pr12inpr12/pr12inpr12_n03.json) | [4.49130+](pr12incub/pr12incub_n03.json) |
+| 4 | [2.84688+](pr6incub/pr6incub_n04.json) | [2.00000+](pr8inpr8/pr8inpr8_n04.json) | [3.41421+](pr8incub/pr8incub_n04.json) ≈ 2 + √2 | [2.00000+](pr12inpr12/pr12inpr12_n04.json) | [4.73205+](pr12incub/pr12incub_n04.json) ≈ 3 + √3 |
 | 5 | [3.15659+](pr6incub/pr6incub_n05.json) | [2.17157+](pr8inpr8/pr8inpr8_n05.json) ≈ 5 - 2√2 | [3.41421+](pr8incub/pr8incub_n05.json) ≈ 2 + √2 | [2.15063+](pr12inpr12/pr12inpr12_n05.json) | [4.73205+](pr12incub/pr12incub_n05.json) ≈ 3 + √3 |
 | 6 | [3.24871+](pr6incub/pr6incub_n06.json) ≈ -21 + 14√3 | [2.36912+](pr8inpr8/pr8inpr8_n06.json) | [4.00000+](pr8incub/pr8incub_n06.json) | [2.15063+](pr12inpr12/pr12inpr12_n06.json) | [4.97555+](pr12incub/pr12incub_n06.json) |
 | 7 | [3.41506+](pr6incub/pr6incub_n07.json) ≈ (5 + 5√3)/4 | [2.40843+](pr8inpr8/pr8inpr8_n07.json) | [4.24462+](pr8incub/pr8incub_n07.json) | [2.36602+](pr12inpr12/pr12inpr12_n07.json) ≈ (3 + √3)/2 | [5.00000+](pr12incub/pr12incub_n07.json) |
 | 8 | [3.46410+](pr6incub/pr6incub_n08.json) ≈ 2√3 | [2.41421+](pr8inpr8/pr8inpr8_n08.json) ≈ 1 + √2 | [4.41421+](pr8incub/pr8incub_n08.json) ≈ 3 + √2 | [2.36602+](pr12inpr12/pr12inpr12_n08.json) ≈ (3 + √3)/2 | [5.73205+](pr12incub/pr12incub_n08.json) ≈ 4 + √3 |
-| 9 | [3.55525+](pr6incub/pr6incub_n09.json) | [2.41421+](pr8inpr8/pr8inpr8_n09.json) ≈ 1 + √2 | [4.45465+](pr8incub/pr8incub_n09.json) ≈ (14 + 9√2)/6 | [2.61211+](pr12inpr12/pr12inpr12_n09.json) | [5.73205+](pr12incub/pr12incub_n09.json) ≈ 4 + √3 |
+| 9 | [3.55525+](pr6incub/pr6incub_n09.json) | [2.41421+](pr8inpr8/pr8inpr8_n09.json) ≈ 1 + √2 | [4.41421+](pr8incub/pr8incub_n09.json) ≈ 3 + √2 | [2.61211+](pr12inpr12/pr12inpr12_n09.json) | [5.73205+](pr12incub/pr12incub_n09.json) ≈ 4 + √3 |
 | 10 | [3.73205+](pr6incub/pr6incub_n10.json) ≈ 2 + √3 | [2.61490+](pr8inpr8/pr8inpr8_n10.json) | [4.45465+](pr8incub/pr8incub_n10.json) ≈ (14 + 9√2)/6 | [2.96990+](pr12inpr12/pr12inpr12_n10.json) | [6.26335+](pr12incub/pr12incub_n10.json) |
-| 11 | [3.73205+](pr6incub/pr6incub_n11.json) ≈ 2 + √3 | [2.72964+](pr8inpr8/pr8inpr8_n11.json) | [4.82842+](pr8incub/pr8incub_n11.json) ≈ 2 + 2√2 | [3.72876+](pr12inpr12/pr12inpr12_n11.json) | [6.46410+](pr12incub/pr12incub_n11.json) ≈ 3 + 2√3 |
-| 12 | [3.78515+](pr6incub/pr6incub_n12.json) | [3.00000+](pr8inpr8/pr8inpr8_n12.json) | [4.82842+](pr8incub/pr8incub_n12.json) ≈ 2 + 2√2 | [3.73074+](pr12inpr12/pr12inpr12_n12.json) | [6.83012+](pr12incub/pr12incub_n12.json) ≈ (5 + 5√3)/2 |
+| 11 | [3.73205+](pr6incub/pr6incub_n11.json) ≈ 2 + √3 | [2.72964+](pr8inpr8/pr8inpr8_n11.json) | [4.82842+](pr8incub/pr8incub_n11.json) ≈ 2 + 2√2 | [3.00000+](pr12inpr12/pr12inpr12_n11.json) | [6.46410+](pr12incub/pr12incub_n11.json) ≈ 3 + 2√3 |
+| 12 | [3.78515+](pr6incub/pr6incub_n12.json) | [3.00000+](pr8inpr8/pr8inpr8_n12.json) | [4.82842+](pr8incub/pr8incub_n12.json) ≈ 2 + 2√2 | [3.13326+](pr12inpr12/pr12inpr12_n12.json) | [6.83012+](pr12incub/pr12incub_n12.json) ≈ (5 + 5√3)/2 |
 | 13 | [4.06217+](pr6incub/pr6incub_n13.json) ≈ (-4 + 7√3)/2 | [3.00000+](pr8inpr8/pr8inpr8_n13.json) | [4.95548+](pr8incub/pr8incub_n13.json) | [3.73205+](pr12inpr12/pr12inpr12_n13.json) ≈ 2 + √3 | [6.83012+](pr12incub/pr12incub_n13.json) ≈ (5 + 5√3)/2 |
-| 14 | [4.12082+](pr6incub/pr6incub_n14.json) | [3.00000+](pr8inpr8/pr8inpr8_n14.json) | [5.41421+](pr8incub/pr8incub_n14.json) | [3.73205+](pr12inpr12/pr12inpr12_n14.json) ≈ 2 + √3 | [6.83795+](pr12incub/pr12incub_n14.json) |
+| 14 | [4.12082+](pr6incub/pr6incub_n14.json) | [3.00000+](pr8inpr8/pr8inpr8_n14.json) | [5.14497+](pr8incub/pr8incub_n14.json) | [3.73205+](pr12inpr12/pr12inpr12_n14.json) ≈ 2 + √3 | [6.83795+](pr12incub/pr12incub_n14.json) |
 | 15 | [4.12082+](pr6incub/pr6incub_n15.json) | [3.00000+](pr8inpr8/pr8inpr8_n15.json) | [5.41421+](pr8incub/pr8incub_n15.json) ≈ 4 + √2 | [3.73205+](pr12inpr12/pr12inpr12_n15.json) ≈ 2 + √3 | [7.00711+](pr12incub/pr12incub_n15.json) |
 | 16 | [4.43083+](pr6incub/pr6incub_n16.json) | [3.00727+](pr8inpr8/pr8inpr8_n16.json) | [5.41421+](pr8incub/pr8incub_n16.json) ≈ 4 + √2 | [3.73205+](pr12inpr12/pr12inpr12_n16.json) ≈ 2 + √3 | [7.17938+](pr12incub/pr12incub_n16.json) |
 | 17 | [4.48879+](pr6incub/pr6incub_n17.json) | [3.11927+](pr8inpr8/pr8inpr8_n17.json) | [5.50349+](pr8incub/pr8incub_n17.json) | [3.73205+](pr12inpr12/pr12inpr12_n17.json) ≈ 2 + √3 | [7.31119+](pr12incub/pr12incub_n17.json) |
@@ -327,30 +327,30 @@ _Generated 2026-10-12 20:49 CEST from the running search._ s = container size ÷
 | 22 | [4.73205+](pr6incub/pr6incub_n22.json) | [3.41421+](pr8inpr8/pr8inpr8_n22.json) | [5.82842+](pr8incub/pr8incub_n22.json) | [3.73205+](pr12inpr12/pr12inpr12_n22.json) ≈ 2 + √3 | [8.14908+](pr12incub/pr12incub_n22.json) |
 | 23 | [4.73205+](pr6incub/pr6incub_n23.json) | [3.41421+](pr8inpr8/pr8inpr8_n23.json) | [5.82842+](pr8incub/pr8incub_n23.json) | [3.73205+](pr12inpr12/pr12inpr12_n23.json) ≈ 2 + √3 | [8.14908+](pr12incub/pr12incub_n23.json) |
 | 24 | [4.73205+](pr6incub/pr6incub_n24.json) | [3.41421+](pr8inpr8/pr8inpr8_n24.json) | [5.82842+](pr8incub/pr8incub_n24.json) | [3.73205+](pr12inpr12/pr12inpr12_n24.json) ≈ 2 + √3 | [8.15849+](pr12incub/pr12incub_n24.json) |
-| 25 | [5.11906+](pr6incub/pr6incub_n25.json) | [3.41421+](pr8inpr8/pr8inpr8_n25.json) | [5.82842+](pr8incub/pr8incub_n25.json) | [3.73205+](pr12inpr12/pr12inpr12_n25.json) ≈ 2 + √3 | [8.18461+](pr12incub/pr12incub_n25.json) |
+| 25 | [4.97974+](pr6incub/pr6incub_n25.json) | [3.41421+](pr8inpr8/pr8inpr8_n25.json) | [5.82842+](pr8incub/pr8incub_n25.json) | [3.73205+](pr12inpr12/pr12inpr12_n25.json) ≈ 2 + √3 | [8.18461+](pr12incub/pr12incub_n25.json) |
 | 26 | [5.11906+](pr6incub/pr6incub_n26.json) | [3.51151+](pr8inpr8/pr8inpr8_n26.json) | [5.87874+](pr8incub/pr8incub_n26.json) | [3.73205+](pr12inpr12/pr12inpr12_n26.json) ≈ 2 + √3 | [8.25156+](pr12incub/pr12incub_n26.json) |
-| 27 | [5.17120+](pr6incub/pr6incub_n27.json) | [3.59127+](pr8inpr8/pr8inpr8_n27.json) | [6.15965+](pr8incub/pr8incub_n27.json) | [3.73205+](pr12inpr12/pr12inpr12_n27.json) ≈ 2 + √3 | [8.31143+](pr12incub/pr12incub_n27.json) |
+| 27 | [5.17120+](pr6incub/pr6incub_n27.json) | [3.59127+](pr8inpr8/pr8inpr8_n27.json) | [6.03122+](pr8incub/pr8incub_n27.json) | [3.73205+](pr12inpr12/pr12inpr12_n27.json) ≈ 2 + √3 | [8.31143+](pr12incub/pr12incub_n27.json) |
 | 28 | [5.17120+](pr6incub/pr6incub_n28.json) | [3.59252+](pr8inpr8/pr8inpr8_n28.json) | [6.24690+](pr8incub/pr8incub_n28.json) | [3.73205+](pr12inpr12/pr12inpr12_n28.json) | [8.34098+](pr12incub/pr12incub_n28.json) |
-| 29 | [5.17120+](pr6incub/pr6incub_n29.json) | [3.70615+](pr8inpr8/pr8inpr8_n29.json) | [6.26819+](pr8incub/pr8incub_n29.json) | [3.73428+](pr12inpr12/pr12inpr12_n29.json) | [8.35337+](pr12incub/pr12incub_n29.json) |
-| 30 | [5.17438+](pr6incub/pr6incub_n30.json) | [3.71772+](pr8inpr8/pr8inpr8_n30.json) |  | [3.73992+](pr12inpr12/pr12inpr12_n30.json) | [8.47009+](pr12incub/pr12incub_n30.json) |
-| 31 | [5.26456+](pr6incub/pr6incub_n31.json) | [3.77671+](pr8inpr8/pr8inpr8_n31.json) |  | [3.99997+](pr12inpr12/pr12inpr12_n31.json) | [8.47009+](pr12incub/pr12incub_n31.json) |
-| 32 | [5.34087+](pr6incub/pr6incub_n32.json) | [3.81346+](pr8inpr8/pr8inpr8_n32.json) |  | [4.00000+](pr12inpr12/pr12inpr12_n32.json) | [8.58641+](pr12incub/pr12incub_n32.json) |
-| 33 | [5.35429+](pr6incub/pr6incub_n33.json) | [3.92379+](pr8inpr8/pr8inpr8_n33.json) |  | [4.00000+](pr12inpr12/pr12inpr12_n33.json) | [8.59131+](pr12incub/pr12incub_n33.json) |
-| 34 | [5.46410+](pr6incub/pr6incub_n34.json) | [3.95363+](pr8inpr8/pr8inpr8_n34.json) |  | [4.00000+](pr12inpr12/pr12inpr12_n34.json) | [8.89476+](pr12incub/pr12incub_n34.json) |
-| 35 | [5.61541+](pr6incub/pr6incub_n35.json) | [3.98738+](pr8inpr8/pr8inpr8_n35.json) |  | [4.00000+](pr12inpr12/pr12inpr12_n35.json) | [9.03169+](pr12incub/pr12incub_n35.json) |
-| 36 | [5.61541+](pr6incub/pr6incub_n36.json) | [4.04991+](pr8inpr8/pr8inpr8_n36.json) |  | [4.00000+](pr12inpr12/pr12inpr12_n36.json) | [9.03169+](pr12incub/pr12incub_n36.json) |
-| 37 | [5.61541+](pr6incub/pr6incub_n37.json) | [4.05871+](pr8inpr8/pr8inpr8_n37.json) |  | [4.00000+](pr12inpr12/pr12inpr12_n37.json) | [9.16095+](pr12incub/pr12incub_n37.json) |
-| 38 | [5.61541+](pr6incub/pr6incub_n38.json) | [4.12015+](pr8inpr8/pr8inpr8_n38.json) |  | [4.00000+](pr12inpr12/pr12inpr12_n38.json) | [9.17897+](pr12incub/pr12incub_n38.json) |
-| 39 | [5.62854+](pr6incub/pr6incub_n39.json) | [4.16163+](pr8inpr8/pr8inpr8_n39.json) |  | [4.00000+](pr12inpr12/pr12inpr12_n39.json) | [9.17897+](pr12incub/pr12incub_n39.json) |
-| 40 | [5.62854+](pr6incub/pr6incub_n40.json) | [4.19944+](pr8inpr8/pr8inpr8_n40.json) |  | [4.02248+](pr12inpr12/pr12inpr12_n40.json) | [9.27104+](pr12incub/pr12incub_n40.json) |
+| 29 | [5.17120+](pr6incub/pr6incub_n29.json) | [3.70615+](pr8inpr8/pr8inpr8_n29.json) | [6.26059+](pr8incub/pr8incub_n29.json) | [3.73428+](pr12inpr12/pr12inpr12_n29.json) | [8.35337+](pr12incub/pr12incub_n29.json) |
+| 30 | [5.17438+](pr6incub/pr6incub_n30.json) | [3.71772+](pr8inpr8/pr8inpr8_n30.json) | [6.26059+](pr8incub/pr8incub_n30.json) | [3.73992+](pr12inpr12/pr12inpr12_n30.json) | [8.47009+](pr12incub/pr12incub_n30.json) |
+| 31 | [5.26456+](pr6incub/pr6incub_n31.json) | [3.77671+](pr8inpr8/pr8inpr8_n31.json) | [6.40165+](pr8incub/pr8incub_n31.json) | [3.99997+](pr12inpr12/pr12inpr12_n31.json) | [8.47009+](pr12incub/pr12incub_n31.json) |
+| 32 | [5.34087+](pr6incub/pr6incub_n32.json) | [3.81346+](pr8inpr8/pr8inpr8_n32.json) | [6.52758+](pr8incub/pr8incub_n32.json) | [4.00000+](pr12inpr12/pr12inpr12_n32.json) | [8.58641+](pr12incub/pr12incub_n32.json) |
+| 33 | [5.35429+](pr6incub/pr6incub_n33.json) | [3.92379+](pr8inpr8/pr8inpr8_n33.json) | [6.52758+](pr8incub/pr8incub_n33.json) | [4.00000+](pr12inpr12/pr12inpr12_n33.json) | [8.59131+](pr12incub/pr12incub_n33.json) |
+| 34 | [5.46410+](pr6incub/pr6incub_n34.json) | [3.95363+](pr8inpr8/pr8inpr8_n34.json) | [6.55371+](pr8incub/pr8incub_n34.json) | [4.00000+](pr12inpr12/pr12inpr12_n34.json) | [8.89476+](pr12incub/pr12incub_n34.json) |
+| 35 | [5.52711+](pr6incub/pr6incub_n35.json) | [3.97233+](pr8inpr8/pr8inpr8_n35.json) | [6.82768+](pr8incub/pr8incub_n35.json) | [4.00000+](pr12inpr12/pr12inpr12_n35.json) | [9.03169+](pr12incub/pr12incub_n35.json) |
+| 36 | [5.52711+](pr6incub/pr6incub_n36.json) | [4.00000+](pr8inpr8/pr8inpr8_n36.json) | [6.82768+](pr8incub/pr8incub_n36.json) | [4.00000+](pr12inpr12/pr12inpr12_n36.json) | [9.03169+](pr12incub/pr12incub_n36.json) |
+| 37 | [5.52711+](pr6incub/pr6incub_n37.json) | [4.00000+](pr8inpr8/pr8inpr8_n37.json) | [6.82768+](pr8incub/pr8incub_n37.json) | [4.00000+](pr12inpr12/pr12inpr12_n37.json) | [9.16095+](pr12incub/pr12incub_n37.json) |
+| 38 | [5.55129+](pr6incub/pr6incub_n38.json) | [4.00000+](pr8inpr8/pr8inpr8_n38.json) | [6.99926+](pr8incub/pr8incub_n38.json) | [4.00000+](pr12inpr12/pr12inpr12_n38.json) | [9.17897+](pr12incub/pr12incub_n38.json) |
+| 39 | [5.55129+](pr6incub/pr6incub_n39.json) | [4.10783+](pr8inpr8/pr8inpr8_n39.json) | [6.99926+](pr8incub/pr8incub_n39.json) | [4.00000+](pr12inpr12/pr12inpr12_n39.json) | [9.17897+](pr12incub/pr12incub_n39.json) |
+| 40 | [5.62854+](pr6incub/pr6incub_n40.json) | [4.10783+](pr8inpr8/pr8inpr8_n40.json) | [7.01824+](pr8incub/pr8incub_n40.json) | [4.02248+](pr12inpr12/pr12inpr12_n40.json) | [9.27104+](pr12incub/pr12incub_n40.json) |
 
 | n | Antiprism4s in an antiprism4 | Antiprism4s in a cube | Antiprism5s in an antiprism5 | Antiprism5s in a cube | Antiprism6s in an antiprism6 |
 |---:|---|---|---|---|---|
-| 2 | [1.70481+](ap4inap4/ap4inap4_n02.json) | [1.68179+](ap4incub/ap4incub_n02.json) | [1.84943+](ap5inap5/ap5inap5_n02.json) | [1.70130+](ap5incub/ap5incub_n02.json) | [1.93011+](ap6inap6/ap6inap6_n02.json) |
-| 3 | [2.00396+](ap4inap4/ap4inap4_n03.json) | [2.00162+](ap4incub/ap4incub_n03.json) | [1.87448+](ap5inap5/ap5inap5_n03.json) | [2.36217+](ap5incub/ap5incub_n03.json) | [2.10667+](ap6inap6/ap6inap6_n03.json) |
-| 4 | [2.19522+](ap4inap4/ap4inap4_n04.json) | [2.09852+](ap4incub/ap4incub_n04.json) | [2.10392+](ap5inap5/ap5inap5_n04.json) | [2.44285+](ap5incub/ap5incub_n04.json) | [2.25789+](ap6inap6/ap6inap6_n04.json) |
+| 2 | [1.66419+](ap4inap4/ap4inap4_n02.json) | [1.68179+](ap4incub/ap4incub_n02.json) | [1.78471+](ap5inap5/ap5inap5_n02.json) | [1.70130+](ap5incub/ap5incub_n02.json) | [1.93011+](ap6inap6/ap6inap6_n02.json) |
+| 3 | [1.97301+](ap4inap4/ap4inap4_n03.json) | [2.00162+](ap4incub/ap4incub_n03.json) | [1.87448+](ap5inap5/ap5inap5_n03.json) | [2.36217+](ap5incub/ap5incub_n03.json) | [2.10667+](ap6inap6/ap6inap6_n03.json) |
+| 4 | [2.19522+](ap4inap4/ap4inap4_n04.json) | [2.08853+](ap4incub/ap4incub_n04.json) | [2.00000+](ap5inap5/ap5inap5_n04.json) | [2.41233+](ap5incub/ap5incub_n04.json) | [2.25789+](ap6inap6/ap6inap6_n04.json) |
 | 5 | [2.25724+](ap4inap4/ap4inap4_n05.json) | [2.14745+](ap4incub/ap4incub_n05.json) | [2.20017+](ap5inap5/ap5inap5_n05.json) | [2.63854+](ap5incub/ap5incub_n05.json) | [2.29611+](ap6inap6/ap6inap6_n05.json) |
-| 6 | [2.40076+](ap4inap4/ap4inap4_n06.json) | [2.32217+](ap4incub/ap4incub_n06.json) | [2.36982+](ap5inap5/ap5inap5_n06.json) | [2.80908+](ap5incub/ap5incub_n06.json) | [2.30966+](ap6inap6/ap6inap6_n06.json) |
+| 6 | [2.40076+](ap4inap4/ap4inap4_n06.json) | [2.32217+](ap4incub/ap4incub_n06.json) | [2.36982+](ap5inap5/ap5inap5_n06.json) | [2.79925+](ap5incub/ap5incub_n06.json) | [2.30940+](ap6inap6/ap6inap6_n06.json) ≈ (4√3)/3 |
 | 7 | [2.46698+](ap4inap4/ap4inap4_n07.json) | [2.36515+](ap4incub/ap4incub_n07.json) | [2.55496+](ap5inap5/ap5inap5_n07.json) | [2.83008+](ap5incub/ap5incub_n07.json) | [2.32109+](ap6inap6/ap6inap6_n07.json) |
 | 8 | [2.61541+](ap4inap4/ap4inap4_n08.json) | [2.56896+](ap4incub/ap4incub_n08.json) | [2.63583+](ap5inap5/ap5inap5_n08.json) | [3.08231+](ap5incub/ap5incub_n08.json) | [2.52777+](ap6inap6/ap6inap6_n08.json) |
 | 9 | [2.62574+](ap4inap4/ap4inap4_n09.json) | [2.63101+](ap4incub/ap4incub_n09.json) | [2.74665+](ap5inap5/ap5inap5_n09.json) | [3.08260+](ap5incub/ap5incub_n09.json) | [2.59713+](ap6inap6/ap6inap6_n09.json) |
@@ -363,9 +363,9 @@ _Generated 2026-10-12 20:49 CEST from the running search._ s = container size ÷
 | 16 | [3.14173+](ap4inap4/ap4inap4_n16.json) | [3.12622+](ap4incub/ap4incub_n16.json) | [3.05215+](ap5inap5/ap5inap5_n16.json) | [3.76080+](ap5incub/ap5incub_n16.json) | [3.30940+](ap6inap6/ap6inap6_n16.json) ≈ (3 + 4√3)/3 |
 | 17 | [3.23667+](ap4inap4/ap4inap4_n17.json) | [3.15656+](ap4incub/ap4incub_n17.json) | [3.14907+](ap5inap5/ap5inap5_n17.json) | [3.78445+](ap5incub/ap5incub_n17.json) | [3.30940+](ap6inap6/ap6inap6_n17.json) ≈ (3 + 4√3)/3 |
 | 18 | [3.28192+](ap4inap4/ap4inap4_n18.json) | [3.19555+](ap4incub/ap4incub_n18.json) | [3.23738+](ap5inap5/ap5inap5_n18.json) | [3.93965+](ap5incub/ap5incub_n18.json) | [3.30940+](ap6inap6/ap6inap6_n18.json) ≈ (3 + 4√3)/3 |
-| 19 | [3.30280+](ap4inap4/ap4inap4_n19.json) | [3.28713+](ap4incub/ap4incub_n19.json) | [3.31059+](ap5inap5/ap5inap5_n19.json) | [3.98461+](ap5incub/ap5incub_n19.json) | [3.30940+](ap6inap6/ap6inap6_n19.json) |
-| 20 | [3.40464+](ap4inap4/ap4inap4_n20.json) | [3.30661+](ap4incub/ap4incub_n20.json) | [3.38711+](ap5inap5/ap5inap5_n20.json) | [4.06210+](ap5incub/ap5incub_n20.json) | [3.30940+](ap6inap6/ap6inap6_n20.json) |
-| 21 | [3.42847+](ap4inap4/ap4inap4_n21.json) | [3.33642+](ap4incub/ap4incub_n21.json) | [3.39558+](ap5inap5/ap5inap5_n21.json) | [4.06226+](ap5incub/ap5incub_n21.json) | [3.30940+](ap6inap6/ap6inap6_n21.json) |
+| 19 | [3.30280+](ap4inap4/ap4inap4_n19.json) | [3.28713+](ap4incub/ap4incub_n19.json) | [3.31059+](ap5inap5/ap5inap5_n19.json) | [3.96313+](ap5incub/ap5incub_n19.json) | [3.30940+](ap6inap6/ap6inap6_n19.json) |
+| 20 | [3.40464+](ap4inap4/ap4inap4_n20.json) | [3.30661+](ap4incub/ap4incub_n20.json) | [3.38711+](ap5inap5/ap5inap5_n20.json) | [3.96313+](ap5incub/ap5incub_n20.json) | [3.30940+](ap6inap6/ap6inap6_n20.json) |
+| 21 | [3.42847+](ap4inap4/ap4inap4_n21.json) | [3.33642+](ap4incub/ap4incub_n21.json) | [3.39558+](ap5inap5/ap5inap5_n21.json) | [3.98184+](ap5incub/ap5incub_n21.json) | [3.30940+](ap6inap6/ap6inap6_n21.json) |
 | 22 | [3.46164+](ap4inap4/ap4inap4_n22.json) | [3.37991+](ap4incub/ap4incub_n22.json) | [3.46415+](ap5inap5/ap5inap5_n22.json) | [4.06347+](ap5incub/ap5incub_n22.json) | [3.39190+](ap6inap6/ap6inap6_n22.json) |
 | 23 | [3.54741+](ap4inap4/ap4inap4_n23.json) | [3.45686+](ap4incub/ap4incub_n23.json) | [3.55380+](ap5inap5/ap5inap5_n23.json) | [4.06347+](ap5incub/ap5incub_n23.json) | [3.43862+](ap6inap6/ap6inap6_n23.json) |
 | 24 | [3.54807+](ap4inap4/ap4inap4_n24.json) | [3.45686+](ap4incub/ap4incub_n24.json) | [3.56924+](ap5inap5/ap5inap5_n24.json) | [4.06453+](ap5incub/ap5incub_n24.json) | [3.46579+](ap6inap6/ap6inap6_n24.json) |
@@ -373,39 +373,39 @@ _Generated 2026-10-12 20:49 CEST from the running search._ s = container size ÷
 | 26 | [3.66251+](ap4inap4/ap4inap4_n26.json) | [3.55140+](ap4incub/ap4incub_n26.json) | [3.60255+](ap5inap5/ap5inap5_n26.json) | [4.11904+](ap5incub/ap5incub_n26.json) | [3.68094+](ap6inap6/ap6inap6_n26.json) |
 | 27 | [3.71305+](ap4inap4/ap4inap4_n27.json) | [3.63927+](ap4incub/ap4incub_n27.json) | [3.65500+](ap5inap5/ap5inap5_n27.json) | [4.16014+](ap5incub/ap5incub_n27.json) | [3.69834+](ap6inap6/ap6inap6_n27.json) |
 | 28 | [3.72238+](ap4inap4/ap4inap4_n28.json) | [3.74481+](ap4incub/ap4incub_n28.json) | [3.72236+](ap5inap5/ap5inap5_n28.json) | [4.27967+](ap5incub/ap5incub_n28.json) | [3.74422+](ap6inap6/ap6inap6_n28.json) |
-| 29 | [3.76200+](ap4inap4/ap4inap4_n29.json) | [3.79381+](ap4incub/ap4incub_n29.json) | [3.74373+](ap5inap5/ap5inap5_n29.json) | [4.37281+](ap5incub/ap5incub_n29.json) | [3.76006+](ap6inap6/ap6inap6_n29.json) |
-| 30 | [3.81079+](ap4inap4/ap4inap4_n30.json) | [3.81079+](ap4incub/ap4incub_n30.json) | [3.78262+](ap5inap5/ap5inap5_n30.json) | [4.37281+](ap5incub/ap5incub_n30.json) | [3.80894+](ap6inap6/ap6inap6_n30.json) |
-| 31 | [3.87116+](ap4inap4/ap4inap4_n31.json) | [3.85605+](ap4incub/ap4incub_n31.json) | [3.80124+](ap5inap5/ap5inap5_n31.json) | [4.37281+](ap5incub/ap5incub_n31.json) | [3.84770+](ap6inap6/ap6inap6_n31.json) |
-| 32 | [3.88320+](ap4inap4/ap4inap4_n32.json) | [3.88224+](ap4incub/ap4incub_n32.json) | [3.84066+](ap5inap5/ap5inap5_n32.json) | [4.51695+](ap5incub/ap5incub_n32.json) | [3.87943+](ap6inap6/ap6inap6_n32.json) |
-| 33 | [3.90772+](ap4inap4/ap4inap4_n33.json) | [3.94232+](ap4incub/ap4incub_n33.json) | [3.92561+](ap5inap5/ap5inap5_n33.json) | [4.57921+](ap5incub/ap5incub_n33.json) | [3.91891+](ap6inap6/ap6inap6_n33.json) |
-| 34 | [3.96264+](ap4inap4/ap4inap4_n34.json) | [3.94232+](ap4incub/ap4incub_n34.json) | [3.95278+](ap5inap5/ap5inap5_n34.json) | [4.59264+](ap5incub/ap5incub_n34.json) | [3.94021+](ap6inap6/ap6inap6_n34.json) |
-| 35 | [3.97665+](ap4inap4/ap4inap4_n35.json) | [3.94668+](ap4incub/ap4incub_n35.json) | [4.03255+](ap5inap5/ap5inap5_n35.json) | [4.64852+](ap5incub/ap5incub_n35.json) | [3.98544+](ap6inap6/ap6inap6_n35.json) |
-| 36 | [4.02985+](ap4inap4/ap4inap4_n36.json) | [3.99819+](ap4incub/ap4incub_n36.json) | [4.03343+](ap5inap5/ap5inap5_n36.json) | [4.64852+](ap5incub/ap5incub_n36.json) | [4.04619+](ap6inap6/ap6inap6_n36.json) |
-| 37 | [4.05770+](ap4inap4/ap4inap4_n37.json) | [4.01845+](ap4incub/ap4incub_n37.json) | [4.08884+](ap5inap5/ap5inap5_n37.json) | [4.69311+](ap5incub/ap5incub_n37.json) |  |
-| 38 | [4.09378+](ap4inap4/ap4inap4_n38.json) | [4.09827+](ap4incub/ap4incub_n38.json) | [4.10042+](ap5inap5/ap5inap5_n38.json) | [4.73507+](ap5incub/ap5incub_n38.json) |  |
-| 39 | [4.15352+](ap4inap4/ap4inap4_n39.json) | [4.09827+](ap4incub/ap4incub_n39.json) | [4.11379+](ap5inap5/ap5inap5_n39.json) | [4.75952+](ap5incub/ap5incub_n39.json) |  |
-| 40 | [4.17972+](ap4inap4/ap4inap4_n40.json) | [4.12688+](ap4incub/ap4incub_n40.json) | [4.11547+](ap5inap5/ap5inap5_n40.json) | [4.77686+](ap5incub/ap5incub_n40.json) |  |
+| 29 | [3.76200+](ap4inap4/ap4inap4_n29.json) | [3.79381+](ap4incub/ap4incub_n29.json) | [3.74373+](ap5inap5/ap5inap5_n29.json) | [4.33121+](ap5incub/ap5incub_n29.json) | [3.76006+](ap6inap6/ap6inap6_n29.json) |
+| 30 | [3.81079+](ap4inap4/ap4inap4_n30.json) | [3.81079+](ap4incub/ap4incub_n30.json) | [3.78262+](ap5inap5/ap5inap5_n30.json) | [4.33121+](ap5incub/ap5incub_n30.json) | [3.80894+](ap6inap6/ap6inap6_n30.json) |
+| 31 | [3.87116+](ap4inap4/ap4inap4_n31.json) | [3.85605+](ap4incub/ap4incub_n31.json) | [3.80124+](ap5inap5/ap5inap5_n31.json) | [4.37281+](ap5incub/ap5incub_n31.json) | [3.83763+](ap6inap6/ap6inap6_n31.json) |
+| 32 | [3.88320+](ap4inap4/ap4inap4_n32.json) | [3.88224+](ap4incub/ap4incub_n32.json) | [3.84066+](ap5inap5/ap5inap5_n32.json) | [4.51695+](ap5incub/ap5incub_n32.json) | [3.83763+](ap6inap6/ap6inap6_n32.json) |
+| 33 | [3.90772+](ap4inap4/ap4inap4_n33.json) | [3.94232+](ap4incub/ap4incub_n33.json) | [3.92561+](ap5inap5/ap5inap5_n33.json) | [4.57921+](ap5incub/ap5incub_n33.json) | [3.88965+](ap6inap6/ap6inap6_n33.json) |
+| 34 | [3.96264+](ap4inap4/ap4inap4_n34.json) | [3.94232+](ap4incub/ap4incub_n34.json) | [3.95278+](ap5inap5/ap5inap5_n34.json) | [4.59264+](ap5incub/ap5incub_n34.json) | [3.93826+](ap6inap6/ap6inap6_n34.json) |
+| 35 | [3.97665+](ap4inap4/ap4inap4_n35.json) | [3.94668+](ap4incub/ap4incub_n35.json) | [4.03255+](ap5inap5/ap5inap5_n35.json) | [4.64852+](ap5incub/ap5incub_n35.json) | [3.97579+](ap6inap6/ap6inap6_n35.json) |
+| 36 | [4.02985+](ap4inap4/ap4inap4_n36.json) | [3.99819+](ap4incub/ap4incub_n36.json) | [4.03343+](ap5inap5/ap5inap5_n36.json) | [4.64852+](ap5incub/ap5incub_n36.json) | [4.01997+](ap6inap6/ap6inap6_n36.json) |
+| 37 | [4.05770+](ap4inap4/ap4inap4_n37.json) | [4.01845+](ap4incub/ap4incub_n37.json) | [4.08884+](ap5inap5/ap5inap5_n37.json) | [4.69311+](ap5incub/ap5incub_n37.json) | [4.06658+](ap6inap6/ap6inap6_n37.json) |
+| 38 | [4.09378+](ap4inap4/ap4inap4_n38.json) | [4.09827+](ap4incub/ap4incub_n38.json) | [4.10042+](ap5inap5/ap5inap5_n38.json) | [4.73507+](ap5incub/ap5incub_n38.json) | [4.09229+](ap6inap6/ap6inap6_n38.json) |
+| 39 | [4.15352+](ap4inap4/ap4inap4_n39.json) | [4.09827+](ap4incub/ap4incub_n39.json) | [4.11379+](ap5inap5/ap5inap5_n39.json) | [4.75952+](ap5incub/ap5incub_n39.json) | [4.10965+](ap6inap6/ap6inap6_n39.json) |
+| 40 | [4.17972+](ap4inap4/ap4inap4_n40.json) | [4.12688+](ap4incub/ap4incub_n40.json) | [4.11547+](ap5inap5/ap5inap5_n40.json) | [4.77686+](ap5incub/ap5incub_n40.json) | [4.11946+](ap6inap6/ap6inap6_n40.json) |
 
 | n | Antiprism6s in a cube | Antiprism8s in an antiprism8 | Antiprism8s in a cube | Antiprism12s in an antiprism12 | Antiprism12s in a cube |
 |---:|---|---|---|---|---|
-| 2 | [1.93185+](ap6incub/ap6incub_n02.json) | [1.96133+](ap8inap8/ap8inap8_n02.json) | [2.56291+](ap8incub/ap8incub_n02.json) | [1.98287+](ap12inap12/ap12inap12_n02.json) | [3.84695+](ap12incub/ap12incub_n02.json) |
-| 3 | [2.56679+](ap6incub/ap6incub_n03.json) | [2.00121+](ap8inap8/ap8inap8_n03.json) | [2.58088+](ap8incub/ap8incub_n03.json) | [2.00000+](ap12inap12/ap12inap12_n03.json) | [4.26115+](ap12incub/ap12incub_n03.json) |
-| 4 | [2.77080+](ap6incub/ap6incub_n04.json) | [2.00290+](ap8inap8/ap8inap8_n04.json) | [3.42321+](ap8incub/ap8incub_n04.json) | [2.03407+](ap12inap12/ap12inap12_n04.json) | [4.62088+](ap12incub/ap12incub_n04.json) |
+| 2 | [1.93185+](ap6incub/ap6incub_n02.json) | [1.96133+](ap8inap8/ap8inap8_n02.json) | [2.56291+](ap8incub/ap8incub_n02.json) | [1.98287+](ap12inap12/ap12inap12_n02.json) | [3.83064+](ap12incub/ap12incub_n02.json) |
+| 3 | [2.56679+](ap6incub/ap6incub_n03.json) | [2.00000+](ap8inap8/ap8inap8_n03.json) | [2.58088+](ap8incub/ap8incub_n03.json) | [2.00000+](ap12inap12/ap12inap12_n03.json) | [4.26115+](ap12incub/ap12incub_n03.json) |
+| 4 | [2.77080+](ap6incub/ap6incub_n04.json) | [2.00290+](ap8inap8/ap8inap8_n04.json) | [3.42321+](ap8incub/ap8incub_n04.json) | [2.03407+](ap12inap12/ap12inap12_n04.json) | [4.60969+](ap12incub/ap12incub_n04.json) |
 | 5 | [2.78745+](ap6incub/ap6incub_n05.json) | [2.34751+](ap8inap8/ap8inap8_n05.json) | [3.42321+](ap8incub/ap8incub_n05.json) | [2.15442+](ap12inap12/ap12inap12_n05.json) | [4.69416+](ap12incub/ap12incub_n05.json) |
-| 6 | [3.24519+](ap6incub/ap6incub_n06.json) | [2.39378+](ap8inap8/ap8inap8_n06.json) | [3.44118+](ap8incub/ap8incub_n06.json) | [4.18329+](ap12inap12/ap12inap12_n06.json) | [4.71649+](ap12incub/ap12incub_n06.json) |
+| 6 | [3.24519+](ap6incub/ap6incub_n06.json) | [2.37011+](ap8inap8/ap8inap8_n06.json) | [3.44118+](ap8incub/ap8incub_n06.json) | [2.16378+](ap12inap12/ap12inap12_n06.json) | [4.71649+](ap12incub/ap12incub_n06.json) |
 | 7 | [3.36563+](ap6incub/ap6incub_n07.json) | [2.39378+](ap8inap8/ap8inap8_n07.json) | [4.08430+](ap8incub/ap8incub_n07.json) | [4.41653+](ap12inap12/ap12inap12_n07.json) | [5.20886+](ap12incub/ap12incub_n07.json) |
 | 8 | [3.44136+](ap6incub/ap6incub_n08.json) | [2.97911+](ap8inap8/ap8inap8_n08.json) | [4.26164+](ap8incub/ap8incub_n08.json) | [4.43090+](ap12inap12/ap12inap12_n08.json) | [5.50046+](ap12incub/ap12incub_n08.json) |
 | 9 | [3.46827+](ap6incub/ap6incub_n09.json) | [2.97911+](ap8inap8/ap8inap8_n09.json) | [4.26164+](ap8incub/ap8incub_n09.json) | [4.43147+](ap12inap12/ap12inap12_n09.json) | [5.56809+](ap12incub/ap12incub_n09.json) |
 | 10 | [3.64305+](ap6incub/ap6incub_n10.json) | [2.97911+](ap8inap8/ap8inap8_n10.json) | [4.35111+](ap8incub/ap8incub_n10.json) | [4.43256+](ap12inap12/ap12inap12_n10.json) | [6.10227+](ap12incub/ap12incub_n10.json) |
-| 11 | [3.66036+](ap6incub/ap6incub_n11.json) | [3.00922+](ap8inap8/ap8inap8_n11.json) | [4.57952+](ap8incub/ap8incub_n11.json) | [4.43608+](ap12inap12/ap12inap12_n11.json) | [6.34255+](ap12incub/ap12incub_n11.json) |
-| 12 | [3.70646+](ap6incub/ap6incub_n12.json) | [3.00922+](ap8inap8/ap8inap8_n12.json) | [4.78828+](ap8incub/ap8incub_n12.json) | [4.43608+](ap12inap12/ap12inap12_n12.json) | [6.42875+](ap12incub/ap12incub_n12.json) |
+| 11 | [3.66036+](ap6incub/ap6incub_n11.json) | [2.97911+](ap8inap8/ap8inap8_n11.json) | [4.57952+](ap8incub/ap8incub_n11.json) | [4.43608+](ap12inap12/ap12inap12_n11.json) | [6.34255+](ap12incub/ap12incub_n11.json) |
+| 12 | [3.70646+](ap6incub/ap6incub_n12.json) | [2.97911+](ap8inap8/ap8inap8_n12.json) | [4.78828+](ap8incub/ap8incub_n12.json) | [4.43608+](ap12inap12/ap12inap12_n12.json) | [6.42875+](ap12incub/ap12incub_n12.json) |
 | 13 | [3.76241+](ap6incub/ap6incub_n13.json) | [3.00922+](ap8inap8/ap8inap8_n13.json) | [4.80685+](ap8incub/ap8incub_n13.json) | [4.43608+](ap12inap12/ap12inap12_n13.json) | [6.45238+](ap12incub/ap12incub_n13.json) |
 | 14 | [3.77773+](ap6incub/ap6incub_n14.json) | [3.01737+](ap8inap8/ap8inap8_n14.json) | [4.92047+](ap8incub/ap8incub_n14.json) | [4.43608+](ap12inap12/ap12inap12_n14.json) | [6.83326+](ap12incub/ap12incub_n14.json) |
 | 15 | [3.79787+](ap6incub/ap6incub_n15.json) | [3.02737+](ap8inap8/ap8inap8_n15.json) | [4.99892+](ap8incub/ap8incub_n15.json) | [4.43608+](ap12inap12/ap12inap12_n15.json) | [6.87243+](ap12incub/ap12incub_n15.json) |
 | 16 | [3.80191+](ap6incub/ap6incub_n16.json) | [3.04415+](ap8inap8/ap8inap8_n16.json) | [5.09300+](ap8incub/ap8incub_n16.json) | [4.43608+](ap12inap12/ap12inap12_n16.json) | [6.99778+](ap12incub/ap12incub_n16.json) |
 | 17 | [4.30919+](ap6incub/ap6incub_n17.json) | [3.05085+](ap8inap8/ap8inap8_n17.json) | [5.11419+](ap8incub/ap8incub_n17.json) | [4.43608+](ap12inap12/ap12inap12_n17.json) | [7.17119+](ap12incub/ap12incub_n17.json) |
 | 18 | [4.32012+](ap6incub/ap6incub_n18.json) | [3.17245+](ap8inap8/ap8inap8_n18.json) | [5.20980+](ap8incub/ap8incub_n18.json) | [4.43608+](ap12inap12/ap12inap12_n18.json) | [7.22381+](ap12incub/ap12incub_n18.json) |
-| 19 | [4.43042+](ap6incub/ap6incub_n19.json) | [3.24861+](ap8inap8/ap8inap8_n19.json) | [5.45217+](ap8incub/ap8incub_n19.json) | [4.43608+](ap12inap12/ap12inap12_n19.json) | [7.33889+](ap12incub/ap12incub_n19.json) |
+| 19 | [4.43031+](ap6incub/ap6incub_n19.json) | [3.24861+](ap8inap8/ap8inap8_n19.json) | [5.45217+](ap8incub/ap8incub_n19.json) | [4.43608+](ap12inap12/ap12inap12_n19.json) | [7.33889+](ap12incub/ap12incub_n19.json) |
 | 20 | [4.47031+](ap6incub/ap6incub_n20.json) | [3.32327+](ap8inap8/ap8inap8_n20.json) | [5.54316+](ap8incub/ap8incub_n20.json) | [4.43608+](ap12inap12/ap12inap12_n20.json) | [7.34741+](ap12incub/ap12incub_n20.json) |
 | 21 | [4.49099+](ap6incub/ap6incub_n21.json) | [3.33111+](ap8inap8/ap8inap8_n21.json) | [5.62694+](ap8incub/ap8incub_n21.json) | [4.43608+](ap12inap12/ap12inap12_n21.json) | [7.44753+](ap12incub/ap12incub_n21.json) |
 | 22 | [4.58582+](ap6incub/ap6incub_n22.json) | [3.49877+](ap8inap8/ap8inap8_n22.json) | [5.69233+](ap8incub/ap8incub_n22.json) | [4.43608+](ap12inap12/ap12inap12_n22.json) | [7.60689+](ap12incub/ap12incub_n22.json) |
@@ -414,17 +414,17 @@ _Generated 2026-10-12 20:49 CEST from the running search._ s = container size ÷
 | 25 | [4.68913+](ap6incub/ap6incub_n25.json) | [3.99002+](ap8inap8/ap8inap8_n25.json) | [5.79036+](ap8incub/ap8incub_n25.json) | [4.43608+](ap12inap12/ap12inap12_n25.json) | [7.65105+](ap12incub/ap12incub_n25.json) |
 | 26 | [4.68913+](ap6incub/ap6incub_n26.json) | [3.99103+](ap8inap8/ap8inap8_n26.json) | [5.82552+](ap8incub/ap8incub_n26.json) | [4.43608+](ap12inap12/ap12inap12_n26.json) | [7.90163+](ap12incub/ap12incub_n26.json) |
 | 27 | [4.71658+](ap6incub/ap6incub_n27.json) | [3.99495+](ap8inap8/ap8inap8_n27.json) | [5.88115+](ap8incub/ap8incub_n27.json) | [4.43608+](ap12inap12/ap12inap12_n27.json) | [7.95591+](ap12incub/ap12incub_n27.json) |
-| 28 | [4.71658+](ap6incub/ap6incub_n28.json) | [4.00000+](ap8inap8/ap8inap8_n28.json) | [5.95076+](ap8incub/ap8incub_n28.json) | [4.43608+](ap12inap12/ap12inap12_n28.json) | [8.15034+](ap12incub/ap12incub_n28.json) |
-| 29 | [4.89972+](ap6incub/ap6incub_n29.json) | [4.00000+](ap8inap8/ap8inap8_n29.json) | [5.95076+](ap8incub/ap8incub_n29.json) | [4.43608+](ap12inap12/ap12inap12_n29.json) | [8.15034+](ap12incub/ap12incub_n29.json) |
-| 30 | [5.12671+](ap6incub/ap6incub_n30.json) | [4.00000+](ap8inap8/ap8inap8_n30.json) | [6.04254+](ap8incub/ap8incub_n30.json) | [4.43608+](ap12inap12/ap12inap12_n30.json) | [8.15034+](ap12incub/ap12incub_n30.json) |
-| 31 | [5.17532+](ap6incub/ap6incub_n31.json) | [4.00000+](ap8inap8/ap8inap8_n31.json) | [6.04254+](ap8incub/ap8incub_n31.json) | [4.43608+](ap12inap12/ap12inap12_n31.json) | [8.29492+](ap12incub/ap12incub_n31.json) |
-| 32 |  | [4.00000+](ap8inap8/ap8inap8_n32.json) | [6.04853+](ap8incub/ap8incub_n32.json) | [4.43608+](ap12inap12/ap12inap12_n32.json) | [8.37516+](ap12incub/ap12incub_n32.json) |
-| 33 |  | [4.01737+](ap8inap8/ap8inap8_n33.json) | [6.04853+](ap8incub/ap8incub_n33.json) | [4.43608+](ap12inap12/ap12inap12_n33.json) | [8.51700+](ap12incub/ap12incub_n33.json) |
-| 34 |  | [4.01737+](ap8inap8/ap8inap8_n34.json) | [6.24845+](ap8incub/ap8incub_n34.json) | [4.43608+](ap12inap12/ap12inap12_n34.json) | [8.55939+](ap12incub/ap12incub_n34.json) |
-| 35 |  | [4.05762+](ap8inap8/ap8inap8_n35.json) | [6.38285+](ap8incub/ap8incub_n35.json) | [4.43608+](ap12inap12/ap12inap12_n35.json) | [8.59842+](ap12incub/ap12incub_n35.json) |
-| 36 |  |  | [6.39751+](ap8incub/ap8incub_n36.json) | [4.43608+](ap12inap12/ap12inap12_n36.json) | [8.59842+](ap12incub/ap12incub_n36.json) |
-| 37 |  |  | [6.49156+](ap8incub/ap8incub_n37.json) | [4.43608+](ap12inap12/ap12inap12_n37.json) | [8.74220+](ap12incub/ap12incub_n37.json) |
-| 38 |  |  | [6.61486+](ap8incub/ap8incub_n38.json) | [4.43608+](ap12inap12/ap12inap12_n38.json) | [8.74220+](ap12incub/ap12incub_n38.json) |
-| 39 |  |  | [6.64386+](ap8incub/ap8incub_n39.json) | [4.43608+](ap12inap12/ap12inap12_n39.json) | [8.84834+](ap12incub/ap12incub_n39.json) |
-| 40 |  |  | [6.73710+](ap8incub/ap8incub_n40.json) | [4.46142+](ap12inap12/ap12inap12_n40.json) | [8.90242+](ap12incub/ap12incub_n40.json) |
+| 28 | [4.71658+](ap6incub/ap6incub_n28.json) | [3.99820+](ap8inap8/ap8inap8_n28.json) | [5.95076+](ap8incub/ap8incub_n28.json) | [4.43608+](ap12inap12/ap12inap12_n28.json) | [8.15034+](ap12incub/ap12incub_n28.json) |
+| 29 | [4.86135+](ap6incub/ap6incub_n29.json) | [3.99848+](ap8inap8/ap8inap8_n29.json) | [5.95076+](ap8incub/ap8incub_n29.json) | [4.43608+](ap12inap12/ap12inap12_n29.json) | [8.15034+](ap12incub/ap12incub_n29.json) |
+| 30 | [4.96201+](ap6incub/ap6incub_n30.json) | [3.99889+](ap8inap8/ap8inap8_n30.json) | [6.04254+](ap8incub/ap8incub_n30.json) | [4.43608+](ap12inap12/ap12inap12_n30.json) | [8.15034+](ap12incub/ap12incub_n30.json) |
+| 31 | [5.06908+](ap6incub/ap6incub_n31.json) | [3.99937+](ap8inap8/ap8inap8_n31.json) | [6.04254+](ap8incub/ap8incub_n31.json) | [4.43608+](ap12inap12/ap12inap12_n31.json) | [8.29492+](ap12incub/ap12incub_n31.json) |
+| 32 | [5.09542+](ap6incub/ap6incub_n32.json) | [4.00000+](ap8inap8/ap8inap8_n32.json) | [6.04853+](ap8incub/ap8incub_n32.json) | [4.43608+](ap12inap12/ap12inap12_n32.json) | [8.37516+](ap12incub/ap12incub_n32.json) |
+| 33 | [5.17191+](ap6incub/ap6incub_n33.json) | [4.00000+](ap8inap8/ap8inap8_n33.json) | [6.04853+](ap8incub/ap8incub_n33.json) | [4.43608+](ap12inap12/ap12inap12_n33.json) | [8.51700+](ap12incub/ap12incub_n33.json) |
+| 34 | [5.21328+](ap6incub/ap6incub_n34.json) | [4.00000+](ap8inap8/ap8inap8_n34.json) | [6.24845+](ap8incub/ap8incub_n34.json) | [4.43608+](ap12inap12/ap12inap12_n34.json) | [8.55939+](ap12incub/ap12incub_n34.json) |
+| 35 | [5.23864+](ap6incub/ap6incub_n35.json) | [4.01737+](ap8inap8/ap8inap8_n35.json) | [6.38285+](ap8incub/ap8incub_n35.json) | [4.43608+](ap12inap12/ap12inap12_n35.json) | [8.59842+](ap12incub/ap12incub_n35.json) |
+| 36 | [5.27019+](ap6incub/ap6incub_n36.json) | [4.01737+](ap8inap8/ap8inap8_n36.json) | [6.39751+](ap8incub/ap8incub_n36.json) | [4.43608+](ap12inap12/ap12inap12_n36.json) | [8.59842+](ap12incub/ap12incub_n36.json) |
+| 37 | [5.31497+](ap6incub/ap6incub_n37.json) | [4.01737+](ap8inap8/ap8inap8_n37.json) | [6.49156+](ap8incub/ap8incub_n37.json) | [4.43608+](ap12inap12/ap12inap12_n37.json) | [8.74220+](ap12incub/ap12incub_n37.json) |
+| 38 | [5.33324+](ap6incub/ap6incub_n38.json) | [4.01737+](ap8inap8/ap8inap8_n38.json) | [6.61486+](ap8incub/ap8incub_n38.json) | [4.43608+](ap12inap12/ap12inap12_n38.json) | [8.74220+](ap12incub/ap12incub_n38.json) |
+| 39 | [5.39947+](ap6incub/ap6incub_n39.json) | [4.01737+](ap8inap8/ap8inap8_n39.json) | [6.64386+](ap8incub/ap8incub_n39.json) | [4.43608+](ap12inap12/ap12inap12_n39.json) | [8.84834+](ap12incub/ap12incub_n39.json) |
+| 40 | [5.49392+](ap6incub/ap6incub_n40.json) | [4.08161+](ap8inap8/ap8inap8_n40.json) | [6.73710+](ap8incub/ap8incub_n40.json) | [4.46142+](ap12inap12/ap12inap12_n40.json) | [8.90242+](ap12incub/ap12incub_n40.json) |
 

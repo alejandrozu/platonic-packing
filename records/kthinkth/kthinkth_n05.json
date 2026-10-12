@@ -3,86 +3,91 @@
  "piece": "tetrakis_hexahedron",
  "container": "tetrakis_hexahedron",
  "n": 5,
- "s": 2.24841,
- "s_plus": "2.24841+",
- "s_full": 2.2484174342482,
+ "s": 2.24309,
+ "s_plus": "2.24309+",
+ "s_full": 2.2430919574308,
  "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020284208049e-07,
-  "min_wall_gap": 1.0000000782994789e-07
+  "min_pair_gap": 1.000002031580555e-07,
+  "min_wall_gap": 1.0000003669574653e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-12",
  "pieces": [
   [
-   -0.14766532224629178,
-   1.2574622969890137,
-   -1.3448164884251375,
-   0.6009287912928649,
-   0.07752122063497505,
-   0.6097951497142035,
-   0.5109059830649786
+   -0.20508520453399684,
+   1.2309946460639467,
+   -1.3622497588245863,
+   0.6006937658947901,
+   0.07908064169284043,
+   0.6006937658947901,
+   0.5216131242019499
   ],
   [
-   -1.3241465763260971,
-   1.3241465745288286,
-   1.3241465733799327,
-   0.7071067811865462,
-   -0.7071067811865488,
-   3.2188795724590437e-16,
-   1.5389853626577176e-15
-  ],
-  [
-   -1.2382998456803873,
-   -1.312085001081695,
-   0.06734267803175774,
-   0.35480821732506734,
-   0.7840289751900069,
-   -0.32927712818470173,
-   0.3885695148046884
-  ],
-  [
-   1.2714987013183123,
-   -0.08349858321668173,
-   1.2916830280446723,
-   0.5086339743077173,
-   0.5396957734843149,
-   -0.4805565526020482,
-   -0.4680655424343247
-  ],
-  [
-   1.3241465731638058,
-   -1.3241465749610821,
-   -1.3241465761099773,
+   -1.318498054665308,
+   1.3184980538168807,
+   1.3184980521200211,
    0.7071067811865475,
-   -0.7071067811865476,
-   -9.198964650346952e-16,
-   -1.2992363273031132e-15
+   -0.7071067811865478,
+   -1.1709460273254158e-16,
+   -3.8356668450507236e-17
+  ],
+  [
+   -1.2309946469030932,
+   -1.362249757132369,
+   0.2050852019830926,
+   0.30034688294860923,
+   0.8219600071435331,
+   -0.3003468829486094,
+   0.37942752465090346
+  ],
+  [
+   1.2382862637752206,
+   -0.042271916773879446,
+   1.2992843337620468,
+   0.5043321884358254,
+   0.5329411772635864,
+   -0.48771610659218895,
+   -0.4730282704606462
+  ],
+  [
+   1.3184980524028322,
+   -1.3184980532512602,
+   -1.3184980549481187,
+   0.7071067811865477,
+   -0.7071067811865474,
+   -1.4073792359475834e-16,
+   -7.91662515092521e-17
   ]
  ],
  "record_id": "kthinkth_n05",
  "title": "5 tetrakis hexahedra in a tetrakis hexahedron",
  "family": "catalan",
  "source": {
-  "hash": "3de9190956ef2c70",
+  "hash": "ba32ec0087c7335e",
   "clear": 1e-07,
   "cap": 2.3198703543783
  },
- "s_tight": 2.248417320081,
+ "s_tight": 2.243091843325,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.7099759466766968,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "ascend",
-  "seed": 1150825201,
-  "var": "base",
-  "raw": 2.252700240495169,
-  "host": "actions"
+  "move": "hop",
+  "seed": 502468216,
+  "var": "gentle",
+  "minDiff": 0.020122172339398687,
+  "expand": 0.0051792596981952,
+  "rh": 0.15352737113200052,
+  "focus": 0,
+  "from": "best",
+  "raw": 2.243194875162482,
+  "host": "laptop"
  },
- "density": 0.439885019244213
+ "density": 0.4430255462105173
 }
