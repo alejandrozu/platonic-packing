@@ -85,13 +85,15 @@ def add_source_notes(text, wiki=False):
     same = f'<small>Construction sources: {zarzuelo} for all non-cube columns and the refinements/reproductions below. Cubes: n=2–8, grid; n=9–10, {friedman}; n=11, {lin} seed, refined; n=12, {nakajima} family, reproduced.</small>'
     dual = f'<small>Construction sources: {zarzuelo} for cubes in octahedra and both dodecahedron–icosahedron directions. Octahedra in cubes: n=2–11, {walsh} (n=2–10 independently certified here); n=12, {lin_oct}.</small>'
     for match, kind, note in reversed(list(zip(table_matches(text,wiki), ['SAME','DUAL'], [same,dual]))):
+        if wiki:
+            note = '<div class="mw-collapsible mw-collapsed">\n<small>Construction attribution</small>\n<div class="mw-collapsible-content">\n' + note + '\n</div>\n</div>'
         block = f'\n\n<!-- PACKING_{kind}_SOURCE_NOTE_START -->\n{note}\n<!-- PACKING_{kind}_SOURCE_NOTE_END -->\n'
         text = text[:match.end()].rstrip('\n') + block + text[match.end():]
     return text
 
 def rewrite_precision_key(text, wiki=False):
     prefix = "'''Precision and construction evidence.'''" if wiki else '**Precision and construction evidence.**'
-    paragraph = prefix + ' A plus sign means the displayed decimal was truncated, so the corresponding full value is greater than or equal to the printed number. For archived constructions the exact stored scale is in the linked JSON; a numerical touching estimate is a separate quantity. Source-only catalogue entries report rounded scales rather than exact decimal bounds. Independently certified reproductions at the same displayed precision need not have identical poses to the original construction. Seed refinements and smaller-clearance reproductions are distinguished in the source notes and methods. The superior external octahedra-in-cube entries at counts 11 and 12 retain their original reported diagrams; no public poses or originating manuscripts were located for those two entries. Other external entries without a located paper link their original catalogue.'
+    paragraph = prefix + ' A plus sign marks a truncated source decimal. Exact stored scales and feasibility certificates are available through the construction links; numerical touching estimates and rounded catalogue reports are separate evidence. The source notes distinguish original constructions, seed refinements, and independently certified reproductions.'
     pattern = r"^(?:\*\*|''')(?:Attribution and precision key|Precision and construction evidence)\.(?:\*\*|''').*$"
     text, count = re.subn(pattern, lambda _:paragraph, text, flags=re.M)
     assert count == 1
@@ -253,9 +255,9 @@ def main():
         '| image = '+hero_image, '| caption = 33 dodecahedra in a dodecahedron',
         '| label1 = Objects', '| data1 = Regular polyhedra',
         '| label2 = Motions', '| data2 = Translation and rotation',
-        '| label3 = Atlas', '| data3 = 351 certified constructions in 9 families',
-        '| label4 = Counts', '| data4 = 2–40 pieces',
-        '| label5 = Papers', f'| data5 = [{METHODS} Methods] · [{PATTERNS} Patterns]',
+        '| label3 = Objective', '| data3 = Minimum enclosing scale',
+        '| label4 = Tables', '| data4 = 2–12 pieces',
+        '| label5 = Theory', '| data5 = [https://doi.org/10.1017/CBO9780511546587 Finite packing] · [https://doi.org/10.1016/S0010-4485(01)00109-9 3D layout]',
         '| label6 = Evidence', f'| data6 = [{DATA} Data and certificates]',
         '| label7 = Software', '| data7 = [https://github.com/alejandrozu/platonic-packing Construction repository]',
         '}}', '<!-- PACKING_INFOBOX_END -->', ''])
@@ -266,10 +268,12 @@ def main():
     wiki = re.sub(r'\n{3,}', '\n\n', wiki)
     assert non_table_text(before_md) == non_table_text(md)
     assert non_table_text(before_wiki, True) == non_table_text(wiki, True)
-    assert len(re.findall(r'<a id="reference-\d+"', md)) == 35
-    assert len(set(re.findall(r'<ref name="(r\d+)">',wiki))) == 35
-    assert len(re.findall(r'^\* \*\*H\d+:', md, re.M)) == 20
-    assert len(re.findall(r"^\* '''H\d+:", wiki, re.M)) == 20
+    reference_count = len(re.findall(r'<a id="reference-\d+"', before_md))
+    hypothesis_count = len(re.findall(r'^\* \*\*H\d+:', before_md, re.M))
+    assert len(re.findall(r'<a id="reference-\d+"', md)) == reference_count
+    assert len(set(re.findall(r'<ref name="(r\d+)">',wiki))) == reference_count
+    assert len(re.findall(r'^\* \*\*H\d+:', md, re.M)) == hypothesis_count
+    assert len(re.findall(r"^\* '''H\d+:", wiki, re.M)) == hypothesis_count
     assert len(table_matches(md)) == len(table_matches(wiki,True)) == 2
     assert len(re.findall(r'^! scope="row" \| ',wiki,re.M)) == 22
     assert len(re.findall(r'^! scope="col" \| ',wiki,re.M)) == 11
@@ -321,7 +325,7 @@ def main():
              'live_file_transclusions':len(verified),'commons_upload_performed':False,
              'infobox_count':wiki.count('{{Infobox\n'),'native_infobox_template':True,
              'column_headers_have_scope':True,'row_headers_have_scope':True,
-             'reference_count':35,'hypothesis_count':20,
+             'reference_count':reference_count,'hypothesis_count':hypothesis_count,
              'prose_preserved_except_requested_precision_and_source_note_updates':True,
              'mathematical_asterisk_repaired':bad_math in before_wiki,
              'markdown_sha256':sha256(md_path),'mediawiki_sha256':sha256(wiki_path)}
@@ -336,7 +340,7 @@ The 97 author-rendered table images and the additional infobox hero are prepared
 
 Run `python research/build_wikipedia_image_tables.py --packet .` from the output directory to rebuild idempotently. After a separate, authorized Commons upload, supply `--commons-map path/to/actual-files.json` with `files` entries keyed by record ID and actual filenames. The builder checks the existing public file, exact byte hash, and free-license metadata. External diagrams additionally require a rights-evidence URL. A verified table image uses standard `[[File:...|frameless|140px|alt=...]]` markup; the infobox uses `frameless|upright=1.1|alt=...`. Images retain their default File-page licensing link, with separate 3D or original-diagram links for inspection. No upload or publication occurs in either mode.
 
-The article's 35 reference definitions, 20 attributed hypotheses, numeric table values, internal provenance codes, and original inspection links are retained. Visible source credits appear only in compact per-table notes; the separate precision paragraph retains the distinctions between certified scales, touching estimates, rounded catalogue reports, and reproductions. Lower-half name reductions are preserved. The one emphasis-conversion error in the deletion inequality was restored to the mathematical asterisk.
+The current reference definitions, numeric table values, internal provenance codes, and original inspection links are retained. Source credits occupy collapsible per-table notes; the separate precision paragraph distinguishes certified scales, touching estimates, rounded catalogue reports, and reproductions. The shorter research reference links the established literature and gives one generalization credit. The full earlier reference preserves the detailed methodology and twenty hypotheses separately.
 '''
     (packet/'research/wikipedia-image-integration-notes.md').write_text(notes,encoding='utf-8')
     print(json.dumps(audit,indent=2))

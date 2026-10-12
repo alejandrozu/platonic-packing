@@ -1,74 +1,51 @@
 # Polyhedra in polyhedra packing
 
-<!-- Local encyclopedia draft; revised 12 October 2026. No Wikipedia submission. -->
+**Polyhedra in polyhedra packing** is a class of finite [packing problems](https://en.wikipedia.org/wiki/Packing_problems) in which [polyhedra](https://en.wikipedia.org/wiki/Polyhedron) are placed inside a polyhedral container without overlapping interiors. Typical objectives are to minimize the container, maximize the common size of its pieces, or maximize their number. The pieces may be [congruent](https://en.wikipedia.org/wiki/Congruence_(geometry)) or of different shapes and sizes; their permitted motions may include [translations](https://en.wikipedia.org/wiki/Translation_(geometry)) and [rotations](https://en.wikipedia.org/wiki/Rotation_(mathematics)).[1](#reference-1)[36](#reference-36)
 
-**Polyhedra in polyhedra packing** is a class of finite [packing problems](https://en.wikipedia.org/wiki/Packing_problems) in which three-dimensional polyhedra are placed inside a polyhedral container with disjoint interiors. The objective may be to minimize the container, maximize the common size of its particles, or maximize the number of particles at fixed sizes. The objects can be congruent copies of one solid or a mixture; allowed motions can include translations, selected orientations, or independent arbitrary rotations.[1](#reference-1)[2](#reference-2)
-
-The field combines discrete geometry, continuous optimization, explicit constructions, and computational verification. A finite container introduces faces, edges, and corners that can favor arrangements different from a repeating packing in unbounded space. Finite constructions can exhibit repeated capacities, abrupt expansion steps, orientational domains, and boundary-adapted structures. These questions connect geometric packing with confinement and ordered matter, although predicting crystal formation also requires a physical interaction and dynamical or statistical model.[3](#reference-3)[4](#reference-4)
+The problem combines [discrete geometry](https://en.wikipedia.org/wiki/Discrete_geometry), [mathematical optimization](https://en.wikipedia.org/wiki/Mathematical_optimization), and computational geometry. It belongs to the established theory of packing [convex bodies](https://en.wikipedia.org/wiki/Convex_body) in bounded containers. Related applications include arranging manufactured parts in a build volume and studying the geometric organization of confined particles.[3](#reference-3)[37](#reference-37)[25](#reference-25)
 
 ## Mathematical formulation
 
-For particle polyhedron $P$, container polyhedron $C$, and population $n$, a freely rotating congruent packing consists of
+For a particle $P$ and a fixed-shape container $C$, let $s^*_{C,P}(n)$ be the smallest scale of the container that can accommodate $n$ congruent copies. In the freely rotating formulation, each copy has the form $P_i=t_i+R_iP$, with translation $t_i$ and proper rotation $R_i$, and must satisfy $P_i\subseteq sC$ and $\operatorname{int}(P_i)\cap\operatorname{int}(P_j)=\varnothing$ for $i\ne j$. Touching is permitted; positive-clearance constructions impose an additional gap.[3](#reference-3)[5](#reference-5)[6](#reference-6)
+
+For unit-edge particles and a [homothetic](https://en.wikipedia.org/wiki/Homothetic_transformation) container, the reported scale is the container edge divided by the particle edge. A feasible construction at scale $U_n$ gives an [upper bound](https://en.wikipedia.org/wiki/Upper_and_lower_bounds) on the unknown minimum. Volume supplies a lower bound and a corresponding [packing density](https://en.wikipedia.org/wiki/Packing_density):
 
 $$
-P_i=t_i+R_iP,\qquad i=1,\ldots,n,
+\left(\frac{nV(P)}{V(C)}\right)^{1/3}\le s^*_{C,P}(n)\le U_n,
+\qquad \eta_n=\frac{nV(P)}{V(C)U_n^3}.
 $$
 
-where $t_i$ is a translation and $R_i$ a proper rotation. Containment and nonoverlap require $P_i\subseteq C$ and $\operatorname{int}(P_i)\cap\operatorname{int}(P_j)=\varnothing$ for distinct pieces. This permits touching at faces, edges, or vertices. A positive-clearance version additionally requires gaps between pieces and walls. Continuous-rotation formulations explicitly impose these geometric conditions.[5](#reference-5)
+Comparing densities rather than raw edge ratios matters when the particle and container have different unit-edge volumes. Removing a piece preserves feasibility, so $s^*(n)\le s^*(n+1)$; this does not imply a strict increase at every count.[3](#reference-3)[37](#reference-37)
 
-With canonical unit-edge particles and a homothetically scaled unit-edge container, define
+## Established theory and computational methods
 
-$$
-s^*_{C,P}(n)=\inf\{s>0:n\text{ congruent copies of }P\text{ fit in }sC\}.
-$$
+### Finite packing and three-dimensional layout
 
-A construction at scale $U_n$ proves $s^*_{C,P}(n)\le U_n$. It is an upper bound on the minimum container edge, rather than automatically the optimum. Fixing the container and maximizing particle scale reverses the bound convention. A single-polyhedron inscription problem, $n=1$, has a separate literature: Croft studied maximal regular polyhedra inside regular polyhedra, and Firsching used numerical optimization and algebraic reconstruction for remaining Platonic cases.[9](#reference-9)[7](#reference-7)
+Böröczky's *Finite Packing and Covering* develops finite arrangements of congruent convex bodies in convex containers, including density and extremal questions. Fejes Tóth's handbook chapter likewise formulates the minimum container scale for a specified population. These treatments place finite packing alongside [sphere packing](https://en.wikipedia.org/wiki/Sphere_packing), covering, and [lattice](https://en.wikipedia.org/wiki/Lattice_(group)) arrangements. Their detailed examples often concern disks and spheres; they provide a general framework rather than a catalogue of the polyhedral records below.[37](#reference-37)[3](#reference-3)
 
-Several individually inscribed polyhedra can overlap. Bakos's 1959 discussion of octahedra inscribed in a cube, for example, concerns their arrangement and intersection rather than establishing a nonoverlapping multi-octahedron packing.[10](#reference-10)
+Cagan, Shimada, and Yin's 2002 survey reviews the layout of complex three-dimensional objects, including their positions and orientations, containment constraints, and interference evaluation. It discusses geometric representations and search procedures such as [local search](https://en.wikipedia.org/wiki/Local_search_(optimization)) and [simulated annealing](https://en.wikipedia.org/wiki/Simulated_annealing). This literature predates recent regular-solid catalogues and supplies a broader setting for packing algorithms.[36](#reference-36)
 
-Two elementary comparisons organize finite records. Deletion establishes $s^*(n)\le s^*(n+1)$. Volume gives
+Irregular packing is also studied in [additive manufacturing](https://en.wikipedia.org/wiki/3D_printing), where parts must fit in an enclosed build volume. Araújo and colleagues review this three-dimensional problem and introduce a taxonomy and benchmark dataset. Wäscher and colleagues distinguish packing problems by their inputs and objectives; Leão and colleagues survey mathematical models, chiefly for two-dimensional irregular nesting. These classifications help separate congruent, freely rotating solids from unequal boxes, planar pieces, and mechanical layouts with additional design constraints.[25](#reference-25)[1](#reference-1)[16](#reference-16)
 
-$$
-L_n=\left(\frac{nV(P)}{V(C)}\right)^{1/3}\le s^*(n),\qquad
-\eta_n=\frac{nV(P)}{V(C)U_n^3},\qquad
-\lambda_n=\frac{U_n}{L_n}=\eta_n^{-1/3}.
-$$
+### Geometry, search, and verification
 
-Here $\eta_n$ is the occupied volume fraction of the displayed construction, and $\lambda_n$ its container scale relative to the volume bound. This normalization matters when particles and container differ. A unit-edge dodecahedron and a unit-edge icosahedron have different volumes; a smaller raw edge ratio does not by itself indicate more efficient confinement.[6](#reference-6)[29](#reference-29)
+Published algorithms include translational packing of arbitrary polytopes by Egeblad and colleagues, continuously rotating concave polyhedra in cuboids by Romanova and colleagues, and polyhedra within bounded convex sets by Callisaya and Kari. These are distinct formulations, with different allowable motions and container objectives.[2](#reference-2)[5](#reference-5)[6](#reference-6)
 
-## Cubes in cubes: constructions and computational history
+[Collision detection](https://en.wikipedia.org/wiki/Collision_detection) and containment tests enforce the geometry. For convex pieces, [separating hyperplanes](https://en.wikipedia.org/wiki/Hyperplane_separation_theorem) can establish nonoverlap. Search may alternate perturbations, local improvement, and feasibility repair. Finding a feasible arrangement is different from proving [global optimality](https://en.wikipedia.org/wiki/Global_optimization): a certificate for one construction supplies an upper bound, while an optimality proof also needs a matching lower bound.[36](#reference-36)[6](#reference-6)
 
-### Grids, rotations, and construction catalogues
+In 2026, Alejandro Zarzuelo Urdiales generalized Yohei Nakajima's rounded-cube continuation procedure to the Platonic particle and container families represented below. The procedure starts with sphere-like particles, progressively restores their polyhedral geometry, and then uses rigid-motion refinement and perturbations to tighten the container. A separate exact-arithmetic checker verifies the archived constructions. The methods preprint documents the generalization, search, and certification; its certificates establish stored feasibility rather than global optimality.[27](#reference-27)[28](#reference-28)[34](#reference-34)
 
-The cube-in-cube problem asks for the smallest enclosing cube for a specified number of congruent cubes. A $k\times k\times k$ grid fits $k^3$ unit cubes inside a cube of side $k$. At these complete-grid counts the volume lower bound matches the construction, proving $s^*(k^3)=k$. Within the range of the tables below, eight cubes therefore have exact optimum two; the same argument gives twenty-seven cubes at side three. Deleting cubes supplies bounds at intermediate counts, but the volume argument no longer matches the grid scale. Rotations can accommodate additional cubes before the next complete grid is required.[11](#reference-11)[29](#reference-29)
+## Cubes and other regular polyhedra
 
-Erich Friedman's [Cubes in Cubes catalogue](https://erich-friedman.github.io/packing/cubincub/) documents these intermediate-count constructions and their attribution. Its entries credited to Friedman in 1998 include nine and ten cubes at $2+1/\sqrt2$, thirteen at the displayed $2.956+$, fourteen at $2+7\sqrt2/10$, and twenty-eight through thirty-three at $3+1/\sqrt2$. The repeated scales are capacities of particular constructions: deletion explains why one arrangement also supplies smaller counts. It does not establish equality of the unknown optimal scales across the whole interval.[11](#reference-11)
+The five [Platonic solids](https://en.wikipedia.org/wiki/Platonic_solid) are the [tetrahedron](https://en.wikipedia.org/wiki/Tetrahedron), [cube](https://en.wikipedia.org/wiki/Cube), [octahedron](https://en.wikipedia.org/wiki/Octahedron), [dodecahedron](https://en.wikipedia.org/wiki/Dodecahedron), and [icosahedron](https://en.wikipedia.org/wiki/Icosahedron). Cubes and octahedra form a [dual pair](https://en.wikipedia.org/wiki/Dual_polyhedron), as do dodecahedra and icosahedra; the tetrahedron is self-dual. Reversing the particle and container produces a different packing problem.
 
-The catalogue lists later eleven- and twelve-cube improvements credited to Haowei Lin in July 2026. Such dates document the longevity and replacement of individual listed configurations. The catalogue is a construction record, rather than a proof that all its smallest reported containers are globally minimal. Its diagrams and contributor credits also provide historical evidence when a separate originating paper or coordinate release is unavailable.[11](#reference-11)
+For cubes in a cube, a $k\times k\times k$ grid fits $k^3$ unit cubes at container edge $k$. Its volume matches the container, proving optimality at complete-grid counts. At intermediate counts, rotations can improve on the next larger grid. Erich Friedman's catalogue documents such constructions, including the nine- and ten-cube arrangement at edge $2+1/\sqrt2$ and later eleven- and twelve-cube improvements. The catalogue also records octahedra in cubes. These entries are construction bounds unless an optimality proof is supplied.[11](#reference-11)[13](#reference-13)
 
-Several related questions have different admissible arrangements. Fan, Zhang, and Ye's 2008 *A Cube-Packing Problem* concerns unequal axis-parallel cubes and the sum of their side lengths. Infinite cube tilings remove the finite-container boundary; passing one cube through another is a passage problem. None determines the freely rotating, congruent, intermediate-count problem posed here.[12](#reference-12)
-
-A separate cube-packing literature asks for sufficient conditions under which every collection of unequal cubes can be packed parallel to the walls of a unit cube. Januszewski and Zielonka's 2024 study defines a collection as *non-blocking* when the edges of every pair satisfy $a_i+a_j\le1$. It proves that every such collection with total volume at most $1/3$ admits a parallel packing, and that this guarantee is sharp within the parallel class. The result concerns a universal guarantee for a class of inputs, rather than the optimum for one fixed congruent count with unrestricted rotations.[35](#reference-35)
-
-### Reusable coordinates and soft-to-rigid search
-
-Lin's public [Hyra packing artifacts](https://github.com/Tencent-Hunyuan/Hyra-results/tree/09b2d2e3c362c67a78f544c836bd8e4b54a05527/AI4Science/packing_records) include eleven-cube coordinates at side 2.8829529104956513 and twelve-cube coordinates at 2.9327717687048653. Positions and quaternion rotations provide reusable construction evidence and search seeds in addition to a rounded catalogue entry. The coordinate repository is the cited primary source for these configurations.[31](#reference-31)
-
-Yohei Nakajima's [soft-to-rigid-packing project](https://github.com/yoheinakajima/soft-to-rigid-packing) introduced the immediate continuation procedure used by the generalized atlas. It compresses balls, gradually sharpens them into cubes under inward pressure, then performs rigid settling, numerical legalization, and constrained tightening. The [manuscript](https://github.com/yoheinakajima/soft-to-rigid-packing/blob/efe7a920142350a4f0678633490c3e3dbed71fa0/paper/main.pdf) and released coordinates report twelve unit cubes at strictly separated side 2.9315185094797, with clearance at least $10^{-6}$, and a numerical touching estimate of 2.931514577965. The related [Zenodo release](https://doi.org/10.5281/zenodo.23248095) is a software release.[27](#reference-27)
-
-Alejandro Zarzuelo Urdiales's [platonic-packing project](https://github.com/alejandrozu/platonic-packing) generalized this search from cube geometry to different convex particles and polyhedral containers. Its 2026 [methods preprint](https://doi.org/10.5281/zenodo.23306098) documents the geometry, perturbation moves, tightening, and independent exact certificates. The frozen eleven-cube witness refines Lin's seed to certified side 2.8817115130006. Its twelve-cube witness reproduces Nakajima's touching family with smaller positive clearance; reducing clearance should not be counted as a new touching construction. The record lineage separates seed reuse, reproduction, and geometric refinement.[28](#reference-28)[34](#reference-34)
-
-These releases combine search procedures with reusable poses and independently checked feasibility. Nakajima's cube continuation and Zarzuelo Urdiales's generalization and comparative structural analysis are contributions to this particular computational programme. Their scope is distinct from earlier general algorithms: Egeblad, Nielsen, and Brazil used translational local and guided local search for arbitrary polytopes; Romanova and colleagues allowed continuous rotations of concave polyhedra in minimum-volume cuboids; Callisaya and Kari formulated congruent-polyhedron fitting in bounded convex domains using separating hyperplanes. Generic polyhedral optimization therefore predates the 2026 atlas.[2](#reference-2)[5](#reference-5)[6](#reference-6)
-
-The finite catalogue continues to evolve after a frozen research release. Its historical comparisons and structural analysis remain tied to the cited coordinates and dates; later feasible improvements can supersede a numerical record without changing the construction or method being documented.
+Other cube questions impose different conditions. Januszewski and Zielonka study unequal cubes packed parallel to the walls and prove a sharp sufficient-volume guarantee for a non-blocking class. This does not determine the freely rotating congruent-cube records. Inscribing a single regular polyhedron in another is also distinct: Croft and Firsching study maximal individual copies, which need not combine into a nonoverlapping multi-piece packing.[35](#reference-35)[9](#reference-9)[7](#reference-7)
 
 ## Same-solid and dual-solid results
 
-The five same-solid problems use tetrahedra, cubes, octahedra, dodecahedra, or icosahedra for both particles and container. Distinct Platonic dual pairs give four additional ordered problems: cubes in an octahedron, octahedra in a cube, dodecahedra in an icosahedron, and icosahedra in a dodecahedron. The tetrahedron is self-dual. Reversing a pair changes both boundary geometry and unit-edge volumes, so duality does not equate the two packing problems.
-
-The two tables collect the smallest sourced construction scales located for populations two through twelve, checked against the available original catalogues and coordinate releases on 12 October 2026. Each cell links its numerical source; an archived witness also links its exact coordinates and individual three-dimensional view. Superior external octahedra-in-cube entries retain their original attribution and diagrams rather than displaying unrelated archive geometry.[11](#reference-11)[13](#reference-13)[28](#reference-28)[30](#reference-30)
-
-The entries are construction records, not a table of proved optima. Symbolic grid equalities, exact certificates at positive clearance, numerical touching estimates, and rounded catalogue reports are different evidence types. The per-table source notes identify the construction origins and the provenance of imported or reproduced results. The nine selected pairs are five identical-solid cases and four distinct dual directions; other ordered Platonic pairs are outside this selection.
+The following tables retain the sourced construction scales for two through twelve pieces: five identical-solid families and four ordered dual-solid families. They report feasible bounds rather than universal proved optima. Each image links to inspection of its construction, with source and coordinate links retained. Original catalogue diagrams are used for the two superior external octahedra-in-cube entries for which public poses were not located.[11](#reference-11)[13](#reference-13)[28](#reference-28)[34](#reference-34)
 
 ### Identical particle and container solids
 
@@ -110,178 +87,22 @@ The entries are construction records, not a table of proved optima. Symbolic gri
 <small>Construction sources: [Zarzuelo Urdiales](https://doi.org/10.5281/zenodo.23306098) for cubes in octahedra and both dodecahedron–icosahedron directions. Octahedra in cubes: n=2–11, [Walsh](https://erich-friedman.github.io/packing/octincub/) (n=2–10 independently certified here); n=12, [Lin](https://erich-friedman.github.io/packing/octincub/).</small>
 <!-- PACKING_DUAL_SOURCE_NOTE_END -->
 
-**Precision and construction evidence.** A plus sign means the displayed decimal was truncated, so the corresponding full value is greater than or equal to the printed number. For archived constructions the exact stored scale is in the linked JSON; a numerical touching estimate is a separate quantity. Source-only catalogue entries report rounded scales rather than exact decimal bounds. Independently certified reproductions at the same displayed precision need not have identical poses to the original construction. Seed refinements and smaller-clearance reproductions are distinguished in the source notes and methods. The superior external octahedra-in-cube entries at counts 11 and 12 retain their original reported diagrams; no public poses or originating manuscripts were located for those two entries. Other external entries without a located paper link their original catalogue.
+**Precision and construction evidence.** A plus sign marks a truncated source decimal. Exact stored scales and feasibility certificates are available through the construction links; numerical touching estimates and rounded catalogue reports are separate evidence. The source notes distinguish original constructions, seed refinements, and independently certified reproductions.
 
-Friedman's [Octahedra in Cubes catalogue](https://erich-friedman.github.io/packing/octincub/) includes repeated construction sizes at several counts; for example, its printed side is approximately 1.79133 for seven and eight octahedra. Some external catalogue records lack downloadable full-precision poses or a located originating paper. Such entries retain their catalogue attribution; an unrelated three-dimensional construction should not be substituted for their geometry.[13](#reference-13)
+## Density, structure, and physical context
 
-Finite cube-container packing also includes tetrahedra. Friedman's [Tetrahedra in Cubes catalogue](https://erich-friedman.github.io/packing/tetincub/) attributes three unit tetrahedra in a unit cube to Achille Hui in February 2016. This family lies outside the two tables' same-solid/dual-solid selection. The selection covers nine of the twenty-five ordered Platonic pairs, not every finite polyhedral fitting problem.[14](#reference-14)[30](#reference-30)
+Finite containers introduce faces, edges, and corners that do not occur in an unbounded periodic arrangement. Consequently, a finite cluster and a [Bravais lattice](https://en.wikipedia.org/wiki/Bravais_lattice) packing answer different optimization questions. Reviews by Torquato and Stillinger, and Torquato's perspective on condensed phases, discuss how particle shape, orientation, density, and [jamming](https://en.wikipedia.org/wiki/Jamming_(physics)) characterize arrangements. A jammed or highly symmetric configuration is not automatically the densest possible one.[3](#reference-3)[22](#reference-22)[4](#reference-4)
 
-## Methods: from rounded cubes to general convex particles
+Two recurring finite-construction features are equal-scale capacities and abrupt increases between successive counts. Deletion explains why a construction also accommodates smaller populations. Repeated orientations, shells, and contact networks provide ways to describe its organization without proving that its scale is minimal. The comparative preprint linked with the records studies these descriptors; one archived example contains thirty-three dodecahedra arranged as a central piece and shells of twelve and twenty pieces.[29](#reference-29)[34](#reference-34)
 
-Nakajima's continuation addresses the difficulty of immediately optimizing sharp, freely rotating cubes. Zarzuelo Urdiales's extension separates the particle shape, container half-spaces, numerical search, and final certificate. This permits the same continuation and tightening architecture to be applied to the five Platonic particles in the nine tested particle–container pairs. The convex interpolation is more general than those experiments; comprehensive records for all twenty-five ordered Platonic pairs were not produced.[27](#reference-27)[28](#reference-28)
-
-### A nested continuation of particle shapes
-
-Nakajima's cube procedure replaces a unit cube by a smaller cube dilated by a ball:
-
-$$
-(1-2r)[-1/2,1/2]^3\oplus B(0,r),\qquad 0\le r\le1/2.
-$$
-
-The symbol $\oplus$ denotes a Minkowski sum. At maximal softness the particle is its inscribed sphere; at zero softness it is the full cube. The rounding reduces sharp geometric obstacles while compressed configurations are reorganized and then returned to the rigid target.[27](#reference-27)
-
-Zarzuelo Urdiales's generalized method replaces the cube-specific formula with
-
-$$
-S_r=(1-r/\rho)P\oplus B(0,r),\qquad 0\le r\le\rho,
-$$
-
-where a centered convex particle $P$ contains a ball of radius $\rho$. Convexity ensures $S_r\subseteq P$: every intermediate point is a convex combination of a point of $P$ and a point of its inscribed ball. The support function is $h_{S_r}(u)=(1-r/\rho)h_P(u)+r$ for unit $u$. Since $h_P(u)\ge\rho$, the shapes expand monotonically as $r$ decreases. This establishes a nested geometric interpolation for convex bodies, whereas the published computational experiment implements five Platonic particles and their selected containers.[28](#reference-28)
-
-The nesting has two useful consequences. A valid rigid packing remains valid when its particles are softened, creating room for rearrangement. Conversely, sharpening grows the obstacles toward the specified target. A local optimization trajectory can still overlap or become trapped; monotonicity of the shape family is not a guarantee that the numerical search follows globally optimal configurations.
-
-### Geometry and tightening
-
-The generalization requires particle geometry beyond a cube-specific distance formula. For overlapping convex polytopes, separating-axis candidates include both particles' face normals and cross products of edge directions. The two directional projected depths must be considered separately, especially for tetrahedra, whose opposite support values differ. For separated objects, a separating-axis gap is usually only a lower bound on Euclidean distance. The implementation therefore enumerates vertex–face and edge–edge feature pairs when an accurate distance is needed, with slab and bounding-sphere pruning to reduce work.[8](#reference-8)[28](#reference-28)
-
-A fresh run follows four stages: compression of inscribed balls; gradual sharpening toward the target polyhedron; rigid settling with decreasing pressure; and constrained tightening of a numerically legalized arrangement. During the first stages, overlap and wall violations enter a penalty objective together with inward container pressure. Allowing temporary violations makes rearrangement possible, but means a dynamical candidate is not itself a certified packing.[27](#reference-27)[28](#reference-28)
-
-The search uses analytic translation and rotation gradients for overlap and wall penalties. Penalty dynamics can leave small violations, so numerical legalization separates pieces and refits the container. A translation-only container fit is a linear programme against its face half-spaces. Hard local tightening subsequently varies centers, rotations, container scale, and pair-separating planes, using sequential linear programming or sequential quadratic programming. Each proposed improvement is legalized and refitted before acceptance. These geometric formulas are evaluated numerically during search; the word exact in a distance description should not be confused with arithmetic certification.[28](#reference-28)
-
-Related nesting models combine continuous and discrete choices, as surveyed by Leao and colleagues. Approximation algorithms also study small containers for general three-dimensional convex objects under specified motion restrictions. These provide broader methodological context; their guarantees address different questions from small-count optima in one fixed Platonic pair.[16](#reference-16)[17](#reference-17)
-
-### Jiggling and the evolving archive
-
-The generalized search retains a best configuration and alternative candidates for each particle count. A hop expands a stored arrangement, softens it, shakes it, re-sharpens it under pressure, settles the rigid bodies, and tightens a competitive result. A center-distance change statistic determines whether a prescribed amount of relative reorganization has occurred. Measuring pair-distance changes makes the criterion invariant under common translation and rotation, although it cannot detect a pure change in particle orientations with fixed centers.[28](#reference-28)
-
-Focused hops emphasize a local cluster while the other pieces continue to respond to contact forces. Complementary moves insert a new piece, remove and reinsert selected pieces, delete from a larger-count construction, or restart from compressed balls. A downward deletion sweep enforces a monotone feasible-bound table. The archive therefore carries information between neighboring counts and retains useful competing structures instead of treating each population as an unrelated experiment. The short policy comparison favored gentle perturbations in the observed evolving archive; it did not prove a universal best shaking schedule.[28](#reference-28)
-
-### Independent exact feasibility certificates
-
-The final certificate is separate from the optimization. In the generalized Platonic implementation, canonical vertices lie in $\mathbb Q(\sqrt2,\sqrt5)$. Stored centers, scales, and quaternion components are interpreted as exact dyadic rationals. A nonzero rational quaternion produces an exactly orthogonal rational rotation by using its homogeneous rotation matrix divided by its squared norm, preserving congruence even when the stored quaternion was numerically rounded.[28](#reference-28)[32](#reference-32)
-
-The checker tests every transformed vertex against every container face inequality and checks a strict separating plane for every particle pair. Floating calculations may suggest a separating normal, but all resulting inequalities are verified with exact field signs. A bad proposal makes the certificate fail rather than making an invalid packing valid. The stored scale includes positive clearance; a smaller numerical touching estimate or a recognized radical expression is a different claim. All 351 frozen configurations passed the independent exact feasibility replay.[32](#reference-32)[33](#reference-33)
-
-The frozen experiment comprises 351 configurations, covering every count from two through forty in nine families. Its independent replay checks 7,371 particle placements and 95,940 particle pairs. The published [supporting archive](https://doi.org/10.5281/zenodo.23306130) preserves the construction data, source snapshot, verification evidence, and analyses needed to inspect those claims.[33](#reference-33)[34](#reference-34)
-
-Certification proves one construction exists at its stated scale. Global optimality additionally requires a lower bound excluding all smaller arrangements. Family-restricted optimization, local stationarity, repeated convergence, and an attractive closed form each answer more limited questions.
-
-The distinction also appears in Chen, Engel, and Glotzer's tetrahedral dimer study, which proves maximum density within its stated parameter family rather than over every possible packing.[18](#reference-18)
-
-## Structural analysis and construction families
-
-The companion [pattern paper](https://doi.org/10.5281/zenodo.23306126) analyzes every count from two through forty across the nine families. The 2026 preprint combines the feasible-scale catalogue with common measurements of marginal size, volume fraction, particle disorientation, near contacts, and spatially connected orientation domains, so that construction mechanisms can be compared across different shapes. The interpretations below are its attributed findings and hypotheses from that finite archive. The measurements do not establish laws for every solid and count.[29](#reference-29)
-
-### Plateaus, jumps, and capacity
-
-For an adjacent-count increase, the absolute edge cost is $U_{n+1}-U_n$ and the relative edge cost is $U_{n+1}/U_n-1$. Container volume changes by $(U_{n+1}/U_n)^3-1$. The exact density relation is
-
-$$
-\frac{\eta_{n+1}}{\eta_n}=\frac{n+1}{n}\left(\frac{U_n}{U_{n+1}}\right)^3.
-$$
-
-A plateau increases occupied fraction in proportion to particle count without enlarging the container. Density falls if the relative edge step exceeds $((n+1)/n)^{1/3}-1$. Thus the effect of adding one particle depends on its count as well as the absolute or percentage increase in edge.[29](#reference-29)
-
-Three kinds of plateau must be distinguished: an equality of exact stored feasible scales; repeated numerical touching estimates or rounded displayed values; and a conjectured equality of true optima. Only the first is established by identical exact archive scales. The second needs full-precision comparison, and the third needs lower-bound proofs.[29](#reference-29)
-
-The octahedron-in-octahedron archive gives a pronounced example: six particles fit at certified side 2.0000003674235, while the seven-particle entry uses 2.5000004286608. This is approximately a 25% edge increase and a 95.3125% container-volume increase. Occupied fraction falls from approximately 0.7500 to 0.4480; the near-contact graph changes from fifteen edges to five. The pattern paper proposes exhaustion of a compact construction's capacity followed by a change of organization. It also identifies this low-density successor as a useful target for competing constructions; the jump is not a proved discontinuity of the unknown optimal-bound sequence.[29](#reference-29)
-
-Explicit scaffolds explain some capacities. Complete cubic grids have $k^3$ particles. A tetrahedral subdivision supplemented by tetrahedra in its octahedral holes provides 5, 15, and 34 pieces at container edges 2, 3, and 4. An aligned parity-based octahedral scaffold has $(2k^3+k)/3$ pieces, giving 6, 19, and 44 at those edges. These are reusable feasible families. Improved numerical scales below a scaffold's scale show that the scaffold is not best at that count, while matching it does not alone prove optimality.[29](#reference-29)
-
-### Construction families and continuation between counts
-
-The pattern paper distinguishes aligned lattice scaffolds, aligned arrangements without an identified lattice, layered structures, several repeated orientation domains, nested shells, and dispersed arrangements with many distinct orientations. Boundary accommodation can occur within any of these, and a packing can combine several mechanisms. The proposed families are therefore descriptive rather than a disjoint mathematical classification.[29](#reference-29)
-
-Family membership can be investigated by fitting center lattices, planes, symmetry orbits, or shell radii and comparing contact graphs and surviving poses across counts. An identical size alone does not establish common geometry. Conversely, arrangements at different scales can belong to the same parameterized family. The dodecahedral plateau supplies an unusually explicit example because a common core and individual outer-site deletions can be matched directly in the coordinates.[29](#reference-29)
-
-The archive contains one selected final witness per count, with neighboring counts linked by insertion and deletion during search. It does not measure the distribution of all candidate packings or how frequently each family is reached. Claims about a family's prevalence or tendency toward optimality require independently searched ensembles and valid lower bounds in addition to the selected record curve.[29](#reference-29)
-
-### Orientation, near contacts, and grains
-
-Particle orientations must be compared modulo the solid's own proper rotational symmetries: a visually different rotation can describe the same physical orientation. The archive uses symmetry-reduced angular disorientation and forms orientation components using a one-degree threshold, with additional thresholds for sensitivity. A component is a single-linkage cluster and need not have every pair within one degree.[29](#reference-29)
-
-The near-contact graph joins particle pairs whose actual Euclidean surface distance is at most $10^{-4}$ particle edges. Operational grains are connected components after retaining only near-contact edges whose endpoints also have similar orientations. This combines spatial proximity with alignment. An orientation component can contain distant particles; a contact graph can connect differently oriented particles. Neither descriptor alone is a material grain, which additionally requires an appropriate notion of positional crystalline order.
-
-The families behave differently. Twenty-two of the thirty-nine cube-in-cube records and eighteen octahedron-in-octahedron records are pairwise aligned at the central angle threshold. Dodecahedra in an icosahedron have twenty-six records with mutually distinct orientations; the reverse pair has twenty-four. At twelve icosahedra in an icosahedron, the aligned arrangement has a connected thirty-edge near-contact graph and forms one operational grain. These observations motivate family-specific hypotheses about alignment, interlocking orientations, and boundary accommodation.[29](#reference-29)
-
-An orientation exception can be a useful core particle. The fifteen-icosahedra-in-dodecahedron witness has fourteen similarly oriented outer pieces and one central orientation outlier, with six near contacts. The paper proposes that this minority orientation accommodates an interior void, rather than treating every outlier as a boundary defect. Comparing a free central rotation with a constrained aligned core provides a direct test of that hypothesis.[29](#reference-29)
-
-### The dodecahedral shell: repeated orientations without aligned contacts
-
-The dodecahedron-in-dodecahedron records for counts twenty-nine through thirty-three have the identical certified container scale **3.7470909531576**. Their occupied fraction increases from approximately 0.551208 to 0.627236 without enlarging the container. This is an exact equality of stored feasible scales, not merely a repeated rounded decimal.[29](#reference-29)
-
-Further analysis of the [thirty-three-piece coordinates](https://github.com/alejandrozu/platonic-packing/blob/e15b496ae7306287e0e70bb5b14be79f5dfdde84/records/dodindod/dodindod_n33.json) identifies a central particle, twelve inner centers in icosahedral directions, and twenty outer centers in dodecahedral directions. The shell-direction residuals are on the order of $10^{-14}$ in the numerical analysis. The central and twenty outer particles share an orientation; the inner particles form six antipodal orientation pairs. The seven orientation-component sizes are consequently 21, 2, 2, 2, 2, 2, and 2.[29](#reference-29)
-
-There are 102 near contacts: twelve between the central and inner particles, thirty within the inner shell, and sixty between inner and outer shells. Every contact joins particles with symmetry-reduced disorientation of approximately 36 degrees or 37.3988 degrees. None therefore connects similarly oriented particles under the studied thresholds. All thirty-three operational grains are singletons despite repeated orientations and a connected, highly organized contact structure.[29](#reference-29)
-
-The apparently conflicting descriptors measure different relations: repeated orientations occur at separated sites, while contacts join different orientation classes. Seven orientation components and thirty-three singleton operational grains can therefore coexist with a connected, highly organized shell. The result is a geometric distinction between global orientation repetition, local alignment, and positional order. The smaller plateau members retain the same center-plus-inner core and omit only outer-shell particles, with matched poses agreeing to numerical precision. Each omission removes three near contacts. The pattern paper proposes a shell-capacity mechanism in which outer occupancy changes without expanding the surviving core. Establishing an exact-contact formula or proving this family's global optimality remains a separate problem.[29](#reference-29)
-
-### Hypotheses across shapes, counts, and configurations
-
-The pattern preprint states twenty testable hypotheses, grouped by construction capacity, orientation, contact constraints, and extension beyond the measured pairs. They propose explanations for the certified configurations and predictions for further searches. They are not optimality proofs or physical crystallization laws. The shell data establish an observed configuration; whether its proposed mechanism transfers to another solid or count remains a test.[29](#reference-29)
-
-**Count and capacity (H1–H6).**
-
-* **H1: retained-core shell filling.** A fixed interior core may permit additional outer pieces at unchanged scale. Matched-pose analysis and fixed-core insertion distinguish that mechanism from unrelated equal-scale constructions.
-* **H2: complementary shell orientations.** Differently oriented neighbors may fit a regular shell more efficiently than an aligned restriction. Constraining neighboring orientations and retightening tests whether the diversity has a geometric role.
-* **H3: shell closure followed by reorganization.** Completing a compatible shell may create a density peak before a new layer or family becomes necessary. The archived thirty-three-to-thirty-four dodecahedron step raises edge by about 4.387% and lowers occupied fraction from 0.627236 to 0.568137, while near contacts fall from 102 to 68.
-* **H4: scaffold capacities as transition targets.** Counts just beyond cubic, tetrahedral, or octahedral scaffold capacities may favor tilted or hybrid competitors. The prediction concerns changes of construction family, not equality of scaffold and globally optimal scales.
-* **H5: an inefficient successor can enlarge an archived jump.** A previous family's capacity limit and a suboptimal successor can jointly produce a sharp expansion. Collective moves and independent starts at seven octahedra test whether the large six-to-seven jump can be reduced.
-* **H6: small increments more often preserve motifs.** Small scale steps may correlate with retained poses and contact subgraphs after controlling for count. Structural matching is needed because distinct families can have nearly equal scales.[29](#reference-29)
-
-**Orientation and domains (H7–H12).**
-
-* **H7: alignment depends on shape compatibility.** Repeated face-compatible orientations may benefit some families while restricting complementary contacts in others. Compare aligned, several-orientation, and unrestricted searches at the same count and computational budget.
-* **H8: wall and interior orientation distributions can differ.** Some orientation diversity may accommodate particular faces, edges, or corners. Wall-conditioned and interior-conditioned measurements can separate that effect from internal geometric frustration.
-* **H9: global repetition can coexist with weak local alignment.** Related shell families may retain a large orientation component while contacts predominantly join different classes. Contact-angle distributions and class-mixing matrices test persistence of the dodecahedral mechanism.
-* **H10: a minority orientation can fill a core void.** An orientation exception may be an interior construction element rather than a boundary defect. The fifteen-icosahedra-in-dodecahedron witness has fourteen similarly oriented outer pieces and one central outlier; constraining the central piece supplies a direct test.
-* **H11: robust threshold partitions indicate discrete motifs.** A sharply separated orientation pattern may persist across angle thresholds and small feasible perturbations, unlike continuously tilted arrangements. Component diameters and independent distance-threshold sweeps guard against single-linkage and proximity artifacts.
-* **H12: positional order and operational grains need separate descriptors.** Shell, orbit, layer, and lattice fits may distinguish ordered constructions even when aligned contact components are fragmented. The $1+12+20$ dodecahedral shell supplies the motivating example.[29](#reference-29)
-
-**Constraints and optimality (H13–H16).**
-
-* **H13: contact geometry is more informative than degree alone.** Face, edge, and vertex proximity can contribute differently to constraints. Contact features, normals, wall supports, and feasible motions test rigidity more directly than counting graph edges.
-* **H14: a scale-controlling backbone can tolerate peripheral deletions.** A core contact-and-wall system may fix the scale while compatible residual sites vary in occupancy. Reoptimizing each deletion separately tests which particles and supports control the bound.
-* **H15: a small contact system can produce an algebraic scale.** The dodecahedral shell's numerical touching label $(55+24\sqrt5)/29$ is a candidate for exact reconstruction. Solving shell-contact equations and verifying every inequality could establish that touching construction; numerical recognition alone does not.
-* **H16: tractable motifs and strong lower bounds are promising proof targets.** Independently recovered poses and low-dimensional algebraic constraints may make some candidates easier to prove optimal or near optimal. If a valid lower bound $L'_n$ satisfies $U_n/L'_n\le1+\epsilon$, relative scale error is at most $\epsilon$; that bound criterion is mathematical, while which families meet it is open.[29](#reference-29)
-
-**Other solids, larger counts, and mixtures (H17–H20).**
-
-* **H17: dual reversal has count-dependent efficiency.** Reversing particle and container need not preserve volume-normalized density. At forty pieces the golden-dual directions have very different edge ratios, about 6.32472 and 2.74184, but close occupied fractions, 0.55533 and 0.55249; the cube–octahedron pair shows a different comparison.
-* **H18: boundary fractions may diminish in stable bulk families.** For bounded-density three-dimensional clusters with bounded-thickness boundary layers, the boundary count is expected to scale with surface area and its fraction as approximately $n^{-1/3}$. Larger counts must test the assumptions; thin structures, extensive voids, or changing families need not follow that scaling.
-* **H19: complementary holes can support different mixed-species capacities.** Tetrahedral subdivisions contain octahedral holes, suggesting explicitly sized mixtures that occupy otherwise unused sites. The nine measured curves each contain one species and do not establish an optimal mixture or an assembly benefit.
-* **H20: geometric compatibility should guide transfer.** Face normals, edge directions, and local void shape may select transferable motifs for the remaining Platonic pairs and for Archimedean solids more reliably than copying a numerical scale. Equal-budget comparisons with uninformed starts, including failed transfers, test that prediction.[29](#reference-29)
-
-### Evidence for density and optimality
-
-The archive does not support a universal rule that larger aligned domains give denser arrangements. Its within-family rank association between density and the largest orientation-component fraction ranges from approximately −0.720 for icosahedra in a dodecahedron to +0.563 for cubes in a cube. These descriptive correlations combine different counts and shared search ancestry. They motivate comparisons at fixed counts rather than establishing a causal effect of alignment.[29](#reference-29)
-
-Complete cubic grids supply proved optima because their construction scale matches the volume bound. For other counts, symmetry, many contacts, a recognizable radical, repeated convergence, or a long interval without improvement supplies no matching lower bound. A construction-family mechanism can remain useful after its scale is superseded; a claim of global optimality cannot survive a smaller feasible witness. The preprint therefore proposes proof priorities based on tractable exact geometry, independent reconstruction, and a small gap to a valid lower bound.[29](#reference-29)
-
-## Confinement, infinite packing, and crystallization
-
-Periodic and infinite-space problems ask for density without a finite polyhedral boundary. The adaptive shrinking cell method optimizes a periodic cell and particle placements; its organizing conjectures concerning central symmetry refer to that setting. Betke and Henk's lattice-packing algorithm restricts particles to identically oriented lattice translates.[15](#reference-15)[19](#reference-19)[20](#reference-20) Their results do not automatically determine small finite-container capacities.
-
-Teich and colleagues studied dense polyhedral clusters in spherical confinement, finding up to three layers, preferred counts with local density maxima, and competing local and cluster-wide geometric organization for populations from four through sixty. This supplies published context for count-sensitive confined structures, but spherical and polyhedral walls are different constraints.[21](#reference-21) Khadilkar and Escobedo's parallel-wall simulations similarly show confinement-dependent ordered and frustrated phases under a specified physical model.[23](#reference-23)
-
-The geometric grain descriptors can serve as observables or candidate seed structures in hard-polyhedron simulations. Relating them to material grains requires positional order, interactions, thermodynamic conditions, and an assembly process. Huang, Skye, and Dshemuchadse's confined tetrahedron–octahedron mixtures illustrate such a physical study. A static optimized configuration alone does not establish which arrangement a material will select or how a grain boundary will move.[22](#reference-22)[24](#reference-24)
-
-## Visual inspection and reproducibility
-
-An inspectable result provides canonical shapes, population, scale convention, translations, rotations, and verification status. The generalized atlas links those data to a rotatable three-dimensional view, allowing examination of hidden particles, wall accommodation, orientations, and contact neighborhoods. Geometry displayed for an external result should come from its own construction data; where those data were not retrieved, only the sourced numerical entry is shown.
-
-A visualization illustrates the coordinate evidence. Its perspective and hidden surfaces cannot prove the absence of microscopic overlaps. Exact certificates supply that proof for the archived generalized constructions; the attributed papers and coordinates explain how they were obtained and analyzed.[28](#reference-28)[29](#reference-29)[32](#reference-32)
-
-Broader three-dimensional nesting applications include fitting irregular manufactured parts into a build volume. Araújo and colleagues describe additive-manufacturing datasets, while Ma and colleagues optimize freely rotating objects in arbitrary containers. These heterogeneous practical problems supply applications of geometric fitting beyond congruent Platonic solids.[25](#reference-25)[26](#reference-26)
+Packing models also inform the study of [crystals](https://en.wikipedia.org/wiki/Crystal) and [self-assembly](https://en.wikipedia.org/wiki/Self-assembly). Experiments and simulations introduce interactions, entropy, and confinement in addition to geometric exclusion. Studies of polyhedra in spherical confinement, parallel plates, and mixed tetrahedron–octahedron systems investigate settings different from the single-species polyhedral containers tabulated here. Those physical models are needed to connect a geometric fit to an assembly process or crystal phase.[4](#reference-4)[21](#reference-21)[23](#reference-23)[24](#reference-24)
 
 ## See also
 
-* [Packing problems](https://en.wikipedia.org/wiki/Packing_problems)
-* [Tetrahedron packing](https://en.wikipedia.org/wiki/Tetrahedron_packing)
-* [Sphere packing in a cube](https://en.wikipedia.org/wiki/Sphere_packing_in_a_cube)
-* [Platonic solid](https://en.wikipedia.org/wiki/Platonic_solid)
 * [Convex polytope](https://en.wikipedia.org/wiki/Convex_polytope)
-* [Discrete geometry](https://en.wikipedia.org/wiki/Discrete_geometry)
+* [Space-filling polyhedron](https://en.wikipedia.org/wiki/Space-filling_polyhedron)
+* [Tessellation](https://en.wikipedia.org/wiki/Tessellation)
+* [Crystallography](https://en.wikipedia.org/wiki/Crystallography)
 
 ## References
 
@@ -292,7 +113,7 @@ Broader three-dimensional nesting applications include fitting irregular manufac
 2. Egeblad, Nielsen, Brazil. [Translational packing of arbitrary polytopes](https://www.sciencedirect.com/science/article/pii/S0925772108000576). Computational Geometry 42, 269–288 (2009).
 
 <a id="reference-3"></a>
-3. Fejes Tóth. [Packing and covering, in Handbook of Discrete and Computational Geometry](https://www.csun.edu/~ctoth/Handbook/chap2.pdf).Third edition, CRC Press (2017).
+3. Fejes Tóth. [Packing and covering, in Handbook of Discrete and Computational Geometry](https://www.csun.edu/~ctoth/Handbook/chap2.pdf).Third edition, chapter 2, pp. 27–66; §2.2, pp. 37–39, treats finite arrangements. CRC Press (2017).
 
 <a id="reference-4"></a>
 4. Torquato. [Perspective: Basic understanding of condensed phases of matter via packing models](https://doi.org/10.1063/1.5036657). The Journal of Chemical Physics 149, 020901 (2018).
@@ -306,44 +127,17 @@ Broader three-dimensional nesting applications include fitting irregular manufac
 <a id="reference-7"></a>
 7. Firsching. [Computing Maximal Copies of Polyhedra Contained in a Polyhedron](https://firsching.ch/assets/pdfs/ComputingMaximalCopies.pdf). Experimental Mathematics 24, 98–105 (2015).
 
-<a id="reference-8"></a>
-8. Gottschalk, Lin, Manocha. [OBBTree: A Hierarchical Structure for Rapid Interference Detection](https://www.cs.cornell.edu/courses/cs667/2005sp/readings/gottschalk96.pdf). Proceedings of SIGGRAPH '96 , 171–180 (1996).
-
 <a id="reference-9"></a>
 9. Croft. [On Maximal Regular Polyhedra Inscribed in a Regular Polyhedron](https://doi.org/10.1112/plms/s3-41.2.279). Proceedings of the London Mathematical Society s3-41, 279–296 (1980).
-
-<a id="reference-10"></a>
-10. Bakos. [Octahedra Inscribed in a Cube](https://doi.org/10.2307/3608867). The Mathematical Gazette 43, 17–20 (1959).
 
 <a id="reference-11"></a>
 11. Friedman. [Cubes in Cubes](https://erich-friedman.github.io/packing/cubincub/).Online construction catalogue, retrieved 11 October 2026.
 
-<a id="reference-12"></a>
-12. Fan, Zhang, Ye. [A Cube-Packing Problem](https://combinatorialpress.com/article/ars/Volume%20087/volume-87-paper-27.pdf). Ars Combinatoria 87, 353–358 (2008).
-
 <a id="reference-13"></a>
 13. Friedman. [Octahedra in Cubes](https://erich-friedman.github.io/packing/octincub/).Online construction catalogue, retrieved 11 October 2026.
 
-<a id="reference-14"></a>
-14. Friedman. [Tetrahedra in Cubes](https://erich-friedman.github.io/packing/tetincub/).Online construction catalogue, retrieved 11 October 2026.
-
-<a id="reference-15"></a>
-15. Torquato, Jiao. [Dense packings of polyhedra: Platonic and Archimedean solids](https://doi.org/10.1103/PhysRevE.80.041104). Physical Review E 80, 041104 (2009).
-
 <a id="reference-16"></a>
 16. Leao, Toledo, Oliveira, Carravilla, Alvarez-Valdés. [Irregular packing problems: A review of mathematical models](https://www.sciencedirect.com/science/article/pii/S0377221719303820). European Journal of Operational Research 282, 803–822 (2020).
-
-<a id="reference-17"></a>
-17. Alt, Scharf. [Approximating Smallest Containers for Packing Three-dimensional Convex Objects](https://arxiv.org/abs/1601.04585).Preprint, arXiv:1601.04585 (2016).
-
-<a id="reference-18"></a>
-18. Chen, Engel, Glotzer. [Dense crystalline dimer packings of regular tetrahedra](https://doi.org/10.1007/s00454-010-9273-0). Discrete & Computational Geometry 44, 253–280 (2010).
-
-<a id="reference-19"></a>
-19. Torquato, Jiao. [Dense packings of the Platonic and Archimedean solids](https://doi.org/10.1038/nature08239). Nature 460, 876–879 (2009).
-
-<a id="reference-20"></a>
-20. Betke, Henk. [Densest lattice packings of 3-polytopes](https://doi.org/10.1016/S0925-7721(00)00007-9). Computational Geometry 16, 157–186 (2000).
 
 <a id="reference-21"></a>
 21. Teich, van Anders, Klotsa, Dshemuchadse, Glotzer. [Clusters of polyhedra in spherical confinement](https://doi.org/10.1073/pnas.1524875113). Proceedings of the National Academy of Sciences 113, E669–E678 (2016).
@@ -358,10 +152,7 @@ Broader three-dimensional nesting applications include fitting irregular manufac
 24. Huang, Skye, Dshemuchadse. [Advancing the self-assembly of binary colloidal crystals of tetrahedra and octahedra with confinement](https://pubs.rsc.org/en/content/articlehtml/2026/me/d5me00092k). Molecular Systems Design & Engineering 11, 62–69 (2026).
 
 <a id="reference-25"></a>
-25. Araújo, Özcan, Atkin, Baumers. [Analysis of irregular three-dimensional packing problems in additive manufacturing: a new taxonomy and dataset](https://nottingham-repository.worktribe.com/output/1190642/analysis-of-irregular-three-dimensional-packing-problems-in-additive-manufacturing-a-new-taxonomy-and-dataset). International Journal of Production Research 57, 5920–5934 (2019).
-
-<a id="reference-26"></a>
-26. Ma, Chen, Hu, Wang. [Packing Irregular Objects in 3D Space via Hybrid Optimization](https://onlinelibrary.wiley.com/doi/10.1111/cgf.13490). Computer Graphics Forum 37, 49–59 (2018).
+25. Araújo, Özcan, Atkin, Baumers. [Analysis of irregular three-dimensional packing problems in additive manufacturing: a new taxonomy and dataset](https://nottingham-repository.worktribe.com/output/1190642/analysis-of-irregular-three-dimensional-packing-problems-in-additive-manufacturing-a-new-taxonomy-and-dataset). International Journal of Production Research 57, 5920–5934 (2019). DOI: [10.1080/00207543.2018.1534016](https://doi.org/10.1080/00207543.2018.1534016). Review and original taxonomy/dataset.
 
 <a id="reference-27"></a>
 27. Yohei Nakajima. [Twelve unit cubes in a cube of side 2.9315: soft-to-rigid packing](https://github.com/yoheinakajima/soft-to-rigid-packing/blob/efe7a920142350a4f0678633490c3e3dbed71fa0/paper/main.pdf). Manuscript, 2026; software release [version DOI 10.5281/zenodo.23248095](https://doi.org/10.5281/zenodo.23248095).
@@ -372,30 +163,22 @@ Broader three-dimensional nesting applications include fitting irregular manufac
 <a id="reference-29"></a>
 29. Alejandro Zarzuelo Urdiales. [Finite polyhedral fits: discrete scale jumps, orientational domains, and contact structure in 351 certified constructions](https://doi.org/10.5281/zenodo.23306126). Preprint, structural analysis, and testable hypotheses, Zenodo, 12 October 2026. DOI: 10.5281/zenodo.23306126.
 
-<a id="reference-30"></a>
-30. Alejandro Zarzuelo Urdiales. [Frozen construction summary](https://github.com/alejandrozu/platonic-packing/blob/e15b496ae7306287e0e70bb5b14be79f5dfdde84/records/SUMMARY.csv), commit `e15b496ae7306287e0e70bb5b14be79f5dfdde84`, 11 October 2026.
-
-<a id="reference-31"></a>
-31. Tencent Hunyuan. [Hyra-results: packing records](https://github.com/Tencent-Hunyuan/Hyra-results/tree/09b2d2e3c362c67a78f544c836bd8e4b54a05527/AI4Science/packing_records), construction artifacts including the eleven- and twelve-cube configurations credited to Haowei Lin, 2026.
-
-<a id="reference-32"></a>
-32. Alejandro Zarzuelo Urdiales. [Exact feasibility checker](https://github.com/alejandrozu/platonic-packing/blob/e15b496ae7306287e0e70bb5b14be79f5dfdde84/certify_exact.py), immutable source for the Platonic-packing certificates, 2026.
-
-<a id="reference-33"></a>
-33. [Independent replay of all 351 exact and numerical feasibility checks](https://github.com/alejandrozu/platonic-packing/blob/docs/polyhedral-fit-papers-2026-10-11/docs/research-2026-10-11/research/verification.json), 11 October 2026.
-
 <a id="reference-34"></a>
 34. Alejandro Zarzuelo Urdiales. [Polyhedra in polyhedra packing: 351 certified constructions, structural measurements, software, and visualizations](https://doi.org/10.5281/zenodo.23306130). Frozen construction data, source code, certificate replay, and analysis files, Zenodo, 12 October 2026. DOI: 10.5281/zenodo.23306130.
 
 <a id="reference-35"></a>
 35. Janusz Januszewski, Łukasz Zielonka. [Packing of non-blocking cubes into the unit cube](https://doi.org/10.1007/s13366-023-00710-1). Beiträge zur Algebra und Geometrie 65, 635–643 (2024; published online 11 August 2023).
 
+<a id="reference-36"></a>
+36. Cagan, Shimada, Yin. [A survey of computational approaches to three-dimensional layout problems](https://doi.org/10.1016/S0010-4485(01)00109-9). Computer-Aided Design 34(8), 597–611 (2002). [Author manuscript](https://www.andrew.cmu.edu/user/shimada/papers/00-cad-cagan.pdf).
+
+<a id="reference-37"></a>
+37. Böröczky Jr. [Finite Packing and Covering](https://doi.org/10.1017/CBO9780511546587). Cambridge Tracts in Mathematics 154, Cambridge University Press (2004). ISBN 9780521801577. [Preface, pp. xiii–xvi](https://www.cambridge.org/core/books/abs/finite-packing-and-covering/preface/30E354BA61BBEF2FBC8C028B4EFDB01B).
+
 ## External links
 
 * [Erich Friedman's Packing Center](https://erich-friedman.github.io/packing/)
-* [Yohei Nakajima's soft-to-rigid-packing: paper, code, and cube coordinates](https://github.com/yoheinakajima/soft-to-rigid-packing)
-* [Alejandro Zarzuelo Urdiales's platonic-packing: certified constructions and generalized search](https://github.com/alejandrozu/platonic-packing)
-* [Methods preprint: generalized soft-to-rigid search and exact certificates](https://doi.org/10.5281/zenodo.23306098)
-* [Pattern preprint: plateaus, domains, contact structure, and hypotheses](https://doi.org/10.5281/zenodo.23306126)
-* [Supporting archive of code, constructions, certificates, and analysis](https://doi.org/10.5281/zenodo.23306130)
-* [Rotatable atlas of individual Platonic packing constructions](https://alejandrozu.github.io/platonic-packing/)
+* [Rotatable atlas and construction files](https://alejandrozu.github.io/platonic-packing/)
+* [Generalized search: methods preprint](https://doi.org/10.5281/zenodo.23306098)
+* [Comparative analysis: patterns preprint](https://doi.org/10.5281/zenodo.23306126)
+* [Supporting code, data, and certificates](https://doi.org/10.5281/zenodo.23306130)
