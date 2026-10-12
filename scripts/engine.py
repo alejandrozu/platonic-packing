@@ -577,7 +577,21 @@ def add_remote_counts(counts, host):
     print(f'remote attempts from {host}: {sum(counts.values())} on {len(counts)} cases')
 
 
-def total_attempts(st): return st.get('attempts', 0) + st.get('attempts_remote', 0)
+def set_remote_totals(totals, host):
+    """Attempts made by one remote archive in total ({'pid:n': k}; a laptop archive or one GitHub Actions job):
+    stored per host, replacing that host's previous total."""
+    with locked():
+        for key, k in totals.items():
+            p, n = key.split(':'); n = int(n)
+            if p not in PID: continue
+            c = load_case(p, n)
+            if not c.get('best'): continue
+            c['stats'].setdefault('remote', {})[host] = int(k)
+            save_case(c)
+    print(f'remote attempt totals from {host}: {sum(totals.values())} on {len(totals)} cases')
+
+
+def total_attempts(st): return st.get('attempts', 0) + st.get('attempts_remote', 0) + sum((st.get('remote') or {}).values())
 
 
 def table():
