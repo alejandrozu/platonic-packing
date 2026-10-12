@@ -343,7 +343,9 @@
       const m = g.userData.mesh.material;
       g.visible = vis || ghost;
       const dim = vis && sel != null && !isolate && i !== sel;
-      m.opacity = vis ? (dim ? 0.3 : 1) : 0.07; m.depthWrite = vis && !dim; g.userData.edges.visible = vis;
+      const op = +$('opac').value;
+      m.opacity = vis ? (dim ? 0.3 * op : op) : 0.07; m.depthWrite = vis && !dim && op > 0.99; g.userData.edges.visible = vis;
+      g.userData.edges.material.opacity = 0.25 + 0.3 * op;
       m.emissive.set(i === sel ? css('--accent') : '#000000'); m.emissiveIntensity = i === sel ? 0.45 : 0;
       m.needsUpdate = true;
     });
@@ -388,6 +390,8 @@
   document.querySelectorAll('#colmode button').forEach(b => b.onclick = () => { colMode = b.dataset.m; store.set('ppr-col', colMode); pressSeg('colmode', 'm', colMode); build() });
   document.querySelectorAll('#axis button').forEach(b => b.onclick = () => { axis = +b.dataset.a; pressSeg('axis', 'a', axis); if (colMode === 'height') build(); else applyVisibility() });
   $('cut').oninput = () => applyVisibility();
+  { const o = parseFloat(store.get('ppr-opac')); if (o >= 0.1 && o <= 1) $('opac').value = o }
+  $('opac').oninput = () => { store.set('ppr-opac', $('opac').value); applyVisibility() };
   $('ghost').onchange = () => applyVisibility();
   $('faces').onchange = () => applyVisibility();
 
@@ -416,7 +420,7 @@
     function pickAt(x, y) {
       const r = cv.getBoundingClientRect();
       ray.setFromCamera(new THREE.Vector2(((x - r.left) / r.width) * 2 - 1, -((y - r.top) / r.height) * 2 + 1), camera);
-      const hits = ray.intersectObjects(pieceObjs.filter(g => g.visible && g.userData.mesh.material.opacity > 0.5).map(g => g.userData.mesh));
+      const hits = ray.intersectObjects(pieceObjs.filter(g => g.visible && g.userData.edges.visible).map(g => g.userData.mesh));
       const i = hits.length ? hits[0].object.userData.i : null;
       sel = (i === sel) ? null : i; if (sel == null) isolate = false;
       showPick(); applyVisibility();
