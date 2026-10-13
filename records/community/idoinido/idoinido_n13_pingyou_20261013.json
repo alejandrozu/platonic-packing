@@ -1,0 +1,199 @@
+{
+ "problem": "min/icosidodecahedron_in_icosidodecahedron",
+ "piece": "icosidodecahedron",
+ "container": "icosidodecahedron",
+ "n": 13,
+ "s": 2.93463,
+ "s_plus": "2.93463+",
+ "s_full": 2.9346332786311304,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_wall_gap": 1.053921e-10,
+  "min_pair_gap": 1.000002e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   2.5558353690138635,
+   -0.33586042237925634,
+   1.4004756510325804,
+   0.8754559175377055,
+   0.43417329491721585,
+   0.10042466229348981,
+   -0.18704377464160965
+  ],
+  [
+   -1.3557746437507694,
+   -2.526770271683492,
+   -0.6763096992550608,
+   0.916648069623398,
+   0.2541587837685788,
+   -0.20927398754925075,
+   -0.22663633253344717
+  ],
+  [
+   -2.683910801375434,
+   0.06417507467721295,
+   -1.2514511771225074,
+   0.2823675651365878,
+   -0.8767868594175715,
+   -0.29765606414709717,
+   0.25082708942210763
+  ],
+  [
+   -1.0570369314257257,
+   -1.6454843093220486,
+   2.098508876068006,
+   0.7908075216820487,
+   -0.28464271227171745,
+   -0.4110977741777547,
+   -0.3529881160432915
+  ],
+  [
+   -2.5408358355747316,
+   0.8649487984827019,
+   1.543243499204133,
+   0.8020263743888102,
+   -0.5094841251385852,
+   -0.3116196901136561,
+   0.008531690921473215
+  ],
+  [
+   0.8446277627865917,
+   -1.5039817495779109,
+   -2.3389095496791996,
+   0.6024789502411153,
+   -0.5058161650492249,
+   0.23608601572908341,
+   0.5704669270592521
+  ],
+  [
+   0.11166121956272877,
+   0.7630403001937738,
+   2.866094956341041,
+   0.17396302111209483,
+   -0.24201661058929871,
+   -0.2810695069202448,
+   0.9122306505287088
+  ],
+  [
+   -0.3473456063888361,
+   1.1705219114513687,
+   -2.7124152481876234,
+   0.5442349495811074,
+   0.5773356300507784,
+   -0.19780163012008778,
+   -0.5756443390238077
+  ],
+  [
+   2.4440220042851495,
+   0.6517298535289291,
+   -1.426897307878434,
+   0.3535680018702859,
+   0.702837502042379,
+   -0.4724817488558919,
+   -0.39720285846700604
+  ],
+  [
+   -0.07083834611489491,
+   0.017687189535408154,
+   -0.020429659667017576,
+   0.6695919686671252,
+   0.014458825536440538,
+   -0.7405805268780792,
+   -0.054571247645414066
+  ],
+  [
+   -1.0820931251091874,
+   2.6806165919277984,
+   -0.4202588225550195,
+   0.0013545125525718541,
+   -0.0053334148089945925,
+   0.718934180869911,
+   0.6950563743748636
+  ],
+  [
+   1.3148690834780843,
+   -2.599785047755591,
+   0.36205664891931644,
+   0.13199473454367977,
+   -0.5197820302740748,
+   -0.7047020019933703,
+   0.4645418382056026
+  ],
+  [
+   1.5449237071621544,
+   2.4291139571944846,
+   0.840132065404556,
+   0.6941052194863445,
+   -0.6239332029438865,
+   -0.35512008329407757,
+   -0.053056846751421645
+  ]
+ ],
+ "record_id": "idoinido_n13_pingyou_20261013",
+ "title": "13 icosidodecahedra in a icosidodecahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "83109ea138b3ff47",
+  "clear": 1e-07,
+  "cap": 2.9859932692583
+ },
+ "s_tight": 2.934633207469,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.3513346877207573,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "search": {
+  "move": "ascend",
+  "seed": 83349239,
+  "var": "base",
+  "raw": 2.9550945331614464
+ },
+ "density": 0.5143773515007593,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/idoinido/idoinido_n13.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "4e70d243f7bce415a562fcb48d1964c43ba36db52a3805947e9e7ef705d8f8a5",
+  "source_s_full": 2.93463334996,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "df56b8e228b566d164023f27e573ff455eae2385529980cc2d36e3e5309c7bbb",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "6608206830674443/2251799813685248",
+  "scale_exact": "1652051667514027/562949953421312",
+  "decrease_exact": "160618335/2251799813685248",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 2.93463334996,
+  "s_tight": 2.934633207469,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "83109ea138b3ff47",
+   "clear": 1e-07,
+   "cap": 2.9859932692583
+  },
+  "date": "2026-10-13"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "idoinido_n13"
+}

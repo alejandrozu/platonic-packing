@@ -1,0 +1,106 @@
+{
+ "problem": "min/antiprism5_in_antiprism5",
+ "piece": "antiprism5",
+ "container": "antiprism5",
+ "n": 2,
+ "s": 1.7769,
+ "s_plus": "1.77690+",
+ "s_full": 1.7769014188982288,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_wall_gap": 9.765633e-11,
+  "min_pair_gap": 8.309497e-05
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.3682487964607556,
+   0.39007132210839146,
+   0.0,
+   0.08668332081370274,
+   -0.145544389580119,
+   -0.9533924765855104,
+   -0.24969104538330222
+  ],
+  [
+   -0.3747328192302442,
+   -0.55728041639288,
+   0.0,
+   0.3460552730763564,
+   0.09623842734045494,
+   0.630033275359723,
+   0.6885070696939749
+  ]
+ ],
+ "record_id": "ap5inap5_n02_pingyou_20261013",
+ "title": "2 antiprism5s in a antiprism5",
+ "family": "prisms",
+ "source": {
+  "hash": "c09df6b24c867cd7",
+  "clear": 1e-07,
+  "cap": 1.8720643617631
+ },
+ "s_tight": 1.776901418669,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "search": {
+  "move": "hop",
+  "seed": 594682064,
+  "var": "gentle",
+  "minDiff": 0.08569038572050837,
+  "expand": 0.011192610479597862,
+  "rh": 0.1306196828965792,
+  "focus": 0,
+  "from": "best",
+  "raw": 1.7769015584290881,
+  "host": "actions"
+ },
+ "density": 0.35648395971767477,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/ap5inap5/ap5inap5_n02.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "51f4345bb26a75b644701fcb8ad750901d72bbfa9d262258a77311abb1928283",
+  "source_s_full": 1.7769016537828,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "e17721cc948331bab65c4df02af97dab85854fa09fc9fd6aa25ccd9b4ec9f469",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "2000613406462559/1125899906842624",
+  "scale_exact": "8002452568024169/4503599627370496",
+  "decrease_exact": "1057826067/4503599627370496",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 1.7769016537828,
+  "s_tight": 1.776901418669,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "c09df6b24c867cd7",
+   "clear": 1e-07,
+   "cap": 1.8720643617631
+  },
+  "date": "2026-10-13"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "ap5inap5_n02"
+}

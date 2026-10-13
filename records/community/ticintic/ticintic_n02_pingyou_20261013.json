@@ -1,0 +1,101 @@
+{
+ "problem": "min/truncated_icosahedron_in_truncated_icosahedron",
+ "piece": "truncated_icosahedron",
+ "container": "truncated_icosahedron",
+ "n": 2,
+ "s": 1.9483,
+ "s_plus": "1.94830+",
+ "s_full": 1.948308433394099,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_wall_gap": 9.765699e-11,
+  "min_pair_gap": 1.000002e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.028490655861201974,
+   -1.028971026004074,
+   -2.02941311927221,
+   0.12179412289136951,
+   -0.4514070735399519,
+   -0.01729478161539958,
+   -0.8837979045664762
+  ],
+  [
+   0.4238247076181379,
+   1.1534451627719673,
+   1.9524838720293574,
+   0.19760817511973147,
+   -0.2373258996961611,
+   -0.9421914170452089,
+   -0.13001061535735617
+  ]
+ ],
+ "record_id": "ticintic_n02_pingyou_20261013",
+ "title": "2 truncated icosahedra in a truncated icosahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "c6e796580be6d602",
+  "clear": 1e-07,
+  "cap": 2.1254817854887
+ },
+ "s_tight": 1.948308411868,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "search": {
+  "move": "fresh",
+  "seed": 1327146637,
+  "var": "base",
+  "raw": 1.948308415518016,
+  "host": "laptop"
+ },
+ "density": 0.2704312430688175,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/ticintic/ticintic_n02.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "41dd1c818a6260e4dd9c842b43990e744da2f565a05b63890c179b99f7df88a0",
+  "source_s_full": 1.9483084774567,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "7af00c5d81ca08e697dad630b4f1e943fe16bbc479fc2fc02c7e9b9def71ef7b",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "8774401333076773/4503599627370496",
+  "scale_exact": "8774401134636459/4503599627370496",
+  "decrease_exact": "99220157/2251799813685248",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 1.9483084774567,
+  "s_tight": 1.948308411868,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "c6e796580be6d602",
+   "clear": 1e-07,
+   "cap": 2.1254817854887
+  },
+  "date": "2026-10-13"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "ticintic_n02"
+}

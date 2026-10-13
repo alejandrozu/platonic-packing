@@ -1,0 +1,231 @@
+{
+ "problem": "min/tetrahedron_in_tetrahedron",
+ "piece": "tetrahedron",
+ "container": "tetrahedron",
+ "n": 16,
+ "s": 3.03538,
+ "s_plus": "3.03538+",
+ "s_full": 3.0353803709113305,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_wall_gap": 9.765633e-11,
+  "min_pair_gap": 1e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -0.25457305531476676,
+   -0.23916269361420564,
+   0.4785765168767021,
+   0.7955766191837714,
+   6.878436526700093e-05,
+   0.42702543472148197,
+   -0.4297756581959486
+  ],
+  [
+   -0.692736401319234,
+   -0.7142067869753622,
+   0.6909305914105841,
+   0.9999712885319368,
+   0.006390319379859575,
+   0.003865576599807165,
+   0.0012818921765704457
+  ],
+  [
+   -0.26798321768288635,
+   0.4794275969566637,
+   -0.4794275969566696,
+   0.6010785906760336,
+   3.9249841267429544e-15,
+   0.5651126117115568,
+   0.5651126117115568
+  ],
+  [
+   -0.7196156311135439,
+   -0.0009484713570985707,
+   0.0009484713570965611,
+   1.0,
+   -3.3333397894231185e-15,
+   2.4064342977139124e-16,
+   -2.6784937232235685e-15
+  ],
+  [
+   -0.7196156311135452,
+   0.7196156311135443,
+   -0.7196156311135462,
+   1.0,
+   -2.0803522906805875e-16,
+   -6.087020576949676e-16,
+   -3.7239436918846366e-16
+  ],
+  [
+   0.48391331298299994,
+   -0.24821099485245776,
+   -0.24821099485245765,
+   0.8164965809277258,
+   -2.7534734099088013e-15,
+   0.40824829046386285,
+   -0.40824829046386385
+  ],
+  [
+   0.012508676721913596,
+   -0.7196156311135455,
+   -0.01250867672191591,
+   1.0,
+   3.0857669707534058e-18,
+   -1.0715572991206876e-16,
+   5.4912556951852836e-17
+  ],
+  [
+   -0.02635252915078253,
+   0.01719023964961033,
+   -0.7018391445475403,
+   0.9997177418927534,
+   -0.018820345182971807,
+   -0.006565444869390812,
+   -0.012927725465644621
+  ],
+  [
+   0.7196156311135422,
+   -0.7196156311135415,
+   -0.7196156311135447,
+   1.0,
+   1.2246362514255127e-16,
+   1.2476411746820864e-16,
+   -4.6187546366916936e-17
+  ],
+  [
+   0.2421300518568398,
+   0.2520416353375796,
+   0.4808728414851915,
+   0.41931509671002587,
+   2.8438031447660203e-15,
+   0.4193150967100231,
+   -0.8052016513533277
+  ],
+  [
+   0.0033872622284877264,
+   0.0033872622284877134,
+   0.7196156311135437,
+   1.0,
+   -1.228102095605233e-16,
+   -1.1633797083995878e-16,
+   -1.2449289586951918e-17
+  ],
+  [
+   -0.00828126354410442,
+   0.7196156311135442,
+   -0.00828126354410526,
+   1.0,
+   -1.630249587504261e-17,
+   -5.0758660088474996e-17,
+   -1.1744818390369934e-16
+  ],
+  [
+   0.719615631113547,
+   -0.012508676721913187,
+   -0.012508676721913236,
+   1.0,
+   2.0199469370206686e-15,
+   5.656898079821403e-16,
+   3.956009746751135e-18
+  ],
+  [
+   0.7119860545657001,
+   0.7021713320274423,
+   0.7086762802697042,
+   0.9999638644963508,
+   -0.004065330914643146,
+   0.005656791068905502,
+   -0.00487273033124722
+  ],
+  [
+   0.211920253314916,
+   0.15124030176620387,
+   0.0382670433959772,
+   0.054173387129068724,
+   0.6279723258554623,
+   0.6748881183496014,
+   0.38372129182152487
+  ],
+  [
+   -0.1393751157619962,
+   -0.20878259016795,
+   0.04506851003649804,
+   0.15763330476861304,
+   -0.17666041027915583,
+   -0.871018796656797,
+   -0.4304289680519553
+  ]
+ ],
+ "record_id": "tetintet_n16_pingyou_20261013",
+ "title": "16 unit tetrahedra in a tetrahedron",
+ "source": {
+  "hash": "56d9cbd36bf9d2a3",
+  "clear": 1e-07,
+  "cap": 3.0893684445462
+ },
+ "s_tight": 3.035379871869,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.5198420997897464,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "reinsert",
+  "seed": 178055938,
+  "expand": 0.001629602527124747,
+  "rh": 0.21421725921455567,
+  "remove": [
+   0
+  ],
+  "from": "best",
+  "raw": 3.043335223857098
+ },
+ "density": 0.5721114224025734,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/tetintet/tetintet_n16.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "762f87b390b67af6ad260b7f26f0f4f38d529281b895ae456af360773c79abbd",
+  "source_s_full": 3.0353808603309,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "family": "platonic",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "255153cc60a2066a045a48c432624d2963a5e0668cf4b7f5e0a9689fbdc4b2c4",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "854383756969611/281474976710656",
+  "scale_exact": "6835068953681993/2251799813685248",
+  "decrease_exact": "1102074895/2251799813685248",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 3.0353808603309,
+  "s_tight": 3.035379871869,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "56d9cbd36bf9d2a3",
+   "clear": 1e-07,
+   "cap": 3.0893684445462
+  },
+  "date": "2026-10-10"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "tetintet_n16"
+}

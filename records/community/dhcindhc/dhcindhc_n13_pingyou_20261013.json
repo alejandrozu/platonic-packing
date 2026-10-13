@@ -1,0 +1,199 @@
+{
+ "problem": "min/deltoidal_hexecontahedron_in_deltoidal_hexecontahedron",
+ "piece": "deltoidal_hexecontahedron",
+ "container": "deltoidal_hexecontahedron",
+ "n": 13,
+ "s": 2.95001,
+ "s_plus": "2.95001+",
+ "s_full": 2.9500158490769395,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_wall_gap": 9.765433e-11,
+  "min_pair_gap": 1.000002e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -3.6927263997276096,
+   -2.353786126997806,
+   0.06463240987917596,
+   0.3532384658617338,
+   0.33158252461753507,
+   0.8443195360854469,
+   -0.2289107611895221
+  ],
+  [
+   2.4500526496615755,
+   0.20095190134092314,
+   3.5616635216740766,
+   0.5042599298755761,
+   0.831461865869076,
+   0.23310372351794464,
+   -0.007466110732065368
+  ],
+  [
+   2.504562757451971,
+   0.14873462577492222,
+   -3.517015154722493,
+   0.16369745382285475,
+   0.6460273535710938,
+   0.6791625089483035,
+   -0.3075550170114103
+  ],
+  [
+   3.8229635619373483,
+   -2.038478290620349,
+   0.03666859620958023,
+   0.5188607851696095,
+   -0.17101161799564701,
+   -0.010153181914871736,
+   0.8375174177416795
+  ],
+  [
+   -1.1870866586650268,
+   -2.094436132315634,
+   3.5857055455485427,
+   0.22036096665426386,
+   -0.7036931208189996,
+   0.5753050896712599,
+   0.35395068849425737
+  ],
+  [
+   0.15556733305377923,
+   3.7540101751392547,
+   2.03371088397358,
+   0.22252099684055812,
+   -0.9277185194657684,
+   -0.23676732868247047,
+   -0.1837497936703437
+  ],
+  [
+   0.22894813488393123,
+   3.6704656099659263,
+   -2.3327200589679977,
+   0.5896518781961219,
+   -0.1690473788683328,
+   -0.10342649851900006,
+   -0.7829665418404745
+  ],
+  [
+   -1.2374445047291704,
+   -2.109791896503228,
+   -3.5174055468904135,
+   0.17024841884450068,
+   0.6310486046167489,
+   0.7416386400147681,
+   0.15088161627331234
+  ],
+  [
+   0.04592165536814196,
+   0.03335279540974356,
+   -0.01694661088528176,
+   0.2395683677033094,
+   -0.24472231398942734,
+   -0.5701673912431803,
+   -0.7467443553148416
+  ],
+  [
+   0.1682394135669756,
+   -4.252643007314096,
+   0.10468259792904704,
+   0.44629544948797584,
+   0.3866881648322469,
+   -0.6582697253061612,
+   -0.4668764329995097
+  ],
+  [
+   -3.4727549550573484,
+   1.3474787760583953,
+   -2.1589919615279287,
+   0.21488951911872656,
+   -0.3425652145031712,
+   0.8649999924640621,
+   0.2970632616505976
+  ],
+  [
+   3.7212248807560613,
+   2.310298555662032,
+   0.005500895302330178,
+   0.815604742659433,
+   -0.5153366291280603,
+   -0.16798931784931426,
+   -0.20247629865959724
+  ],
+  [
+   -3.4430659675117603,
+   1.3380925150165763,
+   2.1873733446267014,
+   0.1812264782917726,
+   -0.8191730573609981,
+   -0.48541978198478725,
+   0.2459270235611335
+  ]
+ ],
+ "record_id": "dhcindhc_n13_pingyou_20261013",
+ "title": "13 deltoidal hexecontahedra in a deltoidal hexecontahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "2aae51fd2c14002b",
+  "clear": 1e-07,
+  "cap": 3.0867998424028
+ },
+ "s_tight": 2.950015802709,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.3513346877207573,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "search": {
+  "move": "ascend",
+  "seed": 1141164164,
+  "var": "base",
+  "raw": 2.958935804255635
+ },
+ "density": 0.5063727244589448,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/dhcindhc/dhcindhc_n13.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "e1ba42a621b1f327b174be2bd00d267d598e17902b7ef1839b175eaf6338d997",
+  "source_s_full": 2.9500158961787,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "58513ba0eba4ec5ef078ab43e9182fdd4d3ea2499282fc7a611e4bb14edead9c",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "6642845245383717/2251799813685248",
+  "scale_exact": "6642845139319981/2251799813685248",
+  "decrease_exact": "13257967/281474976710656",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 2.9500158961787,
+  "s_tight": 2.950015802709,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "2aae51fd2c14002b",
+   "clear": 1e-07,
+   "cap": 3.0867998424028
+  },
+  "date": "2026-10-13"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "dhcindhc_n13"
+}

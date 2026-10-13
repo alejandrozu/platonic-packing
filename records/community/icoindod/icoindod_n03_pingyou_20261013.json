@@ -1,0 +1,113 @@
+{
+ "problem": "min/icosahedron_in_dodecahedron",
+ "piece": "icosahedron",
+ "container": "dodecahedron",
+ "n": 3,
+ "s": 1.37303,
+ "s_plus": "1.37303+",
+ "s_full": 1.3730338654514533,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_wall_gap": 9.765655e-11,
+  "min_pair_gap": 1e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -0.2515203412686598,
+   0.8761014838883595,
+   0.02988410105199053,
+   0.06621323561252648,
+   0.4231161682634137,
+   0.9032268674380983,
+   -0.027744216005626116
+  ],
+  [
+   0.5831487607059981,
+   -0.4441233502507736,
+   0.5341651149015897,
+   0.5541022300292237,
+   -0.1971992973783573,
+   0.6480596816469157,
+   -0.48384068123073515
+  ],
+  [
+   -0.4441410628600758,
+   -0.5078020610563946,
+   -0.6108077318000225,
+   0.7867152694971569,
+   -0.534403950141983,
+   -0.2820926307861694,
+   -0.12615565967802908
+  ]
+ ],
+ "record_id": "icoindod_n03_pingyou_20261013",
+ "title": "3 unit icosahedra in a dodecahedron",
+ "source": {
+  "hash": "c390579d4d74e13e",
+  "clear": 1e-07,
+  "cap": 1.3934467638748
+ },
+ "s_tight": 1.373033819006,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 0.9487895816999333,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "hop",
+  "seed": 764046718,
+  "minDiff": 0.05355178222260751,
+  "expand": 0.03981498226065055,
+  "rh": 0.1365837789107388,
+  "focus": 0,
+  "from": "best",
+  "raw": 1.3803036286742922
+ },
+ "density": 0.3299635552571149,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/icoindod/icoindod_n03.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "9ab51baf597e80dce37e41da3cf9b5624b8619073502b1b0344916078db86c50",
+  "source_s_full": 1.3730339551694,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "family": "platonic",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "03d100c46101d22e32168d22110278e1f741c281065821d0049f5fa5468e01f8",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "1545898802216987/1125899906842624",
+  "scale_exact": "6183594804814237/4503599627370496",
+  "decrease_exact": "404053711/4503599627370496",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 1.3730339551694,
+  "s_tight": 1.373033819006,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "c390579d4d74e13e",
+   "clear": 1e-07,
+   "cap": 1.3934467638748
+  },
+  "date": "2026-10-11"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "icoindod_n03"
+}

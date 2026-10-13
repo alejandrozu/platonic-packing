@@ -1,0 +1,140 @@
+{
+ "problem": "min/cube_in_octahedron",
+ "piece": "cube",
+ "container": "octahedron",
+ "n": 6,
+ "s": 2.93435,
+ "s_plus": "2.93435+",
+ "s_full": 2.934353368914634,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_wall_gap": 9.765588e-11,
+  "min_pair_gap": 1e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -0.15042575262090255,
+   0.841243435985003,
+   -0.10973846212781892,
+   0.30915082001756145,
+   0.8619131049162846,
+   0.4008873444353384,
+   0.028651476883779038
+  ],
+  [
+   0.10973846212781448,
+   -0.15042575262089922,
+   -0.8412434359850016,
+   0.7716498962427025,
+   0.06161173178980061,
+   0.4911505531089179,
+   0.39941402869114695
+  ],
+  [
+   0.14472869850790832,
+   -0.09525336424616762,
+   0.8382905131496097,
+   0.42663884812132236,
+   -0.053253730194646555,
+   0.4676961892171021,
+   0.7722717190768207
+  ],
+  [
+   0.8412434359850006,
+   0.10973846212781793,
+   0.1504257526209005,
+   0.8929347610219509,
+   -0.23886229483933077,
+   0.32599444153776286,
+   0.19834298764827102
+  ],
+  [
+   -0.838290513149609,
+   0.14472869850790773,
+   0.09525336424616834,
+   0.029031924306313073,
+   0.5084224957336994,
+   0.5837346432219256,
+   0.6323903695547238
+  ],
+  [
+   -0.09525336424616729,
+   -0.8382905131496093,
+   -0.14472869850790818,
+   0.029031924306314624,
+   -0.6323903695547245,
+   0.5084224957336994,
+   -0.5837346432219248
+  ]
+ ],
+ "record_id": "cubinoct_n06_pingyou_20261013",
+ "title": "6 unit cubes in an octahedron",
+ "source": {
+  "hash": "16f1c7d400b6e659",
+  "clear": 1e-07,
+  "cap": 3.2910251079566
+ },
+ "s_tight": 2.934353214549,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.3348151486780315,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "hop",
+  "seed": 184696872,
+  "minDiff": 0.0441381420879255,
+  "expand": 0.0158595567687243,
+  "rh": 0.09316047109489255,
+  "focus": 0,
+  "from": "best",
+  "raw": 2.937809882845639
+ },
+ "density": 0.503756044040412,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/cubinoct/cubinoct_n06.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "d2705f710362e58f6572b50858dab93f79d2725cd756fc2455db9d185b77d7bb",
+  "source_s_full": 2.9343536136245,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "family": "platonic",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "f636a230d5ed2818d1b1345f781fdf3e54448e1334d3f2512c51925a77b3d4ab",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "6607576920446283/2251799813685248",
+  "scale_exact": "6607576369408653/2251799813685248",
+  "decrease_exact": "275518815/1125899906842624",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 2.9343536136245,
+  "s_tight": 2.934353214549,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "16f1c7d400b6e659",
+   "clear": 1e-07,
+   "cap": 3.2910251079566
+  },
+  "date": "2026-10-10"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "cubinoct_n06"
+}

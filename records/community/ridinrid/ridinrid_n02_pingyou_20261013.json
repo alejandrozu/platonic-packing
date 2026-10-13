@@ -1,0 +1,101 @@
+{
+ "problem": "min/rhombicosidodecahedron_in_rhombicosidodecahedron",
+ "piece": "rhombicosidodecahedron",
+ "container": "rhombicosidodecahedron",
+ "n": 2,
+ "s": 1.94579,
+ "s_plus": "1.94579+",
+ "s_full": 1.9457957314266614,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_wall_gap": 9.765788e-11,
+  "min_pair_gap": 1.000002e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -0.6976666400737769,
+   -1.9478042266753655,
+   0.08211128094989426,
+   0.3606751038167316,
+   0.17372153540680615,
+   -0.15655375110705314,
+   -0.9028982338209566
+  ],
+  [
+   0.697666646508987,
+   1.947804224217343,
+   -0.08211126425648405,
+   0.36067510381672474,
+   0.17372153540681373,
+   -0.15655375110705622,
+   -0.9028982338209574
+  ]
+ ],
+ "record_id": "ridinrid_n02_pingyou_20261013",
+ "title": "2 rhombicosidodecahedra in a rhombicosidodecahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "f91a124e7adb4044",
+  "clear": 1e-07,
+  "cap": 2.1292397502317
+ },
+ "s_tight": 1.945795708156,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "search": {
+  "move": "fresh",
+  "seed": 621018946,
+  "var": "base",
+  "raw": 1.945885021869636,
+  "host": "laptop"
+ },
+ "density": 0.2714802601450186,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/ridinrid/ridinrid_n02.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "228e2135185062b00d21ac2a614b6ad90ea6daa6bc21fecce12329c9ecdffced",
+  "source_s_full": 1.9457957785942,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "b62899671459f1554040d3a0d22b6f65e51813b292656009b547c21b112cf7be",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "8763085143415923/4503599627370496",
+  "scale_exact": "4381542465496107/2251799813685248",
+  "decrease_exact": "212423709/4503599627370496",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 1.9457957785942,
+  "s_tight": 1.945795708156,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "f91a124e7adb4044",
+   "clear": 1e-07,
+   "cap": 2.11980570866
+  },
+  "date": "2026-10-13"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "ridinrid_n02"
+}

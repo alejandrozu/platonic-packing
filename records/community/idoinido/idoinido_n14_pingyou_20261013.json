@@ -1,0 +1,214 @@
+{
+ "problem": "min/icosidodecahedron_in_icosidodecahedron",
+ "piece": "icosidodecahedron",
+ "container": "icosidodecahedron",
+ "n": 14,
+ "s": 2.98599,
+ "s_plus": "2.98599+",
+ "s_full": 2.985993200340164,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_wall_gap": 1.018297e-10,
+  "min_pair_gap": 1.000002e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   2.4046946210688165,
+   -0.9341493053980469,
+   1.5281725527505194,
+   0.7718003385221873,
+   0.6146618144299847,
+   -0.12052481424566869,
+   -0.10949365502038554
+  ],
+  [
+   -1.4934090623323033,
+   -2.398761219476322,
+   -1.0072170456798575,
+   0.8928581434480565,
+   0.37092606107544723,
+   -0.19385684577897744,
+   -0.16624595104293288
+  ],
+  [
+   -2.8839226720887967,
+   0.1318310322181506,
+   -1.061885555490282,
+   0.2781436929044907,
+   -0.8805064270856122,
+   -0.280826718849269,
+   0.26168850173199326
+  ],
+  [
+   -1.7625722472651035,
+   -1.912734151890589,
+   1.6988303397733329,
+   0.6515432846119076,
+   -0.23747873982710438,
+   -0.3220250790361809,
+   -0.6445114776937637
+  ],
+  [
+   -2.4196576133049685,
+   1.0397132402976568,
+   1.6950857140895637,
+   0.7935714099297045,
+   -0.510541806384957,
+   -0.324776362288431,
+   0.06412328573973691
+  ],
+  [
+   0.5557400947334484,
+   -1.3360256777894128,
+   -2.6627359093155447,
+   0.6789318216472315,
+   -0.5097355793858119,
+   0.23508347608289992,
+   0.4732409322277218
+  ],
+  [
+   0.04418644308513771,
+   -0.18427754936086593,
+   3.025507406514956,
+   0.43908932332232725,
+   -0.33664798496112663,
+   -0.3634477826571182,
+   0.7495161170032156
+  ],
+  [
+   -0.6963198692656661,
+   1.3477921151212726,
+   -2.6132338289045793,
+   0.587394476378121,
+   0.5371952526515196,
+   -0.06916923539298653,
+   -0.6013356853906916
+  ],
+  [
+   2.7453562115338257,
+   -0.2720088850993003,
+   -1.2903586152169604,
+   0.25775342812086416,
+   0.6083647710937939,
+   -0.6951673988842675,
+   -0.2831920957802675
+  ],
+  [
+   -0.009869958533468266,
+   -0.1555724532220076,
+   0.0022098741812152808,
+   0.6398367730322305,
+   0.06289841335385081,
+   -0.7604286400261681,
+   -0.09165684317726952
+  ],
+  [
+   -1.0818528024029974,
+   2.9141607557237736,
+   -0.07943387899751858,
+   0.21714799004742988,
+   -0.057256009120325975,
+   0.6137131091396332,
+   0.7569179080376809
+  ],
+  [
+   1.299766285122518,
+   -2.7829415277711695,
+   -0.3038351232339035,
+   0.2898795703112539,
+   -0.3150985116587505,
+   -0.8497288711225534,
+   0.30764201313766354
+  ],
+  [
+   1.3687122635690967,
+   1.9709906048573707,
+   1.7839381236600453,
+   0.6284623276816849,
+   -0.5466000983336802,
+   -0.5043689834460955,
+   -0.22776163795530235
+  ],
+  [
+   1.5775549257792443,
+   2.3428111994494714,
+   -0.9948113077945673,
+   0.03975856500715675,
+   -0.19668068928762028,
+   -0.8442019121735621,
+   0.49705039427850756
+  ]
+ ],
+ "record_id": "idoinido_n14_pingyou_20261013",
+ "title": "14 icosidodecahedra in a icosidodecahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "49f70b0fd76108c3",
+  "clear": 1e-07,
+  "cap": 3.0443600824778
+ },
+ "s_tight": 2.985993124378,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.4101422641752297,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "search": {
+  "move": "hop",
+  "seed": 544536442,
+  "var": "gentle",
+  "minDiff": 0.04049874635049502,
+  "expand": 0.014831112051257561,
+  "rh": 0.16449642681723392,
+  "focus": 0,
+  "from": "best",
+  "raw": 2.9888672356785557,
+  "host": "laptop"
+ },
+ "density": 0.5258496539006295,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/idoinido/idoinido_n14.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "8dee27f38e0c76cd913c23a63c09d55837e659a5323cacd024d810a70c402347",
+  "source_s_full": 2.9859932692583,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "0960cbd13a4ed8997d8918190d2b18a1f474d381474ebf5b62ec769ee4263b61",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "6723859087381245/2251799813685248",
+  "scale_exact": "6723858932191399/2251799813685248",
+  "decrease_exact": "77594923/1125899906842624",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 2.9859932692583,
+  "s_tight": 2.985993124378,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "49f70b0fd76108c3",
+   "clear": 1e-07,
+   "cap": 3.040906577493
+  },
+  "date": "2026-10-13"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "idoinido_n14"
+}
