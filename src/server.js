@@ -13,6 +13,7 @@ rl.on('line', line => {
       const r = S.run(Object.assign({}, msg, { recEvery: 1e9 }));
       out = { n: msg.n, s: r.s, L: r.L, C: r.final.C, Q: r.final.Q, edge: r.edge };
     } else if (msg.op === 'hop') out = S.hop(msg);
+    else if (msg.op === 'squeeze') out = S.squeeze(msg);
     else if (msg.op === 'ping') out = { ok: true };
     else throw new Error('unknown op ' + msg.op);
     out.ms = Date.now() - t0; out.id = msg.id;

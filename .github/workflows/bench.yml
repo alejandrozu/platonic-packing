@@ -1,0 +1,40 @@
+# Experimental bake-off of search moves (scripts/bench_methods.py, 13 Oct 2026). Started by hand (workflow_dispatch);
+# each job runs 4 workers for MINUTES and force-pushes its JSONL results to the branch bench-results-<job>.
+name: bench
+on:
+  workflow_dispatch:
+    inputs:
+      minutes: {description: 'minutes per job', default: '40'}
+      methods: {description: 'comma-separated methods', default: 'fresh,symfresh,symfresh25,hop,squeeze'}
+      tag: {description: 'result tag', default: 'a'}
+permissions:
+  contents: write
+jobs:
+  bench:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      matrix:
+        job: [0, 1, 2, 3, 4, 5]
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, fetch-depth: 1}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install
+        run: pip install --quiet numpy scipy highspy
+      - name: Bench
+        run: |
+          export PP_STATE="$RUNNER_TEMP/pp-state"
+          mkdir -p "$PP_STATE" && cp -r state/best state/pool "$PP_STATE/" && cp state/policy.json "$PP_STATE/"
+          timeout $(( ${{ inputs.minutes }} * 60 + 600 )) python3 scripts/bench_methods.py "$RUNNER_TEMP/bench.jsonl" $(( ${{ inputs.minutes }} * 60 )) 4 "${{ inputs.methods }}" || true
+          wc -l "$RUNNER_TEMP/bench.jsonl"
+      - name: Push results
+        run: |
+          d="$RUNNER_TEMP/out"; mkdir -p "$d"; cd "$d"
+          git init -q -b "bench-results-${{ inputs.tag }}-${{ matrix.job }}"
+          cp "$RUNNER_TEMP/bench.jsonl" .
+          git -c user.name="platonic-packing bench" -c user.email="actions@users.noreply.github.com" add -A
+          git -c user.name="platonic-packing bench" -c user.email="actions@users.noreply.github.com" commit -q -m "bench results, run $GITHUB_RUN_ID job ${{ matrix.job }}"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" "HEAD:refs/heads/bench-results-${{ inputs.tag }}-${{ matrix.job }}"

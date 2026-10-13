@@ -7,6 +7,7 @@
 // Orientation = quaternion, analytic gradients (src/geom.js), heavy-ball descent with velocity cap and annealed noise.
 'use strict';
 const G = require('./geom.js');
+const GEO = G;
 
 function mulberry32(a) {
   return function () {
@@ -73,10 +74,12 @@ function dyn(st, r0, mu, noise, moveL) {
     const sd = G.sdCores(poses[i], poses[j], 2 * r, true, H.get(key));
     if (G.sdCores.lastAxis) H.set(key, G.sdCores.lastAxis); else H.delete(key);
     const o = 2 * r - sd; if (o <= 0) continue;
-    const c = -2 * o;
+    if (st.ov) st.ov.set(key, o);
+    const c = -2 * o * (st.wp ? (st.wp.get(key) || 1) : 1);
     for (let t = 0; t < 3; t++) { GC[i][t] += c * GR[t]; GW[i][t] += c * GR[3 + t]; GC[j][t] += c * GR[6 + t]; GW[j][t] += c * GR[9 + t]; }
   }
   let gL = mu;
+  if (st.ov) { st.ov.clear(); st.wq = new Float64Array(n); }
   const Cn = pb.C.N, nv = P.nv;
   for (let i = 0; i < n; i++) {
     const X = poses[i].X, c = st.C[i];
@@ -86,6 +89,7 @@ function dyn(st, r0, mu, noise, moveL) {
       for (let v = 0; v < nv; v++) { const p = X[3 * v] * N[0] + X[3 * v + 1] * N[1] + X[3 * v + 2] * N[2]; if (p > m) { m = p; im = v; } }
       const q = m + r - (st.L / 2) * pb.off[f];
       if (q <= 0) continue;
+      if (st.wq && q > st.wq[i]) st.wq[i] = q;
       const lev = [X[3 * im] - c[0], X[3 * im + 1] - c[1], X[3 * im + 2] - c[2]], tq = G.cross(lev, N);
       for (let t = 0; t < 3; t++) { GC[i][t] += 2 * q * N[t]; GW[i][t] += 2 * q * tq[t]; }
       if (moveL) gL -= 2 * q * pb.off[f];
@@ -217,6 +221,49 @@ function defaultL0(pb, n) {
   return Math.max(L, 2 * (0.7 + 0.35));
 }
 
+
+// ---------------------------------------------------------------- symmetric search (experimental)
+// st.sym = { orbits: [{ m: [piece indices], G: [3x3 row-major], D: [det G], M: [3x3 piece-frame matrix] }], fixed: [{ i, P }] }
+// Piece m[j] is the image of the representative under G[j]: c = G c0, R = G R0 M[j] (M[j] a reflection symmetry of the
+// piece when det G[j] = -1, else the identity). fixed: pieces whose centre is projected onto the fixed subspace (P).
+const mv = (G, v) => [G[0] * v[0] + G[1] * v[1] + G[2] * v[2], G[3] * v[0] + G[4] * v[1] + G[5] * v[2], G[6] * v[0] + G[7] * v[1] + G[8] * v[2]];
+const mtv = (G, v) => [G[0] * v[0] + G[3] * v[1] + G[6] * v[2], G[1] * v[0] + G[4] * v[1] + G[7] * v[2], G[2] * v[0] + G[5] * v[1] + G[8] * v[2]];
+function mm(A, B) { const C = new Array(9); for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) C[3 * i + j] = A[3 * i] * B[j] + A[3 * i + 1] * B[3 + j] + A[3 * i + 2] * B[6 + j]; return C; }
+const mT = A => [A[0], A[3], A[6], A[1], A[4], A[7], A[2], A[5], A[8]];
+function RtoQ(R) {
+  const t = R[0] + R[4] + R[8]; let w, x, y, z;
+  if (t > 0) { const S = Math.sqrt(t + 1) * 2; w = 0.25 * S; x = (R[7] - R[5]) / S; y = (R[2] - R[6]) / S; z = (R[3] - R[1]) / S; }
+  else if (R[0] > R[4] && R[0] > R[8]) { const S = Math.sqrt(1 + R[0] - R[4] - R[8]) * 2; w = (R[7] - R[5]) / S; x = 0.25 * S; y = (R[1] + R[3]) / S; z = (R[2] + R[6]) / S; }
+  else if (R[4] > R[8]) { const S = Math.sqrt(1 + R[4] - R[0] - R[8]) * 2; w = (R[2] - R[6]) / S; x = (R[1] + R[3]) / S; y = 0.25 * S; z = (R[5] + R[7]) / S; }
+  else { const S = Math.sqrt(1 + R[8] - R[0] - R[4]) * 2; w = (R[3] - R[1]) / S; x = (R[2] + R[6]) / S; y = (R[5] + R[7]) / S; z = 0.25 * S; }
+  const m = Math.hypot(w, x, y, z); return [w / m, x / m, y / m, z / m];
+}
+function symmetrize(st) {
+  const S = st.sym; if (!S) return;
+  for (const o of S.orbits) {
+    const k = o.m.length, c0 = [0, 0, 0], v0 = [0, 0, 0], w0 = [0, 0, 0], q0 = [0, 0, 0, 0];
+    let qref = null;
+    for (let j = 0; j < k; j++) {
+      const i = o.m[j], G = o.G[j];
+      const a = mtv(G, st.C[i]), b = mtv(G, st.V[i]), c = mtv(G, st.W[i]);
+      for (let t = 0; t < 3; t++) { c0[t] += a[t] / k; v0[t] += b[t] / k; w0[t] += o.D[j] * c[t] / k; }
+      const E = mm(mm(mT(G), GEO.quatToR(st.Q[i])), mT(o.M[j]));
+      const q = RtoQ(E);
+      if (!qref) qref = q;
+      const sg = (q[0] * qref[0] + q[1] * qref[1] + q[2] * qref[2] + q[3] * qref[3]) < 0 ? -1 : 1;
+      for (let t = 0; t < 4; t++) q0[t] += sg * q[t];
+    }
+    const qm = Math.hypot(...q0); for (let t = 0; t < 4; t++) q0[t] /= qm;
+    const R0 = GEO.quatToR(q0);
+    for (let j = 0; j < k; j++) {
+      const i = o.m[j], Gj = o.G[j];
+      st.C[i] = mv(Gj, c0); st.V[i] = mv(Gj, v0); const w = mv(Gj, w0); st.W[i] = w.map(x => o.D[j] * x);
+      st.Q[i] = RtoQ(mm(mm(Gj, R0), o.M[j]));
+    }
+  }
+  for (const f of S.fixed) { st.C[f.i] = mv(f.P, st.C[f.i]); st.V[f.i] = mv(f.P, st.V[f.i]); }
+}
+
 function run(cfg) {
   const c = Object.assign({ seed: 1, n: 8, piece: 'tetrahedron', container: null, mode: 'improved', L0: 0, compact: 5000, morph: 45000, settle: 3000, mu: 0.02, recEvery: 1e9 }, cfg);
   const pb = makeProblem(c.piece, c.container || c.piece);
@@ -224,16 +271,18 @@ function run(cfg) {
   if (c.anneal === undefined) c.anneal = c.mode === 'improved';
   const rigid = c.mode === 'rigid';
   const st = makeState(pb, c.n, c.seed, c.L0);
+  if (c.sym) { st.sym = c.sym; symmetrize(st); }
+  const r0 = c.r0 === undefined ? 0.5 : c.r0;
   const rec = () => { if (st.step % c.recEvery === 0) snap(st); };
   snap(st);
   st.phase = rigid ? 'compress (rigid)' : 'compress balls';
-  for (let k = 0; k < c.compact; k++) { const u = k / c.compact; dyn(st, rigid ? 0 : 0.5, c.mu * 3, (c.anneal ? 0.015 : 0.008) * (1 - u), true); rec(); }
+  for (let k = 0; k < c.compact; k++) { const u = k / c.compact; dyn(st, rigid ? 0 : r0, c.mu * 3, (c.anneal ? 0.015 : 0.008) * (1 - u), true); if (st.sym) symmetrize(st); rec(); }
   st.log.push({ phase: st.phase, L: st.L });
   st.phase = rigid ? 'hold (rigid)' : 'morph ball->solid';
-  for (let k = 0; k < c.morph; k++) { const u = k / c.morph; dyn(st, rigid ? 0 : 0.5 * (1 - u), c.mu, c.anneal ? 0.004 * (1 - u) : 0, true); rec(); }
+  for (let k = 0; k < c.morph; k++) { const u = k / c.morph; dyn(st, rigid ? 0 : r0 * (1 - u), c.mu, c.anneal ? 0.004 * (1 - u) : 0, true); if (st.sym) symmetrize(st); rec(); }
   st.log.push({ phase: st.phase, L: st.L });
   st.phase = 'rigid settle';
-  for (let k = 0; k < c.settle; k++) { dyn(st, 0, c.mu * Math.pow(1e-4, k / c.settle), 0, true); rec(); }
+  for (let k = 0; k < c.settle; k++) { dyn(st, 0, c.mu * Math.pow(1e-4, k / c.settle), 0, true); if (st.sym) symmetrize(st); rec(); }
   st.log.push({ phase: st.phase, L: st.L });
   st.phase = 'final'; snap(st);
   const leg = legalize(pb, st.C, st.Q);
@@ -323,4 +372,74 @@ function hop(c) {
   return { n, s: leg.s, L: leg.L, C: leg.C, Q: leg.Q, diff, esc, rh, noise, steps: st.step, edge: pb.P.edge };
 }
 
-module.exports = { run, hop, makeProblem, softShape, legalize, tightContainer, lpTranslation, defaultL0, dyn, makeState, arrangementChange };
+
+// ---------------------------------------------------------------- fixed-size separation below the record (experimental)
+// sparrow / HAMSP style: shrink the container by delta, then remove all overlap at FIXED size by weighted overlap
+// descent (guided-local-search pair weights grow while a pair keeps colliding) and occasional relocation of the worst
+// piece to the best of many sampled poses. Success = no overlap at the smaller size.
+function squeeze(c) {
+  c = Object.assign({ delta: 0.003, r: 0, rounds: 60, steps: 120, relocEvery: 5, samples: 300, seed: 1 }, c);
+  const pb = makeProblem(c.piece, c.container);
+  const rng = mulberry32((c.seed * 7919 + 29) | 0);
+  const f = 1 - c.delta;
+  const st = { pb, n: c.C.length, rng, L: c.L * f, vL: 0, r: c.r, step: 0, phase: 'squeeze', frames: [], log: [],
+    C: c.C.map(p => p.map(x => x * f)), Q: c.Q.map(q => q.slice()), V: c.C.map(() => [0, 0, 0]), W: c.C.map(() => [0, 0, 0]),
+    hints: new Map(), wp: new Map(), ov: new Map() };
+  const n = st.n, P = pb.P, Rc = (st.L / 2) * Math.max(...pb.C.V.map(v => Math.hypot(...v))) / pb.rhoC;
+  let ok = false, round = 0, best = Infinity, bestC = null, bestQ = null;
+  for (; round < c.rounds; round++) {
+    for (let k = 0; k < c.steps; k++) dyn(st, c.r, 0, 0, false);
+    let omax = 0, tot = 0;
+    for (const o of st.ov.values()) { omax = Math.max(omax, o); tot += o; }
+    let qmax = 0; for (let i = 0; i < n; i++) { qmax = Math.max(qmax, st.wq[i]); tot += st.wq[i]; }
+    if (tot < best) { best = tot; bestC = st.C.map(p => p.slice()); bestQ = st.Q.map(q => q.slice()); }
+    if (omax < 1e-9 && qmax < 1e-9) { ok = true; break; }
+    for (const [key, w] of st.wp) if (!st.ov.has(key)) { const w2 = Math.max(1, 0.95 * w); if (w2 === 1) st.wp.delete(key); else st.wp.set(key, w2); }
+    for (const [key, o] of st.ov) st.wp.set(key, (st.wp.get(key) || 1) * (1.2 + 0.8 * o / Math.max(omax, 1e-12)));
+    if (round % c.relocEvery === c.relocEvery - 1) {
+      const score = new Float64Array(n);
+      for (const [key, o] of st.ov) { const i = Math.floor(key / n), j = key % n, w = st.wp.get(key) || 1; score[i] += w * o; score[j] += w * o; }
+      for (let i = 0; i < n; i++) score[i] += 10 * st.wq[i];
+      let i0 = 0; for (let i = 1; i < n; i++) if (score[i] > score[i0]) i0 = i;
+      const others = [];
+      for (let j = 0; j < n; j++) if (j !== i0) others.push([j, G.pose(P, st.C[j], st.Q[j], 1)]);
+      const energy = (cc, qq) => {
+        const A = G.pose(P, cc, qq, 1); let e = 0;
+        for (let f2 = 0; f2 < pb.C.N.length; f2++) {
+          const N = pb.C.N[f2]; let m = -Infinity;
+          for (let v = 0; v < P.nv; v++) m = Math.max(m, A.X[3 * v] * N[0] + A.X[3 * v + 1] * N[1] + A.X[3 * v + 2] * N[2]);
+          const q = m - (st.L / 2) * pb.off[f2]; if (q > 0) e += 10 * q * q;
+        }
+        const lim = (2 * P.circ) ** 2;
+        for (const [j, B] of others) {
+          const d2 = (cc[0] - st.C[j][0]) ** 2 + (cc[1] - st.C[j][1]) ** 2 + (cc[2] - st.C[j][2]) ** 2;
+          if (d2 > lim) continue;
+          const sd = G.sdCores(A, B, 0, false);
+          if (sd < 0) { const key = i0 < j ? i0 * n + j : j * n + i0; e += (st.wp.get(key) || 1) * sd * sd; }
+        }
+        return e;
+      };
+      let bc = st.C[i0], bq = st.Q[i0], be = energy(bc, bq);
+      for (let t = 0; t < c.samples; t++) {
+        let cc, qq;
+        if (t % 2 === 0) {
+          for (let tries = 0; tries < 1000; tries++) {
+            cc = [(2 * rng() - 1) * Rc, (2 * rng() - 1) * Rc, (2 * rng() - 1) * Rc];
+            if (pb.C.N.every((N, f2) => G.dot(N, cc) <= (st.L / 2) * pb.off[f2] - 0.5)) break;
+          }
+          const q = [gauss(rng), gauss(rng), gauss(rng), gauss(rng)], m = Math.hypot(...q); qq = q.map(v => v / m);
+        } else {
+          cc = st.C[i0].map(x => x + 0.15 * gauss(rng));
+          qq = G.rotq(st.Q[i0], 0.2 * gauss(rng), 0.2 * gauss(rng), 0.2 * gauss(rng));
+        }
+        const e = energy(cc, qq);
+        if (e < be) { be = e; bc = cc; bq = qq; }
+      }
+      st.C[i0] = bc.slice(); st.Q[i0] = bq.slice(); st.V[i0] = [0, 0, 0]; st.W[i0] = [0, 0, 0]; st.hints.clear();
+    }
+  }
+  const leg = ok ? legalize(pb, st.C, st.Q) : legalize(pb, bestC, bestQ);
+  return { n, s: leg.s, L: leg.L, C: leg.C, Q: leg.Q, ok, rounds: round, edge: pb.P.edge };
+}
+
+module.exports = { run, hop, squeeze, makeProblem, softShape, legalize, tightContainer, lpTranslation, defaultL0, dyn, makeState, arrangementChange };
