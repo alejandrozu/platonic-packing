@@ -39,6 +39,7 @@
   const fmtCF = s => s.replace(/√(\d+)/g, '√<span style="text-decoration:overline">$1</span>');
   const pct = r => (100 * (r.sf / r.ref - 1)).toFixed(2);
   const pad = n => String(n).padStart(2, '0');
+  const chartScale = r => r.st ?? r.published_sf ?? r.sf;
   function chip(r) {
     if (r.cmp == null) return '';
     if (r.cmp === 'better') return `<span class="chip better" title="More than 1e-5 below the published value">better by ${(-pct(r)).toFixed(2)}%</span>`;
@@ -139,10 +140,10 @@
     if (p.hasref && refs.length) {
       const g = k => refs.filter(r => r.cmp === k).map(r => r.n);
       const rng = a => a.length ? a.join(', ') : 'none';
-      $('lit').innerHTML = `<span><b>Published values</b> (Erich Friedman's Packing Center) for n = ${refs[0].n}–${refs[refs.length - 1].n}:</span>` +
+      $('lit').innerHTML = `<span><b>Published comparisons</b> (Packing Center and linked coordinate sources) for n = ${refs[0].n}–${refs[refs.length - 1].n}:</span>` +
         `<span class="chip better">better at ${rng(g('better'))}</span><span class="chip">equal at ${rng(g('equal'))}</span><span class="chip behind">behind at ${rng(g('behind'))}</span>`;
     } else $('lit').innerHTML = `<span>No published values were found for this problem. <a href="${ROOT}contribute/">Submit a better packing</a>.</span>`;
-    $('thead').innerHTML = '<tr><th>n</th><th>s</th><th>Closed form?</th>' + (p.hasref ? '<th title="Best previously published value">Previous</th><th>Compared</th>' : '') +
+    $('thead').innerHTML = '<tr><th>n</th><th>s</th><th>Closed form?</th>' + (p.hasref ? '<th title="Published comparison value; its source is linked in the viewer">Reference</th><th>Compared</th>' : '') +
       '<th>Density</th><th title="(n · volume of a piece / volume of the unit container)^(1/3)">Volume bound</th><th>Proof</th></tr>';
     const tb = $('rows'); tb.innerHTML = '';
     const ncol = p.hasref ? 7 : 5;
@@ -152,9 +153,9 @@
       if (!r) { tr.innerHTML = `<td class="n">${n}</td><td class="pending" colspan="${ncol}">no packing yet</td>`; tr.style.cursor = 'default'; tb.appendChild(tr); continue }
       tr.tabIndex = 0; tr.dataset.n = n;
       tr.innerHTML = `<td class="n">${n}</td><td class="s">${r.s}</td><td class="cf">${r.cf ? fmtCF(r.cf) : ''}</td>` +
-        (p.hasref ? `<td class="mut" title="${r.refsrc || ''}">${r.ref != null ? r.ref.toFixed(5) + ' ' + r.refcode : ''}</td><td>${chip(r)}</td>` : '') +
+        (p.hasref ? `<td class="mut" title="${escapeHTML(r.refsrc || '')}">${r.ref != null ? r.ref.toFixed(5) + (r.refcode && !r.external ? ' ' + r.refcode : '') : ''}</td><td>${chip(r)}</td>` : '') +
         `<td class="mut">${r.den.toFixed(3)}</td><td class="mut">${r.vlb.toFixed(3)}</td>` +
-        `<td>${r.ok ? '<span class="tick" title="Exact certificate: CERTIFIED">✓ certified</span>' : r.ver ? '<span class="tick" title="Floating-point check passed; exact certificate pending">✓ float-checked</span>' : '<span class="cross">pending</span>'}</td>`;
+        `<td>${r.ok ? '<span class="tick" title="Exact certificate: CERTIFIED">✓ certified</span>' : r.source_only ? `<span class="mut" title="Source linked; no coordinates or local certificate">${r.author_report ? 'author report' : 'published source'}</span>` : r.ver ? '<span class="tick" title="Floating-point check passed; exact certificate pending">✓ float-checked</span>' : '<span class="cross">pending</span>'}</td>`;
       const open = () => { selectRow(r, true); $('viewer').scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'start' }) };
       tr.onclick = open; tr.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open() } };
       tb.appendChild(tr);
@@ -178,7 +179,7 @@
     $('c1title').textContent = `s(n) for ${pl(prob.piece)} in ${article(dn(prob.container))}`;
     const rows = prob.rows; if (!rows.length) { svg.innerHTML = ''; return }
     const mut = css('--muted'), rule = css('--rule'), acc = css('--accent'), ex = css('--exact'), sheet = css('--sheet');
-    const ys = rows.flatMap(r => [r.sf, r.vlb].concat(r.ref != null ? [r.ref] : []));
+    const ys = rows.flatMap(r => [chartScale(r), r.vlb].concat(r.ref != null ? [r.ref] : []));
     const st = niceStep(Math.max(...ys) - Math.min(...ys), 6);
     const y0 = Math.floor(Math.min(...ys) / st) * st, y1 = Math.ceil(Math.max(...ys) / st) * st;
     const X = n => L + (n - D.nmin) / (D.nmax - D.nmin) * (W - L - R), Y = v => T + (1 - (v - y0) / (y1 - y0)) * (H - T - B);
@@ -192,15 +193,15 @@
     g += txt((L + W - R) / 2, H - B + 38, 'n (number of pieces)', { a: 'middle' });
     g += txt(16, (T + H - B) / 2, prob.unit === 'size' ? 's = container size ÷ piece size' : 's = container edge ÷ piece edge', { a: 'middle', rot: -90 });
     g += `<polyline points="${rows.map(r => `${X(r.n)},${Y(r.vlb)}`).join(' ')}" fill="none" stroke="${mut}" stroke-width="1.4" stroke-dasharray="5 5"/>`;
-    g += `<polyline points="${rows.map(r => `${X(r.n)},${Y(r.sf)}`).join(' ')}" fill="none" stroke="${acc}" stroke-width="2.2"/>`;
+    g += `<polyline points="${rows.map(r => `${X(r.n)},${Y(chartScale(r))}`).join(' ')}" fill="none" stroke="${acc}" stroke-width="2.2"/>`;
     rows.filter(r => r.ref != null).forEach(r => { const x = X(r.n), y = Y(r.ref);
-      g += `<path d="M${x} ${y - 6}L${x + 6} ${y}L${x} ${y + 6}L${x - 6} ${y}Z" fill="none" stroke="${ex}" stroke-width="1.6"><title>n = ${r.n}: published ${r.ref.toFixed(5)} (${SRC[r.refcode]})</title></path>` });
+      g += `<path d="M${x} ${y - 6}L${x + 6} ${y}L${x} ${y + 6}L${x - 6} ${y}Z" fill="none" stroke="${ex}" stroke-width="1.6"><title>n = ${r.n}: published ${r.ref.toFixed(5)} (${escapeHTML(r.refsrc || SRC[r.refcode] || '')})</title></path>` });
     rows.forEach(r => { const on = row && row.n === r.n;
-      g += `<circle cx="${X(r.n)}" cy="${Y(r.sf)}" r="${on ? 6.5 : 4}" fill="${on ? acc : sheet}" stroke="${acc}" stroke-width="2" data-n="${r.n}" style="cursor:pointer"><title>n = ${r.n}: s = ${r.s}</title></circle>` });
+      g += `<circle cx="${X(r.n)}" cy="${Y(chartScale(r))}" r="${on ? 6.5 : 4}" fill="${on ? acc : sheet}" stroke="${acc}" stroke-width="2" data-n="${r.n}" style="cursor:pointer"><title>n = ${r.n}: s = ${r.s}${r.source_only ? ' (catalogue display)' : ''}</title></circle>` });
     const ly = H - 10; let lx = L;
     g += `<line x1="${lx}" x2="${lx + 22}" y1="${ly - 4}" y2="${ly - 4}" stroke="${acc}" stroke-width="2.2"/>` + txt(lx + 28, ly, 's(n), best found');
     lx += 150; g += `<line x1="${lx}" x2="${lx + 22}" y1="${ly - 4}" y2="${ly - 4}" stroke="${mut}" stroke-width="1.4" stroke-dasharray="5 5"/>` + txt(lx + 28, ly, 'volume bound');
-    if (prob.hasref) { lx += 130; g += `<path d="M${lx + 11} ${ly - 10}L${lx + 17} ${ly - 4}L${lx + 11} ${ly + 2}L${lx + 5} ${ly - 4}Z" fill="none" stroke="${ex}" stroke-width="1.6"/>` + txt(lx + 28, ly, 'published (Friedman\'s Packing Center)') }
+    if (prob.hasref) { lx += 130; g += `<path d="M${lx + 11} ${ly - 10}L${lx + 17} ${ly - 4}L${lx + 11} ${ly + 2}L${lx + 5} ${ly - 4}Z" fill="none" stroke="${ex}" stroke-width="1.6"/>` + txt(lx + 28, ly, 'published reference') }
     svg.innerHTML = g;
     svg.querySelectorAll('circle').forEach(c => c.onclick = () => selectRow(prob.rows.find(r => r.n === +c.dataset.n)));
   }
@@ -210,8 +211,9 @@
     const by = {}; prob.rows.forEach(r => by[r.n] = r);
     const inc = [];
     for (let n = D.nmin + 1; n <= D.nmax; n++) if (by[n] && by[n - 1]) {
-      const s1 = by[n].st ?? by[n].sf, s0 = by[n - 1].st ?? by[n - 1].sf, d = s1 - s0;
-      inc.push({ n, pct: 100 * (s1 / s0 - 1), abs: d, zero: Math.abs(d) < 1e-9 * s1 });
+      const s1 = chartScale(by[n]), s0 = chartScale(by[n - 1]), d = s1 - s0;
+      const tolerance = by[n].source_only || by[n - 1].source_only ? 1e-5 : 1e-9 * s1;
+      inc.push({ n, pct: 100 * (s1 / s0 - 1), abs: d, zero: Math.abs(d) < tolerance });
     }
     if (!inc.length) { svg.innerHTML = ''; return }
     const mut = css('--muted'), rule = css('--rule'), acc = css('--accent'), ex = css('--exact'), zc = css('--zero');
@@ -247,23 +249,38 @@
     if (!r) return; row = r; sel = null; isolate = false;
     document.querySelectorAll('#rows tr').forEach(t => t.setAttribute('aria-selected', +t.dataset.n === r.n));
     $('cap').innerHTML = `${r.n} ${pl(prob.piece)}, s = ${r.s}` + (r.cf ? ` <span class="cf">≈ ${fmtCF(r.cf)}</span>` : '');
-    const oc = orient(r), id = `${prob.id}_n${pad(r.n)}`;
-    const facts = [['Record', id], ['s_full', String(r.sf)], ['Touching limit', r.st != null ? String(r.st) : '—']];
-    if (r.ref != null) facts.push(['Published', escapeHTML(`${r.ref} (${r.refsrc})`)]);
-    const k = oc.sizes.length;
-    facts.push(['Orientations', k === 1 ? 'all pieces are translates of one another' : k === r.n ? `${k}, every piece oriented differently` :
-      k <= 8 ? `${k} (${oc.sizes.join(' + ')} pieces)` : `${k} (largest groups: ${oc.sizes.slice(0, 5).join(', ')} pieces)`]);
-    facts.push(['Origin', escapeHTML(r.who && /published packing/.test(r.who) ? r.who : r.derived ? `record = ${r.derived}` : `found by ${r.who || 'the search'}` + (r.move ? ` (move: ${r.move})` : ''))]);
+    const id = `${prob.id}_n${pad(r.n)}`;
+    const facts = [['Record', escapeHTML(r.id || id)], [r.source_only ? 'Published scale' : 's_full', String(r.sf)]];
+    if (!r.source_only) facts.push(['Touching limit', r.st != null ? String(r.st) : '—']);
+    if (r.published_sf != null && !r.source_only) facts.push(['Original published scale', String(r.published_sf)]);
+    if (r.published_expression) facts.push(['Published expression', escapeHTML(r.published_expression)]);
+    if (r.ref != null) facts.push(['Published reference', escapeHTML(`${r.ref} (${r.refsrc})`)]);
+    if (!r.source_only) {
+      const k = orient(r).sizes.length, sizes = orient(r).sizes;
+      facts.push(['Orientations', k === 1 ? 'all pieces are translates of one another' : k === r.n ? `${k}, every piece oriented differently` :
+        k <= 8 ? `${k} (${sizes.join(' + ')} pieces)` : `${k} (largest groups: ${sizes.slice(0, 5).join(', ')} pieces)`]);
+    }
+    facts.push(['Origin', escapeHTML(r.external ? `Published construction by ${r.source_author || r.who}` : r.who && /published packing/.test(r.who) ? r.who : r.derived ? `record = ${r.derived}` : `found by ${r.who || 'the search'}` + (r.move ? ` (move: ${r.move})` : ''))]);
+    if (r.source_only) facts.push(['Status', r.author_report ? 'Author-reported result; coordinates and the claimed certificate are unavailable for local verification.' : 'Published source; coordinates and a local certificate are unavailable. The displayed scale retains the catalogue precision.']);
+    else if (r.external) facts.push(['Import', 'Original construction, normalized to this viewer and given 1e-7 clearance for exact certification.']);
     const issue = r.issue ? submissionIssue(r.issue) : null;
     if (issue) facts.push(['Submitted in', `<a href="${escapeHTML(issue.href)}" target="_blank" rel="noopener">${escapeHTML(issue.pathname.slice(1))}</a>`]);
     if (r.cert.length) facts.push(['Certificate', r.cert.join(' ')]);
     $('facts').innerHTML = facts.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
     const url = `${D.repo}/blob/main/${r.file}`;
-    $('links').innerHTML = `<a href="${url}" target="_blank" rel="noopener">Record file (JSON)</a>` +
+    $('links').innerHTML = (r.file ? `<a href="${url}" target="_blank" rel="noopener">Record file (JSON)</a>` +
       (r.ok ? `<a href="${url.replace('.json', '.certify.txt')}" target="_blank" rel="noopener">Exact certificate</a>` : '') +
       `<a href="${url.replace('.json', '.verify.txt')}" target="_blank" rel="noopener">Float check</a>` +
-      `<button class="small" type="button" id="copy">Copy coordinates</button><span id="copied"></span>`;
-    $('copy').onclick = copyCoords;
+      `<button class="small" type="button" id="copy">Copy coordinates</button><span id="copied"></span>` : '') +
+      (r.source_url ? `<a href="${escapeHTML(r.source_url)}" target="_blank" rel="noopener">Original published construction</a>` : '') +
+      (r.refurl && r.refurl !== r.source_url ? `<a href="${escapeHTML(r.refurl)}" target="_blank" rel="noopener">Published reference</a>` : '');
+    if ($('copy')) $('copy').onclick = copyCoords;
+    const primary = prob.rows.find(c => c.n === r.n), choices = [primary, ...(primary.alternatives || [])];
+    if (choices.length > 1) {
+      $('links').insertAdjacentHTML('beforeend', '<div class="construction-choice"><label for="construction-variant">Construction</label><select id="construction-variant">' +
+        choices.map((c, i) => `<option value="${i}"${c.id === r.id ? ' selected' : ''}>${i === 0 ? 'Best available' : 'Alternative'}: ${escapeHTML(c.who || 'project search')} · ${c.s}${c.source_only ? ' (source only)' : ' (certified)'}</option>`).join('') + '</select></div>');
+      $('construction-variant').onchange = e => selectRow(choices[Number(e.target.value)]);
+    }
     $('prevn').disabled = !prob.rows.find(x => x.n === r.n - 1); $('nextn').disabled = !prob.rows.find(x => x.n === r.n + 1);
     $('nnow').textContent = `n = ${r.n}`;
     try { history.replaceState(null, '', '#' + id) } catch (e) {}
@@ -299,10 +316,11 @@
     tableResize.observe($('rows'));
   }
   function copyCoords() {
-    const t = JSON.stringify({ record_id: `${prob.id}_n${pad(row.n)}`, piece: prob.piece, container: prob.container, n: row.n, s_full: row.sf,
+    const t = JSON.stringify({ record_id: row.id || `${prob.id}_n${pad(row.n)}`, piece: prob.piece, container: prob.container, n: row.n, s_full: row.sf,
       format: '[x, y, z, qw, qx, qy, qz] per piece (rounded to 7 decimals; full precision in the record file); container = s_full x canonical container centred at the origin',
+      ...(row.external ? { found_by: row.source_author || row.who, source: { kind: 'external', url: row.source_url } } : {}),
       pieces: row.p });
-    const done = ok => { $('copied').textContent = ok ? 'Copied' : 'Copy from the record file instead' };
+    const done = ok => { const status = $('copied'); if (status) status.textContent = ok ? 'Copied' : 'Copy from the record file instead' };
     try { navigator.clipboard.writeText(t).then(() => done(true), () => done(false)) } catch (e) { done(false) }
   }
 
@@ -319,7 +337,7 @@
     const l1 = new THREE.DirectionalLight(0xffffff, 0.75); l1.position.set(3, 5, 6); scene.add(l1);
     const l2 = new THREE.DirectionalLight(0xffffff, 0.3); l2.position.set(-4, -2, -3); scene.add(l2);
     world = new THREE.Group(); scene.add(world);
-  } else { stage.innerHTML = '<p class="meta" style="padding:18px">The 3D view needs WebGL and the three.js script, which did not load. The table, charts and record links still work.</p>' }
+  } else { cv.hidden = true; stage.insertAdjacentHTML('beforeend', '<p class="meta" id="webgl-note" style="padding:18px">The 3D view needs WebGL and the three.js script, which did not load. The table, charts and record links still work.</p>') }
 
   function solidGeom(name) {
     const S = D.solids[name], pos = [];
@@ -415,7 +433,18 @@
     else el.innerHTML = '';
   }
   function build() {
-    legend();
+    const sourceOnly = !!(row && row.source_only), source = $('source-preview');
+    stage.classList.toggle('source-only', sourceOnly);
+    cv.hidden = sourceOnly || !hasGL;
+    stage.querySelector('.views').hidden = sourceOnly || !hasGL;
+    stage.querySelector('.hint').hidden = sourceOnly || !hasGL;
+    $('viewer').querySelector('.tools').hidden = sourceOnly;
+    if ($('webgl-note')) $('webgl-note').hidden = sourceOnly;
+    source.hidden = !sourceOnly;
+    source.innerHTML = sourceOnly ? (row.image_url ? `<img src="${escapeHTML(row.image_url)}" alt="Original published animation: ${row.n} ${escapeHTML(pl(prob.piece))} in ${escapeHTML(dn(prob.container))}" referrerpolicy="no-referrer">` : '') +
+      `<p><b>${row.author_report ? 'Author-reported construction' : 'Original published construction'}</b><br>${escapeHTML(row.source_author || row.who)}</p><p>Downloadable coordinates are unavailable from this source.${row.author_report ? ' The claimed certificate has not been checked here.' : ''} Choose a certified alternative to explore a different construction in 3D.</p>` +
+      `<a href="${escapeHTML(row.source_url)}" target="_blank" rel="noopener">View the original source</a>` : '';
+    if (!sourceOnly) legend();
     if (!hasGL || !row) return;
     const oldGeometry = new Set(), oldMaterials = new Set();
     world.traverse(obj => {
@@ -425,6 +454,8 @@
     while (world.children.length) world.remove(world.children[0]);
     oldGeometry.forEach(g => g.dispose()); oldMaterials.forEach(m => m.dispose());
     pieceObjs = [];
+    contLines = null; contFaces = null;
+    if (sourceOnly) return;
     const C = D.solids[prob.container], piece = solidGeom(prob.piece);
     const cp = []; C.E.forEach(([a, b]) => cp.push(...C.V[a].map(x => x * row.sf), ...C.V[b].map(x => x * row.sf)));
     const cg = new THREE.BufferGeometry(); cg.setAttribute('position', new THREE.Float32BufferAttribute(cp, 3));
@@ -449,7 +480,7 @@
     applyVisibility(); applySpread(); fit(); paint();
   }
   function applyVisibility() {
-    if (!row) return;
+    if (!row || row.source_only) return;
     const t = +$('cut').value, zs = row.p.map(p => p[axis]), lo = Math.min(...zs), hi = Math.max(...zs), lev = lo + t * (hi - lo) + 1e-9;
     const ghost = $('ghost').checked;
     let keep = null;
@@ -527,7 +558,7 @@
     RESET();
     const ptrs = new Map(); let downAt = null, moved = 0, pinch0 = null;
     stage.addEventListener('pointerdown', e => {
-      if (e.target.closest('.views')) return;
+      if (row && row.source_only || e.target.closest('.views')) return;
       ptrs.set(e.pointerId, { x: e.clientX, y: e.clientY }); stage.setPointerCapture(e.pointerId);
       if (ptrs.size === 1) { downAt = { x: e.clientX, y: e.clientY }; moved = 0 }
       if (ptrs.size === 2) { const [a, b] = [...ptrs.values()]; pinch0 = { d: Math.hypot(a.x - b.x, a.y - b.y), z: zoom } }
@@ -543,7 +574,7 @@
       if (was && e.type === 'pointerup' && ptrs.size === 0 && moved < 6 && downAt) pickAt(e.clientX, e.clientY);
     };
     stage.addEventListener('pointerup', end); stage.addEventListener('pointercancel', end);
-    stage.addEventListener('wheel', e => { e.preventDefault(); zoom = Math.min(6, Math.max(0.5, zoom * Math.exp(-e.deltaY * 0.0015))); fit(); paint() }, { passive: false });
+    stage.addEventListener('wheel', e => { if (row && row.source_only) return; e.preventDefault(); zoom = Math.min(6, Math.max(0.5, zoom * Math.exp(-e.deltaY * 0.0015))); fit(); paint() }, { passive: false });
     const ray = new THREE.Raycaster();
     function pickAt(x, y) {
       const r = cv.getBoundingClientRect();
@@ -559,7 +590,7 @@
     spin.onchange = () => store.set('ppr-spin', spin.checked ? '1' : '0');
     let last = performance.now();
     (function loop(t) { const dt = Math.min(50, t - last); last = t;
-      if (spin.checked && ptrs.size === 0) { world.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), dt * 0.00025)); paint() }
+      if (spin.checked && ptrs.size === 0 && !(row && row.source_only)) { world.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), dt * 0.00025)); paint() }
       requestAnimationFrame(loop) })(last);
     new ResizeObserver(() => { fit(); paint() }).observe(stage);
   }
@@ -572,5 +603,13 @@
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', repaintAll);
   document.addEventListener('ppr-themechange', repaintAll);
   new MutationObserver(repaintAll).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  addEventListener('hashchange', () => {
+    const match = /^([a-z0-9]+)_n(\d+)$/.exec(location.hash.slice(1));
+    if (!match) return;
+    const p = D.problems.find(p => p.id === match[1]);
+    if (!p) return;
+    if (p !== prob) selectProb(p, Number(match[2]));
+    else selectRow(p.rows.find(r => r.n === Number(match[2])));
+  });
   selectProb(prob);
 })();

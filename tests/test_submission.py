@@ -32,13 +32,27 @@ def body(record, permission=True):
 
 
 class SubmissionTests(unittest.TestCase):
-    def evaluate(self, record=None, mode='check', authorized=False, permission=True, current=None, raw_body=None):
+    def evaluate(self, record=None, mode='check', authorized=False, permission=True, current=None, raw_body=None, external=None, reference=None):
         with tempfile.TemporaryDirectory(prefix='packing-submission-') as directory:
             root = Path(directory)
             if current:
                 target = root / 'records/cubincub/cubincub_n02.json'
                 target.parent.mkdir(parents=True)
                 target.write_text(json.dumps(current), encoding='utf-8')
+            entries = []
+            if external:
+                foreign = root / 'records/external/cubincub/example_n02.json'
+                foreign.parent.mkdir(parents=True)
+                foreign.write_text(json.dumps(external), encoding='utf-8')
+                foreign.with_suffix('.certify.txt').write_text((ROOT / 'records/cubincub/cubincub_n02.certify.txt').read_text(encoding='utf-8'), encoding='utf-8')
+                entries.append({'problem': 'cubincub', 'n': 2, 'kind': 'coordinates', 'file': foreign.relative_to(root).as_posix(),
+                                'published_value': external['s_full'], 'author': external['found_by'], 'url': 'https://example.invalid/source'})
+            if reference:
+                entries.append(reference)
+            if entries:
+                registry = root / 'docs/external_records.json'
+                registry.parent.mkdir(parents=True)
+                registry.write_text(json.dumps({'entries': entries}), encoding='utf-8')
             event = {
                 'action': 'labeled' if mode == 'accept' else 'opened', 'label': {'name': 'accepted'},
                 'sender': {'login': 'example-maintainer'},
@@ -127,6 +141,30 @@ class SubmissionTests(unittest.TestCase):
         self.assertFalse(result['accepted'])
         self.assertIsNone(accepted)
         self.assertIn('Not recorded', comment)
+
+    def test_beating_larger_project_record_does_not_beat_imported_record(self):
+        previous, external, submitted = copy.deepcopy(RECORD), copy.deepcopy(RECORD), copy.deepcopy(RECORD)
+        previous['s_full'] += 0.01
+        submitted['s_full'] += 0.005
+        external['found_by'] = 'Independent construction author'
+        result, comment, accepted, *_ = self.evaluate(submitted, mode='accept', authorized=True, current=previous, external=external)
+        self.assertEqual(result['labels_add'], ['certified'])
+        self.assertFalse(result['accepted'])
+        self.assertIsNone(accepted)
+        self.assertIn('Independent construction author', comment)
+        self.assertIn('records/external/cubincub/example_n02.json', comment)
+        self.assertNotIn('new coordinate record', comment)
+
+    def test_source_only_report_is_not_used_as_certified_acceptance_baseline(self):
+        previous = copy.deepcopy(RECORD)
+        previous['s_full'] += 0.01
+        reference = {'problem': 'cubincub', 'n': 2, 'kind': 'author_report', 'published_value': 1.99,
+                     'author': 'Unverified report fixture', 'url': 'https://example.invalid/report'}
+        result, comment, accepted, *_ = self.evaluate(mode='accept', authorized=True, current=previous, reference=reference)
+        self.assertTrue(result['accepted'])
+        self.assertIn('not an improvement over its reported scale', comment)
+        self.assertIn('does not certify that source', comment)
+        self.assertEqual(accepted['pieces'], RECORD['pieces'])
 
     def test_valid_untracked_pair_is_certified_for_manual_category_review(self):
         record = {'piece': 'tetrahedron', 'container': 'cube', 'n': 2, 's_full': 4,

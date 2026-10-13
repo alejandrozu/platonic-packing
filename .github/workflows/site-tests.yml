@@ -6,6 +6,9 @@ on:
       - 'scripts/site.py'
       - 'scripts/engine.py'
       - 'scripts/check_submission.py'
+      - 'scripts/import_external_records.py'
+      - 'docs/external_records.json'
+      - 'records/external/**'
       - 'src/**'
       - 'tests/**'
       - '.github/workflows/site-tests.yml'
@@ -18,6 +21,9 @@ on:
       - 'scripts/site.py'
       - 'scripts/engine.py'
       - 'scripts/check_submission.py'
+      - 'scripts/import_external_records.py'
+      - 'docs/external_records.json'
+      - 'records/external/**'
       - 'src/**'
       - 'tests/**'
       - '.github/workflows/site-tests.yml'
@@ -40,5 +46,5 @@ jobs:
       - run: pip install --quiet numpy scipy
       - run: node --check web/assets/theme.js && node --check web/assets/explorer.js && node --check web/assets/contribute.js
       - run: node tests/test_submission_forms.mjs
-      - run: python -X utf8 -m unittest discover -s tests -p test_submission.py -v
+      - run: python -X utf8 -m unittest discover -s tests -p 'test_*.py' -v
       - run: python -X utf8 scripts/site.py

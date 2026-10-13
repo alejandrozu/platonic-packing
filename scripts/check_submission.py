@@ -135,6 +135,44 @@ def plural(s):
     w = disp(s); return w[:-6] + 'hedra' if w.endswith('hedron') else w + 's'
 
 
+def comparison_records(pid, n):
+    """Best stored coordinate record, plus a separately sourced published value.
+
+    Catalogue images and author reports cannot act as certified coordinates.
+    Imported coordinates do act as the acceptance baseline when a checked local
+    certificate is present, so beating a larger project file is not mislabelled.
+    """
+    if not pid:
+        return None, None, None
+    root = Path(ROOT).resolve()
+    own_file = Path('records') / pid / f'{pid}_n{n:02d}.json'
+    candidates = []
+    if (root / own_file).exists():
+        candidates.append((load_json(root / own_file), own_file.as_posix()))
+    registry = root / 'docs' / 'external_records.json'
+    entries = load_json(registry).get('entries', []) if registry.exists() else []
+    entries = [e for e in entries if e.get('problem') == pid and e.get('n') == n]
+    for entry in entries:
+        if entry.get('kind') != 'coordinates':
+            continue
+        path = (root / entry['file']).resolve()
+        if not path.is_relative_to(root / 'records') or not path.exists():
+            continue
+        certificate = path.with_suffix('.certify.txt')
+        if not certificate.exists():
+            continue
+        text = certificate.read_text(encoding='utf-8')
+        if 'CERTIFIED' not in text or 'NOT CERTIFIED' in text:
+            continue
+        record = load_json(path)
+        if record.get('n') != n:
+            continue
+        candidates.append((record, path.relative_to(root).as_posix()))
+    current, filename = min(candidates, key=lambda candidate: candidate[0]['s_full']) if candidates else (None, None)
+    reference = min(entries, key=lambda e: e['published_value']) if entries else None
+    return current, filename, reference
+
+
 def main():
     mode, event_path, outdir = sys.argv[1], sys.argv[2], sys.argv[3]
     if mode not in ('check', 'accept'): raise SystemExit('Mode must be check or accept.')
@@ -156,22 +194,25 @@ def main():
     vcode, vout = run([sys.executable, 'verify_general.py', tmp], 900)
     ccode, cout = run([sys.executable, 'certify_general.py', tmp], 3000)
     certified = ccode == 0 and 'NOT CERTIFIED' not in cout and 'CERTIFIED' in cout
-    cur = None
-    if pid:
-        fn = os.path.join(ROOT, 'records', pid, f'{pid}_n{n:02d}.json')
-        if os.path.exists(fn): cur = load_json(fn)
+    cur, current_file, reference = comparison_records(pid, n)
     beats = certified and pid and (cur is None or s < cur['s_full'] - 1e-12)
     c = disp(rec['container'])
     title = f'{n} {plural(rec["piece"]) if n > 1 else disp(rec["piece"])} in {"an" if c[0] in "aeiou" else "a"} {c}'
-    head = ('✅ Certified: new record' if beats and cur else '✅ Certified: fills an empty case' if beats else
+    head = ('✅ Certified: new coordinate record' if beats and cur else '✅ Certified: fills an empty coordinate case' if beats else
             '✅ Certified' if certified else '❌ Not certified')
     lines += [f'### {head}', '', '| | |', '|---|---|', f'| Packing | {title}' + (f' (`{pid}_n{n:02d}`)' if pid else ' (not a tracked problem yet)') + ' |',
               f'| Submitted s | `{s!r}` |']
     if cur:
         d = s - cur['s_full']
-        lines.append(f'| Current record | `{cur["s_full"]!r}`, found by {cur.get("found_by", "?")} ([{pid}_n{n:02d}]({REPO}/blob/main/records/{pid}/{pid}_n{n:02d}.json)) |')
+        lines.append(f'| Current certified coordinate record | `{cur["s_full"]!r}`, found by {cur.get("found_by", "?")} ([record]({REPO}/blob/main/{current_file})) |')
         lines.append(f'| Difference | {d:+.3e} ({("smaller, better" if certified else "smaller") if d < 0 else "larger" if d > 0 else "equal"}) |')
-    elif pid: lines.append('| Current record | none yet |')
+    elif pid: lines.append('| Current coordinate record | none yet |')
+    if reference:
+        lines.append(f'| Published reference | `{reference["published_value"]!r}`, {reference["author"]} ([source]({reference["url"]})) |')
+        if reference['published_value'] < s - 1e-5:
+            lines += ['', 'A smaller published or author-reported construction is linked above. This comparison does not '
+                      'certify that source and this submission is not an improvement over its reported scale. '
+                      'Acceptance compares the available certified coordinate constructions.']
     lines += ['', '<details><summary>Float check (verify_general.py)</summary>', '', '```', vout[-3000:], '```', '</details>', '',
               '<details open><summary>Exact certificate (certify_general.py)</summary>', '', '```', cout[-6000:], '```', '</details>', '']
     if note: lines += [note, '']

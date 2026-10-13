@@ -111,10 +111,27 @@ el('json').value = JSON.stringify(overlap); await el('check').onclick();
 assert.equal(el('send').disabled, true);
 assert.match(el('result').innerHTML, /Not valid/);
 
+// A source-only best is never loaded as empty geometry or mistaken for certified coordinates.
+const originalRows = D.problems[0].rows, originalFetch = context.fetch, fetched = [];
+const alternative = { ...originalRows[0], id: 'cubincub_n02', ok: true };
+D.problems[0].rows = [{ n: 2, sf: 1.99, p: [], file: null, source_only: true, author_report: true,
+  who: 'Reported construction author', alternatives: [alternative] }];
+context.fetch = async url => { fetched.push(url); return { ok: true, json: async () => record } };
+await el('loadrec').onclick();
+assert.match(fetched.at(-1), /records\/cubincub\/cubincub_n02\.json$/);
+assert.equal(JSON.parse(el('json').value).pieces.length, 2);
+assert.match(el('busy').textContent, /certified alternative/);
+await el('check').onclick();
+assert.equal(el('send').disabled, false);
+assert.match(el('result').innerHTML, /current certified coordinate record/);
+assert.match(el('result').innerHTML, /does not improve its reported scale/);
+assert.match(el('result').innerHTML, /Reported construction author/);
+D.problems[0].rows = originalRows; context.fetch = originalFetch;
+
 // Every query key in the captured form links corresponds to a checked-in issue form ID.
 for (const url of opened) {
   const yaml = fs.readFileSync(path.join(root, '.github/ISSUE_TEMPLATE', url.searchParams.get('template')), 'utf8');
   const ids = [...yaml.matchAll(/^\s+id: (\w+)$/gm)].map(match => match[1]);
   for (const key of url.searchParams.keys()) if (!['template', 'title'].includes(key)) assert.ok(ids.includes(key), `${key} is missing from the template`);
 }
-console.log('PASS: packing SAT and rejection, required fields, all 3 issue forms, oversized proposals/constructions, clipboard fallback, and template mappings.');
+console.log('PASS: packing SAT and rejection, required fields, all 3 issue forms, oversized proposals/constructions, clipboard fallback, source-only certified alternatives, and template mappings.');
