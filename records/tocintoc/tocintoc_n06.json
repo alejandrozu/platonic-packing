@@ -3,95 +3,100 @@
  "piece": "truncated_octahedron",
  "container": "truncated_octahedron",
  "n": 6,
- "s": 2.33886,
- "s_plus": "2.33886+",
- "s_full": 2.3388637329062,
+ "s": 2.33701,
+ "s_plus": "2.33701+",
+ "s_full": 2.3370185727731,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020266610232e-07,
-  "min_wall_gap": 1.0000007000243727e-07
+  "min_pair_gap": 1.0000020239415433e-07,
+  "min_wall_gap": 1.0000005046251204e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-13",
  "pieces": [
   [
-   -0.14579400370181325,
-   -2.0829078402268526,
-   0.05646277500949626,
-   0.4673746186733166,
-   0.44747132957582014,
-   -0.7551397886582225,
-   0.10532936253882301
+   -0.0391808834421669,
+   -2.0802983884929316,
+   0.08296855538627416,
+   0.4607870847453228,
+   0.4465380105983279,
+   -0.7591774477200448,
+   0.10921845309320728
   ],
   [
-   -0.5373131015943992,
-   -0.01855475338791377,
-   1.81617629832786,
-   0.2457803782230123,
-   0.5692866708618957,
-   -0.30694624127364084,
-   0.7220032527818117
+   -0.5380055548156413,
+   -0.011342475905721836,
+   1.811659965128929,
+   0.24271119697093713,
+   0.5651666711814782,
+   -0.30745704736787044,
+   0.7260496351313821
   ],
   [
-   -1.9641798855634802,
-   0.047354851010203,
-   -0.45815986623594634,
-   0.3850510127894186,
-   -0.8254358348954707,
-   -0.17866727134756613,
-   -0.37211477553232875
+   -1.9529618723838456,
+   0.003243637540089349,
+   -0.5002678292208932,
+   0.3571214387961828,
+   -0.8507744736097427,
+   -0.14843680259193903,
+   -0.3558280324011746
   ],
   [
-   0.036387886845948486,
-   1.8934391293357375,
-   -0.0058850701183034305,
-   0.6117736540119235,
-   -0.611773654011924,
-   -0.35458848861306663,
-   -0.35458848861306697
+   -0.015886351420020768,
+   1.8908296832903047,
+   -0.03641574727559631,
+   0.612731507382861,
+   -0.6127315073828535,
+   -0.35293072954949867,
+   -0.3529307295494711
   ],
   [
-   0.5228989091581209,
-   -0.055559417661842615,
-   -1.9015145159970142,
-   0.010367793036066827,
-   0.4560014708768112,
-   0.7169768355512572,
-   -0.5271616305353145
+   0.5094401953933618,
+   -0.005464633000757906,
+   -1.9476923876741499,
+   0.0006304713669474862,
+   -0.4979572855185939,
+   -0.7100935761934302,
+   0.49780041919792956
   ],
   [
-   1.9090516784688032,
-   -0.046097607011350177,
-   0.5268776840432418,
-   0.6910434432818268,
-   -0.5078377060137961,
-   0.02651159608953353,
-   0.5136700878196309
+   1.9297526597167092,
+   0.01735892029721787,
+   0.5140628834456067,
+   0.7169659355347645,
+   -0.49944943957621496,
+   0.011853514238895708,
+   0.48617856677351884
   ]
  ],
  "record_id": "tocintoc_n06",
  "title": "6 truncated octahedra in a truncated octahedron",
  "family": "archimedean",
  "source": {
-  "hash": "a9cb68596f472b7c",
+  "hash": "1809e142e0d621a4",
   "clear": 1e-07,
   "cap": 2.500000152052
  },
- "s_tight": 2.338863601204,
+ "s_tight": 2.337018443473,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.8171205928321397,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "fresh",
-  "seed": 176522321,
-  "var": "base",
-  "raw": 2.3405380545363643,
-  "host": "laptop"
+  "move": "hop",
+  "seed": 1484325995,
+  "var": "gentle",
+  "minDiff": 0.05860941002554889,
+  "expand": 0.012264521158530892,
+  "rh": 0.17164554166196422,
+  "focus": 0,
+  "from": "best",
+  "raw": 2.339505208961169,
+  "host": "actions"
  },
- "density": 0.4689607454714801
+ "density": 0.4700724067816477
 }
