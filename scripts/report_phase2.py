@@ -277,6 +277,26 @@ def main():
     return S, L, final, evening, best, first
 
 
+def appendix(final):
+    """Every record of the three families, one table per problem."""
+    out = []
+    names = {'archimedean': 'Archimedean solids', 'catalan': 'Catalan solids', 'prisms': 'Prisms and antiprisms'}
+    for fam in FAMS:
+        out.append(f'### {names[fam]}\n')
+        for p in [q for q in NEW if FAM[q] == fam]:
+            out.append(f'#### {title(p)} (`{p}`)\n')
+            rows = []
+            for n in range(2, 41):
+                r = final.get((p, n))
+                if not r: rows.append([n, '—', '', '', '', '']); continue
+                sr = r.get('search') or {}
+                rows.append([n, f"[{r['s_plus']}](../records/{p}/{p}_n{n:02d}.json)", f"{(r.get('s_tight') or r['s_full']):.10f}", f"{r['density']:.4f}",
+                             r.get('closed_form_conjecture') or '', f"{sr.get('host', 'cloud')} / {sr.get('move', '?')}"])
+            out.append(table(['n', 's (certified)', 'touching limit', 'density', 'closed form', 'machine / move'], rows,
+                             ['---:', '---:', '---:', '---:', '---', '---']) + '\n')
+    return out
+
+
 def _ranges(ns):
     ns = sorted(ns); out = []; a = b = ns[0]
     for x in ns[1:]:
@@ -293,5 +313,7 @@ def _cert_ok(p, n):
 
 
 if __name__ == '__main__':
-    S = main()[0]
-    print('\n'.join(S))
+    res = main()
+    out = '\n'.join(res[0])
+    if '--appendix' in sys.argv: out += '\n' + '\n'.join(appendix(res[2]))
+    print(out)
