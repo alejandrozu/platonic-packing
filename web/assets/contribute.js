@@ -4,11 +4,13 @@
 (async () => {
   const $ = id => document.getElementById(id);
   const ROOT = document.documentElement.dataset.root || './';
+  const DATA_VERSION = document.documentElement.dataset.recordsVersion;
+  const DATA_QUERY = DATA_VERSION ? '?v=' + encodeURIComponent(DATA_VERSION) : '';
   const REPO = document.documentElement.dataset.repo;
   const RAW = REPO.replace('https://github.com/', 'https://raw.githubusercontent.com/') + '/main/';
   const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
   let D;
-  try { const response = await fetch(ROOT + 'data/records.json'); if (!response.ok) throw new Error('Library request failed'); D = await response.json() }
+  try { const response = await fetch(ROOT + 'data/records.json' + DATA_QUERY, { cache: 'no-cache' }); if (!response.ok) throw new Error('Library request failed'); D = await response.json() }
   catch (e) { $('result').innerHTML = '<p class="mut">The solid library did not load. Reload the page to use the checker.</p>'; return }
 
   const POLY = { 3: 'triangular', 4: 'square', 5: 'pentagonal', 6: 'hexagonal', 8: 'octagonal', 12: 'dodecagonal' };
@@ -222,7 +224,7 @@
     if (!r) { $('busy').textContent = 'This published entry has no downloadable coordinates. Paste your own construction to check it.'; return }
     $('busy').textContent = 'Loading the record…';
     try {
-      const response = await fetch(RAW + r.file); if (!response.ok) throw new Error('Record request failed');
+      const response = await fetch(RAW + r.file + DATA_QUERY, { cache: 'no-cache' }); if (!response.ok) throw new Error('Record request failed');
       const rec = await response.json();
       $('json').value = JSON.stringify({ piece: rec.piece, container: rec.container, n: rec.n, s_full: rec.s_full, ...(rec.container_center ? { container_center: rec.container_center } : {}), pieces: rec.pieces }, null, 1);
       $('busy').textContent = `Loaded ${r.id || p.id + '_n' + String(r.n).padStart(2, '0')}. Check it, or change it and check again.` +
