@@ -1,19 +1,19 @@
 # Records: Archimedean, Catalan, prism and antiprism families
 
-_Generated 2026-10-13 02:54 CEST from the running search._ s = container size ÷ piece size (edge ratio; for Catalan solids the ratio of the same canonical solid). Each entry: the record's container, with 10⁻⁷ clearance, truncated to 5 decimals, linking to the record file. Every record is proven by `certify_general.py` (exact number fields for the solids, rigorous interval arithmetic for the packing) and checked by `verify_general.py` (floating point). "≈ x" = conjectured closed form. The square prism is the cube and the triangular antiprism the octahedron: see the Platonic tables (cubes in a cube, octahedra in an octahedron, octahedra in a cube).
+_Generated 2026-10-13 03:52 CEST from the running search._ s = container size ÷ piece size (edge ratio; for Catalan solids the ratio of the same canonical solid). Each entry: the record's container, with 10⁻⁷ clearance, truncated to 5 decimals, linking to the record file. Every record is proven by `certify_general.py` (exact number fields for the solids, rigorous interval arithmetic for the packing) and checked by `verify_general.py` (floating point). "≈ x" = conjectured closed form. The square prism is the cube and the triangular antiprism the octahedron: see the Platonic tables (cubes in a cube, octahedra in an octahedron, octahedra in a cube).
 
 ## Archimedean solids
 
 | n | Truncated tetrahedra in a truncated tetrahedron | Cuboctahedra in a cuboctahedron | Truncated cubes in a truncated cube | Truncated octahedra in a truncated octahedron | Rhombicuboctahedra in a rhombicuboctahedron |
 |---:|---|---|---|---|---|
-| 2 | [1.97311+](tteintte/tteintte_n02.json) ≈ (5 + 11√5)/15 | [1.87114+](cboincbo/cboincbo_n02.json) | [2.00000+](tcuintcu/tcuintcu_n02.json) | [1.79829+](tocintoc/tocintoc_n02.json) | [1.92893+](rcoinrco/rcoinrco_n02.json) |
+| 2 | [1.97311+](tteintte/tteintte_n02.json) ≈ (5 + 11√5)/15 | [1.87114+](cboincbo/cboincbo_n02.json) | [1.96145+](tcuintcu/tcuintcu_n02.json) | [1.79829+](tocintoc/tocintoc_n02.json) | [1.92893+](rcoinrco/rcoinrco_n02.json) |
 | 3 | [2.00000+](tteintte/tteintte_n03.json) | [2.00000+](cboincbo/cboincbo_n03.json) | [2.00000+](tcuintcu/tcuintcu_n03.json) | [2.00000+](tocintoc/tocintoc_n03.json) | [2.03451+](rcoinrco/rcoinrco_n03.json) |
-| 4 | [2.00000+](tteintte/tteintte_n04.json) | [2.17604+](cboincbo/cboincbo_n04.json) | [2.00000+](tcuintcu/tcuintcu_n04.json) | [2.00000+](tocintoc/tocintoc_n04.json) | [2.18755+](rcoinrco/rcoinrco_n04.json) |
-| 5 | [2.22116+](tteintte/tteintte_n05.json) | [2.29132+](cboincbo/cboincbo_n05.json) | [2.13270+](tcuintcu/tcuintcu_n05.json) ≈ (22 - 5√2)/7 | [2.28678+](tocintoc/tocintoc_n05.json) | [2.34170+](rcoinrco/rcoinrco_n05.json) |
+| 4 | [2.00000+](tteintte/tteintte_n04.json) | [2.00000+](cboincbo/cboincbo_n04.json) | [2.00000+](tcuintcu/tcuintcu_n04.json) | [2.00000+](tocintoc/tocintoc_n04.json) | [2.18755+](rcoinrco/rcoinrco_n04.json) |
+| 5 | [2.22116+](tteintte/tteintte_n05.json) | [2.29110+](cboincbo/cboincbo_n05.json) | [2.13270+](tcuintcu/tcuintcu_n05.json) ≈ (22 - 5√2)/7 | [2.28678+](tocintoc/tocintoc_n05.json) | [2.33619+](rcoinrco/rcoinrco_n05.json) |
 | 6 | [2.33333+](tteintte/tteintte_n06.json) ≈ 7/3 | [2.33585+](cboincbo/cboincbo_n06.json) | [2.15519+](tcuintcu/tcuintcu_n06.json) | [2.33886+](tocintoc/tocintoc_n06.json) | [2.37921+](rcoinrco/rcoinrco_n06.json) |
-| 7 | [2.33333+](tteintte/tteintte_n07.json) ≈ 7/3 | [2.40301+](cboincbo/cboincbo_n07.json) | [2.19013+](tcuintcu/tcuintcu_n07.json) | [2.54588+](tocintoc/tocintoc_n07.json) | [2.57518+](rcoinrco/rcoinrco_n07.json) |
-| 8 | [2.33333+](tteintte/tteintte_n08.json) ≈ 7/3 | [2.75378+](cboincbo/cboincbo_n08.json) | [2.24264+](tcuintcu/tcuintcu_n08.json) ≈ -2 + 3√2 | [2.58134+](tocintoc/tocintoc_n08.json) | [2.64077+](rcoinrco/rcoinrco_n08.json) |
-| 9 | [2.50000+](tteintte/tteintte_n09.json) ≈ 5/2 | [2.81757+](cboincbo/cboincbo_n09.json) | [2.76258+](tcuintcu/tcuintcu_n09.json) | [2.79321+](tocintoc/tocintoc_n09.json) | [2.71754+](rcoinrco/rcoinrco_n09.json) |
+| 7 | [2.33333+](tteintte/tteintte_n07.json) ≈ 7/3 | [2.40301+](cboincbo/cboincbo_n07.json) | [2.19013+](tcuintcu/tcuintcu_n07.json) | [2.54588+](tocintoc/tocintoc_n07.json) | [2.57517+](rcoinrco/rcoinrco_n07.json) |
+| 8 | [2.33333+](tteintte/tteintte_n08.json) ≈ 7/3 | [2.65622+](cboincbo/cboincbo_n08.json) | [2.24264+](tcuintcu/tcuintcu_n08.json) ≈ -2 + 3√2 | [2.58111+](tocintoc/tocintoc_n08.json) | [2.61162+](rcoinrco/rcoinrco_n08.json) |
+| 9 | [2.50000+](tteintte/tteintte_n09.json) ≈ 5/2 | [2.69554+](cboincbo/cboincbo_n09.json) | [2.76258+](tcuintcu/tcuintcu_n09.json) | [2.78906+](tocintoc/tocintoc_n09.json) | [2.71754+](rcoinrco/rcoinrco_n09.json) |
 | 10 | [2.50000+](tteintte/tteintte_n10.json) ≈ 5/2 | [2.83980+](cboincbo/cboincbo_n10.json) | [2.94003+](tcuintcu/tcuintcu_n10.json) | [2.87244+](tocintoc/tocintoc_n10.json) | [2.80591+](rcoinrco/rcoinrco_n10.json) |
 | 11 | [2.62200+](tteintte/tteintte_n11.json) ≈ (14 + √3)/6 | [2.85458+](cboincbo/cboincbo_n11.json) | [2.94003+](tcuintcu/tcuintcu_n11.json) | [2.87865+](tocintoc/tocintoc_n11.json) | [2.93799+](rcoinrco/rcoinrco_n11.json) |
 | 12 | [2.86980+](tteintte/tteintte_n12.json) | [2.85458+](cboincbo/cboincbo_n12.json) | [3.00000+](tcuintcu/tcuintcu_n12.json) | [2.89456+](tocintoc/tocintoc_n12.json) | [2.94827+](rcoinrco/rcoinrco_n12.json) |
@@ -23,20 +23,20 @@ _Generated 2026-10-13 02:54 CEST from the running search._ s = container size ÷
 | 16 | [3.00000+](tteintte/tteintte_n16.json) | [3.06585+](cboincbo/cboincbo_n16.json) | [3.00000+](tcuintcu/tcuintcu_n16.json) | [3.08757+](tocintoc/tocintoc_n16.json) | [3.16538+](rcoinrco/rcoinrco_n16.json) |
 | 17 | [3.00000+](tteintte/tteintte_n17.json) | [3.15240+](cboincbo/cboincbo_n17.json) | [3.00000+](tcuintcu/tcuintcu_n17.json) | [3.17048+](tocintoc/tocintoc_n17.json) | [3.20704+](rcoinrco/rcoinrco_n17.json) |
 | 18 | [3.00000+](tteintte/tteintte_n18.json) | [3.21549+](cboincbo/cboincbo_n18.json) | [3.00000+](tcuintcu/tcuintcu_n18.json) | [3.29125+](tocintoc/tocintoc_n18.json) | [3.27455+](rcoinrco/rcoinrco_n18.json) |
-| 19 | [3.00000+](tteintte/tteintte_n19.json) | [3.24356+](cboincbo/cboincbo_n19.json) | [3.03886+](tcuintcu/tcuintcu_n19.json) ≈ (34 - 9√2)/7 | [3.39769+](tocintoc/tocintoc_n19.json) | [3.38659+](rcoinrco/rcoinrco_n19.json) |
-| 20 | [3.00000+](tteintte/tteintte_n20.json) | [3.27084+](cboincbo/cboincbo_n20.json) | [3.04966+](tcuintcu/tcuintcu_n20.json) | [3.42288+](tocintoc/tocintoc_n20.json) | [3.38834+](rcoinrco/rcoinrco_n20.json) |
-| 21 | [3.00000+](tteintte/tteintte_n21.json) | [3.33195+](cboincbo/cboincbo_n21.json) | [3.04966+](tcuintcu/tcuintcu_n21.json) | [3.48982+](tocintoc/tocintoc_n21.json) | [3.44149+](rcoinrco/rcoinrco_n21.json) |
+| 19 | [3.00000+](tteintte/tteintte_n19.json) | [3.24356+](cboincbo/cboincbo_n19.json) | [3.03886+](tcuintcu/tcuintcu_n19.json) ≈ (34 - 9√2)/7 | [3.38961+](tocintoc/tocintoc_n19.json) | [3.38659+](rcoinrco/rcoinrco_n19.json) |
+| 20 | [3.00000+](tteintte/tteintte_n20.json) | [3.27084+](cboincbo/cboincbo_n20.json) | [3.04966+](tcuintcu/tcuintcu_n20.json) | [3.39216+](tocintoc/tocintoc_n20.json) | [3.38834+](rcoinrco/rcoinrco_n20.json) |
+| 21 | [3.00000+](tteintte/tteintte_n21.json) | [3.33195+](cboincbo/cboincbo_n21.json) | [3.04966+](tcuintcu/tcuintcu_n21.json) | [3.48982+](tocintoc/tocintoc_n21.json) | [3.43952+](rcoinrco/rcoinrco_n21.json) |
 | 22 | [3.25332+](tteintte/tteintte_n22.json) | [3.41286+](cboincbo/cboincbo_n22.json) | [3.16023+](tcuintcu/tcuintcu_n22.json) | [3.54910+](tocintoc/tocintoc_n22.json) | [3.52936+](rcoinrco/rcoinrco_n22.json) |
-| 23 | [3.29202+](tteintte/tteintte_n23.json) | [3.53147+](cboincbo/cboincbo_n23.json) | [3.20479+](tcuintcu/tcuintcu_n23.json) | [3.56979+](tocintoc/tocintoc_n23.json) | [3.53869+](rcoinrco/rcoinrco_n23.json) |
+| 23 | [3.26991+](tteintte/tteintte_n23.json) | [3.53147+](cboincbo/cboincbo_n23.json) | [3.20479+](tcuintcu/tcuintcu_n23.json) | [3.56979+](tocintoc/tocintoc_n23.json) | [3.53869+](rcoinrco/rcoinrco_n23.json) |
 | 24 | [3.34073+](tteintte/tteintte_n24.json) | [3.55110+](cboincbo/cboincbo_n24.json) | [3.26540+](tcuintcu/tcuintcu_n24.json) | [3.59811+](tocintoc/tocintoc_n24.json) | [3.56462+](rcoinrco/rcoinrco_n24.json) |
 | 25 | [3.36177+](tteintte/tteintte_n25.json) | [3.61064+](cboincbo/cboincbo_n25.json) | [3.41421+](tcuintcu/tcuintcu_n25.json) ≈ 2 + √2 | [3.64907+](tocintoc/tocintoc_n25.json) | [3.56856+](rcoinrco/rcoinrco_n25.json) |
 | 26 | [3.58102+](tteintte/tteintte_n26.json) | [3.63022+](cboincbo/cboincbo_n26.json) | [3.66837+](tcuintcu/tcuintcu_n26.json) | [3.66063+](tocintoc/tocintoc_n26.json) | [3.65192+](rcoinrco/rcoinrco_n26.json) |
-| 27 | [3.64720+](tteintte/tteintte_n27.json) | [3.70990+](cboincbo/cboincbo_n27.json) | [3.70710+](tcuintcu/tcuintcu_n27.json) | [3.68397+](tocintoc/tocintoc_n27.json) | [3.74263+](rcoinrco/rcoinrco_n27.json) |
-| 28 | [3.70411+](tteintte/tteintte_n28.json) | [3.77340+](cboincbo/cboincbo_n28.json) | [3.70710+](tcuintcu/tcuintcu_n28.json) | [3.75974+](tocintoc/tocintoc_n28.json) | [3.80653+](rcoinrco/rcoinrco_n28.json) |
+| 27 | [3.59525+](tteintte/tteintte_n27.json) | [3.70990+](cboincbo/cboincbo_n27.json) | [3.70710+](tcuintcu/tcuintcu_n27.json) | [3.68397+](tocintoc/tocintoc_n27.json) | [3.74263+](rcoinrco/rcoinrco_n27.json) |
+| 28 | [3.68003+](tteintte/tteintte_n28.json) | [3.77340+](cboincbo/cboincbo_n28.json) | [3.70710+](tcuintcu/tcuintcu_n28.json) | [3.75974+](tocintoc/tocintoc_n28.json) | [3.80653+](rcoinrco/rcoinrco_n28.json) |
 | 29 | [3.72797+](tteintte/tteintte_n29.json) | [3.80946+](cboincbo/cboincbo_n29.json) | [3.76706+](tcuintcu/tcuintcu_n29.json) | [3.78076+](tocintoc/tocintoc_n29.json) | [3.80654+](rcoinrco/rcoinrco_n29.json) |
 | 30 | [3.75500+](tteintte/tteintte_n30.json) | [3.86895+](cboincbo/cboincbo_n30.json) | [3.81708+](tcuintcu/tcuintcu_n30.json) | [3.84050+](tocintoc/tocintoc_n30.json) | [3.82436+](rcoinrco/rcoinrco_n30.json) |
-| 31 | [3.78996+](tteintte/tteintte_n31.json) | [3.89548+](cboincbo/cboincbo_n31.json) | [3.81914+](tcuintcu/tcuintcu_n31.json) | [3.86657+](tocintoc/tocintoc_n31.json) | [3.90500+](rcoinrco/rcoinrco_n31.json) |
-| 32 | [3.79558+](tteintte/tteintte_n32.json) | [3.90113+](cboincbo/cboincbo_n32.json) | [3.89509+](tcuintcu/tcuintcu_n32.json) | [3.88634+](tocintoc/tocintoc_n32.json) | [3.99177+](rcoinrco/rcoinrco_n32.json) |
+| 31 | [3.76290+](tteintte/tteintte_n31.json) | [3.89548+](cboincbo/cboincbo_n31.json) | [3.81914+](tcuintcu/tcuintcu_n31.json) | [3.86657+](tocintoc/tocintoc_n31.json) | [3.90500+](rcoinrco/rcoinrco_n31.json) |
+| 32 | [3.78251+](tteintte/tteintte_n32.json) | [3.90113+](cboincbo/cboincbo_n32.json) | [3.89509+](tcuintcu/tcuintcu_n32.json) | [3.88634+](tocintoc/tocintoc_n32.json) | [3.99177+](rcoinrco/rcoinrco_n32.json) |
 | 33 | [3.85342+](tteintte/tteintte_n33.json) | [3.94053+](cboincbo/cboincbo_n33.json) | [3.89509+](tcuintcu/tcuintcu_n33.json) | [3.89750+](tocintoc/tocintoc_n33.json) | [4.01210+](rcoinrco/rcoinrco_n33.json) |
 | 34 | [3.85811+](tteintte/tteintte_n34.json) | [3.97269+](cboincbo/cboincbo_n34.json) | [3.94758+](tcuintcu/tcuintcu_n34.json) | [3.94103+](tocintoc/tocintoc_n34.json) | [4.04102+](rcoinrco/rcoinrco_n34.json) |
 | 35 | [3.92447+](tteintte/tteintte_n35.json) | [3.99981+](cboincbo/cboincbo_n35.json) | [3.96561+](tcuintcu/tcuintcu_n35.json) | [3.94206+](tocintoc/tocintoc_n35.json) | [4.06337+](rcoinrco/rcoinrco_n35.json) |
@@ -49,214 +49,214 @@ _Generated 2026-10-13 02:54 CEST from the running search._ s = container size ÷
 | n | Truncated cuboctahedra in a truncated cuboctahedron | Snub cubes in a snub cube | Icosidodecahedra in an icosidodecahedron | Truncated dodecahedra in a truncated dodecahedron | Truncated icosahedra in a truncated icosahedron |
 |---:|---|---|---|---|---|
 | 2 | [1.83110+](tcointco/tcointco_n02.json) | [1.91066+](sncinsnc/sncinsnc_n02.json) | [1.91992+](idoinido/idoinido_n02.json) | [1.97277+](tdointdo/tdointdo_n02.json) | [1.94830+](ticintic/ticintic_n02.json) |
-| 3 | [2.07252+](tcointco/tcointco_n03.json) | [2.09098+](sncinsnc/sncinsnc_n03.json) | [2.00000+](idoinido/idoinido_n03.json) | [2.00000+](tdointdo/tdointdo_n03.json) | [2.12595+](ticintic/ticintic_n03.json) |
-| 4 | [2.15262+](tcointco/tcointco_n04.json) | [2.19027+](sncinsnc/sncinsnc_n04.json) | [2.13319+](idoinido/idoinido_n04.json) | [2.07115+](tdointdo/tdointdo_n04.json) | [2.21742+](ticintic/ticintic_n04.json) |
-| 5 | [2.29166+](tcointco/tcointco_n05.json) | [2.33955+](sncinsnc/sncinsnc_n05.json) | [2.23606+](idoinido/idoinido_n05.json) ≈ √5 | [2.23606+](tdointdo/tdointdo_n05.json) ≈ √5 | [2.37851+](ticintic/ticintic_n05.json) |
-| 6 | [2.36771+](tcointco/tcointco_n06.json) | [2.37698+](sncinsnc/sncinsnc_n06.json) | [2.23606+](idoinido/idoinido_n06.json) ≈ √5 | [2.23606+](tdointdo/tdointdo_n06.json) ≈ √5 | [2.39164+](ticintic/ticintic_n06.json) |
-| 7 | [2.49885+](tcointco/tcointco_n07.json) | [2.53648+](sncinsnc/sncinsnc_n07.json) | [2.51914+](idoinido/idoinido_n07.json) | [2.54637+](tdointdo/tdointdo_n07.json) | [2.56575+](ticintic/ticintic_n07.json) |
-| 8 | [2.58372+](tcointco/tcointco_n08.json) | [2.58546+](sncinsnc/sncinsnc_n08.json) | [2.57878+](idoinido/idoinido_n08.json) | [2.58661+](tdointdo/tdointdo_n08.json) | [2.62829+](ticintic/ticintic_n08.json) |
-| 9 | [2.69040+](tcointco/tcointco_n09.json) | [2.71441+](sncinsnc/sncinsnc_n09.json) | [2.67051+](idoinido/idoinido_n09.json) | [2.71489+](tdointdo/tdointdo_n09.json) | [2.93977+](ticintic/ticintic_n09.json) |
-| 10 | [2.77580+](tcointco/tcointco_n10.json) | [2.80666+](sncinsnc/sncinsnc_n10.json) | [2.76078+](idoinido/idoinido_n10.json) | [2.74391+](tdointdo/tdointdo_n10.json) | [2.93981+](ticintic/ticintic_n10.json) |
-| 11 | [2.78586+](tcointco/tcointco_n11.json) | [2.89157+](sncinsnc/sncinsnc_n11.json) | [2.87415+](idoinido/idoinido_n11.json) | [2.83812+](tdointdo/tdointdo_n11.json) | [2.95618+](ticintic/ticintic_n11.json) |
-| 12 | [2.83209+](tcointco/tcointco_n12.json) | [2.90604+](sncinsnc/sncinsnc_n12.json) | [2.89349+](idoinido/idoinido_n12.json) | [2.91583+](tdointdo/tdointdo_n12.json) | [2.95830+](ticintic/ticintic_n12.json) |
+| 3 | [2.07252+](tcointco/tcointco_n03.json) | [2.07579+](sncinsnc/sncinsnc_n03.json) | [2.00000+](idoinido/idoinido_n03.json) | [2.00000+](tdointdo/tdointdo_n03.json) | [2.12548+](ticintic/ticintic_n03.json) |
+| 4 | [2.14990+](tcointco/tcointco_n04.json) | [2.17782+](sncinsnc/sncinsnc_n04.json) | [2.13319+](idoinido/idoinido_n04.json) | [2.07115+](tdointdo/tdointdo_n04.json) | [2.20784+](ticintic/ticintic_n04.json) |
+| 5 | [2.29166+](tcointco/tcointco_n05.json) | [2.33841+](sncinsnc/sncinsnc_n05.json) | [2.23606+](idoinido/idoinido_n05.json) ≈ √5 | [2.23606+](tdointdo/tdointdo_n05.json) ≈ √5 | [2.37684+](ticintic/ticintic_n05.json) |
+| 6 | [2.36771+](tcointco/tcointco_n06.json) | [2.37698+](sncinsnc/sncinsnc_n06.json) | [2.23606+](idoinido/idoinido_n06.json) ≈ √5 | [2.23606+](tdointdo/tdointdo_n06.json) ≈ √5 | [2.38092+](ticintic/ticintic_n06.json) |
+| 7 | [2.49885+](tcointco/tcointco_n07.json) | [2.53544+](sncinsnc/sncinsnc_n07.json) | [2.51914+](idoinido/idoinido_n07.json) | [2.50149+](tdointdo/tdointdo_n07.json) | [2.56575+](ticintic/ticintic_n07.json) |
+| 8 | [2.58371+](tcointco/tcointco_n08.json) | [2.58487+](sncinsnc/sncinsnc_n08.json) | [2.57878+](idoinido/idoinido_n08.json) | [2.53599+](tdointdo/tdointdo_n08.json) | [2.61710+](ticintic/ticintic_n08.json) |
+| 9 | [2.69040+](tcointco/tcointco_n09.json) | [2.71284+](sncinsnc/sncinsnc_n09.json) | [2.67051+](idoinido/idoinido_n09.json) | [2.71252+](tdointdo/tdointdo_n09.json) | [2.92048+](ticintic/ticintic_n09.json) |
+| 10 | [2.77580+](tcointco/tcointco_n10.json) | [2.80666+](sncinsnc/sncinsnc_n10.json) | [2.75962+](idoinido/idoinido_n10.json) | [2.74391+](tdointdo/tdointdo_n10.json) | [2.93596+](ticintic/ticintic_n10.json) |
+| 11 | [2.78586+](tcointco/tcointco_n11.json) | [2.89157+](sncinsnc/sncinsnc_n11.json) | [2.87415+](idoinido/idoinido_n11.json) | [2.83812+](tdointdo/tdointdo_n11.json) | [2.93710+](ticintic/ticintic_n11.json) |
+| 12 | [2.83209+](tcointco/tcointco_n12.json) | [2.90604+](sncinsnc/sncinsnc_n12.json) | [2.89349+](idoinido/idoinido_n12.json) | [2.91517+](tdointdo/tdointdo_n12.json) | [2.95830+](ticintic/ticintic_n12.json) |
 | 13 | [2.83654+](tcointco/tcointco_n13.json) | [2.95164+](sncinsnc/sncinsnc_n13.json) | [2.93463+](idoinido/idoinido_n13.json) | [2.93008+](tdointdo/tdointdo_n13.json) | [2.97817+](ticintic/ticintic_n13.json) |
 | 14 | [3.00000+](tcointco/tcointco_n14.json) | [3.05393+](sncinsnc/sncinsnc_n14.json) | [2.98599+](idoinido/idoinido_n14.json) | [3.01590+](tdointdo/tdointdo_n14.json) | [3.07943+](ticintic/ticintic_n14.json) |
 | 15 | [3.09223+](tcointco/tcointco_n15.json) | [3.12386+](sncinsnc/sncinsnc_n15.json) | [3.04436+](idoinido/idoinido_n15.json) | [3.05413+](tdointdo/tdointdo_n15.json) | [3.12036+](ticintic/ticintic_n15.json) |
 | 16 | [3.14978+](tcointco/tcointco_n16.json) | [3.18015+](sncinsnc/sncinsnc_n16.json) | [3.11839+](idoinido/idoinido_n16.json) | [3.13898+](tdointdo/tdointdo_n16.json) | [3.17937+](ticintic/ticintic_n16.json) |
-| 17 | [3.21735+](tcointco/tcointco_n17.json) | [3.22603+](sncinsnc/sncinsnc_n17.json) | [3.20654+](idoinido/idoinido_n17.json) | [3.19807+](tdointdo/tdointdo_n17.json) | [3.23309+](ticintic/ticintic_n17.json) |
+| 17 | [3.21735+](tcointco/tcointco_n17.json) | [3.22603+](sncinsnc/sncinsnc_n17.json) | [3.19258+](idoinido/idoinido_n17.json) | [3.19807+](tdointdo/tdointdo_n17.json) | [3.23309+](ticintic/ticintic_n17.json) |
 | 18 | [3.27859+](tcointco/tcointco_n18.json) | [3.29513+](sncinsnc/sncinsnc_n18.json) | [3.24561+](idoinido/idoinido_n18.json) | [3.26471+](tdointdo/tdointdo_n18.json) | [3.29678+](ticintic/ticintic_n18.json) |
 | 19 | [3.33399+](tcointco/tcointco_n19.json) | [3.34209+](sncinsnc/sncinsnc_n19.json) | [3.30542+](idoinido/idoinido_n19.json) | [3.36665+](tdointdo/tdointdo_n19.json) | [3.36190+](ticintic/ticintic_n19.json) |
-| 20 | [3.40238+](tcointco/tcointco_n20.json) | [3.40093+](sncinsnc/sncinsnc_n20.json) | [3.43972+](idoinido/idoinido_n20.json) | [3.43181+](tdointdo/tdointdo_n20.json) | [3.49457+](ticintic/ticintic_n20.json) |
-| 21 | [3.43900+](tcointco/tcointco_n21.json) | [3.46673+](sncinsnc/sncinsnc_n21.json) | [3.48801+](idoinido/idoinido_n21.json) | [3.45354+](tdointdo/tdointdo_n21.json) | [3.54310+](ticintic/ticintic_n21.json) |
+| 20 | [3.40238+](tcointco/tcointco_n20.json) | [3.40022+](sncinsnc/sncinsnc_n20.json) | [3.43972+](idoinido/idoinido_n20.json) | [3.41847+](tdointdo/tdointdo_n20.json) | [3.49457+](ticintic/ticintic_n20.json) |
+| 21 | [3.42341+](tcointco/tcointco_n21.json) | [3.46673+](sncinsnc/sncinsnc_n21.json) | [3.48801+](idoinido/idoinido_n21.json) | [3.44721+](tdointdo/tdointdo_n21.json) | [3.54310+](ticintic/ticintic_n21.json) |
 | 22 | [3.46171+](tcointco/tcointco_n22.json) | [3.50327+](sncinsnc/sncinsnc_n22.json) | [3.51963+](idoinido/idoinido_n22.json) | [3.52292+](tdointdo/tdointdo_n22.json) | [3.54310+](ticintic/ticintic_n22.json) |
 | 23 | [3.59248+](tcointco/tcointco_n23.json) | [3.51422+](sncinsnc/sncinsnc_n23.json) | [3.56174+](idoinido/idoinido_n23.json) | [3.57066+](tdointdo/tdointdo_n23.json) | [3.60527+](ticintic/ticintic_n23.json) |
-| 24 | [3.63795+](tcointco/tcointco_n24.json) | [3.54147+](sncinsnc/sncinsnc_n24.json) | [3.60475+](idoinido/idoinido_n24.json) | [3.59749+](tdointdo/tdointdo_n24.json) | [3.71102+](ticintic/ticintic_n24.json) |
+| 24 | [3.63795+](tcointco/tcointco_n24.json) | [3.54147+](sncinsnc/sncinsnc_n24.json) | [3.59685+](idoinido/idoinido_n24.json) | [3.59749+](tdointdo/tdointdo_n24.json) | [3.71102+](ticintic/ticintic_n24.json) |
 | 25 | [3.65133+](tcointco/tcointco_n25.json) | [3.55217+](sncinsnc/sncinsnc_n25.json) | [3.66134+](idoinido/idoinido_n25.json) | [3.64347+](tdointdo/tdointdo_n25.json) | [3.71102+](ticintic/ticintic_n25.json) |
-| 26 | [3.69985+](tcointco/tcointco_n26.json) | [3.60018+](sncinsnc/sncinsnc_n26.json) | [3.68405+](idoinido/idoinido_n26.json) | [3.66129+](tdointdo/tdointdo_n26.json) | [3.74578+](ticintic/ticintic_n26.json) |
+| 26 | [3.69985+](tcointco/tcointco_n26.json) | [3.60018+](sncinsnc/sncinsnc_n26.json) | [3.68405+](idoinido/idoinido_n26.json) | [3.65968+](tdointdo/tdointdo_n26.json) | [3.74578+](ticintic/ticintic_n26.json) |
 | 27 | [3.70936+](tcointco/tcointco_n27.json) | [3.68623+](sncinsnc/sncinsnc_n27.json) | [3.74130+](idoinido/idoinido_n27.json) | [3.71014+](tdointdo/tdointdo_n27.json) | [3.76773+](ticintic/ticintic_n27.json) |
-| 28 | [3.74597+](tcointco/tcointco_n28.json) | [3.71411+](sncinsnc/sncinsnc_n28.json) | [3.78152+](idoinido/idoinido_n28.json) | [3.73175+](tdointdo/tdointdo_n28.json) | [3.81323+](ticintic/ticintic_n28.json) |
+| 28 | [3.74597+](tcointco/tcointco_n28.json) | [3.71411+](sncinsnc/sncinsnc_n28.json) | [3.77959+](idoinido/idoinido_n28.json) | [3.73175+](tdointdo/tdointdo_n28.json) | [3.81323+](ticintic/ticintic_n28.json) |
 | 29 | [3.77916+](tcointco/tcointco_n29.json) | [3.80120+](sncinsnc/sncinsnc_n29.json) | [3.80955+](idoinido/idoinido_n29.json) | [3.79358+](tdointdo/tdointdo_n29.json) | [3.83304+](ticintic/ticintic_n29.json) |
-| 30 | [3.84075+](tcointco/tcointco_n30.json) | [3.82663+](sncinsnc/sncinsnc_n30.json) | [3.85037+](idoinido/idoinido_n30.json) | [3.84720+](tdointdo/tdointdo_n30.json) | [3.85345+](ticintic/ticintic_n30.json) |
-| 31 | [3.87282+](tcointco/tcointco_n31.json) | [3.93021+](sncinsnc/sncinsnc_n31.json) | [3.87061+](idoinido/idoinido_n31.json) | [3.86484+](tdointdo/tdointdo_n31.json) | [3.90233+](ticintic/ticintic_n31.json) |
-| 32 | [3.89679+](tcointco/tcointco_n32.json) | [3.94794+](sncinsnc/sncinsnc_n32.json) | [3.91354+](idoinido/idoinido_n32.json) | [3.92721+](tdointdo/tdointdo_n32.json) | [3.98575+](ticintic/ticintic_n32.json) |
+| 30 | [3.84075+](tcointco/tcointco_n30.json) | [3.82663+](sncinsnc/sncinsnc_n30.json) | [3.85037+](idoinido/idoinido_n30.json) | [3.84687+](tdointdo/tdointdo_n30.json) | [3.85345+](ticintic/ticintic_n30.json) |
+| 31 | [3.87282+](tcointco/tcointco_n31.json) | [3.93021+](sncinsnc/sncinsnc_n31.json) | [3.87061+](idoinido/idoinido_n31.json) | [3.85779+](tdointdo/tdointdo_n31.json) | [3.90233+](ticintic/ticintic_n31.json) |
+| 32 | [3.89679+](tcointco/tcointco_n32.json) | [3.94794+](sncinsnc/sncinsnc_n32.json) | [3.90910+](idoinido/idoinido_n32.json) | [3.92721+](tdointdo/tdointdo_n32.json) | [3.98575+](ticintic/ticintic_n32.json) |
 | 33 | [3.95161+](tcointco/tcointco_n33.json) | [4.00847+](sncinsnc/sncinsnc_n33.json) | [3.95816+](idoinido/idoinido_n33.json) | [3.96640+](tdointdo/tdointdo_n33.json) | [4.01083+](ticintic/ticintic_n33.json) |
 | 34 | [3.96221+](tcointco/tcointco_n34.json) | [4.05357+](sncinsnc/sncinsnc_n34.json) | [3.98067+](idoinido/idoinido_n34.json) | [3.99004+](tdointdo/tdointdo_n34.json) | [4.04099+](ticintic/ticintic_n34.json) |
-| 35 | [4.02368+](tcointco/tcointco_n35.json) | [4.07185+](sncinsnc/sncinsnc_n35.json) | [4.00718+](idoinido/idoinido_n35.json) | [4.01168+](tdointdo/tdointdo_n35.json) | [4.05248+](ticintic/ticintic_n35.json) |
+| 35 | [4.02368+](tcointco/tcointco_n35.json) | [4.07185+](sncinsnc/sncinsnc_n35.json) | [4.00718+](idoinido/idoinido_n35.json) | [4.00864+](tdointdo/tdointdo_n35.json) | [4.05248+](ticintic/ticintic_n35.json) |
 | 36 | [4.05601+](tcointco/tcointco_n36.json) | [4.10533+](sncinsnc/sncinsnc_n36.json) | [4.00718+](idoinido/idoinido_n36.json) | [4.03737+](tdointdo/tdointdo_n36.json) | [4.08400+](ticintic/ticintic_n36.json) |
 | 37 | [4.06897+](tcointco/tcointco_n37.json) | [4.13363+](sncinsnc/sncinsnc_n37.json) | [4.03802+](idoinido/idoinido_n37.json) | [4.08479+](tdointdo/tdointdo_n37.json) | [4.09828+](ticintic/ticintic_n37.json) |
 | 38 | [4.07494+](tcointco/tcointco_n38.json) | [4.16528+](sncinsnc/sncinsnc_n38.json) | [4.05265+](idoinido/idoinido_n38.json) | [4.08496+](tdointdo/tdointdo_n38.json) | [4.13650+](ticintic/ticintic_n38.json) |
 | 39 | [4.13329+](tcointco/tcointco_n39.json) | [4.18942+](sncinsnc/sncinsnc_n39.json) | [4.12136+](idoinido/idoinido_n39.json) | [4.09410+](tdointdo/tdointdo_n39.json) | [4.20416+](ticintic/ticintic_n39.json) |
-| 40 | [4.17067+](tcointco/tcointco_n40.json) | [4.21910+](sncinsnc/sncinsnc_n40.json) | [4.15822+](idoinido/idoinido_n40.json) | [4.11561+](tdointdo/tdointdo_n40.json) | [4.23756+](ticintic/ticintic_n40.json) |
+| 40 | [4.17067+](tcointco/tcointco_n40.json) | [4.21910+](sncinsnc/sncinsnc_n40.json) | [4.15628+](idoinido/idoinido_n40.json) | [4.11561+](tdointdo/tdointdo_n40.json) | [4.23756+](ticintic/ticintic_n40.json) |
 
 | n | Rhombicosidodecahedra in a rhombicosidodecahedron | Truncated icosidodecahedra in a truncated icosidodecahedron | Snub dodecahedra in a snub dodecahedron |
 |---:|---|---|---|
 | 2 | [1.94579+](ridinrid/ridinrid_n02.json) | [1.88573+](tidintid/tidintid_n02.json) | [1.93072+](sndinsnd/sndinsnd_n02.json) |
-| 3 | [2.13303+](ridinrid/ridinrid_n03.json) | [2.09344+](tidintid/tidintid_n03.json) | [2.10449+](sndinsnd/sndinsnd_n03.json) |
-| 4 | [2.20637+](ridinrid/ridinrid_n04.json) | [2.14959+](tidintid/tidintid_n04.json) | [2.18080+](sndinsnd/sndinsnd_n04.json) |
-| 5 | [2.35624+](ridinrid/ridinrid_n05.json) | [2.34111+](tidintid/tidintid_n05.json) | [2.37192+](sndinsnd/sndinsnd_n05.json) |
-| 6 | [2.35769+](ridinrid/ridinrid_n06.json) | [2.36687+](tidintid/tidintid_n06.json) | [2.37583+](sndinsnd/sndinsnd_n06.json) |
-| 7 | [2.56245+](ridinrid/ridinrid_n07.json) | [2.54349+](tidintid/tidintid_n07.json) | [2.55972+](sndinsnd/sndinsnd_n07.json) |
-| 8 | [2.63031+](ridinrid/ridinrid_n08.json) | [2.59679+](tidintid/tidintid_n08.json) | [2.60001+](sndinsnd/sndinsnd_n08.json) |
-| 9 | [2.90497+](ridinrid/ridinrid_n09.json) | [2.67369+](tidintid/tidintid_n09.json) | [2.68122+](sndinsnd/sndinsnd_n09.json) |
-| 10 | [2.91615+](ridinrid/ridinrid_n10.json) | [2.80596+](tidintid/tidintid_n10.json) | [2.77731+](sndinsnd/sndinsnd_n10.json) |
-| 11 | [2.91615+](ridinrid/ridinrid_n11.json) | [2.83449+](tidintid/tidintid_n11.json) | [2.83156+](sndinsnd/sndinsnd_n11.json) |
-| 12 | [2.91615+](ridinrid/ridinrid_n12.json) | [2.86767+](tidintid/tidintid_n12.json) | [2.83473+](sndinsnd/sndinsnd_n12.json) |
+| 3 | [2.12923+](ridinrid/ridinrid_n03.json) | [2.09344+](tidintid/tidintid_n03.json) | [2.10449+](sndinsnd/sndinsnd_n03.json) |
+| 4 | [2.20159+](ridinrid/ridinrid_n04.json) | [2.14959+](tidintid/tidintid_n04.json) | [2.18022+](sndinsnd/sndinsnd_n04.json) |
+| 5 | [2.34790+](ridinrid/ridinrid_n05.json) | [2.34111+](tidintid/tidintid_n05.json) | [2.37192+](sndinsnd/sndinsnd_n05.json) |
+| 6 | [2.35731+](ridinrid/ridinrid_n06.json) | [2.36687+](tidintid/tidintid_n06.json) | [2.37583+](sndinsnd/sndinsnd_n06.json) |
+| 7 | [2.56245+](ridinrid/ridinrid_n07.json) | [2.53947+](tidintid/tidintid_n07.json) | [2.55915+](sndinsnd/sndinsnd_n07.json) |
+| 8 | [2.63031+](ridinrid/ridinrid_n08.json) | [2.59679+](tidintid/tidintid_n08.json) | [2.59978+](sndinsnd/sndinsnd_n08.json) |
+| 9 | [2.90497+](ridinrid/ridinrid_n09.json) | [2.67369+](tidintid/tidintid_n09.json) | [2.68114+](sndinsnd/sndinsnd_n09.json) |
+| 10 | [2.91615+](ridinrid/ridinrid_n10.json) | [2.80567+](tidintid/tidintid_n10.json) | [2.77442+](sndinsnd/sndinsnd_n10.json) |
+| 11 | [2.91615+](ridinrid/ridinrid_n11.json) | [2.80925+](tidintid/tidintid_n11.json) | [2.83066+](sndinsnd/sndinsnd_n11.json) |
+| 12 | [2.91615+](ridinrid/ridinrid_n12.json) | [2.86767+](tidintid/tidintid_n12.json) | [2.83462+](sndinsnd/sndinsnd_n12.json) |
 | 13 | [2.91615+](ridinrid/ridinrid_n13.json) | [2.87196+](tidintid/tidintid_n13.json) | [2.89730+](sndinsnd/sndinsnd_n13.json) |
 | 14 | [3.04490+](ridinrid/ridinrid_n14.json) | [2.96886+](tidintid/tidintid_n14.json) | [3.02828+](sndinsnd/sndinsnd_n14.json) |
 | 15 | [3.10780+](ridinrid/ridinrid_n15.json) | [3.04437+](tidintid/tidintid_n15.json) | [3.09246+](sndinsnd/sndinsnd_n15.json) |
 | 16 | [3.15758+](ridinrid/ridinrid_n16.json) | [3.11157+](tidintid/tidintid_n16.json) | [3.14676+](sndinsnd/sndinsnd_n16.json) |
-| 17 | [3.24862+](ridinrid/ridinrid_n17.json) | [3.17259+](tidintid/tidintid_n17.json) | [3.23590+](sndinsnd/sndinsnd_n17.json) |
-| 18 | [3.30421+](ridinrid/ridinrid_n18.json) | [3.25529+](tidintid/tidintid_n18.json) | [3.26995+](sndinsnd/sndinsnd_n18.json) |
+| 17 | [3.24862+](ridinrid/ridinrid_n17.json) | [3.17259+](tidintid/tidintid_n17.json) | [3.21166+](sndinsnd/sndinsnd_n17.json) |
+| 18 | [3.30421+](ridinrid/ridinrid_n18.json) | [3.24877+](tidintid/tidintid_n18.json) | [3.26774+](sndinsnd/sndinsnd_n18.json) |
 | 19 | [3.36486+](ridinrid/ridinrid_n19.json) | [3.31435+](tidintid/tidintid_n19.json) | [3.34251+](sndinsnd/sndinsnd_n19.json) |
-| 20 | [3.47779+](ridinrid/ridinrid_n20.json) | [3.39013+](tidintid/tidintid_n20.json) | [3.41377+](sndinsnd/sndinsnd_n20.json) |
-| 21 | [3.54162+](ridinrid/ridinrid_n21.json) | [3.41327+](tidintid/tidintid_n21.json) | [3.44721+](sndinsnd/sndinsnd_n21.json) |
-| 22 | [3.56525+](ridinrid/ridinrid_n22.json) | [3.51645+](tidintid/tidintid_n22.json) | [3.53258+](sndinsnd/sndinsnd_n22.json) |
-| 23 | [3.65720+](ridinrid/ridinrid_n23.json) | [3.57161+](tidintid/tidintid_n23.json) | [3.61509+](sndinsnd/sndinsnd_n23.json) |
+| 20 | [3.47779+](ridinrid/ridinrid_n20.json) | [3.39013+](tidintid/tidintid_n20.json) | [3.41042+](sndinsnd/sndinsnd_n20.json) |
+| 21 | [3.54162+](ridinrid/ridinrid_n21.json) | [3.41327+](tidintid/tidintid_n21.json) | [3.43412+](sndinsnd/sndinsnd_n21.json) |
+| 22 | [3.56525+](ridinrid/ridinrid_n22.json) | [3.51645+](tidintid/tidintid_n22.json) | [3.53247+](sndinsnd/sndinsnd_n22.json) |
+| 23 | [3.65720+](ridinrid/ridinrid_n23.json) | [3.55292+](tidintid/tidintid_n23.json) | [3.60039+](sndinsnd/sndinsnd_n23.json) |
 | 24 | [3.66325+](ridinrid/ridinrid_n24.json) | [3.62395+](tidintid/tidintid_n24.json) | [3.66702+](sndinsnd/sndinsnd_n24.json) |
-| 25 | [3.73872+](ridinrid/ridinrid_n25.json) | [3.68744+](tidintid/tidintid_n25.json) | [3.69695+](sndinsnd/sndinsnd_n25.json) |
+| 25 | [3.73872+](ridinrid/ridinrid_n25.json) | [3.68403+](tidintid/tidintid_n25.json) | [3.68732+](sndinsnd/sndinsnd_n25.json) |
 | 26 | [3.78099+](ridinrid/ridinrid_n26.json) | [3.70497+](tidintid/tidintid_n26.json) | [3.73347+](sndinsnd/sndinsnd_n26.json) |
 | 27 | [3.78714+](ridinrid/ridinrid_n27.json) | [3.71337+](tidintid/tidintid_n27.json) | [3.75542+](sndinsnd/sndinsnd_n27.json) |
-| 28 | [3.81209+](ridinrid/ridinrid_n28.json) | [3.76254+](tidintid/tidintid_n28.json) | [3.80201+](sndinsnd/sndinsnd_n28.json) |
-| 29 | [3.85174+](ridinrid/ridinrid_n29.json) | [3.79954+](tidintid/tidintid_n29.json) | [3.84539+](sndinsnd/sndinsnd_n29.json) |
-| 30 | [3.88744+](ridinrid/ridinrid_n30.json) | [3.84614+](tidintid/tidintid_n30.json) | [3.87139+](sndinsnd/sndinsnd_n30.json) |
+| 28 | [3.81209+](ridinrid/ridinrid_n28.json) | [3.76254+](tidintid/tidintid_n28.json) | [3.80127+](sndinsnd/sndinsnd_n28.json) |
+| 29 | [3.85174+](ridinrid/ridinrid_n29.json) | [3.79954+](tidintid/tidintid_n29.json) | [3.84538+](sndinsnd/sndinsnd_n29.json) |
+| 30 | [3.88744+](ridinrid/ridinrid_n30.json) | [3.84614+](tidintid/tidintid_n30.json) | [3.86799+](sndinsnd/sndinsnd_n30.json) |
 | 31 | [3.93466+](ridinrid/ridinrid_n31.json) | [3.86927+](tidintid/tidintid_n31.json) | [3.89982+](sndinsnd/sndinsnd_n31.json) |
 | 32 | [3.96262+](ridinrid/ridinrid_n32.json) | [3.91139+](tidintid/tidintid_n32.json) | [3.94122+](sndinsnd/sndinsnd_n32.json) |
-| 33 | [3.99991+](ridinrid/ridinrid_n33.json) | [3.96983+](tidintid/tidintid_n33.json) | [3.96621+](sndinsnd/sndinsnd_n33.json) |
-| 34 | [4.02424+](ridinrid/ridinrid_n34.json) | [3.99110+](tidintid/tidintid_n34.json) | [3.98651+](sndinsnd/sndinsnd_n34.json) |
-| 35 | [4.05947+](ridinrid/ridinrid_n35.json) | [4.01029+](tidintid/tidintid_n35.json) | [4.05552+](sndinsnd/sndinsnd_n35.json) |
-| 36 | [4.08341+](ridinrid/ridinrid_n36.json) | [4.05664+](tidintid/tidintid_n36.json) | [4.09689+](sndinsnd/sndinsnd_n36.json) |
+| 33 | [3.99991+](ridinrid/ridinrid_n33.json) | [3.96728+](tidintid/tidintid_n33.json) | [3.96621+](sndinsnd/sndinsnd_n33.json) |
+| 34 | [4.02424+](ridinrid/ridinrid_n34.json) | [3.99110+](tidintid/tidintid_n34.json) | [3.97962+](sndinsnd/sndinsnd_n34.json) |
+| 35 | [4.05947+](ridinrid/ridinrid_n35.json) | [4.01029+](tidintid/tidintid_n35.json) | [4.01756+](sndinsnd/sndinsnd_n35.json) |
+| 36 | [4.08341+](ridinrid/ridinrid_n36.json) | [4.05658+](tidintid/tidintid_n36.json) | [4.09081+](sndinsnd/sndinsnd_n36.json) |
 | 37 | [4.09293+](ridinrid/ridinrid_n37.json) | [4.07013+](tidintid/tidintid_n37.json) | [4.10594+](sndinsnd/sndinsnd_n37.json) |
-| 38 | [4.09293+](ridinrid/ridinrid_n38.json) | [4.13847+](tidintid/tidintid_n38.json) | [4.12521+](sndinsnd/sndinsnd_n38.json) |
-| 39 | [4.20623+](ridinrid/ridinrid_n39.json) | [4.14224+](tidintid/tidintid_n39.json) | [4.19139+](sndinsnd/sndinsnd_n39.json) |
+| 38 | [4.09293+](ridinrid/ridinrid_n38.json) | [4.08429+](tidintid/tidintid_n38.json) | [4.11347+](sndinsnd/sndinsnd_n38.json) |
+| 39 | [4.20623+](ridinrid/ridinrid_n39.json) | [4.12391+](tidintid/tidintid_n39.json) | [4.17098+](sndinsnd/sndinsnd_n39.json) |
 | 40 | [4.22547+](ridinrid/ridinrid_n40.json) | [4.17318+](tidintid/tidintid_n40.json) | [4.19445+](sndinsnd/sndinsnd_n40.json) |
 
 ## Catalan solids
 
 | n | Triakis tetrahedra in a triakis tetrahedron | Rhombic dodecahedra in a rhombic dodecahedron | Triakis octahedra in a triakis octahedron | Tetrakis hexahedra in a tetrakis hexahedron | Deltoidal icositetrahedra in a deltoidal icositetrahedron |
 |---:|---|---|---|---|---|
-| 2 | [1.66666+](kttinktt/kttinktt_n02.json) ≈ 5/3 | [1.89379+](rdoinrdo/rdoinrdo_n02.json) | [1.97917+](ktoinkto/ktoinkto_n02.json) | [1.94751+](kthinkth/kthinkth_n02.json) | [1.94548+](ditindit/ditindit_n02.json) |
-| 3 | [1.66666+](kttinktt/kttinktt_n03.json) ≈ 5/3 | [2.00000+](rdoinrdo/rdoinrdo_n03.json) | [2.00000+](ktoinkto/ktoinkto_n03.json) | [2.00000+](kthinkth/kthinkth_n03.json) | [2.07398+](ditindit/ditindit_n03.json) |
+| 2 | [1.66666+](kttinktt/kttinktt_n02.json) ≈ 5/3 | [1.89379+](rdoinrdo/rdoinrdo_n02.json) | [1.97917+](ktoinkto/ktoinkto_n02.json) | [1.94751+](kthinkth/kthinkth_n02.json) | [1.93554+](ditindit/ditindit_n02.json) |
+| 3 | [1.66666+](kttinktt/kttinktt_n03.json) ≈ 5/3 | [2.00000+](rdoinrdo/rdoinrdo_n03.json) | [2.00000+](ktoinkto/ktoinkto_n03.json) | [2.00000+](kthinkth/kthinkth_n03.json) | [2.06644+](ditindit/ditindit_n03.json) |
 | 4 | [1.66666+](kttinktt/kttinktt_n04.json) ≈ 5/3 | [2.00000+](rdoinrdo/rdoinrdo_n04.json) | [2.00000+](ktoinkto/ktoinkto_n04.json) | [2.00000+](kthinkth/kthinkth_n04.json) | [2.20983+](ditindit/ditindit_n04.json) |
 | 5 | [2.14856+](kttinktt/kttinktt_n05.json) | [2.00000+](rdoinrdo/rdoinrdo_n05.json) | [2.00000+](ktoinkto/ktoinkto_n05.json) | [2.24309+](kthinkth/kthinkth_n05.json) | [2.32635+](ditindit/ditindit_n05.json) |
-| 6 | [2.34764+](kttinktt/kttinktt_n06.json) | [2.00000+](rdoinrdo/rdoinrdo_n06.json) | [2.00000+](ktoinkto/ktoinkto_n06.json) | [2.31947+](kthinkth/kthinkth_n06.json) | [2.35124+](ditindit/ditindit_n06.json) |
-| 7 | [2.40804+](kttinktt/kttinktt_n07.json) | [2.44205+](rdoinrdo/rdoinrdo_n07.json) | [2.37377+](ktoinkto/ktoinkto_n07.json) ≈ (10 + 3√2)/6 | [2.41665+](kthinkth/kthinkth_n07.json) | [2.83199+](ditindit/ditindit_n07.json) |
-| 8 | [2.50192+](kttinktt/kttinktt_n08.json) | [2.59002+](rdoinrdo/rdoinrdo_n08.json) | [2.53525+](ktoinkto/ktoinkto_n08.json) | [2.56773+](kthinkth/kthinkth_n08.json) | [2.87030+](ditindit/ditindit_n08.json) |
-| 9 | [2.60049+](kttinktt/kttinktt_n09.json) | [2.68080+](rdoinrdo/rdoinrdo_n09.json) | [2.61779+](ktoinkto/ktoinkto_n09.json) | [2.63396+](kthinkth/kthinkth_n09.json) | [2.88594+](ditindit/ditindit_n09.json) |
-| 10 | [2.66707+](kttinktt/kttinktt_n10.json) | [2.76195+](rdoinrdo/rdoinrdo_n10.json) | [2.78143+](ktoinkto/ktoinkto_n10.json) | [2.85221+](kthinkth/kthinkth_n10.json) | [2.88597+](ditindit/ditindit_n10.json) |
-| 11 | [2.70885+](kttinktt/kttinktt_n11.json) | [2.83892+](rdoinrdo/rdoinrdo_n11.json) | [2.80288+](ktoinkto/ktoinkto_n11.json) | [2.87197+](kthinkth/kthinkth_n11.json) | [2.93848+](ditindit/ditindit_n11.json) |
-| 12 | [2.78577+](kttinktt/kttinktt_n12.json) | [2.87787+](rdoinrdo/rdoinrdo_n12.json) | [2.89165+](ktoinkto/ktoinkto_n12.json) | [2.92329+](kthinkth/kthinkth_n12.json) | [2.99117+](ditindit/ditindit_n12.json) |
-| 13 | [2.82136+](kttinktt/kttinktt_n13.json) | [2.92370+](rdoinrdo/rdoinrdo_n13.json) | [2.98735+](ktoinkto/ktoinkto_n13.json) | [2.93186+](kthinkth/kthinkth_n13.json) | [3.01273+](ditindit/ditindit_n13.json) |
+| 6 | [2.34724+](kttinktt/kttinktt_n06.json) | [2.00000+](rdoinrdo/rdoinrdo_n06.json) | [2.00000+](ktoinkto/ktoinkto_n06.json) | [2.31947+](kthinkth/kthinkth_n06.json) | [2.34219+](ditindit/ditindit_n06.json) |
+| 7 | [2.40804+](kttinktt/kttinktt_n07.json) | [2.44096+](rdoinrdo/rdoinrdo_n07.json) ≈ (42 + 10√2)/23 | [2.37377+](ktoinkto/ktoinkto_n07.json) ≈ (10 + 3√2)/6 | [2.41665+](kthinkth/kthinkth_n07.json) | [2.60658+](ditindit/ditindit_n07.json) |
+| 8 | [2.50192+](kttinktt/kttinktt_n08.json) | [2.57678+](rdoinrdo/rdoinrdo_n08.json) | [2.53525+](ktoinkto/ktoinkto_n08.json) | [2.56431+](kthinkth/kthinkth_n08.json) | [2.69795+](ditindit/ditindit_n08.json) |
+| 9 | [2.56853+](kttinktt/kttinktt_n09.json) | [2.68080+](rdoinrdo/rdoinrdo_n09.json) | [2.61779+](ktoinkto/ktoinkto_n09.json) | [2.63396+](kthinkth/kthinkth_n09.json) | [2.72073+](ditindit/ditindit_n09.json) |
+| 10 | [2.63720+](kttinktt/kttinktt_n10.json) | [2.76195+](rdoinrdo/rdoinrdo_n10.json) | [2.77951+](ktoinkto/ktoinkto_n10.json) | [2.73890+](kthinkth/kthinkth_n10.json) | [2.80527+](ditindit/ditindit_n10.json) |
+| 11 | [2.70885+](kttinktt/kttinktt_n11.json) | [2.82595+](rdoinrdo/rdoinrdo_n11.json) | [2.80288+](ktoinkto/ktoinkto_n11.json) | [2.87197+](kthinkth/kthinkth_n11.json) | [2.93848+](ditindit/ditindit_n11.json) |
+| 12 | [2.78577+](kttinktt/kttinktt_n12.json) | [2.87691+](rdoinrdo/rdoinrdo_n12.json) | [2.84899+](ktoinkto/ktoinkto_n12.json) | [2.90680+](kthinkth/kthinkth_n12.json) | [2.97712+](ditindit/ditindit_n12.json) |
+| 13 | [2.80390+](kttinktt/kttinktt_n13.json) | [2.92370+](rdoinrdo/rdoinrdo_n13.json) | [2.98735+](ktoinkto/ktoinkto_n13.json) | [2.93186+](kthinkth/kthinkth_n13.json) | [3.01273+](ditindit/ditindit_n13.json) |
 | 14 | [2.85274+](kttinktt/kttinktt_n14.json) | [2.92653+](rdoinrdo/rdoinrdo_n14.json) | [3.00000+](ktoinkto/ktoinkto_n14.json) | [2.97092+](kthinkth/kthinkth_n14.json) | [3.03377+](ditindit/ditindit_n14.json) |
-| 15 | [3.06609+](kttinktt/kttinktt_n15.json) | [2.94982+](rdoinrdo/rdoinrdo_n15.json) | [3.00000+](ktoinkto/ktoinkto_n15.json) | [2.97809+](kthinkth/kthinkth_n15.json) | [3.07328+](ditindit/ditindit_n15.json) |
+| 15 | [3.06609+](kttinktt/kttinktt_n15.json) | [2.94914+](rdoinrdo/rdoinrdo_n15.json) | [3.00000+](ktoinkto/ktoinkto_n15.json) | [2.97809+](kthinkth/kthinkth_n15.json) | [3.07328+](ditindit/ditindit_n15.json) |
 | 16 | [3.07010+](kttinktt/kttinktt_n16.json) | [3.14126+](rdoinrdo/rdoinrdo_n16.json) | [3.00000+](ktoinkto/ktoinkto_n16.json) | [3.15081+](kthinkth/kthinkth_n16.json) | [3.19850+](ditindit/ditindit_n16.json) |
 | 17 | [3.09362+](kttinktt/kttinktt_n17.json) | [3.20376+](rdoinrdo/rdoinrdo_n17.json) | [3.00000+](ktoinkto/ktoinkto_n17.json) | [3.21139+](kthinkth/kthinkth_n17.json) | [3.21380+](ditindit/ditindit_n17.json) |
 | 18 | [3.17180+](kttinktt/kttinktt_n18.json) | [3.25077+](rdoinrdo/rdoinrdo_n18.json) | [3.00000+](ktoinkto/ktoinkto_n18.json) | [3.27978+](kthinkth/kthinkth_n18.json) | [3.24924+](ditindit/ditindit_n18.json) |
 | 19 | [3.22452+](kttinktt/kttinktt_n19.json) | [3.27041+](rdoinrdo/rdoinrdo_n19.json) | [3.00000+](ktoinkto/ktoinkto_n19.json) | [3.35937+](kthinkth/kthinkth_n19.json) | [3.27577+](ditindit/ditindit_n19.json) |
-| 20 | [3.26276+](kttinktt/kttinktt_n20.json) | [3.42964+](rdoinrdo/rdoinrdo_n20.json) | [3.26518+](ktoinkto/ktoinkto_n20.json) | [3.42481+](kthinkth/kthinkth_n20.json) | [3.36673+](ditindit/ditindit_n20.json) |
-| 21 | [3.30812+](kttinktt/kttinktt_n21.json) | [3.49240+](rdoinrdo/rdoinrdo_n21.json) | [3.42202+](ktoinkto/ktoinkto_n21.json) | [3.46584+](kthinkth/kthinkth_n21.json) | [3.38578+](ditindit/ditindit_n21.json) |
-| 22 | [3.39478+](kttinktt/kttinktt_n22.json) | [3.54638+](rdoinrdo/rdoinrdo_n22.json) | [3.43492+](ktoinkto/ktoinkto_n22.json) | [3.50206+](kthinkth/kthinkth_n22.json) | [3.46765+](ditindit/ditindit_n22.json) |
-| 23 | [3.42818+](kttinktt/kttinktt_n23.json) | [3.60046+](rdoinrdo/rdoinrdo_n23.json) | [3.47126+](ktoinkto/ktoinkto_n23.json) | [3.54919+](kthinkth/kthinkth_n23.json) | [3.52264+](ditindit/ditindit_n23.json) |
-| 24 | [3.50475+](kttinktt/kttinktt_n24.json) | [3.64148+](rdoinrdo/rdoinrdo_n24.json) | [3.52347+](ktoinkto/ktoinkto_n24.json) | [3.59751+](kthinkth/kthinkth_n24.json) | [3.60362+](ditindit/ditindit_n24.json) |
-| 25 | [3.51804+](kttinktt/kttinktt_n25.json) | [3.67169+](rdoinrdo/rdoinrdo_n25.json) | [3.56137+](ktoinkto/ktoinkto_n25.json) | [3.63493+](kthinkth/kthinkth_n25.json) | [3.67533+](ditindit/ditindit_n25.json) |
-| 26 | [3.54971+](kttinktt/kttinktt_n26.json) | [3.69559+](rdoinrdo/rdoinrdo_n26.json) | [3.59934+](ktoinkto/ktoinkto_n26.json) | [3.67701+](kthinkth/kthinkth_n26.json) | [3.73681+](ditindit/ditindit_n26.json) |
-| 27 | [3.57914+](kttinktt/kttinktt_n27.json) | [3.72785+](rdoinrdo/rdoinrdo_n27.json) | [3.63352+](ktoinkto/ktoinkto_n27.json) | [3.71093+](kthinkth/kthinkth_n27.json) | [3.80252+](ditindit/ditindit_n27.json) |
-| 28 | [3.63444+](kttinktt/kttinktt_n28.json) | [3.75118+](rdoinrdo/rdoinrdo_n28.json) | [3.66811+](ktoinkto/ktoinkto_n28.json) | [3.74209+](kthinkth/kthinkth_n28.json) | [3.83556+](ditindit/ditindit_n28.json) |
-| 29 | [3.70139+](kttinktt/kttinktt_n29.json) | [3.82982+](rdoinrdo/rdoinrdo_n29.json) | [3.71398+](ktoinkto/ktoinkto_n29.json) | [3.79587+](kthinkth/kthinkth_n29.json) | [3.87491+](ditindit/ditindit_n29.json) |
-| 30 | [3.73101+](kttinktt/kttinktt_n30.json) | [3.84932+](rdoinrdo/rdoinrdo_n30.json) | [3.75481+](ktoinkto/ktoinkto_n30.json) | [3.84478+](kthinkth/kthinkth_n30.json) | [3.89383+](ditindit/ditindit_n30.json) |
-| 31 | [3.75029+](kttinktt/kttinktt_n31.json) | [3.86075+](rdoinrdo/rdoinrdo_n31.json) | [3.77458+](ktoinkto/ktoinkto_n31.json) | [3.87212+](kthinkth/kthinkth_n31.json) | [3.92729+](ditindit/ditindit_n31.json) |
-| 32 | [3.79208+](kttinktt/kttinktt_n32.json) | [3.93049+](rdoinrdo/rdoinrdo_n32.json) | [3.78599+](ktoinkto/ktoinkto_n32.json) | [3.92183+](kthinkth/kthinkth_n32.json) | [3.96094+](ditindit/ditindit_n32.json) |
-| 33 | [3.81902+](kttinktt/kttinktt_n33.json) | [3.96045+](rdoinrdo/rdoinrdo_n33.json) | [3.82256+](ktoinkto/ktoinkto_n33.json) | [3.93490+](kthinkth/kthinkth_n33.json) | [3.99806+](ditindit/ditindit_n33.json) |
-| 34 | [3.85866+](kttinktt/kttinktt_n34.json) | [4.00000+](rdoinrdo/rdoinrdo_n34.json) | [3.85795+](ktoinkto/ktoinkto_n34.json) | [3.97683+](kthinkth/kthinkth_n34.json) | [4.00742+](ditindit/ditindit_n34.json) |
-| 35 | [3.88183+](kttinktt/kttinktt_n35.json) | [4.01474+](rdoinrdo/rdoinrdo_n35.json) | [3.94376+](ktoinkto/ktoinkto_n35.json) | [4.01978+](kthinkth/kthinkth_n35.json) | [4.04373+](ditindit/ditindit_n35.json) |
-| 36 | [3.90945+](kttinktt/kttinktt_n36.json) | [4.05015+](rdoinrdo/rdoinrdo_n36.json) | [3.95878+](ktoinkto/ktoinkto_n36.json) | [4.06484+](kthinkth/kthinkth_n36.json) | [4.05851+](ditindit/ditindit_n36.json) |
-| 37 | [3.91531+](kttinktt/kttinktt_n37.json) | [4.09612+](rdoinrdo/rdoinrdo_n37.json) | [3.97975+](ktoinkto/ktoinkto_n37.json) | [4.09353+](kthinkth/kthinkth_n37.json) | [4.07702+](ditindit/ditindit_n37.json) |
-| 38 | [3.96592+](kttinktt/kttinktt_n38.json) | [4.13602+](rdoinrdo/rdoinrdo_n38.json) | [3.99061+](ktoinkto/ktoinkto_n38.json) | [4.12317+](kthinkth/kthinkth_n38.json) | [4.08137+](ditindit/ditindit_n38.json) |
-| 39 | [3.97159+](kttinktt/kttinktt_n39.json) | [4.15452+](rdoinrdo/rdoinrdo_n39.json) | [4.00000+](ktoinkto/ktoinkto_n39.json) | [4.16352+](kthinkth/kthinkth_n39.json) | [4.16950+](ditindit/ditindit_n39.json) |
-| 40 | [4.00804+](kttinktt/kttinktt_n40.json) | [4.16273+](rdoinrdo/rdoinrdo_n40.json) | [4.01666+](ktoinkto/ktoinkto_n40.json) | [4.19540+](kthinkth/kthinkth_n40.json) | [4.23480+](ditindit/ditindit_n40.json) |
+| 20 | [3.26230+](kttinktt/kttinktt_n20.json) | [3.42964+](rdoinrdo/rdoinrdo_n20.json) | [3.26518+](ktoinkto/ktoinkto_n20.json) | [3.42294+](kthinkth/kthinkth_n20.json) | [3.36673+](ditindit/ditindit_n20.json) |
+| 21 | [3.30625+](kttinktt/kttinktt_n21.json) | [3.48295+](rdoinrdo/rdoinrdo_n21.json) | [3.42202+](ktoinkto/ktoinkto_n21.json) | [3.46584+](kthinkth/kthinkth_n21.json) | [3.38578+](ditindit/ditindit_n21.json) |
+| 22 | [3.38144+](kttinktt/kttinktt_n22.json) | [3.54116+](rdoinrdo/rdoinrdo_n22.json) | [3.43330+](ktoinkto/ktoinkto_n22.json) | [3.50206+](kthinkth/kthinkth_n22.json) | [3.46765+](ditindit/ditindit_n22.json) |
+| 23 | [3.42143+](kttinktt/kttinktt_n23.json) | [3.59090+](rdoinrdo/rdoinrdo_n23.json) | [3.47116+](ktoinkto/ktoinkto_n23.json) | [3.54919+](kthinkth/kthinkth_n23.json) | [3.52264+](ditindit/ditindit_n23.json) |
+| 24 | [3.48204+](kttinktt/kttinktt_n24.json) | [3.61944+](rdoinrdo/rdoinrdo_n24.json) | [3.52347+](ktoinkto/ktoinkto_n24.json) | [3.59751+](kthinkth/kthinkth_n24.json) | [3.60362+](ditindit/ditindit_n24.json) |
+| 25 | [3.51804+](kttinktt/kttinktt_n25.json) | [3.67169+](rdoinrdo/rdoinrdo_n25.json) | [3.56046+](ktoinkto/ktoinkto_n25.json) | [3.63387+](kthinkth/kthinkth_n25.json) | [3.67533+](ditindit/ditindit_n25.json) |
+| 26 | [3.54965+](kttinktt/kttinktt_n26.json) | [3.69559+](rdoinrdo/rdoinrdo_n26.json) | [3.59906+](ktoinkto/ktoinkto_n26.json) | [3.67240+](kthinkth/kthinkth_n26.json) | [3.73681+](ditindit/ditindit_n26.json) |
+| 27 | [3.57865+](kttinktt/kttinktt_n27.json) | [3.72602+](rdoinrdo/rdoinrdo_n27.json) | [3.63352+](ktoinkto/ktoinkto_n27.json) | [3.71093+](kthinkth/kthinkth_n27.json) | [3.80252+](ditindit/ditindit_n27.json) |
+| 28 | [3.62805+](kttinktt/kttinktt_n28.json) | [3.75118+](rdoinrdo/rdoinrdo_n28.json) | [3.66811+](ktoinkto/ktoinkto_n28.json) | [3.74209+](kthinkth/kthinkth_n28.json) | [3.83556+](ditindit/ditindit_n28.json) |
+| 29 | [3.67934+](kttinktt/kttinktt_n29.json) | [3.82982+](rdoinrdo/rdoinrdo_n29.json) | [3.71196+](ktoinkto/ktoinkto_n29.json) | [3.79587+](kthinkth/kthinkth_n29.json) | [3.87491+](ditindit/ditindit_n29.json) |
+| 30 | [3.73101+](kttinktt/kttinktt_n30.json) | [3.84932+](rdoinrdo/rdoinrdo_n30.json) | [3.74782+](ktoinkto/ktoinkto_n30.json) | [3.84478+](kthinkth/kthinkth_n30.json) | [3.89383+](ditindit/ditindit_n30.json) |
+| 31 | [3.74851+](kttinktt/kttinktt_n31.json) | [3.86075+](rdoinrdo/rdoinrdo_n31.json) | [3.77458+](ktoinkto/ktoinkto_n31.json) | [3.86927+](kthinkth/kthinkth_n31.json) | [3.92729+](ditindit/ditindit_n31.json) |
+| 32 | [3.79144+](kttinktt/kttinktt_n32.json) | [3.90495+](rdoinrdo/rdoinrdo_n32.json) | [3.78523+](ktoinkto/ktoinkto_n32.json) | [3.92183+](kthinkth/kthinkth_n32.json) | [3.96094+](ditindit/ditindit_n32.json) |
+| 33 | [3.81707+](kttinktt/kttinktt_n33.json) | [3.96045+](rdoinrdo/rdoinrdo_n33.json) | [3.82256+](ktoinkto/ktoinkto_n33.json) | [3.93490+](kthinkth/kthinkth_n33.json) | [3.99806+](ditindit/ditindit_n33.json) |
+| 34 | [3.85839+](kttinktt/kttinktt_n34.json) | [4.00000+](rdoinrdo/rdoinrdo_n34.json) | [3.85435+](ktoinkto/ktoinkto_n34.json) | [3.97683+](kthinkth/kthinkth_n34.json) | [4.00742+](ditindit/ditindit_n34.json) |
+| 35 | [3.87790+](kttinktt/kttinktt_n35.json) | [4.01358+](rdoinrdo/rdoinrdo_n35.json) | [3.93084+](ktoinkto/ktoinkto_n35.json) | [4.01978+](kthinkth/kthinkth_n35.json) | [4.04373+](ditindit/ditindit_n35.json) |
+| 36 | [3.89107+](kttinktt/kttinktt_n36.json) | [4.05015+](rdoinrdo/rdoinrdo_n36.json) | [3.95878+](ktoinkto/ktoinkto_n36.json) | [4.06484+](kthinkth/kthinkth_n36.json) | [4.05851+](ditindit/ditindit_n36.json) |
+| 37 | [3.90336+](kttinktt/kttinktt_n37.json) | [4.08278+](rdoinrdo/rdoinrdo_n37.json) | [3.97975+](ktoinkto/ktoinkto_n37.json) | [4.09353+](kthinkth/kthinkth_n37.json) | [4.07702+](ditindit/ditindit_n37.json) |
+| 38 | [3.94740+](kttinktt/kttinktt_n38.json) | [4.12888+](rdoinrdo/rdoinrdo_n38.json) | [3.99061+](ktoinkto/ktoinkto_n38.json) | [4.12317+](kthinkth/kthinkth_n38.json) | [4.08137+](ditindit/ditindit_n38.json) |
+| 39 | [3.96641+](kttinktt/kttinktt_n39.json) | [4.15285+](rdoinrdo/rdoinrdo_n39.json) | [4.00000+](ktoinkto/ktoinkto_n39.json) | [4.16352+](kthinkth/kthinkth_n39.json) | [4.16950+](ditindit/ditindit_n39.json) |
+| 40 | [3.99650+](kttinktt/kttinktt_n40.json) | [4.15885+](rdoinrdo/rdoinrdo_n40.json) | [4.01666+](ktoinkto/ktoinkto_n40.json) | [4.19540+](kthinkth/kthinkth_n40.json) | [4.23480+](ditindit/ditindit_n40.json) |
 
 | n | Disdyakis dodecahedra in a disdyakis dodecahedron | Pentagonal icositetrahedra in a pentagonal icositetrahedron | Rhombic triacontahedra in a rhombic triacontahedron | Triakis icosahedra in a triakis icosahedron | Pentakis dodecahedra in a pentakis dodecahedron |
 |---:|---|---|---|---|---|
-| 2 | [1.94152+](ddoinddo/ddoinddo_n02.json) | [1.90997+](pitinpit/pitinpit_n02.json) | [1.94815+](rtcinrtc/rtcinrtc_n02.json) | [1.99179+](ktiinkti/ktiinkti_n02.json) | [1.97730+](pkdinpkd/pkdinpkd_n02.json) |
+| 2 | [1.93700+](ddoinddo/ddoinddo_n02.json) | [1.90997+](pitinpit/pitinpit_n02.json) | [1.94815+](rtcinrtc/rtcinrtc_n02.json) | [1.99179+](ktiinkti/ktiinkti_n02.json) | [1.97730+](pkdinpkd/pkdinpkd_n02.json) |
 | 3 | [2.09041+](ddoinddo/ddoinddo_n03.json) | [2.10724+](pitinpit/pitinpit_n03.json) | [2.00000+](rtcinrtc/rtcinrtc_n03.json) | [2.00000+](ktiinkti/ktiinkti_n03.json) | [2.10515+](pkdinpkd/pkdinpkd_n03.json) |
 | 4 | [2.16373+](ddoinddo/ddoinddo_n04.json) | [2.20400+](pitinpit/pitinpit_n04.json) | [2.14589+](rtcinrtc/rtcinrtc_n04.json) ≈ (11 - 3√5)/2 | [2.14589+](ktiinkti/ktiinkti_n04.json) ≈ (11 - 3√5)/2 | [2.17151+](pkdinpkd/pkdinpkd_n04.json) |
-| 5 | [2.26002+](ddoinddo/ddoinddo_n05.json) | [2.31515+](pitinpit/pitinpit_n05.json) | [2.30901+](rtcinrtc/rtcinrtc_n05.json) ≈ (7 + √5)/4 | [2.29772+](ktiinkti/ktiinkti_n05.json) | [2.36583+](pkdinpkd/pkdinpkd_n05.json) |
-| 6 | [2.27571+](ddoinddo/ddoinddo_n06.json) | [2.32790+](pitinpit/pitinpit_n06.json) | [2.38130+](rtcinrtc/rtcinrtc_n06.json) | [2.35792+](ktiinkti/ktiinkti_n06.json) | [2.40951+](pkdinpkd/pkdinpkd_n06.json) |
-| 7 | [2.53593+](ddoinddo/ddoinddo_n07.json) | [2.55986+](pitinpit/pitinpit_n07.json) | [2.51759+](rtcinrtc/rtcinrtc_n07.json) | [2.50231+](ktiinkti/ktiinkti_n07.json) | [2.55127+](pkdinpkd/pkdinpkd_n07.json) |
-| 8 | [2.61757+](ddoinddo/ddoinddo_n08.json) | [2.62072+](pitinpit/pitinpit_n08.json) | [2.59476+](rtcinrtc/rtcinrtc_n08.json) | [2.53404+](ktiinkti/ktiinkti_n08.json) | [2.58773+](pkdinpkd/pkdinpkd_n08.json) |
-| 9 | [2.66846+](ddoinddo/ddoinddo_n09.json) | [2.70875+](pitinpit/pitinpit_n09.json) | [2.61803+](rtcinrtc/rtcinrtc_n09.json) ≈ (3 + √5)/2 | [2.58869+](ktiinkti/ktiinkti_n09.json) | [2.70083+](pkdinpkd/pkdinpkd_n09.json) |
-| 10 | [2.88396+](ddoinddo/ddoinddo_n10.json) | [2.79744+](pitinpit/pitinpit_n10.json) | [2.70002+](rtcinrtc/rtcinrtc_n10.json) | [2.85259+](ktiinkti/ktiinkti_n10.json) | [2.86284+](pkdinpkd/pkdinpkd_n10.json) |
-| 11 | [2.93835+](ddoinddo/ddoinddo_n11.json) | [2.90912+](pitinpit/pitinpit_n11.json) | [2.70191+](rtcinrtc/rtcinrtc_n11.json) | [2.85524+](ktiinkti/ktiinkti_n11.json) | [2.86643+](pkdinpkd/pkdinpkd_n11.json) |
-| 12 | [2.94144+](ddoinddo/ddoinddo_n12.json) | [2.92461+](pitinpit/pitinpit_n12.json) | [2.71270+](rtcinrtc/rtcinrtc_n12.json) | [2.85882+](ktiinkti/ktiinkti_n12.json) | [2.86836+](pkdinpkd/pkdinpkd_n12.json) |
-| 13 | [2.95393+](ddoinddo/ddoinddo_n13.json) | [2.96472+](pitinpit/pitinpit_n13.json) | [2.85622+](rtcinrtc/rtcinrtc_n13.json) | [2.85882+](ktiinkti/ktiinkti_n13.json) | [2.97108+](pkdinpkd/pkdinpkd_n13.json) |
-| 14 | [2.96530+](ddoinddo/ddoinddo_n14.json) | [3.07687+](pitinpit/pitinpit_n14.json) | [3.03413+](rtcinrtc/rtcinrtc_n14.json) | [3.03208+](ktiinkti/ktiinkti_n14.json) | [3.06371+](pkdinpkd/pkdinpkd_n14.json) |
-| 15 | [2.98728+](ddoinddo/ddoinddo_n15.json) | [3.11863+](pitinpit/pitinpit_n15.json) | [3.09289+](rtcinrtc/rtcinrtc_n15.json) | [3.10254+](ktiinkti/ktiinkti_n15.json) | [3.11534+](pkdinpkd/pkdinpkd_n15.json) |
-| 16 | [3.16172+](ddoinddo/ddoinddo_n16.json) | [3.18270+](pitinpit/pitinpit_n16.json) | [3.16821+](rtcinrtc/rtcinrtc_n16.json) | [3.15299+](ktiinkti/ktiinkti_n16.json) | [3.18228+](pkdinpkd/pkdinpkd_n16.json) |
-| 17 | [3.20737+](ddoinddo/ddoinddo_n17.json) | [3.23206+](pitinpit/pitinpit_n17.json) | [3.23616+](rtcinrtc/rtcinrtc_n17.json) | [3.22858+](ktiinkti/ktiinkti_n17.json) | [3.24818+](pkdinpkd/pkdinpkd_n17.json) |
+| 5 | [2.25074+](ddoinddo/ddoinddo_n05.json) | [2.31515+](pitinpit/pitinpit_n05.json) | [2.30901+](rtcinrtc/rtcinrtc_n05.json) ≈ (7 + √5)/4 | [2.28800+](ktiinkti/ktiinkti_n05.json) ≈ (39 + 2√5)/19 | [2.36460+](pkdinpkd/pkdinpkd_n05.json) |
+| 6 | [2.27571+](ddoinddo/ddoinddo_n06.json) | [2.32790+](pitinpit/pitinpit_n06.json) | [2.38130+](rtcinrtc/rtcinrtc_n06.json) | [2.35792+](ktiinkti/ktiinkti_n06.json) | [2.40860+](pkdinpkd/pkdinpkd_n06.json) |
+| 7 | [2.53593+](ddoinddo/ddoinddo_n07.json) | [2.55934+](pitinpit/pitinpit_n07.json) | [2.51759+](rtcinrtc/rtcinrtc_n07.json) | [2.50231+](ktiinkti/ktiinkti_n07.json) | [2.55127+](pkdinpkd/pkdinpkd_n07.json) |
+| 8 | [2.61604+](ddoinddo/ddoinddo_n08.json) | [2.62072+](pitinpit/pitinpit_n08.json) | [2.58972+](rtcinrtc/rtcinrtc_n08.json) | [2.53404+](ktiinkti/ktiinkti_n08.json) | [2.58773+](pkdinpkd/pkdinpkd_n08.json) |
+| 9 | [2.66818+](ddoinddo/ddoinddo_n09.json) | [2.70875+](pitinpit/pitinpit_n09.json) | [2.61803+](rtcinrtc/rtcinrtc_n09.json) ≈ (3 + √5)/2 | [2.58869+](ktiinkti/ktiinkti_n09.json) | [2.70083+](pkdinpkd/pkdinpkd_n09.json) |
+| 10 | [2.88396+](ddoinddo/ddoinddo_n10.json) | [2.79348+](pitinpit/pitinpit_n10.json) | [2.66995+](rtcinrtc/rtcinrtc_n10.json) | [2.85102+](ktiinkti/ktiinkti_n10.json) | [2.86284+](pkdinpkd/pkdinpkd_n10.json) |
+| 11 | [2.93417+](ddoinddo/ddoinddo_n11.json) | [2.90881+](pitinpit/pitinpit_n11.json) | [2.70191+](rtcinrtc/rtcinrtc_n11.json) | [2.85524+](ktiinkti/ktiinkti_n11.json) | [2.86643+](pkdinpkd/pkdinpkd_n11.json) |
+| 12 | [2.93493+](ddoinddo/ddoinddo_n12.json) | [2.92461+](pitinpit/pitinpit_n12.json) | [2.71270+](rtcinrtc/rtcinrtc_n12.json) | [2.85882+](ktiinkti/ktiinkti_n12.json) | [2.86836+](pkdinpkd/pkdinpkd_n12.json) |
+| 13 | [2.95393+](ddoinddo/ddoinddo_n13.json) | [2.96472+](pitinpit/pitinpit_n13.json) | [2.85622+](rtcinrtc/rtcinrtc_n13.json) | [2.85882+](ktiinkti/ktiinkti_n13.json) | [2.96926+](pkdinpkd/pkdinpkd_n13.json) |
+| 14 | [2.96530+](ddoinddo/ddoinddo_n14.json) | [3.07687+](pitinpit/pitinpit_n14.json) | [3.03413+](rtcinrtc/rtcinrtc_n14.json) | [3.03193+](ktiinkti/ktiinkti_n14.json) | [3.06371+](pkdinpkd/pkdinpkd_n14.json) |
+| 15 | [2.98728+](ddoinddo/ddoinddo_n15.json) | [3.11863+](pitinpit/pitinpit_n15.json) | [3.09241+](rtcinrtc/rtcinrtc_n15.json) | [3.10254+](ktiinkti/ktiinkti_n15.json) | [3.11534+](pkdinpkd/pkdinpkd_n15.json) |
+| 16 | [3.16172+](ddoinddo/ddoinddo_n16.json) | [3.18270+](pitinpit/pitinpit_n16.json) | [3.16821+](rtcinrtc/rtcinrtc_n16.json) | [3.15228+](ktiinkti/ktiinkti_n16.json) | [3.17010+](pkdinpkd/pkdinpkd_n16.json) |
+| 17 | [3.20737+](ddoinddo/ddoinddo_n17.json) | [3.23190+](pitinpit/pitinpit_n17.json) | [3.23615+](rtcinrtc/rtcinrtc_n17.json) | [3.22835+](ktiinkti/ktiinkti_n17.json) | [3.24155+](pkdinpkd/pkdinpkd_n17.json) |
 | 18 | [3.23226+](ddoinddo/ddoinddo_n18.json) | [3.26793+](pitinpit/pitinpit_n18.json) | [3.27903+](rtcinrtc/rtcinrtc_n18.json) | [3.23230+](ktiinkti/ktiinkti_n18.json) | [3.28607+](pkdinpkd/pkdinpkd_n18.json) |
-| 19 | [3.28528+](ddoinddo/ddoinddo_n19.json) | [3.33224+](pitinpit/pitinpit_n19.json) | [3.35902+](rtcinrtc/rtcinrtc_n19.json) | [3.32642+](ktiinkti/ktiinkti_n19.json) | [3.36295+](pkdinpkd/pkdinpkd_n19.json) |
-| 20 | [3.34603+](ddoinddo/ddoinddo_n20.json) | [3.42011+](pitinpit/pitinpit_n20.json) | [3.42629+](rtcinrtc/rtcinrtc_n20.json) | [3.40721+](ktiinkti/ktiinkti_n20.json) | [3.43892+](pkdinpkd/pkdinpkd_n20.json) |
-| 21 | [3.38842+](ddoinddo/ddoinddo_n21.json) | [3.48033+](pitinpit/pitinpit_n21.json) | [3.48549+](rtcinrtc/rtcinrtc_n21.json) | [3.47874+](ktiinkti/ktiinkti_n21.json) | [3.46866+](pkdinpkd/pkdinpkd_n21.json) |
-| 22 | [3.50684+](ddoinddo/ddoinddo_n22.json) | [3.51919+](pitinpit/pitinpit_n22.json) | [3.53220+](rtcinrtc/rtcinrtc_n22.json) | [3.50266+](ktiinkti/ktiinkti_n22.json) | [3.53028+](pkdinpkd/pkdinpkd_n22.json) |
-| 23 | [3.60882+](ddoinddo/ddoinddo_n23.json) | [3.57050+](pitinpit/pitinpit_n23.json) | [3.55873+](rtcinrtc/rtcinrtc_n23.json) | [3.56428+](ktiinkti/ktiinkti_n23.json) | [3.57488+](pkdinpkd/pkdinpkd_n23.json) |
-| 24 | [3.64293+](ddoinddo/ddoinddo_n24.json) | [3.62048+](pitinpit/pitinpit_n24.json) | [3.65798+](rtcinrtc/rtcinrtc_n24.json) | [3.59858+](ktiinkti/ktiinkti_n24.json) | [3.64159+](pkdinpkd/pkdinpkd_n24.json) |
-| 25 | [3.69895+](ddoinddo/ddoinddo_n25.json) | [3.68138+](pitinpit/pitinpit_n25.json) | [3.66416+](rtcinrtc/rtcinrtc_n25.json) | [3.66599+](ktiinkti/ktiinkti_n25.json) | [3.72207+](pkdinpkd/pkdinpkd_n25.json) |
-| 26 | [3.75967+](ddoinddo/ddoinddo_n26.json) | [3.70805+](pitinpit/pitinpit_n26.json) | [3.70780+](rtcinrtc/rtcinrtc_n26.json) | [3.72063+](ktiinkti/ktiinkti_n26.json) | [3.74280+](pkdinpkd/pkdinpkd_n26.json) |
-| 27 | [3.77671+](ddoinddo/ddoinddo_n27.json) | [3.74162+](pitinpit/pitinpit_n27.json) | [3.75321+](rtcinrtc/rtcinrtc_n27.json) | [3.73813+](ktiinkti/ktiinkti_n27.json) | [3.76501+](pkdinpkd/pkdinpkd_n27.json) |
-| 28 | [3.80046+](ddoinddo/ddoinddo_n28.json) | [3.79848+](pitinpit/pitinpit_n28.json) | [3.78962+](rtcinrtc/rtcinrtc_n28.json) | [3.76068+](ktiinkti/ktiinkti_n28.json) | [3.81778+](pkdinpkd/pkdinpkd_n28.json) |
-| 29 | [3.84915+](ddoinddo/ddoinddo_n29.json) | [3.81923+](pitinpit/pitinpit_n29.json) | [3.81751+](rtcinrtc/rtcinrtc_n29.json) | [3.80196+](ktiinkti/ktiinkti_n29.json) | [3.87701+](pkdinpkd/pkdinpkd_n29.json) |
-| 30 | [3.86307+](ddoinddo/ddoinddo_n30.json) | [3.85247+](pitinpit/pitinpit_n30.json) | [3.85226+](rtcinrtc/rtcinrtc_n30.json) | [3.81071+](ktiinkti/ktiinkti_n30.json) | [3.87760+](pkdinpkd/pkdinpkd_n30.json) |
-| 31 | [3.91357+](ddoinddo/ddoinddo_n31.json) | [3.88268+](pitinpit/pitinpit_n31.json) | [3.86486+](rtcinrtc/rtcinrtc_n31.json) | [3.83275+](ktiinkti/ktiinkti_n31.json) | [3.89120+](pkdinpkd/pkdinpkd_n31.json) |
-| 32 | [3.94493+](ddoinddo/ddoinddo_n32.json) | [3.95606+](pitinpit/pitinpit_n32.json) | [3.87252+](rtcinrtc/rtcinrtc_n32.json) | [3.83343+](ktiinkti/ktiinkti_n32.json) | [3.90116+](pkdinpkd/pkdinpkd_n32.json) |
-| 33 | [3.96992+](ddoinddo/ddoinddo_n33.json) | [3.97721+](pitinpit/pitinpit_n33.json) | [3.87461+](rtcinrtc/rtcinrtc_n33.json) | [3.84851+](ktiinkti/ktiinkti_n33.json) | [3.91070+](pkdinpkd/pkdinpkd_n33.json) |
-| 34 | [4.02564+](ddoinddo/ddoinddo_n34.json) | [3.99159+](pitinpit/pitinpit_n34.json) | [3.88610+](rtcinrtc/rtcinrtc_n34.json) | [3.85014+](ktiinkti/ktiinkti_n34.json) | [3.94644+](pkdinpkd/pkdinpkd_n34.json) |
-| 35 | [4.06107+](ddoinddo/ddoinddo_n35.json) | [4.00937+](pitinpit/pitinpit_n35.json) | [3.88610+](rtcinrtc/rtcinrtc_n35.json) | [3.86011+](ktiinkti/ktiinkti_n35.json) | [3.96320+](pkdinpkd/pkdinpkd_n35.json) |
-| 36 | [4.06396+](ddoinddo/ddoinddo_n36.json) | [4.02094+](pitinpit/pitinpit_n36.json) | [4.00000+](rtcinrtc/rtcinrtc_n36.json) | [3.98488+](ktiinkti/ktiinkti_n36.json) | [4.02059+](pkdinpkd/pkdinpkd_n36.json) |
-| 37 | [4.09166+](ddoinddo/ddoinddo_n37.json) | [4.12494+](pitinpit/pitinpit_n37.json) | [4.03637+](rtcinrtc/rtcinrtc_n37.json) | [4.06243+](ktiinkti/ktiinkti_n37.json) | [4.03278+](pkdinpkd/pkdinpkd_n37.json) |
-| 38 | [4.11381+](ddoinddo/ddoinddo_n38.json) | [4.17542+](pitinpit/pitinpit_n38.json) | [4.03758+](rtcinrtc/rtcinrtc_n38.json) | [4.11938+](ktiinkti/ktiinkti_n38.json) | [4.03278+](pkdinpkd/pkdinpkd_n38.json) |
-| 39 | [4.15036+](ddoinddo/ddoinddo_n39.json) | [4.20873+](pitinpit/pitinpit_n39.json) | [4.18039+](rtcinrtc/rtcinrtc_n39.json) | [4.16007+](ktiinkti/ktiinkti_n39.json) | [4.18380+](pkdinpkd/pkdinpkd_n39.json) |
-| 40 | [4.23173+](ddoinddo/ddoinddo_n40.json) | [4.24875+](pitinpit/pitinpit_n40.json) | [4.22054+](rtcinrtc/rtcinrtc_n40.json) | [4.19692+](ktiinkti/ktiinkti_n40.json) | [4.22946+](pkdinpkd/pkdinpkd_n40.json) |
+| 19 | [3.28528+](ddoinddo/ddoinddo_n19.json) | [3.33224+](pitinpit/pitinpit_n19.json) | [3.35902+](rtcinrtc/rtcinrtc_n19.json) | [3.31985+](ktiinkti/ktiinkti_n19.json) | [3.36295+](pkdinpkd/pkdinpkd_n19.json) |
+| 20 | [3.34603+](ddoinddo/ddoinddo_n20.json) | [3.42010+](pitinpit/pitinpit_n20.json) | [3.42374+](rtcinrtc/rtcinrtc_n20.json) | [3.40218+](ktiinkti/ktiinkti_n20.json) | [3.43729+](pkdinpkd/pkdinpkd_n20.json) |
+| 21 | [3.38842+](ddoinddo/ddoinddo_n21.json) | [3.44510+](pitinpit/pitinpit_n21.json) | [3.47792+](rtcinrtc/rtcinrtc_n21.json) | [3.46915+](ktiinkti/ktiinkti_n21.json) | [3.46670+](pkdinpkd/pkdinpkd_n21.json) |
+| 22 | [3.50684+](ddoinddo/ddoinddo_n22.json) | [3.51919+](pitinpit/pitinpit_n22.json) | [3.53220+](rtcinrtc/rtcinrtc_n22.json) | [3.48543+](ktiinkti/ktiinkti_n22.json) | [3.52689+](pkdinpkd/pkdinpkd_n22.json) |
+| 23 | [3.60882+](ddoinddo/ddoinddo_n23.json) | [3.57050+](pitinpit/pitinpit_n23.json) | [3.55119+](rtcinrtc/rtcinrtc_n23.json) | [3.56349+](ktiinkti/ktiinkti_n23.json) | [3.57488+](pkdinpkd/pkdinpkd_n23.json) |
+| 24 | [3.64293+](ddoinddo/ddoinddo_n24.json) | [3.62048+](pitinpit/pitinpit_n24.json) | [3.65798+](rtcinrtc/rtcinrtc_n24.json) | [3.59793+](ktiinkti/ktiinkti_n24.json) | [3.64144+](pkdinpkd/pkdinpkd_n24.json) |
+| 25 | [3.69895+](ddoinddo/ddoinddo_n25.json) | [3.67218+](pitinpit/pitinpit_n25.json) | [3.66228+](rtcinrtc/rtcinrtc_n25.json) | [3.66552+](ktiinkti/ktiinkti_n25.json) | [3.71135+](pkdinpkd/pkdinpkd_n25.json) |
+| 26 | [3.75967+](ddoinddo/ddoinddo_n26.json) | [3.70138+](pitinpit/pitinpit_n26.json) | [3.70780+](rtcinrtc/rtcinrtc_n26.json) | [3.72026+](ktiinkti/ktiinkti_n26.json) | [3.73919+](pkdinpkd/pkdinpkd_n26.json) |
+| 27 | [3.77671+](ddoinddo/ddoinddo_n27.json) | [3.74162+](pitinpit/pitinpit_n27.json) | [3.75301+](rtcinrtc/rtcinrtc_n27.json) | [3.73813+](ktiinkti/ktiinkti_n27.json) | [3.75945+](pkdinpkd/pkdinpkd_n27.json) |
+| 28 | [3.80046+](ddoinddo/ddoinddo_n28.json) | [3.79583+](pitinpit/pitinpit_n28.json) | [3.78530+](rtcinrtc/rtcinrtc_n28.json) | [3.76068+](ktiinkti/ktiinkti_n28.json) | [3.81778+](pkdinpkd/pkdinpkd_n28.json) |
+| 29 | [3.84915+](ddoinddo/ddoinddo_n29.json) | [3.81923+](pitinpit/pitinpit_n29.json) | [3.81263+](rtcinrtc/rtcinrtc_n29.json) | [3.78251+](ktiinkti/ktiinkti_n29.json) | [3.87555+](pkdinpkd/pkdinpkd_n29.json) |
+| 30 | [3.86307+](ddoinddo/ddoinddo_n30.json) | [3.85247+](pitinpit/pitinpit_n30.json) | [3.85226+](rtcinrtc/rtcinrtc_n30.json) | [3.80798+](ktiinkti/ktiinkti_n30.json) | [3.87760+](pkdinpkd/pkdinpkd_n30.json) |
+| 31 | [3.91357+](ddoinddo/ddoinddo_n31.json) | [3.87497+](pitinpit/pitinpit_n31.json) | [3.86450+](rtcinrtc/rtcinrtc_n31.json) | [3.81786+](ktiinkti/ktiinkti_n31.json) | [3.89120+](pkdinpkd/pkdinpkd_n31.json) |
+| 32 | [3.94493+](ddoinddo/ddoinddo_n32.json) | [3.95606+](pitinpit/pitinpit_n32.json) | [3.87252+](rtcinrtc/rtcinrtc_n32.json) | [3.83341+](ktiinkti/ktiinkti_n32.json) | [3.89984+](pkdinpkd/pkdinpkd_n32.json) |
+| 33 | [3.96992+](ddoinddo/ddoinddo_n33.json) | [3.97721+](pitinpit/pitinpit_n33.json) | [3.87461+](rtcinrtc/rtcinrtc_n33.json) | [3.84827+](ktiinkti/ktiinkti_n33.json) | [3.91070+](pkdinpkd/pkdinpkd_n33.json) |
+| 34 | [4.02564+](ddoinddo/ddoinddo_n34.json) | [3.98963+](pitinpit/pitinpit_n34.json) | [3.88610+](rtcinrtc/rtcinrtc_n34.json) | [3.85014+](ktiinkti/ktiinkti_n34.json) | [3.94644+](pkdinpkd/pkdinpkd_n34.json) |
+| 35 | [4.06107+](ddoinddo/ddoinddo_n35.json) | [4.00937+](pitinpit/pitinpit_n35.json) | [3.88610+](rtcinrtc/rtcinrtc_n35.json) | [3.85952+](ktiinkti/ktiinkti_n35.json) | [3.95823+](pkdinpkd/pkdinpkd_n35.json) |
+| 36 | [4.06396+](ddoinddo/ddoinddo_n36.json) | [4.02094+](pitinpit/pitinpit_n36.json) | [3.96303+](rtcinrtc/rtcinrtc_n36.json) | [3.98349+](ktiinkti/ktiinkti_n36.json) | [4.01151+](pkdinpkd/pkdinpkd_n36.json) |
+| 37 | [4.09166+](ddoinddo/ddoinddo_n37.json) | [4.12142+](pitinpit/pitinpit_n37.json) | [4.03450+](rtcinrtc/rtcinrtc_n37.json) | [4.05799+](ktiinkti/ktiinkti_n37.json) | [4.03156+](pkdinpkd/pkdinpkd_n37.json) |
+| 38 | [4.11381+](ddoinddo/ddoinddo_n38.json) | [4.17542+](pitinpit/pitinpit_n38.json) | [4.03758+](rtcinrtc/rtcinrtc_n38.json) | [4.11221+](ktiinkti/ktiinkti_n38.json) | [4.03278+](pkdinpkd/pkdinpkd_n38.json) |
+| 39 | [4.15036+](ddoinddo/ddoinddo_n39.json) | [4.19955+](pitinpit/pitinpit_n39.json) | [4.17986+](rtcinrtc/rtcinrtc_n39.json) | [4.14635+](ktiinkti/ktiinkti_n39.json) | [4.18299+](pkdinpkd/pkdinpkd_n39.json) |
+| 40 | [4.23173+](ddoinddo/ddoinddo_n40.json) | [4.24875+](pitinpit/pitinpit_n40.json) | [4.22054+](rtcinrtc/rtcinrtc_n40.json) | [4.19072+](ktiinkti/ktiinkti_n40.json) | [4.22369+](pkdinpkd/pkdinpkd_n40.json) |
 
 | n | Deltoidal hexecontahedra in a deltoidal hexecontahedron | Disdyakis triacontahedra in a disdyakis triacontahedron | Pentagonal hexecontahedra in a pentagonal hexecontahedron |
 |---:|---|---|---|
 | 2 | [1.96616+](dhcindhc/dhcindhc_n02.json) | [1.95611+](dtcindtc/dtcindtc_n02.json) | [1.95734+](phcinphc/phcinphc_n02.json) |
-| 3 | [2.12222+](dhcindhc/dhcindhc_n03.json) | [2.08961+](dtcindtc/dtcindtc_n03.json) | [2.14550+](phcinphc/phcinphc_n03.json) |
-| 4 | [2.21328+](dhcindhc/dhcindhc_n04.json) | [2.19208+](dtcindtc/dtcindtc_n04.json) | [2.22385+](phcinphc/phcinphc_n04.json) |
+| 3 | [2.12126+](dhcindhc/dhcindhc_n03.json) | [2.08961+](dtcindtc/dtcindtc_n03.json) | [2.14550+](phcinphc/phcinphc_n03.json) |
+| 4 | [2.21227+](dhcindhc/dhcindhc_n04.json) | [2.19208+](dtcindtc/dtcindtc_n04.json) | [2.22385+](phcinphc/phcinphc_n04.json) |
 | 5 | [2.35891+](dhcindhc/dhcindhc_n05.json) | [2.35264+](dtcindtc/dtcindtc_n05.json) | [2.38734+](phcinphc/phcinphc_n05.json) |
 | 6 | [2.39951+](dhcindhc/dhcindhc_n06.json) | [2.40896+](dtcindtc/dtcindtc_n06.json) | [2.40297+](phcinphc/phcinphc_n06.json) |
 | 7 | [2.56497+](dhcindhc/dhcindhc_n07.json) | [2.54229+](dtcindtc/dtcindtc_n07.json) | [2.55896+](phcinphc/phcinphc_n07.json) |
-| 8 | [2.64198+](dhcindhc/dhcindhc_n08.json) | [2.62014+](dtcindtc/dtcindtc_n08.json) | [2.65606+](phcinphc/phcinphc_n08.json) |
+| 8 | [2.63801+](dhcindhc/dhcindhc_n08.json) | [2.62014+](dtcindtc/dtcindtc_n08.json) | [2.65606+](phcinphc/phcinphc_n08.json) |
 | 9 | [2.70681+](dhcindhc/dhcindhc_n09.json) | [2.67392+](dtcindtc/dtcindtc_n09.json) | [2.93362+](phcinphc/phcinphc_n09.json) |
 | 10 | [2.79728+](dhcindhc/dhcindhc_n10.json) | [2.87538+](dtcindtc/dtcindtc_n10.json) | [2.93362+](phcinphc/phcinphc_n10.json) |
 | 11 | [2.82809+](dhcindhc/dhcindhc_n11.json) | [2.87662+](dtcindtc/dtcindtc_n11.json) | [2.93362+](phcinphc/phcinphc_n11.json) |
 | 12 | [2.83392+](dhcindhc/dhcindhc_n12.json) | [2.87673+](dtcindtc/dtcindtc_n12.json) | [2.93362+](phcinphc/phcinphc_n12.json) |
 | 13 | [2.95001+](dhcindhc/dhcindhc_n13.json) | [2.87881+](dtcindtc/dtcindtc_n13.json) | [2.95984+](phcinphc/phcinphc_n13.json) |
-| 14 | [3.08724+](dhcindhc/dhcindhc_n14.json) | [3.06352+](dtcindtc/dtcindtc_n14.json) | [3.07734+](phcinphc/phcinphc_n14.json) |
+| 14 | [3.08679+](dhcindhc/dhcindhc_n14.json) | [3.06352+](dtcindtc/dtcindtc_n14.json) | [3.07734+](phcinphc/phcinphc_n14.json) |
 | 15 | [3.13227+](dhcindhc/dhcindhc_n15.json) | [3.11414+](dtcindtc/dtcindtc_n15.json) | [3.15037+](phcinphc/phcinphc_n15.json) |
 | 16 | [3.20327+](dhcindhc/dhcindhc_n16.json) | [3.18036+](dtcindtc/dtcindtc_n16.json) | [3.20757+](phcinphc/phcinphc_n16.json) |
-| 17 | [3.27905+](dhcindhc/dhcindhc_n17.json) | [3.24483+](dtcindtc/dtcindtc_n17.json) | [3.26637+](phcinphc/phcinphc_n17.json) |
+| 17 | [3.27606+](dhcindhc/dhcindhc_n17.json) | [3.24483+](dtcindtc/dtcindtc_n17.json) | [3.26637+](phcinphc/phcinphc_n17.json) |
 | 18 | [3.30471+](dhcindhc/dhcindhc_n18.json) | [3.28083+](dtcindtc/dtcindtc_n18.json) | [3.28576+](phcinphc/phcinphc_n18.json) |
 | 19 | [3.37907+](dhcindhc/dhcindhc_n19.json) | [3.36425+](dtcindtc/dtcindtc_n19.json) | [3.37171+](phcinphc/phcinphc_n19.json) |
-| 20 | [3.45952+](dhcindhc/dhcindhc_n20.json) | [3.48337+](dtcindtc/dtcindtc_n20.json) | [3.45464+](phcinphc/phcinphc_n20.json) |
-| 21 | [3.48521+](dhcindhc/dhcindhc_n21.json) | [3.52700+](dtcindtc/dtcindtc_n21.json) | [3.52032+](phcinphc/phcinphc_n21.json) |
-| 22 | [3.58618+](dhcindhc/dhcindhc_n22.json) | [3.55506+](dtcindtc/dtcindtc_n22.json) | [3.59893+](phcinphc/phcinphc_n22.json) |
+| 20 | [3.45622+](dhcindhc/dhcindhc_n20.json) | [3.48337+](dtcindtc/dtcindtc_n20.json) | [3.45464+](phcinphc/phcinphc_n20.json) |
+| 21 | [3.48352+](dhcindhc/dhcindhc_n21.json) | [3.52700+](dtcindtc/dtcindtc_n21.json) | [3.52032+](phcinphc/phcinphc_n21.json) |
+| 22 | [3.57955+](dhcindhc/dhcindhc_n22.json) | [3.55506+](dtcindtc/dtcindtc_n22.json) | [3.59893+](phcinphc/phcinphc_n22.json) |
 | 23 | [3.61128+](dhcindhc/dhcindhc_n23.json) | [3.59572+](dtcindtc/dtcindtc_n23.json) | [3.60945+](phcinphc/phcinphc_n23.json) |
 | 24 | [3.70581+](dhcindhc/dhcindhc_n24.json) | [3.64492+](dtcindtc/dtcindtc_n24.json) | [3.65884+](phcinphc/phcinphc_n24.json) |
-| 25 | [3.74386+](dhcindhc/dhcindhc_n25.json) | [3.69587+](dtcindtc/dtcindtc_n25.json) | [3.68167+](phcinphc/phcinphc_n25.json) |
-| 26 | [3.76062+](dhcindhc/dhcindhc_n26.json) | [3.70134+](dtcindtc/dtcindtc_n26.json) | [3.73395+](phcinphc/phcinphc_n26.json) |
+| 25 | [3.73981+](dhcindhc/dhcindhc_n25.json) | [3.69587+](dtcindtc/dtcindtc_n25.json) | [3.68167+](phcinphc/phcinphc_n25.json) |
+| 26 | [3.75743+](dhcindhc/dhcindhc_n26.json) | [3.70134+](dtcindtc/dtcindtc_n26.json) | [3.73395+](phcinphc/phcinphc_n26.json) |
 | 27 | [3.78862+](dhcindhc/dhcindhc_n27.json) | [3.75678+](dtcindtc/dtcindtc_n27.json) | [3.79950+](phcinphc/phcinphc_n27.json) |
-| 28 | [3.84312+](dhcindhc/dhcindhc_n28.json) | [3.80174+](dtcindtc/dtcindtc_n28.json) | [3.83646+](phcinphc/phcinphc_n28.json) |
-| 29 | [3.88130+](dhcindhc/dhcindhc_n29.json) | [3.81747+](dtcindtc/dtcindtc_n29.json) | [3.85857+](phcinphc/phcinphc_n29.json) |
+| 28 | [3.84312+](dhcindhc/dhcindhc_n28.json) | [3.80144+](dtcindtc/dtcindtc_n28.json) | [3.83646+](phcinphc/phcinphc_n28.json) |
+| 29 | [3.87064+](dhcindhc/dhcindhc_n29.json) | [3.81747+](dtcindtc/dtcindtc_n29.json) | [3.85857+](phcinphc/phcinphc_n29.json) |
 | 30 | [3.90878+](dhcindhc/dhcindhc_n30.json) | [3.85824+](dtcindtc/dtcindtc_n30.json) | [3.89314+](phcinphc/phcinphc_n30.json) |
 | 31 | [3.94213+](dhcindhc/dhcindhc_n31.json) | [3.88461+](dtcindtc/dtcindtc_n31.json) | [3.92591+](phcinphc/phcinphc_n31.json) |
-| 32 | [3.97431+](dhcindhc/dhcindhc_n32.json) | [3.89994+](dtcindtc/dtcindtc_n32.json) | [3.96797+](phcinphc/phcinphc_n32.json) |
-| 33 | [4.01008+](dhcindhc/dhcindhc_n33.json) | [3.91136+](dtcindtc/dtcindtc_n33.json) | [3.97916+](phcinphc/phcinphc_n33.json) |
-| 34 | [4.05814+](dhcindhc/dhcindhc_n34.json) | [3.91886+](dtcindtc/dtcindtc_n34.json) | [3.98660+](phcinphc/phcinphc_n34.json) |
-| 35 | [4.08385+](dhcindhc/dhcindhc_n35.json) | [3.95412+](dtcindtc/dtcindtc_n35.json) | [3.99004+](phcinphc/phcinphc_n35.json) |
-| 36 | [4.12504+](dhcindhc/dhcindhc_n36.json) | [3.98347+](dtcindtc/dtcindtc_n36.json) | [4.00339+](phcinphc/phcinphc_n36.json) |
-| 37 | [4.13922+](dhcindhc/dhcindhc_n37.json) | [4.07373+](dtcindtc/dtcindtc_n37.json) | [4.09546+](phcinphc/phcinphc_n37.json) |
+| 32 | [3.95687+](dhcindhc/dhcindhc_n32.json) | [3.89829+](dtcindtc/dtcindtc_n32.json) | [3.96797+](phcinphc/phcinphc_n32.json) |
+| 33 | [4.01008+](dhcindhc/dhcindhc_n33.json) | [3.90277+](dtcindtc/dtcindtc_n33.json) | [3.97916+](phcinphc/phcinphc_n33.json) |
+| 34 | [4.05699+](dhcindhc/dhcindhc_n34.json) | [3.91886+](dtcindtc/dtcindtc_n34.json) | [3.98660+](phcinphc/phcinphc_n34.json) |
+| 35 | [4.08385+](dhcindhc/dhcindhc_n35.json) | [3.94481+](dtcindtc/dtcindtc_n35.json) | [3.99004+](phcinphc/phcinphc_n35.json) |
+| 36 | [4.12504+](dhcindhc/dhcindhc_n36.json) | [3.98162+](dtcindtc/dtcindtc_n36.json) | [4.00339+](phcinphc/phcinphc_n36.json) |
+| 37 | [4.13818+](dhcindhc/dhcindhc_n37.json) | [4.07373+](dtcindtc/dtcindtc_n37.json) | [4.09546+](phcinphc/phcinphc_n37.json) |
 | 38 | [4.19703+](dhcindhc/dhcindhc_n38.json) | [4.08286+](dtcindtc/dtcindtc_n38.json) | [4.10375+](phcinphc/phcinphc_n38.json) |
-| 39 | [4.20463+](dhcindhc/dhcindhc_n39.json) | [4.19349+](dtcindtc/dtcindtc_n39.json) | [4.21446+](phcinphc/phcinphc_n39.json) |
-| 40 | [4.27131+](dhcindhc/dhcindhc_n40.json) | [4.22869+](dtcindtc/dtcindtc_n40.json) | [4.24895+](phcinphc/phcinphc_n40.json) |
+| 39 | [4.20161+](dhcindhc/dhcindhc_n39.json) | [4.19349+](dtcindtc/dtcindtc_n39.json) | [4.21446+](phcinphc/phcinphc_n39.json) |
+| 40 | [4.26947+](dhcindhc/dhcindhc_n40.json) | [4.22869+](dtcindtc/dtcindtc_n40.json) | [4.24895+](phcinphc/phcinphc_n40.json) |
 
 ## Prisms and antiprisms
 

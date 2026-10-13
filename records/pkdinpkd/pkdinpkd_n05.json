@@ -3,86 +3,91 @@
  "piece": "pentakis_dodecahedron",
  "container": "pentakis_dodecahedron",
  "n": 5,
- "s": 2.36583,
- "s_plus": "2.36583+",
- "s_full": 2.3658309544076,
+ "s": 2.3646,
+ "s_plus": "2.36460+",
+ "s_full": 2.3646026306628,
  "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020406519245e-07,
-  "min_wall_gap": 1.0000008732191645e-07
+  "min_pair_gap": 1.0000020456003238e-07,
+  "min_wall_gap": 1.0000000649768026e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-13",
  "pieces": [
   [
-   -1.9849373790690323,
-   2.052627561587113,
-   -2.046137920917774,
-   0.011398679220427997,
-   -0.7413719943930973,
-   -0.07505330293964006,
-   0.6667868008287821
+   -1.9629746469030689,
+   2.0330143422915308,
+   -2.0359434737150592,
+   0.01174564083670993,
+   -0.7241570468737838,
+   -0.02351231869705391,
+   0.689134081477519
   ],
   [
-   1.5722775001697227,
-   -1.1404161765211311,
-   -2.636911410144521,
-   0.18748706504179502,
-   -0.5590921074286674,
-   0.7206999747750398,
-   0.3644943925662536
+   1.6319133179817233,
+   -1.1459341192273356,
+   -2.614691866540405,
+   0.22995357323645974,
+   -0.5235924194461178,
+   0.7369971591876018,
+   0.3602881066643051
   ],
   [
-   -2.6204365751768335,
-   -1.6388857572602462,
-   1.0736775401665577,
-   0.7034918074522327,
-   -0.1789943419193535,
-   0.5883349216498169,
-   -0.3562615926194575
+   -2.6518639592237694,
+   -1.3335188910337104,
+   1.3427184613336418,
+   0.7118387498254843,
+   -0.0768033004495353,
+   0.6350354493759488,
+   -0.290029007726532
   ],
   [
-   1.1392094525322363,
-   2.6397034224708933,
-   1.5626644754850187,
-   0.9138697522267207,
-   -0.1684198539127348,
-   -0.016636560353686082,
-   -0.36905291440751886
+   1.1359450052878968,
+   2.6221634329407553,
+   1.6136706136199899,
+   0.9225235827599547,
+   -0.16923915830504802,
+   0.0250858365405563,
+   -0.3459465960997396
   ],
   [
-   2.0487463673885755,
-   -2.048746367955508,
-   2.0487463680144686,
-   0.28867513459481287,
-   0.4670861794813581,
-   -0.7557613140761709,
-   -0.35682208977308966
+   2.037279689621143,
+   -2.047890218557111,
+   2.0457818458126376,
+   0.2915118243706881,
+   0.46048599043708993,
+   -0.7581282210167012,
+   -0.35807137467451583
   ]
  ],
  "record_id": "pkdinpkd_n05",
  "title": "5 pentakis dodecahedra in a pentakis dodecahedron",
  "family": "catalan",
  "source": {
-  "hash": "1449ddd3915a632a",
+  "hash": "9595a7aa1b03a6fe",
   "clear": 1e-07,
-  "cap": 2.40951854943
+  "cap": 2.4086094989493
  },
- "s_tight": 2.365830883579,
+ "s_tight": 2.364602558769,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.7099759466766968,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "ascend",
-  "seed": 1487580655,
-  "var": "base",
-  "raw": 2.372069304979233,
-  "host": "actions"
+  "move": "hop",
+  "seed": 1608292599,
+  "var": "gentle",
+  "minDiff": 0.02614315678715778,
+  "expand": 0.028742823340115832,
+  "rh": 0.10835980637182921,
+  "focus": 0,
+  "from": "best",
+  "raw": 2.36905989643498,
+  "host": "laptop"
  },
- "density": 0.3775886010539741
+ "density": 0.37817733677767124
 }

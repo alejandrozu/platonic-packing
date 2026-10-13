@@ -3,91 +3,86 @@
  "piece": "triakis_icosahedron",
  "container": "triakis_icosahedron",
  "n": 5,
- "s": 2.29772,
- "s_plus": "2.29772+",
- "s_full": 2.2977246937973,
+ "s": 2.288,
+ "s_plus": "2.28800+",
+ "s_full": 2.2880072125059,
  "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020615628228e-07,
-  "min_wall_gap": 1.0000020278511101e-07
+  "min_pair_gap": 1.0000020551562624e-07,
+  "min_wall_gap": 1.0000027739209827e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-13",
  "pieces": [
   [
-   1.8663328539511985,
-   -3.0379075076970032,
-   1.1829871808346135,
-   0.3630521383497199,
-   -0.8520841860317063,
-   0.36654579698224937,
-   -0.08826020320069627
+   -3.050044774895151,
+   1.1650134368009644,
+   -1.8850313380942403,
+   0.3090169943749468,
+   -0.8090169943749587,
+   -0.49999999999998246,
+   -5.111858954117313e-15
   ],
   [
-   2.3476059616152933,
-   2.37337356818477e-09,
-   -3.798506235852998,
-   0.30901699437494773,
-   -0.8090169943749477,
-   -0.49999999999999944,
-   2.744622257244232e-16
+   -9.16021163691423e-15,
+   3.77006267618846,
+   2.330026873601808,
+   0.5877852522924726,
+   3.8248690590611714e-15,
+   -0.6881909602355877,
+   -0.4253254041760194
   ],
   [
-   2.1430508203498095,
-   2.799798368815066,
-   1.3090739156651952,
-   0.8104010404242521,
-   -0.3098953597065856,
-   -0.0017082489724572375,
-   0.4972042855779342
+   -1.1650134368009328,
+   -1.8850313380941646,
+   3.0500447748951007,
+   1.8200276343350963e-14,
+   0.5000000000000188,
+   0.809016994374941,
+   -0.30901699437493435
   ],
   [
-   -3.2113315239572007,
-   -0.03824506116380552,
-   -2.0564467948060607,
-   0.00948303734530259,
-   -0.9999421532888233,
-   -0.00474151867265093,
-   0.0018110989746606143
+   3.05004477489518,
+   1.1650134368009153,
+   -1.885031338094165,
+   0.30901699437495334,
+   -1.3448649060496833e-14,
+   -0.8090169943749419,
+   0.5000000000000053
   ],
   [
-   -2.3513880167628103,
-   0.019321566473706978,
-   3.7779239892230105,
-   0.586379403181041,
-   0.4268207276387483,
-   -4.7333817431270796e-17,
-   -0.6884644231788422
+   -9.16021163691423e-15,
+   -3.7700626761883878,
+   -2.3300268736018643,
+   0.30901699437495306,
+   -0.8090169943749362,
+   0.5000000000000148,
+   -1.9263817468033234e-14
   ]
  ],
  "record_id": "ktiinkti_n05",
  "title": "5 triakis icosahedra in a triakis icosahedron",
  "family": "catalan",
  "source": {
-  "hash": "2d22ed5cbae045fc",
+  "hash": "668671cef34bd9b3",
   "clear": 1e-07,
   "cap": 2.3579233113697
  },
- "s_tight": 2.297724635945,
- "closed_form_conjecture": null,
+ "s_tight": 2.288007155526,
+ "closed_form_conjecture": "(39 + 2\u221a5)/19",
  "volume_lower_bound": 1.7099759466766968,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "hop",
-  "seed": 1836984873,
-  "var": "gentle",
-  "minDiff": 0.09240923672042814,
-  "expand": 0.029691241130698952,
-  "rh": 0.19124176944111093,
-  "focus": 0,
-  "from": "best",
-  "raw": 2.3003773783748183,
+  "move": "ascend",
+  "seed": 771825648,
+  "var": "base",
+  "raw": 2.3065079181830237,
   "host": "actions"
  },
- "density": 0.41216966887866163
+ "density": 0.41744362862676054
 }
