@@ -4,16 +4,18 @@ This note records a three-hour study done after the second phase stopped (13 Oct
 what the literature on 2D and 3D packing does, what our own 69,000 logged attempts say about what works, a direct
 bake-off of new moves against the production moves, and the recommendations that follow.
 
-**Short answer.** The bake-off (5,753 attempts, 51 CPU-hours on GitHub Actions and the cloud machine) found a clear
-winner for *discovery*: **symmetric seeding** — the soft-to-rigid start run inside a random cyclic symmetry of the
-container, then tightened freely. On prisms and antiprisms it yields 13× the gain per CPU-hour of the production hop
-and 12× that of fresh starts, and it broke the dodecagonal-antiprism plateau by up to 21.6% in a few attempts. It
-is not universal: on the young Archimedean and Catalan records plain hops from the record are still 2–3× better per
+**Short answer.** The bake-off (7,869 attempts, 63 CPU-hours on GitHub Actions and the cloud machine)
+found a clear winner for *discovery*: **symmetric seeding** — the soft-to-rigid start run inside a random cyclic
+symmetry of the container, then tightened freely. Across all 20 prism and antiprism problems it gives 3.3× the gain
+per CPU-hour of the production hop and 1.9× that of fresh starts, and it found the best packing in 21 of the 31 cases
+that improved by more than 0.1% (13× the hop's gain per CPU-hour in round A). It broke the dodecagonal-antiprism
+plateau by up to 21.6% and found exact structures (12 pentagonal prisms at φ², 8 truncated octahedra at 2.5). It is
+not universal: on the young Archimedean and Catalan records plain hops from the record are still 2–3× better per
 CPU-hour, and nothing beat the mature Platonic records. The efficient search is therefore symmetric seeding inside
 an adaptive portfolio that spends CPU where the measured gain per second is highest (section 4). Two literature
 ideas lost clearly in our setting: fixed-size "squeeze" separation used as a polisher, and Nakajima's quarter
-start. As a by-product, 56 records improved (all certified), 40 of them through symmetric starts.
-
+start. As a by-product, **127 records improved** (median −1.05%, all certified exactly), 79 of them through symmetric
+starts.
 
 ## 1. What our own data says (69,195 logged attempts, 123 CPU-hours on the cloud machine)
 
@@ -54,9 +56,9 @@ Findings:
    91% of all 2,145 records have no symmetry at all, and the share with any symmetry is 35% for n ≤ 8, 7% for
    n = 9–16, 2% for n = 17–28 and 1% for n = 29–40. For n ≥ 9 the median record maps 0% of its pieces onto pieces
    under any non-trivial container symmetry, so this is not a matter of a few rattlers. By contrast 69% of the
-   best-known packings of N ≤ 40 circles in a square, and 64% in a circle, have non-trivial symmetry (Packomania), and
-   most of Friedman's small polyhedra-in-polyhedra records are symmetric. Either symmetric optima are rare for these
-   solids, or our unbiased search essentially never reaches them.
+   best-known packings of N ≤ 40 circles in a square, and 64% in a circle, have non-trivial symmetry (Packomania).
+   Either symmetric optima are rare for these solids, or our unbiased search essentially never reaches them. The
+   bake-off (section 3) answers this for prisms and antiprisms: it is the second.
 
 ## 2. What the literature does
 
@@ -117,7 +119,8 @@ sources. The condensed lessons, with the evidence that supports each:
   ImprovEvolve (2026) evolved generate/improve/perturb functions inside monotonic basin hopping, with a perturbation
   strength restarted on a geometric schedule every round, and set several hexagon records.
 * Global MINLP solvers (Berthold, Kamp, Mexi, Pokutta & Pólik 2026; all 750 Platonic-in-Platonic cases n ≤ 30) give
-  feasible solutions with 14–33% gaps; useful seeds and baselines, not competitive search.
+  feasible solutions, but with median optimality gaps of 14–33% (their lower bounds beat the volume bound only for
+  n ≤ 2): useful seeds and baselines, not a competitive search for n up to 40.
 
 ### 2.6 Yohei Nakajima's latest work
 * *When does hardening help?* (5,200 packings, 67 instances): the soft-to-rigid path wins when the compressed balls
@@ -218,15 +221,33 @@ symchain (33 octagonal prisms in a cube −1.2%). Chaining hops onto a symmetric
 The mature Platonic records were not beaten by anything (one symchain improvement of 2e-4 on 12 icosahedra in a
 dodecahedron).
 
-### By-product: 56 new records
+### Round D: all 20 prism and antiprism problems, n = 6–28 (1,824 attempts, ~11 CPU-hours)
+
+Two random n for each of the 20 problems (40 cases).
+
+| | fresh | hop | symfresh |
+|---|---:|---:|---:|
+| beat the record | 11.7% | 32.9% | 14.1% |
+| gain / CPU-h, all | 0.29 | 0.17 | **0.55** |
+| gain / CPU-h, in themselves | 0.20 | 0.29 | **0.44** |
+| gain / CPU-h, in a cube | 0.35 | 0.09 | **0.61** |
+| cases where it found the best (of 31 improved by > 0.1%) | 5 | 5 | **21** |
+
+### Small n of the Archimedean and Catalan solids (n = 5–8, 12 cases, 114 attempts, local)
+
+Hops beat the record most often (10.5%), but the one large gain came from a symmetric start: 8 truncated octahedra
+in a truncated octahedron 2.56966 → exactly 2.5 (found twice, under a 3-fold axis with two pieces on it).
+
+### By-product: new records
 
 Every attempt that beat a record was merged into the archive (re-legalized by `engine.harvest`) and certified
-exactly by the usual pipeline: 56 records improved, 40 of them through symmetric starts. Largest: dodecagonal
-antiprisms in themselves n = 18 4.43609 → 3.47818 (−21.6%), n = 19–22 → 3.56680 (−19.6%), n = 9 −10.8%,
-n = 23–26 −6.2%, n = 27–30 −5.0%; 12 pentagonal prisms in themselves → φ² = 2.61803 (−5.6%); 17 dodecagonal prisms
-in themselves −2.6%; 13 cubes in a cube 2.97662 → 2.956145 (the known structure).
-
-
+exactly by the usual pipeline: **127 records improved** (92 prisms/antiprisms, 18 Archimedean, 15 Catalan,
+2 Platonic; median gain 1.05%), 79 of them from symmetric starts (directly or by deleting a piece from a symmetric
+n+1 record), 33 from hops, 14 from fresh starts. Largest: dodecagonal antiprisms in themselves n = 18
+4.43609 → 3.47818 (−21.6%), n = 19–22 → 3.56680 (−19.6%), n = 9 −10.8%, n = 16 → exactly 3 (−10.2%);
+dodecagonal antiprisms in a cube n = 18 −10.3%; 10 dodecagonal prisms in a cube −8.5%; 6 hexagonal prisms in a cube
+−8.2%; 12 pentagonal prisms in themselves → φ² = 2.61803 (−5.6%); 8 truncated octahedra in themselves → 2.5
+(−2.7%); 13 cubes in a cube 2.97662 → 2.956145 (the known structure).
 
 ## 4. Recommendations
 
@@ -235,8 +256,9 @@ in themselves −2.6%; 13 cubes in a cube 2.97662 → 2.956145 (the known struct
 No single method from the literature wins everywhere, and the bake-off says why: the moves differ by an order of
 magnitude in gain per CPU-hour, and the ranking flips between families. The efficient search is therefore:
 
-1. **Symmetric seeding as a standing move (the discovery engine).** On prisms and antiprisms it produced 13× the
-   gain per CPU-hour of hops and 12× that of fresh starts, and it is the only move that broke the
+1. **Symmetric seeding as a standing move (the discovery engine).** On prisms and antiprisms it produced 3.3×
+   (round D, all 20 problems) to 13× (round A) the gain per CPU-hour of hops and 1.9–12× that of fresh starts, and
+   it is the only move that broke the
    dodecagonal-antiprism plateau (up to −21.6%) and found exact closed forms such as 12 pentagonal prisms at φ².
    Elsewhere it matches fresh starts as a source of new basins (and it re-found the 10-, 11- and 13-cube structures).
    It replaces most of the fresh starts.

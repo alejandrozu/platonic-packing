@@ -3,95 +3,94 @@
  "piece": "truncated_icosahedron",
  "container": "truncated_icosahedron",
  "n": 6,
- "s": 2.37989,
- "s_plus": "2.37989+",
- "s_full": 2.3798998293765,
+ "s": 2.36963,
+ "s_plus": "2.36963+",
+ "s_full": 2.3696397171472,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020399427761e-07,
-  "min_wall_gap": 1.0000019123879156e-07
+  "min_pair_gap": 1.0000020484456698e-07,
+  "min_wall_gap": 1.0000006867016964e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-13",
  "pieces": [
   [
-   -0.7744689561023159,
-   -1.543159982842862,
-   -2.8924901462615997,
-   0.025076002725799126,
-   -0.39120045343490073,
-   0.023105822061255603,
-   -0.9196735944379928
+   -0.8350604935641667,
+   -1.4843121063402853,
+   -2.900787769122155,
+   0.05422156740933293,
+   -0.40997249748954323,
+   0.010987526071818961,
+   -0.9104185011304872
   ],
   [
-   0.8349736594294122,
-   1.4246032890592715,
-   2.965762210311254,
-   0.5567934404522549,
-   -5.333839041745966e-15,
-   -0.1303289590226822,
-   -0.8203629849703151
+   0.8298174884211201,
+   1.4655665153975623,
+   2.912151553703162,
+   0.5804889945584775,
+   -0.00991565186655042,
+   -0.12116295192205417,
+   -0.8051420658033484
   ],
   [
-   2.9548129284358002,
-   1.0322232617740374,
-   -1.1968930694814814,
-   0.5140623022397058,
-   -0.7985587591561244,
-   0.31286247991551697,
-   0.01268567113546149
+   2.8748544350517475,
+   1.176363515852927,
+   -1.2918651540102408,
+   0.5000000000000815,
+   -0.8090169943748887,
+   0.30901699437496954,
+   7.283063041539843e-14
   ],
   [
-   1.369810705429682,
-   -2.9164392493765603,
-   1.1326868480704357,
-   0.500000000000001,
-   0.4999999999999974,
-   0.4999999999999991,
-   0.5000000000000026
+   1.3535138019238633,
+   -2.8909770397262253,
+   1.1341539770672797,
+   0.5000000000000008,
+   0.5000000000000004,
+   0.5000000000000004,
+   0.4999999999999985
   ],
   [
-   -2.842834781407841,
-   -1.2370841037193836,
-   1.3390179172057999,
-   0.4999999999999991,
-   -0.4999999999999989,
-   -0.5000000000000038,
-   -0.49999999999999833
+   -2.888636140706983,
+   -1.140282530263891,
+   1.3497261441451087,
+   0.5000000000000006,
+   -0.4999999999999986,
+   -0.49999999999999917,
+   -0.5000000000000017
   ],
   [
-   -1.4555022630260983,
-   2.770289286339549,
-   -1.015189788294654,
-   0.89954811099947,
-   0.2205944436532434,
-   0.06214522255685365,
-   0.371872637794125
+   -1.340223975851401,
+   2.849349183614589,
+   -1.1890716636372025,
+   1.0,
+   -7.239536842210198e-14,
+   7.824918511383077e-14,
+   -6.289324579047065e-14
   ]
  ],
  "record_id": "ticintic_n06",
  "title": "6 truncated icosahedra in a truncated icosahedron",
  "family": "archimedean",
  "source": {
-  "hash": "76bc6d4e29e921ec",
+  "hash": "ed70866aa0ee81a0",
   "clear": 1e-07,
   "cap": 2.5470264194025
  },
- "s_tight": 2.379899754435,
+ "s_tight": 2.369639641912,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.8171205928321397,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "ascend",
-  "seed": 1737466060,
-  "var": "base",
-  "raw": 2.394146603527805,
-  "host": "actions"
+  "move": "bench-hop",
+  "from": "best",
+  "minDiff": 0.0758,
+  "host": "bench"
  },
- "density": 0.44511806131700427
+ "density": 0.4509249743534697
 }
