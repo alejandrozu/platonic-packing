@@ -8,7 +8,10 @@ import hashlib
 import importlib.util
 import json
 from pathlib import Path
+import shutil
+import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('packing_site', ROOT / 'scripts/site.py')
@@ -19,9 +22,71 @@ spec.loader.exec_module(site)
 class ExternalRecordTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.data = site.load()
+        cls.live_data = site.load()
+        # Selection tests use a controlled project baseline. The autonomous
+        # search can legitimately beat today's external records tomorrow;
+        # that must not make a successful record update fail CI.
+        cls.fixture = tempfile.TemporaryDirectory(prefix='packing-external-selection-')
+        fixture_root = Path(cls.fixture.name)
+        coordinate_files = [
+            'cubincub/cubincub_n11_hyra.json', 'cubincub/cubincub_n12_hyra.json',
+            'cubincub/cubincub_n12_nakajima.json', 'cubincub/cubincub_n34_ryxu.json',
+            'cubincub/cubincub_n35_ryxu.json', 'cubincub/cubincub_n36_ryxu.json',
+            'octincub/octincub_n17_kamp.json', 'octincub/octincub_n21_hyra.json',
+            'octincub/octincub_n24_hyra.json',
+        ]
+        entries, cases = [], set()
+        for relative in coordinate_files:
+            relative = 'records/external/' + relative
+            path = ROOT / relative
+            record = json.loads(path.read_text(encoding='utf-8'))
+            pid, n = record['record_id'].split('_')[0], record['n']
+            cases.add((pid, n))
+            entries.append({'problem': pid, 'n': n, 'kind': 'coordinates', 'file': relative,
+                            'published_value': record['source']['published_s_full'],
+                            'author': record['found_by'], 'url': record['source']['url']})
+            for suffix in ('.json', '.certify.txt', '.verify.txt'):
+                target = fixture_root / Path(relative).with_suffix(suffix)
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(path.with_suffix(suffix), target)
+        catalogue = [('cubincub', 13, 2.95600, 'Erich Friedman'),
+                     ('cubincub', 33, 3.7071067811865475, 'Erich Friedman'),
+                     ('octincub', 11, 2.19540, 'Ríain Walsh'),
+                     ('octincub', 12, 2.25949, 'Haowei Lin'),
+                     ('octincub', 17, 2.47487, 'Haowei Lin'),
+                     ('octincub', 23, 2.61533, 'Ríain Walsh')]
+        for pid, n, value, author in catalogue:
+            cases.add((pid, n))
+            url = f'https://erich-friedman.github.io/packing/{pid}/'
+            entries.append({'problem': pid, 'n': n, 'kind': 'catalogue', 'published_value': value,
+                            'author': author, 'url': url, 'image_url': url + 'fixture.gif',
+                            'value_precision': 'controlled published-source fixture'})
+        cases.add(('cubincub', 28))
+        entries.append({'problem': 'cubincub', 'n': 28, 'kind': 'author_report', 'published_value': 3.666,
+                        'author': '紺葉 (@konoha_ily2)', 'url': 'https://x.com/konoha_ily2/status/2109306733999120589',
+                        'image_url': None, 'value_precision': 'controlled author-report fixture'})
+        for pid, n in cases:
+            relative = f'records/{pid}/{pid}_n{n:02d}.json'
+            baseline = json.loads((ROOT / relative).read_text(encoding='utf-8'))
+            published = [e['published_value'] for e in entries if e['problem'] == pid and e['n'] == n]
+            baseline['s_full'] = max(baseline['s_full'], *published) + 0.2
+            baseline['s_plus'] = f'{baseline["s_full"]:.5f}+'
+            baseline['s_tight'] = None
+            target = fixture_root / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(json.dumps(baseline), encoding='utf-8')
+            # Only selection/status is exercised here. The imported geometry has
+            # real checker receipts; the controlled larger baseline is a fixture.
+            target.with_suffix('.certify.txt').write_text('CERTIFIED\n', encoding='utf-8')
+            target.with_suffix('.verify.txt').write_text('VALID\n', encoding='utf-8')
+        with patch.object(site, 'ROOT', str(fixture_root)), patch.object(site, 'EXTERNAL', {'entries': entries}):
+            cls.data = site.load()
         cls.problems = {p['id']: p for p in cls.data['problems']}
         cls.rows = [r for p in cls.data['problems'] for r in p['rows']]
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.fixture.cleanup()
 
     def row(self, pid, n):
         return next(r for r in self.problems[pid]['rows'] if r['n'] == n)
@@ -67,16 +132,17 @@ class ExternalRecordTests(unittest.TestCase):
         self.assertEqual(row['source_url'], 'https://x.com/konoha_ily2/status/2109306733999120589')
 
     def test_every_original_record_remains_accessible(self):
-        visible = {r['file'] for r in self.rows if r['file']}
-        visible.update(a['file'] for r in self.rows for a in r.get('alternatives', []))
+        rows = [r for p in self.live_data['problems'] for r in p['rows']]
+        visible = {r['file'] for r in rows if r['file']}
+        visible.update(a['file'] for r in rows for a in r.get('alternatives', []))
         original = {p.relative_to(ROOT).as_posix() for p in (ROOT / 'records').glob('*/*_n[0-9][0-9].json')}
         self.assertTrue(original)
         self.assertEqual(original - visible, set())
-        for p in self.data['problems']:
+        for p in self.live_data['problems']:
             self.assertEqual(len(p['rows']), len({r['n'] for r in p['rows']}))
 
     def test_selected_coordinates_are_smallest_of_available_coordinates(self):
-        for row in self.rows:
+        for row in [r for p in self.live_data['problems'] for r in p['rows']]:
             candidates = [row, *row.get('alternatives', [])]
             if row.get('source_only'):
                 continue
@@ -103,11 +169,17 @@ class ExternalRecordTests(unittest.TestCase):
                 self.assertNotIn('INVALID', path.with_suffix('.verify.txt').read_text(encoding='utf-8'))
 
     def test_summary_does_not_call_source_only_entries_certified(self):
-        stats = site.stats(self.data)
-        self.assertEqual(stats['source_only'], 12)
-        self.assertEqual(stats['records'] - stats['certified'], stats['source_only'])
+        stats = site.stats(self.live_data)
+        rows = [r for p in self.live_data['problems'] for r in p['rows']]
+        source_only = sum(bool(r.get('source_only')) for r in rows)
+        self.assertEqual(stats['source_only'], source_only)
+        self.assertEqual(stats['certified'], sum(bool(r['ok']) for r in rows))
+        self.assertGreaterEqual(stats['records'] - stats['certified'], stats['source_only'])
         summary = site.cert_sentence(stats)
-        self.assertIn('no coordinates or local certificate', summary)
+        if source_only:
+            self.assertIn('no coordinates or local certificate', summary)
+        else:
+            self.assertIn('certified exactly', summary)
 
 
 if __name__ == '__main__':
