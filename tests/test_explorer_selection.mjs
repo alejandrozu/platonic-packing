@@ -17,12 +17,12 @@ const before = JSON.stringify(reference);
 const archived = { ...coordinate('tetinico_n05_archive', 1.5, 'Archive author', 5) };
 const named = { ...coordinate('tetinico_n05_kamp', 1.4, 'Prior author', 5), alternatives: [archived] };
 const defaultTwelve = coordinate('tetinico_n12_kamp', 2, 'Prior author', 12);
-const problem = { id: 'tetinico', rows: [named, defaultTwelve] };
-assert.equal(packingInitialSelection(problem, 'tetinico_n05_kamp'), named);
-assert.equal(packingInitialSelection(problem, 'tetinico_n05_archive'), archived);
-assert.equal(packingInitialSelection(problem, 'tetinico_n05'), named);
-assert.equal(packingInitialSelection(problem, 'cubincub_n33'), defaultTwelve);
-assert.equal(packingInitialSelection(problem, 'tetinico_n05_archive', 5), named);
+const hashProblem = { id: 'tetinico', rows: [named, defaultTwelve] };
+assert.equal(packingInitialSelection(hashProblem, 'tetinico_n05_kamp'), named);
+assert.equal(packingInitialSelection(hashProblem, 'tetinico_n05_archive'), archived);
+assert.equal(packingInitialSelection(hashProblem, 'tetinico_n05'), named);
+assert.equal(packingInitialSelection(hashProblem, 'cubincub_n33'), defaultTwelve);
+assert.equal(packingInitialSelection(hashProblem, 'tetinico_n05_archive', 5), named);
 
 // A better bound never borrows a larger construction's geometry or certificate.
 const resolved = packingConstructionChoices(reference);
