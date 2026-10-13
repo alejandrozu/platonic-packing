@@ -3,100 +3,95 @@
  "piece": "prism5",
  "container": "prism5",
  "n": 6,
- "s": 2.28357,
- "s_plus": "2.28357+",
- "s_full": 2.2835761288286,
+ "s": 2.20544,
+ "s_plus": "2.20544+",
+ "s_full": 2.2054473991969,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020100875417e-07,
-  "min_wall_gap": 1.0000000982834933e-07
+  "min_pair_gap": 1.0000020134182108e-07,
+  "min_wall_gap": 1.0000000028043132e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-13",
  "pieces": [
   [
-   0.728534606676497,
-   0.5000950154595052,
-   0.641787964414289,
+   0.3168705449094743,
+   0.9752272594836381,
+   -0.5168664535449108,
+   0.8090169943749475,
+   1.6887023338336622e-16,
+   -2.2417531577204893e-16,
+   0.5877852522924732
+  ],
+  [
+   -0.024888461400392588,
+   -0.8641830479452407,
+   -0.6027235995984496,
+   2.9113848988037685e-17,
    1.0,
-   -5.334314706478747e-16,
-   -6.392628229660132e-16,
-   6.606923469443872e-16
+   -2.2043190528231016e-16,
+   -1.4079751767348658e-16
   ],
   [
-   -0.6939850808184568,
-   0.6733352113113175,
-   -0.3346318444808974,
-   0.5419916968326054,
-   0.43756708697713326,
-   -0.3966873428843504,
-   0.5978454624350785
+   -0.48781886262661334,
+   -0.7137678426018398,
+   0.602723599598446,
+   1.7764972857845097e-16,
+   -0.3090169943749475,
+   -0.9510565162951536,
+   -1.8342351699992942e-16
   ],
   [
-   0.35216981829654753,
-   -1.0181166721866548,
-   0.3954452332737767,
-   0.00721702842334513,
-   0.8087963265647041,
-   0.5876249277437696,
-   -0.022211729565854738
+   -0.8917434271044309,
+   0.5267904380653622,
+   -0.29370658095558655,
+   0.7059294508435877,
+   -0.17935309285794132,
+   0.6839827980894627,
+   -0.04078738078953778
   ],
   [
-   -0.8657496513511187,
-   -0.5971395472700409,
-   0.32292527160124956,
-   0.5874957391542979,
-   -0.25468079512240244,
-   0.6667935499541345,
-   -0.38127786561893295
+   1.0310752376931536,
+   -0.09797121841163267,
+   0.29370658095558205,
+   0.7059294508435877,
+   0.5471347016545087,
+   0.44793260457956385,
+   0.04078738078953823
   ],
   [
-   0.33740789011833855,
-   -1.0384347232424358,
-   -0.6417879644142833,
-   0.30901699437494745,
-   4.5904878854003915e-17,
-   -9.128099879674544e-17,
-   -0.9510565162951536
-  ],
-  [
-   0.7737862256054692,
-   0.43781150529361834,
-   -0.6417879644142831,
-   0.3090169943749502,
-   3.481280711154538e-15,
-   -2.6554061932488576e-15,
-   -0.9510565162951526
+   0.3168705449094726,
+   0.9752272594836395,
+   0.6027235995984472,
+   1.0,
+   1.8426890913043104e-16,
+   -1.3393382623064016e-15,
+   5.310047196706023e-16
   ]
  ],
  "record_id": "pr5inpr5_n06",
  "title": "6 prism5s in a prism5",
  "family": "prisms",
  "source": {
-  "hash": "c5c49893b1300bde",
+  "hash": "2892e0dd83e4e61b",
   "clear": 1e-07,
   "cap": 2.4223994700383
  },
- "s_tight": 2.283575805079,
+ "s_tight": 2.20544710453,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.8171205928321397,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "hop",
-  "seed": 1394122409,
-  "var": "gentle",
-  "minDiff": 0.07205845628949081,
-  "expand": 0.02108052522168393,
-  "rh": 0.19034426094095616,
-  "focus": 0,
-  "from": "best",
-  "raw": 2.298716583186465,
+  "move": "fresh",
+  "seed": 1238018766,
+  "var": "base",
+  "raw": 2.205447150796222,
   "host": "actions"
  },
- "density": 0.5038540652012281
+ "density": 0.5593210161155163
 }
