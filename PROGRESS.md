@@ -1,10 +1,10 @@
 # Search progress
 
-Updated 2026-10-13 08:14 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
+Updated 2026-10-13 10:47 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
 
-* attempts: 69195 total, 8108 in the last 24 h, 922 in the last hour
-* improvements: 11157 total, 7090 in the last 24 h
-* by move (attempts / improvements): ascend 8384/1022, descend 5766/112, fresh 6861/127, harvest 6663/6663, hop 34269/2588, reinsert 6858/429, tighten 394/216
+* attempts: 69234 total, 8147 in the last 24 h, 39 in the last hour
+* improvements: 11196 total, 7129 in the last 24 h
+* by move (attempts / improvements): ascend 8384/1022, descend 5766/112, fresh 6861/127, harvest 6702/6702, hop 34269/2588, reinsert 6858/429, tighten 394/216
 
 | problem | n with a packing | attempts | CPU hours | improvements (24 h) | last improvement |
 |---|---|---|---|---|---|
@@ -12,11 +12,11 @@ Updated 2026-10-13 08:14 CEST. The engine runs unattended (scripts/run_forever.s
 | Octahedra in an octahedron (octinoct) | 39/39 | 6279 | 7.7 | 0 | 10-11 17:10 |
 | Icosahedra in an icosahedron (icoinico) | 39/39 | 3916 | 12.9 | 0 | 10-11 17:11 |
 | Dodecahedra in a dodecahedron (dodindod) | 39/39 | 3589 | 12.2 | 0 | 10-11 17:10 |
-| Cubes in a cube (cubincub) | 39/39 | 8058 | 7.9 | 0 | 10-11 17:38 |
+| Cubes in a cube (cubincub) | 39/39 | 8058 | 7.9 | 1 | 10-13 10:34 |
 | Cubes in an octahedron (cubinoct) | 39/39 | 9038 | 11.4 | 0 | 10-11 17:15 |
 | Octahedra in a cube (octincub) | 39/39 | 12605 | 12.7 | 0 | 10-11 17:32 |
 | Dodecahedra in an icosahedron (dodinico) | 39/39 | 3644 | 13.9 | 0 | 10-11 17:10 |
-| Icosahedra in a dodecahedron (icoindod) | 39/39 | 4655 | 13.6 | 0 | 10-11 17:38 |
+| Icosahedra in a dodecahedron (icoindod) | 39/39 | 4655 | 13.6 | 1 | 10-13 10:47 |
 | Tetrahedra in a cube (tetincub) | 0/39 | 0 | 0.0 | 0 | - |
 | Tetrahedra in an octahedron (tetinoct) | 0/39 | 0 | 0.0 | 0 | - |
 | Tetrahedra in a dodecahedron (tetindod) | 0/39 | 0 | 0.0 | 0 | - |
@@ -50,8 +50,8 @@ s = container edge / piece edge, touching limit from the tightening; s(n) is non
 | 9 | 2.61556 | 2.50000 | 2.58295 | 2.59888 | 2.70711 | 3.61760 | 1.88562 | 4.02206 | 1.77163 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | 10 | 2.70630 | 2.50000 | 2.60989 | 2.70520 | 2.70711 | 3.69181 | 2.14937 | 4.06525 | 1.81821 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | 11 | 2.79939 | 2.66667 | 2.61803 | 2.76393 | 2.88171 | 3.70711 | 2.23071 | 4.06525 | 1.86714 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| 12 | 2.85760 | 2.66667 | 2.61803 | 2.76393 | 2.93151 | 3.70711 | 2.29103 | 4.06525 | 1.87462 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| 13 | 2.91514 | 2.83333 | 2.80902 | 2.90557 | 2.97662 | 3.79737 | 2.33944 | 4.06525 | 1.90402 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 12 | 2.85760 | 2.66667 | 2.61803 | 2.76393 | 2.93151 | 3.70711 | 2.29103 | 4.06525 | 1.87422 • |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 13 | 2.91514 | 2.83333 | 2.80902 | 2.90557 | 2.95615 • | 3.79737 | 2.33944 | 4.06525 | 1.90402 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | 14 | 2.94300 | 2.94312 | 3.01780 | 3.00000 | 2.98995 | 3.91513 | 2.36548 | 4.59695 | 1.97108 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | 15 | 2.98883 | 2.98533 | 3.04832 | 3.03744 | 3.00000 | 3.96266 | 2.42999 | 4.67481 | 2.00000 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | 16 | 3.03538 | 2.99465 | 3.12131 | 3.10210 | 3.00000 | 4.00052 | 2.45866 | 4.79245 | 2.05511 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
