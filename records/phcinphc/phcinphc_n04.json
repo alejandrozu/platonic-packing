@@ -3,77 +3,82 @@
  "piece": "pentagonal_hexecontahedron",
  "container": "pentagonal_hexecontahedron",
  "n": 4,
- "s": 2.2099,
- "s_plus": "2.20990+",
- "s_full": 2.2099038387294,
+ "s": 2.20887,
+ "s_plus": "2.20887+",
+ "s_full": 2.2088757844638,
  "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020418779435e-07,
-  "min_wall_gap": 1.0000001982035656e-07
+  "min_pair_gap": 1.0000020350838011e-07,
+  "min_wall_gap": 1.0000006511745596e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-13",
  "pieces": [
   [
-   1.4026246444131398,
-   2.140837475957605,
-   0.2921554666279021,
-   0.21627344663867784,
-   0.7512177505383012,
-   -0.571921989429907,
-   -0.24860194199108554
+   1.4896580526380605,
+   2.051723942143936,
+   0.346701124080741,
+   0.23957426896194586,
+   0.7651388794861057,
+   -0.45809621763052205,
+   -0.3838157372264786
   ],
   [
-   -2.0800411036150686,
-   0.22160702782723868,
-   1.5084666188060456,
-   0.5659820615988911,
-   -0.24819681055323436,
-   0.42282161632543297,
-   -0.6627854328117203
+   -2.009305214348805,
+   0.27517470231766716,
+   1.550377817454601,
+   0.5542532940006505,
+   -0.17713648125634665,
+   0.4547984776088937,
+   -0.6742286688225153
   ],
   [
-   1.3186195644436975,
-   -1.9954054789330686,
-   0.6913830029146171,
-   0.4932692637046702,
-   0.14340601391017185,
-   0.6851101934105714,
-   0.5164728178167538
+   1.2624559996652553,
+   -2.078993906930786,
+   0.619344544016333,
+   0.5083800142004377,
+   0.1641759477811887,
+   0.6679753569524323,
+   0.5180781232941439
   ],
   [
-   -0.7028641007034999,
-   -0.14126093475877322,
-   -2.3816520983030633,
-   0.6461893245953905,
-   0.22881186819337393,
-   -0.7269616096561756,
-   -0.040141049300104835
+   -0.7142871633050808,
+   -0.05840858819089431,
+   -2.3738931141822364,
+   0.6570374799173258,
+   0.1803121539921135,
+   -0.7278702455464156,
+   -0.07742210766192709
   ]
  ],
  "record_id": "phcinphc_n04",
  "title": "4 pentagonal hexecontahedra in a pentagonal hexecontahedron",
  "family": "catalan",
  "source": {
-  "hash": "e0a167071b4e0fc9",
+  "hash": "00699b9c0fb009e5",
   "clear": 1e-07,
-  "cap": 2.384758891788
+  "cap": 2.3699285105838
  },
- "s_tight": 2.209903759611,
+ "s_tight": 2.208875705688,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.5874010519681994,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "fresh",
-  "seed": 716594310,
-  "var": "base",
-  "raw": 2.2100029237077967,
-  "host": "laptop"
+  "move": "hop",
+  "seed": 1071176560,
+  "var": "gentle",
+  "minDiff": 0.055836293175585944,
+  "expand": 0.011736442896947231,
+  "rh": 0.19839692865316413,
+  "focus": 0,
+  "from": "best",
+  "raw": 2.2132411707685495,
+  "host": "actions"
  },
- "density": 0.37062939647711896
+ "density": 0.3711471320144339
 }

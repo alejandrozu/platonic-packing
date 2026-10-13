@@ -111,6 +111,23 @@ def main():
         ['improvements harvested from the laptop', f"{imp_h['laptop']:,}"],
     ], ['---', '---:']) + '\n')
 
+    # ---------------------------------------------------------------- GitHub Actions runs (state/actions_log.jsonl)
+    runs = []
+    for l in open(os.path.join(ROOT, 'state', 'actions_log.jsonl')):
+        try: a = json.loads(l)
+        except json.JSONDecodeError: continue
+        if a.get('t', 0) < T_START: continue
+        if runs and a['t'] - runs[-1]['t1'] < 1800:            # late jobs of the same run
+            r = runs[-1]; r['jobs'] += a['jobs']; r['att'] += a['attempts']; r['merged'] += a['merged']; r['t1'] = a['t']
+        else: runs.append({'t0': a['t'], 't1': a['t'], 'jobs': a['jobs'], 'att': a['attempts'], 'merged': a['merged']})
+    w('### GitHub Actions runs\n')
+    w('Each run: 4 jobs × 4 workers × 50 minutes ("medium"), started from the archive in `main`; results merged by the '
+      'cycle when the jobs finish (late jobs are merged a few minutes later and are counted with their run here).\n')
+    w(table(['run', 'merged at', 'jobs', 'attempts', 'new bests merged', 'new bests per 100 attempts'],
+            [[i + 1, hm(r['t0']), r['jobs'], f"{r['att']:,}", f"{r['merged']:,}", f"{100 * r['merged'] / max(1, r['att']):.0f}"] for i, r in enumerate(runs)],
+            ['---:', '---', '---:', '---:', '---:', '---:']) + '\n')
+    w(f"Total: {sum(r['att'] for r in runs):,} attempts and {sum(r['merged'] for r in runs):,} merged improvements in {len(runs)} runs.\n")
+
     # ---------------------------------------------------------------- coverage timeline (first packing of each case)
     first = {}
     for a in L:
