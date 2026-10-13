@@ -101,6 +101,24 @@ def attempt(sim, p, n, method, rng):
                  compact=int(5000 * B), morph=int(45000 * B), settle=int(3000 * B))
     if method == 'fresh':
         raw = sim.call(fresh)
+    elif method == 'symchain':                     # a symmetric fresh start, then 3 gentle hops from the chain's best
+        spec, info = sym_spec(piece, container, n, rng)
+        if spec is None: return None
+        raw0 = sim.call(dict(fresh, sym=spec))
+        row = {'piece': piece, 'container': container, 'problem': p, 'n': n, 'seed': seed, 'mode': method, 'B': 0, 'C': raw0['C'], 'Q': raw0['Q']}
+        cur = engine.tighten(row, None, n, 0.03); info['s0'] = cur['s']
+        V = dict(engine.HOP_DEFAULT, **engine.VARIANTS['gentle'])
+        for h in range(3):
+            lo, hi = V['minDiff']
+            prm = dict(op='hop', piece=piece, container=container, seed=seed + 101 * (h + 1), C=cur['C'], Q=cur['Q'], L=2 * pb.rhoC * cur['s'],
+                       morph=4000 + 150 * n, settle=1000 + 25 * n, minDiff=math.exp(rng.uniform(math.log(lo), math.log(hi))),
+                       expand=rng.uniform(*V['expand']), rh=rng.uniform(0.06, 0.2), noise=V['noise'], shake=V['shake'],
+                       focus=0 if (n < 8 or rng.random() >= V['focus_p']) else rng.randint(3, max(4, n // 3)))
+            r1 = sim.call(prm)
+            row = dict(row, C=r1['C'], Q=r1['Q'])
+            o1 = engine.tighten(row, cur['s'], n, 0.03)
+            if o1['s'] < cur['s']: cur = o1
+        raw = {'s': info['s0'], 'C': cur['C'], 'Q': cur['Q']}
     elif method.startswith('symfresh'):
         spec, info = sym_spec(piece, container, n, rng)
         if spec is None: return None
