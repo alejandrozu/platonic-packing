@@ -3,100 +3,95 @@
  "piece": "cuboctahedron",
  "container": "cuboctahedron",
  "n": 6,
- "s": 2.32157,
- "s_plus": "2.32157+",
- "s_full": 2.3215785476986,
+ "s": 2.30547,
+ "s_plus": "2.30547+",
+ "s_full": 2.3054741645258,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020145472416e-07,
-  "min_wall_gap": 1.0000004713184296e-07
+  "min_pair_gap": 1.000002014032055e-07,
+  "min_wall_gap": 1.0000001804399972e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-13",
  "pieces": [
   [
-   -0.7834880930101015,
-   -0.5745762523532032,
-   0.6093873763994175,
-   0.445807305391296,
-   -0.7365066944762162,
-   0.5083532163965151,
-   -0.019767216060616433
+   0.9231095337688551,
+   -0.9231095344000173,
+   1.2623241906320672e-09,
+   1.186504920376781e-16,
+   0.7071067811865475,
+   -0.7071067811865476,
+   2.569633211761568e-16
   ],
   [
-   0.7555920760730976,
-   0.6211877269547466,
-   -0.4368480563079859,
-   0.538462125749977,
-   0.5102055761336383,
-   -0.6052139456720907,
-   -0.28890290614491554
+   -0.5871058118470984,
+   -0.43413630088924693,
+   0.789273105328146,
+   0.11999686674349351,
+   0.609498924266639,
+   0.7832285494267135,
+   -0.025784736812317462
   ],
   [
-   -0.6318021987049872,
-   0.49846005741344823,
-   -0.7387318336466385,
-   0.11557538363234152,
-   -0.9797586397142468,
-   -0.11557538363234149,
-   -0.11557538363234156
+   0.4341363002580852,
+   0.5871058112159383,
+   -0.7892731028034977,
+   0.6492576718810876,
+   0.7434698018122649,
+   -0.013974010802131375,
+   -0.15975561435794206
   ],
   [
-   1.0358140623391997e-08,
-   0.9344970471749144,
-   0.9344970459862816,
-   0.4999999999999999,
-   -0.5000000000000001,
-   0.4999999999999998,
-   0.5000000000000002
+   0.7446001670656734,
+   0.50564795040754,
+   0.5959709513268223,
+   0.08678738583669982,
+   -0.9886373698069963,
+   -0.08678738583669941,
+   0.08678738583669923
   ],
   [
-   0.7599285101184678,
-   -0.5547601363905088,
-   0.46929836600372815,
-   0.06042116560270553,
-   0.09681788992498921,
-   -0.5567501309174631,
-   0.8228030570319188
+   -0.9231095344000171,
+   0.9231095337688555,
+   1.2623243770889288e-09,
+   8.094395669136919e-17,
+   -0.7071067811865475,
+   -0.7071067811865476,
+   1.398658452892609e-17
   ],
   [
-   1.0358140623391997e-08,
-   -0.9344970517596685,
-   -0.9344970529483019,
-   7.253924616562041e-17,
-   1.0,
-   -3.0924882679647053e-16,
-   -2.1502907480532257e-16
+   -0.5056479510387011,
+   -0.7446001676968351,
+   -0.5959709488021738,
+   0.4509249919851486,
+   0.45092499198514846,
+   -0.6244997636585471,
+   -0.4509249919851485
   ]
  ],
  "record_id": "cboincbo_n06",
  "title": "6 cuboctahedra in a cuboctahedron",
  "family": "archimedean",
  "source": {
-  "hash": "dddc077026ed3390",
+  "hash": "5bb759f10dcca38c",
   "clear": 1e-07,
   "cap": 2.4030156258979
  },
- "s_tight": 2.321578307904,
+ "s_tight": 2.305473930347,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.8171205928321397,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "hop",
-  "seed": 1784751527,
-  "var": "gentle",
-  "minDiff": 0.05008711680673453,
-  "expand": 0.020905548039622548,
-  "rh": 0.07338021747494444,
-  "focus": 0,
-  "from": "best",
-  "raw": 2.3219566857926432,
+  "move": "ascend",
+  "seed": 807065040,
+  "var": "base",
+  "raw": 2.3244386409280584,
   "host": "actions"
  },
- "density": 0.47951379325489024
+ "density": 0.48963276378680376
 }
