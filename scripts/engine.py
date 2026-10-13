@@ -28,7 +28,11 @@ Monotonicity invariant (enforced after every change of a best): s(n) <= s(n+1) f
 (n+1)-packing minus one piece is stored as the n-packing (same container, so its size can only drop); the case is
 then flagged for re-tightening.
 """
-import json, os, sys, time, math, random, fcntl, subprocess, signal, glob, hashlib, contextlib
+import json, os, sys, time, math, random, subprocess, signal, glob, hashlib, contextlib
+try:
+    import fcntl
+except ImportError:  # Site building and certification only read the problem metadata on Windows.
+    fcntl = None
 import numpy as np
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -127,6 +131,8 @@ def problem(p):
 # ------------------------------------------------------------------ archive
 @contextlib.contextmanager
 def locked():
+    if fcntl is None:
+        raise RuntimeError('Archive workers require POSIX file locking; run them under Linux or WSL.')
     os.makedirs(STATE, exist_ok=True)
     with open(os.path.join(STATE, '.lock'), 'w') as f:
         fcntl.flock(f, fcntl.LOCK_EX)
