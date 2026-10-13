@@ -1,6 +1,15 @@
 // Record explorer for polyhedrainpolyhedra.wiki: families, atlas of problems, 3D viewer (three.js r128), table, charts.
 // Data: window.PP_DATA (inlined copy) or data/records.json next to the page (see scripts/site.py).
-(async () => {
+// A published bound without poses is a reference, never geometry. Resolve it
+// to the smallest available coordinate construction at that construction's s.
+function packingConstructionChoices(primary, requested = primary) {
+  const hasGeometry = c => c && c.n === primary.n && !c.source_only && Array.isArray(c.p) && c.p.length === c.n;
+  const choices = [primary, ...(primary.alternatives || [])].filter(hasGeometry).sort((a, b) => a.sf - b.sf);
+  return { choices, row: choices.includes(requested) ? requested : choices[0] || null,
+    reference: primary.source_only ? primary : null };
+}
+if (typeof module !== 'undefined' && module.exports) module.exports = { packingConstructionChoices };
+if (typeof document !== 'undefined') (async () => {
   const $ = id => document.getElementById(id);
   const ROOT = document.documentElement.dataset.root || './';
   const DATA_VERSION = document.documentElement.dataset.recordsVersion;
@@ -248,7 +257,11 @@
   }
 
   function selectRow(r) {
-    if (!r) return; row = r; sel = null; isolate = false;
+    if (!r) return;
+    const primary = prob.rows.find(c => c.n === r.n) || r;
+    const selection = packingConstructionChoices(primary, r), choices = selection.choices;
+    const reference = selection.reference;
+    r = selection.row || primary; row = r; sel = null; isolate = false;
     document.querySelectorAll('#rows tr').forEach(t => t.setAttribute('aria-selected', +t.dataset.n === r.n));
     $('cap').innerHTML = `${r.n} ${pl(prob.piece)}, s = ${r.s}` + (r.cf ? ` <span class="cf">≈ ${fmtCF(r.cf)}</span>` : '');
     const id = `${prob.id}_n${pad(r.n)}`;
@@ -256,7 +269,13 @@
     if (!r.source_only) facts.push(['Touching limit', r.st != null ? String(r.st) : '—']);
     if (r.published_sf != null && !r.source_only) facts.push(['Original published scale', String(r.published_sf)]);
     if (r.published_expression) facts.push(['Published expression', escapeHTML(r.published_expression)]);
-    if (r.ref != null) facts.push(['Published reference', escapeHTML(`${r.ref} (${r.refsrc})`)]);
+    if (reference) {
+      facts.push([reference.author_report ? 'Reported best' : 'Published best',
+        `<a href="${escapeHTML(reference.source_url)}" target="_blank" rel="noopener">${escapeHTML(reference.s)} · ${escapeHTML(reference.source_author || reference.who)}</a>`]);
+      facts.push(['Shown in 3D', selection.row ?
+        `Coordinate construction at s = ${escapeHTML(r.s)}. The better ${reference.author_report ? 'reported' : 'published'} result has no available coordinates; this view shows a different construction.` :
+        'No coordinates are available for this result.']);
+    } else if (r.ref != null) facts.push(['Published reference', escapeHTML(`${r.ref} (${r.refsrc})`)]);
     if (!r.source_only) {
       const k = orient(r).sizes.length, sizes = orient(r).sizes;
       facts.push(['Orientations', k === 1 ? 'all pieces are translates of one another' : k === r.n ? `${k}, every piece oriented differently` :
@@ -275,12 +294,13 @@
       `<a href="${url.replace('.json', '.verify.txt')}" target="_blank" rel="noopener">Float check</a>` +
       `<button class="small" type="button" id="copy">Copy coordinates</button><span id="copied"></span>` : '') +
       (r.source_url ? `<a href="${escapeHTML(r.source_url)}" target="_blank" rel="noopener">Original published construction</a>` : '') +
-      (r.refurl && r.refurl !== r.source_url ? `<a href="${escapeHTML(r.refurl)}" target="_blank" rel="noopener">Published reference</a>` : '');
+      (r.refurl && r.refurl !== r.source_url ? `<a href="${escapeHTML(r.refurl)}" target="_blank" rel="noopener">Published reference</a>` : '') +
+      (reference && reference.source_url !== r.source_url && reference.source_url !== r.refurl ?
+        `<a href="${escapeHTML(reference.source_url)}" target="_blank" rel="noopener">${reference.author_report ? 'Reported' : 'Published'} best source</a>` : '');
     if ($('copy')) $('copy').onclick = copyCoords;
-    const primary = prob.rows.find(c => c.n === r.n), choices = [primary, ...(primary.alternatives || [])];
     if (choices.length > 1) {
       $('links').insertAdjacentHTML('beforeend', '<div class="construction-choice"><label for="construction-variant">Construction</label><select id="construction-variant">' +
-        choices.map((c, i) => `<option value="${i}"${c.id === r.id ? ' selected' : ''}>${i === 0 ? 'Best available' : 'Alternative'}: ${escapeHTML(c.who || 'project search')} · ${c.s}${c.source_only ? ' (source only)' : ' (certified)'}</option>`).join('') + '</select></div>');
+        choices.map((c, i) => `<option value="${i}"${c.id === r.id ? ' selected' : ''}>${i === 0 ? 'Best with coordinates' : 'Alternative'}: ${escapeHTML(c.who || 'project search')} · ${c.s}${c.ok ? ' (certified)' : c.ver ? ' (float-checked)' : ' (pending)'}</option>`).join('') + '</select></div>');
       $('construction-variant').onchange = e => selectRow(choices[Number(e.target.value)]);
     }
     $('prevn').disabled = !prob.rows.find(x => x.n === r.n - 1); $('nextn').disabled = !prob.rows.find(x => x.n === r.n + 1);
@@ -435,17 +455,13 @@
     else el.innerHTML = '';
   }
   function build() {
-    const sourceOnly = !!(row && row.source_only), source = $('source-preview');
-    stage.classList.toggle('source-only', sourceOnly);
+    const sourceOnly = !!(row && row.source_only);
     cv.hidden = sourceOnly || !hasGL;
     stage.querySelector('.views').hidden = sourceOnly || !hasGL;
     stage.querySelector('.hint').hidden = sourceOnly || !hasGL;
     $('viewer').querySelector('.tools').hidden = sourceOnly;
     if ($('webgl-note')) $('webgl-note').hidden = sourceOnly;
-    source.hidden = !sourceOnly;
-    source.innerHTML = sourceOnly ? (row.image_url ? `<img src="${escapeHTML(row.image_url)}" alt="Original published animation: ${row.n} ${escapeHTML(pl(prob.piece))} in ${escapeHTML(dn(prob.container))}" referrerpolicy="no-referrer">` : '') +
-      `<p><b>${row.author_report ? 'Author-reported construction' : 'Original published construction'}</b><br>${escapeHTML(row.source_author || row.who)}</p><p>Downloadable coordinates are unavailable from this source.${row.author_report ? ' The claimed certificate has not been checked here.' : ''} Choose a certified alternative to explore a different construction in 3D.</p>` +
-      `<a href="${escapeHTML(row.source_url)}" target="_blank" rel="noopener">View the original source</a>` : '';
+    $('geometry-note').hidden = !sourceOnly;
     if (!sourceOnly) legend();
     if (!hasGL || !row) return;
     const oldGeometry = new Set(), oldMaterials = new Set();
