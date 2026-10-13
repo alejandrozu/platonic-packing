@@ -74,7 +74,7 @@ class SubmissionTests(unittest.TestCase):
                 submission.main()
             result = json.loads((output / 'result.json').read_text(encoding='utf-8'))
             comment = (output / 'comment.md').read_text(encoding='utf-8')
-            accepted_file = root / 'records/cubincub/cubincub_n02.json'
+            accepted_file = root / result['record'] if result['accepted'] else root / 'records/cubincub/cubincub_n02.json'
             accepted = json.loads(accepted_file.read_text(encoding='utf-8')) if result['accepted'] else None
             cert = accepted_file.with_suffix('.certify.txt').read_text(encoding='utf-8') if accepted else None
             log = (root / 'records/CONTRIBUTIONS.md').read_text(encoding='utf-8') if accepted else None
@@ -124,7 +124,8 @@ class SubmissionTests(unittest.TestCase):
         previous = copy.deepcopy(RECORD)
         previous['s_full'] += 0.01
         previous['found_by'] = 'Previous contributor'
-        result, comment, record, cert, log = self.evaluate(mode='accept', authorized=True, current=previous)
+        submitted = {key: RECORD[key] for key in ('piece', 'container', 'n', 's_full', 'pieces')}
+        result, comment, record, cert, log = self.evaluate(submitted, mode='accept', authorized=True, current=previous)
         self.assertTrue(result['accepted'])
         self.assertEqual(result['labels_add'], ['certified', 'new-record'])
         self.assertEqual(record['found_by'], 'Example contributor')
