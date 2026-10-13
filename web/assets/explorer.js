@@ -3,9 +3,11 @@
 (async () => {
   const $ = id => document.getElementById(id);
   const ROOT = document.documentElement.dataset.root || './';
+  const DATA_VERSION = document.documentElement.dataset.recordsVersion;
+  const DATA_URL = ROOT + 'data/records.json' + (DATA_VERSION ? '?v=' + encodeURIComponent(DATA_VERSION) : '');
   let D = window.PP_DATA;
   if (!D) {
-    try { D = await (await fetch(ROOT + 'data/records.json')).json() }
+    try { D = await (await fetch(DATA_URL, { cache: 'no-cache' })).json() }
     catch (e) { $('ptitle').textContent = 'The record data did not load. Reload the page, or browse the records on GitHub.'; return }
   }
   const NAMES = { tetrahedron: ['tetrahedron', 'tetrahedra'], cube: ['cube', 'cubes'], octahedron: ['octahedron', 'octahedra'],
