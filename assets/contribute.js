@@ -57,9 +57,14 @@
     const fn = []; N.forEach(n => { if (!fn.some(m => Math.abs(m[0] * n[0] + m[1] * n[1] + m[2] * n[2]) > 1 - 1e-12)) fn.push(n) });
     return solidCache[name] = { V, N, B, dirs, fn, R: Math.max(...V.map(v => Math.hypot(...v))) };
   }
+  function unitQuaternion(q) {
+    const scale = Math.max(...q.map(Math.abs)); if (!(scale > 0)) return null;
+    const scaled = q.map(v => v / scale), l = Math.hypot(...scaled);
+    return scaled.map(v => v / l);
+  }
   function qR(q) {
-    const l = Math.hypot(q[0], q[1], q[2], q[3]); if (!(l > 0)) return null;
-    const [w, x, y, z] = q.map(v => v / l);
+    const unit = unitQuaternion(q); if (!unit) return null;
+    const [w, x, y, z] = unit;
     return [[1 - 2 * (y * y + z * z), 2 * (x * y - w * z), 2 * (x * z + w * y)], [2 * (x * y + w * z), 1 - 2 * (x * x + z * z), 2 * (y * z - w * x)], [2 * (x * z - w * y), 2 * (y * z + w * x), 1 - 2 * (x * x + y * y)]];
   }
   const mv = (R, v) => [R[0][0] * v[0] + R[0][1] * v[1] + R[0][2] * v[2], R[1][0] * v[0] + R[1][1] * v[1] + R[1][2] * v[2], R[2][0] * v[0] + R[2][1] * v[1] + R[2][2] * v[2]];
@@ -165,7 +170,8 @@
       const grp = new THREE.Group();
       grp.add(new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color: new THREE.Color(badSet.has(i) ? '#c8524a' : '#4c6fd6'), flatShading: true, roughness: 0.6, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1 })));
       grp.add(new THREE.LineSegments(eg, new THREE.LineBasicMaterial({ color: new THREE.Color(badSet.has(i) ? '#c8524a' : '#4c6fd6') })));
-      grp.quaternion.copy(new THREE.Quaternion(p[4], p[5], p[6], p[3]).normalize()); grp.position.set(p[0], p[1], p[2]);
+      const unit = unitQuaternion(p.slice(3));
+      grp.quaternion.set(unit[1], unit[2], unit[3], unit[0]); grp.position.set(p[0], p[1], p[2]);
       world.add(grp);
     });
     pR = Math.max(...C.V.map(v => Math.hypot(...v))) * pk.s + Math.hypot(...pk.cc);
