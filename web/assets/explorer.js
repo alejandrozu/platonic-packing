@@ -340,12 +340,14 @@ if (typeof document !== 'undefined') (async () => {
       facts.push(['Orientations', k === 1 ? 'all pieces are translates of one another' : k === r.n ? `${k}, every piece oriented differently` :
         k <= 8 ? `${k} (${sizes.join(' + ')} pieces)` : `${k} (largest groups: ${sizes.slice(0, 5).join(', ')} pieces)`]);
     }
-    facts.push(['Origin', escapeHTML(r.external ? `Published construction by ${r.source_author || r.who}` : r.who && /published packing/.test(r.who) ? r.who : r.derived ? `record = ${r.derived}` : `found by ${r.who || 'the search'}` + (r.move ? ` (move: ${r.move})` : ''))]);
+    facts.push(['Origin', escapeHTML(r.external ? `${r.source_derivation ? 'Source construction credit: ' : 'Published construction by '}${r.source_author || r.who}` : r.who && /published packing/.test(r.who) ? r.who : r.derived ? `record = ${r.derived}` : `found by ${r.who || 'the search'}` + (r.move ? ` (move: ${r.move})` : ''))]);
     const derivation = packingDerivationText(r.source_derivation);
     if (derivation) facts.push(['Derivation', escapeHTML(derivation)]);
     if (r.refined_by) facts.push(['Certificate refinement', escapeHTML(`${r.refined_by}; inherited piece positions and orientations, smaller certified container padding.`)]);
     if (r.source_only) facts.push(['Status', r.author_report ? 'Author-reported result; coordinates and the claimed certificate are unavailable for local verification.' : 'Published source; coordinates and a local certificate are unavailable. The displayed scale retains the catalogue precision.']);
-    else if (r.external) facts.push(['Import', 'Original construction, normalized to this viewer and given 1e-7 clearance for exact certification.']);
+    else if (r.external) facts.push(['Import', r.source_derivation ?
+      'Derived coordinates independently certified at the displayed scale; the linked source documents the original construction or bound.' :
+      'Coordinates normalized to the common canonical solids and independently certified at the displayed scale.']);
     const issue = r.issue ? submissionIssue(r.issue) : null;
     if (issue) facts.push(['Submitted in', `<a href="${escapeHTML(issue.href)}" target="_blank" rel="noopener">${escapeHTML(issue.pathname.slice(1))}</a>`]);
     if (r.cert.length) facts.push(['Certificate', r.cert.join(' ')]);
