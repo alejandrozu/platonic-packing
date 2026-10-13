@@ -1,0 +1,199 @@
+{
+ "problem": "min/truncated_tetrahedron_in_truncated_tetrahedron",
+ "piece": "truncated_tetrahedron",
+ "container": "truncated_tetrahedron",
+ "n": 13,
+ "s": 2.91701,
+ "s_plus": "2.91701+",
+ "s_full": 2.917011579295802,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_wall_gap": 9.765655e-11,
+  "min_pair_gap": 1.000002e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   2.03329782251943,
+   -0.6190841529872311,
+   -0.6190841446760489,
+   0.5000000000000002,
+   0.5000000000000001,
+   -0.5000000000000001,
+   0.49999999999999983
+  ],
+  [
+   0.6190841446760394,
+   -2.0332978308306178,
+   -0.6190841446760494,
+   4.70094758833705e-15,
+   1.0,
+   3.2328188437838397e-15,
+   1.6100786488107498e-15
+  ],
+  [
+   -0.4287041092184611,
+   0.42870410090727695,
+   -2.033297822519429,
+   1.154139165667384e-16,
+   1.880399573240789e-16,
+   -1.0,
+   -7.602747172264362e-17
+  ],
+  [
+   1.3259039339950625,
+   -1.3259039423062473,
+   -1.32619098359774,
+   4.056573440138568e-16,
+   0.7071067811865472,
+   -1.992611512093422e-16,
+   -0.7071067811865478
+  ],
+  [
+   -1.1774811498128341,
+   1.2450915419957869,
+   -1.1698382192337486,
+   0.035469733791912726,
+   0.12605675556156276,
+   -0.5317425710593873,
+   0.8367206406472688
+  ],
+  [
+   0.49474216782543473,
+   2.033297818363876,
+   0.49474217198106574,
+   0.5,
+   0.49999999999999994,
+   -0.5000000000000002,
+   -0.49999999999999994
+  ],
+  [
+   -0.5017205592745804,
+   -0.501720563430133,
+   2.0332978266750605,
+   0.49999999999999967,
+   0.5,
+   0.5000000000000003,
+   0.5
+  ],
+  [
+   1.1533785833874532,
+   1.1104571428681256,
+   1.1892584040653014,
+   0.17733387686702048,
+   0.5555660941453604,
+   -0.8118594479364906,
+   0.027986567271423155
+  ],
+  [
+   -0.67776594361023,
+   -1.9159342412735079,
+   0.7951295331673296,
+   0.499999999999997,
+   -0.5000000000000028,
+   -0.5000000000000078,
+   -0.49999999999999256
+  ],
+  [
+   -2.03329782667506,
+   -0.61908415298722,
+   0.6190841488316666,
+   3.703467080526379e-16,
+   -3.819125453568628e-16,
+   -2.266395963290667e-16,
+   1.0
+  ],
+  [
+   0.46352858926136387,
+   0.15993417575511204,
+   -0.701874153819319,
+   0.17103839698915055,
+   0.6264024131388195,
+   0.7121547946447924,
+   -0.2668359646555899
+  ],
+  [
+   -0.7631902730133153,
+   0.5357150822186487,
+   0.22939715934380964,
+   0.3261670867689006,
+   -0.5143511790740442,
+   0.6654880658144171,
+   0.43148989600269366
+  ],
+  [
+   0.8314582986793418,
+   -0.15422630757636635,
+   0.7826495478213874,
+   0.9515323956051734,
+   -0.19922343284147925,
+   0.21008461426576505,
+   -0.10373320957890599
+  ]
+ ],
+ "record_id": "tteintte_n13_pingyou_20261013",
+ "title": "13 truncated tetrahedra in a truncated tetrahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "9b03b88cb9135238",
+  "clear": 1e-07,
+  "cap": 2.9446074812294
+ },
+ "s_tight": 2.917011416736,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.3513346877207573,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "search": {
+  "move": "ascend",
+  "seed": 1957659601,
+  "var": "base",
+  "raw": 2.961531764664537
+ },
+ "density": 0.523755857549255,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/tteintte/tteintte_n13.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "7f34f5983f6f6994582d7c646a1563b42a25adb3307034636abec4d57b039a26",
+  "source_s_full": 2.9170117424357,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "d78a9c33d4eeb35793dda5a23ab7e8f410fb52682ff0dc15c01f6522ab546e59",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "3284263249067195/1125899906842624",
+  "scale_exact": "3284263065387999/1125899906842624",
+  "decrease_exact": "45919799/281474976710656",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 2.9170117424357,
+  "s_tight": 2.917011416736,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "9b03b88cb9135238",
+   "clear": 1e-07,
+   "cap": 2.9440472891167
+  },
+  "date": "2026-10-13"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "tteintte_n13"
+}

@@ -1,0 +1,134 @@
+{
+ "problem": "min/tetrahedron_in_tetrahedron",
+ "piece": "tetrahedron",
+ "container": "tetrahedron",
+ "n": 7,
+ "s": 2.38195,
+ "s_plus": "2.38195+",
+ "s_full": 2.3819517379184,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000018715090289e-07,
+  "min_wall_gap": 1.0000001643417633e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   -0.045793120581183185,
+   -0.23748368841579703,
+   0.17268862053317102,
+   0.5515969417652328,
+   0.5238307300983777,
+   0.6462450138078017,
+   -0.060906175125330364
+  ],
+  [
+   -0.488593549324119,
+   0.4885935493247276,
+   -0.4885935493713441,
+   0.5000000000000093,
+   0.4999999999999184,
+   -0.4999999999998286,
+   0.5000000000002438
+  ],
+  [
+   0.4885935432475381,
+   0.4885935427914105,
+   0.4885935469030468,
+   0.5000000010509092,
+   0.5000000003391939,
+   0.49999999962747943,
+   -0.4999999989824174
+  ],
+  [
+   -0.4885935493242339,
+   -0.4885935478604174,
+   0.48859354781492675,
+   6.417490049583813e-13,
+   9.573715998980808e-13,
+   7.989581887102613e-13,
+   -1.0
+  ],
+  [
+   0.23856191275927127,
+   0.22561259994483604,
+   0.08522215622936452,
+   0.3280231443696675,
+   0.3247726604668599,
+   -0.17840819083220855,
+   0.8689614797072954
+  ],
+  [
+   -0.23886565205325605,
+   0.23234724675973767,
+   -0.09525209482561862,
+   0.34128404287678415,
+   -0.1895832499875849,
+   -0.343017975106144,
+   0.8543547636409029
+  ],
+  [
+   0.37296296509244264,
+   -0.39622993186309335,
+   -0.418789651123123,
+   0.5772761751683564,
+   0.4742539490220068,
+   0.5027536979600596,
+   0.4348265500259962
+  ]
+ ],
+ "record_id": "tetintet_n07_kamp",
+ "title": "7 unit tetrahedrons in a tetrahedron",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l1/m1/n7/platonic_n7_m1_l1.html",
+  "source_file": "docs/literature/external/kamp-tetintet-n07.html",
+  "sha256": "740065cd2a8ee423dc417c0b54cbf9e3128a5e930c9b4be2d13dd19b619a231e",
+  "numeric_source_file": "docs/literature/external/kamp-tetintet-n07.txt",
+  "numeric_source_sha256": "6253d2ebad2463c3c1fdfd095ff7ed4c666c7f019b0248e27ec3f2be02bc1513",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "published_s_full": 2.38195098517109,
+  "published_circumradius": 2.38195098517109,
+  "source_to_canonical_row_matrix": [
+   [
+    -0.7071067811865475,
+    -0.7071067811865478,
+    1.3381212312534267e-15
+   ],
+   [
+    -0.4082482904638616,
+    0.40824829046386324,
+    0.8164965809277267
+   ],
+   [
+    -0.5773502691896271,
+    0.5773502691896253,
+    -0.577350269189625
+   ]
+  ],
+  "outer_conversion_max_error": 3.75183112327e-15,
+  "vertex_conversion_max_error": 6.622090053958515e-15,
+  "normalization": "Original pieces have unit circumradius, so tetrahedron edge length is 1.6329931618554523; centers divided by this edge. Apply a proper rigid rotation to align ALL published tetrahedron outer vertices with the project canonical solid (normalized discrepancy 3.75e-15). Fit piece rotations to ALL source mesh vertices (maximum discrepancy 6.62e-15). Convert container circumradius into edge ratio R/(0.61237243569579447 * 1.6329931618554523). Add standard 1e-7 clearance without transferring discovery credit.",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "imported_on": "2026-10-13"
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 1.912931182772389,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.5179635118487402
+}

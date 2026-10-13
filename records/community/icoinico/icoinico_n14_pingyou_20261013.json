@@ -1,0 +1,214 @@
+{
+ "problem": "min/icosahedron_in_icosahedron",
+ "piece": "icosahedron",
+ "container": "icosahedron",
+ "n": 14,
+ "s": 3.0178,
+ "s_plus": "3.01780+",
+ "s_full": 3.017801833459313,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_wall_gap": 9.765655e-11,
+  "min_pair_gap": 1e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -0.7196262675021345,
+   -1.453654391717255,
+   -0.4680562066203495,
+   0.3090169943749474,
+   0.5000000000000001,
+   -0.8090169943749476,
+   -1.8869278018554098e-16
+  ],
+  [
+   0.4581850162681697,
+   0.41670999163911415,
+   1.4574248557485632,
+   0.5720614028176845,
+   0.3535533905932736,
+   -0.7071067811865476,
+   -0.21850801222441057
+  ],
+  [
+   0.8642635884639457,
+   -1.5430451721133822,
+   -0.23402810526241036,
+   0.5000000000000003,
+   0.5,
+   -0.4999999999999999,
+   -0.4999999999999999
+  ],
+  [
+   -1.457424859653036,
+   -0.45818500604612544,
+   0.4167099775125969,
+   0.5720614028176839,
+   -0.135045378368863,
+   0.5720614028176845,
+   -0.5720614028176846
+  ],
+  [
+   -0.13201269866336982,
+   -1.1522840331515027,
+   1.1190752029575788,
+   0.7111616843098597,
+   -0.644143922883086,
+   -0.140175957508752,
+   0.24429156006472516
+  ],
+  [
+   1.5430451823354268,
+   -0.23402809113589254,
+   -0.8642635923684184,
+   0.8090169943749477,
+   0.3090169943749471,
+   -0.4999999999999997,
+   -3.2592389304775254e-16
+  ],
+  [
+   1.4536544019392998,
+   -0.4680561924938309,
+   0.7196262635976615,
+   0.4999999999999999,
+   -3.430777821555291e-16,
+   0.8090169943749475,
+   -0.30901699437494756
+  ],
+  [
+   0.010279325763811298,
+   -0.02193657952279664,
+   -0.014508164280120002,
+   0.3564986601554821,
+   0.7799327340588201,
+   0.028288226864273187,
+   -0.5136276977264324
+  ],
+  [
+   -1.2502938844816356,
+   0.024540426868627323,
+   -1.099144047032068,
+   0.6747084926456677,
+   0.3241582459992507,
+   0.6505368934585645,
+   -0.12841974829355823
+  ],
+  [
+   0.46805620271587556,
+   0.7196262777241794,
+   -1.453654405843773,
+   1.200772237544352e-16,
+   0.30901699437494745,
+   0.8090169943749473,
+   0.5000000000000002
+  ],
+  [
+   0.23402810135793847,
+   -0.8642635782419007,
+   -1.5430451862399,
+   0.5,
+   0.0,
+   0.8090169943749475,
+   0.3090169943749474
+  ],
+  [
+   -0.41670998141707,
+   1.45742486987508,
+   -0.4581850201726429,
+   0.3535533905932738,
+   -0.7071067811865475,
+   0.5720614028176845,
+   0.21850801222441021
+  ],
+  [
+   1.1879319720493473,
+   1.0489259041625671,
+   0.0008616559519167263,
+   0.38447089458960265,
+   -0.7939549159218497,
+   -0.35747730487502827,
+   -0.3066393634161886
+  ],
+  [
+   -0.880445624052437,
+   0.8804456342744815,
+   0.8804456201479639,
+   0.8090169943749473,
+   -0.2500000000000001,
+   0.3454915028125262,
+   -0.40450849718747406
+  ]
+ ],
+ "record_id": "icoinico_n14_pingyou_20261013",
+ "title": "14 unit icosahedra in an icosahedron",
+ "source": {
+  "hash": "ffb8810334478dfa",
+  "clear": 1e-07,
+  "cap": 3.0483212014219
+ },
+ "s_tight": 3.017801685357,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.4101422641752297,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "reinsert",
+  "seed": 109457018,
+  "expand": 0.011362477032496435,
+  "rh": 0.13916995699152243,
+  "remove": [
+   8,
+   2
+  ],
+  "from": "best",
+  "raw": 3.019684577347577
+ },
+ "density": 0.5093964118578209,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/icoinico/icoinico_n14.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "e849ae99a547427a9b3125149593f80375665f700b399b70b8e885bfd087a7ba",
+  "source_s_full": 3.0178019656471,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "family": "platonic",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "446c5a8736d558e8fef6aba951dd869bcceba5861939a33de7de3409f1c02836",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "6795485903983115/2251799813685248",
+  "scale_exact": "6795485606322681/2251799813685248",
+  "decrease_exact": "148830217/1125899906842624",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 3.0178019656471,
+  "s_tight": 3.017801685357,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "ffb8810334478dfa",
+   "clear": 1e-07,
+   "cap": 3.0483212014219
+  },
+  "date": "2026-10-09"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "icoinico_n14"
+}

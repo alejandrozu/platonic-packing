@@ -1,0 +1,118 @@
+{
+ "problem": "min/triakis_octahedron_in_triakis_octahedron",
+ "piece": "triakis_octahedron",
+ "container": "triakis_octahedron",
+ "n": 4,
+ "s": 2.0,
+ "s_plus": "2.00000+",
+ "s_full": 2.000000030579481,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_wall_gap": 9.765611e-11,
+  "min_pair_gap": 1.000002e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   1.7680327892089758e-14,
+   -1.0848810538417332e-14,
+   2.4142136360545523,
+   1.9471496716051136e-15,
+   -0.7071067811865465,
+   -0.7071067811865488,
+   -1.9348959761991814e-16
+  ],
+  [
+   -0.06699745285602272,
+   0.06699745285602464,
+   -2.3194649295810863,
+   0.27059805007310334,
+   0.6532814824381872,
+   0.2705980500731061,
+   -0.6532814824381844
+  ],
+  [
+   2.4142136360545416,
+   -1.0848810538417332e-14,
+   2.2429047890129024e-15,
+   1.8758979722568675e-15,
+   -2.165667857228883e-15,
+   -0.7071067811865476,
+   0.7071067811865475
+  ],
+  [
+   1.7680327892089758e-14,
+   -2.4142136360545505,
+   2.2429047890129024e-15,
+   0.6532814824381867,
+   -0.27059805007310095,
+   -0.27059805007310106,
+   0.6532814824381877
+  ]
+ ],
+ "record_id": "ktoinkto_n04_pingyou_20261013",
+ "title": "4 triakis octahedra in a triakis octahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "a287833159a691ad",
+  "clear": 1e-07,
+  "cap": 2.0000000915595
+ },
+ "s_tight": 2.0,
+ "closed_form_conjecture": "2",
+ "volume_lower_bound": 1.5874010519681994,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "search": {
+  "move": "ascend",
+  "seed": 257889294,
+  "var": "base",
+  "raw": 2.0974405095348025
+ },
+ "density": 0.4999999770653898,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/ktoinkto/ktoinkto_n04.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "c2ab90b1c77af47bf36220cd459b814251d272fb9eead2718962980667d54327",
+  "source_s_full": 2.0000000915595,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "bccf1c9f6d186d7e50cfc7359c5613e855ee843648810f629c2777c525f7c53a",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "4503599833544161/2251799813685248",
+  "scale_exact": "2251799848114683/1125899906842624",
+  "decrease_exact": "137314795/2251799813685248",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 2.0000000915595,
+  "s_tight": 2.0,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "a287833159a691ad",
+   "clear": 1e-07,
+   "cap": 2.0000000915595
+  },
+  "date": "2026-10-12"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "ktoinkto_n04"
+}

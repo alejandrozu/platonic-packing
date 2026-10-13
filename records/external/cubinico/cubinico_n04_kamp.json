@@ -1,0 +1,107 @@
+{
+ "problem": "min/cube_in_icosahedron",
+ "piece": "cube",
+ "container": "icosahedron",
+ "n": 4,
+ "s": 1.77569,
+ "s_plus": "1.77569+",
+ "s_full": 1.7756983129288,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020091854855e-07,
+  "min_wall_gap": 1.0000006911425885e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   0.2807935822992978,
+   0.6718093356435351,
+   0.1517452940732932,
+   0.019536530255234576,
+   -0.4091283373171879,
+   0.05269007322229032,
+   -0.9107447961824923
+  ],
+  [
+   0.46399804240873427,
+   -0.47427796804548256,
+   -0.18471172229472801,
+   0.6271092810392676,
+   0.6426172212390666,
+   0.1809752393350031,
+   -0.40127922865385374
+  ],
+  [
+   -0.19045545155538934,
+   -0.3355066192284911,
+   0.5714515415572605,
+   0.0863034951572202,
+   -0.3400495419201297,
+   0.11404436986678614,
+   0.9294686102635448
+  ],
+  [
+   -0.5491211852583779,
+   0.08245432629893372,
+   -0.4954843665559145,
+   0.299709572897051,
+   -0.6928107872939921,
+   -0.5914820136572346,
+   0.283436787384646
+  ]
+ ],
+ "record_id": "cubinico_n04_kamp",
+ "title": "4 unit cubes in a icosahedron",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l4/m3/n4/platonic_n4_m3_l4.html",
+  "source_file": "docs/literature/external/kamp-cubinico-n04.html",
+  "sha256": "2986ed3c7709ac6ae739d46ad7058f644a719c55ff82cc040ab7027553722852",
+  "numeric_source_file": "docs/literature/external/kamp-cubinico-n04.txt",
+  "numeric_source_sha256": "944cc337aeccf9676833fb597b62fc53ccde7b20cecc14322f2c3d3544583cdd",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "published_s_full": 1.7756980795375221,
+  "published_circumradius": 1.950045832532304,
+  "source_to_canonical_row_matrix": [
+   [
+    -0.309016994374947,
+    -0.8090169943749477,
+    -0.4999999999999999
+   ],
+   [
+    0.49999999999999994,
+    0.3090169943749475,
+    -0.8090169943749475
+   ],
+   [
+    0.8090169943749475,
+    -0.49999999999999944,
+    0.30901699437494756
+   ]
+  ],
+  "outer_conversion_max_error": 1.0940792951023655e-15,
+  "vertex_conversion_max_error": 4.231246242305421e-15,
+  "normalization": "Original pieces have unit circumradius, so cube edge length is 1.1547005383792517; centers divided by this edge. Apply a proper rigid rotation to align ALL published icosahedron outer vertices with the project canonical solid (normalized discrepancy 1.09e-15). Fit piece rotations to ALL source mesh vertices (maximum discrepancy 4.23e-15). Convert container circumradius into edge ratio R/(0.95105651629515353 * 1.1547005383792517). Add standard 1e-7 clearance without transferring discovery credit.",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "imported_on": "2026-10-13"
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 1.2239264461440131,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.32746011548950477
+}

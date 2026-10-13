@@ -65,6 +65,9 @@ PRISMS = [f'prism{k}' for k in (3, 5, 6, 8, 12)] + [f'antiprism{k}' for k in (4,
 PROBLEMS = [('tetrahedron', 'tetrahedron'), ('octahedron', 'octahedron'), ('icosahedron', 'icosahedron'),
             ('dodecahedron', 'dodecahedron'), ('cube', 'cube'), ('cube', 'octahedron'), ('octahedron', 'cube'),
             ('dodecahedron', 'icosahedron'), ('icosahedron', 'dodecahedron')]
+PLATONIC = ('tetrahedron', 'cube', 'octahedron', 'dodecahedron', 'icosahedron')
+PROBLEMS += [(piece, container) for piece in PLATONIC for container in PLATONIC
+             if (piece, container) not in PROBLEMS]
 FAMILY = {p: 'platonic' for p in PROBLEMS}
 for _s in ARCHIMEDEAN: PROBLEMS.append((_s, _s)); FAMILY[(_s, _s)] = 'archimedean'
 for _s in CATALAN: PROBLEMS.append((_s, _s)); FAMILY[(_s, _s)] = 'catalan'

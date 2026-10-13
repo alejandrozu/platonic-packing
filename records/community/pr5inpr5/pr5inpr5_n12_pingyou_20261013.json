@@ -1,0 +1,196 @@
+{
+ "problem": "min/prism5_in_prism5",
+ "piece": "prism5",
+ "container": "prism5",
+ "n": 12,
+ "s": 2.77207,
+ "s_plus": "2.77207+",
+ "s_full": 2.772079375092494,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_wall_gap": 1.188269e-10,
+  "min_pair_gap": 1.000002e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -0.9658416093617999,
+   -1.0919784300513617,
+   0.5586294313218739,
+   0.6930435215331954,
+   0.6431640551314132,
+   -0.2938366862509107,
+   0.14032347366306192
+  ],
+  [
+   0.25134154296815353,
+   -1.3639544807934967,
+   -0.8242007280178892,
+   0.0018574891811295373,
+   -0.8090023786813617,
+   0.587774633369507,
+   -0.005716763873243684
+  ],
+  [
+   -1.0987029470279814,
+   1.1231741396768358,
+   0.5770226581223677,
+   0.11061587104123743,
+   0.3210197609601032,
+   -0.6300367553350503,
+   0.6984011233337104
+  ],
+  [
+   0.6251312200732139,
+   1.238907820383851,
+   -0.5378164703002626,
+   0.42943283288244444,
+   -0.7028239325571956,
+   -0.07878414211413932,
+   -0.5616217773722245
+  ],
+  [
+   0.5530136296703185,
+   1.313628684267453,
+   0.8081524747560326,
+   8.415217980433895e-15,
+   1.0,
+   8.460346838589839e-17,
+   6.178811581278858e-15
+  ],
+  [
+   -1.1472482486009963,
+   0.8809018152769224,
+   -0.8126592230711714,
+   0.014528894026087091,
+   -0.8084776395084833,
+   0.5878611697144495,
+   0.023917834248293725
+  ],
+  [
+   -1.2127983478318258,
+   -0.7438377831231331,
+   -0.7903203929975593,
+   0.8129900240687054,
+   -0.001761209504525618,
+   0.001261400187999495,
+   0.5822735849885454
+  ],
+  [
+   0.4658186245503363,
+   -1.4336423089901007,
+   0.8860396758647124,
+   2.219539471055016e-16,
+   -0.8090169943749475,
+   0.5877852522924731,
+   -1.3867803378801794e-16
+  ],
+  [
+   1.343806885208515,
+   0.0028007909124214414,
+   0.8226892853620449,
+   0.025952576876903936,
+   -0.4325484490528819,
+   0.9011498978033321,
+   -0.01253653319060006
+  ],
+  [
+   -0.04723614691418589,
+   -7.865259404906538e-06,
+   -0.8860396758647123,
+   4.643960443701811e-17,
+   0.9475602456185117,
+   -0.31957719086847525,
+   -3.1228735255700553e-16
+  ],
+  [
+   -0.1616843153425192,
+   0.0301604548600779,
+   0.46227920162678915,
+   0.5497756077686295,
+   -0.015743755996670033,
+   -0.7069314918343341,
+   0.44468728461991625
+  ],
+  [
+   1.334683383619492,
+   -0.26400511705885177,
+   -0.5658512755552746,
+   0.6057869741541183,
+   0.6091608056251463,
+   0.35953913894584466,
+   0.3642483526406143
+  ]
+ ],
+ "record_id": "pr5inpr5_n12_pingyou_20261013",
+ "title": "12 prism5s in a prism5",
+ "family": "prisms",
+ "source": {
+  "hash": "466e8dfa3188d9ec",
+  "clear": 1e-07,
+  "cap": 2.8454217437007
+ },
+ "s_tight": 2.772079217727,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.2894284851066637,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "search": {
+  "move": "hop",
+  "seed": 1647759717,
+  "var": "gentle",
+  "minDiff": 0.042125768810075535,
+  "expand": 0.029600111887273732,
+  "rh": 0.15937717549157732,
+  "focus": 0,
+  "from": "best",
+  "raw": 2.7722795818464157,
+  "host": "laptop"
+ },
+ "density": 0.5633317914855125,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/pr5inpr5/pr5inpr5_n12.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "2013907af19203f828d20bfe57e6616711155bc82e26afa774e681c11f912928",
+  "source_s_full": 2.7720795517295,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "8496791638e21754222b21f3c195ad1f91f79535192980f1dc310d8e108a86a1",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "3121084109052587/1125899906842624",
+  "scale_exact": "6242167820353997/2251799813685248",
+  "decrease_exact": "397751177/2251799813685248",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 2.7720795517295,
+  "s_tight": 2.772079217727,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "466e8dfa3188d9ec",
+   "clear": 1e-07,
+   "cap": 2.8452794256799
+  },
+  "date": "2026-10-13"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "pr5inpr5_n12"
+}

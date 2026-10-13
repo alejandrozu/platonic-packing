@@ -1,0 +1,116 @@
+{
+ "problem": "min/dodecahedron_in_octahedron",
+ "piece": "dodecahedron",
+ "container": "octahedron",
+ "n": 5,
+ "s": 5.62673,
+ "s_plus": "5.62673+",
+ "s_full": 5.6267301252223,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000019758994231e-07,
+  "min_wall_gap": 1.0000000205678816e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   -0.06825137120763497,
+   -0.005530231321841061,
+   -1.6801734018374603,
+   0.04323537038419327,
+   0.5192035185162671,
+   0.5421935823247713,
+   -0.6592302544588662
+  ],
+  [
+   1.6772332686133293,
+   -0.005591813045347359,
+   0.06706887623691905,
+   0.45882811492476455,
+   0.19229000542871652,
+   0.7632997923273933,
+   -0.4121586366919534
+  ],
+  [
+   0.0017794043378553247,
+   1.7225562273634825,
+   0.0041257554747442995,
+   0.6732160737461864,
+   -0.3041112787889387,
+   0.670745743701742,
+   -0.06630682822396897
+  ],
+  [
+   0.050148886153041625,
+   0.0002539754573698138,
+   1.6997445090162888,
+   0.026588529531470447,
+   -0.5409215994777768,
+   0.48937114465744996,
+   0.683529630734773
+  ],
+  [
+   -1.7463860340122597,
+   -0.03326687992089814,
+   -0.06215057021439796,
+   0.6901485041813412,
+   -0.3625402396858375,
+   0.6220921388539703,
+   -0.07253266547484162
+  ]
+ ],
+ "record_id": "dodinoct_n05_kamp",
+ "title": "5 unit dodecahedrons in a octahedron",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l2/m5/n5/platonic_n5_m5_l2.html",
+  "source_file": "docs/literature/external/kamp-dodinoct-n05.html",
+  "sha256": "105ee6e783723cb81b4630f6c4d903cf11e8806e99ac6355101d9b5ee435bf09",
+  "numeric_source_file": "docs/literature/external/kamp-dodinoct-n05.txt",
+  "numeric_source_sha256": "eb82f32965ffaa4d4425bd438b002bb08005a92df6a0ae7156a5529919a7d2e7",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "published_s_full": 5.62672977350351,
+  "published_circumradius": 2.839375225621417,
+  "source_to_canonical_row_matrix": [
+   [
+    -1.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    1.0
+   ]
+  ],
+  "outer_conversion_max_error": 1.1102230246251565e-15,
+  "vertex_conversion_max_error": 8.899114524108741e-16,
+  "normalization": "Original pieces have unit circumradius, so dodecahedron edge length is 0.71364417954617976; centers divided by this edge. Apply a proper rigid rotation to align ALL published octahedron outer vertices with the project canonical solid (normalized discrepancy 1.11e-15). Fit piece rotations to ALL source mesh vertices (maximum discrepancy 8.9e-16). Convert container circumradius into edge ratio R/(0.70710678118654757 * 0.71364417954617976). Add standard 1e-7 clearance without transferring discovery credit.",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "imported_on": "2026-10-13"
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 4.331722326690956,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.4562612352749309
+}

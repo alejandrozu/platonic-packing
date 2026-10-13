@@ -114,6 +114,14 @@ el('json').value = JSON.stringify(overlap); await el('check').onclick();
 assert.equal(el('send').disabled, true);
 assert.match(el('result').innerHTML, /Not valid/);
 
+// Quaternion magnitude cannot silently replace a rotated arrangement with identity.
+for (const magnitude of [1, 1e308, 1e-300]) {
+  const rotatedOverlap = { ...record, s_full: 3, pieces: [[-.55, 0, 0, magnitude, 0, 0, 1.75 * magnitude], [.55, 0, 0, magnitude, 0, 0, 1.75 * magnitude]] };
+  el('json').value = JSON.stringify(rotatedOverlap); await el('check').onclick();
+  assert.equal(el('send').disabled, true);
+  assert.match(el('result').innerHTML, /Not valid/);
+}
+
 // A source-only best is never loaded as empty geometry or mistaken for certified coordinates.
 const originalRows = D.problems[0].rows, originalFetch = context.fetch, fetched = [];
 const alternative = { ...originalRows[0], id: 'cubincub_n02', ok: true };

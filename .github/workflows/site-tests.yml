@@ -6,8 +6,15 @@ on:
       - 'scripts/site.py'
       - 'scripts/engine.py'
       - 'scripts/check_submission.py'
+      - 'scripts/submission_batch.py'
+      - 'scripts/submission_runner.py'
+      - 'scripts/submission_event_guard.py'
+      - 'scripts/import_kamp_platonic.py'
+      - 'verify_general.py'
       - 'scripts/import_external_records.py'
       - 'docs/external_records.json'
+      - 'docs/community_records.json'
+      - 'records/community/**'
       - 'records/external/**'
       - 'src/**'
       - 'tests/**'
@@ -21,8 +28,15 @@ on:
       - 'scripts/site.py'
       - 'scripts/engine.py'
       - 'scripts/check_submission.py'
+      - 'scripts/submission_batch.py'
+      - 'scripts/submission_runner.py'
+      - 'scripts/submission_event_guard.py'
+      - 'scripts/import_kamp_platonic.py'
+      - 'verify_general.py'
       - 'scripts/import_external_records.py'
       - 'docs/external_records.json'
+      - 'docs/community_records.json'
+      - 'records/community/**'
       - 'records/external/**'
       - 'src/**'
       - 'tests/**'
@@ -46,5 +60,7 @@ jobs:
       - run: pip install --quiet numpy scipy
       - run: node --check web/assets/theme.js && node --check web/assets/explorer.js && node --check web/assets/contribute.js
       - run: node tests/test_submission_forms.mjs
+      - run: node tests/test_explorer_selection.mjs
       - run: python -X utf8 -m unittest discover -s tests -p 'test_*.py' -v
       - run: python -X utf8 scripts/site.py
+      - run: node tests/test_explorer_selection.mjs site/data/records.json

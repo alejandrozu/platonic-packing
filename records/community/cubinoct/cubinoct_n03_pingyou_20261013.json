@@ -1,0 +1,108 @@
+{
+ "problem": "min/cube_in_octahedron",
+ "piece": "cube",
+ "container": "octahedron",
+ "n": 3,
+ "s": 2.7071,
+ "s_plus": "2.70710+",
+ "s_full": 2.7071068814257715,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_wall_gap": 9.765633e-11,
+  "min_pair_gap": 1e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.0,
+   8.001593284758845e-16,
+   0.7071068518972318,
+   0.9238795325112867,
+   -0.3826834323650899,
+   -1.7625032587860286e-15,
+   8.730586919232145e-16
+  ],
+  [
+   0.0,
+   -0.707106851897229,
+   -5.921189925006631e-23,
+   0.2705980500731,
+   -0.6532814824381903,
+   0.27059805007309407,
+   -0.6532814824381876
+  ],
+  [
+   0.0,
+   8.001593284758845e-16,
+   -0.70710685189723,
+   0.27059805007309856,
+   -0.6532814824381884,
+   -0.27059805007309823,
+   0.6532814824381882
+  ]
+ ],
+ "record_id": "cubinoct_n03_pingyou_20261013",
+ "title": "3 unit cubes in an octahedron",
+ "source": {
+  "hash": "bad06c3bb82a04df",
+  "clear": 1e-07,
+  "cap": 2.7071071261356
+ },
+ "s_tight": 2.707106781187,
+ "closed_form_conjecture": "(4 + √2)/2",
+ "volume_lower_bound": 1.8531440115813975,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "monotone",
+  "from_n": 4,
+  "removed": 2
+ },
+ "density": 0.3207829693215014,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/cubinoct/cubinoct_n03.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "40e2a50f2a5711f75676dc84fcc4f56adc8b4c9a9018b6b0c902a8accb47f248",
+  "source_s_full": 2.7071071261356,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "family": "platonic",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "2a6c71d7784ebfa13ec48efbc242b964928a397513f4f76fdf790e503c72ba10",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "6095863322258151/2251799813685248",
+  "scale_exact": "6095862771220605/2251799813685248",
+  "decrease_exact": "275518773/1125899906842624",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 2.7071071261356,
+  "s_tight": 2.707106781187,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "bad06c3bb82a04df",
+   "clear": 1e-07,
+   "cap": 2.7071071261356
+  },
+  "date": "2026-10-10"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "cubinoct_n03"
+}

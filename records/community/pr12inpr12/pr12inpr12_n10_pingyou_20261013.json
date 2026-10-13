@@ -1,0 +1,173 @@
+{
+ "problem": "min/prism12_in_prism12",
+ "piece": "prism12",
+ "container": "prism12",
+ "n": 10,
+ "s": 2.9699,
+ "s_plus": "2.96990+",
+ "s_full": 2.9699061262162134,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_wall_gap": 3.259926e-10,
+  "min_pair_gap": 1.000002e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -3.731107315250508,
+   -0.051921170293835,
+   -0.5886121545257561,
+   0.8575529751115065,
+   0.01682348617173219,
+   0.10304457635841272,
+   -0.5036880785501565
+  ],
+  [
+   -1.6737827866162613,
+   -3.3570776108772984,
+   -0.9849530524667001,
+   2.3807191532608965e-16,
+   1.0,
+   -2.669367360530425e-16,
+   8.992600039509997e-17
+  ],
+  [
+   -3.249613610692732,
+   -1.9486834161237288,
+   0.9849484256955021,
+   6.032028677466277e-07,
+   0.4999171625757223,
+   0.8660732247113064,
+   1.848544067137186e-07
+  ],
+  [
+   -3.29571710111403,
+   1.9027831771490327,
+   0.9849530524667017,
+   4.068195563874169e-18,
+   -0.8660254037844388,
+   0.49999999999999983,
+   5.694463945477976e-17
+  ],
+  [
+   0.3434155036949633,
+   3.7135484647390706,
+   -0.9849530524667003,
+   0.5000000000000007,
+   -2.016833279562999e-16,
+   3.8305428732604843e-16,
+   0.8660254037844384
+  ],
+  [
+   3.4137151628900737,
+   -1.0625155669142066,
+   0.6071746662120948,
+   0.9938008384670192,
+   0.0754678886507909,
+   0.06610815909212038,
+   -0.04789783446349574
+  ],
+  [
+   -1.8508152686217567,
+   3.2860439852765255,
+   -0.052325029870174795,
+   0.08014488807722858,
+   0.5014751662230859,
+   0.8569388945166696,
+   0.0880635318458517
+  ],
+  [
+   0.1759410188632764,
+   -3.6863729167531756,
+   0.22682743689010054,
+   0.9753272567174793,
+   0.14866103091732852,
+   0.1581726194429901,
+   -0.040225149460211454
+  ],
+  [
+   0.04483493738268962,
+   -0.04476196133534614,
+   0.2933351214822582,
+   0.8815847206783265,
+   0.07547463283734715,
+   0.17701947243737373,
+   -0.43101747811727864
+  ],
+  [
+   3.2230530551567576,
+   1.960522622061542,
+   -0.42291940308433085,
+   0.4842432911981826,
+   0.15258005341106703,
+   -0.042689015330772774,
+   0.8604681343319561
+  ]
+ ],
+ "record_id": "pr12inpr12_n10_pingyou_20261013",
+ "title": "10 prism12s in a prism12",
+ "family": "prisms",
+ "source": {
+  "hash": "793fe4daf9225c7c",
+  "clear": 1e-07,
+  "cap": 3.0000004000005
+ },
+ "s_tight": 2.969905967326,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.154434690031884,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "search": {
+  "move": "ascend",
+  "seed": 1170508825,
+  "var": "base",
+  "raw": 2.982030434722191,
+  "host": "actions"
+ },
+ "density": 0.381743660305963,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/pr12inpr12/pr12inpr12_n10.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "4c9972c32a90c6b4ec6fefb765bd8327d60c573492512348af67555b1af13f99",
+  "source_s_full": 2.9699063049335,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "654da32d70ba74409820a0d0957f98570332f9b7c7bc58bdce4f2dd3dfc1ca0e",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "6687634464111899/2251799813685248",
+  "scale_exact": "3343817030838173/1125899906842624",
+  "decrease_exact": "402435553/2251799813685248",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 2.9699063049335,
+  "s_tight": 2.969905967326,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "793fe4daf9225c7c",
+   "clear": 1e-07,
+   "cap": 3.0000004000005
+  },
+  "date": "2026-10-12"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "pr12inpr12_n10"
+}

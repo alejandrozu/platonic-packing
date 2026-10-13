@@ -1,0 +1,116 @@
+{
+ "problem": "min/dodecahedron_in_dodecahedron",
+ "piece": "dodecahedron",
+ "container": "dodecahedron",
+ "n": 5,
+ "s": 2.23606,
+ "s_plus": "2.23606+",
+ "s_full": 2.2360681230966,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020231860432e-07,
+  "min_wall_gap": 1.000000082740371e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   -0.5000000224080092,
+   -0.8090170307478884,
+   -1.3090170533747238,
+   0.3090169943667783,
+   5.168466788146458e-14,
+   -0.8090169943791091,
+   0.49999999999831496
+  ],
+  [
+   -0.6562305933547099,
+   1.5562307018184105,
+   -0.09999993670869317,
+   5.6750485801731845e-11,
+   -0.500000000055951,
+   -0.8090169943143711,
+   -0.30901699444300756
+  ],
+  [
+   -1.3090170530702603,
+   -0.5000000223964383,
+   0.8090170306802199,
+   0.8090169943819464,
+   -5.014922326725952e-12,
+   0.49999999998062716,
+   0.30901699438796976
+  ],
+  [
+   0.966143194973026,
+   -1.054781579079114,
+   0.9113616606244509,
+   0.309016994372407,
+   4.197066063096087e-11,
+   -0.8090169944420907,
+   -0.49999999989293004
+  ],
+  [
+   1.3090170532979866,
+   0.5000000225300363,
+   -0.8090170307611287,
+   0.4999999999973504,
+   0.3090169943680101,
+   -0.8090169943792348,
+   1.7382927835051367e-11
+  ]
+ ],
+ "record_id": "dodindod_n05_kamp",
+ "title": "5 unit dodecahedrons in a dodecahedron",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l5/m5/n5/platonic_n5_m5_l5.html",
+  "source_file": "docs/literature/external/kamp-dodindod-n05.html",
+  "sha256": "f7fefba5ee63fc332a38427968d956a949f3f6340ee59ca90eae263a999350d0",
+  "numeric_source_file": "docs/literature/external/kamp-dodindod-n05.txt",
+  "numeric_source_sha256": "b39e0fc6229434be417f21d2893a421aaa449237618bb11a7998c820bb6251e2",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "published_s_full": 2.2360679778052064,
+  "published_circumradius": 2.236067977805206,
+  "source_to_canonical_row_matrix": [
+   [
+    -0.30901699437494756,
+    -0.5000000000000001,
+    -0.8090169943749476
+   ],
+   [
+    -0.5000000000000002,
+    0.8090169943749476,
+    -0.3090169943749472
+   ],
+   [
+    0.8090169943749477,
+    0.3090169943749474,
+    -0.5000000000000006
+   ]
+  ],
+  "outer_conversion_max_error": 2.5146000066436358e-15,
+  "vertex_conversion_max_error": 9.155133597044475e-16,
+  "normalization": "Original pieces have unit circumradius, so dodecahedron edge length is 0.71364417954617976; centers divided by this edge. Apply a proper rigid rotation to align ALL published dodecahedron outer vertices with the project canonical solid (normalized discrepancy 2.51e-15). Fit piece rotations to ALL source mesh vertices (maximum discrepancy 9.16e-16). Convert container circumradius into edge ratio R/(1.4012585384440737 * 0.71364417954617976). Add standard 1e-7 clearance without transferring discovery credit.",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "imported_on": "2026-10-13"
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 1.7099759466766968,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.4472135081418832
+}

@@ -1,0 +1,109 @@
+{
+ "problem": "min/truncated_cube_in_truncated_cube",
+ "piece": "truncated_cube",
+ "container": "truncated_cube",
+ "n": 3,
+ "s": 2.0,
+ "s_plus": "2.00000+",
+ "s_full": 2.000000041502343,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_wall_gap": 9.765655e-11,
+  "min_pair_gap": 1.000002e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.4909467185666633,
+   1.2071068311866502,
+   -1.207106831186649,
+   1.3335204690373338e-16,
+   1.369265437814342e-16,
+   -1.342055708287018e-16,
+   -1.0
+  ],
+  [
+   1.2071068311866486,
+   -1.20710683118665,
+   0.49094671978809257,
+   1.59265336409124e-16,
+   -0.7071067811865475,
+   -0.7071067811865478,
+   8.440581321569079e-17
+  ],
+  [
+   -0.11704566696099686,
+   1.2071068311866495,
+   1.2071068311866482,
+   0.4999999999999999,
+   0.5000000000000003,
+   -0.5000000000000002,
+   -0.49999999999999967
+  ]
+ ],
+ "record_id": "tcuintcu_n03_pingyou_20261013",
+ "title": "3 truncated cubes in a truncated cube",
+ "family": "archimedean",
+ "source": {
+  "hash": "ae02573b0f928bda",
+  "clear": 1e-07,
+  "cap": 2.0000001242642
+ },
+ "s_tight": 2.0,
+ "closed_form_conjecture": "2",
+ "volume_lower_bound": 1.4422495703074083,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "search": {
+  "move": "monotone",
+  "from_n": 4,
+  "removed": 1,
+  "host": "actions"
+ },
+ "density": 0.37499997665493306,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/tcuintcu/tcuintcu_n03.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "58c229bb4394f59db56ed50e190c8683832bbf313a6c5540e880590a0f0ff7e8",
+  "source_s_full": 2.0000001242642,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "fbfd8f0311951e1b812e4e8621762630ff1bd85642081be89c9f76fafad7cd2d",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "2251799953594299/1125899906842624",
+  "scale_exact": "562949965103183/281474976710656",
+  "decrease_exact": "93181567/1125899906842624",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 2.0000001242642,
+  "s_tight": 2.0,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "ae02573b0f928bda",
+   "clear": 1e-07,
+   "cap": 2.0000001242642
+  },
+  "date": "2026-10-12"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "tcuintcu_n03"
+}

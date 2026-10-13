@@ -1,0 +1,205 @@
+{
+ "problem": "min/snub_dodecahedron_in_snub_dodecahedron",
+ "piece": "snub_dodecahedron",
+ "container": "snub_dodecahedron",
+ "n": 13,
+ "s": 2.8973,
+ "s_plus": "2.89730+",
+ "s_full": 2.897301463138713,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_wall_gap": 9.979928e-11,
+  "min_pair_gap": 1.000002e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -3.350425805927904,
+   -2.1445180056052373,
+   -0.0756793543880477,
+   0.09336128746771488,
+   0.12332444657042237,
+   -0.8602859382020402,
+   0.48578066595152314
+  ],
+  [
+   3.3837693059100395,
+   2.1273635852275925,
+   0.1778513072928249,
+   0.420169636122299,
+   0.6077856568638067,
+   0.33814877036536345,
+   -0.5828460185090729
+  ],
+  [
+   3.392414763268823,
+   -2.1923857880961464,
+   -0.07566585200668192,
+   0.1862660161977894,
+   0.5386486863507828,
+   0.5291651838326884,
+   -0.6286070092845754
+  ],
+  [
+   2.152744613705671,
+   0.0053068132709731194,
+   -3.356496315266178,
+   0.057759508806869746,
+   -0.6655346627818054,
+   -0.2882235892616817,
+   -0.686042720514846
+  ],
+  [
+   -1.8887469424310572,
+   -0.04467232611670508,
+   -3.5174146660646115,
+   0.4893594295274114,
+   0.49583540552957217,
+   -0.1762488062792469,
+   -0.6954214244909859
+  ],
+  [
+   0.0013549512307360317,
+   -3.3750737929399524,
+   -2.142827210728287,
+   0.5202168649154767,
+   -0.12118636902706162,
+   0.838738603913024,
+   0.10585760117054091
+  ],
+  [
+   -3.3493346384700358,
+   2.1729814037157387,
+   -0.3695840480084109,
+   0.0330145004989445,
+   -0.07901013623733429,
+   -0.9857235746257741,
+   0.14497060238389398
+  ],
+  [
+   -2.2440785857401138,
+   0.01217445181580142,
+   3.2606248226500125,
+   0.3767872958516345,
+   0.1681770120672323,
+   -0.3971175588565824,
+   0.8197837951220673
+  ],
+  [
+   0.04946579064912674,
+   -0.025974426353236265,
+   0.023116684598325395,
+   0.31862240683343124,
+   -0.3535573345235276,
+   -0.8016369568240014,
+   0.36173908072289357
+  ],
+  [
+   0.17292990156481788,
+   3.3526250833721996,
+   -2.162038782468989,
+   0.4557508085981296,
+   0.11585709703695668,
+   -0.7283512662839553,
+   -0.4983701098891056
+  ],
+  [
+   -0.15461376860714066,
+   -3.3328039584309073,
+   2.2056399107074194,
+   0.3713542423896649,
+   -0.3817433841630062,
+   -0.8266398489635831,
+   -0.1817541620223266
+  ],
+  [
+   -0.2377518661985689,
+   3.4246637782739526,
+   1.9856010559869581,
+   0.2100180103710112,
+   0.771017144103453,
+   0.5611524711271121,
+   0.21571486496366588
+  ],
+  [
+   1.9543583364463466,
+   0.16541897744993522,
+   3.49181326137239,
+   0.662071744452862,
+   0.27165274877329687,
+   -0.6920158303287286,
+   0.09476222799985541
+  ]
+ ],
+ "record_id": "sndinsnd_n13_pingyou_20261013",
+ "title": "13 snub dodecahedra in a snub dodecahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "0bfee80bc9e79943",
+  "clear": 1e-07,
+  "cap": 3.0282884440633
+ },
+ "s_tight": 2.897301415116,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.3513346877207573,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "search": {
+  "move": "hop",
+  "seed": 837416507,
+  "var": "gentle",
+  "minDiff": 0.06130372583482149,
+  "expand": 0.008262006502348197,
+  "rh": 0.1758144488753214,
+  "focus": 3,
+  "from": "best",
+  "raw": 2.8979989518744698,
+  "host": "laptop"
+ },
+ "density": 0.5345179512129887,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/sndinsnd/sndinsnd_n13.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "9ff8080daba00e80f189708fcbdf85a8c83bb9c791faaa8bd7f55c4c8fbf83ae",
+  "source_s_full": 2.8973015122906,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "7a527dee79199892435c35f0840716cd3ac1faa8e356f8aafb9b6697641c3ed5",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "815517875695745/281474976710656",
+  "scale_exact": "3262071447442875/1125899906842624",
+  "decrease_exact": "55340105/1125899906842624",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 2.8973015122906,
+  "s_tight": 2.897301415116,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "0bfee80bc9e79943",
+   "clear": 1e-07,
+   "cap": 3.0260473767574
+  },
+  "date": "2026-10-13"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "sndinsnd_n13"
+}
