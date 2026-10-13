@@ -17,6 +17,8 @@ SOL = json.loads(Path(ROOT, 'src', 'solids.json').read_text(encoding='utf-8'))
 REF = json.loads(Path(ROOT, 'docs', 'references.json').read_text(encoding='utf-8'))
 EXTERNAL_PATH = os.path.join(ROOT, 'docs', 'external_records.json')
 EXTERNAL = json.loads(Path(EXTERNAL_PATH).read_text(encoding='utf-8')) if os.path.exists(EXTERNAL_PATH) else {'entries': []}
+COMMUNITY_PATH = Path(ROOT, 'docs', 'community_records.json')
+COMMUNITY = json.loads(COMMUNITY_PATH.read_text(encoding='utf-8')) if COMMUNITY_PATH.exists() else {'entries': []}
 WEB = os.path.join(ROOT, 'web')
 OUT = os.path.join(ROOT, 'site')
 REPO = 'https://github.com/alejandrozu/platonic-packing'
@@ -58,7 +60,8 @@ def load():
     probs = {}
     files = glob.glob(os.path.join(ROOT, 'records', '*', '*_n[0-9][0-9].json'))
     files += [os.path.join(ROOT, e['file']) for e in EXTERNAL['entries'] if e['kind'] == 'coordinates']
-    for f in sorted(files):
+    files += [os.path.join(ROOT, e['file']) for e in COMMUNITY['entries']]
+    for f in sorted(set(files)):
         r = json.loads(Path(f).read_text(encoding='utf-8')); pid = r['record_id'].split('_')[0]
         if pid not in FAM: continue
         cert = Path(f.replace('.json', '.certify.txt')).read_text(encoding='utf-8') if os.path.exists(f.replace('.json', '.certify.txt')) else ''
@@ -68,17 +71,19 @@ def load():
                                    'unit': 'edge' if SOL[r['piece']].get('unit', 'edge') == 'edge' else 'size'})
         ref = REF.get(pid, {}).get(str(r['n']))
         src = r.get('source') if isinstance(r.get('source'), dict) else {}
+        contribution = r.get('contribution') if isinstance(r.get('contribution'), dict) else {}
         p['rows'].append({'n': r['n'], 'id': r['record_id'], 's': r['s_plus'], 'ref': ref[0] if ref else None, 'refsrc': ref[1] if ref else None,
                           'refcode': src_code(ref[1]) if ref else None, 'cmp': compare(r['s_full'], ref[0]) if ref else None,
                           'sf': r['s_full'], 'st': r.get('s_tight'), 'cf': r.get('closed_form_conjecture'),
                           'den': round(r['density'], 4), 'vlb': round(r['volume_lower_bound'], 5),
                           'move': (r.get('search') or {}).get('move'), 'derived': r.get('derived_from'), 'who': r.get('found_by'),
-                          'issue': src.get('issue'), 'file': os.path.relpath(f, ROOT).replace(os.sep, '/'),
+                          'issue': contribution.get('issue') or src.get('issue'), 'file': os.path.relpath(f, ROOT).replace(os.sep, '/'),
+                          'refined_by': r.get('certificate_refined_by'), 'contribution_kind': contribution.get('kind'),
                           'source_url': src.get('url'), 'source_author': src.get('author'),
                           'published_sf': src.get('published_s_full'), 'external': src.get('kind') == 'external',
                           'ok': 'CERTIFIED' in cert and 'NOT CERTIFIED' not in cert,
                           'ver': 'VALID' in vtxt and 'INVALID' not in vtxt,
-                          'cert': [l for l in cert.splitlines() if l.startswith('(')],
+                          'cert': [l for l in cert.splitlines() if l.startswith(('(', 'containment:', 'disjointness:'))],
                           'p': [[round(x, 7) for x in q] for q in r['pieces']]})
     for p in probs.values():
         # One best entry per n, independently of who discovered it. Existing
