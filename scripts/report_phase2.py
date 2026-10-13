@@ -110,7 +110,89 @@ def main():
         ['improvements harvested from GitHub Actions', f"{imp_h['actions']:,}"],
         ['improvements harvested from the laptop', f"{imp_h['laptop']:,}"],
     ], ['---', '---:']) + '\n')
-    return S, L, final, evening, best
+
+    # ---------------------------------------------------------------- coverage timeline (first packing of each case)
+    first = {}
+    for a in L:
+        k = (a['p'], a['n'])
+        if a.get('improved') and k not in first: first[k] = a
+    marks = [(16, 53), (17, 30), (18, 0), (18, 30), (19, 0), (19, 30), (20, 0), (20, 30), (21, 0), (21, 30), (22, 0)]
+    rows = []
+    for h, m in marks:
+        t = datetime.datetime(2026, 10, 12, h, m).timestamp()
+        c = collections.Counter(FAM[p] for (p, n), a in first.items() if a['t'] <= t)
+        rows.append([f'12 Oct {h:02d}:{m:02d}', c['archimedean'], c['catalan'], c['prisms'], sum(c.values())])
+    w('### Coverage: cases with a packing over time\n')
+    w(table(['time', 'Archimedean (of 507)', 'Catalan (of 507)', 'prisms (of 780)', 'all (of 1,794)'], rows, ['---', '---:', '---:', '---:', '---:']) + '\n')
+    last = max(first.values(), key=lambda a: a['t']) if first else None
+    if last: w(f"The last case to receive a packing was `{last['p']}_n{last['n']:02d}` at {hm(last['t'])}. "
+               f"First packings by origin: " + ', '.join(f'{k} {v}' for k, v in collections.Counter(a.get('host', 'cloud') if a['move'] == 'harvest' else 'cloud' for a in first.values()).most_common()) + '.\n')
+
+    # ---------------------------------------------------------------- activity by hour
+    hours = collections.OrderedDict()
+    for a in L:
+        hkey = datetime.datetime.fromtimestamp(a['t']).strftime('%d %b %H:00')
+        d = hours.setdefault(hkey, collections.Counter())
+        if a['move'] == 'harvest':
+            if a.get('improved'): d['h_' + a.get('host', 'remote')] += 1
+        else:
+            d['att'] += 1; d['imp'] += bool(a.get('improved'))
+    w('### Activity by hour\n')
+    w('Cloud attempts and their improvements, and improvements merged from the laptop and from GitHub Actions (remote '
+      'attempts themselves are only reported as totals, see above). Hours without entries had no workers running.\n')
+    w(table(['hour (Paris)', 'cloud attempts', 'cloud new bests', 'laptop new bests', 'Actions new bests'],
+            [[k, v['att'], v['imp'], v['h_laptop'], v['h_actions']] for k, v in hours.items()], ['---', '---:', '---:', '---:', '---:']) + '\n')
+
+    # ---------------------------------------------------------------- moves (cloud log)
+    mv = collections.defaultdict(lambda: [0, 0, []])
+    for a in cloud:
+        m = mv[a['move']]; m[0] += 1; m[1] += bool(a.get('improved'))
+        if a.get('secs') is not None: m[2].append(a['secs'])
+    w('### Moves on the cloud workers\n')
+    w(table(['move', 'attempts', 'new bests', 'success rate', 'median time per attempt'],
+            [[k, v[0], v[1], f'{100 * v[1] / v[0]:.1f}%', f"{statistics.median(v[2]):.0f} s" if v[2] else '—'] for k, v in sorted(mv.items(), key=lambda kv: -kv[1][0])],
+            ['---', '---:', '---:', '---:', '---:']) + '\n')
+
+    # ---------------------------------------------------------------- origin of the final records
+    orig = collections.Counter(); origm = collections.Counter()
+    for k, r in final.items():
+        sr = r.get('search') or {}
+        host = sr.get('host', 'cloud'); orig[host] += 1; origm[(host, sr.get('move', '?'))] += 1
+    w('### Where the final records came from\n')
+    w(table(['machine', 'records'], [[k, v] for k, v in orig.most_common()], ['---', '---:']) + '\n')
+    moves = sorted({m for _, m in origm})
+    w(table(['move \\ machine'] + [h for h, _ in orig.most_common()], [[m] + [origm[(h, m)] for h, _ in orig.most_common()] for m in moves],
+            ['---'] + ['---:'] * len(orig)) + '\n')
+
+    # ---------------------------------------------------------------- the night: evening publish vs final
+    rows = []; allrel = []
+    for fam in FAMS:
+        rel = []
+        for (p, n), r in final.items():
+            if FAM[p] != fam or (p, n) not in evening: continue
+            e = evening[(p, n)]['s_full']; f = r['s_full']
+            if f < e - 1e-9: rel.append((e - f) / e)
+        allrel += rel
+        nfam = sum(1 for k in final if FAM[k[0]] == fam)
+        rows.append([fam, f'{len(rel)} of {nfam}', f'{100 * statistics.median(rel):.3f}%' if rel else '—',
+                     f'{100 * statistics.mean(rel):.3f}%' if rel else '—', f'{100 * max(rel):.2f}%' if rel else '—'])
+    w('### What the night search changed (records of 12 Oct 22:31 against the final records)\n')
+    w(table(['family', 'cases improved', 'median improvement', 'mean improvement', 'largest'], rows, ['---', '---:', '---:', '---:', '---:']) + '\n')
+    big = sorted(((evening[k]['s_full'] - r['s_full']) / evening[k]['s_full'], k, evening[k]['s_full'], r['s_full']) for k, r in final.items() if k in evening)[::-1][:25]
+    w('Largest relative improvements overnight:\n')
+    w(table(['case', 's on 12 Oct 22:31', 's final', 'improvement'], [[f'`{k[0]}_n{k[1]:02d}`', f'{e:.5f}', f'{f:.5f}', f'{100 * d:.2f}%'] for d, k, e, f in big],
+            ['---', '---:', '---:', '---:']) + '\n')
+
+    # ---------------------------------------------------------------- from the first packing to the final record
+    rows = []
+    for fam in FAMS:
+        rel = [(first[k]['s'] - final[k]['s_full']) / first[k]['s'] for k in final if FAM[k[0]] == fam and k in first and first[k]['s'] > final[k]['s_full']]
+        rows.append([fam, len(rel), f'{100 * statistics.median(rel):.2f}%' if rel else '—', f'{100 * max(rel):.1f}%' if rel else '—'])
+    w('### From the first packing of each case to its final record\n')
+    w('The first packing of a case is usually a quick fill (an ascend from n − 1 or a fresh run); the search then '
+      'improves it. Relative decrease of s (first packing in the log, touching limit, against the certified final value):\n')
+    w(table(['family', 'cases', 'median decrease', 'largest'], rows, ['---', '---:', '---:', '---:']) + '\n')
+    return S, L, final, evening, best, first
 
 
 def _cert_ok(p, n):
