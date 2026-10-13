@@ -103,6 +103,13 @@ class Solid:
         target = self.D if self.D is not None else F.one()
         if all(F.is_zero(F.sub(x, target)) for x in L2):
             return f'{name}: V={n} E={len(edges)} F={len(faces)}, faces planar and supporting, closed surface, all edges exactly 1'
+        if name.startswith('prism') and '_l' in name:     # elongated prism (13 Oct 2026): base edges 1, lateral edges l
+            l = {'l15': Fr(3, 2), 'l2': Fr(2), 'l3': Fr(3)}[name.split('_')[1]]
+            base = sum(1 for x in L2 if F.is_zero(F.sub(x, F.one())))
+            lat = sum(1 for x in L2 if F.is_zero(F.sub(x, F.elem([l * l]))))
+            assert base + lat == len(L2) and base == n and lat == n // 2, 'elongated prism edges are not 1 and l'
+            return (f'{name}: V={n} E={len(edges)} F={len(faces)}, faces planar and supporting, closed surface, '
+                    f'base edges exactly 1, lateral edges exactly {l}')
         b0, m0 = F.mul(self.beta[0], self.beta[0]), A.vdot(F, self.m[0], self.m[0])
         assert all(F.is_zero(F.sub(F.mul(F.mul(b, b), m0), F.mul(b0, A.vdot(F, m, m)))) for m, b in zip(self.m, self.beta)), \
             'neither unit-edge nor tangential'
