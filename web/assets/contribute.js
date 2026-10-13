@@ -185,15 +185,20 @@
     show(pk, res);
     const ok = res.wall > 0 && !res.over.length;
     const prob = D.problems.find(p => p.piece === pk.piece && p.container === pk.container);
-    const rec = prob && prob.rows.find(r => r.n === pk.n);
+    const listed = prob && prob.rows.find(r => r.n === pk.n);
+    const rec = listed && (listed.file ? listed : (listed.alternatives || []).find(r => r.file && r.ok));
     let cmp = '';
-    if (!ok) cmp = prob && rec ? `The current record is s = ${rec.sf}.` : '';
+    if (!ok) cmp = prob && rec ? `The current certified coordinate record is s = ${rec.sf}.` : '';
     else if (prob && rec) {
       const d = pk.s - rec.sf;
-      cmp = d < -1e-12 ? `<b>Smaller than the current record</b> (s = ${rec.sf}) by ${fmt(-d, 6)}. Submit it.` :
-            `The current record is s = ${rec.sf}${d > 0 ? `, ${fmt(d, 6)} smaller than this one` : ', the same size'}.`;
+      cmp = d < -1e-12 ? `<b>Smaller than the current certified coordinate record</b> (s = ${rec.sf}) by ${fmt(-d, 6)}. Submit it.` :
+            `The current certified coordinate record is s = ${rec.sf}${d > 0 ? `, ${fmt(d, 6)} smaller than this one` : ', the same size'}.`;
     } else if (prob) cmp = `There is no record for n = ${pk.n} yet, so a valid packing fills an empty case.`;
     else cmp = `${cap(dn(pk.piece))} in ${dn(pk.container)} is not a tracked problem yet. You can still submit it, or <a href="#category">propose the category</a>.`;
+    if (listed && listed.source_only) {
+      cmp += ` A ${listed.author_report ? 'reported' : 'published'} construction by ${esc(listed.who)} is listed at s = ${listed.sf}, without downloadable coordinates or a local certificate.` +
+        (listed.sf < pk.s - 1e-5 ? ' This packing does not improve its reported scale.' : ' Its displayed precision differs from a full coordinate certificate.');
+    }
     const thin = ok && Math.min(res.wall, res.minGap) < 1e-12;
     out.innerHTML = `<p class="verdict ${ok ? 'ok' : 'bad'}">${ok ? (thin ? 'Valid, with almost no clearance' : 'Valid in floating point') : 'Not valid'}</p>` +
       `<dl><dt>Pieces</dt><dd>${pk.n} ${esc(pk.n > 1 ? pl(pk.piece) : dn(pk.piece))} in ${esc(art(dn(pk.container)))}</dd><dt>s</dt><dd>${pk.s}</dd>` +
@@ -212,13 +217,16 @@
   // ---------- example: the current record, at full precision from GitHub
   $('loadrec').onclick = async () => {
     const p = current(); if (!p || !p.id) { $('busy').textContent = 'Pick a tracked problem to load its record.'; return }
-    const r = p.rows.find(r => r.n === 12) || p.rows[p.rows.length - 1]; if (!r) return;
+    const listed = p.rows.find(r => r.n === 12) || p.rows[p.rows.length - 1]; if (!listed) return;
+    const r = listed.file ? listed : (listed.alternatives || []).find(r => r.file && r.ok);
+    if (!r) { $('busy').textContent = 'This published entry has no downloadable coordinates. Paste your own construction to check it.'; return }
     $('busy').textContent = 'Loading the record…';
     try {
       const response = await fetch(RAW + r.file); if (!response.ok) throw new Error('Record request failed');
       const rec = await response.json();
       $('json').value = JSON.stringify({ piece: rec.piece, container: rec.container, n: rec.n, s_full: rec.s_full, ...(rec.container_center ? { container_center: rec.container_center } : {}), pieces: rec.pieces }, null, 1);
-      $('busy').textContent = `Loaded ${p.id}_n${String(r.n).padStart(2, '0')}. Check it, or change it and check again.`;
+      $('busy').textContent = `Loaded ${r.id || p.id + '_n' + String(r.n).padStart(2, '0')}. Check it, or change it and check again.` +
+        (listed.source_only ? ' The smaller published entry has no downloadable coordinates; this is a certified alternative.' : '');
     } catch (e) {
       $('json').value = JSON.stringify({ piece: p.piece, container: p.container, n: r.n, s_full: r.sf, pieces: r.p }, null, 1);
       $('busy').textContent = 'GitHub did not answer, so this copy is rounded to 7 decimals and may show tiny overlaps.';

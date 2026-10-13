@@ -9,11 +9,14 @@
 
 usage: python3 scripts/site.py [--fragment PATH]   (--fragment also writes a one-file explorer for a Claude artifact)
 The site is deployed to the gh-pages branch by scripts/pages.sh (and by .github/workflows/site.yml on GitHub)."""
-import json, os, sys, glob, re, html, shutil, datetime
+import json, os, sys, glob, re, html, shutil, datetime, math
+from pathlib import Path
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'scripts'))
-SOL = json.load(open(os.path.join(ROOT, 'src', 'solids.json')))
-REF = json.load(open(os.path.join(ROOT, 'docs', 'references.json')))
+SOL = json.loads(Path(ROOT, 'src', 'solids.json').read_text(encoding='utf-8'))
+REF = json.loads(Path(ROOT, 'docs', 'references.json').read_text(encoding='utf-8'))
+EXTERNAL_PATH = os.path.join(ROOT, 'docs', 'external_records.json')
+EXTERNAL = json.loads(Path(EXTERNAL_PATH).read_text(encoding='utf-8')) if os.path.exists(EXTERNAL_PATH) else {'entries': []}
 WEB = os.path.join(ROOT, 'web')
 OUT = os.path.join(ROOT, 'site')
 REPO = 'https://github.com/alejandrozu/platonic-packing'
@@ -32,7 +35,8 @@ def compare(s_full, ref):
 
 
 def src_code(src):
-    return 'T' if 'trivial' in src else 'N' if 'Nakajima' in src else 'W' if 'Walsh' in src else 'L' if 'Lin' in src else 'F'
+    return ('T' if 'trivial' in src.lower() else 'N' if 'Nakajima' in src else 'W' if 'Walsh' in src else
+            'L' if 'Lin' in src else 'F' if 'Friedman' in src else 'X')
 
 
 def disp(s):
@@ -52,46 +56,87 @@ def ptitle(piece, container):
 
 def load():
     probs = {}
-    for f in sorted(glob.glob(os.path.join(ROOT, 'records', '*', '*_n[0-9][0-9].json'))):
-        r = json.load(open(f)); pid = r['record_id'].split('_')[0]
+    files = glob.glob(os.path.join(ROOT, 'records', '*', '*_n[0-9][0-9].json'))
+    files += [os.path.join(ROOT, e['file']) for e in EXTERNAL['entries'] if e['kind'] == 'coordinates']
+    for f in sorted(files):
+        r = json.loads(Path(f).read_text(encoding='utf-8')); pid = r['record_id'].split('_')[0]
         if pid not in FAM: continue
-        cert = open(f.replace('.json', '.certify.txt')).read() if os.path.exists(f.replace('.json', '.certify.txt')) else ''
-        vtxt = open(f.replace('.json', '.verify.txt')).read() if os.path.exists(f.replace('.json', '.verify.txt')) else ''
+        cert = Path(f.replace('.json', '.certify.txt')).read_text(encoding='utf-8') if os.path.exists(f.replace('.json', '.certify.txt')) else ''
+        vtxt = Path(f.replace('.json', '.verify.txt')).read_text(encoding='utf-8') if os.path.exists(f.replace('.json', '.verify.txt')) else ''
         p = probs.setdefault(pid, {'id': pid, 'piece': r['piece'], 'container': r['container'], 'rows': [], 'hasref': bool(REF.get(pid)),
                                    'family': FAM[pid], 'group': FAMILY_GROUP[FAM[pid]], 'title': ptitle(r['piece'], r['container']),
                                    'unit': 'edge' if SOL[r['piece']].get('unit', 'edge') == 'edge' else 'size'})
         ref = REF.get(pid, {}).get(str(r['n']))
         src = r.get('source') if isinstance(r.get('source'), dict) else {}
-        p['rows'].append({'n': r['n'], 's': r['s_plus'], 'ref': ref[0] if ref else None, 'refsrc': ref[1] if ref else None,
+        p['rows'].append({'n': r['n'], 'id': r['record_id'], 's': r['s_plus'], 'ref': ref[0] if ref else None, 'refsrc': ref[1] if ref else None,
                           'refcode': src_code(ref[1]) if ref else None, 'cmp': compare(r['s_full'], ref[0]) if ref else None,
                           'sf': r['s_full'], 'st': r.get('s_tight'), 'cf': r.get('closed_form_conjecture'),
                           'den': round(r['density'], 4), 'vlb': round(r['volume_lower_bound'], 5),
                           'move': (r.get('search') or {}).get('move'), 'derived': r.get('derived_from'), 'who': r.get('found_by'),
                           'issue': src.get('issue'), 'file': os.path.relpath(f, ROOT).replace(os.sep, '/'),
+                          'source_url': src.get('url'), 'source_author': src.get('author'),
+                          'published_sf': src.get('published_s_full'), 'external': src.get('kind') == 'external',
                           'ok': 'CERTIFIED' in cert and 'NOT CERTIFIED' not in cert,
                           'ver': 'VALID' in vtxt and 'INVALID' not in vtxt,
                           'cert': [l for l in cert.splitlines() if l.startswith('(')],
                           'p': [[round(x, 7) for x in q] for q in r['pieces']]})
-    for p in probs.values(): p['rows'].sort(key=lambda r: r['n'])
+    for p in probs.values():
+        # One best entry per n, independently of who discovered it. Existing
+        # project records remain intact and available as alternate constructions.
+        selected = []
+        for n in sorted({r['n'] for r in p['rows']}):
+            candidates = sorted([r for r in p['rows'] if r['n'] == n], key=lambda r: r['sf'])
+            best = candidates[0]
+            sources = [e for e in EXTERNAL['entries'] if e['problem'] == p['id'] and e['n'] == n]
+            published = min(sources, key=lambda e: e['published_value']) if sources else None
+            if published:
+                for cand in candidates:
+                    cand.update(ref=published['published_value'], refsrc=published['author'],
+                                refcode=src_code(published['author']), refurl=published['url'],
+                                cmp=compare(cand['sf'], published['published_value']))
+            # A printed 5-decimal catalogue value is not a certifiable pose. Only
+            # use it over available coordinates when the difference exceeds the
+            # published rounding scale; never show other poses at its smaller s.
+            if published and published['kind'] in ('catalogue', 'author_report') and published['published_value'] < best['sf'] - 1e-5:
+                sf = published['published_value']
+                display = f'{math.floor(sf * 1e5) / 1e5:.5f}+' if published.get('published_expression') else f'{sf:.5f}+'
+                best = {'n': n, 'id': f'{p["id"]}_n{n:02d}_catalogue', 's': display, 'sf': sf, 'st': None,
+                        'cf': None, 'den': round(n * SOL[p['piece']]['volume'] / (SOL[p['container']]['volume'] * sf ** 3), 4),
+                        'vlb': candidates[0]['vlb'], 'move': None, 'derived': None, 'who': published['author'],
+                        'source_author': published['author'], 'source_url': published['url'], 'image_url': published.get('image_url'),
+                        'published_sf': sf, 'external': True, 'source_only': True, 'value_precision': published['value_precision'],
+                        'author_report': published['kind'] == 'author_report',
+                        'published_expression': published.get('published_expression'),
+                        'file': None, 'ok': False, 'ver': False, 'cert': [], 'p': [], 'issue': None,
+                        'ref': sf, 'refsrc': published['author'], 'refcode': src_code(published['author']),
+                        'refurl': published['url'], 'cmp': 'equal'}
+                best['alternatives'] = candidates
+            else:
+                best['alternatives'] = [r for r in candidates if r is not best]
+            selected.append(best)
+        p['rows'] = selected
     for pid, (pc, cc) in PID.items():                # problems without records yet
         if pid not in probs:
             probs[pid] = {'id': pid, 'piece': pc, 'container': cc, 'rows': [], 'hasref': bool(REF.get(pid)), 'family': FAM[pid],
                           'group': FAMILY_GROUP[FAM[pid]], 'title': ptitle(pc, cc), 'unit': 'edge' if SOL[pc].get('unit', 'edge') == 'edge' else 'size'}
     out = [probs[i] for i in PID if i in probs]
     solids = {k: {'V': v['V'], 'F': v['faces'], 'E': v['edges'], 'vol': v['volume']} for k, v in SOL.items()}
-    return {'problems': out, 'solids': solids, 'nmin': 2, 'nmax': 40, 'repo': REPO}
+    return {'problems': out, 'solids': solids, 'nmin': 2, 'nmax': 40, 'repo': REPO,
+            'external_checked_on': EXTERNAL.get('checked_on')}
 
 
 def stats(data):
     rows = [r for p in data['problems'] for r in p['rows']]
     st = {'records': len(rows), 'certified': sum(1 for r in rows if r['ok']), 'problems': len(data['problems']),
           'cases': len(data['problems']) * (data['nmax'] - data['nmin'] + 1), 'solids': len(SOL), 'attempts': None,
-          'contributed': sum(1 for r in rows if r.get('issue'))}
+          'contributed': sum(1 for r in rows if r.get('issue')),
+          'source_only': sum(1 for r in rows if r.get('source_only')),
+          'external': sum(1 for r in rows if r.get('external'))}
     try:                                              # attempts across all machines (main archive + remote totals)
         import engine
         tot = 0
         for f in glob.glob(os.path.join(ROOT, 'state', 'best', '*', 'n[0-9][0-9].json')):
-            c = json.load(open(f)); tot += engine.total_attempts(c.get('stats', {}))
+            c = json.loads(Path(f).read_text(encoding='utf-8')); tot += engine.total_attempts(c.get('stats', {}))
         st['attempts'] = tot or None
     except Exception:
         pass
@@ -99,6 +144,10 @@ def stats(data):
 
 
 def cert_sentence(st):
+    if st.get('source_only'):
+        return (f"{st['certified']:,} selected coordinate constructions are certified exactly; "
+                f"{st['source_only']} better published entries link to the original constructions and have no coordinates or local certificate. "
+                "Their certified alternatives remain available in the viewer.")
     if st['records'] and st['certified'] == st['records']:
         return f"All {st['records']:,} records on this site are certified exactly."
     return f"{st['certified']:,} of the {st['records']:,} records on this site are certified exactly; the others are float-checked and waiting for their certificate."
@@ -159,12 +208,19 @@ def constructions(data):
         for p in ps:
             rows = []
             for r in p['rows']:
-                rid = f"{p['id']}_n{r['n']:02d}"; url = f"{REPO}/blob/main/{r['file']}"
+                rid = r.get('id') or f"{p['id']}_n{r['n']:02d}"; url = f"{REPO}/blob/main/{r['file']}" if r['file'] else r['source_url']
+                coordinates = f'<a href="{url}">{html.escape(os.path.basename(r["file"]))}</a>' if r['file'] else f'<a href="{html.escape(url)}">published construction</a>'
+                if r.get('source_url') and r['file']:
+                    coordinates += f'<br><a href="{html.escape(r["source_url"])}">original source</a>'
+                if r.get('alternatives'):
+                    alternate = ''.join(f'<li><a href="{REPO}/blob/main/{a["file"]}">{html.escape(a["who"] or "project search")}: {a["s"]}</a> '
+                                        f'(<a href="{REPO}/blob/main/{a["file"].replace(".json", ".certify.txt")}">certificate</a>)</li>' for a in r['alternatives'])
+                    coordinates += f'<details><summary>Other certified constructions</summary><ul>{alternate}</ul></details>'
                 rows.append(f'<tr><td class="n">{r["n"]}</td><td class="s">{r["s"]}</td>'
-                            f'<td><a href="{url}">{rid}.json</a></td>'
-                            f'<td>{"<a href=\"" + url.replace(".json", ".certify.txt") + "\">certificate</a>" if r["ok"] else "pending"}</td>'
-                            f'<td><a href="{url.replace(".json", ".verify.txt")}">float check</a></td>'
-                            f'<td><a href="../#{rid}">view in 3D</a></td>'
+                            f'<td>{coordinates}</td>'
+                            f'<td>{"<a href=\"" + url.replace(".json", ".certify.txt") + "\">certificate</a>" if r["ok"] else "source only" if r.get("source_only") else "pending"}</td>'
+                            f'<td>{"<a href=\"" + url.replace(".json", ".verify.txt") + "\">float check</a>" if r["file"] else "—"}</td>'
+                            f'<td><a href="../#{p["id"]}_n{r["n"]:02d}">{"source and alternatives" if r.get("source_only") else "view in 3D"}</a></td>'
                             f'<td class="mut">{html.escape(r["who"] or "")}</td></tr>')
             parts.append(f'<details id="{p["id"]}"><summary><b>{html.escape(p["title"])}</b> <span class="mut">{p["id"]}, {len(p["rows"])} records</span></summary>'
                          f'<div class="tablewrap"><table><thead><tr><th>n</th><th>s</th><th>Record file</th><th>Exact certificate</th><th>Float check</th><th>Viewer</th><th>Found by</th></tr></thead>'
@@ -231,7 +287,7 @@ def page(path, title, desc, body, active, scripts=(), styles=(), depth=1, root=N
 {body}
 </main>
 <footer class="foot"><div class="in">
-  <p>Upper bounds with proofs, not optimality claims. Generalized packing method by Alejandro Zarzuelo Urdiales, building on Yohei Nakajima's soft-to-rigid cube-packing method. Code, records and certificates: <a href="{REPO}">{REPO.replace('https://', '')}</a>. MIT license.</p>
+  <p>Certified coordinate constructions and attributed published values, not optimality claims. Generalized packing method by Alejandro Zarzuelo Urdiales, building on Yohei Nakajima's soft-to-rigid cube-packing method. Code, records and certificates: <a href="{REPO}">{REPO.replace('https://', '')}</a>. Project code: MIT license; external constructions retain their source attribution.</p>
   <p>This site is updated and maintained by Alejandro Zarzuelo Urdiales.</p>
   <p>Built {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')} UTC{datetime.datetime.now().astimezone().strftime('%z')[:3]}</p>
 </div></footer>
@@ -267,7 +323,9 @@ def build(fragment=None):
         for x in os.listdir(OUT):
             q = os.path.join(OUT, x); shutil.rmtree(q) if os.path.isdir(q) else os.remove(q)
     os.makedirs(OUT, exist_ok=True)
-    stats_sentence = (f"{st['records']:,} packings in {st['problems']} problems, every one certified in exact arithmetic."
+    stats_sentence = (f"{st['records']:,} cases in {st['problems']} problems, with {st['source_only']} attributed source-only entries and certified alternatives."
+                      if st.get('source_only') else
+                      f"{st['records']:,} packings in {st['problems']} problems, every one certified in exact arithmetic."
                       if st['certified'] == st['records'] else
                       f"{st['records']:,} packings in {st['problems']} problems, {st['certified']:,} of them certified in exact arithmetic so far.")
     vals = {'SITE': SITE_URL.rstrip('/'), 'STATS_SENTENCE': stats_sentence, 'N_RECORDS': f"{st['records']:,}", 'N_PROBLEMS': str(st['problems']),
@@ -275,7 +333,7 @@ def build(fragment=None):
             'N_ATTEMPTS': f"{st['attempts']:,}" if st['attempts'] else 'many thousands of',
             'FIELDS_TABLE': fields_table()}
     desc = ('Smallest known containers for n = 2–40 copies of Platonic, Archimedean and Catalan solids, prisms and '
-            'antiprisms, each packing proved valid in exact arithmetic. Browse them in 3D, check your own and submit it.')
+            'antiprisms, with exact-certified coordinates and attributed published constructions. Browse in 3D, check your own and submit it.')
     T3 = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'
     # assets
     os.makedirs(os.path.join(OUT, 'assets'), exist_ok=True)
@@ -299,7 +357,8 @@ def build(fragment=None):
             f'the record file, its exact certificate and its float check on GitHub. Open a problem to see its {data["nmax"] - data["nmin"] + 1} values of n.</p>'
             f'<p>{cert_sentence(st)} The same files are in <a href="{REPO}/tree/main/records"><code>records/</code></a>; '
             f'<a href="{REPO}/blob/main/records/SUMMARY.csv">SUMMARY.csv</a> and <a href="{REPO}/blob/main/records/SUMMARY_families.csv">SUMMARY_families.csv</a> '
-            f'list every value with all digits, and <a href="../data/records.json">data/records.json</a> holds everything shown on this site. '
+            f'list the project archive values; <a href="{REPO}/blob/main/docs/external_records.json">external_records.json</a> lists independent sources, '
+            f'and <a href="../data/records.json">data/records.json</a> holds all selected values and alternatives shown on this site. '
             f'<a href="{REPO}/archive/refs/heads/main.zip">Download the whole repository</a>.</p>'
             + constructions(data) + '</article>' + '{{TOC}}' + '</div>')
     cons = fill(cons, vals, '../')
