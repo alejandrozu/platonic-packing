@@ -25,6 +25,7 @@ from fractions import Fraction as Fr
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import algebraic as A
+import multiquad as MQM                   # numbers given exactly in Q(sqrt2, sqrt3, sqrt5, sqrt7) (13 Oct 2026)
 
 K = 170                                   # fixed-point bits
 ONE = 1 << K
@@ -35,6 +36,7 @@ EXACT = json.load(open(os.path.join(HERE, 'src', 'solids_exact.json')))
 def fx(q):
     """Enclosure of a rational (or an A.I interval) as a fixed-point interval."""
     if isinstance(q, A.I): lo, hi = q.lo, q.hi
+    elif isinstance(q, MQM.MQ): lo, hi = q.enclose(K + 24)          # rigorous enclosure of an exact field element
     else: lo = hi = Fr(q)
     return (lo.numerator * ONE // lo.denominator, -(-hi.numerator * ONE // hi.denominator))
 
@@ -116,8 +118,9 @@ def get_solid(name):
 
 
 def rot(q):
-    """Exact rational rotation matrix H(q)/|q|^2 of a quaternion with rational entries."""
-    w, x, y, z = (Fr(c) for c in q)
+    """Exact rotation matrix H(q)/|q|^2 of a quaternion with rational entries or entries in Q(sqrt2, sqrt3, sqrt5,
+    sqrt7) given as strings (then the matrix is exact in that field)."""
+    w, x, y, z = (MQM.num(c) for c in q)
     n = w * w + x * x + y * y + z * z
     M = [[w * w + x * x - y * y - z * z, 2 * (x * y - w * z), 2 * (x * z + w * y)],
          [2 * (x * y + w * z), w * w - x * x + y * y - z * z, 2 * (y * z - w * x)],
@@ -131,11 +134,15 @@ def main(fn):
     P, C = get_solid(rec['piece']), get_solid(rec['container'])
     print('solid check:', P.check)
     if C is not P: print('solid check:', C.check)
-    s = Fr(rec['s_full']); cc = [Fr(c) for c in rec.get('container_center', [0, 0, 0])]
+    s = MQM.num(rec['s_full']); cc = [MQM.num(c) for c in rec.get('container_center', [0, 0, 0])]
     pcs = rec['pieces']; n = len(pcs)
     assert n == rec['n'], 'piece count'
     Rs = [rot(p[3:]) for p in pcs]
-    cs = [[Fr(c) for c in p[:3]] for p in pcs]
+    cs = [[MQM.num(c) for c in p[:3]] for p in pcs]
+    used = set()
+    for v in [s] + cc + [x for c in cs for x in c] + [x for R in Rs for row in R for x in row]:
+        if isinstance(v, MQM.MQ): used |= v.primes()
+    if used: print('record numbers given exactly in', MQM.field_name(used), '(arithmetic in Q(sqrt2, sqrt3, sqrt5, sqrt7))')
     # world vertex enclosures
     X = []
     for R, c in zip(Rs, cs):

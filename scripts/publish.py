@@ -178,7 +178,7 @@ def write_tables(rows):
     head = ['# Records', '',
             'Smallest container found for n unit-edge pieces; entry = s = container edge / piece edge, certified with 1e-7 '
             'clearance and truncated to 5 decimals. Each entry links to its record file, which `certify_exact.py` proves '
-            'valid in exact arithmetic over Q(√2, √5). s(n) is non-decreasing in n by construction. "≈ x" is a '
+            'valid in exact arithmetic over Q(√2, √3, √5, √7). s(n) is non-decreasing in n by construction. "≈ x" is a '
             'conjectured closed form (touching limit agrees with x to ~11 digits). Registered comparison values '
             'are shown in the "previous" columns. The website also includes earlier all-25-pair Platonic results '
             'and immutable community contributions. Full search-archive data: [SUMMARY.csv](SUMMARY.csv).', '']

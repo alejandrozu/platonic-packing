@@ -4,7 +4,7 @@
 with proofs of validity, for nine problems — each Platonic solid in a copy of itself, and the dual pairs (cubes in an
 octahedron, octahedra in a cube, dodecahedra in an icosahedron, icosahedra in a dodecahedron) — for n = 2 to 40, using Yohei Nakajima's
 *soft-to-rigid* method: start every piece as its inscribed sphere, then sharpen it into the solid while inward
-pressure shrinks the container. Every packing is **certified in exact arithmetic over Q(√2, √5)**.
+pressure shrinks the container. Every packing is **certified in exact arithmetic** (over Q(√2, √3, √5, √7) for the Platonic records; record numbers may be given exactly in that field, see `multiquad.py`).
 
 **Website: [https://alejandrozu.github.io/platonic-packing/](https://alejandrozu.github.io/platonic-packing/)** (moving to polyhedrainpolyhedra.wiki): every record in 3D, the method, the
 certificates, and a page to [check and submit your own packings](https://alejandrozu.github.io/platonic-packing/contribute/)

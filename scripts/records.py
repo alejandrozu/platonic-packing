@@ -27,7 +27,48 @@ def pid(piece, container): return f'{AB[piece]}in{AB[container]}'
 
 
 def closed_form(x):
-    """Small-coefficient algebraic identification of x (accurate to ~1e-12): rationals, then quadratics."""
+    """Small-coefficient algebraic identification of x (accurate to ~1e-12): rationals, then quadratics, then (13 Oct
+    2026) elements of Q(sqrt2, sqrt3, sqrt5, sqrt7) with two square roots, a + b sqrt p + c sqrt q + d sqrt pq."""
+    r = _closed_form_quadratic(x)
+    return r if r is not None else _closed_form_multiquad(x)
+
+
+def _closed_form_multiquad(x, maxcoeff=20, maxden=12, tol=1e-11):
+    """x = (a + b sqrt p + c sqrt q + d sqrt(pq)) / e with p < q in {2, 3, 5, 7}, small integers, two or more radicals
+    present (single radicals are the quadratic case). Small coefficients keep chance matches at 12 digits unlikely."""
+    try:
+        import mpmath as mp
+    except ImportError:
+        return None
+    mp.mp.dps = 30
+    v = mp.mpf(x); best = None
+    for p, q in ((2, 3), (2, 5), (2, 7), (3, 5), (3, 7), (5, 7)):
+        basis = [mp.mpf(1), mp.sqrt(p), mp.sqrt(q), mp.sqrt(p * q)]
+        rel = mp.pslq([v] + basis, maxcoeff=maxcoeff, maxsteps=20000, tol=mp.mpf(tol) / 10)
+        if not rel or rel[0] == 0: continue
+        e = -rel[0]; co = rel[1:]
+        if e < 0: e, co = -e, [-c for c in co]
+        if e > maxden or sum(1 for c in co[1:] if c) < 2: continue
+        val = sum(c * b for c, b in zip(co, basis)) / e
+        if abs(val - v) > tol * max(1, abs(v)): continue
+        g = e
+        for c in co: g = gcd(g, abs(int(c)))
+        e, co = e // g, [int(c) // g for c in co]
+        height = e + sum(abs(c) for c in co)
+        if best is None or height < best[0]: best = (height, e, co, p, q)
+    if best is None: return None
+    _, e, co, p, q = best
+    parts = []
+    for c, rad in zip(co, ('', f'√{p}', f'√{q}', f'√{p * q}')):
+        if not c: continue
+        mag = (str(abs(c)) if (abs(c) != 1 or not rad) else '') + rad
+        parts.append(('-' if c < 0 else '+') + ' ' + mag)
+    expr = ' '.join(parts); expr = expr[2:] if expr.startswith('+ ') else '-' + expr[2:]
+    return expr if e == 1 else f'({expr})/{e}'
+
+
+def _closed_form_quadratic(x):
+    """Rationals, then quadratics a + b sqrt m (any squarefree m)."""
     try:
         import mpmath as mp
     except ImportError:

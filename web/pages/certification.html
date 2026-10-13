@@ -30,6 +30,19 @@ arithmetic and halving the interval (with exact signs of the minimal polynomial)
 always happens because the value is not 0. This is <a href="{{REPO}}/blob/main/algebraic.py"><code>algebraic.py</code></a>,
 standard library only.</p>
 
+<h2 id="multiquad">Exact numbers in records: ℚ(√2, √3, √5, √7)</h2>
+<p>A record's numbers (piece centres, quaternion entries, the scale s and the container centre) are normally binary64
+values, each read as the exact rational it denotes. Since 13 October 2026 any of them may instead be written exactly as
+an element of the multiquadratic field ℚ(√2, √3, √5, √7), for example <code>"1+2*sqrt3"</code>,
+<code>"(1+sqrt7)/2"</code> or <code>"sqrt(21)/3"</code>, so a construction whose natural coordinates or scale involve √3
+or √7 can be proved as it is. Both certifiers then work in that field of degree 16:
+<a href="{{REPO}}/blob/main/multiquad.py"><code>multiquad.py</code></a> (standard library only) does exact arithmetic on
+the basis √d, d | 210, and decides signs exactly through the tower ℚ ⊂ ℚ(√2) ⊂ ℚ(√2, √3) ⊂ … (write x = p + q√r with p, q
+in the smaller field; if p and q have opposite signs the sign of x is that of p·(p² − r q²), which is never zero).
+The general certifier encloses such numbers rigorously before its interval checks; the Platonic certifier decides
+every inequality exactly in the field. Closed-form conjectures for s also look for values with two square roots,
+a + b√p + c√q + d√(pq) with p, q ∈ {2, 3, 5, 7}, for example (√2 + √6)/2 = 2 cos 15°.</p>
+
 <h2 id="pslq">Finding the coordinates, then proving them</h2>
 <p><a href="{{REPO}}/blob/main/scripts/exact_solids.py"><code>scripts/exact_solids.py</code></a> writes each 60-digit
 coordinate as a rational combination of powers of α with the <a href="https://en.wikipedia.org/wiki/Integer_relation_algorithm">PSLQ</a>
@@ -57,7 +70,7 @@ holds for the whole interval.</p>
 <ul>
   <li>Records from other people certify: Y. Nakajima's 12 cubes in a cube (s = 2.9315185094797) and the record of 21 octahedra in a cube from Tencent Hunyuan's <a href="https://github.com/Tencent-Hunyuan/Hyra-results">Hyra-results</a>.</li>
   <li>Deliberately broken files are rejected: the container shrunk by 3·10<sup>−5</sup>, a piece pushed 10<sup>−4</sup> into its neighbour, two coincident pieces, a piece outside.</li>
-  <li>The Platonic records are certified twice: by the original <a href="{{REPO}}/blob/main/certify_exact.py"><code>certify_exact.py</code></a> over ℚ(√2, √5) and by the general certifier.</li>
+  <li>The Platonic records are certified twice: by the original <a href="{{REPO}}/blob/main/certify_exact.py"><code>certify_exact.py</code></a>, in exact arithmetic over ℚ(√2, √3, √5, √7) (the Platonic solids themselves lie in ℚ(√2, √5)), and by the general certifier.</li>
 </ul>
 
 <h2 id="float">The float check</h2>
