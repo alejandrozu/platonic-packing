@@ -3,91 +3,86 @@
  "piece": "tetrakis_hexahedron",
  "container": "tetrakis_hexahedron",
  "n": 5,
- "s": 2.24309,
- "s_plus": "2.24309+",
- "s_full": 2.2430919574308,
+ "s": 2.24208,
+ "s_plus": "2.24208+",
+ "s_full": 2.2420838538899,
  "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.000002031580555e-07,
-  "min_wall_gap": 1.0000003669574653e-07
+  "min_pair_gap": 1.0000020256560236e-07,
+  "min_wall_gap": 1.0000010863819853e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-13",
  "pieces": [
   [
-   -0.20508520453399684,
-   1.2309946460639467,
-   -1.3622497588245863,
-   0.6006937658947901,
-   0.07908064169284043,
-   0.6006937658947901,
-   0.5216131242019499
+   -0.21144830377246557,
+   1.359480283549225,
+   -1.2333258302100223,
+   0.5998035892178619,
+   -0.07563729016894402,
+   0.5241662990489182,
+   0.5998035892178619
   ],
   [
-   -1.318498054665308,
-   1.3184980538168807,
-   1.3184980521200211,
-   0.7071067811865475,
-   -0.7071067811865478,
-   -1.1709460273254158e-16,
-   -3.8356668450507236e-17
+   -1.2987185571652946,
+   0.0235960738314221,
+   1.3050106818110567,
+   0.7127589714477139,
+   -0.701379343911167,
+   0.005562301789826297,
+   0.0032749586771150404
   ],
   [
-   -1.2309946469030932,
-   -1.362249757132369,
-   0.2050852019830926,
-   0.30034688294860923,
-   0.8219600071435331,
-   -0.3003468829486094,
-   0.37942752465090346
+   -1.1818325813040642,
+   -1.3675486541820792,
+   -1.1927197621724202,
+   0.2809468495388023,
+   0.8777109228494857,
+   -0.27118858559312436,
+   0.27775736657904604
   ],
   [
-   1.2382862637752206,
-   -0.042271916773879446,
-   1.2992843337620468,
-   0.5043321884358254,
-   0.5329411772635864,
-   -0.48771610659218895,
-   -0.4730282704606462
+   1.317428798909526,
+   -1.317428799489422,
+   0.22318274183545087,
+   8.926620472556181e-17,
+   -1.0,
+   -5.965895674178265e-17,
+   5.3185835977477984e-17
   ],
   [
-   1.3184980524028322,
-   -1.3184980532512602,
-   -1.3184980549481187,
-   0.7071067811865477,
-   -0.7071067811865474,
-   -1.4073792359475834e-16,
-   -7.91662515092521e-17
+   1.3174287989095237,
+   1.3174287989923676,
+   1.3174287991580518,
+   1.9229626863835628e-16,
+   -0.5773502691896263,
+   -0.5773502691896255,
+   -0.5773502691896257
   ]
  ],
  "record_id": "kthinkth_n05",
  "title": "5 tetrakis hexahedra in a tetrakis hexahedron",
  "family": "catalan",
  "source": {
-  "hash": "ba32ec0087c7335e",
+  "hash": "3e22f3015440ae88",
   "clear": 1e-07,
   "cap": 2.319470949652
  },
- "s_tight": 2.243091843325,
+ "s_tight": 2.242083739926,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.7099759466766968,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "hop",
-  "seed": 502468216,
-  "var": "gentle",
-  "minDiff": 0.020122172339398687,
-  "expand": 0.0051792596981952,
-  "rh": 0.15352737113200052,
-  "focus": 0,
-  "from": "best",
-  "raw": 2.243194875162482,
+  "move": "ascend",
+  "seed": 1740691702,
+  "var": "base",
+  "raw": 2.2430402211402045,
   "host": "laptop"
  },
- "density": 0.4430255462105173
+ "density": 0.44362340493291985
 }

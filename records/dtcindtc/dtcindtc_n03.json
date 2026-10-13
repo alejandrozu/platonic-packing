@@ -3,68 +3,68 @@
  "piece": "disdyakis_triacontahedron",
  "container": "disdyakis_triacontahedron",
  "n": 3,
- "s": 2.08961,
- "s_plus": "2.08961+",
- "s_full": 2.0896125905803,
+ "s": 2.08243,
+ "s_plus": "2.08243+",
+ "s_full": 2.0824331911907,
  "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020782353812e-07,
-  "min_wall_gap": 1.000000846573812e-07
+  "min_pair_gap": 1.0000020652712846e-07,
+  "min_wall_gap": 1.0000024008860464e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
- "date": "2026-10-12",
+ "date": "2026-10-13",
  "pieces": [
   [
-   3.7860706873729546,
-   2.2274544372350022,
-   -0.15531117252679558,
-   0.1578159492638082,
-   0.6700422395735874,
-   -0.11464865446507204,
-   0.7162354426964105
+   3.782255670006717,
+   2.3265995960662504,
+   -0.019589742697012275,
+   0.18964828113137544,
+   0.6646581111497286,
+   -0.1339042632604535,
+   0.7101639057481485
   ],
   [
-   -0.07165265822591531,
-   -3.7867365305791303,
-   2.289685472302075,
-   0.7582837651155069,
-   0.25428247612332333,
-   0.08051387717592284,
-   -0.5948644126865741
+   0.005213740685042747,
+   -3.7901261612361483,
+   2.3188460564150195,
+   0.7969200854499975,
+   0.29115999961910805,
+   0.02788003464676454,
+   -0.5285517341720345
   ],
   [
-   -3.827221830634799,
-   2.365353174059551,
-   -6.82103395113906e-16,
-   0.49999999999999994,
-   0.8090169943749476,
-   3.945394494788584e-16,
-   0.3090169943749472
+   -3.794149319615804,
+   2.330052851985836,
+   -0.005600641416667831,
+   0.4797030972273974,
+   0.8163030026157161,
+   -0.01168493104405463,
+   0.32155529667151195
   ]
  ],
  "record_id": "dtcindtc_n03",
  "title": "3 disdyakis triacontahedra in a disdyakis triacontahedron",
  "family": "catalan",
  "source": {
-  "hash": "78f00c3ef7ffb354",
+  "hash": "62c6e45c2a8e934d",
   "clear": 1e-07,
   "cap": 2.1920888653915
  },
- "s_tight": 2.089612549264,
+ "s_tight": 2.08243314998,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.4422495703074083,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "ascend",
-  "seed": 1944602039,
+  "move": "descend",
+  "seed": 754543260,
   "var": "base",
-  "raw": 2.128402847833229,
-  "host": "actions"
+  "removed": 3,
+  "raw": 2.109988090952471
  },
- "density": 0.3287940317291492
+ "density": 0.33220642149502644
 }

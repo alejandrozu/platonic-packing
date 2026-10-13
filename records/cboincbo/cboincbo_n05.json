@@ -3,91 +3,93 @@
  "piece": "cuboctahedron",
  "container": "cuboctahedron",
  "n": 5,
- "s": 2.2911,
- "s_plus": "2.29110+",
- "s_full": 2.291104971397,
+ "s": 2.27524,
+ "s_plus": "2.27524+",
+ "s_full": 2.2752444447153,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.000002016190932e-07,
-  "min_wall_gap": 1.0000005490340413e-07
+  "min_pair_gap": 1.0000020120694394e-07,
+  "min_wall_gap": 1.0000006867016964e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-13",
  "pieces": [
   [
-   0.7227382675337872,
-   -0.5269911688809182,
-   -0.52949105308379,
-   0.5491242944897976,
-   -0.4707359841848283,
-   -0.5075236573602481,
-   -0.46828397326227267
+   0.8278548887191629,
+   -0.5802000006641896,
+   -0.3729572360887073,
+   0.5206247866170526,
+   -0.536917846218044,
+   -0.5283830937274251,
+   -0.4018461947506292
   ],
   [
-   -0.3183229913165299,
-   0.6550999464098362,
-   0.7608438324913678,
-   0.553030857654682,
-   -0.48875267345457307,
-   -0.14987548001146722,
-   0.6578867950978091
+   -0.8950966659534909,
+   -0.013086948522137553,
+   -0.8951583825388271,
+   0.5023411322651895,
+   -0.5023858207584114,
+   0.502296863313392,
+   -0.49290945927315316
   ],
   [
-   -0.791144205352464,
-   -0.5635280224618181,
-   -0.43735513660952274,
-   0.5674297982762143,
-   -0.5383274324466768,
-   0.5383274324466759,
-   -0.31373647377847713
+   0.4692710251994055,
+   0.7907768287787054,
+   -0.5434199373774055,
+   0.528834067561591,
+   0.4012525226821481,
+   0.528834067561591,
+   0.528834067561591
   ],
   [
-   0.21295546820397449,
-   0.8576606309234689,
-   -0.6811512945369576,
-   0.510127953684619,
-   0.4340876099458577,
-   0.4438505850278106,
-   0.5952596710104814
-  ],
-  [
-   1.3911230430466761e-16,
-   -0.9129489794980062,
-   0.9129489804984271,
-   0.7071067811865476,
+   4.535392293696557e-09,
+   0.901733891826572,
+   0.901733890036898,
    0.7071067811865475,
-   -1.091669591460434e-16,
-   -2.6143791730253006e-16
+   0.7071067811865476,
+   5.5189298656365865e-17,
+   -1.6920218993867106e-16
+  ],
+  [
+   -0.5943978516544918,
+   -0.6691443852747483,
+   0.6098973002313176,
+   0.33015691826768595,
+   -0.13052135380099752,
+   0.4081538490261991,
+   0.8410535185391225
   ]
  ],
  "record_id": "cboincbo_n05",
  "title": "5 cuboctahedra in a cuboctahedron",
  "family": "archimedean",
  "source": {
-  "hash": "c97b37e79d7c6b58",
+  "hash": "0be307fae3b67836",
   "clear": 1e-07,
-  "cap": 2.3358521553113
+  "cap": 2.3226745789882
  },
- "s_tight": 2.291104741183,
+ "s_tight": 2.275244210273,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.7099759466766968,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "hop",
-  "seed": 1270379526,
-  "var": "gentle",
-  "minDiff": 0.020840357220362718,
-  "expand": 0.011893456895906705,
-  "rh": 0.10945338747083073,
-  "focus": 0,
+  "move": "reinsert",
+  "seed": 634037116,
+  "var": "base",
+  "expand": 0.004146851883900201,
+  "rh": 0.159331121576482,
+  "remove": [
+   1,
+   4
+  ],
   "from": "best",
-  "raw": 2.29137705203603,
+  "raw": 2.3379240522284053,
   "host": "laptop"
  },
- "density": 0.41575266454574017
+ "density": 0.4245079386882176
 }

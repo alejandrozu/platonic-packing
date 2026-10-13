@@ -3,82 +3,77 @@
  "piece": "antiprism12",
  "container": "cube",
  "n": 4,
- "s": 4.60969,
- "s_plus": "4.60969+",
- "s_full": 4.6096906100258,
+ "s": 4.58223,
+ "s_plus": "4.58223+",
+ "s_full": 4.5822395362014,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020332517325e-07,
-  "min_wall_gap": 1.0000003802801416e-07
+  "min_pair_gap": 1.000002009274992e-07,
+  "min_wall_gap": 1.0000004069254942e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
- "date": "2026-10-12",
+ "date": "2026-10-13",
  "pieces": [
   [
-   -0.4196752298323585,
-   0.3480438779800358,
-   -0.010672738991529316,
-   0.8329029909995961,
-   -0.06710511898049985,
-   -0.2630347148364621,
-   0.48226781914351385
+   0.46023380163142213,
+   -0.9816482878404064,
+   -0.2235348673949361,
+   0.5605939739157925,
+   0.7011409991802277,
+   -0.09165860171612082,
+   0.43096913626070416
   ],
   [
-   -0.4149135470824278,
-   -0.32946475096396804,
-   0.9677208824788484,
-   0.2660611895869017,
-   -0.34642975643404544,
-   0.8985859181668137,
-   -0.041727867486312055
+   0.4602338016314222,
+   0.016508340248055333,
+   0.35926801552252075,
+   0.612050775076413,
+   -0.7071064890019523,
+   -0.0006428151602007676,
+   0.3541099387596514
   ],
   [
-   1.8730851718434616,
-   -0.3895208111277626,
-   0.38952081112776243,
-   0.587937801209679,
-   -0.392847479193551,
-   -0.5879378012096795,
-   0.39284747919355173
+   -1.859359634931252,
+   0.2978182092348248,
+   0.33925441385510324,
+   0.6997171112395706,
+   0.1019606014034242,
+   0.6997171112395739,
+   0.10196060140342662
   ],
   [
-   -0.38952081112776227,
-   0.3895207655950043,
-   -1.8730851718434636,
-   9.562335848858149e-17,
-   -0.195090322016129,
-   0.9807852804032303,
-   -7.198407738154864e-16
+   0.403286526733978,
+   0.9816482465793278,
+   -0.006109092299701838,
+   0.09165860171612655,
+   -0.4309691362607011,
+   0.5605939739157978,
+   0.7011409991802244
   ]
  ],
  "record_id": "ap12incub_n04",
  "title": "4 antiprism12s in a cube",
  "family": "prisms",
  "source": {
-  "hash": "cc54d4b38c6f78b0",
+  "hash": "9bab5da6f1d16554",
   "clear": 1e-07,
   "cap": 4.6941691541092
  },
- "s_tight": 4.609690340583,
+ "s_tight": 4.58223906758,
  "closed_form_conjecture": null,
  "volume_lower_bound": 3.3948927769370387,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "hop",
-  "seed": 1137831846,
-  "var": "gentle",
-  "minDiff": 0.07263012730002828,
-  "expand": 0.027195674042080047,
-  "rh": 0.19708662624932013,
-  "focus": 0,
-  "from": "pool",
-  "raw": 4.6096903883685565,
-  "host": "laptop"
+  "move": "fresh",
+  "seed": 1941758943,
+  "var": "base",
+  "raw": 4.58223948339588,
+  "host": "actions"
  },
- "density": 0.39945039376942454
+ "density": 0.4066725156278365
 }
