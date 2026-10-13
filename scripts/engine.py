@@ -489,9 +489,11 @@ def learned_multipliers():
     except OSError:
         return _LEARN['mult']
     G, T = {}, {}
+    since = float(policy().get('started') or 0)              # only attempts made under the current policy
     for l in lines[-4000:]:
         try: r = json.loads(l)
         except ValueError: continue
+        if r.get('t', 0) < since: continue
         m = r.get('move'); fam = FAM.get(r.get('p'))
         if not fam or m in ('harvest', 'tighten', None) or not r.get('best_before') or not r.get('secs'): continue
         g = math.log(r['best_before'] / r['s']) if r.get('improved') and r.get('s') else 0.0
