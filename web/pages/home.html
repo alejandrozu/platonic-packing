@@ -34,6 +34,11 @@
           </div>
           <div class="legend" id="legend"></div>
         </div>
+        <div class="trow edge-controls"><span class="lab">Edges</span>
+          <button class="small" type="button" id="edge-mode" aria-pressed="false">Edges: piece colour</button>
+          <label class="inl" for="edge-width">thickness <input type="range" id="edge-width" min="0.5" max="6" step="0.1" value="1.5"></label>
+          <output id="edge-width-value" for="edge-width">1.5 px</output>
+        </div>
         <div class="trow"><span class="lab">Slice</span>
           <div class="seg" id="axis" role="group" aria-label="Slice axis">
             <button type="button" data-a="0" aria-pressed="false">x</button><button type="button" data-a="1" aria-pressed="false">y</button><button type="button" data-a="2" aria-pressed="true">z</button>
@@ -53,12 +58,15 @@
      </div>
     </div>
   </section>
-  <section class="panel" aria-labelledby="ptitle">
+  <section class="panel records-panel" aria-labelledby="ptitle">
     <div class="phead"><h2 id="ptitle"></h2><p id="psub"></p><div class="litline" id="lit"></div></div>
-    <div class="tablewrap"><table>
+    <div class="records-body">
+    <div class="tablewrap record-table-scroll" id="table-scroll-region" tabindex="0" aria-label="Scrollable record table"><table>
       <thead id="thead"></thead>
       <tbody id="rows"></tbody>
     </table></div>
+    <div class="table-slider"><input type="range" id="table-scroll" min="0" max="100" step="0.1" value="0" aria-label="Scroll record table" title="Scroll to other values of n"></div>
+    </div>
   </section>
 </div>
 

@@ -6,22 +6,39 @@
                                                                  beats (or fills) the record of a tracked problem,
                                                                  writes records/<id>/<id>_nNN.{json,certify.txt,verify.txt}
                                                                  and appends records/CONTRIBUTIONS.md
+Acceptance also requires SUBMISSION_CAN_ACCEPT=1, set by the workflow after repository-permission checks,
+an accepted-label event, the submitter's credit and their checked publication permission.
 
 EVENT.json is the GitHub event payload ($GITHUB_EVENT_PATH). Writes OUTDIR/comment.md (the reply to post) and
 OUTDIR/result.json ({"labels_add": [...], "labels_remove": [...], "accepted": bool, "record": path or null}).
 The issue text is only parsed as data (JSON and numbers); nothing from it is executed or passed to a shell."""
-import json, os, re, sys, math, subprocess, datetime, tempfile
+import json, os, re, sys, math, subprocess, datetime
+from pathlib import Path
+
+
+def load_json(path):
+    return json.loads(Path(path).read_text(encoding='utf-8'))
+
+
+def save_json(path, data, indent=None):
+    Path(path).write_text(json.dumps(data, indent=indent), encoding='utf-8')
+
+
+def save_text(path, text):
+    Path(path).write_text(text, encoding='utf-8')
+
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'scripts'))
-SOL = json.load(open(os.path.join(ROOT, 'src', 'solids.json')))
-EXACT = json.load(open(os.path.join(ROOT, 'src', 'solids_exact.json')))
+SOL = load_json(os.path.join(ROOT, 'src', 'solids.json'))
+EXACT = load_json(os.path.join(ROOT, 'src', 'solids_exact.json'))
 from engine import PID, FAM
 SITE = ('https://polyhedrainpolyhedra.wiki/' if os.path.exists(os.path.join(ROOT, 'web', 'CNAME'))
         else 'https://alejandrozu.github.io/platonic-packing/')
 REPO = 'https://github.com/alejandrozu/platonic-packing'
 MAX_N = 200
 LABELS = {'Problem': 'problem', 'Number of pieces': 'n', 'Container scale s': 's', 'Packing': 'packing',
-          'Credit': 'credit', 'How you found it': 'method'}
+          'Credit': 'credit', 'How you found it': 'method', 'Permission': 'permission'}
 
 
 class Bad(Exception):
@@ -72,15 +89,29 @@ def parse(body):
     if s is None:
         try: s = float(f.get('s', '').strip())
         except ValueError: s = None
-    if not (isinstance(s, (int, float)) and math.isfinite(s) and s > 0): raise Bad('No valid container scale: give `s_full` in the JSON or fill in **Container scale s**.')
+    if not (isinstance(s, (int, float)) and not isinstance(s, bool) and math.isfinite(s) and s > 0): raise Bad('No valid container scale: give `s_full` in the JSON or fill in **Container scale s**.')
     cc = obj.get('container_center', [0, 0, 0])
-    if not (isinstance(cc, list) and len(cc) == 3 and all(isinstance(x, (int, float)) and math.isfinite(x) for x in cc)): raise Bad('`container_center` must be three numbers.')
+    if not (isinstance(cc, list) and len(cc) == 3 and all(isinstance(x, (int, float)) and not isinstance(x, bool) and math.isfinite(x) for x in cc)): raise Bad('`container_center` must be three finite numbers.')
+    if 'n' in obj and (not isinstance(obj['n'], (int, float)) or isinstance(obj['n'], bool) or obj['n'] != len(pcs)):
+        raise Bad('The JSON `n` must match the number of entries in `pieces`.')
+    form_n = f.get('n', '').strip()
+    if form_n and (not form_n.isdigit() or int(form_n) != len(pcs)):
+        raise Bad('**Number of pieces** must match the number of entries in the packing.')
     pid = next((k for k, v in PID.items() if v == (piece, container)), None)
     rec = {'piece': piece, 'container': container, 'n': len(pcs), 's_full': s, 'pieces': pcs}
     if any(cc): rec['container_center'] = cc
-    note = ''
-    if f.get('n', '').strip().isdigit() and int(f['n']) != len(pcs): note = f'The form says n = {f["n"].strip()}, but the packing has {len(pcs)} pieces; {len(pcs)} is used.'
-    return rec, pid, f, note
+    return rec, pid, f, ''
+
+
+def authorize_accept(event, fields):
+    """The workflow sets this only after checking the actor's current repository permission."""
+    if (os.environ.get('SUBMISSION_CAN_ACCEPT') != '1' or event.get('action') != 'labeled'
+            or (event.get('label') or {}).get('name') != 'accepted'):
+        raise Bad('Acceptance requires the `accepted` label from a maintainer with write, maintain or admin access. No record was written.')
+    if not re.search(r'^\s*-\s+\[[xX]\]\s+', fields.get('permission', ''), re.M):
+        raise Bad('The publication permission checkbox must be checked before a packing can be accepted. No record was written.')
+    if not fields.get('credit', '').strip():
+        raise Bad('Fill in **Credit** before this packing can be accepted. No record was written.')
 
 
 def run(cmd, timeout):
@@ -106,27 +137,29 @@ def plural(s):
 
 def main():
     mode, event_path, outdir = sys.argv[1], sys.argv[2], sys.argv[3]
+    if mode not in ('check', 'accept'): raise SystemExit('Mode must be check or accept.')
     os.makedirs(outdir, exist_ok=True)
-    ev = json.load(open(event_path)); issue = ev['issue']
+    ev = load_json(event_path); issue = ev['issue']
     url, number, user = issue['html_url'], issue['number'], (issue.get('user') or {}).get('login', '')
     result = {'labels_add': [], 'labels_remove': [], 'accepted': False, 'record': None}
     lines = []
     try:
         rec, pid, f, note = parse(issue.get('body') or '')
+        if mode == 'accept': authorize_accept(ev, f)
     except Bad as e:
         lines += ['### Could not check this submission', '', str(e), '',
                   f'Edit the issue to fix it and the check runs again. The [contribute page]({SITE}contribute/) checks a packing in your browser and fills in this form.']
         result['labels_add'] = ['needs-fix']; result['labels_remove'] = ['certified', 'not-certified', 'new-record']
-        open(os.path.join(outdir, 'comment.md'), 'w').write('\n'.join(lines) + '\n'); json.dump(result, open(os.path.join(outdir, 'result.json'), 'w')); return
+        save_text(os.path.join(outdir, 'comment.md'), '\n'.join(lines) + '\n'); save_json(os.path.join(outdir, 'result.json'), result); return
     n, s = rec['n'], rec['s_full']
-    tmp = os.path.join(outdir, 'submission.json'); json.dump(rec, open(tmp, 'w'))
+    tmp = os.path.join(outdir, 'submission.json'); save_json(tmp, rec)
     vcode, vout = run([sys.executable, 'verify_general.py', tmp], 900)
     ccode, cout = run([sys.executable, 'certify_general.py', tmp], 3000)
     certified = ccode == 0 and 'NOT CERTIFIED' not in cout and 'CERTIFIED' in cout
     cur = None
     if pid:
         fn = os.path.join(ROOT, 'records', pid, f'{pid}_n{n:02d}.json')
-        if os.path.exists(fn): cur = json.load(open(fn))
+        if os.path.exists(fn): cur = load_json(fn)
     beats = certified and pid and (cur is None or s < cur['s_full'] - 1e-12)
     c = disp(rec['container'])
     title = f'{n} {plural(rec["piece"]) if n > 1 else disp(rec["piece"])} in {"an" if c[0] in "aeiou" else "a"} {c}'
@@ -181,14 +214,15 @@ def main():
             if 'container_center' in rec: out['container_center'] = rec['container_center']
             if cur: out['previous_record'] = {k: cur.get(k) for k in ('s_full', 'found_by', 'date')}
             base = os.path.join(folder, rid)
-            json.dump(out, open(base + '.json', 'w'), indent=1)
-            open(base + '.certify.txt', 'w').write(cout + '\n'); open(base + '.verify.txt', 'w').write(vout + '\n')
+            save_json(base + '.json', out, indent=1)
+            save_text(base + '.certify.txt', cout + '\n'); save_text(base + '.verify.txt', vout + '\n')
             log = os.path.join(ROOT, 'records', 'CONTRIBUTIONS.md')
             if not os.path.exists(log):
-                open(log, 'w').write('# Contributed records\n\nPackings submitted through GitHub issues, certified exactly and accepted. '
+                save_text(log, '# Contributed records\n\nPackings submitted through GitHub issues, certified exactly and accepted. '
                                      'Newest last.\n\n| date | record | s | previous | credit | issue |\n|---|---|---|---|---|---|\n')
-            open(log, 'a').write(f'| {out["date"]} | [{rid}]({pid}/{rid}.json) | {s!r} | {repr(cur["s_full"]) if cur else "none"} | '
-                                 f'{credit.replace("|", "/")} | [#{number}]({url}) |\n')
+            with open(log, 'a', encoding='utf-8') as contributions:
+                contributions.write(f'| {out["date"]} | [{rid}]({pid}/{rid}.json) | {s!r} | {repr(cur["s_full"]) if cur else "none"} | '
+                                    f'{credit.replace("|", "/")} | [#{number}]({url}) |\n')
             result['accepted'] = True; result['record'] = os.path.relpath(base + '.json', ROOT)
             lines += ['', f'**Accepted and recorded** as [`{rid}`]({REPO}/blob/main/records/{pid}/{rid}.json), credited to {credit}. '
                           f'It appears on [the site]({SITE}#{rid}) after the rebuild.']
@@ -196,10 +230,10 @@ def main():
                 worse = []
                 for m in range(2, n):
                     fm = os.path.join(ROOT, 'records', pid, f'{pid}_n{m:02d}.json')
-                    if os.path.exists(fm) and json.load(open(fm))['s_full'] > s: worse.append(m)
+                    if os.path.exists(fm) and load_json(fm)['s_full'] > s: worse.append(m)
                 if worse: lines += ['', f'Note: the records for n = {", ".join(map(str, worse))} are now larger than this one; removing pieces from this packing would improve them.']
-    open(os.path.join(outdir, 'comment.md'), 'w').write('\n'.join(lines) + '\n')
-    json.dump(result, open(os.path.join(outdir, 'result.json'), 'w'))
+    save_text(os.path.join(outdir, 'comment.md'), '\n'.join(lines) + '\n')
+    save_json(os.path.join(outdir, 'result.json'), result)
 
 
 if __name__ == '__main__':

@@ -212,6 +212,8 @@ def page(path, title, desc, body, active, scripts=(), styles=(), depth=1, root=N
 <meta property="og:url" content="{canon}">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#eef1f0">
+<script>try{{const t=localStorage.getItem('ppr-theme');document.documentElement.dataset.theme=['light','dark'].includes(t)?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}}catch(e){{}}</script>
+<script src="{root}assets/theme.js" defer></script>
 <link rel="icon" href="{root}assets/icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -223,8 +225,9 @@ def page(path, title, desc, body, active, scripts=(), styles=(), depth=1, root=N
 <header class="top"><div class="in">
   <a class="mark" href="{root}"><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke-width="1.3" stroke-linecap="round"><path class="c" d="{cpath}"/><path class="p" d="{opath}"/></svg>Polyhedra in Polyhedra</a>
   <nav class="nav" aria-label="Site">{nav}</nav>
+  <div class="theme-switch seg" role="group" aria-label="Colour theme"><button type="button" data-theme="light" aria-pressed="false">Light</button><button type="button" data-theme="dark" aria-pressed="false">Dark</button></div>
 </div></header>
-<main class="wrap">
+<main class="wrap{' record-page' if active == '' else ''}">
 {body}
 </main>
 <footer class="foot"><div class="in">

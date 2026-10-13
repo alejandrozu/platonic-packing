@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for submitting! Check your packing first on https://alejandrozu.github.io/platonic-packing/contribute/ (it can fill in this form for you).
+        Thanks for submitting! Check your packing first on https://polyhedrainpolyhedra.wiki/contribute/ (it can fill in this form for you).
         After you open the issue, a GitHub Action runs the float check and the exact certifier on it and comments with the result.
   - type: input
     id: problem
@@ -36,7 +36,7 @@ body:
       label: Packing
       description: |
         JSON with "piece", "container", "n", "s_full" and "pieces" (one [x, y, z, qw, qx, qy, qz] per piece; see the format on the contribute page).
-        Pieces must not touch: leave a small positive clearance (about 1e-7) between pieces and from the walls.
+        The checker supports 1–200 pieces. Pieces must not touch: leave a small positive clearance (about 1e-7) between pieces and from the walls.
       render: json
     validations:
       required: true
