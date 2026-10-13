@@ -192,7 +192,98 @@ def main():
     w('The first packing of a case is usually a quick fill (an ascend from n − 1 or a fresh run); the search then '
       'improves it. Relative decrease of s (first packing in the log, touching limit, against the certified final value):\n')
     w(table(['family', 'cases', 'median decrease', 'largest'], rows, ['---', '---:', '---:', '---:']) + '\n')
+
+    # ---------------------------------------------------------------- per-problem summary
+    def st(k): r = final.get(k); return (r.get('s_tight') or r['s_full']) if r else None
+    w('### Every problem at a glance\n')
+    w('s(n) for selected n (certified value, 5 decimals truncated, "+" omitted), the density reached at n = 40, the number of '
+      'n in 3–40 where s(n) = s(n − 1) to 1e-9 in the touching limits (the extra piece fits in the same container), and the number of '
+      'closed forms recognised. Unit: container edge ÷ piece edge, or the ratio of sizes for Catalan solids.\n')
+    rows = []
+    for p in NEW:
+        vals = [final[(p, n)]['s_plus'].rstrip('+') if (p, n) in final else '—' for n in (2, 3, 5, 10, 20, 30, 40)]
+        plat = sum(1 for n in range(3, 41) if st((p, n)) is not None and st((p, n - 1)) is not None and abs(st((p, n)) - st((p, n - 1))) < 1e-9 * st((p, n)))
+        cf = sum(1 for n in range(2, 41) if (p, n) in final and final[(p, n)].get('closed_form_conjecture'))
+        den = final[(p, 40)]['density'] if (p, 40) in final else None
+        rows.append([f'`{p}`', title(p)] + vals + [f'{den:.3f}' if den else '—', plat, cf])
+    w(table(['id', 'problem', 's(2)', 's(3)', 's(5)', 's(10)', 's(20)', 's(30)', 's(40)', 'density n=40', 'plateaus', 'closed forms'], rows,
+            ['---', '---', '---:', '---:', '---:', '---:', '---:', '---:', '---:', '---:', '---:', '---:']) + '\n')
+
+    # ---------------------------------------------------------------- exact values: integers and closed forms
+    ints = collections.defaultdict(list)
+    for (p, n), r in sorted(final.items()):
+        t = r.get('s_tight') or r['s_full']
+        if abs(t - round(t)) < 1e-8: ints[p].append((n, int(round(t))))
+    w('### Integer containers\n')
+    w('Cases whose touching limit is an integer to 1e-8: n copies fit in a container exactly k times the piece. These '
+      'are usually lattice or layer arrangements, and long runs of equal values are plateaus of s(n).\n')
+    rows = []
+    for p in NEW:
+        if not ints[p]: continue
+        by = collections.defaultdict(list)
+        for n, k in ints[p]: by[k].append(n)
+        rows.append([f'`{p}`', '; '.join(f'{k}: n = {_ranges(ns)}' for k, ns in sorted(by.items()))])
+    w(table(['problem', 'integer value: n'], rows) + '\n')
+    cfs = [(p, n, r['closed_form_conjecture']) for (p, n), r in sorted(final.items()) if r.get('closed_form_conjecture')]
+    w(f'### Closed forms\n\n{len(cfs)} records have a recognised closed form (the touching limit agrees with a short expression in '
+      'the field of the solid to about 11 digits; these are conjectures about the arrangement, not proofs of optimality). '
+      'Integers are listed above; the others:\n')
+    rows = [[f'`{p}_n{n:02d}`', f'{(final[(p, n)].get("s_tight") or final[(p, n)]["s_full"]):.10f}', cf] for p, n, cf in cfs if not re.fullmatch(r'\d+', cf.strip())]
+    w(table(['record', 'touching limit', 'closed form'], rows, ['---', '---:', '---']) + '\n' if rows else '(none besides integers)\n')
+
+    # ---------------------------------------------------------------- density
+    w('### Density at n = 40\n')
+    w('Density = n · vol(piece) / vol(container). The volume bound s ≥ (n · vol piece / vol container)^(1/3) is the only lower bound used; '
+      'the ratio s / bound shows how far each record is from it.\n')
+    rows = sorted(([f'`{p}`', f"{final[(p, 40)]['density']:.4f}", f"{final[(p, 40)]['s_full'] / final[(p, 40)]['volume_lower_bound']:.4f}"] for p in NEW if (p, 40) in final),
+                  key=lambda r: -float(r[1]))
+    w(table(['problem', 'density', 's / volume bound'], rows, ['---', '---:', '---:']) + '\n')
+    for fam in FAMS:
+        d = [final[(p, 40)]['density'] for p in NEW if FAM[p] == fam and (p, 40) in final]
+        w(f'* {fam}: density at n = 40 from {min(d):.3f} to {max(d):.3f}, median {statistics.median(d):.3f}.')
+    w('')
+
+    # ---------------------------------------------------------------- prisms: in themselves vs in a cube
+    w('### Prisms and antiprisms: in themselves against in a cube\n')
+    w('s for the same pieces in their own shape and in a cube (both measured in piece edges). A cube is a better container '
+      'when its s is smaller relative to the volume of the two containers, so the table also gives the densities.\n')
+    rows = []
+    for k in ('prism3', 'prism5', 'prism6', 'prism8', 'prism12', 'antiprism4', 'antiprism5', 'antiprism6', 'antiprism8', 'antiprism12'):
+        a = next((p for p in NEW if PID[p] == (k, k)), None); b = next((p for p in NEW if PID[p] == (k, 'cube')), None)
+        if not a or not b: continue
+        for n in (4, 10, 20, 40):
+            ra, rb = final.get((a, n)), final.get((b, n))
+            if ra and rb: rows.append([disp(k), n, f"{ra['s_full']:.4f}", f"{ra['density']:.3f}", f"{rb['s_full']:.4f}", f"{rb['density']:.3f}"])
+    w(table(['piece', 'n', 's in itself', 'density', 's in a cube', 'density'], rows, ['---', '---:', '---:', '---:', '---:', '---:']) + '\n')
+
+    # ---------------------------------------------------------------- certification
+    times = []; near = []; fam_t = collections.defaultdict(list)
+    for (p, n), r in final.items():
+        f = os.path.join(ROOT, 'records', p, f'{p}_n{n:02d}.certify.txt')
+        if not os.path.exists(f): continue
+        x = open(f).read()
+        m = re.search(r'\(([0-9.]+)s\)', x); m2 = re.search(r'disjointness: (\d+) near pairs', x)
+        if m: times.append((float(m.group(1)), p, n)); fam_t[FAM[p]].append(float(m.group(1)))
+        if m2: near.append(int(m2.group(1)))
+    times.sort()
+    w('### Exact certificates\n')
+    w(f"All {sum(1 for k in final if _cert_ok(*k)):,} records of the three families pass `certify_general.py`. Certification time "
+      f"per record: median {statistics.median(t for t, _, _ in times):.1f} s, longest {times[-1][0]:.1f} s (`{times[-1][1]}_n{times[-1][2]:02d}`), "
+      f"total {sum(t for t, _, _ in times) / 60:.0f} minutes for all of them; {sum(near):,} near pairs were separated by explicit rational planes.\n")
+    w(table(['family', 'records', 'median time', 'longest'], [[f, len(v), f'{statistics.median(v):.1f} s', f'{max(v):.1f} s'] for f, v in fam_t.items()],
+            ['---', '---:', '---:', '---:']) + '\n')
+    degs = collections.Counter(len(EXACT[s]['minpoly']) - 1 for s in EXACT)
+    w('Degrees of the number fields of the 41 solids: ' + ', '.join(f'degree {d}: {c}' for d, c in sorted(degs.items())) + '.\n')
     return S, L, final, evening, best, first
+
+
+def _ranges(ns):
+    ns = sorted(ns); out = []; a = b = ns[0]
+    for x in ns[1:]:
+        if x == b + 1: b = x
+        else: out.append(f'{a}' if a == b else f'{a}–{b}'); a = b = x
+    out.append(f'{a}' if a == b else f'{a}–{b}')
+    return ', '.join(out)
 
 
 def _cert_ok(p, n):
