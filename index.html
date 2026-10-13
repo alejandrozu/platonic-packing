@@ -11,6 +11,8 @@
 <meta property="og:url" content="https://polyhedrainpolyhedra.wiki/">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#eef1f0">
+<script>try{const t=localStorage.getItem('ppr-theme');document.documentElement.dataset.theme=['light','dark'].includes(t)?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){}</script>
+<script src="./assets/theme.js" defer></script>
 <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,8 +24,9 @@
 <header class="top"><div class="in">
   <a class="mark" href="./"><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke-width="1.3" stroke-linecap="round"><path class="c" d="M2.53 25.17L14.30 17.64 M2.53 25.17L2.53 8.51 M2.53 25.17L17.70 31.02 M14.30 17.64L14.30 0.98 M14.30 17.64L29.47 23.49 M2.53 8.51L14.30 0.98 M2.53 8.51L17.70 14.36 M14.30 0.98L29.47 6.83 M17.70 31.02L29.47 23.49 M17.70 31.02L17.70 14.36 M29.47 23.49L29.47 6.83 M17.70 14.36L29.47 6.83"/><path class="p" d="M22.98 18.69L16.00 8.34 M22.98 18.69L16.00 23.66 M22.98 18.69L21.42 12.53 M22.98 18.69L10.58 19.47 M9.02 13.31L16.00 8.34 M9.02 13.31L16.00 23.66 M9.02 13.31L21.42 12.53 M9.02 13.31L10.58 19.47 M16.00 8.34L21.42 12.53 M16.00 8.34L10.58 19.47 M16.00 23.66L21.42 12.53 M16.00 23.66L10.58 19.47"/></svg>Polyhedra in Polyhedra</a>
   <nav class="nav" aria-label="Site"><a href="./" aria-current="page">Records</a><a href="./constructions/">All constructions</a><a href="./method/">Method</a><a href="./certification/">Certification</a><a href="./contribute/">Contribute</a><a href="./about/">About</a><a href="https://github.com/alejandrozu/platonic-packing" rel="noopener">GitHub</a></nav>
+  <div class="theme-switch seg" role="group" aria-label="Colour theme"><button type="button" data-theme="light" aria-pressed="false">Light</button><button type="button" data-theme="dark" aria-pressed="false">Dark</button></div>
 </div></header>
-<main class="wrap">
+<main class="wrap record-page">
 <div class="intro">
   <h1>How small a container can hold n copies of a polyhedron?</h1>
   <p class="lede">Smallest containers found so far for <b>n = 2–40</b> copies of a solid: each Platonic solid in itself and in its dual,
@@ -60,6 +63,11 @@
           </div>
           <div class="legend" id="legend"></div>
         </div>
+        <div class="trow edge-controls"><span class="lab">Edges</span>
+          <button class="small" type="button" id="edge-mode" aria-pressed="false">Edges: piece colour</button>
+          <label class="inl" for="edge-width">thickness <input type="range" id="edge-width" min="0.5" max="6" step="0.1" value="1.5"></label>
+          <output id="edge-width-value" for="edge-width">1.5 px</output>
+        </div>
         <div class="trow"><span class="lab">Slice</span>
           <div class="seg" id="axis" role="group" aria-label="Slice axis">
             <button type="button" data-a="0" aria-pressed="false">x</button><button type="button" data-a="1" aria-pressed="false">y</button><button type="button" data-a="2" aria-pressed="true">z</button>
@@ -79,12 +87,15 @@
      </div>
     </div>
   </section>
-  <section class="panel" aria-labelledby="ptitle">
+  <section class="panel records-panel" aria-labelledby="ptitle">
     <div class="phead"><h2 id="ptitle"></h2><p id="psub"></p><div class="litline" id="lit"></div></div>
-    <div class="tablewrap"><table>
+    <div class="records-body">
+    <div class="tablewrap record-table-scroll" id="table-scroll-region" tabindex="0" aria-label="Scrollable record table"><table>
       <thead id="thead"></thead>
       <tbody id="rows"></tbody>
     </table></div>
+    <div class="table-slider"><input type="range" id="table-scroll" min="0" max="100" step="0.1" value="0" aria-label="Scroll record table" title="Scroll to other values of n"></div>
+    </div>
   </section>
 </div>
 
@@ -109,7 +120,7 @@
 </main>
 <footer class="foot"><div class="in">
   <p>Upper bounds with proofs, not optimality claims. Method after Yohei Nakajima's soft-to-rigid packing. Code, records and certificates: <a href="https://github.com/alejandrozu/platonic-packing">github.com/alejandrozu/platonic-packing</a>. MIT license.</p>
-  <p>Built 2026-10-12 23:56 UTC+00</p>
+  <p>Built 2026-10-13 00:13 UTC+00</p>
 </div></footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script><script src="./assets/explorer.js"></script>
 </body>

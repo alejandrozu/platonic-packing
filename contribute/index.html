@@ -11,6 +11,8 @@
 <meta property="og:url" content="https://polyhedrainpolyhedra.wiki/contribute/">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#eef1f0">
+<script>try{const t=localStorage.getItem('ppr-theme');document.documentElement.dataset.theme=['light','dark'].includes(t)?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){}</script>
+<script src="../assets/theme.js" defer></script>
 <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +24,7 @@
 <header class="top"><div class="in">
   <a class="mark" href="../"><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke-width="1.3" stroke-linecap="round"><path class="c" d="M2.53 25.17L14.30 17.64 M2.53 25.17L2.53 8.51 M2.53 25.17L17.70 31.02 M14.30 17.64L14.30 0.98 M14.30 17.64L29.47 23.49 M2.53 8.51L14.30 0.98 M2.53 8.51L17.70 14.36 M14.30 0.98L29.47 6.83 M17.70 31.02L29.47 23.49 M17.70 31.02L17.70 14.36 M29.47 23.49L29.47 6.83 M17.70 14.36L29.47 6.83"/><path class="p" d="M22.98 18.69L16.00 8.34 M22.98 18.69L16.00 23.66 M22.98 18.69L21.42 12.53 M22.98 18.69L10.58 19.47 M9.02 13.31L16.00 8.34 M9.02 13.31L16.00 23.66 M9.02 13.31L21.42 12.53 M9.02 13.31L10.58 19.47 M16.00 8.34L21.42 12.53 M16.00 8.34L10.58 19.47 M16.00 23.66L21.42 12.53 M16.00 23.66L10.58 19.47"/></svg>Polyhedra in Polyhedra</a>
   <nav class="nav" aria-label="Site"><a href="../">Records</a><a href="../constructions/">All constructions</a><a href="../method/">Method</a><a href="../certification/">Certification</a><a href="../contribute/" aria-current="page">Contribute</a><a href="../about/">About</a><a href="https://github.com/alejandrozu/platonic-packing" rel="noopener">GitHub</a></nav>
+  <div class="theme-switch seg" role="group" aria-label="Colour theme"><button type="button" data-theme="light" aria-pressed="false">Light</button><button type="button" data-theme="dark" aria-pressed="false">Dark</button></div>
 </div></header>
 <main class="wrap">
 <div class="doc">
@@ -96,7 +99,7 @@ if adopted, added to the search.</p>
     <label class="field wide"><span>Why it is interesting</span><textarea id="c_motivation" rows="3" style="font-family:var(--f-body)"></textarea></label>
     <label class="field wide"><span>Definitions, coordinates or known results</span><textarea id="c_details" rows="4" placeholder="Vertex coordinates, references, links"></textarea></label>
   </div>
-  <div class="actions"><button class="primary" type="button" id="c_send">Open the proposal on GitHub</button></div>
+  <div class="actions"><button class="primary" type="button" id="c_send">Open the proposal on GitHub</button><span id="c_note" class="busy" aria-live="polite"></span></div>
 </section>
 
 <div class="doc">
@@ -114,8 +117,10 @@ symmetric arrangement, a proof of optimality for small n, a lattice construction
     <label class="field wide"><span>Data</span><textarea id="o_data" rows="4" placeholder="Coordinates (JSON or text), or where to find them"></textarea></label>
     <label class="field wide"><span>Links and references</span><input type="text" id="o_links" placeholder="Paper, code, pictures"></label>
   </div>
-  <div class="actions"><button class="primary" type="button" id="o_send">Open it on GitHub</button></div>
+  <div class="actions"><button class="primary" type="button" id="o_send">Open it on GitHub</button><span id="o_note" class="busy" aria-live="polite"></span></div>
 </section>
+
+<section class="panel formbox" id="issue_handoff" aria-label="Large submission fields" hidden></section>
 
 <div class="doc">
 <article>
@@ -154,7 +159,7 @@ that same solid. Names are the keys of <code>src/solids.json</code>: <span id="n
 </main>
 <footer class="foot"><div class="in">
   <p>Upper bounds with proofs, not optimality claims. Method after Yohei Nakajima's soft-to-rigid packing. Code, records and certificates: <a href="https://github.com/alejandrozu/platonic-packing">github.com/alejandrozu/platonic-packing</a>. MIT license.</p>
-  <p>Built 2026-10-12 23:56 UTC+00</p>
+  <p>Built 2026-10-13 00:13 UTC+00</p>
 </div></footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script><script src="../assets/contribute.js"></script>
 </body>
