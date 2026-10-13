@@ -1,0 +1,61 @@
+{
+ "problem": "min/prism5_l15_in_cube",
+ "piece": "prism5_l15",
+ "container": "cube",
+ "n": 2,
+ "s": 2.46345,
+ "s_plus": "2.46345+",
+ "s_full": 2.4634519478988,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020132387706e-07,
+  "min_wall_gap": 1.0000000982834933e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.4817258563922669,
+   0.5435349137137911,
+   0.4227088620173325,
+   0.32101976096009804,
+   0.6300367553350482,
+   0.32101976096010837,
+   0.6300367553350529
+  ],
+  [
+   0.4404344042333234,
+   -0.5435348961566695,
+   -0.42270886201734376,
+   0.6300367553350582,
+   -0.32101976096009377,
+   0.6300367553350548,
+   -0.321019760960089
+  ]
+ ],
+ "record_id": "pr5l15incub_n02",
+ "title": "2 pentagonal prisms of height 1.5 in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "e8d5b54e6d8135b9",
+  "clear": 1e-07,
+  "cap": 2.7480710170608
+ },
+ "s_tight": 2.463451651361,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.7281843807071189,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certification FAILED",
+ "search": {
+  "move": "symfresh",
+  "seed": 1173013244,
+  "var": "base",
+  "sym": "C2i+0",
+  "raw": 2.489119875357042
+ },
+ "density": 0.34525338159831376
+}

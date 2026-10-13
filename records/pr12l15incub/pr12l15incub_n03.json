@@ -1,0 +1,69 @@
+{
+ "problem": "min/prism12_l15_in_cube",
+ "piece": "prism12_l15",
+ "container": "cube",
+ "n": 3,
+ "s": 4.5,
+ "s_plus": "4.50000+",
+ "s_full": 4.5000004000005,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020145284338e-07,
+  "min_wall_gap": 1.0000000738585868e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.34781252191602263,
+   -0.035935777910938126,
+   1.5000001000002328,
+   3.3670168376905096e-16,
+   -0.7663452607635511,
+   -0.6424289387202643,
+   3.4764264729253326e-16
+  ],
+  [
+   0.023956765765724836,
+   -0.07684660728703571,
+   -1.5000001000002308,
+   0.9016288152556184,
+   -2.4478448158922477e-15,
+   1.8495496657435944e-15,
+   0.4325106698114509
+  ],
+  [
+   0.0745947575502098,
+   -0.32460968880615193,
+   -4.4409020210194004e-23,
+   0.6775990971257948,
+   -9.480349107108242e-15,
+   -3.5161440982904493e-15,
+   -0.7354314812233073
+  ]
+ ],
+ "record_id": "pr12l15incub_n03",
+ "title": "3 dodecagonal prisms of height 1.5 in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "47ad6ceb6835d38e",
+  "clear": 1e-07,
+  "cap": 5.2320511075691
+ },
+ "s_tight": 4.5,
+ "closed_form_conjecture": "9/2",
+ "volume_lower_bound": 3.6934064674941425,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certification FAILED",
+ "search": {
+  "move": "ascend",
+  "seed": 644864085,
+  "var": "base",
+  "raw": 4.500000956280444
+ },
+ "density": 0.5528962684969275
+}

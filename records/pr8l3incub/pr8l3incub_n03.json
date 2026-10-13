@@ -1,0 +1,70 @@
+{
+ "problem": "min/prism8_l3_in_cube",
+ "piece": "prism8_l3",
+ "container": "cube",
+ "n": 3,
+ "s": 4.82842,
+ "s_plus": "4.82842+",
+ "s_full": 4.8284274247465,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.00000202522371e-07,
+  "min_wall_gap": 1.0000003625165732e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.8751730445993411,
+   -1.022632705412681,
+   1.207106831186645,
+   0.4025020625400881,
+   -0.5943444177669319,
+   0.38308577769122415,
+   -0.5813708710031591
+  ],
+  [
+   0.7739966622653062,
+   1.1689259295816479,
+   -0.1762797786031345,
+   0.14697351209050616,
+   -0.6580368542086883,
+   -0.12532797452562888,
+   0.7277906182743898
+  ],
+  [
+   -0.8635853231794606,
+   -1.2034271218431896,
+   -1.2071068311866622,
+   0.3921253225795887,
+   -0.5874550262899867,
+   -0.3935690436081473,
+   0.5884196898403833
+  ]
+ ],
+ "record_id": "pr8l3incub_n03",
+ "title": "3 octagonal prisms of height 3 in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "d4628e965db01851",
+  "clear": 1e-07,
+  "cap": 4.8284274247466
+ },
+ "s_tight": 4.828427124744,
+ "closed_form_conjecture": "2 + 2\u221a2",
+ "volume_lower_bound": 3.5157344412129405,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certification FAILED",
+ "search": {
+  "move": "ascend",
+  "seed": 376858415,
+  "var": "base",
+  "raw": 4.828427280494298,
+  "host": "actions"
+ },
+ "density": 0.3860388973648474
+}

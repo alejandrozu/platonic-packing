@@ -1,0 +1,69 @@
+{
+ "problem": "min/prism5_l3_in_cube",
+ "piece": "prism5_l3",
+ "container": "cube",
+ "n": 3,
+ "s": 3.0,
+ "s_plus": "3.00000+",
+ "s_full": 3.0000002000001,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000019667618597e-07,
+  "min_wall_gap": 1.0000004024846021e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.6943285147709691,
+   0.11766912427117941,
+   0.0,
+   4.523885990597851e-15,
+   0.45954480954797,
+   0.8881545856536013,
+   -3.8054556523693087e-16
+  ],
+  [
+   -0.3719889335272293,
+   -0.8118090397644229,
+   0.0,
+   4.170580031681366e-15,
+   0.4539904997395468,
+   -0.8910065241883679,
+   -2.1068374065061167e-15
+  ],
+  [
+   -0.7098978775628887,
+   0.7340346693951266,
+   0.0,
+   5.139029183225241e-15,
+   -0.7588609631130552,
+   0.6512526688337842,
+   -1.465535614680036e-16
+  ]
+ ],
+ "record_id": "pr5l3incub_n03",
+ "title": "3 pentagonal prisms of height 3 in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "158d37e11bc60c90",
+  "clear": 1e-07,
+  "cap": 3.1035410484413
+ },
+ "s_tight": 3.0,
+ "closed_form_conjecture": "3",
+ "volume_lower_bound": 2.492473180486817,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certification FAILED",
+ "search": {
+  "move": "ascend",
+  "seed": 1227109080,
+  "var": "base",
+  "raw": 3.000000034858774
+ },
+ "density": 0.5734923521644535
+}

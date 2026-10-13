@@ -1,0 +1,69 @@
+{
+ "problem": "min/prism6_l3_in_cube",
+ "piece": "prism6_l3",
+ "container": "cube",
+ "n": 3,
+ "s": 3.49195,
+ "s_plus": "3.49195+",
+ "s_full": 3.4919587472496,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020158669156e-07,
+  "min_wall_gap": 1.0000003691779114e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.10414960640100326,
+   -0.8799538543702383,
+   0.745979258154677,
+   0.7071067811865476,
+   -3.152032095854116e-17,
+   0.7071067811865476,
+   -3.365165701362473e-16
+  ],
+  [
+   0.24597925815467733,
+   0.879953869840324,
+   0.7459792581546772,
+   0.7071067811865476,
+   -2.3742249691788525e-16,
+   0.7071067811865476,
+   -2.1442526988060625e-16
+  ],
+  [
+   -0.09379946813120633,
+   7.735042828471705e-09,
+   -0.7459792581546774,
+   0.6123724356957939,
+   -0.3535533905932746,
+   -0.6123724356957941,
+   0.3535533905932749
+  ]
+ ],
+ "record_id": "pr6l3incub_n03",
+ "title": "3 hexagonal prisms of height 3 in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "3e2acd43cc2690b0",
+  "clear": 1e-07,
+  "cap": 3.7250029004422
+ },
+ "s_tight": 3.491958430171,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.85955287899081,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certification FAILED",
+ "search": {
+  "move": "ascend",
+  "seed": 1762765536,
+  "var": "base",
+  "raw": 3.491958758614732
+ },
+ "density": 0.5491450616868808
+}

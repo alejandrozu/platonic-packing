@@ -1,0 +1,69 @@
+{
+ "problem": "min/prism6_l15_in_cube",
+ "piece": "prism6_l15",
+ "container": "cube",
+ "n": 3,
+ "s": 3.15659,
+ "s_plus": "3.15659+",
+ "s_full": 3.1565967946806,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000002017807877e-07,
+  "min_wall_gap": 1.0000002559351628e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.6123724710512053,
+   0.7970254501546109,
+   0.6123724710512045,
+   0.09229595564125789,
+   -0.09229595564125787,
+   0.7010573846499778,
+   0.701057384649978
+  ],
+  [
+   0.5141322712621166,
+   -0.8227399679725269,
+   -0.5639830338900569,
+   0.10022310401661277,
+   0.10011591117610817,
+   0.7021165988315691,
+   -0.6978283566865441
+  ],
+  [
+   -0.6123724710512056,
+   0.7136419094176233,
+   -0.6123724710512054,
+   0.5609855267969307,
+   -0.5609855267969307,
+   -0.4304593345768799,
+   -0.43045933457687985
+  ]
+ ],
+ "record_id": "pr6l15incub_n03",
+ "title": "3 hexagonal prisms of height 1.5 in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "4d294b45b7740c82",
+  "clear": 1e-07,
+  "cap": 3.2320511075691
+ },
+ "s_tight": 3.15659652397,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.269628624134352,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certification FAILED",
+ "search": {
+  "move": "ascend",
+  "seed": 307088369,
+  "var": "base",
+  "raw": 3.1569910497658724
+ },
+ "density": 0.37171241508150105
+}

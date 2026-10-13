@@ -1,0 +1,71 @@
+{
+ "problem": "min/prism5_l15_in_cube",
+ "piece": "prism5_l15",
+ "container": "cube",
+ "n": 3,
+ "s": 2.74807,
+ "s_plus": "2.74807+",
+ "s_full": 2.7480710170608,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020160427912e-07,
+  "min_wall_gap": 1.0000000694176947e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -0.5650184108674986,
+   0.6240354085303865,
+   -0.6858444482948023,
+   0.6300367553350504,
+   0.6300367553350507,
+   0.3210197609601032,
+   -0.3210197609601032
+  ],
+  [
+   -0.6240354085303923,
+   -0.6858444482948061,
+   0.5650184108674958,
+   0.6300367553350508,
+   -0.3210197609601029,
+   0.6300367553350503,
+   -0.32101976096010326
+  ],
+  [
+   0.685844448294801,
+   0.5650184108674918,
+   0.6240354085303897,
+   5.511779422207622e-16,
+   0.9510565162951529,
+   -0.3090169943749497,
+   -1.7457674750002996e-15
+  ]
+ ],
+ "record_id": "pr5l15incub_n03",
+ "title": "3 pentagonal prisms of height 1.5 in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "54b9b881171f1ae6",
+  "clear": 1e-07,
+  "cap": 3.0000003000003
+ },
+ "s_tight": 2.748070744085,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.9782772743536485,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certification FAILED",
+ "search": {
+  "move": "symfresh",
+  "seed": 1336054482,
+  "var": "base",
+  "sym": "C3+0",
+  "raw": 2.748070774649403,
+  "host": "laptop"
+ },
+ "density": 0.3730590935832648
+}

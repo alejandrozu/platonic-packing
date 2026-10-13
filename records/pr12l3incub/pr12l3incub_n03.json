@@ -1,0 +1,69 @@
+{
+ "problem": "min/prism12_l3_in_cube",
+ "piece": "prism12_l3",
+ "container": "cube",
+ "n": 3,
+ "s": 6.4641,
+ "s_plus": "6.46410+",
+ "s_full": 6.464101888343,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000002032645426e-07,
+  "min_wall_gap": 1.0000000649768026e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -1.4219534930616171,
+   -1.3660254403870538,
+   -1.366025440387054,
+   0.6532814824381883,
+   -0.2705980500730988,
+   -0.6532814824381882,
+   0.27059805007309856
+  ],
+  [
+   1.7320508435013764,
+   -1.3660254403870542,
+   -1.3660254403870542,
+   0.27059805007309845,
+   -0.6532814824381882,
+   -0.2705980500730984,
+   0.6532814824381884
+  ],
+  [
+   1.732050844171493,
+   1.3660254403870535,
+   1.3660254403870533,
+   0.2705980500730985,
+   -0.6532814824381885,
+   -0.27059805007309845,
+   0.6532814824381882
+  ]
+ ],
+ "record_id": "pr12l3incub_n03",
+ "title": "3 dodecagonal prisms of height 3 in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "717724390c24dc8d",
+  "clear": 1e-07,
+  "cap": 6.464101888343
+ },
+ "s_tight": 6.464101615138,
+ "closed_form_conjecture": "3 + 2\u221a3",
+ "volume_lower_bound": 4.653400554213735,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certification FAILED",
+ "search": {
+  "move": "monotone",
+  "from_n": 4,
+  "removed": 0,
+  "host": "laptop"
+ },
+ "density": 0.37306691164340366
+}
