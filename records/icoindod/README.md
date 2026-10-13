@@ -14,7 +14,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 9 | [1.77163+](icoindod_n09.json) | 1.771633823380 |  | 1.36839 | 0.4608 | ![](icoindod_n09.png) |
 | 10 | [1.81821+](icoindod_n10.json) | 1.818214648381 |  | 1.41730 | 0.4736 | ![](icoindod_n10.png) |
 | 11 | [1.86714+](icoindod_n11.json) | 1.867141627329 |  | 1.46305 | 0.4811 | ![](icoindod_n11.png) |
-| 12 | [1.87461+](icoindod_n12.json) | 1.874619563323 |  | 1.50611 | 0.5186 | ![](icoindod_n12.png) |
+| 12 | [1.87422+](icoindod_n12.json) | 1.874220982554 |  | 1.50611 | 0.5189 | ![](icoindod_n12.png) |
 | 13 | [1.90402+](icoindod_n13.json) | 1.904024516913 |  | 1.54683 | 0.5362 | ![](icoindod_n13.png) |
 | 14 | [1.97107+](icoindod_n14.json) | 1.971077254485 |  | 1.58552 | 0.5205 | ![](icoindod_n14.png) |
 | 15 | [2.00000+](icoindod_n15.json) | 2.000000000000 | 2 | 1.62241 | 0.5338 | ![](icoindod_n15.png) |

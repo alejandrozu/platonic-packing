@@ -25,7 +25,7 @@ def make_claim(rec, GAP=1e-6, WALL=1e-6, meta=None):
     R = [quat_to_R(q) for q in Q]
 
     class U:  # minimal unit-edge problem object for sat_gap
-        V = Vu; faxes = pbi.faxes; edirs = pbi.edirs
+        V = Vu; faxes = pbi.faxes; edirs = pbi.edirs; prune = False   # full axis set (no Gauss-map pruning)
         @staticmethod
         def verts(c, Rm): return c + Vu @ Rm.T
     lim = (2 * float(np.linalg.norm(Vu, axis=1).max())) ** 2 + 1e-9

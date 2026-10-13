@@ -17,7 +17,7 @@ Smallest container found for n unit-edge pieces; entry = s = container edge / pi
 | 10 | [2.70630+](tetintet/tetintet_n10.json) | [2.50000+](octinoct/octinoct_n10.json) ≈ 5/2 | [2.60989+](icoinico/icoinico_n10.json) | [2.70520+](dodindod/dodindod_n10.json) ≈ (101 + 25√5)/58 | [2.70710+](cubincub/cubincub_n10.json) ≈ (4 + √2)/2 | 2.70711 F |
 | 11 | [2.79938+](tetintet/tetintet_n11.json) | [2.66666+](octinoct/octinoct_n11.json) ≈ 8/3 | [2.61803+](icoinico/icoinico_n11.json) ≈ (3 + √5)/2 | [2.76393+](dodindod/dodindod_n11.json) ≈ 5 - √5 | [2.88171+](cubincub/cubincub_n11.json) ✱ | 2.88295 L |
 | 12 | [2.85760+](tetintet/tetintet_n12.json) | [2.66666+](octinoct/octinoct_n12.json) ≈ 8/3 | [2.61803+](icoinico/icoinico_n12.json) ≈ (3 + √5)/2 | [2.76393+](dodindod/dodindod_n12.json) ≈ 5 - √5 | [2.93151+](cubincub/cubincub_n12.json) | 2.93152 N |
-| 13 | [2.91514+](tetintet/tetintet_n13.json) | [2.83333+](octinoct/octinoct_n13.json) ≈ 17/6 | [2.80901+](icoinico/icoinico_n13.json) ≈ (9 + √5)/4 | [2.90557+](dodindod/dodindod_n13.json) | [2.97661+](cubincub/cubincub_n13.json) | 2.95600 F |
+| 13 | [2.91514+](tetintet/tetintet_n13.json) | [2.83333+](octinoct/octinoct_n13.json) ≈ 17/6 | [2.80901+](icoinico/icoinico_n13.json) ≈ (9 + √5)/4 | [2.90557+](dodindod/dodindod_n13.json) | [2.95614+](cubincub/cubincub_n13.json) | 2.95600 F |
 | 14 | [2.94300+](tetintet/tetintet_n14.json) | [2.94311+](octinoct/octinoct_n14.json) | [3.01780+](icoinico/icoinico_n14.json) | [3.00000+](dodindod/dodindod_n14.json) | [2.98994+](cubincub/cubincub_n14.json) | 2.98995 F |
 | 15 | [2.98883+](tetintet/tetintet_n15.json) | [2.98533+](octinoct/octinoct_n15.json) | [3.04832+](icoinico/icoinico_n15.json) | [3.03743+](dodindod/dodindod_n15.json) | [3.00000+](cubincub/cubincub_n15.json) | 3.00000 T |
 | 16 | [3.03538+](tetintet/tetintet_n16.json) | [2.99465+](octinoct/octinoct_n16.json) | [3.12130+](icoinico/icoinico_n16.json) | [3.10210+](dodindod/dodindod_n16.json) | [3.00000+](cubincub/cubincub_n16.json) | 3.00000 T |
@@ -60,7 +60,7 @@ Smallest container found for n unit-edge pieces; entry = s = container edge / pi
 | 9 | [3.61760+](cubinoct/cubinoct_n09.json) | [1.88561+](octincub/octincub_n09.json) ≈ (4√2)/3 | 1.88561 W | [4.02206+](dodinico/dodinico_n09.json) | [1.77163+](icoindod/icoindod_n09.json) |
 | 10 | [3.69181+](cubinoct/cubinoct_n10.json) | [2.14936+](octincub/octincub_n10.json) | 2.14936 W | [4.06524+](dodinico/dodinico_n10.json) ≈ (25 + 7√5)/10 | [1.81821+](icoindod/icoindod_n10.json) |
 | 11 | [3.70710+](cubinoct/cubinoct_n11.json) ≈ (6 + √2)/2 | [2.23071+](octincub/octincub_n11.json) | 2.19540 W | [4.06524+](dodinico/dodinico_n11.json) ≈ (25 + 7√5)/10 | [1.86714+](icoindod/icoindod_n11.json) |
-| 12 | [3.70710+](cubinoct/cubinoct_n12.json) ≈ (6 + √2)/2 | [2.29102+](octincub/octincub_n12.json) | 2.25949 L | [4.06524+](dodinico/dodinico_n12.json) ≈ (25 + 7√5)/10 | [1.87461+](icoindod/icoindod_n12.json) |
+| 12 | [3.70710+](cubinoct/cubinoct_n12.json) ≈ (6 + √2)/2 | [2.29102+](octincub/octincub_n12.json) | 2.25949 L | [4.06524+](dodinico/dodinico_n12.json) ≈ (25 + 7√5)/10 | [1.87422+](icoindod/icoindod_n12.json) |
 | 13 | [3.79737+](cubinoct/cubinoct_n13.json) | [2.33944+](octincub/octincub_n13.json) | 2.33667 L | [4.06524+](dodinico/dodinico_n13.json) ≈ (25 + 7√5)/10 | [1.90402+](icoindod/icoindod_n13.json) |
 | 14 | [3.91512+](cubinoct/cubinoct_n14.json) | [2.36547+](octincub/octincub_n14.json) | 2.35702 W | [4.59694+](dodinico/dodinico_n14.json) | [1.97107+](icoindod/icoindod_n14.json) |
 | 15 | [3.96266+](cubinoct/cubinoct_n15.json) | [2.42999+](octincub/octincub_n15.json) | 2.41976 W | [4.67481+](dodinico/dodinico_n15.json) | [2.00000+](icoindod/icoindod_n15.json) |
@@ -92,7 +92,7 @@ Smallest container found for n unit-edge pieces; entry = s = container edge / pi
 
 previous: F = E. Friedman, W = R. Walsh, L = H. Lin, N = Y. Nakajima, T = trivial grid packing; source dates and attribution are in docs/references.json. ✱ = more than the printed precision below a registered reference (usually 1e-5; 1e-3 for cube n=13). These search-archive tables do not include all external or community candidates; the website selects across all three registries.
 
-**Cubes in a cube vs published values** (n = 2–33): better at 11; equal at 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32; behind at 13 (+0.70%), 33 (+1.60%).
+**Cubes in a cube vs published values** (n = 2–33): better at 11; equal at 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32; behind at 33 (+1.60%).
 
 **Octahedra in a cube vs published values** (n = 2–30): better at 16, 20, 21, 22, 24, 25, 28, 29, 30; equal at 2, 3, 4, 5, 6, 7, 8, 9, 10, 26, 27; behind at 11 (+1.61%), 12 (+1.40%), 13 (+0.12%), 14 (+0.36%), 15 (+0.42%), 17 (+1.28%), 18 (+1.46%), 19 (+1.00%), 23 (+0.27%).
 
