@@ -1,0 +1,117 @@
+{
+ "problem": "min/dodecahedron_in_icosahedron",
+ "piece": "dodecahedron",
+ "container": "icosahedron",
+ "n": 4,
+ "s": 3.37546,
+ "s_plus": "3.37546+",
+ "s_full": 3.3754636082375584,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_wall_gap": 9.765611e-11,
+  "min_pair_gap": 1e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -1.2298087243614892,
+   -0.372653863054301,
+   0.7684143944960502,
+   0.2547764745920907,
+   0.5850797917208177,
+   0.7097346345511758,
+   0.29840799894248726
+  ],
+  [
+   0.10840043501435889,
+   -1.0657223011367059,
+   -1.0460623329334835,
+   0.04809875251932359,
+   0.47524719152444456,
+   0.350592348694084,
+   -0.8055505086531687
+  ],
+  [
+   1.12140828934713,
+   -0.3056587098201547,
+   0.9438099827445582,
+   0.38018621628043986,
+   -0.40286575551214543,
+   0.35458600062169865,
+   -0.7532771018351081
+  ],
+  [
+   4.985212185133844e-24,
+   1.0740985467347155,
+   -0.4102691375857961,
+   0.09463140112321565,
+   0.5990390709539094,
+   -0.3340805276126331,
+   0.7215173528489797
+  ]
+ ],
+ "record_id": "dodinico_n04_pingyou_20261013",
+ "title": "4 unit dodecahedra in an icosahedron",
+ "source": {
+  "hash": "68112d5f07a28a81",
+  "clear": 1e-07,
+  "cap": 3.574901405248
+ },
+ "s_tight": 3.375463527009,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.412999182605616,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "ascend",
+  "seed": 180787534,
+  "raw": 3.399656134611649
+ },
+ "density": 0.3653181368601338,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/dodinico/dodinico_n04.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "200aed9f3012189ea3f3f6d39b42e3d14e7e8a2a29c5f5602b589ed2c7a294cc",
+  "source_s_full": 3.3754637404253,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "family": "platonic",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "3ed4002920b070e4a69844baffbf2cf97959ce5000fbd0fa5449b5f1df43c156",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "7600868621791001/2251799813685248",
+  "scale_exact": "7600868324130669/2251799813685248",
+  "decrease_exact": "74415083/562949953421312",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 3.3754637404253,
+  "s_tight": 3.375463527009,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "68112d5f07a28a81",
+   "clear": 1e-07,
+   "cap": 3.574901405248
+  },
+  "date": "2026-10-10"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "dodinico_n04"
+}

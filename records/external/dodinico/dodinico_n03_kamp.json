@@ -1,0 +1,98 @@
+{
+ "problem": "min/dodecahedron_in_icosahedron",
+ "piece": "dodecahedron",
+ "container": "icosahedron",
+ "n": 3,
+ "s": 3.14562,
+ "s_plus": "3.14562+",
+ "s_full": 3.1456238500001,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020241132318e-07,
+  "min_wall_gap": 1.0000004602161994e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   0.6695358341853502,
+   1.1520935092359081,
+   0.009985794251101666,
+   0.09400213051871906,
+   0.010965403634452961,
+   0.9648735999542735,
+   0.24507610143046576
+  ],
+  [
+   0.7201723788437021,
+   -1.1207984014520085,
+   0.029327233228613293,
+   0.7611396714223401,
+   -0.19090619202413261,
+   0.610065700508592,
+   0.10973179802089364
+  ],
+  [
+   -1.1439540755831332,
+   -0.031295104609474406,
+   -0.6827057130669538,
+   0.6333055168950299,
+   -0.5283379828418078,
+   0.37238836115598734,
+   0.42557021351655555
+  ]
+ ],
+ "record_id": "dodinico_n03_kamp",
+ "title": "3 unit dodecahedrons in a icosahedron",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l4/m5/n3/platonic_n3_m5_l4.html",
+  "source_file": "docs/literature/external/kamp-dodinico-n03.html",
+  "sha256": "e94ff2b0eeab76ca3a82627222e1f707a78d5a71704853789f609e1bea223d71",
+  "numeric_source_file": "docs/literature/external/kamp-dodinico-n03.txt",
+  "numeric_source_sha256": "5c029e9492f98bfa84217313af495656316a13e3fff56ae5e1d290fb3fd3beb3",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "published_s_full": 3.145623653291942,
+  "published_circumradius": 2.134984937609977,
+  "source_to_canonical_row_matrix": [
+   [
+    -0.309016994374947,
+    -0.8090169943749477,
+    -0.4999999999999999
+   ],
+   [
+    0.49999999999999994,
+    0.3090169943749475,
+    -0.8090169943749475
+   ],
+   [
+    0.8090169943749475,
+    -0.49999999999999944,
+    0.30901699437494756
+   ]
+  ],
+  "outer_conversion_max_error": 2.4075799525563672e-15,
+  "vertex_conversion_max_error": 7.406111315403549e-16,
+  "normalization": "Original pieces have unit circumradius, so dodecahedron edge length is 0.71364417954617976; centers divided by this edge. Apply a proper rigid rotation to align ALL published icosahedron outer vertices with the project canonical solid (normalized discrepancy 2.41e-15). Fit piece rotations to ALL source mesh vertices (maximum discrepancy 7.41e-16). Convert container circumradius into edge ratio R/(0.95105651629515353 * 0.71364417954617976). Add standard 1e-7 clearance without transferring discovery credit.",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "imported_on": "2026-10-13"
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 2.192355252599893,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.3385418950085404
+}

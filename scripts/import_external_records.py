@@ -189,15 +189,22 @@ def main():
             entries.append({'problem': pid, 'n': n, 'published_value': value, 'published_expression': expression,
                             'author': name, 'original_reference': author,
                             'url': url, 'image_url': f'https://erich-friedman.github.io/packing/{pid}/' + image if image else None,
+                            'display_quantum': .001 if pid == 'cubincub' and n == 13 else 1e-5,
                             'value_precision': 'published expression' if expression else 'catalogue display; not a full-precision certificate', 'kind': 'catalogue'})
     entries.append({'problem': 'cubincub', 'n': 28, 'published_value': 3.66600,
                     'author': '紺葉 (@konoha_ily2)',
                     'url': 'https://x.com/konoha_ily2/status/2109306733999120589', 'image_url': None,
                     'value_precision': 'author-reported value; coordinates and the claimed certificate were not available for local verification',
                     'kind': 'author_report'})
+    registry_path = ROOT / 'docs' / 'external_records.json'
+    previous = json.loads(registry_path.read_text(encoding='utf-8')).get('entries', []) if registry_path.exists() else []
+    def entry_key(e):
+        return ('file', e['file']) if e.get('file') else (e['problem'], e['n'], e['kind'], e['url'], e['author'])
+    merged = {entry_key(e): e for e in previous}
+    merged.update({entry_key(e): e for e in imports + entries})
     registry = {'checked_on': DATE,
-                'scope': 'Public coordinate sources and Friedman catalogue for cubes and octahedra in cubes, n=2..40; not a claim of global completeness or optimality.',
-                'entries': imports + entries}
+                'scope': 'Registered independent coordinate sources and published comparison bounds; not a claim of global completeness or optimality.',
+                'entries': list(merged.values())}
     (ROOT / 'docs' / 'external_records.json').write_text(json.dumps(registry, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
 
 

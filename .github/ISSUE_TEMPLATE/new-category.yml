@@ -1,5 +1,5 @@
 name: Propose a new category
-description: A new (piece, container) problem, a new solid, mixed pieces, or a different measure.
+description: Propose a new 3D convex-polyhedron-in-convex-polyhedron problem or solid.
 title: "[category] "
 labels: ["category"]
 body:
@@ -7,14 +7,15 @@ body:
     id: pieces
     attributes:
       label: Pieces
-      placeholder: e.g. regular dodecahedra, or a solid not in the library
+      description: 3D convex polyhedra only; 2D packings and curved solids are outside this archive.
+      placeholder: e.g. regular dodecahedra, or a convex polyhedron not in the library
     validations:
       required: true
   - type: input
     id: container
     attributes:
       label: Container
-      placeholder: e.g. a sphere, a cube, a truncated octahedron
+      placeholder: e.g. a cube or a truncated octahedron
     validations:
       required: true
   - type: input

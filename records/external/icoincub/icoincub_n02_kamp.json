@@ -1,0 +1,89 @@
+{
+ "problem": "min/icosahedron_in_cube",
+ "piece": "icosahedron",
+ "container": "cube",
+ "n": 2,
+ "s": 2.49071,
+ "s_plus": "2.49071+",
+ "s_full": 2.4907122427351,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020176801339e-07,
+  "min_wall_gap": 1.0000004468935231e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   0.4363390269925516,
+   0.4363390269925562,
+   -0.43633902699255755,
+   0.2185080122244116,
+   -0.2185080122244054,
+   -0.9256147934109593,
+   -0.21850801222440924
+  ],
+  [
+   -0.4363390269925516,
+   -0.4363390269925562,
+   0.43633902699255656,
+   0.21850801222441094,
+   -0.21850801222441033,
+   -0.9256147934109581,
+   -0.21850801222441016
+  ]
+ ],
+ "record_id": "icoincub_n02_kamp",
+ "title": "2 unit icosahedrons in a cube",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l3/m4/n2/platonic_n2_m4_l3.html",
+  "source_file": "docs/literature/external/kamp-icoincub-n02.html",
+  "sha256": "e4dba0facba375d417bd2acc2c3c4f07304d90453f75c7f43484ba74776b3e17",
+  "numeric_source_file": "docs/literature/external/kamp-icoincub-n02.txt",
+  "numeric_source_sha256": "8e477f340290a3b04da0ffad39e41ab2e1da3bb591e81073c426d72d5ae6a05d",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "published_s_full": 2.4907119849999,
+  "published_circumradius": 2.268024891857072,
+  "source_to_canonical_row_matrix": [
+   [
+    -1.0139530627742664e-16,
+    -0.9999999999999999,
+    9.280770129589901e-17
+   ],
+   [
+    -0.9999999999999997,
+    1.0807617232398499e-16,
+    -1.2255603758257398e-16
+   ],
+   [
+    -1.3973124754562924e-16,
+    -2.10510869804973e-16,
+    -0.9999999999999999
+   ]
+  ],
+  "outer_conversion_max_error": 2.3128906185831588e-15,
+  "vertex_conversion_max_error": 7.147020545365251e-16,
+  "normalization": "Original pieces have unit circumradius, so icosahedron edge length is 1.0514622242382672; centers divided by this edge. Apply a proper rigid rotation to align ALL published cube outer vertices with the project canonical solid (normalized discrepancy 2.31e-15). Fit piece rotations to ALL source mesh vertices (maximum discrepancy 7.15e-16). Convert container circumradius into edge ratio R/(0.8660254037844386 * 1.0514622242382672). Add standard 1e-7 clearance without transferring discovery credit.",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "imported_on": "2026-10-13"
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 1.634085125214028,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.2823926336206794
+}

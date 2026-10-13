@@ -1,0 +1,137 @@
+{
+ "problem": "min/truncated_octahedron_in_truncated_octahedron",
+ "piece": "truncated_octahedron",
+ "container": "truncated_octahedron",
+ "n": 6,
+ "s_full": 2.3333356666666667,
+ "s_tight": 2.3333333333333335,
+ "pieces": [
+  [
+   -1.4142149765866574,
+   0.0,
+   0.0,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   0.0,
+   -1.4142149765866574,
+   -1.4142149765866574,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   0.0,
+   -1.4142149765866574,
+   1.4142149765866574,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   0.0,
+   1.4142149765866574,
+   -1.4142149765866574,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   0.0,
+   1.4142149765866574,
+   1.4142149765866574,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   1.4142149765866574,
+   0.0,
+   0.0,
+   1,
+   0,
+   0,
+   0
+  ]
+ ],
+ "method": "Named cell/face-centered erosion cut of the classical BCC truncated-octahedron honeycomb. All retained pieces are whole and identity-oriented. Dilate centers and container by 1+10^-6 and round to binary64 for strict clearance.",
+ "construction": {
+  "family": "bcc-face-six",
+  "nominal_side_exact": "7/3",
+  "parent_owner_count": 6,
+  "selected_owner_indices": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "global_optimality_claim": false
+ },
+ "attribution": {
+  "certificate_and_construction_submission": "PingYou Ltd",
+  "construction": "Classical honeycomb and a named finite erosion cut; no novelty claim for the honeycomb.",
+  "canonical_solid_and_verifier": "alejandrozu/platonic-packing"
+ },
+ "comparison": {
+  "source_file": "records/tocintoc/tocintoc_n06.json",
+  "source_sha256": "2a318d6a9331141737ebd036b1f49e59885123f745dff82495aa160eb3c9145e",
+  "previous_certified_side": "2.3388637329062",
+  "previous_nominal_side": "2.338863601204"
+ },
+ "record_id": "tocintoc_n06_pingyou_20261013",
+ "family": "archimedean",
+ "s": 2.33333,
+ "s_plus": "2.33333+",
+ "density": 0.4723017900902973,
+ "volume_lower_bound": 1.8171205928321397,
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "date": "2026-10-13",
+ "title": "6 truncated_octahedron in truncated_octahedron",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "format": "[x, y, z, qw, qx, qy, qz] per piece; exact binary64 stored numbers interpreted rationally; scalar-first quaternion gives exact orthogonal rotation; canonical solids from src/solids_exact.json",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/6",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "construction",
+  "archive": "https://github.com/user-attachments/files/33363589/pingyou-3d-constructions-47-2026-10-13.zip",
+  "archive_sha256": "38236a05eb54e73799344a52288100efb17d1a9c8a823709dfb256eb93e1871d",
+  "witness_sha256": "0e8deae809f94f94478a939db8d27ee4248a68da827a9b12d9486ac36890c2cf",
+  "replayed_on": "2026-10-13"
+ },
+ "found_by": "PingYou Ltd",
+ "credit": "PingYou Ltd (finite construction and certificate submission); classical tessellation/subdivision acknowledged.",
+ "source": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/6",
+  "author": "PingYou Ltd",
+  "submitted_by": "BuddenPing"
+ },
+ "nominal_bound_improvement": true,
+ "previous_record": {
+  "s_full": 2.3370185727731,
+  "s_tight": 2.337018443473,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "1809e142e0d621a4",
+   "clear": 1e-07,
+   "cap": 2.500000152052
+  },
+  "date": "2026-10-13"
+ },
+ "clearance": {
+  "min_wall_gap": 1.224745e-06,
+  "min_pair_gap": 2.44949e-06
+ },
+ "case_id": "tocintoc_n06"
+}

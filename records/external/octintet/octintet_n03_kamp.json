@@ -1,0 +1,98 @@
+{
+ "problem": "min/octahedron_in_tetrahedron",
+ "piece": "octahedron",
+ "container": "tetrahedron",
+ "n": 3,
+ "s": 3.0,
+ "s_plus": "3.00000+",
+ "s_full": 3.0000006130335,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020078512874e-07,
+  "min_wall_gap": 1.0000000727483638e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   0.3535534340223018,
+   -0.35355343398711975,
+   -0.35355343400006506,
+   0.49999999994439426,
+   0.5000000000198508,
+   -0.49999999997584144,
+   0.5000000000599137
+  ],
+  [
+   0.353551998251527,
+   0.3535519985864467,
+   0.3535534336777584,
+   0.4999999999324148,
+   -0.5000000000573359,
+   0.5000000000073037,
+   -0.5000000000029455
+  ],
+  [
+   -0.35355343405679807,
+   0.35355343409197976,
+   -0.3535534340448088,
+   1.5882702040686756e-11,
+   -2.4130986511745098e-11,
+   0.7071067811702814,
+   -0.7071067812028137
+  ]
+ ],
+ "record_id": "octintet_n03_kamp",
+ "title": "3 unit octahedrons in a tetrahedron",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l1/m2/n3/platonic_n3_m2_l1.html",
+  "source_file": "docs/literature/external/kamp-octintet-n03.html",
+  "sha256": "396bfee162149a632232af43d00d0430943360c52364c7961ef78fe8847d953b",
+  "numeric_source_file": "docs/literature/external/kamp-octintet-n03.txt",
+  "numeric_source_sha256": "8d642472bbd951b77aa8e161cffc024b30e7714c940aa98b4a1ffbee572c5a5c",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "published_s_full": 3.000000002139645,
+  "published_circumradius": 2.598076213206302,
+  "source_to_canonical_row_matrix": [
+   [
+    -0.7071067811865475,
+    -0.7071067811865478,
+    1.3381212312534267e-15
+   ],
+   [
+    -0.4082482904638616,
+    0.40824829046386324,
+    0.8164965809277267
+   ],
+   [
+    -0.5773502691896271,
+    0.5773502691896253,
+    -0.577350269189625
+   ]
+  ],
+  "outer_conversion_max_error": 2.6084334968580714e-15,
+  "vertex_conversion_max_error": 4.596790069145045e-16,
+  "normalization": "Original pieces have unit circumradius, so octahedron edge length is 1.4142135623730949; centers divided by this edge. Apply a proper rigid rotation to align ALL published tetrahedron outer vertices with the project canonical solid (normalized discrepancy 2.61e-15). Fit piece rotations to ALL source mesh vertices (maximum discrepancy 4.6e-16). Convert container circumradius into edge ratio R/(0.61237243569579447 * 1.4142135623730949). Add standard 1e-7 clearance without transferring discovery credit.",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "imported_on": "2026-10-13"
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 2.2894284851066637,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.4444441719852225
+}

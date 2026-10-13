@@ -1,0 +1,204 @@
+{
+ "problem": "min/octahedron_in_octahedron",
+ "piece": "octahedron",
+ "container": "octahedron",
+ "n": 13,
+ "s": 2.83333,
+ "s_plus": "2.83333+",
+ "s_full": 2.8333335581092336,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_wall_gap": 9.765633e-11,
+  "min_pair_gap": 1e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   7.785898594361611e-15,
+   1.8119140897315427e-14,
+   -1.2963625909467142,
+   0.7071067811865401,
+   0.7071067811865549,
+   1.4306765193773328e-16,
+   -1.439369292741942e-16
+  ],
+  [
+   -0.5892557231575665,
+   0.35355343389455435,
+   -0.35355343389457083,
+   1.083465847940151e-16,
+   -1.0,
+   -6.234818281102797e-16,
+   -1.1408680962758605e-15
+  ],
+  [
+   7.785898594361611e-15,
+   -1.2963625909467187,
+   6.254009714516738e-16,
+   0.5,
+   -0.5,
+   -0.5000000000000001,
+   -0.4999999999999999
+  ],
+  [
+   0.02449490042824523,
+   -0.038716873887847225,
+   1.2331508166306118,
+   0.01731791011667174,
+   -0.9995500337489726,
+   -0.017317910116676417,
+   -0.01731791011668133
+  ],
+  [
+   -0.23570228926303402,
+   0.4714045785260856,
+   0.5892557231575819,
+   0.4999999999999968,
+   -0.5000000000000043,
+   -0.499999999999996,
+   -0.500000000000003
+  ],
+  [
+   -1.2963625909467145,
+   3.4225636088399172e-15,
+   6.254009714516738e-16,
+   1.0,
+   2.752293969170626e-16,
+   1.0852638508926544e-15,
+   -8.487077629780891e-16
+  ],
+  [
+   -0.0553964013087767,
+   1.1227416956653198,
+   -0.11822449397261255,
+   0.5187014758466131,
+   0.5187014758466183,
+   0.5187014758466074,
+   0.4391427294896692
+  ],
+  [
+   0.4714045785261022,
+   -0.5892557231575963,
+   0.23570228926302805,
+   0.7071067811865475,
+   -6.918184591165119e-15,
+   0.7071067811865476,
+   -7.001395611226206e-15
+  ],
+  [
+   1.2963625909467298,
+   3.4225636088399172e-15,
+   6.254009714516738e-16,
+   0.707106781186547,
+   -4.83971987726339e-15,
+   0.7071067811865482,
+   3.4587842761259512e-15
+  ],
+  [
+   0.5892557231576095,
+   -0.11785114463151186,
+   -0.5892557231576067,
+   0.7071067811865476,
+   -0.7071067811865475,
+   2.657501977763263e-16,
+   1.1931314381771663e-14
+  ],
+  [
+   -0.2357022892630354,
+   -0.5892557231576041,
+   -0.47140457852608036,
+   5.1158043455356035e-15,
+   0.7071067811865374,
+   5.3376112520477e-15,
+   -0.7071067811865579
+  ],
+  [
+   -0.5892557231575921,
+   -0.35355343389456734,
+   0.3535534338945519,
+   1.6265715074459544e-16,
+   1.0,
+   -4.531819800272439e-16,
+   5.721353136279902e-16
+  ],
+  [
+   0.5892557231576143,
+   0.5892557231575986,
+   0.11785114463150458,
+   8.210979426704897e-15,
+   -0.7071067811865389,
+   7.135053397973984e-15,
+   0.7071067811865561
+  ]
+ ],
+ "record_id": "octinoct_n13_pingyou_20261013",
+ "title": "13 unit octahedra in an octahedron",
+ "source": {
+  "hash": "4691114b9c9a3357",
+  "clear": 1e-07,
+  "cap": 2.9431178819507
+ },
+ "s_tight": 2.833333333333,
+ "closed_form_conjecture": "17/6",
+ "volume_lower_bound": 2.3513346877207573,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "hop",
+  "seed": 1909277745,
+  "var": "gentle",
+  "minDiff": 0.06028914660131299,
+  "expand": 0.01041490564796761,
+  "rh": 0.08546445699291338,
+  "focus": 4,
+  "from": "best",
+  "raw": 2.833333456471138
+ },
+ "density": 0.5715447449016259,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/octinoct/octinoct_n13.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "06fd2a46b1a822128ea1d774eeaed3b62fa7a8b5f9d5d2d074beac817d01373b",
+  "source_s_full": 2.833333802819,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "family": "platonic",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "bf5fc7104d8b3300efa90979814890cf0c9ca912b1d69709278d7a3ea6e6df94",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "6380100529295939/2251799813685248",
+  "scale_exact": "6380099978258533/2251799813685248",
+  "decrease_exact": "275518703/1125899906842624",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 2.833333802819,
+  "s_tight": 2.833333333333,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "4691114b9c9a3357",
+   "clear": 1e-07,
+   "cap": 2.9431178819507
+  },
+  "date": "2026-10-11"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "octinoct_n13"
+}

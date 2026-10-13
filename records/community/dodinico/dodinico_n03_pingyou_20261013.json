@@ -1,0 +1,109 @@
+{
+ "problem": "min/dodecahedron_in_icosahedron",
+ "piece": "dodecahedron",
+ "container": "icosahedron",
+ "n": 3,
+ "s": 3.14562,
+ "s_plus": "3.14562+",
+ "s_full": 3.1456237172529717,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_wall_gap": 9.765566e-11,
+  "min_pair_gap": 1e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -1.1520935080335764,
+   0.009985791731960939,
+   0.6695358354143418,
+   0.11386254762906742,
+   0.6840960270208704,
+   0.6871093449132543,
+   0.2166303168869901
+  ],
+  [
+   0.03129510547609226,
+   -0.6827057155851487,
+   -1.143954074460255,
+   0.020726779907167824,
+   -0.32136476994121416,
+   -0.3183514520488353,
+   0.8915982493330215
+  ],
+  [
+   1.12079840255748,
+   0.029327230597708264,
+   0.7201723797561661,
+   0.22427411037753545,
+   -0.48031561544098456,
+   0.4320094137992103,
+   -0.729634085940875
+  ]
+ ],
+ "record_id": "dodinico_n03_pingyou_20261013",
+ "title": "3 unit dodecahedra in an icosahedron",
+ "source": {
+  "hash": "6abf75c18ee3037c",
+  "clear": 1e-07,
+  "cap": 3.3754637404253
+ },
+ "s_tight": 3.145623653066,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.192355252599893,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "descend",
+  "seed": 957225878,
+  "removed": 3,
+  "raw": 3.2847111325988494
+ },
+ "density": 0.3385419378685297,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/dodinico/dodinico_n03.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "2d665fc428bf70a8b842f861dc6168c753e6804bfbbed9d124585302201a6fd0",
+  "source_s_full": 3.1456238494407,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "family": "platonic",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "dd95daf05f25835c7b7d20574c52fe0c5d5c374c86226844ab81b99caf2cc6e0",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "7083315198094441/2251799813685248",
+  "scale_exact": "7083314900434139/2251799813685248",
+  "decrease_exact": "148830151/1125899906842624",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 3.1456238494407,
+  "s_tight": 3.145623653066,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "6abf75c18ee3037c",
+   "clear": 1e-07,
+   "cap": 3.3754637404253
+  },
+  "date": "2026-10-10"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "dodinico_n03"
+}

@@ -1,0 +1,107 @@
+{
+ "problem": "min/dodecahedron_in_icosahedron",
+ "piece": "dodecahedron",
+ "container": "icosahedron",
+ "n": 4,
+ "s": 3.37546,
+ "s_plus": "3.37546+",
+ "s_full": 3.3754637451533,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020219497918e-07,
+  "min_wall_gap": 1.0000003936028179e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   1.0657222897542058,
+   -1.0460623488970433,
+   0.10840043679197303,
+   0.5746425570420136,
+   0.735993669962756,
+   0.20291722603700346,
+   0.29482850742154826
+  ],
+  [
+   0.305658721738391,
+   0.94380998816608,
+   1.121408285681017,
+   0.02771155276847264,
+   -0.39943689349344674,
+   0.09694329241602487,
+   0.9111993393407428
+  ],
+  [
+   0.372653849666044,
+   0.7684143898855311,
+   -1.2298087381530551,
+   0.33891965773100863,
+   0.6692229761782271,
+   0.6255914519437336,
+   -0.2142648104882911
+  ],
+  [
+   -1.0740985574620656,
+   -0.4102691388969898,
+   1.3555966361686182e-08,
+   0.11972456628774439,
+   -0.11972456586078933,
+   0.9358733155839984,
+   0.3089873682441902
+  ]
+ ],
+ "record_id": "dodinico_n04_kamp",
+ "title": "4 unit dodecahedrons in a icosahedron",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l4/m5/n4/platonic_n4_m5_l4.html",
+  "source_file": "docs/literature/external/kamp-dodinico-n04.html",
+  "sha256": "0c542fc548dfa74e8a1ff7947cc91526c2dc81756abf040809a6ac36504d7597",
+  "numeric_source_file": "docs/literature/external/kamp-dodinico-n04.txt",
+  "numeric_source_sha256": "8764f5c3f9bd3bca2c7be19e532090eeefc6020684be965f12ce1db2b7676cb9",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "published_s_full": 3.37546353626029,
+  "published_circumradius": 2.29098093150007,
+  "source_to_canonical_row_matrix": [
+   [
+    -0.309016994374947,
+    -0.8090169943749477,
+    -0.4999999999999999
+   ],
+   [
+    0.49999999999999994,
+    0.3090169943749475,
+    -0.8090169943749475
+   ],
+   [
+    0.8090169943749475,
+    -0.49999999999999944,
+    0.30901699437494756
+   ]
+  ],
+  "outer_conversion_max_error": 2.2729467232330756e-15,
+  "vertex_conversion_max_error": 8.455847260422304e-16,
+  "normalization": "Original pieces have unit circumradius, so dodecahedron edge length is 0.71364417954617976; centers divided by this edge. Apply a proper rigid rotation to align ALL published icosahedron outer vertices with the project canonical solid (normalized discrepancy 2.27e-15). Fit piece rotations to ALL source mesh vertices (maximum discrepancy 8.46e-16). Convert container circumradius into edge ratio R/(0.95105651629515353 * 0.71364417954617976). Add standard 1e-7 clearance without transferring discovery credit.",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "imported_on": "2026-10-13"
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 2.412999182605616,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.3653180924059741
+}

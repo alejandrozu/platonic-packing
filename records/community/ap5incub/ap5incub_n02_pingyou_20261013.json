@@ -1,0 +1,100 @@
+{
+ "problem": "min/antiprism5_in_cube",
+ "piece": "antiprism5",
+ "container": "cube",
+ "n": 2,
+ "s": 1.7013,
+ "s_plus": "1.70130+",
+ "s_full": 1.7013017168996238,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_wall_gap": 9.765644e-11,
+  "min_pair_gap": 1.000002e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -0.006860712510159774,
+   -0.4253254541761306,
+   0.010888801596203224,
+   0.05438814769284533,
+   -0.05438814769284203,
+   -0.7050120065577203,
+   -0.705012006557718
+  ],
+  [
+   0.0056960961034343135,
+   0.42532545417612494,
+   0.006421921172968563,
+   0.25705426375738644,
+   0.2570542637573964,
+   0.6587284003928686,
+   -0.6587284003928656
+  ]
+ ],
+ "record_id": "ap5incub_n02_pingyou_20261013",
+ "title": "2 antiprism5s in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "7cb3a980dfa80ba6",
+  "clear": 1e-07,
+  "cap": 2.3621737365047
+ },
+ "s_tight": 1.701301616704,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.4670409030951332,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "search": {
+  "move": "fresh",
+  "seed": 1077054859,
+  "var": "base",
+  "raw": 1.701301779203368
+ },
+ "density": 0.6411839569602067,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/ap5incub/ap5incub_n02.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "0410207c25fc1368e6f6d26d76788f0ebc039d7f950d3e98aa45af93e21180f0",
+  "source_s_full": 1.7013019167044,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "e4a77c263bbd44585d0b3dff59a7585e835e552169a9fac821e799807761bc5d",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "3830991339057323/2251799813685248",
+  "scale_exact": "7661981778273931/4503599627370496",
+  "decrease_exact": "899840715/4503599627370496",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 1.7013019167044,
+  "s_tight": 1.701301616704,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "7cb3a980dfa80ba6",
+   "clear": 1e-07,
+   "cap": 2.3621737365047
+  },
+  "date": "2026-10-12"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "ap5incub_n02"
+}

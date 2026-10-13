@@ -1,0 +1,143 @@
+{
+ "problem": "min/dodecahedron_in_octahedron",
+ "piece": "dodecahedron",
+ "container": "octahedron",
+ "n": 8,
+ "s": 6.77653,
+ "s_plus": "6.77653+",
+ "s_full": 6.776535234872,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000019472724742e-07,
+  "min_wall_gap": 1.0000003181076522e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   -0.6148371202728268,
+   -1.828673041791272,
+   -0.006536832410470458,
+   0.32584445200739065,
+   -0.7402448908095501,
+   -0.32697717880272154,
+   0.4888239143787605
+  ],
+  [
+   1.5342303410222202,
+   -1.242488731448798,
+   -0.0039273982474977796,
+   0.3288640115297345,
+   0.07602374782073833,
+   0.5831407225170453,
+   -0.7389287850870055
+  ],
+  [
+   -0.6237576185386525,
+   1.8199998590955049,
+   -0.010816353760577947,
+   0.32153994062974595,
+   0.7424746272333348,
+   -0.3247319292237993,
+   -0.48978839169291216
+  ],
+  [
+   1.529358267375591,
+   1.2473712396716254,
+   -0.004723012035780951,
+   0.2541682594710938,
+   0.25045987902594613,
+   -0.6595182009704917,
+   -0.661592085400354
+  ],
+  [
+   0.614837506423277,
+   -0.006530639724310826,
+   -1.8286724546650983,
+   0.47156110215693275,
+   -0.6424188929814997,
+   -0.17522363728232368,
+   -0.5781217603675857
+  ],
+  [
+   -1.5342305355173904,
+   -0.0039232426708267,
+   -1.2424929564105485,
+   0.6450164382366024,
+   -0.6459767184453465,
+   0.28697236247823854,
+   0.29036999983608414
+  ],
+  [
+   -1.5293583225731069,
+   -0.004726717722549805,
+   1.2473681017894247,
+   0.1101408837714107,
+   0.9349807605085813,
+   -0.28581329548893497,
+   0.17885950721894067
+  ],
+  [
+   0.6237581143776623,
+   -0.010819153735397595,
+   1.8199999634406725,
+   0.5795276901869275,
+   0.1714541221388225,
+   -0.6400951513599791,
+   0.4743725724719505
+  ]
+ ],
+ "record_id": "dodinoct_n08_kamp",
+ "title": "8 unit dodecahedrons in a octahedron",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l2/m5/n8/platonic_n8_m5_l2.html",
+  "source_file": "docs/literature/external/kamp-dodinoct-n08.html",
+  "sha256": "70d4ffcfb4dc75376057d305414a918b01908fa7dced33ea8e5f97861f798328",
+  "numeric_source_file": "docs/literature/external/kamp-dodinoct-n08.txt",
+  "numeric_source_sha256": "c99384a9e75afad825952d91e730472f89646bc088a1585e2d6f3fb472f8cf30",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "published_s_full": 6.776534867157894,
+  "published_circumradius": 3.419592905985116,
+  "source_to_canonical_row_matrix": [
+   [
+    -1.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    1.0
+   ]
+  ],
+  "outer_conversion_max_error": 1.1102230246251565e-15,
+  "vertex_conversion_max_error": 1.0053497077208614e-15,
+  "normalization": "Original pieces have unit circumradius, so dodecahedron edge length is 0.71364417954617976; centers divided by this edge. Apply a proper rigid rotation to align ALL published octahedron outer vertices with the project canonical solid (normalized discrepancy 1.11e-15). Fit piece rotations to ALL source mesh vertices (maximum discrepancy 1.01e-15). Convert container circumradius into edge ratio R/(0.70710678118654757 * 0.71364417954617976). Add standard 1e-7 clearance without transferring discovery credit.",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "imported_on": "2026-10-13"
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 5.066413168102826,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.4179060986291829
+}

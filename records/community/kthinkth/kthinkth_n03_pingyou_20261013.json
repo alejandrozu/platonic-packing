@@ -1,0 +1,109 @@
+{
+ "problem": "min/tetrakis_hexahedron_in_tetrakis_hexahedron",
+ "piece": "tetrakis_hexahedron",
+ "container": "tetrakis_hexahedron",
+ "n": 3,
+ "s": 2.0,
+ "s_plus": "2.00000+",
+ "s_full": 2.0000000352051246,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_wall_gap": 9.765566e-11,
+  "min_pair_gap": 1.000002e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   1.0606602090476958,
+   1.0606602090477,
+   -1.060660209047707,
+   0.577350269189626,
+   1.1057035446705494e-15,
+   0.5773502691896265,
+   0.577350269189625
+  ],
+  [
+   -1.0606602090477038,
+   1.0606602090477022,
+   1.0606602090476984,
+   0.7071067811865476,
+   -0.7071067811865475,
+   1.2344890519841722e-15,
+   -4.840107621758666e-16
+  ],
+  [
+   -1.0606602090476949,
+   -1.060660209047696,
+   -1.0606602090477062,
+   0.2886751345948121,
+   0.8660254037844402,
+   -0.2886751345948113,
+   0.2886751345948111
+  ]
+ ],
+ "record_id": "kthinkth_n03_pingyou_20261013",
+ "title": "3 tetrakis hexahedra in a tetrakis hexahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "69212b000f1da7ef",
+  "clear": 1e-07,
+  "cap": 2.0000001054094
+ },
+ "s_tight": 2.0,
+ "closed_form_conjecture": "2",
+ "volume_lower_bound": 1.4422495703074083,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "search": {
+  "move": "monotone",
+  "from_n": 4,
+  "removed": 3,
+  "host": "actions"
+ },
+ "density": 0.3749999801971181,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/kthinkth/kthinkth_n03.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "4b3eb02bf8d2e4f5b072dab6916f3aab08dd795edcd8f0f265499581bb3b52aa",
+  "source_s_full": 2.0000001054094,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "f03027bda225a92c724872b0e024b157c4ece05c7bdb66853927d1a8680e6ecf",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "4503599864731363/2251799813685248",
+  "scale_exact": "4503599706645389/2251799813685248",
+  "decrease_exact": "79042987/1125899906842624",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 2.0000001054094,
+  "s_tight": 2.0,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "69212b000f1da7ef",
+   "clear": 1e-07,
+   "cap": 2.0000001054094
+  },
+  "date": "2026-10-12"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "kthinkth_n03"
+}

@@ -1,0 +1,101 @@
+{
+ "problem": "min/rhombic_triacontahedron_in_rhombic_triacontahedron",
+ "piece": "rhombic_triacontahedron",
+ "container": "rhombic_triacontahedron",
+ "n": 2,
+ "s": 1.94815,
+ "s_plus": "1.94815+",
+ "s_full": 1.9481527109066832,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_wall_gap": 9.765655e-11,
+  "min_pair_gap": 1.000002e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.0776966066270594,
+   -1.3148829635282209,
+   0.6869266123555158,
+   0.3206391051591734,
+   -0.8652377124286261,
+   0.283710782813344,
+   -0.26088782445611064
+  ],
+  [
+   -0.07769661193593604,
+   1.314882972118163,
+   -0.6869266090744516,
+   0.19816586511072093,
+   -0.4818766479240641,
+   0.6572195546775508,
+   -0.5445986072694541
+  ]
+ ],
+ "record_id": "rtcinrtc_n02_pingyou_20261013",
+ "title": "2 rhombic triacontahedra in a rhombic triacontahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "359d691a2018abb7",
+  "clear": 1e-07,
+  "cap": 2.0000001024924
+ },
+ "s_tight": 1.948152677211,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "search": {
+  "move": "fresh",
+  "seed": 733707291,
+  "var": "base",
+  "raw": 1.9481728708304658,
+  "host": "actions"
+ },
+ "density": 0.27049609772606276,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/rtcinrtc/rtcinrtc_n02.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "68238b8fa7fcebbe754e719d0fa4173f364dcbcb0b68d5cab6438ec1f9791d5d",
+  "source_s_full": 1.9481527791682,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "17902c657e588ea8aca26e983d5e4f1cbe293376ccb54bd1a096bf055d2c696e",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "4386850065161351/2251799813685248",
+  "scale_exact": "137089059732815/70368744177664",
+  "decrease_exact": "153711271/2251799813685248",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 1.9481527791682,
+  "s_tight": 1.948152677211,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "359d691a2018abb7",
+   "clear": 1e-07,
+   "cap": 2.0000001024924
+  },
+  "date": "2026-10-12"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "rtcinrtc_n02"
+}

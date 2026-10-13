@@ -1,0 +1,182 @@
+{
+ "problem": "min/triakis_octahedron_in_triakis_octahedron",
+ "piece": "triakis_octahedron",
+ "container": "triakis_octahedron",
+ "n": 11,
+ "s": 2.80288,
+ "s_plus": "2.80288+",
+ "s_full": 2.802881044583431,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_wall_gap": 9.765699e-11,
+  "min_pair_gap": 1.000002e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   1.1628914469819593e-08,
+   -4.352539857405863,
+   -1.3819552638329499e-16,
+   0.7071067811865475,
+   7.440876494095593e-17,
+   -0.7071067811865476,
+   -1.729004106527591e-18
+  ],
+  [
+   -1.5699150756116407,
+   1.677318883356615,
+   1.6539659800336437,
+   0.5251650471690346,
+   -0.26736076242168955,
+   0.8079104499777437,
+   0.0007750909613026458
+  ],
+  [
+   2.357576082939901,
+   -1.9341379195650015,
+   0.08503203562860619,
+   0.697766362511743,
+   -0.021002505980439908,
+   0.7151545089211284,
+   -0.03514294323832673
+  ],
+  [
+   -4.352539845776949,
+   7.762319538341378e-16,
+   5.893475335212191e-16,
+   0.7071067811865475,
+   8.333280355309696e-16,
+   0.7071067811865476,
+   2.630114151605122e-16
+  ],
+  [
+   -0.027116442372972966,
+   -1.9355234420553997,
+   -2.3460433459871894,
+   0.9972983079975019,
+   -0.01218854594766088,
+   -3.5848418021981707e-16,
+   -0.07243979716289761
+  ],
+  [
+   1.162891360586221e-08,
+   4.2897643118630695,
+   -0.06277554554279141,
+   0.9238795325112872,
+   -3.0955949712345464e-16,
+   -0.3826834323650888,
+   -6.303285070043277e-16
+  ],
+  [
+   1.7714184500750396,
+   1.0808502630193846,
+   1.6235792471237296,
+   0.45867199156175675,
+   0.19879681622988743,
+   0.8624192773131967,
+   -0.0795790181656931
+  ],
+  [
+   1.1628915788491389e-08,
+   -1.4063972258794046e-15,
+   4.352539857405865,
+   0.6532814824381883,
+   -0.6532814824381883,
+   0.27059805007309873,
+   -0.2705980500730985
+  ],
+  [
+   1.8950375253920095,
+   0.9319995513880764,
+   -1.840872903620847,
+   0.6390122252751639,
+   -0.482551061842612,
+   -0.20490066524801692,
+   0.5628708253625968
+  ],
+  [
+   -1.5167320100773338,
+   1.1136224677909183,
+   -1.894705140382822,
+   0.6561513313949812,
+   -0.32273621533735525,
+   0.08560813981513533,
+   -0.6767407273215541
+  ],
+  [
+   -1.6558244216641949,
+   -1.744536701236289,
+   1.4713640835026263,
+   0.005687090136680627,
+   -0.26926370949357503,
+   0.7835805377262522,
+   0.5598805699898636
+  ]
+ ],
+ "record_id": "ktoinkto_n11_pingyou_20261013",
+ "title": "11 triakis octahedra in a triakis octahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "fd8e1b4e7526a0ad",
+  "clear": 1e-07,
+  "cap": 2.8489903737252
+ },
+ "s_tight": 2.802880984751,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.2239800905693152,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "search": {
+  "move": "tighten",
+  "seed": 1737171109,
+  "var": "base",
+  "raw": 2.8916520682337294,
+  "host": "laptop"
+ },
+ "density": 0.4995496805765346,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/ktoinkto/ktoinkto_n11.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "6d5ef6d82bbdf8295f1c96c55c72c26f08b43c260a3fb40b028f718bb804d8eb",
+  "source_s_full": 2.8028811055634,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "8e4a40d8de7a42d492171c0450efd59b4d78faa2d6f9ee2db80ff4081faa537a",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "3155763575644783/1125899906842624",
+  "scale_exact": "6311527013974883/2251799813685248",
+  "decrease_exact": "137314683/2251799813685248",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 2.8028811055634,
+  "s_tight": 2.802880984751,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "fd8e1b4e7526a0ad",
+   "clear": 1e-07,
+   "cap": 2.8485516124447
+  },
+  "date": "2026-10-13"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "ktoinkto_n11"
+}

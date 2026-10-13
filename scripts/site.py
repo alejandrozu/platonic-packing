@@ -10,6 +10,8 @@
 usage: python3 scripts/site.py [--fragment PATH]   (--fragment also writes a one-file explorer for a Claude artifact)
 The site is deployed to the gh-pages branch by scripts/pages.sh (and by .github/workflows/site.yml on GitHub)."""
 import json, os, sys, glob, re, html, shutil, datetime, math, hashlib
+from fractions import Fraction
+from urllib.parse import urlsplit
 from pathlib import Path
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'scripts'))
@@ -17,6 +19,8 @@ SOL = json.loads(Path(ROOT, 'src', 'solids.json').read_text(encoding='utf-8'))
 REF = json.loads(Path(ROOT, 'docs', 'references.json').read_text(encoding='utf-8'))
 EXTERNAL_PATH = os.path.join(ROOT, 'docs', 'external_records.json')
 EXTERNAL = json.loads(Path(EXTERNAL_PATH).read_text(encoding='utf-8')) if os.path.exists(EXTERNAL_PATH) else {'entries': []}
+COMMUNITY_PATH = Path(ROOT, 'docs', 'community_records.json')
+COMMUNITY = json.loads(COMMUNITY_PATH.read_text(encoding='utf-8')) if COMMUNITY_PATH.exists() else {'entries': []}
 WEB = os.path.join(ROOT, 'web')
 OUT = os.path.join(ROOT, 'site')
 REPO = 'https://github.com/alejandrozu/platonic-packing'
@@ -29,9 +33,28 @@ FAMILY_GROUP = {'platonic': 'platonic', 'archimedean': 'archcat', 'catalan': 'ar
 FAMILY_NAME = {'platonic': 'Platonic', 'archimedean': 'Archimedean', 'catalan': 'Catalan', 'prisms': 'Prisms and antiprisms'}
 
 
-def compare(s_full, ref):
+def compare(s_full, ref, quantum=1e-5):
     s_full, ref = float(s_full), float(ref)
-    return 'better' if s_full < ref - 1e-5 else ('equal' if s_full <= ref + 1e-5 else 'behind')
+    quantum = max(1e-5, float(quantum))
+    return 'better' if s_full < ref - quantum else ('equal' if s_full <= ref + quantum else 'behind')
+
+
+def public_url(value):
+    """Imported metadata is data; only ordinary public web URLs become links."""
+    if not isinstance(value, str): return None
+    try:
+        u = urlsplit(value)
+        return value if u.scheme in ('https', 'http') and u.hostname and not u.username and not u.password else None
+    except ValueError:
+        return None
+
+
+def viewer_pieces(record):
+    # Display coordinates may be rounded; certificate numbers stay untouched in
+    # the downloadable witness. Recenter translated containers for this viewer.
+    centre = record.get('container_center', [0, 0, 0])
+    return [[round(float(Fraction(q[k]) - Fraction(centre[k])), 7) if k < 3 else float(q[k])
+             for k in range(7)] for q in record['pieces']]
 
 
 def src_code(src):
@@ -58,7 +81,8 @@ def load():
     probs = {}
     files = glob.glob(os.path.join(ROOT, 'records', '*', '*_n[0-9][0-9].json'))
     files += [os.path.join(ROOT, e['file']) for e in EXTERNAL['entries'] if e['kind'] == 'coordinates']
-    for f in sorted(files):
+    files += [os.path.join(ROOT, e['file']) for e in COMMUNITY['entries']]
+    for f in sorted(set(files)):
         r = json.loads(Path(f).read_text(encoding='utf-8')); pid = r['record_id'].split('_')[0]
         if pid not in FAM: continue
         cert = Path(f.replace('.json', '.certify.txt')).read_text(encoding='utf-8') if os.path.exists(f.replace('.json', '.certify.txt')) else ''
@@ -68,18 +92,21 @@ def load():
                                    'unit': 'edge' if SOL[r['piece']].get('unit', 'edge') == 'edge' else 'size'})
         ref = REF.get(pid, {}).get(str(r['n']))
         src = r.get('source') if isinstance(r.get('source'), dict) else {}
+        contribution = r.get('contribution') if isinstance(r.get('contribution'), dict) else {}
         p['rows'].append({'n': r['n'], 'id': r['record_id'], 's': r['s_plus'], 'ref': ref[0] if ref else None, 'refsrc': ref[1] if ref else None,
                           'refcode': src_code(ref[1]) if ref else None, 'cmp': compare(r['s_full'], ref[0]) if ref else None,
                           'sf': r['s_full'], 'st': r.get('s_tight'), 'cf': r.get('closed_form_conjecture'),
                           'den': round(r['density'], 4), 'vlb': round(r['volume_lower_bound'], 5),
                           'move': (r.get('search') or {}).get('move'), 'derived': r.get('derived_from'), 'who': r.get('found_by'),
-                          'issue': src.get('issue'), 'file': os.path.relpath(f, ROOT).replace(os.sep, '/'),
-                          'source_url': src.get('url'), 'source_author': src.get('author'),
+                          'issue': contribution.get('issue') or src.get('issue'), 'file': os.path.relpath(f, ROOT).replace(os.sep, '/'),
+                          'refined_by': r.get('certificate_refined_by'), 'contribution_kind': contribution.get('kind'),
+                          'source_url': public_url(src.get('url')), 'source_author': src.get('author'),
+                          'source_derivation': src.get('derivation'), 'container_center': r.get('container_center', [0, 0, 0]),
                           'published_sf': src.get('published_s_full'), 'external': src.get('kind') == 'external',
                           'ok': 'CERTIFIED' in cert and 'NOT CERTIFIED' not in cert,
                           'ver': 'VALID' in vtxt and 'INVALID' not in vtxt,
-                          'cert': [l for l in cert.splitlines() if l.startswith('(')],
-                          'p': [[round(x, 7) for x in q] for q in r['pieces']]})
+                          'cert': [l for l in cert.splitlines() if l.startswith(('(', 'containment:', 'disjointness:'))],
+                          'p': viewer_pieces(r)})
     for p in probs.values():
         # One best entry per n, independently of who discovered it. Existing
         # project records remain intact and available as alternate constructions.
@@ -87,29 +114,32 @@ def load():
         for n in sorted({r['n'] for r in p['rows']}):
             candidates = sorted([r for r in p['rows'] if r['n'] == n], key=lambda r: r['sf'])
             best = candidates[0]
-            sources = [e for e in EXTERNAL['entries'] if e['problem'] == p['id'] and e['n'] == n]
+            sources = [e for e in EXTERNAL['entries'] if e['problem'] == p['id'] and e['n'] == n
+                       and isinstance(e.get('published_value'), (int, float)) and math.isfinite(e['published_value'])]
             published = min(sources, key=lambda e: e['published_value']) if sources else None
             if published:
+                p['hasref'] = True
+                quantum = max(1e-5, published.get('display_quantum', 1e-5))
                 for cand in candidates:
                     cand.update(ref=published['published_value'], refsrc=published['author'],
-                                refcode=src_code(published['author']), refurl=published['url'],
-                                cmp=compare(cand['sf'], published['published_value']))
+                                refcode=src_code(published['author']), refurl=public_url(published['url']), ref_quantum=quantum,
+                                cmp=compare(cand['sf'], published['published_value'], quantum))
             # A printed 5-decimal catalogue value is not a certifiable pose. Only
             # use it over available coordinates when the difference exceeds the
             # published rounding scale; never show other poses at its smaller s.
-            if published and published['kind'] in ('catalogue', 'author_report') and published['published_value'] < best['sf'] - 1e-5:
+            if published and published['kind'] in ('catalogue', 'author_report') and published['published_value'] < best['sf'] - quantum:
                 sf = published['published_value']
                 display = f'{math.floor(sf * 1e5) / 1e5:.5f}+' if published.get('published_expression') else f'{sf:.5f}+'
                 best = {'n': n, 'id': f'{p["id"]}_n{n:02d}_catalogue', 's': display, 'sf': sf, 'st': None,
-                        'cf': None, 'den': round(n * SOL[p['piece']]['volume'] / (SOL[p['container']]['volume'] * sf ** 3), 4),
+                        'cf': None, 'den': round(n * SOL[p['piece']]['volume'] / SOL[p['container']]['volume'] / sf / sf / sf, 4),
                         'vlb': candidates[0]['vlb'], 'move': None, 'derived': None, 'who': published['author'],
-                        'source_author': published['author'], 'source_url': published['url'], 'image_url': published.get('image_url'),
+                        'source_author': published['author'], 'source_url': public_url(published['url']), 'image_url': public_url(published.get('image_url')),
                         'published_sf': sf, 'external': True, 'source_only': True, 'value_precision': published['value_precision'],
                         'author_report': published['kind'] == 'author_report',
                         'published_expression': published.get('published_expression'),
                         'file': None, 'ok': False, 'ver': False, 'cert': [], 'p': [], 'issue': None,
                         'ref': sf, 'refsrc': published['author'], 'refcode': src_code(published['author']),
-                        'refurl': published['url'], 'cmp': 'equal'}
+                        'refurl': public_url(published['url']), 'ref_quantum': quantum, 'cmp': 'equal'}
                 best['alternatives'] = candidates
             else:
                 best['alternatives'] = [r for r in candidates if r is not best]
@@ -121,7 +151,8 @@ def load():
                           'group': FAMILY_GROUP[FAM[pid]], 'title': ptitle(pc, cc), 'unit': 'edge' if SOL[pc].get('unit', 'edge') == 'edge' else 'size'}
     out = [probs[i] for i in PID if i in probs]
     solids = {k: {'V': v['V'], 'F': v['faces'], 'E': v['edges'], 'vol': v['volume']} for k, v in SOL.items()}
-    return {'problems': out, 'solids': solids, 'nmin': 2, 'nmax': 40, 'repo': REPO,
+    ns = [r['n'] for p in out for r in p['rows']]
+    return {'problems': out, 'solids': solids, 'nmin': min([2, *ns]), 'nmax': max([40, *ns]), 'repo': REPO,
             'external_checked_on': EXTERNAL.get('checked_on')}
 
 
@@ -343,7 +374,8 @@ def build(fragment=None):
                       if st['certified'] == st['records'] else
                       f"{st['records']:,} packings in {st['problems']} problems, {st['certified']:,} of them certified in exact arithmetic so far.")
     vals = {'SITE': SITE_URL.rstrip('/'), 'STATS_SENTENCE': stats_sentence, 'N_RECORDS': f"{st['records']:,}", 'N_PROBLEMS': str(st['problems']),
-            'N_CASES': f"{st['cases']:,}", 'N_SOLIDS': str(st['solids']), 'CERT_SENTENCE': cert_sentence(st),
+            'N_CASES': f"{st['cases']:,}", 'N_MIN': str(data['nmin']), 'N_MAX': str(data['nmax']),
+            'N_SOLIDS': str(st['solids']), 'CERT_SENTENCE': cert_sentence(st),
             'N_ATTEMPTS': f"{st['attempts']:,}" if st['attempts'] else 'many thousands of',
             'FIELDS_TABLE': fields_table()}
     desc = ('Smallest known containers for n = 2–40 copies of Platonic, Archimedean and Catalan solids, prisms and '

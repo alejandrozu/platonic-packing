@@ -1,0 +1,108 @@
+{
+ "problem": "min/prism8_in_prism8",
+ "piece": "prism8",
+ "container": "prism8",
+ "n": 3,
+ "s": 2.0,
+ "s_plus": "2.00000+",
+ "s_full": 2.0000001334963655,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_wall_gap": 1.964695e-10,
+  "min_pair_gap": 1.000002e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   1.024063892090745,
+   0.682013303165491,
+   -0.5000000500001058,
+   1.961094928484908e-15,
+   0.7071067811865374,
+   -0.7071067811865578,
+   -2.01842582737205e-15
+  ],
+  [
+   -0.9875004075387797,
+   -0.7702855737469839,
+   -0.5000000500000984,
+   5.3886490122670804e-15,
+   2.924544036716502e-17,
+   -1.0,
+   -5.204796096438574e-17
+  ],
+  [
+   1.294136643684242,
+   0.030000003441020075,
+   0.5000000500001011,
+   6.846290053089253e-17,
+   -0.9238795325112881,
+   -0.38268343236508656,
+   5.1266781724035805e-15
+  ]
+ ],
+ "record_id": "pr8inpr8_n03_pingyou_20261013",
+ "title": "3 prism8s in a prism8",
+ "family": "prisms",
+ "source": {
+  "hash": "c1ffb61073023544",
+  "clear": 1e-07,
+  "cap": 2.0000003000003
+ },
+ "s_tight": 2.0,
+ "closed_form_conjecture": "2",
+ "volume_lower_bound": 1.4422495703074083,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "search": {
+  "move": "monotone",
+  "from_n": 4,
+  "removed": 2
+ },
+ "density": 0.37499992490830447,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/pr8inpr8/pr8inpr8_n03.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "5b491f9038fe6f3d569e667b62a58811eb84cf46220dfdc672bb34ee6302f873",
+  "source_s_full": 2.0000003000003,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "e9ef55385203233c42567bd3123378d98cdc79cba81552ca1e88e3b5e791e48d",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "1125900075727779/562949953421312",
+  "scale_exact": "4503599927977587/2251799813685248",
+  "decrease_exact": "374933529/2251799813685248",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 2.0000003000003,
+  "s_tight": 2.0,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "c1ffb61073023544",
+   "clear": 1e-07,
+   "cap": 2.0000003000003
+  },
+  "date": "2026-10-12"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "pr8inpr8_n03"
+}

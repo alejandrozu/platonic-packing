@@ -1,0 +1,89 @@
+{
+ "problem": "min/cube_in_dodecahedron",
+ "piece": "cube",
+ "container": "dodecahedron",
+ "n": 2,
+ "s": 0.91554,
+ "s_plus": "0.91554+",
+ "s_full": 0.9155439894213,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020111602002e-07,
+  "min_wall_gap": 1.000000355855235e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   0.4584843580605957,
+   -0.20493914699694388,
+   0.05048027906014314,
+   0.2960287781426342,
+   -0.3921430169232062,
+   0.5695360041150894,
+   -0.6589533798428854
+  ],
+  [
+   -0.4584843305264415,
+   0.2049391916188933,
+   -0.05048024140698455,
+   0.6752743598086897,
+   0.1254357841930866,
+   0.6800097571063367,
+   -0.25662644693992614
+  ]
+ ],
+ "record_id": "cubindod_n02_kamp",
+ "title": "2 unit cubes in a dodecahedron",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l5/m3/n2/platonic_n2_m3_l5.html",
+  "source_file": "docs/literature/external/kamp-cubindod-n02.html",
+  "sha256": "fd6bb20deb934f4245a8511e5f52b8bcf4501dc283c01221653199f998e2dd7b",
+  "numeric_source_file": "docs/literature/external/kamp-cubindod-n02.txt",
+  "numeric_source_sha256": "71235106e983a43e8990d26a7e58b042b426a24a216b8c65253eb047960b6f11",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "published_s_full": 0.9155438549358291,
+  "published_circumradius": 1.481381075477275,
+  "source_to_canonical_row_matrix": [
+   [
+    -0.30901699437494756,
+    -0.5000000000000001,
+    -0.8090169943749476
+   ],
+   [
+    -0.5000000000000002,
+    0.8090169943749476,
+    -0.3090169943749472
+   ],
+   [
+    0.8090169943749477,
+    0.3090169943749474,
+    -0.5000000000000006
+   ]
+  ],
+  "outer_conversion_max_error": 2.2189502575699556e-15,
+  "vertex_conversion_max_error": 8.400361489980555e-16,
+  "normalization": "Original pieces have unit circumradius, so cube edge length is 1.1547005383792517; centers divided by this edge. Apply a proper rigid rotation to align ALL published dodecahedron outer vertices with the project canonical solid (normalized discrepancy 2.22e-15). Fit piece rotations to ALL source mesh vertices (maximum discrepancy 8.4e-16). Convert container circumradius into edge ratio R/(1.4012585384440737 * 1.1547005383792517). Add standard 1e-7 clearance without transferring discovery credit.",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "imported_on": "2026-10-13"
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 0.6390597660106628,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.34008445467615983
+}

@@ -1,0 +1,116 @@
+{
+ "problem": "min/cube_in_octahedron",
+ "piece": "cube",
+ "container": "octahedron",
+ "n": 5,
+ "s": 2.9126,
+ "s_plus": "2.91260+",
+ "s_full": 2.9126046569077,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020099487639e-07,
+  "min_wall_gap": 1.00000003833145e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   0.04761010320379394,
+   0.7605384354757673,
+   0.057876978385429746,
+   0.8932966126791193,
+   -0.40311683238910506,
+   -0.192768073369435,
+   0.04856388689161921
+  ],
+  [
+   -0.7992698577452253,
+   -0.12877759858297932,
+   -0.2654494661704289,
+   0.8790970837642126,
+   -0.2756708907316211,
+   0.36787283753624106,
+   0.12595019937866775
+  ],
+  [
+   0.8081874621281671,
+   -0.10642319197730123,
+   -0.12872329392233975,
+   0.47486647116781283,
+   0.7996141704386986,
+   0.362044857369179,
+   0.06358092675316615
+  ],
+  [
+   -0.047610070449326025,
+   0.1054870726026028,
+   0.808148507096094,
+   0.5973162417557755,
+   -0.42135425011901406,
+   0.14873903480080106,
+   0.6659959480116419
+  ],
+  [
+   0.14220382693432815,
+   -0.8095740702583455,
+   0.13725952573340336,
+   0.07888263573309626,
+   -0.42006695809707073,
+   -0.44995666118145633,
+   0.7841302720551666
+  ]
+ ],
+ "record_id": "cubinoct_n05_kamp",
+ "title": "5 unit cubes in a octahedron",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l2/m3/n5/platonic_n5_m3_l2.html",
+  "source_file": "docs/literature/external/kamp-cubinoct-n05.html",
+  "sha256": "3d2914917eecdb4bcdaafeb9724dddc93fe37354d90401de439e7e8625d31c82",
+  "numeric_source_file": "docs/literature/external/kamp-cubinoct-n05.txt",
+  "numeric_source_sha256": "28f61c086abf6c1753e09b285db1384fe7aa6bd57844861617f8b9de0b7f2c29",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "published_s_full": 2.912604270561643,
+  "published_circumradius": 2.378131428509075,
+  "source_to_canonical_row_matrix": [
+   [
+    -1.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    1.0
+   ]
+  ],
+  "outer_conversion_max_error": 1.9984014443252818e-15,
+  "vertex_conversion_max_error": 2.544597507078455e-15,
+  "normalization": "Original pieces have unit circumradius, so cube edge length is 1.1547005383792517; centers divided by this edge. Apply a proper rigid rotation to align ALL published octahedron outer vertices with the project canonical solid (normalized discrepancy 2e-15). Fit piece rotations to ALL source mesh vertices (maximum discrepancy 2.54e-15). Convert container circumradius into edge ratio R/(0.70710678118654757 * 1.1547005383792517). Add standard 1e-7 clearance without transferring discovery credit.",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "imported_on": "2026-10-13"
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 2.1971451756832425,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.4292710913655532
+}

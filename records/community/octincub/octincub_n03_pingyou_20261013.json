@@ -1,0 +1,113 @@
+{
+ "problem": "min/octahedron_in_cube",
+ "piece": "octahedron",
+ "container": "cube",
+ "n": 3,
+ "s": 1.63299,
+ "s_plus": "1.63299+",
+ "s_full": 1.6329932620507712,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_wall_gap": 9.765633e-11,
+  "min_pair_gap": 1e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -0.31986525668352905,
+   -0.38572545455633533,
+   0.24593336903938523,
+   0.27779182738518876,
+   0.8797318591398262,
+   0.34384952914697003,
+   -0.17513154472507075
+  ],
+  [
+   0.23915422198676867,
+   0.3149319023798033,
+   -0.40824834046386327,
+   0.538785028971631,
+   0.06119192091584817,
+   0.4556099364805553,
+   -0.705964465926474
+  ],
+  [
+   0.314763649084009,
+   0.2340918385021835,
+   0.40824834046386504,
+   0.4252261376504001,
+   0.8194654974262079,
+   0.3422739153409582,
+   -0.1746642415152895
+  ]
+ ],
+ "record_id": "octincub_n03_pingyou_20261013",
+ "title": "3 unit octahedra in a cube",
+ "source": {
+  "hash": "1e8e19c4d814b26e",
+  "clear": 1e-07,
+  "cap": 1.6499161093712
+ },
+ "s_tight": 1.632993161855,
+ "closed_form_conjecture": "(2√6)/3",
+ "volume_lower_bound": 1.122462048309373,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "hop",
+  "seed": 1006737487,
+  "minDiff": 0.06649028469454099,
+  "expand": 0.019333488240987667,
+  "rh": 0.14748874876085769,
+  "focus": 0,
+  "from": "best",
+  "raw": 1.6385040368563015
+ },
+ "density": 0.3247594666405057,
+ "source_refinement": {
+  "type": "certified wall-padding reduction only",
+  "source_record": "records/octincub/octincub_n03.json",
+  "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+  "source_sha256": "0cbbb41d5d8a76cc008c048d033ecef4cbd6c61551afb54faba489313ddd7796",
+  "source_s_full": 1.6329934618555,
+  "pieces_unchanged": true,
+  "source_credit_preserved": true
+ },
+ "family": "platonic",
+ "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "wall_padding",
+  "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+  "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+  "witness_sha256": "cb4ba25935679c9e99002c54dcb5a16f6b9505462e0af7736097128da426ca41",
+  "replayed_on": "2026-10-13"
+ },
+ "certificate_refined_by": "PingYou Ltd",
+ "certificate_refinement": {
+  "kind": "wall-padding reduction only; inherited piece poses unchanged",
+  "previous_scale_exact": "3677174373155443/2251799813685248",
+  "scale_exact": "459646740404399/281474976710656",
+  "decrease_exact": "449920251/2251799813685248",
+  "new_nominal_construction": false
+ },
+ "previous_record": {
+  "s_full": 1.6329934618555,
+  "s_tight": 1.632993161855,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+  "source": {
+   "hash": "1e8e19c4d814b26e",
+   "clear": 1e-07,
+   "cap": 1.6499161093712
+  },
+  "date": "2026-10-10"
+ },
+ "certificate_refined_on": "2026-10-13",
+ "case_id": "octincub_n03"
+}

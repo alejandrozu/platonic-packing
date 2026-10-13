@@ -1,5 +1,5 @@
 name: Submit a packing
-description: A packing of n copies of a solid in a container, to be certified and compared with the current record.
+description: One 3D polyhedral packing or a batch of native witnesses, for exact certification and record comparison.
 title: "[packing] "
 labels: ["submission"]
 body:
@@ -20,16 +20,17 @@ body:
     id: n
     attributes:
       label: Number of pieces
+      description: For one packing. For a batch, each JSON record must supply its own n.
       placeholder: "20"
     validations:
-      required: true
+      required: false
   - type: input
     id: s
     attributes:
       label: Container scale s
-      description: s_full, the container size in units of the piece size (container edge ÷ piece edge for unit-edge solids).
+      description: For one packing. A batch supplies s_full separately in every JSON record.
     validations:
-      required: true
+      required: false
   - type: textarea
     id: packing
     attributes:
@@ -37,9 +38,21 @@ body:
       description: |
         JSON with "piece", "container", "n", "s_full" and "pieces" (one [x, y, z, qw, qx, qy, qz] per piece; see the format on the contribute page).
         The checker supports 1–200 pieces. Pieces must not touch: leave a small positive clearance (about 1e-7) between pieces and from the walls.
+        A batch may be a JSON array of full records, or {"records": [...]}. Each entry needs its own piece, container, n, s_full and pieces.
+        Only 3D convex-polyhedron-in-convex-polyhedron packings are supported. 2D square/circle packings are outside this project.
       render: json
     validations:
-      required: true
+      required: false
+  - type: textarea
+    id: batch_archives
+    attributes:
+      label: Batch archives
+      description: |
+        Optional GitHub user-attachment ZIP links. Supply native JSON witnesses in records/ or witnesses/.
+        A top-level MANIFEST.json with cases [{"file": "records/example.json", "sha256": "..."}] selects the active records;
+        witness/witness_sha256 are also supported. Source/history files and scripts are ignored. Submitted scripts are never run.
+        Maximum 2,000 candidates, eight ZIPs, 64 MiB per compressed ZIP and 256 MiB expanded per ZIP.
+        Original found_by/credit may be provided per record. A wall-padding refinement should retain those and name certificate_refined_by separately.
   - type: input
     id: credit
     attributes:

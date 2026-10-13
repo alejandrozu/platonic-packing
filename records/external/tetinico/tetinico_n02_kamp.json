@@ -1,0 +1,89 @@
+{
+ "problem": "min/tetrahedron_in_icosahedron",
+ "piece": "tetrahedron",
+ "container": "icosahedron",
+ "n": 2,
+ "s": 0.85851,
+ "s_plus": "0.85851+",
+ "s_full": 0.8585154977078,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020038120095e-07,
+  "min_wall_gap": 1.000000039441673e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   -0.17363220903851406,
+   -1.9273746994888024e-11,
+   0.10732447775062291,
+   0.5933218386765782,
+   0.2999717958534058,
+   -0.7457641372802263,
+   0.042684528679687785
+  ],
+  [
+   0.1736322082068527,
+   -2.5140453607327476e-09,
+   -0.10732447735465847,
+   0.12579835718839802,
+   0.7683484090533146,
+   -0.31519488473967394,
+   -0.542648763260255
+  ]
+ ],
+ "record_id": "tetinico_n02_kamp",
+ "title": "2 unit tetrahedra in an icosahedron",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l4/m1/n2/platonic_n2_m1_l4.html",
+  "source_file": "docs/literature/external/kamp-tetinico-n02.html",
+  "sha256": "cfc43acce3897b5a850552da8322b6c0698774b38c5196d6266bdf153ac50ba9",
+  "numeric_source_file": "docs/literature/external/kamp-tetinico-n02.txt",
+  "numeric_source_sha256": "8fcaf96f129612621642e1323f9fc5faaf917551b205b12a5a5fd9be6ebf3e90",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "published_s_full": 0.858515315698184,
+  "published_circumradius": 1.333333340528665,
+  "source_to_canonical_matrix": [
+   [
+    0.0,
+    1.0,
+    0.0
+   ],
+   [
+    1.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    -1.0
+   ]
+  ],
+  "outer_conversion_max_error": 4.78942543627414e-15,
+  "vertex_conversion_max_error": 2.224693036564519e-16,
+  "normalization": "Original tetrahedra have unit circumradius and edge sqrt(8/3); centers divided by sqrt(8/3). Rotate the entire configuration by source(x,y,z)->canonical(y,x,-z), checked against all12sourcecontainervertices (normalized discrepancy 4.79e-15). Fit canonical tetrahedron rotations to all4sourcevertices (maximum discrepancy 2.22e-16). Source container circumradius converts to edge ratio R/(sqrt(10+2sqrt5)/4 * sqrt(8/3)). Add standard1e-7clearance without transferring discovery credit.",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "imported_on": "2026-10-13"
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 0.4762736678874515,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.17073607564072385
+}

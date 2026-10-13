@@ -1,0 +1,125 @@
+{
+ "problem": "min/octahedron_in_octahedron",
+ "piece": "octahedron",
+ "container": "octahedron",
+ "n": 6,
+ "s": 2.0,
+ "s_plus": "2.00000+",
+ "s_full": 2.0000003680316,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020086726876e-07,
+  "min_wall_gap": 1.000000353634789e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   -1.0562368019409726e-10,
+   -0.7071068679096331,
+   1.25417918578919e-10,
+   1.475128727167896e-11,
+   0.7071067811865476,
+   6.361947299273626e-11,
+   -0.7071067811865476
+  ],
+  [
+   1.0832565120711923e-10,
+   -3.778910040999166e-11,
+   0.7071068679233768,
+   6.131992143844544e-11,
+   -4.254988021037298e-11,
+   1.0,
+   -7.878323552505927e-12
+  ],
+  [
+   8.384117748765788e-14,
+   0.7071068677766617,
+   2.611272849326954e-10,
+   0.707106781183923,
+   -5.112031315848908e-11,
+   -5.840825365064455e-11,
+   -0.7071067811891721
+  ],
+  [
+   0.7071068678058126,
+   6.453986106101753e-11,
+   -1.2278295139797905e-10,
+   0.7071067811539663,
+   5.8021667743264415e-11,
+   -5.145028127635636e-11,
+   -0.7071067812191287
+  ],
+  [
+   -0.7071068678083928,
+   1.0801280409303525e-10,
+   -7.821683164596822e-11,
+   0.4999999999840711,
+   0.5000000000612859,
+   -0.49999999993871413,
+   0.5000000000159289
+  ],
+  [
+   8.384117748765788e-14,
+   -2.687705118209273e-10,
+   -0.7071068677542728,
+   0.7071067811864323,
+   5.884024062051601e-11,
+   -0.7071067811866627,
+   -5.89240306635108e-11
+  ]
+ ],
+ "record_id": "octinoct_n06_kamp",
+ "title": "6 unit octahedrons in a octahedron",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l2/m2/n6/platonic_n6_m2_l2.html",
+  "source_file": "docs/literature/external/kamp-octinoct-n06.html",
+  "sha256": "69bc0dc1840b597a6188ef2ab0e43a81c3fe53b93438b47a0aaeb9a967d9fb81",
+  "numeric_source_file": "docs/literature/external/kamp-octinoct-n06.txt",
+  "numeric_source_sha256": "99b478b5ff8dca27c5bedad4dc65484154725f5dcbc0780ff213564459f5b335",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "published_s_full": 2.000000000571139,
+  "published_circumradius": 2.000000000571139,
+  "source_to_canonical_row_matrix": [
+   [
+    -1.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    1.0
+   ]
+  ],
+  "outer_conversion_max_error": 4.440892098500626e-16,
+  "vertex_conversion_max_error": 5.123906079913588e-16,
+  "normalization": "Original pieces have unit circumradius, so octahedron edge length is 1.4142135623730949; centers divided by this edge. Apply a proper rigid rotation to align ALL published octahedron outer vertices with the project canonical solid (normalized discrepancy 4.44e-16). Fit piece rotations to ALL source mesh vertices (maximum discrepancy 5.12e-16). Convert container circumradius into edge ratio R/(0.70710678118654757 * 1.4142135623730949). Add standard 1e-7 clearance without transferring discovery credit.",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "imported_on": "2026-10-13"
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 1.8171205928321397,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.7499995859646025
+}

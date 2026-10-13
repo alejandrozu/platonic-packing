@@ -1,0 +1,89 @@
+{
+ "problem": "min/cube_in_tetrahedron",
+ "piece": "cube",
+ "container": "tetrahedron",
+ "n": 2,
+ "s": 4.37944,
+ "s_plus": "4.37944+",
+ "s_full": 4.3794460168617,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020079885118e-07,
+  "min_wall_gap": 1.0000001626764288e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   -0.562769243166006,
+   -0.41334000996165027,
+   0.29376684193570723,
+   0.27984814233303895,
+   -0.11591689595925976,
+   -0.8804762392171762,
+   0.3647051996310106
+  ],
+  [
+   -0.5627692431660474,
+   0.4133400099617068,
+   -0.29376684193567393,
+   0.5406250962371713,
+   0.4557680389392722,
+   -0.7045563426109867,
+   -0.06000300064687943
+  ]
+ ],
+ "record_id": "cubintet_n02_kamp",
+ "title": "2 unit cubes in a tetrahedron",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l1/m3/n2/platonic_n2_m3_l1.html",
+  "source_file": "docs/literature/external/kamp-cubintet-n02.html",
+  "sha256": "9a7db1bc9725ca699ca9462e14649828f8ced7730c4fe93b9d7b966caf8647c4",
+  "numeric_source_file": "docs/literature/external/kamp-cubintet-n02.txt",
+  "numeric_source_sha256": "fd4777d0363034b79ee9de2e1d388e2a496227045e576a95fb72d251ba4b1c71",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "published_s_full": 4.379445411323493,
+  "published_circumradius": 3.096735548183151,
+  "source_to_canonical_row_matrix": [
+   [
+    -0.7071067811865475,
+    -0.7071067811865478,
+    1.3381212312534267e-15
+   ],
+   [
+    -0.4082482904638616,
+    0.40824829046386324,
+    0.8164965809277267
+   ],
+   [
+    -0.5773502691896271,
+    0.5773502691896253,
+    -0.577350269189625
+   ]
+  ],
+  "outer_conversion_max_error": 2.375981029593432e-15,
+  "vertex_conversion_max_error": 3.4026343402837614e-15,
+  "normalization": "Original pieces have unit circumradius, so cube edge length is 1.1547005383792517; centers divided by this edge. Apply a proper rigid rotation to align ALL published tetrahedron outer vertices with the project canonical solid (normalized discrepancy 2.38e-15). Fit piece rotations to ALL source mesh vertices (maximum discrepancy 3.4e-15). Convert container circumradius into edge ratio R/(0.61237243569579447 * 1.1547005383792517). Add standard 1e-7 clearance without transferring discovery credit.",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "imported_on": "2026-10-13"
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 2.56979658685065,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.2020406289088182
+}

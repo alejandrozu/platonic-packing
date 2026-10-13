@@ -1,0 +1,107 @@
+{
+ "problem": "min/dodecahedron_in_dodecahedron",
+ "piece": "dodecahedron",
+ "container": "dodecahedron",
+ "n": 4,
+ "s": 2.0,
+ "s_plus": "2.00000+",
+ "s_full": 2.0000001350512,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020232214057e-07,
+  "min_wall_gap": 9.999999983634211e-08
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   -1.309017053186838,
+   -4.469204943996541e-12,
+   0.5000000224608192,
+   0.3090169944364343,
+   2.7444335639039645e-12,
+   -0.8090169945400513,
+   0.4999999996948554
+  ],
+  [
+   -5.748694050690595e-11,
+   0.5000000224810018,
+   -1.3090170532119183,
+   0.30901699437166447,
+   0.8090169942663904,
+   0.5000000001776781,
+   2.1055160371827284e-10
+  ],
+  [
+   0.5000000224738609,
+   -1.309017053211455,
+   -1.3275802197586117e-12,
+   0.5000000000736958,
+   0.8090169942342169,
+   1.154459653315325e-10,
+   -0.3090169946241423
+  ],
+  [
+   0.80901703072017,
+   0.8090170307240221,
+   0.809017030740625,
+   0.49999999979289883,
+   -0.30901699462140514,
+   -0.8090169944088046,
+   -2.4026320315575884e-11
+  ]
+ ],
+ "record_id": "dodindod_n04_kamp",
+ "title": "4 unit dodecahedrons in a dodecahedron",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l5/m5/n4/platonic_n4_m5_l5.html",
+  "source_file": "docs/literature/external/kamp-dodindod-n04.html",
+  "sha256": "585e1c05d5530f60364d792def01e2c0ff3b3cd68c3809bf0dd16233f3795ee2",
+  "numeric_source_file": "docs/literature/external/kamp-dodindod-n04.txt",
+  "numeric_source_sha256": "6bd63a74d2deeb0ebfd36e73dcf9306a72a7a0b2ffb0de9e0df9528d4353a4dc",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "published_s_full": 2.0000000003403695,
+  "published_circumradius": 2.000000000340369,
+  "source_to_canonical_row_matrix": [
+   [
+    -0.30901699437494756,
+    -0.5000000000000001,
+    -0.8090169943749476
+   ],
+   [
+    -0.5000000000000002,
+    0.8090169943749476,
+    -0.3090169943749472
+   ],
+   [
+    0.8090169943749477,
+    0.3090169943749474,
+    -0.5000000000000006
+   ]
+  ],
+  "outer_conversion_max_error": 3.2669646085682045e-15,
+  "vertex_conversion_max_error": 1.442765820503568e-15,
+  "normalization": "Original pieces have unit circumradius, so dodecahedron edge length is 0.71364417954617976; centers divided by this edge. Apply a proper rigid rotation to align ALL published dodecahedron outer vertices with the project canonical solid (normalized discrepancy 3.27e-15). Fit piece rotations to ALL source mesh vertices (maximum discrepancy 1.44e-15). Convert container circumradius into edge ratio R/(1.4012585384440737 * 0.71364417954617976). Add standard 1e-7 clearance without transferring discovery credit.",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "imported_on": "2026-10-13"
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 1.5874010519681994,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.49999989871161366
+}

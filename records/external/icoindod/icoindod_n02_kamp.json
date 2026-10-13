@@ -1,0 +1,89 @@
+{
+ "problem": "min/icosahedron_in_dodecahedron",
+ "piece": "icosahedron",
+ "container": "dodecahedron",
+ "n": 2,
+ "s": 1.23606,
+ "s_plus": "1.23606+",
+ "s_full": 1.2360681029886,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020150661926e-07,
+  "min_wall_gap": 1.0000001537946446e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   -0.7060113762920549,
+   8.382343580662402e-13,
+   0.2696723493006171,
+   0.40824829046440514,
+   -2.5727993007126753e-13,
+   0.9128709291750344,
+   2.5451923064098764e-13
+  ],
+  [
+   0.7060113762928931,
+   5.467573281178854e-13,
+   -0.26967234929847017,
+   0.4564354645880462,
+   -0.04818717412338765,
+   -0.20412414523153188,
+   0.8646837550514023
+  ]
+ ],
+ "record_id": "icoindod_n02_kamp",
+ "title": "2 unit icosahedrons in a dodecahedron",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l5/m4/n2/platonic_n2_m4_l5.html",
+  "source_file": "docs/literature/external/kamp-icoindod-n02.html",
+  "sha256": "10967675aae7e7b82960246bae6d72bb529eb3467132299cc6361192dc1eb22e",
+  "numeric_source_file": "docs/literature/external/kamp-icoindod-n02.txt",
+  "numeric_source_sha256": "1cb96aae8be2e9197ca012c8b51921535e3a2c08041c265cb8660aa328402b93",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "published_s_full": 1.236067977500728,
+  "published_circumradius": 1.821185994621441,
+  "source_to_canonical_row_matrix": [
+   [
+    -0.30901699437494756,
+    -0.5000000000000001,
+    -0.8090169943749476
+   ],
+   [
+    -0.5000000000000002,
+    0.8090169943749476,
+    -0.3090169943749472
+   ],
+   [
+    0.8090169943749477,
+    0.3090169943749474,
+    -0.5000000000000006
+   ]
+  ],
+  "outer_conversion_max_error": 5.1383059875425614e-15,
+  "vertex_conversion_max_error": 1.012983452169639e-15,
+  "normalization": "Original pieces have unit circumradius, so icosahedron edge length is 1.0514622242382672; centers divided by this edge. Apply a proper rigid rotation to align ALL published dodecahedron outer vertices with the project canonical solid (normalized discrepancy 5.14e-15). Fit piece rotations to ALL source mesh vertices (maximum discrepancy 1.01e-15). Convert container circumradius into edge ratio R/(1.4012585384440737 * 1.0514622242382672). Add standard 1e-7 clearance without transferring discovery credit.",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "imported_on": "2026-10-13"
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 0.8288440437183864,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.30150274056780685
+}

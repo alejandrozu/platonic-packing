@@ -1,0 +1,116 @@
+{
+ "problem": "min/tetrahedron_in_icosahedron",
+ "piece": "tetrahedron",
+ "container": "icosahedron",
+ "n": 5,
+ "s": 1.0091,
+ "s_plus": "1.00910+",
+ "s_full": 1.0091005866624,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000019747784458e-07,
+  "min_wall_gap": 1.0000002714782852e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   -0.1788351558118321,
+   -0.016777126618758898,
+   0.4914802062458711,
+   0.8852283230238013,
+   0.09889915816370114,
+   0.23383233708194556,
+   0.3897591702138325
+  ],
+  [
+   -0.125203797861748,
+   0.3792930197209148,
+   -0.23017573988977558,
+   0.10794876952833915,
+   0.7633259787866759,
+   0.3188917234512463,
+   0.5513515956093487
+  ],
+  [
+   -0.024457760723228267,
+   -0.48647419113182716,
+   -0.1888754099794497,
+   0.4489409209844232,
+   0.5673672485588961,
+   -0.6902848405563888,
+   -0.0073002483797886455
+  ],
+  [
+   0.4115162575075553,
+   -0.027500914463712993,
+   -0.045933149222167936,
+   0.2936726592590347,
+   -0.5472405318655041,
+   0.2759479052694885,
+   0.7335781642501831
+  ],
+  [
+   -0.3107805516087222,
+   0.3193762618398192,
+   0.300734621254942,
+   0.5427636571887728,
+   -0.5255772096635304,
+   -0.5752109918493565,
+   0.31354190146301875
+  ]
+ ],
+ "record_id": "tetinico_n05_kamp",
+ "title": "5 unit tetrahedra in an icosahedron",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l4/m1/n5/platonic_n5_m1_l4.html",
+  "source_file": "docs/literature/external/kamp-tetinico-n05.html",
+  "sha256": "cfb32fbc5372f76fccec5d64c1770a1545403ee2ada34d7a0b62dea88fc58cfe",
+  "numeric_source_file": "docs/literature/external/kamp-tetinico-n05.txt",
+  "numeric_source_sha256": "c2b27a4368d4b8b3654228388193bb378a8d9e7ae3984f9388dca991ca698c5b",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "published_s_full": 1.0091002713929866,
+  "published_circumradius": 1.567202135107628,
+  "source_to_canonical_matrix": [
+   [
+    0.0,
+    1.0,
+    0.0
+   ],
+   [
+    1.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    -1.0
+   ]
+  ],
+  "outer_conversion_max_error": 3.2425355437371536e-15,
+  "vertex_conversion_max_error": 4.041272810440265e-16,
+  "normalization": "Original tetrahedra have unit circumradius and edge sqrt(8/3); centers divided by sqrt(8/3). Rotate the entire configuration by source(x,y,z)->canonical(y,x,-z), checked against all12sourcecontainervertices (normalized discrepancy 3.24e-15). Fit canonical tetrahedron rotations to all4sourcevertices (maximum discrepancy 4.04e-16). Source container circumradius converts to edge ratio R/(sqrt(10+2sqrt5)/4 * sqrt(8/3)). Add standard1e-7clearance without transferring discovery credit.",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "imported_on": "2026-10-13"
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 0.6464028172169851,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.2628490100396931
+}
