@@ -1,10 +1,10 @@
 # Search progress
 
-Updated 2026-10-13 05:43 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
+Updated 2026-10-13 05:47 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
 
-* attempts: 67511 total, 6424 in the last 24 h, 632 in the last hour
-* improvements: 9807 total, 5740 in the last 24 h
-* by move (attempts / improvements): ascend 8307/1008, descend 5723/110, fresh 6787/124, harvest 5487/5487, hop 33993/2447, reinsert 6833/423, tighten 381/208
+* attempts: 67530 total, 6443 in the last 24 h, 624 in the last hour
+* improvements: 9815 total, 5748 in the last 24 h
+* by move (attempts / improvements): ascend 8311/1008, descend 5724/110, fresh 6790/124, harvest 5493/5493, hop 33998/2449, reinsert 6833/423, tighten 381/208
 
 | problem | n with a packing | attempts | CPU hours | improvements (24 h) | last improvement |
 |---|---|---|---|---|---|
