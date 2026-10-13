@@ -386,7 +386,8 @@ def choose(rng, wid):
     sh = shard()
     if sh: order.sort(key=lambda p: 0 if PID_INDEX[p] % sh[1] == sh[0] else 1)
     claimed = {tuple(x.split('|')) for x in _claims()}
-    fast = bool(os.environ.get('PP_FAST'))       # laptop: short bounded runs -> skip the slow fill phase, small n first
+    fast = bool(os.environ.get('PP_FAST'))
+    FAST_NMAX = int(os.environ.get('PP_FAST_NMAX', '20'))   # fast mode: attempts above this n outlast a bounded run       # laptop: short bounded runs -> skip the slow fill phase, small n first
     for p in (order if not fast else ()):
         for n in range(NMIN, NMAX + 1):
             if idx[(p, n)] and idx[(p, n)].get('best'): continue
@@ -403,7 +404,7 @@ def choose(rng, wid):
     if need:                                     # bring every case to `need` attempts, fewest first (own shard first)
         low = [(total_attempts(c['stats']), 0 if not sh or PID_INDEX[p] % sh[1] == sh[0] else 1, rng.random(), p, n)
                for (p, n), c in idx.items() if c and c.get('best') and total_attempts(c['stats']) < need
-               and (p, str(n)) not in claimed]
+               and (p, str(n)) not in claimed and (not fast or n <= FAST_NMAX)]
         if low:
             low.sort(key=(lambda x: (x[0], x[4], x[2])) if fast else (lambda x: (x[1], x[0], x[2])))
             best_key, best_score = (low[0][3], low[0][4]), -1.0
@@ -414,6 +415,7 @@ def choose(rng, wid):
         if opts: best_key, best_score = rng.choice(opts), -1.0
     for (p, n), c in (idx.items() if best_key is None else ()):
         if (p, str(n)) in claimed or not c: continue
+        if fast and n > FAST_NMAX: continue
         st = c['stats']
         score = (st.get('effort', 0) + 30) / n * (1 + st.get('since', 0) / 40) * rng.uniform(0.7, 1.3)
         if best_score is None or score < best_score: best_key, best_score = (p, n), score
