@@ -329,8 +329,25 @@ def _cert_ok(p, n):
     x = open(f).read(); return 'CERTIFIED' in x and 'NOT CERTIFIED' not in x
 
 
-if __name__ == '__main__':
+if __name__ == '__main__' and '--assemble' not in sys.argv:
     res = main()
     out = '\n'.join(res[0])
     if '--appendix' in sys.argv: out += '\n' + '\n'.join(appendix(res[2]))
     print(out)
+
+
+def assemble():
+    """Insert Part IV (docs/report_part4.md with the generated data) into docs/FINAL_REPORT.md (idempotent)."""
+    res = main()
+    part = open(os.path.join(ROOT, 'docs', 'report_part4.md')).read()
+    part = part.replace('<!-- DATA -->', '\n'.join(res[0])).replace('<!-- APPENDIX -->', '\n'.join(appendix(res[2])))
+    path = os.path.join(ROOT, 'docs', 'FINAL_REPORT.md'); doc = open(path).read()
+    a, b = '<!-- PART IV START -->', '<!-- PART IV END -->'
+    block = f'{a}\n\n---\n\n{part.rstrip()}\n\n{b}\n'
+    doc = doc[:doc.index(a)] + block + doc[doc.index(b) + len(b) + 1:] if a in doc else doc.rstrip() + '\n\n' + block
+    open(path, 'w').write(doc)
+    print(f'{path}: Part IV {len(block.splitlines())} lines; document {len(doc.splitlines())} lines')
+
+
+if __name__ == '__main__' and '--assemble' in sys.argv:
+    assemble()

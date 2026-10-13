@@ -1,6 +1,15 @@
 # Status and hand-off
 
-> **Current state (12 Oct 2026, 22:40 Paris): the search is stopped and the website is live.** The project now
+> **Current state (13 Oct 2026, 08:15 Paris): the search is stopped.** The overnight bound-improvement run
+> (12 Oct 16:53 – 13 Oct 08:10; cloud, laptop and 12 GitHub Actions runs) ended after Actions run 12 and was stopped
+> with `state/STOP`. All 2,145 records (55 problems × n = 2…40) are certified exactly; the final publish is commit
+> `ef5a2992` (08:14). The full account and analysis of this phase is **Part IV (chapters 13–19, appendix G) of
+> [docs/FINAL_REPORT.md](docs/FINAL_REPORT.md)**, regenerated with `python3 scripts/report_phase2.py --assemble`.
+> The custom domain polyhedrainpolyhedra.wiki is configured in `web/CNAME`.
+
+## State on 12 Oct 2026, 22:40
+
+> **State (12 Oct 2026, 22:40 Paris): the search is stopped and the website is live.** The project now
 > covers 55 problems (Platonic, Archimedean and Catalan solids, prisms and antiprisms; n = 2…40). All 2,145 cases
 > have a record, and every record is certified exactly by `certify_general.py`. The search was stopped with
 > `state/STOP` after the last cases were filled (cloud workers stopped, laptop runs ended, the last GitHub Actions run
