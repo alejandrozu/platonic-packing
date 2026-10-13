@@ -12,5 +12,5 @@ t = max(datetime.datetime.fromisoformat(r['created_at'].replace('Z', '+00:00')) 
 print(int((datetime.datetime.now(datetime.timezone.utc) - t).total_seconds() // 60))")
 if [ "$age" = "-1" ] || [ -z "$age" ]; then echo "actions: status unknown"; exit 0; fi
 if [ "$age" -ge 55 ]; then
-  timeout 30 gh workflow run search.yml --ref main > /dev/null 2>&1 && echo "actions: run started (last was ${age} min ago)" || echo "actions: start FAILED"
+  timeout 30 gh api -X POST repos/alejandrozu/platonic-packing/actions/workflows/search.yml/dispatches -f ref=main > /dev/null 2>&1 && echo "actions: run started (last was ${age} min ago)" || echo "actions: start FAILED"
 else echo "actions: last run ${age} min ago"; fi

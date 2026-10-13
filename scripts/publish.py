@@ -66,12 +66,8 @@ def build_problem(p, log):
         else:
             try: cf = closed_form(b['s'])
             except Exception: cf = None                   # a hint only; never let it stop a publish
-            found_by = 'Alejandro Zarzuelo'
-            bs = b.get('src') or {}
-            if bs.get('move') == 'literature':           # a published packing imported as a starting point (scripts/literature.py)
-                found_by = f"{bs.get('source')} (published packing, imported as a starting point; not improved yet)"
-            elif bs.get('lineage'):                         # improved by the search, starting from a published packing
-                found_by = f"Alejandro Zarzuelo (search started from the published packing of {bs['lineage']})"
+            from publish_families import credit_of
+            found_by = credit_of(b.get('src'))       # community / literature / derived packings keep their credit
             meta = {'record_id': f'{p}_n{n:02d}', 'title': f'{n} unit {PL[piece]} in {art(container)}', 'source': src,
                     's_tight': round(b['s'], 12), 'closed_form_conjecture': cf,
                     'volume_lower_bound': (n * SOL[piece]['volume'] / SOL[container]['volume']) ** (1 / 3),

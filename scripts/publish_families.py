@@ -22,11 +22,39 @@ FAMILIES = ['archimedean', 'catalan', 'prisms']
 FAM_TITLE = {'archimedean': 'Archimedean solids', 'catalan': 'Catalan solids', 'prisms': 'Prisms and antiprisms'}
 
 
-def name(s): return s.replace('_', ' ')
+
+def credit_of(bs, default='Alejandro Zarzuelo'):
+    """found_by for a record from the archive's src: community packings and everything derived from them, or from a
+    published packing, keep that credit (13 Oct 2026)."""
+    bs = bs or {}
+    lin = bs.get('lineage')
+    if bs.get('move') == 'community':
+        return f"{lin} (community contribution" + (f", {bs['issue']}" if bs.get('issue') else '') + ')'
+    if bs.get('move') == 'literature':
+        return f"{bs.get('source')} (published packing, imported as a starting point; not improved yet)"
+    if bs.get('move') == 'tighten' and lin:
+        return f"{lin} (re-tightened by the search)"
+    if bs.get('move') == 'monotone' and lin:
+        return f"{lin} (their packing for n + 1 minus one piece)"
+    if lin:
+        return f"{default} (search started from the packing of {lin})"
+    return default
+
+
+POLY = {3: 'triangular', 4: 'square', 5: 'pentagonal', 6: 'hexagonal', 8: 'octagonal', 12: 'dodecagonal'}
+ELONG_H = {'l15': '1.5', 'l2': '2', 'l3': '3'}
+
+
+def name(s):
+    if s.startswith('prism') and '_' in s:                     # elongated prism, e.g. prism6_l2
+        base, tag = s.split('_')
+        return f'{POLY[int(base[5:])]} prism of height {ELONG_H.get(tag, tag)}'
+    return s.replace('_', ' ')
 
 
 def plural(s):
     w = name(s)
+    if ' prism of height ' in w: return w.replace(' prism of ', ' prisms of ')
     if w.endswith('hedron'): return w[:-6] + 'hedra'
     if w.endswith('prism'): return w + 's'
     return w + 's'
@@ -92,7 +120,7 @@ def build_problem(p, log, deadline):
             meta = {'record_id': f'{p}_n{n:02d}', 'title': f'{n} {plural(piece)} in ' + ('a cube' if container == 'cube' else 'a ' + name(container)),
                     'family': FAM[p], 'source': src, 's_tight': round(b['s'], 12), 'closed_form_conjecture': cf,
                     'volume_lower_bound': (n * SOL[piece]['volume'] / SOL[container]['volume']) ** (1 / 3),
-                    'found_by': 'Alejandro Zarzuelo',
+                    'found_by': credit_of(b.get('src')),
                     'credit': "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and "
                               "antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under "
                               "Alejandro Zarzuelo's direction",

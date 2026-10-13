@@ -36,6 +36,9 @@ Claude-Session: https://claude.ai/code/session_015sjhNzKTinVQnSnofRcCoP"
 timeout 60 git fetch -q origin && git merge -q --no-edit origin/main > /dev/null 2>&1 || git merge --abort > /dev/null 2>&1
 if timeout 90 git push -q origin HEAD:main > /dev/null 2>&1; then push=pushed; else push=PUSH-FAILED; fi
 flock -u 9
+# contributions from other people (Alejandro, 13 Oct): accept certified record-beating submissions (credit) and make
+# contributed / published packings that beat the archive its starting points (scripts/community_sync.py)
+com=$(timeout 300 python3 scripts/community_sync.py 2>&1 | tail -1)
 head=$(git rev-parse HEAD); from=$(cat state/.device_synced 2>/dev/null)
 if [ "$from" != "$head" ]; then
   mkdir -p /mnt/user-data/outputs .sync
@@ -70,4 +73,4 @@ rec=$(ls records/*/*_n[0-9][0-9].json 2>/dev/null | wc -l)
 lastpub=$(grep "publish:" logs/publish.log | tail -1 | cut -c1-60)
 tb=$(tail -n 30 logs/publish.out 2>/dev/null | grep -c Traceback)
 echo "records: $rec files, publisher $pub, last: $lastpub$([ "$tb" -gt 0 ] && echo ' (TRACEBACK in publish.out)')"
-echo "$(date +%H:%M) workers=$w attempts=$a (+$((a - pa))) new bests +$((i - pi)) [$newb] | $chk | github: $push | $act; $kick | $laptop$note"
+echo "$(date +%H:%M) workers=$w attempts=$a (+$((a - pa))) new bests +$((i - pi)) [$newb] | $chk | github: $push | $act; $kick | $com | $laptop$note"

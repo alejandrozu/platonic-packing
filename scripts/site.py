@@ -62,7 +62,13 @@ def src_code(src):
             'L' if 'Lin' in src else 'F' if 'Friedman' in src else 'X')
 
 
+ELONG_H = {'l15': '1.5', 'l2': '2', 'l3': '3'}
+
+
 def disp(s):
+    if s.startswith('prism') and '_' in s:                     # elongated prism, e.g. prism6_l2
+        base, tag = s.split('_')
+        return f'{POLY[int(base[5:])]} prism of height {ELONG_H.get(tag, tag)}'
     for pre in ('antiprism', 'prism'):
         if s.startswith(pre) and s[len(pre):].isdigit(): return f'{POLY[int(s[len(pre):])]} {pre}'
     return s.replace('_', ' ')
@@ -70,6 +76,7 @@ def disp(s):
 
 def plural(s):
     w = disp(s)
+    if ' prism of height ' in w: return w.replace(' prism of ', ' prisms of ')
     return w[:-6] + 'hedra' if w.endswith('hedron') else w + 's'
 
 

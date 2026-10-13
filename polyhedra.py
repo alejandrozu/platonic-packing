@@ -51,10 +51,17 @@ COUNTS = {   # V, E, F
 for a in ARCH: COUNTS[DUAL[a]] = (COUNTS[a][2], COUNTS[a][1], COUNTS[a][0])
 for k in PRISM_N:
     COUNTS[f'prism{k}'] = (2 * k, 3 * k, k + 2); COUNTS[f'antiprism{k}'] = (2 * k, 4 * k, 2 * k + 2)
+# elongated prisms (13 Oct 2026, crystal-growth variants packed in a cube): base edge 1, height l = 1.5, 2, 3
+ELONG = {'l15': mp.mpf(3) / 2, 'l2': mp.mpf(2), 'l3': mp.mpf(3)}
+ELONG_TXT = {'l15': '1.5', 'l2': '2', 'l3': '3'}
+ELONGATED = [f'prism{k}_{t}' for k in (3, 5, 6, 8, 12) for t in ELONG]
+for k in PRISM_N:
+    for t in ELONG: COUNTS[f'prism{k}_{t}'] = (2 * k, 3 * k, k + 2)
 TITLE = {s: s.replace('_', ' ') for s in ARCH + CAT}
 POLY = {3: 'triangular', 4: 'square', 5: 'pentagonal', 6: 'hexagonal', 8: 'octagonal', 12: 'dodecagonal'}
 for k in PRISM_N:
     TITLE[f'prism{k}'] = f'{POLY[k]} prism'; TITLE[f'antiprism{k}'] = f'{POLY[k]} antiprism'
+    for t in ELONG: TITLE[f'prism{k}_{t}'] = f'{POLY[k]} prism of height {ELONG_TXT[t]}'
 
 
 # ------------------------------------------------------------------ coordinate definitions
@@ -170,8 +177,9 @@ def _vertices(name):
     if name == 'snub_cube': return _snub('cube')
     if name == 'snub_dodecahedron': return _snub('dodecahedron')
     if name.startswith('prism'):
-        k = int(name[5:]); R = 1 / (2 * mp.sin(mp.pi / k))
-        return [(R * mp.cos(2 * mp.pi * j / k), R * mp.sin(2 * mp.pi * j / k), s * one / 2) for j in range(k) for s in (1, -1)]
+        base, _, tag = name.partition('_')
+        k = int(base[5:]); R = 1 / (2 * mp.sin(mp.pi / k)); hgt = ELONG[tag] if tag else one
+        return [(R * mp.cos(2 * mp.pi * j / k), R * mp.sin(2 * mp.pi * j / k), s * hgt / 2) for j in range(k) for s in (1, -1)]
     if name.startswith('antiprism'):
         k = int(name[9:]); R = 1 / (2 * mp.sin(mp.pi / k))
         h = mp.sqrt(1 - 1 / (4 * mp.cos(mp.pi / (2 * k)) ** 2))
@@ -243,6 +251,12 @@ def _crossm(a, b):
 
 
 def build(name):
+    if name in ELONGATED:                                     # base edge 1, height l (not uniform: no rescaling)
+        pts = _uniq(_vertices(name))
+        S = _solid_from_points(name, pts)
+        assert abs(S.edge_min - 1) < mp.mpf(10) ** -40 and abs(S.edge_max - ELONG[name.split('_')[1]]) < mp.mpf(10) ** -40
+        S.unit = 'base edge (height ' + ELONG_TXT[name.split('_')[1]] + ')'
+        return S
     if name in ARCH or name in PRISMS:
         pts = _uniq(_vertices(name))
         S0 = _solid_from_points(name, pts, check_uniform=True)

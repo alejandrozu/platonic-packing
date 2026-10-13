@@ -53,6 +53,7 @@ def field_for(name):
         xi_num = mp.findroot(lambda z: z ** 3 - 2 * z - (1 + mp.sqrt(5)) / 2, 1.7)
         xi = min(roots, key=lambda r: abs(float(r) - float(xi_num)))
         return xi, 'ref'
+    if name in polyhedra.ELONGATED: return field_for(name.split('_')[0])     # same field: the height is rational
     if name in ('prism3', 'prism6'): return s3, None
     if name in ('prism5', 'antiprism5'): return 1 / (2 * sp.sin(sp.pi / 5)), None
     if name == 'prism8': return 1 / (2 * sp.sin(sp.pi / 8)), None
@@ -175,6 +176,14 @@ def self_check(name, F, V, faces, D):
         for m, b in zip(normals, offsets):
             assert F.is_zero(F.sub(F.mul(F.mul(b, b), m0), F.mul(b0, A.vdot(F, m, m)))), (name, 'not tangential')
         out += ', insphere (all faces equidistant)'
+    elif name in polyhedra.ELONGATED:
+        # base edges exactly 1, lateral edges exactly l
+        l = Fr(polyhedra.ELONG_TXT[name.split('_')[1]])
+        lens = {F.is_zero(F.sub(x, F.one())) or F.is_zero(F.sub(x, F.elem([l * l]))) for x in L2}
+        assert lens == {True}, (name, 'edges not 1 and l')
+        n_base = sum(1 for x in L2 if F.is_zero(F.sub(x, F.one())))
+        assert n_base == 2 * (n // 2) and len(L2) - n_base == n // 2, (name, 'edge count')
+        out += f', base edges exactly 1, lateral edges exactly {l}'
     else:
         assert uniform, (name, 'edges not all equal')
         target = D if D is not None else F.one()

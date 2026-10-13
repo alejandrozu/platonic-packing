@@ -54,6 +54,9 @@ AB = {'tetrahedron': 'tet', 'cube': 'cub', 'octahedron': 'oct', 'dodecahedron': 
       'pentagonal_hexecontahedron': 'phc'}
 for _k in (3, 5, 6, 8, 12): AB[f'prism{_k}'] = f'pr{_k}'
 for _k in (4, 5, 6, 8, 12): AB[f'antiprism{_k}'] = f'ap{_k}'
+ELONG_TAGS = ('l15', 'l2', 'l3')                          # elongated prisms, height 1.5, 2, 3 (13 Oct 2026), in a cube
+for _k in (3, 5, 6, 8, 12):
+    for _t in ELONG_TAGS: AB[f'prism{_k}_{_t}'] = f'pr{_k}{_t}'
 ARCHIMEDEAN = ['truncated_tetrahedron', 'cuboctahedron', 'truncated_cube', 'truncated_octahedron', 'rhombicuboctahedron',
                'truncated_cuboctahedron', 'snub_cube', 'icosidodecahedron', 'truncated_dodecahedron',
                'truncated_icosahedron', 'rhombicosidodecahedron', 'truncated_icosidodecahedron', 'snub_dodecahedron']
@@ -73,6 +76,8 @@ for _s in ARCHIMEDEAN: PROBLEMS.append((_s, _s)); FAMILY[(_s, _s)] = 'archimedea
 for _s in CATALAN: PROBLEMS.append((_s, _s)); FAMILY[(_s, _s)] = 'catalan'
 for _s in PRISMS:
     for _c in (_s, 'cube'): PROBLEMS.append((_s, _c)); FAMILY[(_s, _c)] = 'prisms'
+ELONGATED = [f'prism{k}_{t}' for k in (3, 5, 6, 8, 12) for t in ELONG_TAGS]
+for _s in ELONGATED: PROBLEMS.append((_s, 'cube')); FAMILY[(_s, 'cube')] = 'prisms'
 NMIN, NMAX, POOL = 2, 40, 6
 
 # Hop settings. A variant overrides some of HOP_DEFAULT (ranges are sampled uniformly, minDiff log-uniformly).
@@ -89,7 +94,19 @@ VARIANTS = {
     'volume': dict(nraw=3),                                           # 3 raw hops, tighten only the best one
     'gentle': dict(minDiff=(0.02, 0.10), expand=(0.005, 0.03), from_best=0.9),  # small hops from the best
 }
-WEIGHTS = {'hop': 0.55, 'reinsert': 0.12, 'fresh': 0.13, 'ascend': 0.10, 'descend': 0.10}
+WEIGHTS = {'hop': 0.55, 'reinsert': 0.12, 'fresh': 0.13, 'ascend': 0.10, 'descend': 0.10, 'symfresh': 0.0}
+# Adaptive search (13 Oct 2026, docs/SEARCH_METHODS_REVIEW.md). Per-family move weights (policy 'family_weights'
+# overrides these): symmetric seeding leads on prisms and antiprisms, hops on Archimedean and Catalan solids.
+FAMILY_WEIGHTS = {
+    'prisms':      {'symfresh': 0.40, 'hop': 0.35, 'ascend': 0.10, 'descend': 0.05, 'reinsert': 0.05, 'fresh': 0.05},
+    'archimedean': {'hop': 0.60, 'ascend': 0.15, 'reinsert': 0.07, 'descend': 0.06, 'symfresh': 0.08, 'fresh': 0.04},
+    'catalan':     {'hop': 0.60, 'ascend': 0.15, 'reinsert': 0.07, 'descend': 0.06, 'symfresh': 0.08, 'fresh': 0.04},
+    'platonic':    {'hop': 0.60, 'ascend': 0.10, 'reinsert': 0.05, 'descend': 0.10, 'symfresh': 0.10, 'fresh': 0.05},
+}
+# Move classes for the explore/polish switch: after `switch_after` failures in a row on a case, the class that has
+# failed more since the last improvement is damped and the other one boosted (polish after failed explorations,
+# explore after failed polishing).
+DISCOVERY, POLISH = ('symfresh', 'fresh', 'reinsert'), ('hop', 'tighten')
 
 
 def policy():
@@ -294,6 +311,16 @@ def attempt(sim, p, n, move, rng, log, vname='base'):
         B = 1.0 if n <= 16 else 0.7
         raw = sim.call(dict(op='fresh', piece=piece, container=container, n=n, seed=seed, mode='improved', anneal=True,
                             compact=int(5000 * B), morph=int(45000 * B), settle=int(3000 * B)))
+    elif move == 'symfresh':
+        import symmetry
+        spec, sinfo = symmetry.sym_spec(piece, container, n, rng)
+        B = 1.0 if n <= 16 else 0.7
+        req = dict(op='fresh', piece=piece, container=container, n=n, seed=seed, mode='improved', anneal=True,
+                   compact=int(5000 * B), morph=int(45000 * B), settle=int(3000 * B))
+        if spec is not None:
+            req['sym'] = spec
+            info['sym'] = f"C{sinfo['k']}{'i' if sinfo['det'] < 0 else ''}+{sinfo['b']}"
+        raw = sim.call(req)
     elif move in ('hop', 'reinsert'):
         pool = load_pool(p, n)
         raw = None
@@ -333,6 +360,7 @@ def attempt(sim, p, n, move, rng, log, vname='base'):
     t_raw = time.time() - t0
     s_raw = raw['s']
     gate = case['stats'].get('gate', 0.03)
+    if move in ('fresh', 'symfresh'): gate = max(gate, 0.04)       # bake-off: 10-14% of start wins come from > 3%
     do_tight = best is None or move in ('descend', 'tighten') or s_raw <= best_s * (1 + gate)
     out = None
     if do_tight:
@@ -358,8 +386,11 @@ def attempt(sim, p, n, move, rng, log, vname='base'):
             case['best'] = {'s': out['s'], 'C': out['C'], 'Q': out['Q'], 'src': dict(info, raw=s_raw, **({'lineage': lin} if lin else {})), 't': time.time(),
                             'tightened': True}
             st['improvements'] += 1; st['since'] = 0; st['last_improve'] = time.time(); st['needs_tighten'] = False
+            st['fails'] = {}
         else:
             st['since'] += 1
+            cls = 'disc' if move in DISCOVERY else 'pol' if move in POLISH else 'nbr'
+            st.setdefault('fails', {})[cls] = st.get('fails', {}).get(cls, 0) + 1
         save_case(case)
         if out: pool_insert(p, n, {'s': out['s'], 'C': out['C'], 'Q': out['Q'], 'src': move, 't': time.time(), **({'lineage': lin} if lin else {})})
         fixed = enforce_monotone(p, log) if improved or cur is None else []
@@ -369,7 +400,7 @@ def attempt(sim, p, n, move, rng, log, vname='base'):
     with open(os.path.join(STATE, 'attempts.jsonl'), 'a') as f:
         f.write(json.dumps({'t': round(time.time()), 'p': p, 'n': n, 'move': move, 'raw': s_raw, 's': s_new if out else None,
                             'best_before': best_s, 'improved': improved, 'secs': round(secs, 1), 'raw_secs': round(t_raw, 1),
-                            **{k: (round(v, 4) if isinstance(v, float) else v) for k, v in info.items() if k in ('minDiff', 'expand', 'focus', 'from', 'var')}}) + '\n')
+                            **{k: (round(v, 4) if isinstance(v, float) else v) for k, v in info.items() if k in ('minDiff', 'expand', 'focus', 'from', 'var', 'sym')}}) + '\n')
     return improved
 
 
@@ -397,7 +428,7 @@ def choose(rng, wid):
             if (p, str(n)) in claimed: break
             if n > NMIN and idx[(p, n - 1)] and idx[(p, n - 1)].get('best'): return p, n, 'ascend'
             if n < NMAX and idx[(p, n + 1)] and idx[(p, n + 1)].get('best'): return p, n, 'descend'
-            if n == NMIN or rng.random() < 0.3: return p, n, 'fresh'
+            if n == NMIN or rng.random() < 0.3: return p, n, 'symfresh' if FAM[p] == 'prisms' else 'fresh'
             break
     for (p, n), c in sorted(idx.items(), key=(lambda kv: kv[0][1]) if fast else (lambda kv: rng.random())):
         if fast and n > 20: break                # fast mode: only quick re-tightenings, smallest n first
@@ -420,7 +451,10 @@ def choose(rng, wid):
         if (p, str(n)) in claimed or not c: continue
         if fast and n > FAST_NMAX: continue
         st = c['stats']
-        score = (st.get('effort', 0) + 30) / n * (1 + st.get('since', 0) / 40) * rng.uniform(0.7, 1.3)
+        # gain per CPU-hour falls 35x from right after an improvement to 80 failures later: favour hot cases
+        score = (st.get('effort', 0) + 30) / n * (1 + st.get('since', 0) / 12) * rng.uniform(0.7, 1.3)
+        if c.get('best') and _plateau(idx, p, n): score *= 0.5            # equal s for n-1, n, n+1: likely weak
+        if c.get('best') and c['best']['src'].get('move') == 'community': score *= 0.7   # new contributed packing
         if best_score is None or score < best_score: best_key, best_score = (p, n), score
     p, n = best_key
     c = idx[(p, n)]
@@ -429,16 +463,79 @@ def choose(rng, wid):
         lo_ok = n > NMIN and idx[(p, n - 1)] and idx[(p, n - 1)].get('best')
         r = rng.random()
         if lo_ok and r < 0.5: return p, n, 'ascend'
-        if r < 0.8: return p, n, 'fresh'
-    W = dict(WEIGHTS, **(policy().get('weights') or {}))
-    moves = [('hop', W['hop']), ('reinsert', W['reinsert']), ('fresh', W['fresh'])]
-    if n > NMIN and idx[(p, n - 1)] and idx[(p, n - 1)].get('best'): moves.append(('ascend', W['ascend']))
-    if n < NMAX and idx[(p, n + 1)] and idx[(p, n + 1)].get('best'): moves.append(('descend', W['descend']))
+        if r < 0.8: return p, n, 'symfresh' if FAM[p] == 'prisms' else 'fresh'
+    return p, n, choose_move(rng, idx, p, n)
+
+
+def _plateau(idx, p, n):
+    s = [idx.get((p, m)) for m in (n - 1, n, n + 1)]
+    v = [x['best']['s'] for x in s if x and x.get('best')]
+    return len(v) == 3 and (abs(v[1] - v[0]) < 1e-7 * v[1] or abs(v[2] - v[1]) < 1e-7 * v[1])
+
+
+_LEARN = {'t': 0, 'mult': {}}
+
+
+def learned_multipliers():
+    """Bandit part: per family, the recent gain per CPU-second of each move (last ~4000 logged attempts, with a prior
+    of 1800 s at the family's average rate), as a multiplier in [1/2, 2] relative to the family's median move.
+    Refreshed every 5 minutes from this machine's attempts.jsonl."""
+    if time.time() - _LEARN['t'] < 300: return _LEARN['mult']
+    _LEARN['t'] = time.time()
+    path = os.path.join(STATE, 'attempts.jsonl')
+    try:
+        with open(path, 'rb') as f:
+            f.seek(0, 2); size = f.tell(); f.seek(max(0, size - 1_500_000)); lines = f.read().decode(errors='ignore').splitlines()[1:]
+    except OSError:
+        return _LEARN['mult']
+    G, T = {}, {}
+    for l in lines[-4000:]:
+        try: r = json.loads(l)
+        except ValueError: continue
+        m = r.get('move'); fam = FAM.get(r.get('p'))
+        if not fam or m in ('harvest', 'tighten', None) or not r.get('best_before') or not r.get('secs'): continue
+        g = math.log(r['best_before'] / r['s']) if r.get('improved') and r.get('s') else 0.0
+        G[(fam, m)] = G.get((fam, m), 0.0) + g; T[(fam, m)] = T.get((fam, m), 0.0) + r['secs']
+    mult = {}
+    for fam in set(f for f, _ in T):
+        ms = [m for f, m in T if f == fam]
+        tot_g = sum(G[(fam, m)] for m in ms); tot_t = sum(T[(fam, m)] for m in ms)
+        base = tot_g / tot_t if tot_t else 0.0
+        rate = {m: (G[(fam, m)] + base * 1800) / (T[(fam, m)] + 1800) for m in ms}
+        med = sorted(rate.values())[len(rate) // 2]
+        if med > 0: mult[fam] = {m: min(2.0, max(0.5, v / med)) for m, v in rate.items()}
+    _LEARN['mult'] = mult
+    return mult
+
+
+def choose_move(rng, idx, p, n):
+    """Move for a case: family weights x learned gain-per-second multipliers x case signals (cascade from n-1 / n+1,
+    explore/polish switch after repeated failures)."""
+    pol = policy(); c = idx[(p, n)]; st = c['stats']; fam = FAM[p]
+    W = dict(WEIGHTS, **(pol.get('weights') or {}))
+    W.update(FAMILY_WEIGHTS.get(fam, {})); W.update((pol.get('family_weights') or {}).get(fam, {}))
+    if pol.get('adaptive', True):
+        for m, k in (learned_multipliers().get(fam) or {}).items():
+            if m in W: W[m] *= k
+    lo = idx.get((p, n - 1)) if n > NMIN else None; hi = idx.get((p, n + 1)) if n < NMAX else None
+    t_self = st.get('last_improve', 0) or 0
+    if lo and lo.get('best') and (lo['stats'].get('last_improve') or 0) > t_self: W['ascend'] *= 2.0     # cascade
+    if hi and hi.get('best') and (hi['stats'].get('last_improve') or 0) > t_self: W['descend'] *= 1.5
+    if st.get('since', 0) >= int(pol.get('switch_after', 6)):
+        f = st.get('fails') or {}
+        damp, boost = (DISCOVERY, POLISH) if f.get('disc', 0) >= f.get('pol', 0) else (POLISH, DISCOVERY)
+        for m in damp:
+            if m in W: W[m] *= 0.4
+        for m in boost:
+            if m in W: W[m] *= 2.5
+    moves = [(m, W.get(m, 0)) for m in ('hop', 'reinsert', 'fresh', 'symfresh') if W.get(m, 0) > 0]
+    if lo and lo.get('best'): moves.append(('ascend', W['ascend']))
+    if hi and hi.get('best'): moves.append(('descend', W['descend']))
     r = rng.random() * sum(w for _, w in moves)
     for m, w in moves:
         r -= w
-        if r <= 0: return p, n, m
-    return p, n, 'hop'
+        if r <= 0: return m
+    return 'hop'
 
 
 def _claims():
