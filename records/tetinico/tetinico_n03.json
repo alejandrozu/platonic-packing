@@ -1,0 +1,70 @@
+{
+ "problem": "min/tetrahedra_in_icosahedron",
+ "piece": "tetrahedron",
+ "container": "icosahedron",
+ "n": 3,
+ "s": 0.93217,
+ "s_plus": "0.93217+",
+ "s_full": 0.9321764343995,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020050221492e-07,
+  "min_wall_gap": 1.0000006345212142e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -0.09141706270839971,
+   -0.2681927185019702,
+   0.1818874756122126,
+   0.030281327625967316,
+   0.7521719582526967,
+   -0.3396961870742299,
+   -0.5638500571098157
+  ],
+  [
+   0.003932080514651869,
+   -0.01856541778581486,
+   -0.3361656334353149,
+   0.27695874088376465,
+   -0.32431109961636256,
+   0.6983511274521877,
+   -0.5748233374698384
+  ],
+  [
+   0.11634472435151529,
+   0.27573470089895574,
+   0.15427815569547573,
+   0.8810874803496916,
+   -0.4641999026598316,
+   0.08708393221119706,
+   0.024893595406655367
+  ]
+ ],
+ "record_id": "tetinico_n03",
+ "title": "3 unit tetrahedra in an icosahedron",
+ "source": {
+  "hash": "1204e20c30f48afa",
+  "clear": 1e-07,
+  "cap": 0.9865142276276
+ },
+ "s_tight": 0.932176302083,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 0.5451972509838812,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/tetinico/tetinico_n03_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l4/m1/n3/platonic_n3_m1_l4.html"
+ },
+ "density": 0.20006292450082824
+}

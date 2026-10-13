@@ -1,0 +1,61 @@
+{
+ "problem": "min/octahedra_in_tetrahedron",
+ "piece": "octahedron",
+ "container": "tetrahedron",
+ "n": 2,
+ "s": 3.0,
+ "s_plus": "3.00000+",
+ "s_full": 3.0000006123885,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020092548745e-07,
+  "min_wall_gap": 1.0000000161269895e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.2084054779905723,
+   0.21643606821045003,
+   0.07128811231234297,
+   0.7000080178435418,
+   5.778772956237062e-12,
+   0.013989921270196949,
+   -0.7139979391129988
+  ],
+  [
+   -0.35355343389537297,
+   -0.3535534338955997,
+   0.3535534338955259,
+   0.49999999999999806,
+   -0.4999999999998938,
+   -0.5000000000033735,
+   0.4999999999967348
+  ]
+ ],
+ "record_id": "octintet_n02",
+ "title": "2 unit octahedra in a tetrahedron",
+ "source": {
+  "hash": "2b78d7e931043d84",
+  "clear": 1e-07,
+  "cap": 3.0000006124435
+ },
+ "s_tight": 3.000000122491,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.0,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/octintet/octintet_n02_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l1/m2/n2/platonic_n2_m2_l1.html"
+ },
+ "density": 0.29629611484792595
+}

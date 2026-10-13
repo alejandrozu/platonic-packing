@@ -30,19 +30,19 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 25 | [3.00000+](cubincub_n25.json) | 3.000000000000 | 3 | 3.00000 (trivial (3×3×3 grid), Friedman's Packing Center) | equal | 2.92402 | 0.9259 | ![](cubincub_n25.png) |
 | 26 | [3.00000+](cubincub_n26.json) | 3.000000000000 | 3 | 3.00000 (trivial (3×3×3 grid), Friedman's Packing Center) | equal | 2.96250 | 0.9630 | ![](cubincub_n26.png) |
 | 27 | [3.00000+](cubincub_n27.json) | 3.000000000000 | 3 | 3.00000 (trivial (3×3×3 grid), Friedman's Packing Center) | equal | 3.00000 | 1.0000 | ![](cubincub_n27.png) |
-| 28 | [3.70710+](cubincub_n28.json) | 3.707106781189 | (6 + √2)/2 | 3.70711 (E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2) | equal | 3.03659 | 0.5496 | ![](cubincub_n28.png) |
+| 28 | [3.66599+](cubincub_n28.json) | 3.665997882756 |  | 3.70711 (E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2) | **better** -1.109% | 3.03659 | 0.5683 | ![](cubincub_n28.png) |
 | 29 | [3.70710+](cubincub_n29.json) | 3.707106781216 |  | 3.70711 (E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2) | equal | 3.07232 | 0.5692 | ![](cubincub_n29.png) |
 | 30 | [3.70710+](cubincub_n30.json) | 3.707106781301 |  | 3.70711 (E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2) | equal | 3.10723 | 0.5889 | ![](cubincub_n30.png) |
 | 31 | [3.70710+](cubincub_n31.json) | 3.707106781303 |  | 3.70711 (E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2) | equal | 3.14138 | 0.6085 | ![](cubincub_n31.png) |
 | 32 | [3.70710+](cubincub_n32.json) | 3.707106782464 |  | 3.70711 (E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2) | equal | 3.17480 | 0.6281 | ![](cubincub_n32.png) |
-| 33 | [3.76628+](cubincub_n33.json) | 3.766281735174 |  | 3.70711 (E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2) | behind +1.596% | 3.20753 | 0.6177 | ![](cubincub_n33.png) |
-| 34 | [3.89442+](cubincub_n34.json) | 3.894427191012 |  | | | 3.23961 | 0.5756 | ![](cubincub_n34.png) |
-| 35 | [3.89442+](cubincub_n35.json) | 3.894427191274 |  | | | 3.27107 | 0.5926 | ![](cubincub_n35.png) |
-| 36 | [3.91228+](cubincub_n36.json) | 3.912281999614 |  | | | 3.30193 | 0.6012 | ![](cubincub_n36.png) |
+| 33 | [3.70710+](cubincub_n33.json) | 3.707107051898 |  | 3.70711 (E. Friedman, 1998 (Friedman's Packing Center), s = 3 + 1/√2) | equal | 3.20753 | 0.6478 | ![](cubincub_n33.png) |
+| 34 | [3.82287+](cubincub_n34.json) | 3.822875937398 |  | | | 3.23961 | 0.6086 | ![](cubincub_n34.png) |
+| 35 | [3.86068+](cubincub_n35.json) | 3.860686182768 |  | | | 3.27107 | 0.6082 | ![](cubincub_n35.png) |
+| 36 | [3.89442+](cubincub_n36.json) | 3.894427676006 |  | | | 3.30193 | 0.6095 | ![](cubincub_n36.png) |
 | 37 | [3.92631+](cubincub_n37.json) | 3.926311431020 |  | | | 3.33222 | 0.6113 | ![](cubincub_n37.png) |
 | 38 | [3.98077+](cubincub_n38.json) | 3.980773161401 |  | | | 3.36198 | 0.6024 | ![](cubincub_n38.png) |
 | 39 | [4.00000+](cubincub_n39.json) | 4.000000000000 | 4 | | | 3.39121 | 0.6094 | ![](cubincub_n39.png) |
 | 40 | [4.00000+](cubincub_n40.json) | 4.000000000000 | 4 | | | 3.41995 | 0.6250 | ![](cubincub_n40.png) |
 
-**Cubes in a cube vs published values** (n = 2–33): better at 11; equal at 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32; behind at 33 (+1.60%).
+**Cubes in a cube vs published values** (n = 2–33): better at 11, 28; equal at 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 29, 30, 31, 32, 33; behind at none.
 

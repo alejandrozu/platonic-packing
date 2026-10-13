@@ -1,0 +1,97 @@
+{
+ "problem": "min/octahedra_in_icosahedron",
+ "piece": "octahedron",
+ "container": "icosahedron",
+ "n": 6,
+ "s": 1.48797,
+ "s_plus": "1.48797+",
+ "s_full": 1.4879774929655,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000002009809986e-07,
+  "min_wall_gap": 1.000000124928846e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.33231279900671185,
+   0.6382611734190888,
+   0.10339240937498297,
+   0.9204471538836019,
+   -0.0005386312855186397,
+   0.22950521531246668,
+   -0.31639232438270926
+  ],
+  [
+   0.1507805861851715,
+   -0.24895530969600022,
+   0.640773776676258,
+   0.7363918192770889,
+   -0.25041382282312147,
+   0.36604733621702484,
+   0.5109103184408299
+  ],
+  [
+   0.539076370317605,
+   -0.38574050564536266,
+   -0.12460435333632937,
+   0.26861285782584104,
+   -0.5078803231702336,
+   0.5084555232200639,
+   0.6413873173474393
+  ],
+  [
+   -0.4684014872410468,
+   -0.5562877157569524,
+   -0.06914418599822257,
+   0.972491101297067,
+   -0.0272413767325251,
+   0.11009375247835078,
+   -0.20346579800293263
+  ],
+  [
+   -0.5689604135337402,
+   0.35479503503395937,
+   0.1958259681072604,
+   0.5563910074474995,
+   0.11605147772179698,
+   0.3002127094859823,
+   0.7660505403778717
+  ],
+  [
+   -0.014653049380846784,
+   0.1633282110653096,
+   -0.677780079533191,
+   0.36217831109449367,
+   0.8230900294525101,
+   -0.18666488071937679,
+   -0.39560826166123897
+  ]
+ ],
+ "record_id": "octinico_n06",
+ "title": "6 unit octahedra in an icosahedron",
+ "source": {
+  "hash": "db4aab9128e1ca81",
+  "clear": 1e-07,
+  "cap": 1.5516585085607
+ },
+ "s_tight": 1.487977365067,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.0903945019677623,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/octinico/octinico_n06_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l4/m2/n6/platonic_n6_m2_l4.html"
+ },
+ "density": 0.39351552657108707
+}

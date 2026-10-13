@@ -3,104 +3,104 @@
  "piece": "prism3",
  "container": "prism3",
  "n": 7,
- "s": 2.35583,
- "s_plus": "2.35583+",
- "s_full": 2.3558343070518,
+ "s": 2.0,
+ "s_plus": "2.00000+",
+ "s_full": 2.0000013464102,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020060918553e-07,
-  "min_wall_gap": 1.0000001970933425e-07
+  "min_pair_gap": 5.77350269142129e-07,
+  "min_wall_gap": 1.0000001104959466e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-13",
  "pieces": [
   [
-   -0.39139554844003027,
-   -0.6779169787986625,
-   0.677916970737313,
-   2.4794426810061155e-17,
-   0.5000000000000003,
-   -0.8660254037844386,
-   -1.0011883663761534e-16
-  ],
-  [
-   -0.39139554844003027,
-   -0.6779169787986625,
-   -0.6361506744849542,
+   0.577350846539895,
+   0.0,
+   -0.5000005,
    1.0,
-   2.5707211491722154e-18,
-   9.151513086636693e-17,
-   -2.3818316782034202e-17
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   0.049524183895940016,
-   0.0861984397060165,
-   0.04048410789018242,
-   0.10985065901029183,
-   -0.7355403195089804,
-   -0.2655193576225545,
-   -0.6135248502052202
-  ],
-  [
-   0.26872377462507346,
-   -0.07863962251978686,
-   0.7117095217507656,
-   0.7064081919217688,
-   0.47184558399187043,
-   -0.5234629652884988,
-   0.06584630000660831
-  ],
-  [
-   -0.39139554844003016,
-   0.6779169757544182,
-   -0.634849881565522,
-   0.5000000000000001,
-   -2.2484737566917423e-17,
-   4.420675962014598e-17,
-   -0.8660254037844387
-  ],
-  [
-   0.11532585439588042,
-   -0.0795912508861068,
-   -0.6236200349005595,
-   0.5114931616108834,
-   -0.05158257014076149,
-   -0.7175946960908456,
-   -0.4698636357766616
-  ],
-  [
-   -0.39139554844003,
-   0.6779169757544181,
-   0.49451122398719616,
-   1.8593656266333971e-16,
+   -0.2886754232699475,
+   -0.5000005,
+   -0.5000005,
    1.0,
-   2.3748960499557012e-17,
-   -3.940486832416938e-18
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -0.2886754232699475,
+   0.5000005,
+   -0.5000005,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.0,
+   0.0,
+   -0.5000005,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  [
+   0.577350846539895,
+   0.0,
+   0.5000005,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -0.2886754232699475,
+   -0.5000005,
+   0.5000005,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -0.2886754232699475,
+   0.5000005,
+   0.5000005,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ]
  ],
  "record_id": "pr3inpr3_n07",
  "title": "7 prism3s in a prism3",
  "family": "prisms",
  "source": {
-  "hash": "bd8f6b1170ad2eb7",
+  "hash": "75eb02a07c80c941",
   "clear": 1e-07,
-  "cap": 2.4590269408712
+  "cap": 2.0000013464102
  },
- "s_tight": 2.355833753255,
+ "s_tight": 2.000001,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.912931182772389,
- "found_by": "Alejandro Zarzuelo",
+ "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/6)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "fresh",
-  "seed": 1914483514,
-  "var": "base",
-  "raw": 2.3559488829356545,
-  "host": "laptop"
+  "move": "community",
+  "lineage": "PingYou Ltd",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/6",
+  "submitted_by": "BuddenPing",
+  "record_file": "records/community/pr3inpr3/pr3inpr3_n07_pingyou_20261013.json"
  },
- "density": 0.535382059706214
+ "density": 0.8749982328389916
 }

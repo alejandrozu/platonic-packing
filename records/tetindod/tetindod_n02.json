@@ -1,0 +1,61 @@
+{
+ "problem": "min/tetrahedra_in_dodecahedron",
+ "piece": "tetrahedron",
+ "container": "dodecahedron",
+ "n": 2,
+ "s": 0.58268,
+ "s_plus": "0.58268+",
+ "s_full": 0.5826881613293,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020038624621e-07,
+  "min_wall_gap": 1.0000004968535592e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   3.1327091862535836e-06,
+   0.07277581786775844,
+   -0.19071018536603293,
+   0.3296646543672578,
+   0.7409732548822945,
+   -0.5801462631367605,
+   -0.07556563093435581
+  ],
+  [
+   -3.1327015908543917e-06,
+   -0.07277581792126792,
+   0.19071018536299597,
+   0.25482905237691067,
+   0.4783730703297056,
+   0.02516413179637336,
+   0.8399929321839268
+  ]
+ ],
+ "record_id": "tetindod_n02",
+ "title": "2 unit tetrahedra in a dodecahedron",
+ "source": {
+  "hash": "d4f2660d246c6569",
+  "clear": 1e-07,
+  "cap": 0.6180341511268
+ },
+ "s_tight": 0.582688071525,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 0.3133185153477365,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/tetindod/tetindod_n02_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l5/m1/n2/platonic_n2_m1_l5.html"
+ },
+ "density": 0.15547107322285866
+}

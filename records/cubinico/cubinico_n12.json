@@ -1,0 +1,151 @@
+{
+ "problem": "min/cubes_in_icosahedron",
+ "piece": "cube",
+ "container": "icosahedron",
+ "n": 12,
+ "s": 2.23031,
+ "s_plus": "2.23031+",
+ "s_full": 2.2303125599051,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.3623746018126548e-07,
+  "min_wall_gap": 1.0000006356314373e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -0.2104996214337764,
+   -0.7058155369059818,
+   -0.9189602090456059,
+   0.8225099880269727,
+   0.2678394191971882,
+   -0.113942585753538,
+   -0.48862710963656103
+  ],
+  [
+   -1.074454748758619,
+   -0.06111785472680226,
+   -0.414565842396515,
+   0.3686461834535971,
+   -0.6092383898204499,
+   0.34096211879615157,
+   0.6137372478024465
+  ],
+  [
+   -1.0840152051522138,
+   -0.016974677820633936,
+   0.6100211311364016,
+   0.26916607940923887,
+   0.275918401866546,
+   -0.6542664234571205,
+   -0.6506566716352783
+  ],
+  [
+   -0.5671747138312659,
+   0.9945242287546753,
+   -0.1420738078500774,
+   0.4915110710792719,
+   0.7105245783479468,
+   0.1198476088464819,
+   -0.48908919557046043
+  ],
+  [
+   -0.01132616487934502,
+   0.699369499975625,
+   -0.9849436883864537,
+   0.7560493382527526,
+   0.30317742091158423,
+   0.3649567357984483,
+   0.4508652022193739
+  ],
+  [
+   -0.6466555951825594,
+   -1.0777172672469923,
+   -0.050898017884063194,
+   0.5800793980758199,
+   0.7475818101710057,
+   -0.09405260211463715,
+   0.30948899344710595
+  ],
+  [
+   -0.1993186070962171,
+   0.7016595944275545,
+   0.9230021673552782,
+   0.26108203482878106,
+   -0.8297249170267852,
+   -0.48300842754381357,
+   0.10047682357743097
+  ],
+  [
+   0.08446391016458746,
+   -0.6934539768716359,
+   0.9444429895899954,
+   0.3266959081184608,
+   0.2429639962633331,
+   0.9100690234949281,
+   -0.07754129618076713
+  ],
+  [
+   0.9525805091444688,
+   -0.04326761533966099,
+   -0.6469649661943967,
+   0.05849441122941408,
+   0.2164196924107626,
+   0.313408531387767,
+   -0.9227762529698725
+  ],
+  [
+   0.843556597500353,
+   0.7820212801872202,
+   -0.07575979912137171,
+   0.09856504211243672,
+   -0.07629255120602828,
+   0.87791074260956,
+   -0.46231710666444087
+  ],
+  [
+   0.6983920927308089,
+   -0.9730212411893835,
+   -0.09588967580299625,
+   0.24342532292363758,
+   -0.7671422885388486,
+   -0.35284137691295087,
+   0.4772208964757032
+  ],
+  [
+   0.7596825280935844,
+   0.07508963863730801,
+   0.8666370497886897,
+   0.5421534790625582,
+   -0.23894206285978162,
+   0.6588658516465246,
+   0.46354297025278735
+  ]
+ ],
+ "record_id": "cubinico_n12",
+ "title": "12 unit cubes in an icosahedron",
+ "source": {
+  "hash": "e52c3600f0fdb5cf",
+  "clear": 1e-07,
+  "cap": 2.2704948183697
+ },
+ "s_tight": 2.230312382976,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.7652073910390762,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/cubinico/cubinico_n12_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l4/m3/n12/platonic_n12_m3_l4.html"
+ },
+ "density": 0.49578116229582825
+}

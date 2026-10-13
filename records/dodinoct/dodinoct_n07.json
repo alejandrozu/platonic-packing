@@ -1,0 +1,106 @@
+{
+ "problem": "min/dodecahedra_in_octahedron",
+ "piece": "dodecahedron",
+ "container": "octahedron",
+ "n": 7,
+ "s": 6.44876,
+ "s_plus": "6.44876+",
+ "s_full": 6.4487626034069,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020278511101e-07,
+  "min_wall_gap": 1.0000001759991051e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   2.2257781933313782e-07,
+   -1.436827197554261e-06,
+   -1.198862554597367e-06,
+   0.2987205471136458,
+   0.7312798799167369,
+   -0.23574342602909143,
+   -0.5660572489114093
+  ],
+  [
+   2.369132283123504,
+   0.11834854177016764,
+   0.0997978824817218,
+   0.7574847203817479,
+   0.4006994925067281,
+   -0.39966826011810114,
+   -0.32545675126997414
+  ],
+  [
+   -0.09980033494764934,
+   -2.3691326105581347,
+   0.11834736665009583,
+   0.22957473502870845,
+   -0.5135554339764797,
+   0.8259035299820796,
+   -0.03794227764470734
+  ],
+  [
+   -0.11834684471215932,
+   0.09980101946271938,
+   -2.369132734677335,
+   0.2889641797826609,
+   0.7201404521601054,
+   -0.1872892942164064,
+   -0.6023455422239742
+  ],
+  [
+   -2.3691314132590104,
+   -0.11834958882772215,
+   -0.09980065662736856,
+   0.5419864512187175,
+   -0.5409538029312657,
+   -0.6161988334015092,
+   -0.18417021340097717
+  ],
+  [
+   0.11834783632543067,
+   -0.09980179048590106,
+   2.3691313449612728,
+   0.9366723855025555,
+   -0.07346753344855007,
+   -0.33930967198395756,
+   -0.04600337231200897
+  ],
+  [
+   0.09980121978569635,
+   2.369132022079351,
+   -0.11834873687399952,
+   0.008061341675429781,
+   -0.8993696098354317,
+   0.423116363825727,
+   0.1097354197046258
+  ]
+ ],
+ "record_id": "dodinoct_n07",
+ "title": "7 unit dodecahedra in an octahedron",
+ "source": {
+  "hash": "b59651d4249bc8a2",
+  "clear": 1e-07,
+  "cap": 6.776535234872
+ },
+ "s_tight": 6.448762358458,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 4.845849867036272,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/dodinoct/dodinoct_n07_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l2/m5/n7/platonic_n7_m5_l2.html"
+ },
+ "density": 0.424307487349736
+}

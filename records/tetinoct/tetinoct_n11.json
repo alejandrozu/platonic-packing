@@ -1,0 +1,142 @@
+{
+ "problem": "min/tetrahedra_in_octahedron",
+ "piece": "tetrahedron",
+ "container": "octahedron",
+ "n": 11,
+ "s": 1.87954,
+ "s_plus": "1.87954+",
+ "s_full": 1.879548322724,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020053690939e-07,
+  "min_wall_gap": 1.0000000061349823e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -0.028431684478058578,
+   -0.719033340633049,
+   0.045630667568424384,
+   0.38070036144585784,
+   -0.8644861606315976,
+   -0.3213410805129028,
+   0.06686421199889545
+  ],
+  [
+   -0.40891377940694074,
+   -0.09826588807554992,
+   0.4398278495771967,
+   0.3996776547252087,
+   -0.3996776547252089,
+   -0.025193554733272904,
+   0.8245488641836912
+  ],
+  [
+   -0.10110417907823735,
+   0.6274783777979654,
+   0.12053303813874895,
+   0.2818786128144667,
+   -0.902831141453302,
+   0.3021685093113067,
+   -0.11888889620356724
+  ],
+  [
+   0.38641805375203714,
+   0.44377109370753537,
+   0.023944723817181157,
+   3.082726311621443e-09,
+   -0.48277172189188977,
+   -0.482771722792963,
+   0.7306592422005312
+  ],
+  [
+   0.013791535950533762,
+   -0.02297476510601772,
+   -0.7048681411365871,
+   0.6843152815705111,
+   0.05812042428759178,
+   0.4477445860586445,
+   0.5725900779308664
+  ],
+  [
+   0.6484154985692674,
+   -0.12772428503503108,
+   -0.1993479884105699,
+   0.8164360287189258,
+   -1.7519623717818833e-09,
+   -0.41682957503322915,
+   0.39960645188395916
+  ],
+  [
+   0.38279669441167824,
+   -0.24147163012697825,
+   0.26355564681559784,
+   0.34152895699066055,
+   0.4337582854511425,
+   0.4712074736290121,
+   -0.6878773423623725
+  ],
+  [
+   0.0961551462301576,
+   0.0957035955304603,
+   0.7318853466760021,
+   0.7840821367171134,
+   -0.42611631878365236,
+   -0.0009593865030918078,
+   0.4512639641328924
+  ],
+  [
+   -0.7262980821137273,
+   -0.07115376323541804,
+   -0.08147377209725833,
+   0.876566130120636,
+   0.18555509489519023,
+   0.3163490767802186,
+   0.31164785881515783
+  ],
+  [
+   -0.2639099606877925,
+   0.28549961010116504,
+   -0.30646952155420454,
+   0.7533937423073552,
+   0.08763470487695688,
+   0.13242121244124372,
+   -0.6381086506613416
+  ],
+  [
+   -0.0546268689523798,
+   -0.30329608854995244,
+   0.034621753323315185,
+   0.42219018614545734,
+   0.5566142892636824,
+   -0.08536643430383975,
+   0.7103861989116892
+  ]
+ ],
+ "record_id": "tetinoct_n11",
+ "title": "11 unit tetrahedra in an octahedron",
+ "source": {
+  "hash": "19b1065064b9dfa2",
+  "clear": 1e-07,
+  "cap": 1.919592987907
+ },
+ "s_tight": 1.879548059781,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.4010196653276936,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/tetinoct/tetinoct_n11_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l2/m1/n11/platonic_n11_m1_l2.html"
+ },
+ "density": 0.41416386651176706
+}

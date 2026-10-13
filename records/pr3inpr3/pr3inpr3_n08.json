@@ -3,113 +3,113 @@
  "piece": "prism3",
  "container": "prism3",
  "n": 8,
- "s": 2.45902,
- "s_plus": "2.45902+",
- "s_full": 2.4590269408712,
+ "s": 2.0,
+ "s_plus": "2.00000+",
+ "s_full": 2.0000013464102,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020048900036e-07,
-  "min_wall_gap": 1.0000001848808893e-07
+  "min_pair_gap": 5.77350269142129e-07,
+  "min_wall_gap": 1.0000001104959466e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-13",
  "pieces": [
   [
-   -0.421184698533433,
-   -0.7295132794309978,
-   0.7295090685900878,
-   5.4761269107604405e-17,
-   0.4999999999999999,
-   -0.8660254037844388,
-   7.708560449934302e-17
-  ],
-  [
-   -0.42118469853343327,
-   -0.7295132794309979,
-   -0.7295090507905985,
+   0.577350846539895,
+   0.0,
+   -0.5000005,
    1.0,
-   8.554558619258297e-17,
-   -1.5414619354571418e-17,
-   -7.431705344189539e-17
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   0.1534349872092343,
-   0.13011037713361942,
-   0.17687080309112568,
-   0.12445987151116514,
-   0.7927158776768289,
-   0.1659801606729213,
-   0.5732031611265507
-  ],
-  [
-   0.3879524558858681,
-   -0.20073323537050866,
-   0.7295132972304873,
-   0.7060281754667392,
-   0.3868247603875867,
-   -0.5919177347833785,
-   0.03904120191678932
-  ],
-  [
-   -0.42118469853343316,
-   0.7295132972304871,
-   -0.6689440338813515,
-   0.5000000000000001,
-   -4.562261667898087e-17,
-   -4.4645925345354956e-17,
-   -0.8660254037844386
-  ],
-  [
-   0.2608172722636283,
-   0.09014849624065471,
-   -0.832278490673313,
-   0.6878672886111076,
-   -0.31959642694966944,
-   -0.630759957417245,
-   -0.16382488595693637
-  ],
-  [
-   -0.42118469853343316,
-   0.7295132972304871,
-   0.7295132972304872,
-   3.8405245964020484e-17,
+   -0.2886754232699475,
+   -0.5000005,
+   -0.5000005,
    1.0,
-   -1.0945964402191443e-17,
-   2.988156327995933e-17
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   -0.07251794725502485,
-   -0.18868766892856154,
-   -0.26458860196838324,
-   0.5947500943803911,
-   0.0488221558003644,
-   0.6965625972737542,
-   -0.3983582187137134
+   -0.2886754232699475,
+   0.5000005,
+   -0.5000005,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.0,
+   0.0,
+   -0.5000005,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  [
+   0.577350846539895,
+   0.0,
+   0.5000005,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -0.2886754232699475,
+   -0.5000005,
+   0.5000005,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -0.2886754232699475,
+   0.5000005,
+   0.5000005,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.0,
+   0.0,
+   0.5000005,
+   0.0,
+   0.0,
+   0.0,
+   1.0
   ]
  ],
  "record_id": "pr3inpr3_n08",
  "title": "8 prism3s in a prism3",
  "family": "prisms",
  "source": {
-  "hash": "947f5a3935472b24",
+  "hash": "ac3da1021554adf2",
   "clear": 1e-07,
   "cap": 2.5000005196156
  },
- "s_tight": 2.45902632395,
+ "s_tight": 2.000001,
  "closed_form_conjecture": null,
  "volume_lower_bound": 2.0,
- "found_by": "Alejandro Zarzuelo",
+ "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/6)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "ascend",
-  "seed": 1328359791,
-  "var": "base",
-  "raw": 2.47733171181037,
-  "host": "laptop"
+  "move": "community",
+  "lineage": "PingYou Ltd",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/6",
+  "submitted_by": "BuddenPing",
+  "record_file": "records/community/pr3inpr3/pr3inpr3_n08_pingyou_20261013.json"
  },
- "density": 0.538022113812563
+ "density": 0.9999979803874189
 }

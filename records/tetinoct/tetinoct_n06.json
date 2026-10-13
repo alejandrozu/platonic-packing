@@ -1,0 +1,97 @@
+{
+ "problem": "min/tetrahedra_in_octahedron",
+ "piece": "tetrahedron",
+ "container": "octahedron",
+ "n": 6,
+ "s": 1.48186,
+ "s_plus": "1.48186+",
+ "s_full": 1.4818610652181,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020042588709e-07,
+  "min_wall_gap": 1.000000219297803e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.4556928707775931,
+   0.10560313636010296,
+   0.11496594797238101,
+   0.8216308858250403,
+   -0.01581118660294957,
+   0.40290984962235943,
+   -0.4029098496113668
+  ],
+  [
+   0.10560315731820576,
+   0.11496590439545154,
+   -0.4556928495274818,
+   0.27372008881085647,
+   0.29608048452286906,
+   -0.2960804845227909,
+   -0.8658810578542698
+  ],
+  [
+   0.11496592676639393,
+   -0.4556928906499737,
+   -0.10560313331034023,
+   0.015811190507941653,
+   -0.40290984827768167,
+   -0.8216308870633043,
+   0.40290984827768234
+  ],
+  [
+   -0.11496592516210433,
+   0.4556928498916264,
+   0.10560317843867562,
+   0.2960804846058958,
+   -0.2737200885017943,
+   -0.29608048467206455,
+   0.8658810578725368
+  ],
+  [
+   -0.10560315730855627,
+   -0.11496594860121423,
+   0.4556928912028485,
+   0.40290984938829294,
+   -0.8216308859848355,
+   -0.40290984949711234,
+   -0.01581118717528044
+  ],
+  [
+   -0.4556928693018686,
+   -0.10560317900797095,
+   -0.1149659047299669,
+   0.5698005728624201,
+   -1.1231987072355143e-09,
+   -0.5698005730224351,
+   0.5921609697953443
+  ]
+ ],
+ "record_id": "tetinoct_n06",
+ "title": "6 unit tetrahedra in an octahedron",
+ "source": {
+  "hash": "7678ee97d5672a2a",
+  "clear": 1e-07,
+  "cap": 1.6430505146337
+ },
+ "s_tight": 1.481860775184,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.1447142425533319,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/tetinoct/tetinoct_n06_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l2/m1/n6/platonic_n6_m1_l2.html"
+ },
+ "density": 0.4609658970132947
+}

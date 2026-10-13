@@ -3,96 +3,95 @@
  "piece": "dodecahedron",
  "container": "icosahedron",
  "n": 6,
- "s": 3.63755,
- "s_plus": "3.63755+",
- "s_full": 3.63755982459,
+ "s": 3.61803,
+ "s_plus": "3.61803+",
+ "s_full": 3.6180342558495,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000000005838672e-07,
-  "min_wall_gap": 1.0000004646570915e-07
+  "min_pair_gap": 1.0000019923239734e-07,
+  "min_wall_gap": 1.0000000782994789e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
  "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
- "date": "2026-10-10",
+ "date": "2026-10-13",
  "pieces": [
   [
-   -0.4467966939544748,
-   -1.0358983834607443,
-   1.1608983890736257,
-   0.1350453783688477,
-   -3.523366478206678e-14,
-   0.925614793410966,
-   0.35355339059325924
+   1.3712294209770874e-08,
+   1.4633681017062673e-08,
+   -1.6180340658120769,
+   4.742772379453369e-09,
+   -0.4999999917606325,
+   -0.8090169968281467,
+   0.30901700128396503
   ],
   [
-   -0.11954243066606139,
-   1.2381526411362564,
-   1.035898383460796,
-   0.17677669529665752,
-   0.9673461103387287,
-   0.041731316927757556,
-   -0.17677669529663656
+   1.6180340633070716,
+   -9.195129416114913e-09,
+   1.2945364776504902e-09,
+   4.7316242705004985e-09,
+   -0.49999999817288227,
+   -0.8090169913558066,
+   0.30901700523549896
   ],
   [
-   -1.5565763626645668,
-   0.2022542576755293,
-   -0.39567797359094437,
-   0.32776201833659635,
-   -0.8163607872987569,
-   0.10925400611221384,
-   0.4628073967054837
+   -1.618034084344148,
+   1.7613663342969184e-09,
+   -9.822222962820331e-11,
+   5.841970719088607e-09,
+   -0.5000000007065765,
+   -0.8090169927589448,
+   0.3090169974624327
   ],
   [
-   0.4467966939543745,
-   1.0358983834607869,
-   -1.160898389073585,
-   0.6813154089299057,
-   0.2442993844810554,
-   -0.6813154089298841,
-   0.10925400611216846
+   -7.239262993212534e-09,
+   1.6180340769207826,
+   1.1009507403609324e-08,
+   1.8557306405508042e-09,
+   0.8090169946907108,
+   0.309016993106052,
+   -0.5000000002733049
   ],
   [
-   1.5565763626645517,
-   -0.20225425767555336,
-   0.3956779735909395,
-   0.6395840920021066,
-   0.6395840920021322,
-   0.06752268918444095,
-   -0.42107607977769335
+   6.673503471202181e-09,
+   -1.2870490172639838e-08,
+   1.6180340817623684,
+   5.0165410391288215e-09,
+   7.719790210749937e-09,
+   1.9172304298668777e-09,
+   1.0
   ],
   [
-   0.11954243066606003,
-   -1.2381526411362869,
-   -1.0358983834607463,
-   0.0675226891844271,
-   -0.8580921042265247,
-   0.504538713633257,
-   0.06752268918442628
+   -5.4538004177327204e-09,
+   -1.6180340869858953,
+   -5.7845440047251795e-09,
+   2.0770014759364951e-10,
+   -0.4999999970081281,
+   -0.8090169921070652,
+   0.3090170051532903
   ]
  ],
  "record_id": "dodinico_n06",
  "title": "6 unit dodecahedra in an icosahedron",
  "source": {
-  "hash": "0f79c71d2b492ba9",
+  "hash": "17aecc16bbdc7e31",
   "clear": 1e-07,
   "cap": 3.8564159123463
  },
- "s_tight": 3.637559601591,
- "closed_form_conjecture": "(2 + 17\u221a5)/11",
+ "s_tight": 3.61803412036,
+ "closed_form_conjecture": null,
  "volume_lower_bound": 2.762194531598197,
- "found_by": "Alejandro Zarzuelo",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "search": {
-  "move": "hop",
-  "seed": 1851581613,
-  "minDiff": 0.10751471742462823,
-  "expand": 0.0300695942386869,
-  "rh": 0.11241021710568086,
-  "focus": 0,
-  "from": "best",
-  "raw": 3.637758056870379
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/dodinico/dodinico_n06_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l4/m5/n6/platonic_n6_m5_l4.html"
  },
- "density": 0.43785705288202725
+ "density": 0.44498437334765
 }

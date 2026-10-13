@@ -1,0 +1,178 @@
+{
+ "problem": "min/cubes_in_dodecahedron",
+ "piece": "cube",
+ "container": "dodecahedron",
+ "n": 15,
+ "s": 1.58086,
+ "s_plus": "1.58086+",
+ "s_full": 1.5808665677774,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020111977648e-07,
+  "min_wall_gap": 1.000000895423625e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   1.2421096367138498,
+   -0.0008989886820798079,
+   0.404403780867749,
+   0.9765113691821675,
+   0.10987056999966091,
+   0.09537895394522197,
+   -0.15892406630285283
+  ],
+  [
+   0.2703668721742781,
+   0.5853508678771105,
+   1.086803602584757,
+   0.019555545224307015,
+   -0.004008149378856265,
+   0.7123213624058019,
+   0.7015695204681281
+  ],
+  [
+   0.02564601206421796,
+   -0.40784815037419786,
+   1.2026000550463587,
+   0.6785796781839539,
+   0.16855978036726194,
+   -0.18262599045812944,
+   -0.6912054458751677
+  ],
+  [
+   -1.1999361706159184,
+   -0.10362299453071959,
+   -0.41408234495545426,
+   0.4128983496585774,
+   0.6039313505481918,
+   0.31794986032845063,
+   -0.603066963936327
+  ],
+  [
+   -0.2148687393223892,
+   -0.8964223010514225,
+   -0.933940877919022,
+   0.36298792812523517,
+   0.6415910855240775,
+   0.5877254232083013,
+   -0.33343585578939816
+  ],
+  [
+   0.9115713926135143,
+   -0.7478293614592944,
+   -0.6772888698121026,
+   0.3778392178584217,
+   0.6377468186102292,
+   0.43059321708124454,
+   -0.5148844551977578
+  ],
+  [
+   -0.7990530434541034,
+   1.0301589030688316,
+   -0.44377374898419936,
+   0.13920078739064295,
+   0.8114170955962993,
+   0.4959470028770422,
+   -0.2761557678216595
+  ],
+  [
+   -0.7136987083542109,
+   0.8392286882200346,
+   0.7521972189735545,
+   0.45130021082813604,
+   0.5272405550851545,
+   -0.5542506661705727,
+   0.4595124762500519
+  ],
+  [
+   -0.930771823638417,
+   -0.23433967269250916,
+   0.8604156705212263,
+   0.5994190978206476,
+   0.6211711645679812,
+   0.3664937088555347,
+   -0.34716781366718524
+  ],
+  [
+   -0.32371024614503824,
+   -1.3518174526833269,
+   0.1567582027824667,
+   0.5853644948240209,
+   0.3586391391772611,
+   -0.6476293509408485,
+   -0.33060943702433454
+  ],
+  [
+   0.8126046787615439,
+   -0.9079609446971971,
+   0.3048354039058232,
+   0.0969055117066936,
+   -0.14647916847486817,
+   -0.7554299680583607,
+   0.6312517234535834
+  ],
+  [
+   -0.06899002463266951,
+   -0.09571467472672922,
+   -0.005913969393803394,
+   0.005348835380149676,
+   0.05416940916711375,
+   0.7519577029815829,
+   -0.656960179917492
+  ],
+  [
+   1.0907573669958723,
+   0.24399393712391182,
+   -0.5532622805741567,
+   0.7579399711666,
+   -0.03468691011082613,
+   -0.6230558355426135,
+   -0.19006642041989688
+  ],
+  [
+   0.4470122401513768,
+   1.200956005478323,
+   0.06376165867813527,
+   0.7559388052629307,
+   0.15149335735966685,
+   0.0483691554471518,
+   -0.6350328418081056
+  ],
+  [
+   0.017594785585714093,
+   0.27296933116586,
+   -1.348937649255086,
+   0.2392673422084287,
+   0.2635053483913592,
+   0.6447888949612693,
+   -0.6764342918985468
+  ]
+ ],
+ "record_id": "cubindod_n15",
+ "title": "15 unit cubes in a dodecahedron",
+ "source": {
+  "hash": "c27f9ec3c02e69e6",
+  "clear": 1e-07,
+  "cap": 1.623007442633
+ },
+ "s_tight": 1.580866561069,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2509171993640449,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/cubindod/cubindod_n15_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l5/m3/n15/platonic_n15_m3_l5.html"
+ },
+ "density": 0.4954502436426173
+}

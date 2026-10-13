@@ -1,0 +1,124 @@
+{
+ "problem": "min/icosahedra_in_cube",
+ "piece": "icosahedron",
+ "container": "cube",
+ "n": 9,
+ "s": 3.36339,
+ "s_plus": "3.36339+",
+ "s_full": 3.3633903004465,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020145284338e-07,
+  "min_wall_gap": 1.0000002137466879e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.8726780552671813,
+   -0.8726780557904961,
+   -0.872678055496154,
+   0.5000000000077428,
+   1.3324647025404815e-10,
+   -0.809016994466606,
+   0.3090169941224539
+  ],
+  [
+   0.8726780553500679,
+   -0.8726780558371974,
+   0.8726780558088377,
+   0.3535533905940225,
+   0.3535533905925061,
+   -0.7905694150428578,
+   -0.3535533905915866
+  ],
+  [
+   0.872678053673947,
+   0.8726780547663959,
+   0.8726780558088442,
+   0.5720614032888017,
+   -0.5720614015758521,
+   -0.5720614037502676,
+   -0.13504537768317798
+  ],
+  [
+   0.8726780555588217,
+   0.8726780553199581,
+   -0.8726780551593453,
+   0.5720614029909605,
+   -0.13504537838614575,
+   -0.5720614029573555,
+   -0.5720614025006572
+  ],
+  [
+   -0.872678055812539,
+   0.8726780553134494,
+   0.872678055800007,
+   0.3535533905882987,
+   0.35355339058208946,
+   0.7905694150469125,
+   0.35355339059866087
+  ],
+  [
+   -0.8726780558028838,
+   -0.8726780558481371,
+   0.8726780557906791,
+   0.30901699437496155,
+   3.1744987182851567e-13,
+   -0.5000000000000099,
+   0.809016994374936
+  ],
+  [
+   -0.872678053866567,
+   -0.8726780557787913,
+   -0.8726780540662833,
+   0.21850801142215756,
+   -0.21850801009849852,
+   -0.9256147941355869,
+   -0.2185080120829986
+  ],
+  [
+   -0.8726780558135849,
+   0.8726780553153256,
+   -0.8726780553548111,
+   0.21850801222441035,
+   -0.21850801222441055,
+   -0.9256147934109582,
+   -0.2185080122244104
+  ],
+  [
+   -2.30680597482978e-10,
+   -2.6757418209880593e-10,
+   2.2701329617706578e-10,
+   0.809016993192053,
+   -0.3090169950798876,
+   -0.5000000014782864,
+   1.0359528179609238e-09
+  ]
+ ],
+ "record_id": "icoincub_n09",
+ "title": "9 unit icosahedra in a cube",
+ "source": {
+  "hash": "d208442801154845",
+  "clear": 1e-07,
+  "cap": 3.7041921908773
+ },
+ "s_tight": 3.363390100446,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.6978151009787936,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/icoincub/icoincub_n09_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l3/m4/n9/platonic_n9_m4_l3.html"
+ },
+ "density": 0.5160653991027543
+}

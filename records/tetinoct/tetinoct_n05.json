@@ -1,0 +1,88 @@
+{
+ "problem": "min/tetrahedra_in_octahedron",
+ "piece": "tetrahedron",
+ "container": "octahedron",
+ "n": 5,
+ "s": 1.47561,
+ "s_plus": "1.47561+",
+ "s_full": 1.4756131871532,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000001910722581e-07,
+  "min_wall_gap": 1.0000003858312567e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.1075285158357359,
+   0.11971663077954385,
+   0.4473849975744452,
+   0.8208458776638744,
+   0.4037537188931688,
+   -0.40375371887700884,
+   -0.013338444255055065
+  ],
+  [
+   -0.4462867801776467,
+   -0.1099777308832889,
+   0.07963523598936004,
+   0.048750947851642606,
+   0.3913506170678988,
+   -0.8314521853799116,
+   -0.3913506139398666
+  ],
+  [
+   0.10893855348910994,
+   -0.4452476061726994,
+   0.0729872888422368,
+   0.31495253569633924,
+   -0.31495253238985815,
+   0.8641426661974068,
+   0.23423760384895292
+  ],
+  [
+   0.4283986603725001,
+   0.1132051180888489,
+   -0.14134095617841017,
+   0.574498126662872,
+   -4.307459097812075e-09,
+   0.5744981234445352,
+   0.5830127002214947
+  ],
+  [
+   -0.17506857245995647,
+   0.3950045783418978,
+   -0.11978937356494307,
+   0.8164942724734464,
+   1.9987961909329415e-11,
+   0.40992798489843046,
+   0.4065662925221049
+  ]
+ ],
+ "record_id": "tetinoct_n05",
+ "title": "5 unit tetrahedra in an octahedron",
+ "source": {
+  "hash": "e1d60618644c5ef8",
+  "clear": 1e-07,
+  "cap": 1.4818610652181
+ },
+ "s_tight": 1.475612953591,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.077217345015942,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/tetinoct/tetinoct_n05_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l2/m1/n5/platonic_n5_m1_l2.html"
+ },
+ "density": 0.38903836357548627
+}

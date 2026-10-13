@@ -1,0 +1,61 @@
+{
+ "problem": "min/cubes_in_icosahedron",
+ "piece": "cube",
+ "container": "icosahedron",
+ "n": 2,
+ "s": 1.48861,
+ "s_plus": "1.48861+",
+ "s_full": 1.4886141778715,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000002010119755e-07,
+  "min_wall_gap": 1.0000005579158255e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -0.10300568337394407,
+   -0.1262729976193882,
+   -0.47398638402401305,
+   0.2820926295780628,
+   -0.1261556605197419,
+   -0.1261556608689866,
+   -0.9426522406949822
+  ],
+  [
+   0.10300566529287612,
+   0.12627302536815294,
+   0.47398637570879487,
+   0.28209263198421375,
+   -0.12615565967636558,
+   -0.12615565975777726,
+   -0.9426522402365148
+  ]
+ ],
+ "record_id": "cubinico_n02",
+ "title": "2 unit cubes in an icosahedron",
+ "source": {
+  "hash": "8478796a6f7bad57",
+  "clear": 1e-07,
+  "cap": 1.6743386199876
+ },
+ "s_tight": 1.488614044226,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 0.9714310640703531,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/cubinico/cubinico_n02_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l4/m3/n2/platonic_n2_m3_l4.html"
+ },
+ "density": 0.27790061523693316
+}

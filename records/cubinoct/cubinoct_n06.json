@@ -3,96 +3,95 @@
  "piece": "cube",
  "container": "octahedron",
  "n": 6,
- "s": 2.93435,
- "s_plus": "2.93435+",
- "s_full": 2.9343536136245,
+ "s": 2.93185,
+ "s_plus": "2.93185+",
+ "s_full": 2.931852113113,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 9.999999987450603e-08,
-  "min_wall_gap": 1.0000004024846021e-07
+  "min_pair_gap": 1.0000019165512519e-07,
+  "min_wall_gap": 1.0000001848808893e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
  "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
- "date": "2026-10-10",
+ "date": "2026-10-13",
  "pieces": [
   [
-   -0.15042575262090255,
-   0.841243435985003,
-   -0.10973846212781892,
-   0.30915082001756145,
-   0.8619131049162846,
-   0.4008873444353384,
-   0.028651476883779038
+   0.8660254945908734,
+   1.2313940138205207e-08,
+   -1.2291246709242701e-08,
+   0.2705980474713129,
+   -0.6532814860949133,
+   -0.6532814806419136,
+   0.2705980481833601
   ],
   [
-   0.10973846212781448,
-   -0.15042575262089922,
-   -0.8412434359850016,
-   0.7716498962427025,
-   0.06161173178980061,
-   0.4911505531089179,
-   0.39941402869114695
+   0.26967276358521025,
+   0.11957318043384894,
+   -0.8178609894800095,
+   0.36470519961393927,
+   -0.1159168959199234,
+   0.8804762392427868,
+   0.27984814229100263
   ],
   [
-   0.14472869850790832,
-   -0.09525336424616762,
-   0.8382905131496097,
-   0.42663884812132236,
-   -0.053253730194646555,
-   0.4676961892171021,
-   0.7722717190768207
+   -0.26900241205322273,
+   -0.8185312849556897,
+   -0.11957317967358765,
+   0.36470519968675297,
+   0.27984813869387726,
+   0.11591689483961644,
+   -0.8804762404981519
   ],
   [
-   0.8412434359850006,
-   0.10973846212781793,
-   0.1504257526209005,
-   0.8929347610219509,
-   -0.23886229483933077,
-   0.32599444153776286,
-   0.19834298764827102
+   -0.2688170814825678,
+   0.8182117817562183,
+   0.12007801951832164,
+   0.3393434412948031,
+   0.17618263498112996,
+   -0.4245992752422937,
+   -0.8206833515095974
   ],
   [
-   -0.838290513149609,
-   0.14472869850790773,
-   0.09525336424616834,
-   0.029031924306313073,
-   0.5084224957336994,
-   0.5837346432219256,
-   0.6323903695547238
+   -0.8660254691345189,
+   1.2313940138205207e-08,
+   -1.2291246709242701e-08,
+   0.27059804997911807,
+   0.6532814824771164,
+   0.2705980499791179,
+   -0.6532814824771163
   ],
   [
-   -0.09525336424616729,
-   -0.8382905131496093,
-   -0.14472869850790818,
-   0.029031924306314624,
-   -0.6323903695547245,
-   0.5084224957336994,
-   -0.5837346432219248
+   0.26900244211031926,
+   -0.11957315586905347,
+   0.818531286504592,
+   0.3647051996310036,
+   0.2798481423331196,
+   0.8804762392171481,
+   0.11591689595929959
   ]
  ],
  "record_id": "cubinoct_n06",
  "title": "6 unit cubes in an octahedron",
  "source": {
-  "hash": "16f1c7d400b6e659",
+  "hash": "9f5258dcf01f2d0f",
   "clear": 1e-07,
   "cap": 3.2910251079566
  },
- "s_tight": 2.934353214549,
+ "s_tight": 2.931851815435,
  "closed_form_conjecture": null,
  "volume_lower_bound": 2.3348151486780315,
- "found_by": "Alejandro Zarzuelo",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "search": {
-  "move": "hop",
-  "seed": 184696872,
-  "minDiff": 0.0441381420879255,
-  "expand": 0.0158595567687243,
-  "rh": 0.09316047109489255,
-  "focus": 0,
-  "from": "best",
-  "raw": 2.937809882845639
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/cubinoct/cubinoct_n06_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l2/m3/n6/platonic_n6_m3_l2.html"
  },
- "density": 0.5037559180085018
+ "density": 0.5050464549650379
 }

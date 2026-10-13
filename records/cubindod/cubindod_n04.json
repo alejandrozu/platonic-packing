@@ -1,0 +1,79 @@
+{
+ "problem": "min/cubes_in_dodecahedron",
+ "piece": "cube",
+ "container": "dodecahedron",
+ "n": 4,
+ "s": 1.13211,
+ "s_plus": "1.13211+",
+ "s_full": 1.1321175673993,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020105038754e-07,
+  "min_wall_gap": 1.0000010708388629e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.5797865340355748,
+   -0.5086924214166973,
+   -0.22945750329842027,
+   0.0037175059909986363,
+   0.6034470507424521,
+   -0.368580597880576,
+   0.707097008878867
+  ],
+  [
+   -0.6191451355559602,
+   -0.05074127196861208,
+   -0.511523008860167,
+   0.05650931341240096,
+   -0.41862872217793806,
+   0.7048451587325683,
+   -0.5698683994367355
+  ],
+  [
+   0.25156970334434275,
+   0.6586180497445264,
+   4.823223708086934e-09,
+   0.3024689731359412,
+   -0.47670086751034835,
+   -0.02055583623794316,
+   -0.8251340865589845
+  ],
+  [
+   -0.2478750852054138,
+   -0.19255380470373665,
+   0.7409805350530871,
+   0.8677075875354431,
+   -0.09974517522214987,
+   0.4837786631337137,
+   0.05561157837969388
+  ]
+ ],
+ "record_id": "cubindod_n04",
+ "title": "4 unit cubes in a dodecahedron",
+ "source": {
+  "hash": "3d07729831ba0e8e",
+  "clear": 1e-07,
+  "cap": 1.2169699865333
+ },
+ "s_tight": 1.132117487047,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 0.8051648513377263,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/cubindod/cubindod_n04_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l5/m3/n4/platonic_n4_m3_l5.html"
+ },
+ "density": 0.3597326320112111
+}

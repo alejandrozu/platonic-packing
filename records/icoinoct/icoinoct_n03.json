@@ -1,0 +1,70 @@
+{
+ "problem": "min/icosahedra_in_octahedron",
+ "piece": "icosahedron",
+ "container": "octahedron",
+ "n": 3,
+ "s": 3.3489,
+ "s_plus": "3.34890+",
+ "s_full": 3.3489061273121,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020128630993e-07,
+  "min_wall_gap": 1.0000000782994789e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -0.8090170483022122,
+   -6.80551135803389e-14,
+   0.2500000162444021,
+   0.4999999999735529,
+   -1.0171707316255001e-11,
+   -0.8090169943912515,
+   0.3090169943750553
+  ],
+  [
+   0.8090170483019804,
+   -6.80551135803389e-14,
+   0.2500000162446105,
+   3.2674069342002094e-11,
+   -2.693641535973529e-15,
+   -1.0,
+   1.0552420422501178e-13
+  ],
+  [
+   -1.460913100513133e-14,
+   -6.80551135803389e-14,
+   -1.0590170645992305,
+   8.458582719044632e-14,
+   -0.809016994374942,
+   -0.5000000000000338,
+   0.3090169943749075
+  ]
+ ],
+ "record_id": "icoinoct_n03",
+ "title": "3 unit icosahedra in an octahedron",
+ "source": {
+  "hash": "3e928eb85082c8f5",
+  "clear": 1e-07,
+  "cap": 3.5070200209413
+ },
+ "s_tight": 3.348905882363,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.403480015241657,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/icoinoct/icoinoct_n03_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l2/m4/n3/platonic_n3_m4_l2.html"
+ },
+ "density": 0.3696686520107912
+}

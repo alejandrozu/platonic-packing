@@ -1,0 +1,124 @@
+{
+ "problem": "min/tetrahedra_in_icosahedron",
+ "piece": "tetrahedron",
+ "container": "icosahedron",
+ "n": 9,
+ "s": 1.04041,
+ "s_plus": "1.04041+",
+ "s_full": 1.0404191823042,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020005639099e-07,
+  "min_wall_gap": 1.0000003414223357e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.049089591883908615,
+   0.5033732714360402,
+   -0.1963921791614359,
+   0.8764033459335135,
+   0.25357785967992136,
+   0.37977019834553305,
+   0.1529380291663483
+  ],
+  [
+   -0.16220470016658506,
+   -0.011334559588581894,
+   -0.5322151678135041,
+   0.2532976732238204,
+   0.39221485679456203,
+   0.8777672347809105,
+   0.10738936816134961
+  ],
+  [
+   -0.33577181914549836,
+   0.327978893574552,
+   -0.32800319549075446,
+   0.7720001662325408,
+   0.016532177529490637,
+   0.14890966253407145,
+   0.6177121844735232
+  ],
+  [
+   -0.28979220807692807,
+   -0.34410571503411946,
+   -0.32129230153506927,
+   0.32949449416008425,
+   0.5767724122286765,
+   0.5140136874782263,
+   0.5427309571925488
+  ],
+  [
+   0.39175442852650444,
+   -0.24841196889389877,
+   0.08055408999214635,
+   0.12824745631392503,
+   0.2797944183486425,
+   0.9296045134906876,
+   -0.20273904879843613
+  ],
+  [
+   -0.3221705848385209,
+   0.3409733506191969,
+   0.3452288915265174,
+   0.11134421603911952,
+   -0.11134421602897605,
+   -0.1113442159382896,
+   0.9812274948698768
+  ],
+  [
+   0.43213527810717856,
+   0.17884598789468997,
+   0.10157210209724217,
+   0.21620126528643316,
+   0.015689859090684103,
+   -0.4002380435247222,
+   0.8904045988907304
+  ],
+  [
+   -0.4977259341399668,
+   -0.2300991581053548,
+   0.020460823658100008,
+   0.7060118245811329,
+   0.476314878737162,
+   0.5203392116151058,
+   0.06259828033574456
+  ],
+  [
+   -0.5417299589906757,
+   0.19031538491151945,
+   0.00966232536368179,
+   0.10726316750110171,
+   -0.2555940116504742,
+   0.8883297880260181,
+   -0.3661099586349677
+  ]
+ ],
+ "record_id": "tetinico_n09",
+ "title": "9 unit tetrahedra in an icosahedron",
+ "source": {
+  "hash": "e3549efdc7861bb3",
+  "clear": 1e-07,
+  "cap": 1.0505741407757
+ },
+ "s_tight": 1.040419002395,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 0.7863105009642829,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/tetinico/tetinico_n09_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l4/m1/n9/platonic_n9_m1_l4.html"
+ },
+ "density": 0.43167527524623744
+}

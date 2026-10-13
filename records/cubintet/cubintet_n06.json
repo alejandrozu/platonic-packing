@@ -1,0 +1,97 @@
+{
+ "problem": "min/cubes_in_tetrahedron",
+ "piece": "cube",
+ "container": "tetrahedron",
+ "n": 6,
+ "s": 5.37944,
+ "s_plus": "5.37944+",
+ "s_full": 5.3794461981611,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020084222072e-07,
+  "min_wall_gap": 1.000000036111004e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.916322710015376,
+   0.7668934344720619,
+   0.6473202786030113,
+   0.17591989660616156,
+   0.42470820027786677,
+   -0.8204732385702836,
+   0.33985114297998675
+  ],
+  [
+   -0.9163226959082033,
+   0.6473202649886949,
+   -0.7668934336560587,
+   0.17591989666176516,
+   0.4247082002557834,
+   -0.33985114288451396,
+   -0.8204732386093389
+  ],
+  [
+   0.8806577824526832,
+   0.07761904192912103,
+   -0.07761903948175078,
+   0.42470819980949936,
+   -0.17591989773690223,
+   -0.3398511431368216,
+   -0.8204732385053202
+  ],
+  [
+   -0.9163226927795147,
+   -0.6473202803249962,
+   0.766893445298672,
+   0.17591989301570618,
+   0.4247082002926324,
+   0.33985114282367207,
+   0.8204732393972273
+  ],
+  [
+   -0.5131892094611912,
+   -0.2613533304323137,
+   -0.2613533249396159,
+   0.540625094154001,
+   0.4557680388183982,
+   0.7045563441346466,
+   0.06000300244346356
+  ],
+  [
+   0.9163227100152677,
+   -0.6473202780419334,
+   -0.7668934339109744,
+   0.820473238570283,
+   -0.3398511429799873,
+   0.1759198966061621,
+   0.4247082002778674
+  ]
+ ],
+ "record_id": "cubintet_n06",
+ "title": "6 unit cubes in a tetrahedron",
+ "source": {
+  "hash": "cbc2e2bfc7560edd",
+  "clear": 1e-07,
+  "cap": 5.5341467525107
+ },
+ "s_tight": 5.379445708263,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 3.706288023162795,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/cubintet/cubintet_n06_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l1/m3/n6/platonic_n6_m3_l1.html"
+ },
+ "density": 0.32704295153341173
+}

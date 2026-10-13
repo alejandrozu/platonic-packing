@@ -1,0 +1,70 @@
+{
+ "problem": "min/cubes_in_icosahedron",
+ "piece": "cube",
+ "container": "icosahedron",
+ "n": 3,
+ "s": 1.67433,
+ "s_plus": "1.67433+",
+ "s_full": 1.6743386199876,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020102214407e-07,
+  "min_wall_gap": 1.000000533490919e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -0.5303725958794601,
+   -0.2043924247119761,
+   0.21136351806902942,
+   0.3098056008704518,
+   0.09442099335671063,
+   0.7474004049416575,
+   -0.5800843045419147
+  ],
+  [
+   -0.031955179916929595,
+   0.11040998487583815,
+   -0.5964215405060292,
+   0.30980560085387526,
+   0.0944209932411601,
+   0.7474004048859368,
+   -0.5800843046413684
+  ],
+  [
+   0.5150019936215376,
+   0.1542018879643407,
+   0.3784105322980832,
+   0.3097297307853475,
+   0.09466957347054379,
+   0.7469346622447206,
+   -0.5806838865199435
+  ]
+ ],
+ "record_id": "cubinico_n03",
+ "title": "3 unit cubes in an icosahedron",
+ "source": {
+  "hash": "635464ad088ce762",
+  "clear": 1e-07,
+  "cap": 1.7756983129288
+ },
+ "s_tight": 1.674338466038,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.1120109747000715,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/cubinico/cubinico_n03_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l4/m3/n3/platonic_n3_m3_l4.html"
+ },
+ "density": 0.29295258607005764
+}

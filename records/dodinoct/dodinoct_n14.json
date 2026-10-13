@@ -1,0 +1,169 @@
+{
+ "problem": "min/dodecahedra_in_octahedron",
+ "piece": "dodecahedron",
+ "container": "octahedron",
+ "n": 14,
+ "s": 7.84884,
+ "s_plus": "7.84884+",
+ "s_full": 7.8488438663371,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000002023410218e-07,
+  "min_wall_gap": 1.0000003936028179e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -1.127845452202023,
+   1.282205718795669,
+   1.2112501053729547,
+   0.29328416596234697,
+   0.733890375303717,
+   -0.09493928511511572,
+   0.6052898868923638
+  ],
+  [
+   0.11950477814792168,
+   -0.049383259572384444,
+   -3.317084910876505,
+   0.7851993140382332,
+   -0.3315629331831435,
+   -0.5193850300049739,
+   0.06137792094565334
+  ],
+  [
+   1.269160058553411,
+   0.8744476145039025,
+   1.477693839101138,
+   0.9303416734196582,
+   0.15460840861155384,
+   0.29922387083104984,
+   -0.14500236484346118
+  ],
+  [
+   1.478698888851403,
+   1.2682216447831216,
+   -0.8743803194481256,
+   0.4466079416473397,
+   0.6356869374234417,
+   0.2220644830513426,
+   -0.589178096515707
+  ],
+  [
+   -0.8679140214824512,
+   1.48027582645841,
+   -1.2731115025552784,
+   0.10441947237861696,
+   -0.32588819641157213,
+   0.7563413743826098,
+   0.5575313288280838
+  ],
+  [
+   0.03570682718796881,
+   3.280494441630298,
+   0.10435973124358569,
+   0.10880837086205813,
+   0.6197462183504371,
+   -0.5619353380504035,
+   0.536939511603361
+  ],
+  [
+   -0.1381792811161473,
+   -0.013186725377957943,
+   3.276179911299218,
+   0.5599120244522843,
+   -0.708872085038399,
+   -0.3710590190564334,
+   -0.2152071009607605
+  ],
+  [
+   -3.2177567198903074,
+   0.16594860315670998,
+   0.03697562759606273,
+   0.06359067510470705,
+   0.8641541111536594,
+   0.009819079953372245,
+   -0.49909666787589935
+  ],
+  [
+   -1.4811111224633522,
+   -1.2561323153595747,
+   0.8840576514897821,
+   0.7674518270817348,
+   0.31435980065496927,
+   -0.5472579256100119,
+   -0.11271367130078701
+  ],
+  [
+   0.8813746282231608,
+   -1.4751796158051564,
+   1.2647478164067831,
+   0.9200895302496556,
+   -0.023694030769034823,
+   -0.023659838179988343,
+   0.39027434105790393
+  ],
+  [
+   -0.22241336755651003,
+   -3.203327854896679,
+   -0.19555989253603473,
+   0.7691672879965182,
+   -0.3160568753383208,
+   0.5373619676236705,
+   -0.14047010493010909
+  ],
+  [
+   1.2051668896123513,
+   -1.1313737789948335,
+   -1.28476066540708,
+   0.49007063038044574,
+   0.7279195304655088,
+   -0.36415424478145886,
+   -0.3120186219010511
+  ],
+  [
+   -1.2934277825532794,
+   -0.8647032664601526,
+   -1.4631705205275076,
+   0.6533086213842665,
+   0.23848912692196916,
+   -0.6583345965918499,
+   -0.28793461149231875
+  ],
+  [
+   3.272091865653002,
+   -0.21946655259658485,
+   -0.04336434281619576,
+   0.7298231742767026,
+   0.3981422083848851,
+   0.4297932851907567,
+   0.352304766070545
+  ]
+ ],
+ "record_id": "dodinoct_n14",
+ "title": "14 unit dodecahedra in an octahedron",
+ "source": {
+  "hash": "1e469dc614be55a8",
+  "clear": 1e-07,
+  "cap": 7.9789057477263
+ },
+ "s_tight": 7.848843621388,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 6.105388252109272,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/dodinoct/dodinoct_n14_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l2/m5/n14/platonic_n14_m5_l2.html"
+ },
+ "density": 0.47067679795730055
+}

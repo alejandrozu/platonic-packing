@@ -1,0 +1,151 @@
+{
+ "problem": "min/octahedra_in_icosahedron",
+ "piece": "octahedron",
+ "container": "icosahedron",
+ "n": 12,
+ "s": 1.7144,
+ "s_plus": "1.71440+",
+ "s_full": 1.7144032840852,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020082140404e-07,
+  "min_wall_gap": 1.0000002048649037e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -0.034640970589190155,
+   -0.5902689238561696,
+   0.7331102810446557,
+   0.09500263224262491,
+   0.18438899263006525,
+   0.5497498486207607,
+   0.8091664249122631
+  ],
+  [
+   0.5213299562738606,
+   -0.7667729475116511,
+   -0.05032128998954149,
+   0.13617968440401246,
+   0.8794259539149645,
+   0.20712751136553215,
+   -0.40640285330186804
+  ],
+  [
+   0.007299228565906946,
+   -0.5308106293577459,
+   -0.7069764581461445,
+   0.5862974574901946,
+   -0.07316833878653775,
+   -0.1921044894046495,
+   -0.7835799580708601
+  ],
+  [
+   0.7790026182478823,
+   0.09242926986682454,
+   0.5081756322853761,
+   0.44609903911907783,
+   -0.6549947476976932,
+   0.6052708996877451,
+   0.0749977718112916
+  ],
+  [
+   -0.5420186446529908,
+   -0.76030914437517,
+   -0.12373308433433777,
+   0.09825414679977194,
+   0.9704717721605388,
+   -0.21730702306593788,
+   0.03617070364883972
+  ],
+  [
+   -0.0729281848492764,
+   0.5077640996418923,
+   -0.7765905652980986,
+   0.5017681356726525,
+   0.863186090315242,
+   -0.03374600421636485,
+   0.044718214513850135
+  ],
+  [
+   -0.391165896351502,
+   0.8553604243399763,
+   -0.013797983262947129,
+   0.04120918634238497,
+   0.9258284359487267,
+   0.34984176687150986,
+   -0.1369461511031016
+  ],
+  [
+   -0.800297498690359,
+   0.024571650021486036,
+   -0.46324775392699374,
+   0.05575034107828072,
+   0.28643347246042133,
+   0.12393663892182384,
+   -0.9484131351139554
+  ],
+  [
+   -0.07315545897097184,
+   0.42503365604924487,
+   0.7543432261435512,
+   0.2064280185334625,
+   -0.23696677816919506,
+   -0.49001182301524765,
+   0.8130944794510252
+  ],
+  [
+   0.5270742474211841,
+   0.7617401542261693,
+   0.009499100094759048,
+   0.053211181386615854,
+   0.2837204549463443,
+   0.6528546092020958,
+   0.7003228775815188
+  ],
+  [
+   0.7517635290835285,
+   0.08977012993546701,
+   -0.559811169386706,
+   0.7435094207893237,
+   0.19513202348916192,
+   0.10329681966280932,
+   0.6312265850343272
+  ],
+  [
+   -0.7939628255165506,
+   0.060197576053179644,
+   0.47679896890662066,
+   0.12521067666900965,
+   -0.865381783667109,
+   0.14177319610034395,
+   -0.4640441959692148
+  ]
+ ],
+ "record_id": "octinico_n12",
+ "title": "12 unit octahedra in an icosahedron",
+ "source": {
+  "hash": "4a7f24056a919739",
+  "clear": 1e-07,
+  "cap": 1.7717413313027
+ },
+ "s_tight": 1.714403156325,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.3738109857188205,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/octinico/octinico_n12_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l4/m2/n12/platonic_n12_m2_l4.html"
+ },
+ "density": 0.5145670640383009
+}

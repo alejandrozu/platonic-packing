@@ -1,0 +1,160 @@
+{
+ "problem": "min/cubes_in_tetrahedron",
+ "piece": "cube",
+ "container": "tetrahedron",
+ "n": 13,
+ "s": 6.45679,
+ "s_plus": "6.45679+",
+ "s_full": 6.4567966039731,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000019268902038e-07,
+  "min_wall_gap": 1.0000000494336803e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -1.0729197184434223,
+   1.0757538637866098,
+   -1.0708463950400395,
+   0.268255646290598,
+   0.6541701386823664,
+   -0.27755093812264137,
+   0.650435096406051
+  ],
+  [
+   -0.4235164642709031,
+   0.30394329506148765,
+   -1.2972235855068526,
+   0.06000300064685489,
+   0.4557680389392908,
+   -0.5406250962371543,
+   -0.7045563426109898
+  ],
+  [
+   -1.147794312620337,
+   -1.0282211517594726,
+   1.2972235740767744,
+   0.7045563444402673,
+   0.4557680387373292,
+   -0.5406250938524766,
+   0.06000300218736482
+  ],
+  [
+   -0.5311889814283332,
+   -0.23061275876632598,
+   1.1162205229970994,
+   0.8804762392062784,
+   0.1159168915531274,
+   0.27984814415821596,
+   -0.3647051996572457
+  ],
+  [
+   0.12802992504469246,
+   1.2972235797192144,
+   0.008456750047612323,
+   0.11591689595929515,
+   -0.880476239217149,
+   -0.2798481423331212,
+   0.3647051996310018
+  ],
+  [
+   0.07781322986352626,
+   -1.2723170054500479,
+   0.01717750855788501,
+   0.14734790543210088,
+   0.8215811413091015,
+   0.4365954145216669,
+   0.3356746446019727
+  ],
+  [
+   0.36709743617262475,
+   -0.3544883114952323,
+   -1.0535583668787127,
+   0.2737664503030496,
+   -0.6231697790956452,
+   -0.2910226047099795,
+   -0.6723222446551741
+  ],
+  [
+   1.1477815885506608,
+   0.16041479862130625,
+   0.4294299647869339,
+   0.05998357940651743,
+   -0.45577059537312115,
+   -0.5406551182984115,
+   0.70453330485687
+  ],
+  [
+   1.0282211551259808,
+   1.2972235808521402,
+   1.147794323186851,
+   0.880476240154788,
+   -0.27984813938305797,
+   -0.36470520001938533,
+   -0.11591689473734607
+  ],
+  [
+   1.1484604092534216,
+   -1.0286449800268704,
+   -1.2732311662963296,
+   0.195725973883231,
+   0.3294668103326725,
+   0.8243593667321137,
+   0.41662284925061904
+  ],
+  [
+   0.309154891106097,
+   0.3432570796223112,
+   1.1435000942630063,
+   0.2798080046924071,
+   0.3647104834962061,
+   0.8804889953852519,
+   -0.11590027067909424
+  ],
+  [
+   -1.2972235797313763,
+   -0.030721433136036848,
+   0.1502945965147455,
+   0.3647051996309905,
+   -0.8804762392171295,
+   -0.2798481423331867,
+   -0.11591689595932073
+  ],
+  [
+   -0.08926890688071298,
+   -0.07911977302118586,
+   -0.08251942720074379,
+   0.024767954783652787,
+   0.6800335978496962,
+   0.7322549213751257,
+   0.027268742789891023
+  ]
+ ],
+ "record_id": "cubintet_n13",
+ "title": "13 unit cubes in a tetrahedron",
+ "source": {
+  "hash": "d14f17e2e7eb7092",
+  "clear": 1e-07,
+  "cap": 6.580843101087
+ },
+ "s_tight": 6.456796114075,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 4.795897215585469,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/cubintet/cubintet_n13_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l1/m3/n13/platonic_n13_m3_l1.html"
+ },
+ "density": 0.40978710008717356
+}

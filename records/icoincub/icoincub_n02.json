@@ -1,0 +1,61 @@
+{
+ "problem": "min/icosahedra_in_cube",
+ "piece": "icosahedron",
+ "container": "cube",
+ "n": 2,
+ "s": 2.49071,
+ "s_plus": "2.49071+",
+ "s_full": 2.4907122427351,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020172693867e-07,
+  "min_wall_gap": 1.0000004468935231e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.4363390269925516,
+   0.4363390269925562,
+   -0.43633902699255755,
+   0.2185080122244116,
+   -0.2185080122244054,
+   -0.9256147934109593,
+   -0.21850801222440924
+  ],
+  [
+   -0.4363390269925516,
+   -0.4363390269925562,
+   0.43633902699255656,
+   0.21850801222441094,
+   -0.21850801222441033,
+   -0.9256147934109581,
+   -0.21850801222441016
+  ]
+ ],
+ "record_id": "icoincub_n02",
+ "title": "2 unit icosahedra in a cube",
+ "source": {
+  "hash": "7eb931d79bd57fba",
+  "clear": 1e-07,
+  "cap": 2.7555065230072
+ },
+ "s_tight": 2.490712042735,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.634085125214028,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/icoincub/icoincub_n02_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l3/m4/n2/platonic_n2_m4_l3.html"
+ },
+ "density": 0.2823926336206794
+}

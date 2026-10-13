@@ -1,0 +1,142 @@
+{
+ "problem": "min/octahedra_in_dodecahedron",
+ "piece": "octahedron",
+ "container": "dodecahedron",
+ "n": 11,
+ "s": 1.12724,
+ "s_plus": "1.12724+",
+ "s_full": 1.1272464556777,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020089773187e-07,
+  "min_wall_gap": 1.0000007888422147e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.4705149899133238,
+   -0.8003017707112288,
+   0.18794669972910227,
+   0.5840712072140478,
+   0.7308166832180822,
+   0.31433319040892393,
+   -0.1611286623819405
+  ],
+  [
+   -0.832062634490002,
+   0.26470607151096653,
+   -0.40772711478196433,
+   0.1658463504779963,
+   -0.6100429954502921,
+   -0.4655729596168327,
+   0.6193418692521827
+  ],
+  [
+   -0.49995732636489126,
+   -0.6550674747789907,
+   -0.2709981400742094,
+   0.247091500863743,
+   0.936413173580067,
+   -0.20625658469355246,
+   -0.13976544571946783
+  ],
+  [
+   0.04720177173585928,
+   0.44312468616645273,
+   -0.7305266301312674,
+   0.2756791913283566,
+   -0.5421708937188909,
+   0.16907724573711047,
+   0.7755414820927087
+  ],
+  [
+   0.23784584126531602,
+   -0.494450236547999,
+   -0.7824608860955901,
+   0.7484601026065306,
+   -0.289700856967739,
+   -0.5783579232938567,
+   -0.14622927491305163
+  ],
+  [
+   0.7169565588242852,
+   0.3414117245299797,
+   0.5346914039164681,
+   0.9526123873407032,
+   0.24131886592711066,
+   -0.096608576436651,
+   -0.15799249156710954
+  ],
+  [
+   0.8338245073084765,
+   -0.04162294084300132,
+   -0.2696648821259037,
+   0.1518510678564421,
+   -0.15214571743194794,
+   -0.586183391744908,
+   -0.7811414501230952
+  ],
+  [
+   -0.5981397165577778,
+   0.5680516104881962,
+   0.37740149499116143,
+   0.531801135976418,
+   -0.06068928922071853,
+   -0.7621091661613122,
+   0.3642718501352869
+  ],
+  [
+   0.16472730003551186,
+   0.8924211929017891,
+   -0.02832831561016332,
+   0.5582853299446385,
+   0.2518641161336319,
+   0.7750331053596142,
+   -0.1555816279946435
+  ],
+  [
+   0.16020320844750746,
+   -0.2247438149150607,
+   0.8755838299181221,
+   0.17332428253016915,
+   0.06913359992205502,
+   0.47902842151561226,
+   0.8577359790911655
+  ],
+  [
+   -0.7581666642218876,
+   -0.35409392331144385,
+   0.505598264472216,
+   0.9381180582468671,
+   -0.28677037782346426,
+   0.12002663646251384,
+   -0.15261345200738674
+  ]
+ ],
+ "record_id": "octindod_n11",
+ "title": "11 unit octahedra in a dodecahedron",
+ "source": {
+  "hash": "df6d311aa248e730",
+  "clear": 1e-07,
+  "cap": 1.1508058630705
+ },
+ "s_tight": 1.12724638328,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 0.8779308030269112,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/octindod/octindod_n11_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l5/m2/n11/platonic_n11_m2_l5.html"
+ },
+ "density": 0.4724155946028302
+}

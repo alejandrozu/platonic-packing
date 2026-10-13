@@ -1,0 +1,142 @@
+{
+ "problem": "min/icosahedra_in_tetrahedron",
+ "piece": "icosahedron",
+ "container": "tetrahedron",
+ "n": 11,
+ "s": 7.82655,
+ "s_plus": "7.82655+",
+ "s_full": 7.8265561616295,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020145284338e-07,
+  "min_wall_gap": 1.0000001937626735e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -0.14907123014775978,
+   -0.1490712242523696,
+   1.4580882921873808,
+   2.4143763802523805e-10,
+   0.7071067825999467,
+   -2.414375862122998e-10,
+   -0.7071067797731484
+  ],
+  [
+   -1.4580882996270348,
+   -1.4580882995362814,
+   1.4580882997542222,
+   0.21850801218133353,
+   -0.9256147933867371,
+   0.2185080123606203,
+   0.21850801223387945
+  ],
+  [
+   0.14907121405057633,
+   -1.4580882998529496,
+   -0.14907121387277586,
+   7.600888263651021e-14,
+   -0.8090169943754506,
+   0.499999999999671,
+   -0.3090169943741626
+  ],
+  [
+   1.4580883000319775,
+   -1.4580882998534515,
+   -1.4580882998541878,
+   5.84947618575179e-15,
+   -0.3090169943749481,
+   -0.809016994374945,
+   0.5000000000000037
+  ],
+  [
+   -1.4580882995934288,
+   -0.28726782390584776,
+   0.2872678240051294,
+   0.21850801224689687,
+   -0.9256147933903901,
+   0.21850801224903615,
+   0.2185080122644262
+  ],
+  [
+   1.4580883000317686,
+   1.4580882999515286,
+   1.4580882999506293,
+   0.21850801222419589,
+   -0.9256147934111093,
+   0.2185080122241584,
+   0.21850801222423674
+  ],
+  [
+   0.2872678192562044,
+   1.458088299950986,
+   0.2872678191755838,
+   0.21850801222441643,
+   -0.21850801222440402,
+   0.21850801222440233,
+   0.9256147934109602
+  ],
+  [
+   -1.4580882906337918,
+   1.4580882908123156,
+   -1.4580882907149197,
+   0.30901699247648,
+   -0.8090169945307875,
+   6.864872689324982e-10,
+   0.500000000921163
+  ],
+  [
+   -0.5854102326823054,
+   0.5854102281214885,
+   -0.5854102342068221,
+   0.2185080148505777,
+   -0.9256147932426149,
+   0.2185080120002679,
+   0.21850801053549967
+  ],
+  [
+   1.407334679625571,
+   -0.04190442609715291,
+   -0.069403465347318,
+   0.14659799621551453,
+   -0.3008776405445198,
+   0.254675960160585,
+   0.9072606175968638
+  ],
+  [
+   0.2872678273425446,
+   -0.28726782716401944,
+   -1.4580882960468573,
+   0.8090169963691938,
+   2.0821970863760917e-09,
+   0.30901699287324863,
+   -0.49999999770134257
+  ]
+ ],
+ "record_id": "icointet_n11",
+ "title": "11 unit icosahedra in a tetrahedron",
+ "source": {
+  "hash": "5c5dd75e185d9c79",
+  "clear": 1e-07,
+  "cap": 7.9890593915644
+ },
+ "s_tight": 7.826555671731,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 5.88325477468458,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/icointet/icointet_n11_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l1/m4/n11/platonic_n11_m4_l1.html"
+ },
+ "density": 0.42475729837718945
+}

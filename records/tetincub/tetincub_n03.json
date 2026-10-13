@@ -1,0 +1,70 @@
+{
+ "problem": "min/tetrahedra_in_cube",
+ "piece": "tetrahedron",
+ "container": "cube",
+ "n": 3,
+ "s": 1.0,
+ "s_plus": "1.00000+",
+ "s_full": 1.0000002880688,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020047152599e-07,
+  "min_wall_gap": 1.0000002825805154e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   7.75400045062762e-11,
+   -0.2500082484057239,
+   -0.24999183967323035,
+   0.7071067810106398,
+   1.1602725975541964e-05,
+   0.5000082043564815,
+   -0.49999179562304313
+  ],
+  [
+   -0.2499838386948588,
+   0.2500162502819861,
+   -5.547204701504126e-12,
+   0.7071067808616499,
+   0.4999837938766343,
+   0.5000162055323283,
+   2.2918432447700204e-05
+  ],
+  [
+   0.24999172344699108,
+   -8.40579101541445e-11,
+   0.25000836463605036,
+   0.35355582763048354,
+   0.8535592740068612,
+   -0.14644072573879927,
+   0.3535391864426032
+  ]
+ ],
+ "record_id": "tetincub_n03",
+ "title": "3 unit tetrahedra in a cube",
+ "source": {
+  "hash": "7628e02ebbd3f5fe",
+  "clear": 1e-07,
+  "cap": 1.0864775128199
+ },
+ "s_tight": 1.000000088069,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 0.7071067811865476,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/tetincub/tetincub_n03_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l3/m1/n3/platonic_n3_m1_l3.html"
+ },
+ "density": 0.3535530850503471
+}

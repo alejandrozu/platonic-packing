@@ -1,0 +1,67 @@
+{
+ "problem": "min/octahedra_in_tetrahedron",
+ "piece": "octahedron",
+ "container": "tetrahedron",
+ "n": 3,
+ "s": 3.0,
+ "s_plus": "3.00000+",
+ "s_full": 3.0000006124435,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020084222072e-07,
+  "min_wall_gap": 1.0000001426924143e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -0.3535534338793545,
+   -0.3535534338803934,
+   0.35355343388621663,
+   0.7071067811785402,
+   8.09432672717246e-12,
+   -8.279224912167487e-12,
+   -0.707106781194555
+  ],
+  [
+   0.35355343390313887,
+   -0.3535534339027863,
+   -0.3535534339142739,
+   0.7071067811865269,
+   3.942694951167678e-13,
+   -5.369694491613817e-12,
+   -0.7071067811865682
+  ],
+  [
+   0.35355343390058935,
+   0.35355343391336247,
+   0.35355343390593036,
+   4.703211959987009e-13,
+   -6.478986530758772e-13,
+   -0.7071067811865215,
+   0.7071067811865737
+  ]
+ ],
+ "record_id": "octintet_n03",
+ "title": "3 unit octahedra in a tetrahedron",
+ "source": {
+  "hash": "983671a752b974b3",
+  "clear": 1e-07,
+  "cap": 3.0000006124713
+ },
+ "s_tight": 3.000000122545,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.2894284851066637,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (their packing for n + 1 minus one piece)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "monotone",
+  "from_n": 4,
+  "removed": 1,
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik"
+ },
+ "density": 0.44444417224744454
+}

@@ -1,0 +1,79 @@
+{
+ "problem": "min/tetrahedra_in_icosahedron",
+ "piece": "tetrahedron",
+ "container": "icosahedron",
+ "n": 4,
+ "s": 0.98651,
+ "s_plus": "0.98651+",
+ "s_full": 0.9865142276276,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020043976487e-07,
+  "min_wall_gap": 1.0000006600563438e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -0.17648808130279484,
+   0.3178437126756003,
+   0.20977363737679877,
+   0.37127331620057497,
+   0.501861093832918,
+   0.27753527815754975,
+   0.7302504615214335
+  ],
+  [
+   0.23811932336271174,
+   -0.189088084426111,
+   -0.042572721822454335,
+   0.00947475425659285,
+   0.4290989201716991,
+   -0.9028053348114632,
+   0.026960585587499593
+  ],
+  [
+   -0.11125426301535644,
+   -0.14304905731537942,
+   0.2478447364910705,
+   0.08624429967626368,
+   -0.5916667678867416,
+   -0.717316196166496,
+   -0.35770075659556066
+  ],
+  [
+   0.048683580967379236,
+   0.016752687941395172,
+   -0.416565617216508,
+   0.6564095907284933,
+   0.6358274804496756,
+   0.3166824813790974,
+   0.2540906733672979
+  ]
+ ],
+ "record_id": "tetinico_n04",
+ "title": "4 unit tetrahedra in an icosahedron",
+ "source": {
+  "hash": "6d8d974289e6a2fe",
+  "clear": 1e-07,
+  "cap": 1.0091005866624
+ },
+ "s_tight": 0.986514118901,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 0.60006721968204,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/tetinico/tetinico_n04_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l4/m1/n4/platonic_n4_m1_l4.html"
+ },
+ "density": 0.22505550960945558
+}

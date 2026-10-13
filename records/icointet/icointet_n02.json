@@ -1,0 +1,61 @@
+{
+ "problem": "min/icosahedra_in_tetrahedron",
+ "piece": "icosahedron",
+ "container": "tetrahedron",
+ "n": 2,
+ "s": 5.35824,
+ "s_plus": "5.35824+",
+ "s_full": 5.3582498523266,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020148766224e-07,
+  "min_wall_gap": 1.0000000516541263e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.5854102353543762,
+   0.5854102353539441,
+   0.5854102353541196,
+   0.5720614028168315,
+   -0.5720614028184142,
+   0.13504537836980238,
+   0.5720614028175854
+  ],
+  [
+   0.5854102353552052,
+   -0.5854102353555979,
+   -0.5854102353552443,
+   0.7071067811864492,
+   -0.7071067811866458,
+   -2.641294127233623e-13,
+   -3.551121844006924e-14
+  ]
+ ],
+ "record_id": "icointet_n02",
+ "title": "2 unit icosahedra in a tetrahedron",
+ "source": {
+  "hash": "b488287ba07c1eca",
+  "clear": 1e-07,
+  "cap": 5.3582498524445
+ },
+ "s_tight": 5.358249362429,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 3.3329599324884764,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/icointet/icointet_n02_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l1/m4/n2/platonic_n2_m4_l1.html"
+ },
+ "density": 0.24066968876714176
+}

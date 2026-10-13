@@ -1,0 +1,169 @@
+{
+ "problem": "min/icosahedra_in_cube",
+ "piece": "icosahedron",
+ "container": "cube",
+ "n": 14,
+ "s": 3.94242,
+ "s_plus": "3.94242+",
+ "s_full": 3.9424272853233,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020156386569e-07,
+  "min_wall_gap": 1.0000001871013353e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -1.1020017728779967,
+   1.1636575198773822,
+   1.0217480991182817,
+   0.026599290692703427,
+   0.8843818129974296,
+   -0.014009660728158511,
+   0.46579503644876546
+  ],
+  [
+   0.01736091127603886,
+   -1.124498896044914,
+   0.10341820300071579,
+   0.09915407026514482,
+   0.8553557532038791,
+   -0.1775047634007956,
+   0.476473571964812
+  ],
+  [
+   -0.029485904022828538,
+   1.1628466859346833,
+   -0.08560522463838165,
+   0.571928167485586,
+   -0.7215205827388107,
+   0.04778020767878209,
+   -0.3873283770587939
+  ],
+  [
+   1.1621962396293313,
+   1.2154511820838554,
+   1.0312919528159397,
+   0.15711574068494102,
+   0.8516538955982661,
+   0.09071088439467863,
+   -0.49170298107053945
+  ],
+  [
+   -1.162195011331692,
+   1.0370398764683424,
+   -1.2154517228153585,
+   0.04695606573277586,
+   0.9498966557283398,
+   -0.254523920288643,
+   0.17523996498491878
+  ],
+  [
+   1.2154518549894242,
+   -1.028519026185121,
+   1.1621958496727216,
+   4.726411139709543e-07,
+   -0.9834054730868677,
+   0.18142126529865202,
+   8.206513428942061e-08
+  ],
+  [
+   -0.028219441799717804,
+   -0.10737282020005534,
+   -1.1773018087327525,
+   0.12034914417793535,
+   -0.7309179999812259,
+   0.1989398716065376,
+   -0.6416368819544724
+  ],
+  [
+   0.01895497772172512,
+   0.08506336118290364,
+   1.179378689512671,
+   0.21072013814651566,
+   0.9102180773514998,
+   -0.12715869600076865,
+   -0.33306266838755233
+  ],
+  [
+   1.1630310819056306,
+   -1.1240931810616408,
+   -1.020448801973844,
+   0.09020538092907358,
+   0.8652300083703613,
+   -0.15066645225783096,
+   0.4696164839855006
+  ],
+  [
+   -1.164902802366902,
+   -1.0310005808001055,
+   1.1932753303185843,
+   0.494408245386769,
+   -0.7192728872307689,
+   -0.4250030689731105,
+   0.23995706272524625
+  ],
+  [
+   1.0371967983595174,
+   1.153784857437368,
+   -1.2154519021495143,
+   0.2980356576987083,
+   -0.7053638924438395,
+   -0.04961138560685223,
+   -0.641229472493851
+  ],
+  [
+   -1.099865909968616,
+   -0.014670244136558572,
+   -0.03392681173195551,
+   0.03804572666344961,
+   0.8272096990584343,
+   -0.189529607925544,
+   0.5275937491914535
+  ],
+  [
+   -1.1360047357218261,
+   -1.215452213778872,
+   -1.0386720892622257,
+   0.5940131528531699,
+   -0.4180339600435996,
+   0.38359924889963287,
+   0.5703048296580877
+  ],
+  [
+   1.056172970101622,
+   0.0651897897621119,
+   0.0014821991870067408,
+   0.13995358324939894,
+   -0.9721035793797046,
+   0.11092491292228801,
+   -0.15206343803164207
+  ]
+ ],
+ "record_id": "icoincub_n14",
+ "title": "14 unit icosahedra in a cube",
+ "source": {
+  "hash": "0d0f8c65c49fbaef",
+  "clear": 1e-07,
+  "cap": 4.151882506028
+ },
+ "s_tight": 3.942427085323,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 3.1258923913264383,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/icoincub/icoincub_n14_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l3/m4/n14/platonic_n14_m4_l3.html"
+ },
+ "density": 0.49846078198656846
+}
