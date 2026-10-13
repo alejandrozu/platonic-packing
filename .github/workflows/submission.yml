@@ -48,15 +48,7 @@ jobs:
             *) echo "Acceptance requires a maintainer with write, maintain or admin access." >&2; exit 1 ;;
           esac
           gh api "repos/$GITHUB_REPOSITORY/issues/$NUM" > "$RUNNER_TEMP/current-issue.json"
-          python3 - <<'PY'
-          import json, os
-          with open(os.environ['GITHUB_EVENT_PATH']) as f: event = json.load(f)
-          with open(os.path.join(os.environ['RUNNER_TEMP'], 'current-issue.json')) as f: current = json.load(f)
-          labels = {label['name'] for label in current['labels']}
-          if (current['state'] != 'open' or not {'submission', 'accepted'} <= labels
-                  or current.get('body') != event['issue'].get('body')):
-              raise SystemExit('The issue or acceptance changed. Review it again and reapply the accepted label.')
-          PY
+          python3 scripts/submission_event_guard.py "$GITHUB_EVENT_PATH" "$RUNNER_TEMP/current-issue.json" accept
       - name: Labels
         run: |
           gh label create submission    --color 2c49a8 --description "Packing submitted for certification" --force
@@ -80,15 +72,7 @@ jobs:
         if: env.MODE == 'accept'
         run: |
           gh api "repos/$GITHUB_REPOSITORY/issues/$NUM" > "$RUNNER_TEMP/current-issue.json"
-          python3 - <<'PY'
-          import json, os
-          with open(os.environ['GITHUB_EVENT_PATH']) as f: event = json.load(f)
-          with open(os.path.join(os.environ['RUNNER_TEMP'], 'current-issue.json')) as f: current = json.load(f)
-          labels = {label['name'] for label in current['labels']}
-          if (current['state'] != 'open' or not {'submission', 'accepted'} <= labels
-                  or current.get('body') != event['issue'].get('body')):
-              raise SystemExit('The packing changed during certification. Review it again and reapply the accepted label.')
-          PY
+          python3 scripts/submission_event_guard.py "$GITHUB_EVENT_PATH" "$RUNNER_TEMP/current-issue.json" accept
       - name: Read acceptance result
         run: |
           echo "ACCEPTED=$(python3 -c "import json,sys; print('1' if json.load(open(sys.argv[1]))['accepted'] else '')" "$RUNNER_TEMP/out/result.json")" >> "$GITHUB_ENV"
@@ -135,6 +119,11 @@ jobs:
             git commit -q -m "Site: record from submission #$NUM"
             git push -q origin gh-pages
           fi
+      - name: Confirm check results are still current before replying or labeling
+        if: env.MODE == 'check'
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/issues/$NUM" > "$RUNNER_TEMP/current-issue.json"
+          python3 scripts/submission_event_guard.py "$GITHUB_EVENT_PATH" "$RUNNER_TEMP/current-issue.json" check
       - name: Reply
         run: |
           gh issue comment "$NUM" --body-file "$RUNNER_TEMP/out/comment.md"

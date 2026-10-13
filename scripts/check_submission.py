@@ -39,6 +39,7 @@ SITE = ('https://polyhedrainpolyhedra.wiki/' if os.path.exists(os.path.join(ROOT
         else 'https://alejandrozu.github.io/platonic-packing/')
 REPO = 'https://github.com/alejandrozu/platonic-packing'
 MAX_N = 200
+MAX_FRAME_MAGNITUDE = 1e150  # keeps floating-point geometry proposals within their numeric domain
 LABELS = {'Problem': 'problem', 'Number of pieces': 'n', 'Container scale s': 's', 'Packing': 'packing',
           'Credit': 'credit', 'How you found it': 'method', 'Permission': 'permission'}
 
@@ -99,13 +100,17 @@ def parse_object(obj, f):
         if not (isinstance(p, list) and len(p) == 7 and all(finite_number(x) for x in p)):
             raise Bad(f'Piece {i + 1} is not a list of 7 finite numbers `[x, y, z, qw, qx, qy, qz]`.')
         if all(x == 0 for x in p[3:]): raise Bad(f'Piece {i + 1} has a zero quaternion.')
+        if any(abs(x) > MAX_FRAME_MAGNITUDE for x in p[:3]):
+            raise Bad(f'Piece {i + 1} coordinates exceed the checker domain (absolute values up to 1e150).')
     s = obj.get('s_full', obj.get('s'))
     if s is None:
         try: s = float(f.get('s', '').strip())
         except ValueError: s = None
     if not (finite_number(s) and s > 0): raise Bad('No valid container scale: give `s_full` in the JSON or fill in **Container scale s**.')
+    if s > MAX_FRAME_MAGNITUDE: raise Bad('Container scale exceeds the checker domain (up to 1e150).')
     cc = obj.get('container_center', [0, 0, 0])
     if not (isinstance(cc, list) and len(cc) == 3 and all(finite_number(x) for x in cc)): raise Bad('`container_center` must be three finite numbers.')
+    if any(abs(x) > MAX_FRAME_MAGNITUDE for x in cc): raise Bad('Container centre exceeds the checker coordinate domain (absolute values up to 1e150).')
     if 'n' in obj and (not isinstance(obj['n'], (int, float)) or isinstance(obj['n'], bool) or obj['n'] != len(pcs)):
         raise Bad('The JSON `n` must match the number of entries in `pieces`.')
     form_n = f.get('n', '').strip()

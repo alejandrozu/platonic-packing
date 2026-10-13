@@ -8,7 +8,54 @@ function packingConstructionChoices(primary, requested = primary) {
   return { choices, row: choices.includes(requested) ? requested : choices[0] || null,
     reference: primary.source_only ? primary : null };
 }
-if (typeof module !== 'undefined' && module.exports) module.exports = { packingConstructionChoices };
+function packingPublicURL(value) {
+  if (typeof value !== 'string' || /[\u0000-\u0020\u007f]/.test(value)) return null;
+  try {
+    const url = new URL(value);
+    return ['http:', 'https:'].includes(url.protocol) && url.hostname && !url.username && !url.password ? url.href : null;
+  } catch (e) { return null }
+}
+function packingUnitQuaternion(q) {
+  const scale = Math.max(...q.map(Math.abs));
+  if (q.length !== 4 || !q.every(Number.isFinite) || !scale) return [1, 0, 0, 0];
+  const scaled = q.map(x => x / scale), length = Math.hypot(...scaled);
+  return scaled.map(x => x / length);
+}
+function packingReferenceTolerance(row) {
+  const value = Number(row.ref_quantum);
+  return Number.isFinite(value) && value >= 0 ? Math.max(1e-5, value) : 1e-5;
+}
+function packingDerivationText(value) {
+  if (typeof value === 'string') return value;
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return '';
+  return Object.entries(value).map(([key, item]) => `${key.replace(/_/g, ' ')}: ${typeof item === 'object' ? JSON.stringify(item) : item}`).join('; ');
+}
+function packingRecordRawURL(repo, file, version) {
+  const publicRepo = packingPublicURL(repo);
+  if (!publicRepo || typeof file !== 'string') return null;
+  const url = new URL(publicRepo), parts = file.split('/');
+  if (url.origin !== 'https://github.com' || !/^\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+\/?$/.test(url.pathname) ||
+      url.search || url.hash || parts[0] !== 'records' || !file.endsWith('.json') ||
+      parts.some(part => !/^[A-Za-z0-9_.-]+$/.test(part) || part === '.' || part === '..')) return null;
+  const raw = new URL(`https://raw.githubusercontent.com${url.pathname.replace(/\/$/, '')}/main/${parts.map(encodeURIComponent).join('/')}`);
+  if (version) raw.searchParams.set('v', String(version));
+  return raw.href;
+}
+async function packingFullPrecisionRecord(repo, row, problem, version, fetchRecord = fetch) {
+  const url = packingRecordRawURL(repo, row.file, version);
+  if (!url) throw new Error('No trusted record file is available.');
+  const response = await fetchRecord(url, { cache: 'no-cache' });
+  if (!response.ok) throw new Error('The full-precision record could not be fetched.');
+  const text = await response.text(), record = JSON.parse(text);
+  if (!record || record.piece !== problem.piece || record.container !== problem.container || record.n !== row.n ||
+      Number(record.s_full) !== row.sf || !Array.isArray(record.pieces) || record.pieces.length !== row.n) {
+    throw new Error('The record changed. Reload the site before copying it.');
+  }
+  // Preserve every source field and the exact decimal text of the witness.
+  return text;
+}
+if (typeof module !== 'undefined' && module.exports) module.exports = { packingConstructionChoices, packingPublicURL,
+  packingUnitQuaternion, packingReferenceTolerance, packingDerivationText, packingRecordRawURL, packingFullPrecisionRecord };
 if (typeof document !== 'undefined') (async () => {
   const $ = id => document.getElementById(id);
   const ROOT = document.documentElement.dataset.root || './';
@@ -21,9 +68,13 @@ if (typeof document !== 'undefined') (async () => {
   }
   const NAMES = { tetrahedron: ['tetrahedron', 'tetrahedra'], cube: ['cube', 'cubes'], octahedron: ['octahedron', 'octahedra'],
                   dodecahedron: ['dodecahedron', 'dodecahedra'], icosahedron: ['icosahedron', 'icosahedra'] };
-  const SRC = { F: 'E. Friedman 1998', W: 'R. Walsh 2026', L: 'H. Lin 2026', N: 'Y. Nakajima 2026', T: 'trivial grid' };
+  const SRC = { F: 'E. Friedman catalogue', W: 'R. Walsh', L: 'H. Lin', N: 'Y. Nakajima', T: 'trivial grid' };
   const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
   const escapeHTML = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  function sourceLink(value, label) {
+    const url = packingPublicURL(value);
+    return url ? `<a href="${escapeHTML(url)}" target="_blank" rel="noopener">${escapeHTML(label)}</a>` : escapeHTML(label);
+  }
   function submissionIssue(value) {
     try {
       const url = new URL(value);
@@ -53,13 +104,14 @@ if (typeof document !== 'undefined') (async () => {
   const chartScale = r => r.st ?? r.published_sf ?? r.sf;
   function chip(r) {
     if (r.cmp == null) return '';
-    if (r.cmp === 'better') return `<span class="chip better" title="More than 1e-5 below the published value">better by ${(-pct(r)).toFixed(2)}%</span>`;
-    if (r.cmp === 'equal') return '<span class="chip">equal</span>';
-    return `<span class="chip behind">+${pct(r)}%</span>`;
+    const tolerance = packingReferenceTolerance(r), title = `Compared at the published precision; tolerance ${tolerance}.`;
+    if (r.cmp === 'better') return `<span class="chip better" title="${title}">better by ${(-pct(r)).toFixed(2)}%</span>`;
+    if (r.cmp === 'equal') return `<span class="chip" title="${title}">equal</span>`;
+    return `<span class="chip behind" title="${title}">+${pct(r)}%</span>`;
   }
 
   // ---------- geometry helpers
-  function qn(p) { const q = [p[3], p[4], p[5], p[6]], m = Math.hypot(...q); return q.map(v => v / m) }
+  function qn(p) { return packingUnitQuaternion(p.slice(3, 7)) }
   function qrot(q, v) {
     const [w, x, y, z] = q, tx = 2 * (y * v[2] - z * v[1]), ty = 2 * (z * v[0] - x * v[2]), tz = 2 * (x * v[1] - y * v[0]);
     return [v[0] + w * tx + (y * tz - z * ty), v[1] + w * ty + (z * tx - x * tz), v[2] + w * tz + (x * ty - y * tx)];
@@ -153,7 +205,7 @@ if (typeof document !== 'undefined') (async () => {
       const rng = a => a.length ? a.join(', ') : 'none';
       $('lit').innerHTML = `<span><b>Published comparisons</b> (Packing Center and linked coordinate sources) for n = ${refs[0].n}–${refs[refs.length - 1].n}:</span>` +
         `<span class="chip better">better at ${rng(g('better'))}</span><span class="chip">equal at ${rng(g('equal'))}</span><span class="chip behind">behind at ${rng(g('behind'))}</span>`;
-    } else $('lit').innerHTML = `<span>No published values were found for this problem. <a href="${ROOT}contribute/">Submit a better packing</a>.</span>`;
+    } else $('lit').innerHTML = `<span>No reference values registered yet for this problem. <a href="${ROOT}contribute/">Submit a better packing</a>.</span>`;
     $('thead').innerHTML = '<tr><th>n</th><th>s</th><th>Closed form?</th>' + (p.hasref ? '<th title="Published comparison value; its source is linked in the viewer">Reference</th><th>Compared</th>' : '') +
       '<th>Density</th><th title="(n · volume of a piece / volume of the unit container)^(1/3)">Volume bound</th><th>Proof</th></tr>';
     const tb = $('rows'); tb.innerHTML = '';
@@ -271,7 +323,7 @@ if (typeof document !== 'undefined') (async () => {
     if (r.published_expression) facts.push(['Published expression', escapeHTML(r.published_expression)]);
     if (reference) {
       facts.push([reference.author_report ? 'Reported best' : 'Published best',
-        `<a href="${escapeHTML(reference.source_url)}" target="_blank" rel="noopener">${escapeHTML(reference.s)} · ${escapeHTML(reference.source_author || reference.who)}</a>`]);
+        sourceLink(reference.source_url, `${reference.s} · ${reference.source_author || reference.who}`)]);
       facts.push(['Shown in 3D', selection.row ?
         `Coordinate construction at s = ${escapeHTML(r.s)}. The better ${reference.author_report ? 'reported' : 'published'} result has no available coordinates; this view shows a different construction.` :
         'No coordinates are available for this result.']);
@@ -282,6 +334,8 @@ if (typeof document !== 'undefined') (async () => {
         k <= 8 ? `${k} (${sizes.join(' + ')} pieces)` : `${k} (largest groups: ${sizes.slice(0, 5).join(', ')} pieces)`]);
     }
     facts.push(['Origin', escapeHTML(r.external ? `Published construction by ${r.source_author || r.who}` : r.who && /published packing/.test(r.who) ? r.who : r.derived ? `record = ${r.derived}` : `found by ${r.who || 'the search'}` + (r.move ? ` (move: ${r.move})` : ''))]);
+    const derivation = packingDerivationText(r.source_derivation);
+    if (derivation) facts.push(['Derivation', escapeHTML(derivation)]);
     if (r.refined_by) facts.push(['Certificate refinement', escapeHTML(`${r.refined_by}; inherited piece positions and orientations, smaller certified container padding.`)]);
     if (r.source_only) facts.push(['Status', r.author_report ? 'Author-reported result; coordinates and the claimed certificate are unavailable for local verification.' : 'Published source; coordinates and a local certificate are unavailable. The displayed scale retains the catalogue precision.']);
     else if (r.external) facts.push(['Import', 'Original construction, normalized to this viewer and given 1e-7 clearance for exact certification.']);
@@ -294,10 +348,10 @@ if (typeof document !== 'undefined') (async () => {
       (r.ok ? `<a href="${url.replace('.json', '.certify.txt')}" target="_blank" rel="noopener">Exact certificate</a>` : '') +
       `<a href="${url.replace('.json', '.verify.txt')}" target="_blank" rel="noopener">Float check</a>` +
       `<button class="small" type="button" id="copy">Copy coordinates</button><span id="copied"></span>` : '') +
-      (r.source_url ? `<a href="${escapeHTML(r.source_url)}" target="_blank" rel="noopener">Original published construction</a>` : '') +
-      (r.refurl && r.refurl !== r.source_url ? `<a href="${escapeHTML(r.refurl)}" target="_blank" rel="noopener">Published reference</a>` : '') +
-      (reference && reference.source_url !== r.source_url && reference.source_url !== r.refurl ?
-        `<a href="${escapeHTML(reference.source_url)}" target="_blank" rel="noopener">${reference.author_report ? 'Reported' : 'Published'} best source</a>` : '');
+      (packingPublicURL(r.source_url) ? sourceLink(r.source_url, 'Original published construction') : '') +
+      (packingPublicURL(r.refurl) && r.refurl !== r.source_url ? sourceLink(r.refurl, 'Published reference') : '') +
+      (reference && packingPublicURL(reference.source_url) && reference.source_url !== r.source_url && reference.source_url !== r.refurl ?
+        sourceLink(reference.source_url, `${reference.author_report ? 'Reported' : 'Published'} best source`) : '');
     if ($('copy')) $('copy').onclick = copyCoords;
     if (choices.length > 1) {
       $('links').insertAdjacentHTML('beforeend', '<div class="construction-choice"><label for="construction-variant">Construction</label><select id="construction-variant">' +
@@ -338,13 +392,18 @@ if (typeof document !== 'undefined') (async () => {
     tableResize.observe(region);
     tableResize.observe($('rows'));
   }
-  function copyCoords() {
-    const t = JSON.stringify({ record_id: row.id || `${prob.id}_n${pad(row.n)}`, piece: prob.piece, container: prob.container, n: row.n, s_full: row.sf,
-      format: '[x, y, z, qw, qx, qy, qz] per piece (rounded to 7 decimals; full precision in the record file); container = s_full x canonical container centred at the origin',
-      ...(row.external ? { found_by: row.source_author || row.who, source: { kind: 'external', url: row.source_url } } : {}),
-      pieces: row.p });
-    const done = ok => { const status = $('copied'); if (status) status.textContent = ok ? 'Copied' : 'Copy from the record file instead' };
-    try { navigator.clipboard.writeText(t).then(() => done(true), () => done(false)) } catch (e) { done(false) }
+  async function copyCoords() {
+    const selected = row, problem = prob, button = $('copy'), status = $('copied');
+    if (!selected || !selected.file) return;
+    if (button) button.disabled = true;
+    if (status) status.textContent = 'Loading full-precision JSON…';
+    try {
+      const text = await packingFullPrecisionRecord(D.repo, selected, problem, DATA_VERSION);
+      await navigator.clipboard.writeText(text);
+      if (status) status.textContent = 'Copied full-precision JSON';
+    } catch (e) {
+      if (status) status.textContent = 'Could not copy full-precision JSON. Use Record file (JSON).';
+    } finally { if (button) button.disabled = false }
   }
 
   // ---------- 3D
@@ -492,7 +551,8 @@ if (typeof document !== 'undefined') (async () => {
       const edges = new THREE.Mesh(piece.eg, edgeMaterial(edgeColour(i)));
       edges.frustumCulled = false;
       grp.add(mesh); grp.add(edges);
-      grp.quaternion.copy(new THREE.Quaternion(p[4], p[5], p[6], p[3]).normalize()); grp.userData = { c: new THREE.Vector3(p[0], p[1], p[2]), mesh, edges, i };
+      const [qw, qx, qy, qz] = qn(p);
+      grp.quaternion.set(qx, qy, qz, qw); grp.userData = { c: new THREE.Vector3(p[0], p[1], p[2]), mesh, edges, i };
       world.add(grp); pieceObjs.push(grp);
     });
     R0 = Math.max(...C.V.map(v => Math.hypot(...v))) * row.sf;

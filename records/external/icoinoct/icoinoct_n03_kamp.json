@@ -1,0 +1,98 @@
+{
+ "problem": "min/icosahedron_in_octahedron",
+ "piece": "icosahedron",
+ "container": "octahedron",
+ "n": 3,
+ "s": 3.3489,
+ "s_plus": "3.34890+",
+ "s_full": 3.3489061273121,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020146135435e-07,
+  "min_wall_gap": 1.0000001648968748e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   -0.8090170483021977,
+   -6.807287909797815e-14,
+   0.250000016244402,
+   0.4999999999735529,
+   -1.0171707316255001e-11,
+   -0.8090169943912515,
+   0.3090169943750553
+  ],
+  [
+   0.809017048301995,
+   -6.807287909797815e-14,
+   0.25000001624461043,
+   3.2674069342002094e-11,
+   -2.693641535973529e-15,
+   -1.0,
+   1.0552420422501178e-13
+  ],
+  [
+   4.470506407295264e-21,
+   -6.807287909797815e-14,
+   -1.0590170645992307,
+   8.458582719044632e-14,
+   -0.809016994374942,
+   -0.5000000000000338,
+   0.3090169943749075
+  ]
+ ],
+ "record_id": "icoinoct_n03_kamp",
+ "title": "3 unit icosahedrons in a octahedron",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l2/m4/n3/platonic_n3_m4_l2.html",
+  "source_file": "docs/literature/external/kamp-icoinoct-n03.html",
+  "sha256": "427b9534a4186564ff442b5360a100b406d4277eaff3cd0a9735cde81c12408f",
+  "numeric_source_file": "docs/literature/external/kamp-icoinoct-n03.txt",
+  "numeric_source_sha256": "9eed98306ee2975893beb20c912fb467eab3e7c637f391c4346bd785a5e52bb1",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "published_s_full": 3.3489057833114844,
+  "published_circumradius": 2.489898285076778,
+  "source_to_canonical_row_matrix": [
+   [
+    -1.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    1.0
+   ]
+  ],
+  "outer_conversion_max_error": 8.881784197001252e-16,
+  "vertex_conversion_max_error": 6.389731222755001e-16,
+  "normalization": "Original pieces have unit circumradius, so icosahedron edge length is 1.0514622242382672; centers divided by this edge. Apply a proper rigid rotation to align ALL published octahedron outer vertices with the project canonical solid (normalized discrepancy 8.88e-16). Fit piece rotations to ALL source mesh vertices (maximum discrepancy 6.39e-16). Convert container circumradius into edge ratio R/(0.70710678118654757 * 1.0514622242382672). Add standard 1e-7 clearance without transferring discovery credit.",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "imported_on": "2026-10-13"
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 2.403480015241657,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.3696686520107912
+}

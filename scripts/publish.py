@@ -108,16 +108,18 @@ def compare(s_full, ref):
     """'better' only if more than 1e-5 below the published value (published values are often 5-decimal truncations
     and our records carry 1e-7 clearance), 'equal' within 1e-5, else 'behind'."""
     s_full, ref = float(s_full), float(ref)
-    return 'better' if s_full < ref - 1e-5 else ('equal' if s_full <= ref + 1e-5 else 'behind')
+    quantum = .001 if ref == 2.956 else 1e-5  # Friedman's cube n=13 is printed to three decimals.
+    return 'better' if s_full < ref - quantum else ('equal' if s_full <= ref + quantum else 'behind')
 
 
 def src_code(src):
     return 'T' if 'trivial' in src else 'N' if 'Nakajima' in src else 'W' if 'Walsh' in src else 'L' if 'Lin' in src else 'F'
 
 
-SRC_LEGEND = ('previous: F = E. Friedman (1998), W = R. Walsh (June 2026), L = H. Lin (July 2026), N = Y. Nakajima '
-              '(Oct 2026), T = trivial grid packing (Friedman: best known); from Erich Friedman\'s Packing Center and '
-              'docs/references.json. ✱ = ours is more than 1e-5 below the previous value.')
+SRC_LEGEND = ('previous: F = E. Friedman, W = R. Walsh, L = H. Lin, N = Y. Nakajima, T = trivial grid packing; '
+              'source dates and attribution are in docs/references.json. ✱ = more than the printed precision below '
+              'a registered reference (usually 1e-5; 1e-3 for cube n=13). These search-archive tables do not include '
+              'all external or community candidates; the website selects across all three registries.')
 
 
 def fmt_cell(r, link_prefix):
@@ -181,8 +183,9 @@ def write_tables(rows):
             'Smallest container found for n unit-edge pieces; entry = s = container edge / piece edge, certified with 1e-7 '
             'clearance and truncated to 5 decimals. Each entry links to its record file, which `certify_exact.py` proves '
             'valid in exact arithmetic over Q(√2, √5). s(n) is non-decreasing in n by construction. "≈ x" is a '
-            'conjectured closed form (touching limit agrees with x to ~11 digits). Published values exist only for cubes in a '
-            'cube and octahedra in a cube; they are shown in the "previous" columns. Full data: [SUMMARY.csv](SUMMARY.csv).', '']
+            'conjectured closed form (touching limit agrees with x to ~11 digits). Registered comparison values '
+            'are shown in the "previous" columns. The website also includes earlier all-25-pair Platonic results '
+            'and immutable community contributions. Full search-archive data: [SUMMARY.csv](SUMMARY.csv).', '']
     open(os.path.join(ROOT, 'records', 'README.md'), 'w').write('\n'.join(head) + '\n' + tables(rows, '') + '\n')
     for p in PID:
         rs = [r for r in rows if r['problem'] == p]

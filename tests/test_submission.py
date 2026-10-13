@@ -128,13 +128,16 @@ class SubmissionTests(unittest.TestCase):
         result, comment, record, cert, log = self.evaluate(submitted, mode='accept', authorized=True, current=previous)
         self.assertTrue(result['accepted'])
         self.assertEqual(result['labels_add'], ['certified', 'new-record'])
-        self.assertEqual(record['found_by'], 'Example contributor')
-        self.assertEqual(record['method'], 'Fixture method')
-        self.assertEqual(record['source']['submitted_by'], 'example-contributor')
+        self.assertEqual(record['found_by'], 'Previous contributor')
+        self.assertEqual(record['method'], previous['method'])
+        self.assertEqual(record['source'], previous['source'])
+        self.assertEqual(record['certificate_refined_by'], 'Example contributor')
+        self.assertEqual(record['contribution']['submitted_by'], 'example-contributor')
+        self.assertEqual(record['contribution']['method'], 'Fixture method')
         self.assertEqual(record['previous_record']['found_by'], 'Previous contributor')
         self.assertEqual(record['pieces'], RECORD['pieces'])
         self.assertIn('CERTIFIED', cert)
-        self.assertIn('Example contributor', log)
+        self.assertIn('Previous contributor', log)
         self.assertIn('Accepted and recorded', comment)
 
     def test_authorized_equal_record_is_not_overwritten(self):
@@ -168,12 +171,28 @@ class SubmissionTests(unittest.TestCase):
         self.assertEqual(accepted['pieces'], RECORD['pieces'])
 
     def test_valid_untracked_pair_is_certified_for_manual_category_review(self):
-        record = {'piece': 'tetrahedron', 'container': 'cube', 'n': 2, 's_full': 4,
+        record = {'piece': 'tetrahedron', 'container': 'truncated_cube', 'n': 2, 's_full': 4,
                   'pieces': [[-1, 0, 0, 1, 0, 0, 0], [1, 0, 0, 1, 0, 0, 0]]}
         result, comment, *_ = self.evaluate(record)
         self.assertEqual(result['labels_add'], ['certified'])
         self.assertFalse(result['accepted'])
         self.assertIn('Propose the category', comment)
+
+    def test_tetrahedra_in_icosahedron_are_ready_for_record_intake(self):
+        record = {'piece': 'tetrahedron', 'container': 'icosahedron', 'n': 2, 's_full': 4,
+                  'pieces': [[-1, 0, 0, 1, 0, 0, 0], [1, 0, 0, 1, 0, 0, 0]]}
+        result, comment, *_ = self.evaluate(record)
+        self.assertIn('new-record', result['labels_add'])
+        self.assertNotIn('Propose the category', comment)
+
+    def test_two_dimensional_square_packing_is_outside_the_solid_library(self):
+        record = {'piece': 'square', 'container': 'square', 'n': 1, 's_full': 2,
+                  'pieces': [[0, 0, 0, 1, 0, 0, 0]]}
+        result, comment, accepted, *_ = self.evaluate(record, mode='accept', authorized=True)
+        self.assertIn('needs-fix', result['labels_add'])
+        self.assertFalse(result['accepted'])
+        self.assertIsNone(accepted)
+        self.assertIn('not a solid', comment)
 
 
 if __name__ == '__main__':

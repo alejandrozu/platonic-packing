@@ -79,7 +79,7 @@ class ExternalRecordTests(unittest.TestCase):
             # real checker receipts; the controlled larger baseline is a fixture.
             target.with_suffix('.certify.txt').write_text('CERTIFIED\n', encoding='utf-8')
             target.with_suffix('.verify.txt').write_text('VALID\n', encoding='utf-8')
-        with patch.object(site, 'ROOT', str(fixture_root)), patch.object(site, 'EXTERNAL', {'entries': entries}):
+        with patch.object(site, 'ROOT', str(fixture_root)), patch.object(site, 'EXTERNAL', {'entries': entries}), patch.object(site, 'COMMUNITY', {'entries': []}):
             cls.data = site.load()
         cls.problems = {p['id']: p for p in cls.data['problems']}
         cls.rows = [r for p in cls.data['problems'] for r in p['rows']]
@@ -180,6 +180,51 @@ class ExternalRecordTests(unittest.TestCase):
             self.assertIn('no coordinates or local certificate', summary)
         else:
             self.assertIn('certified exactly', summary)
+
+    def test_all_platonic_combinations_are_registered(self):
+        names = ('tetrahedron', 'cube', 'octahedron', 'dodecahedron', 'icosahedron')
+        pairs = {(p['piece'], p['container']) for p in self.live_data['problems'] if p['family'] == 'platonic'}
+        self.assertEqual(pairs, {(a, b) for a in names for b in names})
+
+    def test_truncated_catalogue_value_is_not_a_finer_bound(self):
+        self.assertEqual(site.compare(2.956147020837, 2.956, .001), 'equal')
+        with patch.object(site, 'ROOT', self.fixture.name), patch.object(site, 'COMMUNITY', {'entries': []}), patch.object(site, 'EXTERNAL', {
+            'entries': [{'problem': 'cubincub', 'n': 13, 'published_value': 2.956, 'kind': 'catalogue',
+                         'author': 'Erich Friedman', 'url': 'https://erich-friedman.github.io/packing/cubincub/',
+                         'display_quantum': .001, 'value_precision': 'three decimal truncation'}]}):
+            path = Path(self.fixture.name) / 'records/cubincub/cubincub_n13.json'
+            saved = path.read_text(encoding='utf-8')
+            r = json.loads(saved); r['s_full'] = 2.956147020837
+            try:
+                path.write_text(json.dumps(r), encoding='utf-8')
+                data = site.load()
+            finally:
+                path.write_text(saved, encoding='utf-8')
+        selected = next(r for p in data['problems'] if p['id'] == 'cubincub' for r in p['rows'] if r['n'] == 13)
+        self.assertFalse(selected.get('source_only', False))
+        self.assertEqual(selected['cmp'], 'equal')
+
+    def test_translated_container_is_recentered_only_for_display(self):
+        native = {'container_center': ['1/4', 2, -3], 'pieces': [['5/4', 4, -2, 1, 0, 0, 0]]}
+        self.assertEqual(site.viewer_pieces(native), [[1, 2, 1, 1, 0, 0, 0]])
+        self.assertEqual(native['pieces'][0][0], '5/4')
+
+    def test_imported_source_urls_allow_only_public_web_links(self):
+        for unsafe in ('javascript:alert(1)', 'data:text/html,x', 'https://user:secret@example.com/a', 'file:///C:/test'):
+            self.assertIsNone(site.public_url(unsafe))
+        self.assertEqual(site.public_url('https://example.com/a#proof'), 'https://example.com/a#proof')
+
+    def test_accepted_piece_counts_expand_the_visible_table_range(self):
+        with tempfile.TemporaryDirectory() as dirname:
+            root = Path(dirname)
+            for n in (1, 41):
+                r = json.loads((ROOT / 'records/cubincub/cubincub_n13.json').read_text(encoding='utf-8'))
+                r.update(n=n, record_id=f'cubincub_n{n:02d}', pieces=[r['pieces'][0]] * n)
+                p = root / f'records/cubincub/cubincub_n{n:02d}.json'
+                p.parent.mkdir(parents=True, exist_ok=True); p.write_text(json.dumps(r), encoding='utf-8')
+            with patch.object(site, 'ROOT', dirname), patch.object(site, 'COMMUNITY', {'entries': []}), patch.object(site, 'EXTERNAL', {'entries': []}):
+                data = site.load()
+        self.assertEqual((data['nmin'], data['nmax']), (1, 41))
 
 
 if __name__ == '__main__':

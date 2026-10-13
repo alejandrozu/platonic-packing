@@ -1,0 +1,166 @@
+{
+ "problem": "min/cube_in_cube",
+ "piece": "cube",
+ "container": "cube",
+ "n": 13,
+ "s": 2.95614,
+ "s_plus": "2.95614+",
+ "s_full": 2.956147020837,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000000006948895e-06,
+  "min_wall_gap": 1.0000004935228901e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (balls hardened into cubes under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-09",
+ "pieces": [
+  [
+   -0.9780734104184484,
+   0.9780734104184285,
+   0.9366087277388464,
+   0.500000000000001,
+   -0.49999999999999817,
+   -0.4999999999999985,
+   -0.5000000000000026
+  ],
+  [
+   -0.060660223357370535,
+   0.9780734104184285,
+   -0.19802431430854184,
+   1.3971049329457096e-15,
+   0.9703616609062629,
+   -1.509812144647054e-16,
+   0.24165729255132976
+  ],
+  [
+   -0.060660223357370535,
+   -0.9780734104184473,
+   0.19802431430856116,
+   0.17087751028622278,
+   0.17087751028622392,
+   -0.6861493106302587,
+   0.6861493106302623
+  ],
+  [
+   -0.06066022335737409,
+   0.19802431430853407,
+   0.9780734104184476,
+   0.6861493106302622,
+   -0.6861493106302644,
+   0.17087751028621284,
+   -0.1708775102862113
+  ],
+  [
+   -0.9780734104184491,
+   0.9730411143880187,
+   -0.9780734104184261,
+   0.7071067811865472,
+   -5.0586616693037916e-17,
+   -0.7071067811865478,
+   6.518224041480208e-16
+  ],
+  [
+   -0.9780734104184493,
+   -0.8903634059634913,
+   0.9780734104184485,
+   0.7071067811865472,
+   5.700649679106068e-16,
+   0.7071067811865478,
+   1.6053514432740606e-15
+  ],
+  [
+   0.978073410418421,
+   -0.9338203180481037,
+   0.9780734104184459,
+   0.5000000000000009,
+   -0.49999999999999817,
+   -0.5000000000000013,
+   -0.49999999999999967
+  ],
+  [
+   0.9780734104184237,
+   0.9349589011783233,
+   -0.9780734104184257,
+   2.2336701774313922e-17,
+   1.4199516915136409e-15,
+   1.0,
+   5.273562905234564e-16
+  ],
+  [
+   -0.9780734104184486,
+   -0.9780734104184443,
+   -0.9118596308470424,
+   0.7071067811865475,
+   -6.44217795998904e-17,
+   -1.5256651270668808e-16,
+   -0.7071067811865477
+  ],
+  [
+   0.9780734104184157,
+   0.9780734104184259,
+   0.9703958771485917,
+   1.4023025511463251e-14,
+   2.0794954996919306e-14,
+   -1.0827750533256622e-14,
+   1.0
+  ],
+  [
+   -0.06066022335737098,
+   -0.19802431430856093,
+   -0.9780734104184252,
+   0.6861493106302594,
+   0.1708775102862269,
+   -0.6861493106302599,
+   0.17087751028622672
+  ],
+  [
+   0.9780734104184237,
+   -0.9780734104184453,
+   -0.9270361051377637,
+   4.725153217277742e-16,
+   -0.7071067811865476,
+   5.380539429938093e-16,
+   0.7071067811865475
+  ],
+  [
+   0.9780734104184219,
+   -9.547918011776346e-15,
+   1.3100631690576847e-14,
+   0.9889755195753916,
+   -0.14807910615810768,
+   -2.616150471958636e-16,
+   1.2534952369048763e-15
+  ]
+ ],
+ "record_id": "cubincub_n13_builderofagents",
+ "title": "13 unit cubes in a cube",
+ "found_by": "@BuilderOfAgents",
+ "credit": "Published coordinates by @BuilderOfAgents; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "@BuilderOfAgents",
+  "repository": "https://github.com/tronford/cubes-in-cube-n13",
+  "revision": "1f0c75401b2da4850b7e9f14de7d7b9cbe5e461a",
+  "url": "https://github.com/tronford/cubes-in-cube-n13/blob/1f0c75401b2da4850b7e9f14de7d7b9cbe5e461a/claims/cubincub_n13/cubincub_n13.json",
+  "source_file": "docs/literature/external/builderofagents-cubincub-n13.json",
+  "sha256": "76a7fad1ed2c835b020fd037778695eeae31e4fed2d4a3c1327009e4947c9d28",
+  "published_s_full": 2.956148820837,
+  "source_publication_date": "2026-10-09",
+  "normalization": "Original unit-edge poses in [0,s_full]^3 recentered at origin; same canonical solid and scalar-first quaternions. Recompute standard 1e-7 positive clearance. This precision/clearance change does not transfer discovery credit.",
+  "imported_on": "2026-10-13",
+  "historical_reference": "https://erich-friedman.github.io/packing/cubincub/",
+  "historical_author": "Erich Friedman (1998)",
+  "historical_relationship": "The source reports a rediscovery matching the published 1998 bound; no improvement over Friedman is claimed.",
+  "published_contact_side": 2.956145157584923
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 2.3513346877207573,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.5032285404368353
+}

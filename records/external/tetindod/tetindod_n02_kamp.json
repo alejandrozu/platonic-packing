@@ -1,0 +1,89 @@
+{
+ "problem": "min/tetrahedron_in_dodecahedron",
+ "piece": "tetrahedron",
+ "container": "dodecahedron",
+ "n": 2,
+ "s": 0.58268,
+ "s_plus": "0.58268+",
+ "s_full": 0.5826881613293,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000002003949624e-07,
+  "min_wall_gap": 1.0000004979637822e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   3.132709186253585e-06,
+   0.0727758178677586,
+   -0.19071018536603293,
+   0.3296646543672578,
+   0.7409732548822945,
+   -0.5801462631367605,
+   -0.07556563093435581
+  ],
+  [
+   -3.132701590854392e-06,
+   -0.07277581792126776,
+   0.190710185362996,
+   0.25482905237691067,
+   0.4783730703297056,
+   0.02516413179637336,
+   0.8399929321839268
+  ]
+ ],
+ "record_id": "tetindod_n02_kamp",
+ "title": "2 unit tetrahedrons in a dodecahedron",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l5/m1/n2/platonic_n2_m1_l5.html",
+  "source_file": "docs/literature/external/kamp-tetindod-n02.html",
+  "sha256": "66201d6d8bda3ae4939d24ecd834b2a756eddeabfa7efb2d05cceee23813b43f",
+  "numeric_source_file": "docs/literature/external/kamp-tetindod-n02.txt",
+  "numeric_source_sha256": "eef57610788dc207f1c5978232d8f86b2812d8d13833d318b1a07803869590cd",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "published_s_full": 0.5826880358380769,
+  "published_circumradius": 1.333333340746446,
+  "source_to_canonical_row_matrix": [
+   [
+    -0.30901699437494756,
+    -0.5000000000000001,
+    -0.8090169943749476
+   ],
+   [
+    -0.5000000000000002,
+    0.8090169943749476,
+    -0.3090169943749472
+   ],
+   [
+    0.8090169943749477,
+    0.3090169943749474,
+    -0.5000000000000006
+   ]
+  ],
+  "outer_conversion_max_error": 4.493900563785525e-15,
+  "vertex_conversion_max_error": 6.02566436879579e-16,
+  "normalization": "Original pieces have unit circumradius, so tetrahedron edge length is 1.6329931618554523; centers divided by this edge. Apply a proper rigid rotation to align ALL published dodecahedron outer vertices with the project canonical solid (normalized discrepancy 4.49e-15). Fit piece rotations to ALL source mesh vertices (maximum discrepancy 6.03e-16). Convert container circumradius into edge ratio R/(1.4012585384440737 * 1.6329931618554523). Add standard 1e-7 clearance without transferring discovery credit.",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "imported_on": "2026-10-13"
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 0.3133185153477365,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.15547107322285866
+}

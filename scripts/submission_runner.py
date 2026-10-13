@@ -1,5 +1,6 @@
 """Certify every discovered witness and write only immutable reviewed improvements."""
 from collections import Counter
+from fractions import Fraction
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import csv
 import datetime
@@ -64,14 +65,80 @@ def metadata_text(obj, key, default='', limit=2000):
     return value.strip()[:limit] if isinstance(value, str) and value.strip() else default
 
 
+def geometry_signature(record):
+    """Exact native poses relative to the container; excludes scale and order.
+
+    Scalar multiples/sign changes of quaternions give the same rational
+    rotation. No approximate angle tolerance or rounded position comparison
+    can silently turn changed geometry into an inherited construction.
+    """
+    centre = tuple(Fraction(value) for value in record.get('container_center', [0, 0, 0]))
+    poses = []
+    for piece in record['pieces']:
+        w, x, y, z = (Fraction(value) for value in piece[3:])
+        norm = w*w + x*x + y*y + z*z
+        if not norm: raise ValueError('Zero quaternion in predecessor.')
+        rotation = (w*w + x*x - y*y - z*z, 2*(x*y-w*z), 2*(x*z+w*y),
+                    2*(x*y+w*z), w*w-x*x+y*y-z*z, 2*(y*z-w*x),
+                    2*(x*z-w*y), 2*(y*z+w*x), w*w-x*x-y*y+z*z)
+        position = tuple(Fraction(piece[k]) - centre[k] for k in range(3))
+        poses.append(position + tuple(value/norm for value in rotation))
+    return Counter(poses)
+
+
+def unchanged_geometry(record, predecessor):
+    if not predecessor or (record.get('piece'), record.get('container'), record.get('n')) != (
+            predecessor.get('piece'), predecessor.get('container'), predecessor.get('n')):
+        return False
+    try:
+        return geometry_signature(record) == geometry_signature(predecessor)
+    except (TypeError, ValueError, KeyError, ZeroDivisionError):
+        return False
+
+
+def trusted_geometry_predecessor(api, row):
+    """Find a checked matching origin even if another geometry is the best case."""
+    if unchanged_geometry(row['rec'], row.get('current')):
+        return row['current'], row.get('current_file')
+    root = Path(api.ROOT).resolve()
+    pid, n = row['pid'], row['rec']['n']
+    paths = [f'records/{pid}/{pid}_n{n:02d}.json']
+    for name in ('docs/external_records.json', 'docs/community_records.json'):
+        registry = root / name
+        if registry.exists():
+            paths.extend(entry['file'] for entry in api.load_json(registry).get('entries', [])
+                         if entry.get('kind') == 'coordinates' and entry.get('problem') == pid and entry.get('n') == n)
+    for relative in dict.fromkeys(paths):
+        path = (root / relative).resolve()
+        if not path.is_relative_to(root / 'records') or not path.exists(): continue
+        certificate = path.with_suffix('.certify.txt')
+        if not certificate.exists(): continue
+        proof = certificate.read_text(encoding='utf-8')
+        if 'CERTIFIED' not in proof or 'NOT CERTIFIED' in proof: continue
+        candidate = api.load_json(path)
+        if unchanged_geometry(row['rec'], candidate): return candidate, path.relative_to(root).as_posix()
+    return None, None
+
+
 def write_record(api, row, fields, issue):
     rec, pid, obj = row['rec'], row['pid'], row['object']
     n, s = rec['n'], rec['s_full']
     rid = f'{pid}_n{n:02d}'
     submit_credit = fields['credit'].strip().splitlines()[0][:120]
-    credit = metadata_text(obj, 'found_by', submit_credit, 120)
-    method = metadata_text(obj, 'method', fields.get('method', '').strip()[:2000] or 'submitted packing')
-    native_credit = metadata_text(obj, 'credit', f'{credit}, submitted in {issue["html_url"]}')
+    metadata = row.get('metadata') or {}
+    original = obj.get('source_credit', metadata.get('original_credit', {}))
+    if not isinstance(original, dict): original = {}
+    original_author = metadata_text(original, 'found_by', metadata_text(original, 'construction_and_original_certificate'), 120)
+    credit = metadata_text(obj, 'found_by', original_author or submit_credit, 120)
+    method = metadata_text(obj, 'method', metadata_text(original, 'method', fields.get('method', '').strip()[:2000] or 'submitted packing'))
+    native_credit = metadata_text(obj, 'credit', metadata_text(original, 'credit', f'{credit}, submitted in {issue["html_url"]}'))
+    current = row.get('current')
+    predecessor, predecessor_file = trusted_geometry_predecessor(api, row)
+    padding = predecessor is not None
+    if padding:
+        credit = metadata_text(predecessor, 'found_by', 'Construction author not recorded', 120)
+        native_credit = metadata_text(predecessor, 'credit', credit)
+        method = metadata_text(predecessor, 'method', 'Inherited construction; certificate scale refined')
     today = datetime.date.today().isoformat()
     vc, vp = api.SOL[rec['container']]['volume'], api.SOL[rec['piece']]['volume']
     container = api.disp(rec['container'])
@@ -87,21 +154,24 @@ def write_record(api, row, fields, issue):
                          'min_wall_gap': float(wall.group(1)) if wall else None},
            'format': '[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container',
            'method': method, 'date': today, 'record_id': rid, 'title': title, 'family': api.FAM[pid],
-           'source': obj.get('source') if isinstance(obj.get('source'), dict) else {'issue': issue['html_url'], 'submitted_by': issue['user']['login']},
+           'source': obj.get('source') if isinstance(obj.get('source'), dict) else original.get('source') if isinstance(original.get('source'), dict)
+                     else {'issue': original['issue']} if isinstance(original.get('issue'), str)
+                     else {'issue': issue['html_url'], 'submitted_by': issue['user']['login']},
            's_tight': None, 'closed_form_conjecture': None,
-           'volume_lower_bound': (n * vp / vc) ** (1 / 3), 'density': n * vp / (s ** 3 * vc),
+           'volume_lower_bound': (n * vp / vc) ** (1 / 3), 'density': n * vp / vc / s / s / s,
            'found_by': credit, 'credit': native_credit,
            'certificate': 'exact certificate: certify_general.py (src/solids_exact.json)'}
-    metadata = row.get('metadata') or {}
     refinement = obj.get('source_refinement')
-    padding = (isinstance(refinement, dict) and refinement.get('pieces_unchanged') is True
-               or 'wall-padding' in str(metadata.get('kind', '')))
+    if padding: out['source'] = predecessor.get('source') if isinstance(predecessor.get('source'), dict) else {}
+    same_nominal = 'certificate-only' in str(metadata.get('classification', ''))
     contribution = {'issue': issue['html_url'], 'submitted_by': issue['user']['login'], 'credit': submit_credit,
-                    'kind': 'wall_padding' if padding else 'construction', 'replayed_on': today,
-                    'witness_sha256': row.get('witness_sha256', row['digest'])}
+                    'kind': 'wall_padding' if padding else 'same_nominal' if same_nominal else 'construction', 'replayed_on': today,
+                    'witness_sha256': row.get('witness_sha256', row['digest']),
+                    'method': fields.get('method', '').strip()[:2000]}
     for key in ('archive', 'archive_sha256'):
         if row.get(key): contribution[key] = row[key]
     out['contribution'] = contribution
+    if original: out['source_credit'] = original
     if padding:
         # This role is distinct from original geometric authorship. A form may
         # explicitly separate the two roles; otherwise retain its credit as given.
@@ -109,25 +179,26 @@ def write_record(api, row, fields, issue):
         role = re.search(r'(?:^|;)\s*([^;]+?)\s*\(certificate refinement(?: only)?\)', submit_credit, re.I)
         if role: refiner = role.group(1).strip()
         out['certificate_refined_by'], out['certificate_refined_on'] = refiner, today
+        old_scale, new_scale = Fraction(predecessor['s_full']), Fraction(s)
         out['certificate_refinement'] = {'kind': 'wall-padding certificate refinement',
-                                         'new_nominal_construction': False}
-        for source, dest in (('old_scale_exact', 'previous_scale_exact'), ('new_scale_exact', 'scale_exact'),
-                             ('strict_decrease_exact', 'decrease_exact')):
-            if isinstance(metadata.get(source), str): out['certificate_refinement'][dest] = metadata[source][:500]
-        if isinstance(refinement, dict): out['source_refinement'] = refinement
+                                         'new_nominal_construction': False, 'geometry_matched_exactly': True,
+                                         'previous_scale_exact': str(old_scale), 'scale_exact': str(new_scale),
+                                         'decrease_exact': str(old_scale-new_scale)}
+        out['source_refinement'] = {'type': 'certified wall-padding reduction only', 'pieces_unchanged': True,
+                                    'source_record': predecessor_file, 'source_credit_preserved': True}
     if row.get('current'):
         out['previous_record'] = {k: row['current'].get(k) for k in ('s_full', 'found_by', 'date')}
         # A submitted feasibility certificate does not prove its proposed
         # touching limit or optimality claim. Retain existing annotations only
         # when the trusted predecessor has exactly the same native poses.
-        current = row['current']
-        if (padding and current.get('pieces') == rec['pieces']
-                and current.get('container_center', [0, 0, 0]) == rec.get('container_center', [0, 0, 0])):
-            out['s_tight'] = current.get('s_tight')
-            out['closed_form_conjecture'] = current.get('closed_form_conjecture')
+        if padding:
+            out['s_tight'] = predecessor.get('s_tight')
+            out['closed_form_conjecture'] = predecessor.get('closed_form_conjecture')
     # Content-addressing also keeps a second accepted edit of the same issue immutable.
     relative = f'records/community/{pid}/{rid}_submission_{issue["number"]}_{row["digest"][:12]}.json'
     filename = Path(api.ROOT) / relative
+    out['case_id'], out['record_id'] = rid, filename.stem
+    row['accepted_credit'] = credit
     filename.parent.mkdir(parents=True, exist_ok=True)
     if filename.exists():
         raise api.Bad('This immutable submitted witness already exists; review the registry before accepting it again.')
@@ -177,7 +248,18 @@ def main(api):
             row['rec'], row['pid'] = api.parse_object(row['object'], defaults)
             row['digest'] = hashlib.sha256(json.dumps(row['rec'], sort_keys=True, separators=(',', ':')).encode()).hexdigest()
             if row['digest'] in seen:
-                row['status'], row['message'] = 'duplicate', f'Identical witness to candidate {seen[row["digest"]]}.'
+                prior = rows[seen[row['digest']] - 1]
+                def provenance_score(candidate):
+                    obj = candidate['object']; metadata = candidate.get('metadata', {})
+                    return (int(bool(candidate.get('archive'))) + int(bool(obj.get('found_by'))) + int(bool(obj.get('credit')))
+                            + 3 * int(bool(obj.get('source_refinement') or obj.get('source_credit') or metadata.get('original_credit'))))
+                if provenance_score(row) > provenance_score(prior):
+                    # An inline specimen often omits the archive's original-author
+                    # and refinement roles. Certify the richer identical witness.
+                    prior['status'], prior['message'] = 'duplicate', f'Identical witness with fuller provenance is candidate {index}.'
+                    active.remove(prior); active.append(row); seen[row['digest']] = index
+                else:
+                    row['status'], row['message'] = 'duplicate', f'Identical witness to candidate {seen[row["digest"]]}.'
             else:
                 seen[row['digest']] = index; active.append(row)
         except (api.Bad, TypeError, ValueError) as exc:
@@ -236,7 +318,7 @@ def main(api):
              'Every discovered witness has a separate result in the `submission-results` workflow artifact '
              '(`result.json`, `results.csv`, and the trusted checker logs). Auxiliary source/history files and submitted '
              'scripts are ignored; submitted code and certificates are never executed or trusted.', '',
-             '| Candidate | Case | s_full | Result |', '|---|---|---:|---|']
+             '| Candidate | Case | s_full | Result | Detail |', '|---|---|---:|---|---|']
     public_entries = []
     for row in rows:
         entry = {key: row[key] for key in ('index', 'source', 'status', 'message', 'accepted_file', 'archive_sha256', 'witness_sha256') if key in row}
@@ -246,7 +328,7 @@ def main(api):
         public_entries.append(entry)
         if row['index'] <= 80:
             case = f'{row["pid"] or row["rec"]["piece"] + " in " + row["rec"]["container"]}_n{row["rec"]["n"]:02d}' if row.get('rec') else 'unreadable / unsupported'
-            lines.append(f'| {row["index"]} | {escaped(case)} | {row["rec"]["s_full"] if row.get("rec") else "—"} | {row["status"]} |')
+            lines.append(f'| {row["index"]} | {escaped(case)} | {row["rec"]["s_full"] if row.get("rec") else "—"} | {row["status"]} | {escaped(row.get("message", ""))} |')
     if len(rows) > 80: lines += ['', f'The remaining {len(rows) - 80} per-candidate outcomes are in the workflow artifact.']
     # Keep small submissions convenient without exceeding GitHub's comment-size limit for large batches.
     for row in active[:6]:
@@ -259,7 +341,7 @@ def main(api):
                       f'({"equal" if delta == 0 else "smaller, better" if delta < 0 else "larger"}).']
         if reference:
             lines += [f'Published reference: `{reference["published_value"]!r}`, {escaped(reference["author"])} ([source]({reference["url"]})).']
-            if reference['published_value'] < rec['s_full'] - 1e-5:
+            if reference['published_value'] < rec['s_full'] - max(1e-5, reference.get('display_quantum', 1e-5)):
                 lines += ['This comparison does not certify that source; this submission is not an improvement over its reported scale. Acceptance compares certified coordinates.']
         if row.get('message'): lines += [escaped(row['message'])]
         if row.get('vout'):
@@ -268,7 +350,7 @@ def main(api):
             lines += ['<details><summary>Exact certificate</summary>', '', '```', row['cout'][-2000:], '```', '</details>']
         if row.get('accepted_file'):
             lines += [f'**Accepted and recorded** as [this immutable coordinate record]({api.REPO}/blob/main/{row["accepted_file"]}), '
-                      f'credited to {escaped(metadata_text(row["object"], "found_by", fields.get("credit", "")))}. '
+                      f'credited to {escaped(row["accepted_credit"])}. '
                       f'It appears on [the site]({api.SITE}#{row["pid"]}_n{rec["n"]:02d}) after the rebuild.']
     if summary['untracked']: lines += ['', f'[Propose the category]({api.REPO}/issues/new?template=new-category.yml) for untracked 3D convex polyhedra. 2D packings are outside this archive.']
     if not result['accepted'] and mode == 'accept': lines += ['', '**Not recorded:** only exactly certified improvements to tracked polyhedron-in-polyhedron cases can be accepted.']

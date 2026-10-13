@@ -1,0 +1,98 @@
+{
+ "problem": "min/cube_in_icosahedron",
+ "piece": "cube",
+ "container": "icosahedron",
+ "n": 3,
+ "s": 1.67433,
+ "s_plus": "1.67433+",
+ "s_full": 1.6743386199876,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020114335787e-07,
+  "min_wall_gap": 1.0000005379318111e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   -0.53037259587946,
+   -0.2043924247119761,
+   0.2113635180690298,
+   0.3098056008704518,
+   0.09442099335671063,
+   0.7474004049416575,
+   -0.5800843045419147
+  ],
+  [
+   -0.03195517991692948,
+   0.11040998487583815,
+   -0.5964215405060289,
+   0.30980560085387526,
+   0.0944209932411601,
+   0.7474004048859368,
+   -0.5800843046413684
+  ],
+  [
+   0.5150019936215378,
+   0.15420188796434073,
+   0.3784105322980836,
+   0.3097297307853475,
+   0.09466957347054379,
+   0.7469346622447206,
+   -0.5806838865199435
+  ]
+ ],
+ "record_id": "cubinico_n03_kamp",
+ "title": "3 unit cubes in a icosahedron",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l4/m3/n3/platonic_n3_m3_l4.html",
+  "source_file": "docs/literature/external/kamp-cubinico-n03.html",
+  "sha256": "e265bfbd38ba3428c6753d03dbe1c1a9eb77584102757d2486ac73630eed65a0",
+  "numeric_source_file": "docs/literature/external/kamp-cubinico-n03.txt",
+  "numeric_source_sha256": "9eb1791130e34454fad1c8df625f7f4307cb98e1a21b5db3c5ad5f6e988361b2",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "published_s_full": 1.6743383824655373,
+  "published_circumradius": 1.838734085822841,
+  "source_to_canonical_row_matrix": [
+   [
+    -0.309016994374947,
+    -0.8090169943749477,
+    -0.4999999999999999
+   ],
+   [
+    0.49999999999999994,
+    0.3090169943749475,
+    -0.8090169943749475
+   ],
+   [
+    0.8090169943749475,
+    -0.49999999999999944,
+    0.30901699437494756
+   ]
+  ],
+  "outer_conversion_max_error": 1.1974918617214043e-15,
+  "vertex_conversion_max_error": 6.894341957538586e-16,
+  "normalization": "Original pieces have unit circumradius, so cube edge length is 1.1547005383792517; centers divided by this edge. Apply a proper rigid rotation to align ALL published icosahedron outer vertices with the project canonical solid (normalized discrepancy 1.2e-15). Fit piece rotations to ALL source mesh vertices (maximum discrepancy 6.89e-16). Convert container circumradius into edge ratio R/(0.95105651629515353 * 1.1547005383792517). Add standard 1e-7 clearance without transferring discovery credit.",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "imported_on": "2026-10-13"
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 1.1120109747000715,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.29295258607005764
+}

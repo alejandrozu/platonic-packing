@@ -270,7 +270,7 @@ def stage():
     for task in imported:
         r=load(ROOT/task['file'])
         by_path[task['file']]={'problem':task['record_id'].split('_')[0],'n':r['n'],'file':task['file'],
-                              'issue':r['contribution']['issue'],'kind':task['kind']}
+                              'issue':r['contribution']['issue'],'kind':'coordinates','refinement_kind':task['kind']}
     registry.write_text(json.dumps({'checked_on':'2026-10-13','scope':'Certified coordinate candidates only; these entries are not published-reference bounds.',
                                     'entries':list(by_path.values())},indent=2)+'\n',encoding='utf-8')
     summary=['# Community construction and certificate batch, 13 October 2026','',

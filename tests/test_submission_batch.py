@@ -8,6 +8,7 @@ from pathlib import Path
 import subprocess
 import sys
 import tempfile
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 import zipfile
@@ -15,6 +16,7 @@ import zipfile
 from test_submission import ROOT, RECORD, body, submission
 import submission_batch
 import submission_runner
+import submission_event_guard
 
 URL = 'https://github.com/user-attachments/files/12345/native-witnesses.zip'
 RECORD3 = json.loads((ROOT / 'records/cubincub/cubincub_n03.json').read_text(encoding='utf-8'))
@@ -102,10 +104,11 @@ class BatchSubmissionTests(unittest.TestCase):
                      certificate_refined_by='Independent certificate refiner',
                      source_refinement={'pieces_unchanged': True, 'type': 'wall-padding'})
         second.update(found_by='Second constructor', credit='Second original credit')
+        second['pieces'][0][0] += 1e-9  # a distinct certified geometry, not a padding-only refinement
         text = body(RECORD)
         start = text.index('```json\n'); end = text.index('\n```', start)
         text = text[:start] + '```json\n' + json.dumps({'records': [first, second]}) + text[end:]
-        result, written, registry, _, comment = self.run_batch(b'', [RECORD, RECORD3], raw_body=text)
+        result, written, registry, _, comment = self.run_batch(b'', [first, RECORD3], raw_body=text)
         self.assertEqual(result['summary']['accepted'], 2)
         self.assertTrue(result['complete'])
         values = {record['n']: record for record in written.values()}
@@ -126,6 +129,123 @@ class BatchSubmissionTests(unittest.TestCase):
         self.assertEqual([row['object']['n'] for row in rows], [2, 3])
         self.assertGreaterEqual(ignored, 4)
         self.assertTrue(all('original/' not in row['source'] for row in rows))
+
+    def test_inline_specimen_does_not_erase_identical_archived_original_credit_or_refinement_role(self):
+        witness = {key: RECORD[key] for key in ('piece', 'container', 'n', 's_full', 'pieces')}
+        witness.update(source_credit={'construction_and_original_certificate': 'Original cube constructor',
+                                      'issue': 'https://example.invalid/original-construction'},
+                       certificate_refined_by='Certificate refiner',
+                       source_refinement={'pieces_unchanged': True, 'type': 'wall-padding'})
+        inline = {key: witness[key] for key in ('piece', 'container', 'n', 's_full', 'pieces')}
+        predecessor = copy.deepcopy(RECORD)
+        predecessor.update(found_by='Original cube constructor', source={'issue': 'https://example.invalid/original-construction'})
+        result, written, _, _, _ = self.run_batch(archive([witness]), [predecessor], raw_body=body(inline) + '\n\n' + URL)
+        self.assertEqual(result['summary']['accepted'], 1)
+        self.assertEqual(result['summary']['skipped'], 1)
+        record = next(iter(written.values()))
+        self.assertEqual(record['found_by'], 'Original cube constructor')
+        self.assertEqual(record['certificate_refined_by'], 'Certificate refiner')
+        self.assertEqual(record['source']['issue'], 'https://example.invalid/original-construction')
+        self.assertEqual(record['contribution']['kind'], 'wall_padding')
+        self.assertEqual(record['pieces'], inline['pieces'])
+
+    def test_omitted_or_false_origin_cannot_steal_trusted_padding_authorship(self):
+        predecessor = copy.deepcopy(RECORD)
+        predecessor.update(found_by='Trusted original author', credit='Full trusted credit',
+                           method='Trusted geometric method', source={'url': 'https://example.invalid/original'})
+        submitted = {key: RECORD[key] for key in ('piece', 'container', 'n', 's_full', 'pieces')}
+        submitted.update(found_by='Wrong claimant', credit='Wrong origin metadata', method='Wrong original method')
+        result, written, _, _, _ = self.run_batch(b'', [predecessor], raw_body=body(submitted))
+        record = next(iter(written.values()))
+        self.assertEqual(record['found_by'], predecessor['found_by'])
+        self.assertEqual(record['credit'], predecessor['credit'])
+        self.assertEqual(record['method'], predecessor['method'])
+        self.assertEqual(record['source'], predecessor['source'])
+        self.assertEqual(record['certificate_refined_by'], 'Example contributor')
+        self.assertTrue(record['certificate_refinement']['geometry_matched_exactly'])
+        self.assertEqual(record['pieces'], submitted['pieces'])
+        self.assertEqual(record['case_id'], 'cubincub_n02')
+        self.assertEqual(record['record_id'], Path(next(iter(written))).stem)
+        self.assertNotEqual(record['record_id'], record['case_id'])
+
+    def test_explicit_centred_geometry_is_preserved_and_equivalent_quaternions_are_matched_exactly(self):
+        predecessor = {'piece': 'cube', 'container': 'cube', 'n': 2, 's_full': 3.1,
+                       'pieces': [[-.75, 0, 0, 1, 0, 0, 0], [.75, 0, 0, 1, 0, 0, 0]],
+                       'found_by': 'Trusted centred constructor', 'credit': 'Trusted credit', 'method': 'Trusted method',
+                       'source': {'url': 'https://example.invalid/centred'}}
+        submitted = {key: copy.deepcopy(predecessor[key]) for key in ('piece', 'container', 'n', 's_full', 'pieces')}
+        submitted['s_full'] = 3.0; submitted['container_center'] = [8, -4, 2]
+        for piece in submitted['pieces']:
+            for k in range(3): piece[k] += submitted['container_center'][k]
+            piece[3] = -1e308
+        result, written, _, _, _ = self.run_batch(b'', [predecessor], raw_body=body(submitted))
+        self.assertEqual(result['summary']['certified'], 1)
+        record = next(iter(written.values()))
+        self.assertEqual(record['pieces'], submitted['pieces'])
+        self.assertEqual(record['container_center'], submitted['container_center'])
+        self.assertEqual(record['found_by'], predecessor['found_by'])
+        self.assertTrue(record['certificate_refinement']['geometry_matched_exactly'])
+
+    def test_false_unchanged_claim_is_not_used_to_classify_changed_geometry_as_padding(self):
+        submitted = copy.deepcopy(RECORD)
+        submitted['pieces'][0][0] += 1e-9
+        submitted['found_by'] = 'New constructor'
+        submitted['source_refinement'] = {'pieces_unchanged': True}
+        result, written, _, _, _ = self.run_batch(b'', [RECORD], raw_body=body(submitted))
+        record = next(iter(written.values()))
+        self.assertEqual(record['contribution']['kind'], 'construction')
+        self.assertNotIn('certificate_refined_by', record)
+        self.assertEqual(record['found_by'], 'New constructor')
+
+    def test_checked_matching_origin_is_found_even_when_another_geometry_is_the_current_best(self):
+        with tempfile.TemporaryDirectory(prefix='packing-origin-') as directory:
+            root = Path(directory)
+            filename = root / 'records/external/original.json'
+            filename.parent.mkdir(parents=True)
+            original = copy.deepcopy(RECORD)
+            original.update(found_by='Trusted earlier author', s_full=RECORD['s_full'] + .01)
+            filename.write_text(json.dumps(original), encoding='utf-8')
+            filename.with_suffix('.certify.txt').write_text('CERTIFIED', encoding='utf-8')
+            registry = root / 'docs/external_records.json'; registry.parent.mkdir(parents=True)
+            registry.write_text(json.dumps({'entries': [{'kind': 'coordinates', 'problem': 'cubincub', 'n': 2,
+                                                         'file': 'records/external/original.json'}]}), encoding='utf-8')
+            current = copy.deepcopy(RECORD); current['pieces'][0][0] += 1e-9
+            row = {'rec': RECORD, 'pid': 'cubincub', 'current': current, 'current_file': 'records/another.json'}
+            api = SimpleNamespace(ROOT=str(root), load_json=submission.load_json)
+            predecessor, source = submission_runner.trusted_geometry_predecessor(api, row)
+            self.assertEqual(predecessor['found_by'], 'Trusted earlier author')
+            self.assertEqual(source, 'records/external/original.json')
+            filename.with_suffix('.certify.txt').write_text('NOT CERTIFIED', encoding='utf-8')
+            self.assertEqual(submission_runner.trusted_geometry_predecessor(api, row), (None, None))
+
+    def test_large_scale_density_and_tiny_quaternion_proposals_do_not_overflow_or_underflow(self):
+        submitted = {key: copy.deepcopy(RECORD[key]) for key in ('piece', 'container', 'n', 's_full', 'pieces')}
+        submitted['s_full'] = 1e120
+        for piece in submitted['pieces']: piece[3:] = [1e-300, 0, 0, 0]
+        predecessor = copy.deepcopy(submitted); predecessor['s_full'] = 1e121
+        result, written, _, _, _ = self.run_batch(b'', [predecessor], raw_body=body(submitted))
+        self.assertEqual(result['summary']['accepted'], 1)
+        record = next(iter(written.values()))
+        self.assertEqual(record['density'], 0.0)  # physical density underflows safely; certification does not
+        self.assertEqual(record['pieces'], submitted['pieces'])
+
+    def test_check_mode_stale_body_state_and_labels_are_refused_before_mutation(self):
+        event = {'issue': {'body': 'Reviewed packing'}}
+        current = {'body': 'Reviewed packing', 'state': 'open', 'labels': [{'name': 'submission'}]}
+        submission_event_guard.ensure_issue_current(event, current, 'check')
+        for change in ({'body': 'Edited packing'}, {'state': 'closed'}, {'labels': []}, {'labels': [{'name': 'submission'}, {'name': 'accepted'}]}):
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                submission_event_guard.ensure_issue_current(event, {**current, **change}, 'check')
+        with self.assertRaises(ValueError):
+            submission_event_guard.ensure_issue_current(event, current, 'accept')
+        submission_event_guard.ensure_issue_current(event, {**current, 'labels': [{'name': 'submission'}, {'name': 'accepted'}]}, 'accept')
+
+    def test_frames_outside_float_proposal_domain_are_rejected_before_checking(self):
+        for change in ({'s_full': 1e151}, {'container_center': [1e151, 0, 0]},
+                       {'pieces': [[1e151, 0, 0, 1, 0, 0, 0], [0, 0, 0, 1, 0, 0, 0]]}):
+            candidate = copy.deepcopy(RECORD); candidate.update(change)
+            with self.subTest(change=change), self.assertRaises(submission.Bad):
+                submission.parse_object(candidate, {})
 
     def test_unsafe_zip_and_bad_manifest_hash_do_not_certify(self):
         with self.assertRaises(submission_batch.BatchError):

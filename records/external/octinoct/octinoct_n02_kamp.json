@@ -1,0 +1,89 @@
+{
+ "problem": "min/octahedron_in_octahedron",
+ "piece": "octahedron",
+ "container": "octahedron",
+ "n": 2,
+ "s": 1.93311,
+ "s_plus": "1.93311+",
+ "s_full": 1.9331199515564,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020088507351e-07,
+  "min_wall_gap": 1.0000000916221552e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   0.49689473409048535,
+   0.005508675381176526,
+   -0.06455711710414515,
+   0.13074890672620054,
+   0.05011302185926793,
+   -0.030191305403724965,
+   -0.9896877757697399
+  ],
+  [
+   -0.4968947485549517,
+   -0.005508645365927783,
+   0.0645571065166448,
+   0.607361497788114,
+   -0.056783735804942746,
+   -0.014086783329898296,
+   0.7922683768067673
+  ]
+ ],
+ "record_id": "octinoct_n02_kamp",
+ "title": "2 unit octahedrons in a octahedron",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l2/m2/n2/platonic_n2_m2_l2.html",
+  "source_file": "docs/literature/external/kamp-octinoct-n02.html",
+  "sha256": "3c795f81230054ee836a8f04e5b991cfff8f653aa10d1a829d3dc3461b8bcf60",
+  "numeric_source_file": "docs/literature/external/kamp-octinoct-n02.txt",
+  "numeric_source_sha256": "b48df3d452148ee590a26446c042c8e7e220c108fce5f58f8b32c02f606f0a6f",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "published_s_full": 1.933119585088517,
+  "published_circumradius": 1.933119585088517,
+  "source_to_canonical_row_matrix": [
+   [
+    -1.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    1.0
+   ]
+  ],
+  "outer_conversion_max_error": 1.5543122344752192e-15,
+  "vertex_conversion_max_error": 3.2159359137519293e-16,
+  "normalization": "Original pieces have unit circumradius, so octahedron edge length is 1.4142135623730949; centers divided by this edge. Apply a proper rigid rotation to align ALL published octahedron outer vertices with the project canonical solid (normalized discrepancy 1.55e-15). Fit piece rotations to ALL source mesh vertices (maximum discrepancy 3.22e-16). Convert container circumradius into edge ratio R/(0.70710678118654757 * 1.4142135623730949). Add standard 1e-7 clearance without transferring discovery credit.",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "imported_on": "2026-10-13"
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 1.2599210498948732,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.2768557744723256
+}

@@ -2,7 +2,8 @@ import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 import { readFileSync } from 'node:fs';
 const require = createRequire(import.meta.url);
-const { packingConstructionChoices } = require('../web/assets/explorer.js');
+const { packingConstructionChoices, packingPublicURL, packingUnitQuaternion, packingReferenceTolerance,
+  packingDerivationText, packingRecordRawURL, packingFullPrecisionRecord } = require('../web/assets/explorer.js');
 
 const pose = [0, 0, 0, 1, 0, 0, 0];
 const coordinate = (id, sf, who, n = 2) => ({ id, n, sf, who, p: Array.from({ length: n }, () => [...pose]), ok: true });
@@ -33,6 +34,48 @@ assert.equal(packingConstructionChoices(independentBest).reference, null);
 assert.equal(packingConstructionChoices({ ...reference, alternatives: [] }).row, null);
 assert.equal(packingConstructionChoices({ ...reference, alternatives: [coordinate('wrong-n', 1, 'Other', 3)] }).row, null);
 assert.equal(packingConstructionChoices({ ...reference, alternatives: [{ ...local, p: [] }] }).row, null);
+
+// Public provenance is clickable only for credential-free HTTP(S) URLs.
+assert.equal(packingPublicURL('https://example.org/paper?a=1&b=2'), 'https://example.org/paper?a=1&b=2');
+assert.equal(packingPublicURL('http://example.org/paper'), 'http://example.org/paper');
+for (const value of ['javascript:alert(1)', 'data:text/html,unsafe', '//example.org/paper',
+  'https://user:password@example.org/paper', 'https://example.org/\nunsafe', { url: 'https://example.org' }]) {
+  assert.equal(packingPublicURL(value), null);
+}
+assert.equal(packingReferenceTolerance({ ref_quantum: 0.001 }), 0.001);
+assert.equal(packingReferenceTolerance({ ref_quantum: 1e-12 }), 1e-5);
+assert.equal(packingReferenceTolerance({ ref_quantum: 'invalid' }), 1e-5);
+assert.equal(packingDerivationText('Delete one piece from the original construction.'), 'Delete one piece from the original construction.');
+assert.equal(packingDerivationText({ kind: 'subset', original_n: 33, removed: [0, 1] }), 'kind: subset; original n: 33; removed: [0,1]');
+
+// Rotation equivalence must survive very large and subnormal finite quaternions.
+const normal = packingUnitQuaternion([1, -2, 3, -4]);
+for (const q of [[1e307, -2e307, 3e307, -4e307], [1e-320, -2e-320, 3e-320, -4e-320]]) {
+  const unit = packingUnitQuaternion(q);
+  assert(unit.every(Number.isFinite));
+  assert(Math.abs(Math.hypot(...unit) - 1) < 1e-15);
+  assert(unit.every((value, index) => Math.abs(value - normal[index]) < 1e-15));
+}
+
+// The clipboard source retains the exact decimal text and every provenance field,
+// instead of reserializing the rounded seven-decimal viewer poses.
+const repo = 'https://github.com/alejandrozu/platonic-packing';
+const file = 'records/community/cubincub/cubincub_n02_submission_8_abcdef.json';
+const rawText = '{"piece":"cube","container":"cube","n":2,"s_full":3,"pieces":[[0.123456789012345678901234,0,0,1,0,0,0],[1,0,0,1,0,0,0]],"found_by":"Original constructor","certificate_refined_by":"Independent refiner","source":{"url":"https://example.org/source"},"contribution":{"archive_sha256":"bound-to-source"}}\n';
+const rawRow = { ...external, file }, problem = { piece: 'cube', container: 'cube' };
+let requested;
+const text = await packingFullPrecisionRecord(repo, rawRow, problem, 'dataset/123', async (url, options) => {
+  requested = { url, options }; return { ok: true, text: async () => rawText };
+});
+assert.equal(text, rawText);
+assert.equal(requested.options.cache, 'no-cache');
+assert.equal(new URL(requested.url).hostname, 'raw.githubusercontent.com');
+assert.equal(new URL(requested.url).searchParams.get('v'), 'dataset/123');
+assert.equal(packingRecordRawURL(repo, 'records/../unsafe.json', '1'), null);
+assert.equal(packingRecordRawURL('https://example.org/repo', file, '1'), null);
+await assert.rejects(packingFullPrecisionRecord(repo, rawRow, problem, '1', async () => ({ ok: false })), /could not be fetched/);
+await assert.rejects(packingFullPrecisionRecord(repo, { ...rawRow, sf: 2.99 }, problem, '1',
+  async () => ({ ok: true, text: async () => rawText })), /record changed/);
 
 if (process.argv[2]) {
   const data = JSON.parse(readFileSync(process.argv[2], 'utf8'));

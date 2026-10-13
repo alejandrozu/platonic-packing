@@ -1,10 +1,11 @@
 <div class="doc">
 <article>
 <h1>Method</h1>
-<p class="lede">Every packing on this site was found the same way: each piece starts as a soft, rounded body that is
+<p class="lede">The project's search starts each piece as a soft, rounded body that is
 sharpened into the solid while pressure shrinks the container, a search then hops between arrangements, and the best
 one is tightened, given a small clearance and proved valid in exact arithmetic. This page explains each step and links
-the code that does it, so the method can be reused for other solids and containers.</p>
+the code that does it, so the method can be reused for other solids and containers. Independently published and
+community constructions can use other methods; their original sources are linked, and their coordinates are checked with the same certifiers.</p>
 <p>The generalized packing method was developed by <b>Alejandro Zarzuelo Urdiales</b>, building on
 <a href="https://github.com/yoheinakajima/soft-to-rigid-packing">Yohei Nakajima's soft-to-rigid method for cube packing</a>.
 The generalization extends the construction to multiple solid families and containers, with r-rounding, a generalized
@@ -17,13 +18,14 @@ translate and rotate, fit inside s·A with pairwise disjoint interiors. Pieces a
 <p>For solids with all edges equal (Platonic and Archimedean solids, regular prisms and antiprisms) this is container
 edge ÷ piece edge. Catalan solids have edges of two or three lengths, so their s is the ratio of sizes of the same
 canonical solid (defined <a href="#solids">below</a>); Catalan solids are only packed in themselves.</p>
-<p>The site tracks {{N_PROBLEMS}} problems for n = 2–40, {{N_CASES}} cases in all:</p>
+<p>The site tracks {{N_PROBLEMS}} problems for n = {{N_MIN}}–{{N_MAX}}, {{N_CASES}} table slots in all:</p>
 <ul>
-  <li><b>Platonic</b> (9): each Platonic solid in itself, and the dual pairs: cubes in an octahedron, octahedra in a cube, dodecahedra in an icosahedron, icosahedra in a dodecahedron.</li>
+  <li><b>Platonic</b> (25): every ordered pair of the five Platonic solids, including identical solids, dual solids and the other mixed pairs.</li>
   <li><b>Archimedean</b> (13) and <b>Catalan</b> (13): each solid in itself.</li>
   <li><b>Prisms and antiprisms</b> (20): the regular triangular, pentagonal, hexagonal, octagonal and dodecagonal prisms and the square, pentagonal, hexagonal, octagonal and dodecagonal antiprisms, each in itself and in a cube. The square prism with unit edges is the cube and the triangular antiprism is the octahedron, so those cases are the Platonic problems and are not repeated.</li>
 </ul>
-<p>Every value is an <b>upper bound with a proof</b>: the packing exists. None is claimed optimal. The only general lower
+<p>Each certified coordinate entry is an <b>upper bound with a proof</b>: the packing exists. Source-only catalogue values
+are labelled separately and link to their original reports. None is claimed optimal. The general lower
 bound used is the volume bound s ≥ (n · vol B / vol A)<sup>1/3</sup>, drawn as a dashed line in every chart.</p>
 
 <h2 id="solids">The solids</h2>

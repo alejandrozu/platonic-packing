@@ -1,0 +1,107 @@
+{
+ "problem": "min/tetrahedron_in_icosahedron",
+ "piece": "tetrahedron",
+ "container": "icosahedron",
+ "n": 4,
+ "s": 0.98651,
+ "s_plus": "0.98651+",
+ "s_full": 0.9865142276276,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020042253142e-07,
+  "min_wall_gap": 1.0000006622767899e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   -0.17648808130279486,
+   0.3178437126756007,
+   0.209773637376799,
+   0.37127331620057497,
+   0.501861093832918,
+   0.27753527815754975,
+   0.7302504615214335
+  ],
+  [
+   0.23811932336271177,
+   -0.1890880844261107,
+   -0.042572721822454127,
+   0.00947475425659285,
+   0.4290989201716991,
+   -0.9028053348114632,
+   0.026960585587499593
+  ],
+  [
+   -0.11125426301535646,
+   -0.1430490573153791,
+   0.24784473649107075,
+   0.08624429967626368,
+   -0.5916667678867416,
+   -0.717316196166496,
+   -0.35770075659556066
+  ],
+  [
+   0.04868358096737923,
+   0.016752687941395502,
+   -0.41656561721650776,
+   0.6564095907284933,
+   0.6358274804496756,
+   0.3166824813790974,
+   0.2540906733672979
+  ]
+ ],
+ "record_id": "tetinico_n04_kamp",
+ "title": "4 unit tetrahedra in an icosahedron",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l4/m1/n4/platonic_n4_m1_l4.html",
+  "source_file": "docs/literature/external/kamp-tetinico-n04.html",
+  "sha256": "3a29cd4554a9488fce948247b12b251fd4a44a7f3c0b7f312fcad2aea926b762",
+  "numeric_source_file": "docs/literature/external/kamp-tetinico-n04.txt",
+  "numeric_source_sha256": "f264265c4c001377d4fda72dd6dad092169b308849c079cc20b11843e6307593",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "published_s_full": 0.9865139644832934,
+  "published_circumradius": 1.532124046817944,
+  "source_to_canonical_matrix": [
+   [
+    0.0,
+    1.0,
+    0.0
+   ],
+   [
+    1.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    -1.0
+   ]
+  ],
+  "outer_conversion_max_error": 3.580361673049448e-15,
+  "vertex_conversion_max_error": 3.9350319887992495e-16,
+  "normalization": "Original tetrahedra have unit circumradius and edge sqrt(8/3); centers divided by sqrt(8/3). Rotate the entire configuration by source(x,y,z)->canonical(y,x,-z), checked against all12sourcecontainervertices (normalized discrepancy 3.58e-15). Fit canonical tetrahedron rotations to all4sourcevertices (maximum discrepancy 3.94e-16). Source container circumradius converts to edge ratio R/(sqrt(10+2sqrt5)/4 * sqrt(8/3)). Add standard1e-7clearance without transferring discovery credit.",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "imported_on": "2026-10-13"
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 0.60006721968204,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.22505550960945558
+}

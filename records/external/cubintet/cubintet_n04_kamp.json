@@ -1,0 +1,107 @@
+{
+ "problem": "min/cube_in_tetrahedron",
+ "piece": "cube",
+ "container": "tetrahedron",
+ "n": 4,
+ "s": 4.5138,
+ "s_plus": "4.51380+",
+ "s_full": 4.5138012134301,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020125161546e-07,
+  "min_wall_gap": 1.0000001327004071e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   -0.6102709905904489,
+   0.4608417205050397,
+   -0.3412685646135988,
+   0.7045563426108867,
+   -0.06000300064642531,
+   -0.45576803893954704,
+   -0.5406250962371201
+  ],
+  [
+   -0.3412685646107347,
+   -0.6102709905756153,
+   0.4608417204952129,
+   0.33985114298557006,
+   0.17591989661685065,
+   -0.8204732385679707,
+   0.4247082002734396
+  ],
+  [
+   0.46084172047044325,
+   -0.3412685646018051,
+   -0.6102709905901584,
+   0.3398511429899749,
+   -0.17591989658686644,
+   -0.42470820028557493,
+   0.8204732385662934
+  ],
+  [
+   0.47783553831665926,
+   0.4778355383236032,
+   0.47783553832338577,
+   0.5720614028204126,
+   -0.13504537837466232,
+   -0.5720614028255685,
+   0.5720614028057027
+  ]
+ ],
+ "record_id": "cubintet_n04_kamp",
+ "title": "4 unit cubes in a tetrahedron",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l1/m3/n4/platonic_n4_m3_l1.html",
+  "source_file": "docs/literature/external/kamp-cubintet-n04.html",
+  "sha256": "a27d456acdbc7c098fc21fd8df9cd7cf725d55f090feed4ea62725c896aa3dc8",
+  "numeric_source_file": "docs/literature/external/kamp-cubintet-n04.txt",
+  "numeric_source_sha256": "c3178623ff5d3e2115a7ba2fc0bd4f12a7fcf0588dda732d56e86b8e9357f9a0",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "published_s_full": 4.513800567288372,
+  "published_circumradius": 3.191738990053293,
+  "source_to_canonical_row_matrix": [
+   [
+    -0.7071067811865475,
+    -0.7071067811865478,
+    1.3381212312534267e-15
+   ],
+   [
+    -0.4082482904638616,
+    0.40824829046386324,
+    0.8164965809277267
+   ],
+   [
+    -0.5773502691896271,
+    0.5773502691896253,
+    -0.577350269189625
+   ]
+  ],
+  "outer_conversion_max_error": 3.1675423656645453e-15,
+  "vertex_conversion_max_error": 7.729915351323396e-15,
+  "normalization": "Original pieces have unit circumradius, so cube edge length is 1.1547005383792517; centers divided by this edge. Apply a proper rigid rotation to align ALL published tetrahedron outer vertices with the project canonical solid (normalized discrepancy 3.17e-15). Fit piece rotations to ALL source mesh vertices (maximum discrepancy 7.73e-15). Convert container circumradius into edge ratio R/(0.61237243569579447 * 1.1547005383792517). Add standard 1e-7 clearance without transferring discovery credit.",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "imported_on": "2026-10-13"
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 3.2377408137211328,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.3690616785792483
+}

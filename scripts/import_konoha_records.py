@@ -45,6 +45,7 @@ def main():
              'method':'Sphere-to-cube continuation with L-BFGS; explicit separating-plane tightening; basin hopping for n=28.',
              'date':'2026-10-11','source':{'kind':'external','author':'konoha-ily2','url':url,'archive':archive,
                   'archive_sha256':archive_sha,'original_certificate_sha256':hashlib.sha256(raw).hexdigest(),
+                  'source_file':f'docs/literature/external/konoha_n{n}_certificate.json','sha256':hashlib.sha256(raw).hexdigest(),
                   'published_s_full':sf,'normalization':'Exact common translation from [0,S]^3 to an origin-centred container; no inflation or rotation rounding.'},
              'measure':'edge length of the container divided by the edge length of the pieces',
              'format':'[x, y, z, qw, qx, qy, qz]; centres and scalar-first integer quaternions preserve all source rationals exactly',

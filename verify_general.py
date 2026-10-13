@@ -19,7 +19,14 @@ SOL = json.load(open(os.path.join(HERE, 'src', 'solids.json')))
 
 
 def quat(q):
-    q = np.asarray(q, float); n = np.linalg.norm(q); w, x, y, z = q / n
+    q = np.asarray(q, float)
+    scale = np.max(np.abs(q))
+    if not np.isfinite(scale) or scale == 0:
+        raise ValueError('Quaternion must have finite, nonzero components.')
+    # Scaling the proposal only avoids overflow/underflow; stored native
+    # quaternions and the exact rational rotation certificate stay untouched.
+    q = q / scale
+    n = np.linalg.norm(q); w, x, y, z = q / n
     return np.array([[1 - 2 * (y * y + z * z), 2 * (x * y - w * z), 2 * (x * z + w * y)],
                      [2 * (x * y + w * z), 1 - 2 * (x * x + z * z), 2 * (y * z - w * x)],
                      [2 * (x * z - w * y), 2 * (y * z + w * x), 1 - 2 * (x * x + y * y)]])

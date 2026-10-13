@@ -1,0 +1,71 @@
+{
+ "problem": "min/octahedron_in_cube",
+ "piece": "octahedron",
+ "container": "cube",
+ "n": 2,
+ "s": 1.41421,
+ "s_plus": "1.41421+",
+ "s_full": 1.4142138201084,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000002008744331e-07,
+  "min_wall_gap": 1.0000002514942707e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+ "date": "2026-05-06",
+ "pieces": [
+  [
+   -0.23570228926311532,
+   0.23570228926310985,
+   0.23570228926307796,
+   0.5773502691896458,
+   0.5773502691896392,
+   1.4422220147876232e-16,
+   0.5773502691895924
+  ],
+  [
+   0.23570228926308848,
+   -0.23570228926309478,
+   -0.23570228926312595,
+   0.5773502691896052,
+   0.5773502691896127,
+   -3.36518470117104e-16,
+   0.5773502691896596
+  ]
+ ],
+ "record_id": "octincub_n02_kamp",
+ "title": "2 unit octahedrons in a cube",
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+ "credit": "Published construction by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik; imported and checked without transferring discovery credit.",
+ "source": {
+  "kind": "external",
+  "author": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik",
+  "repository": "https://github.com/DominikKamp/Packing",
+  "revision": "27f71632d8655ae4b6a049410a401976748b94e3",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l3/m2/n2/platonic_n2_m2_l3.html",
+  "source_file": "docs/literature/external/kamp-octincub-n02.html",
+  "sha256": "f62d57291d1d1b565fb8ca781250b0aa3701c9150ddb94443f1ef0e7ad918d3e",
+  "numeric_source_file": "docs/literature/external/kamp-octincub-n02.txt",
+  "numeric_source_sha256": "37c3eb554cb0d54f198803a3d801c3f9cd7449653af1a0a118c81192d4535eae",
+  "paper": "Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions (2026)",
+  "paper_url": "https://arxiv.org/abs/2605.04850",
+  "paper_publication_date": "2026-05-06",
+  "repository_created_at": "2026-03-30T21:03:09Z",
+  "source_commit_date": "2026-04-16T22:48:50Z",
+  "method": "Published global-optimization construction from the Berthold, Kamp, Mexi, Pokutta and Pólik study",
+  "published_s_full": 1.4142135623731888,
+  "vertex_conversion_max_error": 4.1540741810552243e-16,
+  "imported_on": "2026-10-13",
+  "normalization": "Original unit circumradius octahedron has edge length 1.4142135623730951; centers divided by that edge. Fit canonical rotations to all published mesh vertices, with maximum discrepancy 4.15e-16 source units. Add standard 1e-7 clearance without transferring discovery credit."
+ },
+ "search": {
+  "move": "published construction"
+ },
+ "volume_lower_bound": 0.9805609178109601,
+ "closed_form_conjecture": null,
+ "s_tight": null,
+ "density": 0.33333315108701794
+}
