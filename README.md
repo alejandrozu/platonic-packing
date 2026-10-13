@@ -40,7 +40,7 @@ published one (cubes in a cube: Friedman's catalogue and later records; octahedr
 non-decreasing in n by construction. The search is still running and this table is regenerated automatically.
 
 <!-- RESULTS:START -->
-_Auto-generated 2026-10-13 20:21 CEST from the running search; see [PROGRESS.md](PROGRESS.md) for search statistics._
+_Auto-generated 2026-10-13 21:28 CEST from the running search; see [PROGRESS.md](PROGRESS.md) for search statistics._
 
 ### Same solid
 
@@ -99,7 +99,7 @@ _Auto-generated 2026-10-13 20:21 CEST from the running search; see [PROGRESS.md]
 | 8 | [3.41421+](records/cubinoct/cubinoct_n08.json) ≈ 2 + √2 | [1.79133+](records/octincub/octincub_n08.json) | 1.79133 W | [3.96510+](records/dodinico/dodinico_n08.json) | [1.69778+](records/icoindod/icoindod_n08.json) |
 | 9 | [3.61760+](records/cubinoct/cubinoct_n09.json) | [1.88561+](records/octincub/octincub_n09.json) ≈ (4√2)/3 | 1.88561 W | [4.02206+](records/dodinico/dodinico_n09.json) | [1.77163+](records/icoindod/icoindod_n09.json) |
 | 10 | [3.67424+](records/cubinoct/cubinoct_n10.json) | [2.14936+](records/octincub/octincub_n10.json) | 2.14936 W | [4.06524+](records/dodinico/dodinico_n10.json) ≈ (25 + 7√5)/10 | [1.81821+](records/icoindod/icoindod_n10.json) |
-| 11 | [3.70710+](records/cubinoct/cubinoct_n11.json) ≈ (6 + √2)/2 | [2.23071+](records/octincub/octincub_n11.json) | 2.19540 W | [4.06524+](records/dodinico/dodinico_n11.json) ≈ (25 + 7√5)/10 | [1.86714+](records/icoindod/icoindod_n11.json) |
+| 11 | [3.70710+](records/cubinoct/cubinoct_n11.json) ≈ (6 + √2)/2 | [2.23071+](records/octincub/octincub_n11.json) ≈ (3√2 + √6)/3 | 2.19540 W | [4.06524+](records/dodinico/dodinico_n11.json) ≈ (25 + 7√5)/10 | [1.86714+](records/icoindod/icoindod_n11.json) |
 | 12 | [3.70710+](records/cubinoct/cubinoct_n12.json) ≈ (6 + √2)/2 | [2.29102+](records/octincub/octincub_n12.json) | 2.25949 L | [4.06524+](records/dodinico/dodinico_n12.json) ≈ (25 + 7√5)/10 | [1.87422+](records/icoindod/icoindod_n12.json) |
 | 13 | [3.79737+](records/cubinoct/cubinoct_n13.json) | [2.33944+](records/octincub/octincub_n13.json) | 2.33667 L | [4.06524+](records/dodinico/dodinico_n13.json) ≈ (25 + 7√5)/10 | [1.90402+](records/icoindod/icoindod_n13.json) |
 | 14 | [3.91512+](records/cubinoct/cubinoct_n14.json) | [2.36547+](records/octincub/octincub_n14.json) | 2.35702 W | [4.59694+](records/dodinico/dodinico_n14.json) | [1.97107+](records/icoindod/icoindod_n14.json) |

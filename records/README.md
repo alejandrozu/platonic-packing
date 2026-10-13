@@ -1,6 +1,6 @@
 # Records
 
-Smallest container found for n unit-edge pieces; entry = s = container edge / piece edge, certified with 1e-7 clearance and truncated to 5 decimals. Each entry links to its record file, which `certify_exact.py` proves valid in exact arithmetic over Q(√2, √5). s(n) is non-decreasing in n by construction. "≈ x" is a conjectured closed form (touching limit agrees with x to ~11 digits). Registered comparison values are shown in the "previous" columns. The website also includes earlier all-25-pair Platonic results and immutable community contributions. Full search-archive data: [SUMMARY.csv](SUMMARY.csv).
+Smallest container found for n unit-edge pieces; entry = s = container edge / piece edge, certified with 1e-7 clearance and truncated to 5 decimals. Each entry links to its record file, which `certify_exact.py` proves valid in exact arithmetic over Q(√2, √3, √5, √7). s(n) is non-decreasing in n by construction. "≈ x" is a conjectured closed form (touching limit agrees with x to ~11 digits). Registered comparison values are shown in the "previous" columns. The website also includes earlier all-25-pair Platonic results and immutable community contributions. Full search-archive data: [SUMMARY.csv](SUMMARY.csv).
 
 ### Same solid
 
@@ -59,7 +59,7 @@ Smallest container found for n unit-edge pieces; entry = s = container edge / pi
 | 8 | [3.41421+](cubinoct/cubinoct_n08.json) ≈ 2 + √2 | [1.79133+](octincub/octincub_n08.json) | 1.79133 W | [3.96510+](dodinico/dodinico_n08.json) | [1.69778+](icoindod/icoindod_n08.json) |
 | 9 | [3.61760+](cubinoct/cubinoct_n09.json) | [1.88561+](octincub/octincub_n09.json) ≈ (4√2)/3 | 1.88561 W | [4.02206+](dodinico/dodinico_n09.json) | [1.77163+](icoindod/icoindod_n09.json) |
 | 10 | [3.67424+](cubinoct/cubinoct_n10.json) | [2.14936+](octincub/octincub_n10.json) | 2.14936 W | [4.06524+](dodinico/dodinico_n10.json) ≈ (25 + 7√5)/10 | [1.81821+](icoindod/icoindod_n10.json) |
-| 11 | [3.70710+](cubinoct/cubinoct_n11.json) ≈ (6 + √2)/2 | [2.23071+](octincub/octincub_n11.json) | 2.19540 W | [4.06524+](dodinico/dodinico_n11.json) ≈ (25 + 7√5)/10 | [1.86714+](icoindod/icoindod_n11.json) |
+| 11 | [3.70710+](cubinoct/cubinoct_n11.json) ≈ (6 + √2)/2 | [2.23071+](octincub/octincub_n11.json) ≈ (3√2 + √6)/3 | 2.19540 W | [4.06524+](dodinico/dodinico_n11.json) ≈ (25 + 7√5)/10 | [1.86714+](icoindod/icoindod_n11.json) |
 | 12 | [3.70710+](cubinoct/cubinoct_n12.json) ≈ (6 + √2)/2 | [2.29102+](octincub/octincub_n12.json) | 2.25949 L | [4.06524+](dodinico/dodinico_n12.json) ≈ (25 + 7√5)/10 | [1.87422+](icoindod/icoindod_n12.json) |
 | 13 | [3.79737+](cubinoct/cubinoct_n13.json) | [2.33944+](octincub/octincub_n13.json) | 2.33667 L | [4.06524+](dodinico/dodinico_n13.json) ≈ (25 + 7√5)/10 | [1.90402+](icoindod/icoindod_n13.json) |
 | 14 | [3.91512+](cubinoct/cubinoct_n14.json) | [2.36547+](octincub/octincub_n14.json) | 2.35702 W | [4.59694+](dodinico/dodinico_n14.json) | [1.97107+](icoindod/icoindod_n14.json) |
