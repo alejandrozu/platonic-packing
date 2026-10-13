@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 import { readFileSync } from 'node:fs';
 const require = createRequire(import.meta.url);
-const { packingConstructionChoices, packingPublicURL, packingUnitQuaternion, packingReferenceTolerance,
+const { packingConstructionChoices, packingInitialSelection, packingPublicURL, packingUnitQuaternion, packingReferenceTolerance,
   packingDerivationText, packingRecordRawURL, packingFullPrecisionRecord } = require('../web/assets/explorer.js');
 
 const pose = [0, 0, 0, 1, 0, 0, 0];
@@ -12,6 +12,17 @@ const external = { ...coordinate('imported', 3.0, 'Original constructor'), exter
 const reference = { id: 'catalogue', n: 2, sf: 2.9, who: 'Published constructor', source_only: true,
   p: [], ok: false, alternatives: [local, external] };
 const before = JSON.stringify(reference);
+
+// Named construction hashes retain their piece count and chosen alternative on reload.
+const archived = { ...coordinate('tetinico_n05_archive', 1.5, 'Archive author', 5) };
+const named = { ...coordinate('tetinico_n05_kamp', 1.4, 'Prior author', 5), alternatives: [archived] };
+const defaultTwelve = coordinate('tetinico_n12_kamp', 2, 'Prior author', 12);
+const problem = { id: 'tetinico', rows: [named, defaultTwelve] };
+assert.equal(packingInitialSelection(problem, 'tetinico_n05_kamp'), named);
+assert.equal(packingInitialSelection(problem, 'tetinico_n05_archive'), archived);
+assert.equal(packingInitialSelection(problem, 'tetinico_n05'), named);
+assert.equal(packingInitialSelection(problem, 'cubincub_n33'), defaultTwelve);
+assert.equal(packingInitialSelection(problem, 'tetinico_n05_archive', 5), named);
 
 // A better bound never borrows a larger construction's geometry or certificate.
 const resolved = packingConstructionChoices(reference);

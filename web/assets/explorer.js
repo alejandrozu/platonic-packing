@@ -8,6 +8,14 @@ function packingConstructionChoices(primary, requested = primary) {
   return { choices, row: choices.includes(requested) ? requested : choices[0] || null,
     reference: primary.source_only ? primary : null };
 }
+function packingInitialSelection(problem, hash, requestedN) {
+  const prefix = problem.id + '_n';
+  const match = typeof hash === 'string' && hash.startsWith(prefix) ? /^(\d+)(?:_|$)/.exec(hash.slice(prefix.length)) : null;
+  const n = requestedN || (match ? Number(match[1]) : 0);
+  const primary = problem.rows.find(r => r.n === n) || problem.rows.find(r => r.n === 12) || problem.rows[problem.rows.length - 1];
+  if (!primary || requestedN || !match || hash === prefix + String(n).padStart(2, '0')) return primary;
+  return [primary, ...(primary.alternatives || [])].find(r => r.id === hash) || primary;
+}
 function packingPublicURL(value) {
   if (typeof value !== 'string' || /[\u0000-\u0020\u007f]/.test(value)) return null;
   try {
@@ -54,7 +62,7 @@ async function packingFullPrecisionRecord(repo, row, problem, version, fetchReco
   // Preserve every source field and the exact decimal text of the witness.
   return text;
 }
-if (typeof module !== 'undefined' && module.exports) module.exports = { packingConstructionChoices, packingPublicURL,
+if (typeof module !== 'undefined' && module.exports) module.exports = { packingConstructionChoices, packingInitialSelection, packingPublicURL,
   packingUnitQuaternion, packingReferenceTolerance, packingDerivationText, packingRecordRawURL, packingFullPrecisionRecord };
 if (typeof document !== 'undefined') (async () => {
   const $ = id => document.getElementById(id);
@@ -225,8 +233,7 @@ if (typeof document !== 'undefined') (async () => {
     }
     if ($('table-scroll-region')) $('table-scroll-region').scrollTop = 0;
     syncTableScroll();
-    const want = wantN || +((hashId.split('_n')[1]) || 0);
-    selectRow(p.rows.find(r => r.n === want) || p.rows.find(r => r.n === 12) || p.rows[p.rows.length - 1], true);
+    selectRow(packingInitialSelection(p, hashId, wantN), true);
   }
 
   function niceStep(range, k) { const raw = range / k, p = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / p; return (f < 1.5 ? 1 : f < 3.5 ? 2 : f < 7.5 ? 5 : 10) * p }
