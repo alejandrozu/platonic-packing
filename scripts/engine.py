@@ -478,7 +478,7 @@ _LEARN = {'t': 0, 'mult': {}}
 
 def learned_multipliers():
     """Bandit part: per family, the recent gain per CPU-second of each move (last ~4000 logged attempts, with a prior
-    of 1800 s at the family's average rate), as a multiplier in [1/2, 2] relative to the family's median move.
+    of 1800 s at the family's average rate), as a multiplier in [0.4, 3] relative to the family's median move.
     Refreshed every 5 minutes from this machine's attempts.jsonl."""
     if time.time() - _LEARN['t'] < 300: return _LEARN['mult']
     _LEARN['t'] = time.time()
@@ -505,7 +505,7 @@ def learned_multipliers():
         base = tot_g / tot_t if tot_t else 0.0
         rate = {m: (G[(fam, m)] + base * 1800) / (T[(fam, m)] + 1800) for m in ms}
         med = sorted(rate.values())[len(rate) // 2]
-        if med > 0: mult[fam] = {m: min(2.0, max(0.5, v / med)) for m, v in rate.items()}
+        if med > 0: mult[fam] = {m: min(3.0, max(0.4, v / med)) for m, v in rate.items()}
     _LEARN['mult'] = mult
     return mult
 
