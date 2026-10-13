@@ -5,6 +5,10 @@
 sharpened into the solid while pressure shrinks the container, a search then hops between arrangements, and the best
 one is tightened, given a small clearance and proved valid in exact arithmetic. This page explains each step and links
 the code that does it, so the method can be reused for other solids and containers.</p>
+<p>The generalized packing method was developed by <b>Alejandro Zarzuelo Urdiales</b>, building on
+<a href="https://github.com/yoheinakajima/soft-to-rigid-packing">Yohei Nakajima's soft-to-rigid method for cube packing</a>.
+The generalization extends the construction to multiple solid families and containers, with r-rounding, a generalized
+search engine and exact certification.</p>
 
 <h2 id="problem">The problem</h2>
 <p>For a container solid A, a piece solid B and a number n, find the smallest scale s such that n copies of B, free to
@@ -38,7 +42,7 @@ edges or an insphere, planarity, and that every face plane supports the solid. T
 certificates are on the <a href="{{ROOT}}certification/#solids">certification page</a>.</p>
 
 <h2 id="soft">Soft shapes: from balls to polyhedra</h2>
-<p>The idea comes from Yohei Nakajima's <a href="https://github.com/yoheinakajima/soft-to-rigid-packing">soft-to-rigid
+<p>The soft-to-rigid starting point comes from Yohei Nakajima's <a href="https://github.com/yoheinakajima/soft-to-rigid-packing">soft-to-rigid
 packing</a> of unit cubes. Packing hard polyhedra directly gets stuck: sharp corners lock against each other long before
 the arrangement is good. Balls slide past each other easily. So every piece starts as a ball and is sharpened into
 the polyhedron through a family of convex shapes S<sub>r</sub> that grows as the softness r goes to 0.</p>

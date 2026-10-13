@@ -231,7 +231,8 @@ def page(path, title, desc, body, active, scripts=(), styles=(), depth=1, root=N
 {body}
 </main>
 <footer class="foot"><div class="in">
-  <p>Upper bounds with proofs, not optimality claims. Method after Yohei Nakajima's soft-to-rigid packing. Code, records and certificates: <a href="{REPO}">{REPO.replace('https://', '')}</a>. MIT license.</p>
+  <p>Upper bounds with proofs, not optimality claims. Generalized packing method by Alejandro Zarzuelo Urdiales, building on Yohei Nakajima's soft-to-rigid cube-packing method. Code, records and certificates: <a href="{REPO}">{REPO.replace('https://', '')}</a>. MIT license.</p>
+  <p>This site is updated and maintained by Alejandro Zarzuelo Urdiales.</p>
   <p>Built {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')} UTC{datetime.datetime.now().astimezone().strftime('%z')[:3]}</p>
 </div></footer>
 {''.join(s if s.startswith('<script') else f'<script src="{s if s.startswith("http") else root + "assets/" + s}"></script>' for s in scripts)}
