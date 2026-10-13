@@ -8,7 +8,7 @@
   const RAW = REPO.replace('https://github.com/', 'https://raw.githubusercontent.com/') + '/main/';
   const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
   let D;
-  try { D = await (await fetch(ROOT + 'data/records.json')).json() }
+  try { const response = await fetch(ROOT + 'data/records.json'); if (!response.ok) throw new Error('Library request failed'); D = await response.json() }
   catch (e) { $('result').innerHTML = '<p class="mut">The solid library did not load. Reload the page to use the checker.</p>'; return }
 
   const POLY = { 3: 'triangular', 4: 'square', 5: 'pentagonal', 6: 'hexagonal', 8: 'octagonal', 12: 'dodecagonal' };
@@ -84,14 +84,17 @@
       else if (!p) { ps.value = '_pair'; $('pair').hidden = false; $('piece').value = piece; $('container').value = container }
     }
     const sTxt = $('sval').value.trim();
-    const s = sTxt ? Number(sTxt) : Number(obj.s_full ?? obj.s);
+    const storedScale = obj.s_full ?? obj.s;
+    if (!sTxt && typeof storedScale !== 'number') throw new Error('The JSON container scale must be a number.');
+    const s = sTxt ? Number(sTxt) : storedScale;
     if (!(s > 0) || !isFinite(s)) throw new Error('No container scale: give "s_full" in the JSON or fill in s.');
     const pcs = obj.pieces;
     if (!pcs.length) throw new Error('The packing has no pieces.');
-    if (pcs.length > 400) throw new Error('The checker takes at most 400 pieces.');
+    if (pcs.length > 200) throw new Error('The checker and exact certification take at most 200 pieces.');
     pcs.forEach((p, i) => { if (!Array.isArray(p) || p.length !== 7 || !p.every(x => typeof x === 'number' && isFinite(x))) throw new Error(`Piece ${i + 1} is not a list of 7 numbers [x, y, z, qw, qx, qy, qz].`) });
     if (obj.n != null && obj.n !== pcs.length) throw new Error(`"n" is ${obj.n} but there are ${pcs.length} pieces.`);
-    const cc = Array.isArray(obj.container_center) ? obj.container_center.map(Number) : [0, 0, 0];
+    const cc = Object.prototype.hasOwnProperty.call(obj, 'container_center') ? obj.container_center : [0, 0, 0];
+    if (!Array.isArray(cc) || cc.length !== 3 || !cc.every(x => typeof x === 'number' && Number.isFinite(x))) throw new Error('"container_center" must be a list of three finite numbers.');
     return { piece, container, s, cc, pcs, n: pcs.length };
   }
 
@@ -123,7 +126,7 @@
   // ---------- preview (three.js)
   const pv = $('prev'), pcv = $('pcv');
   const hasGL = typeof THREE !== 'undefined' && (() => { try { return !!document.createElement('canvas').getContext('webgl') } catch (e) { return false } })();
-  let R3, scene, cam, world, pR = 3;
+  let R3, scene, cam, world, shown = null, pR = 3;
   if (hasGL) {
     R3 = new THREE.WebGLRenderer({ canvas: pcv, antialias: true }); R3.setPixelRatio(Math.min(2, devicePixelRatio || 1));
     scene = new THREE.Scene(); cam = new THREE.PerspectiveCamera(32, 4 / 3, 0.01, 1000);
@@ -140,8 +143,13 @@
   function fit() { if (!hasGL) return; const w = pv.clientWidth || 400, h = pv.clientHeight || 300; R3.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix();
     cam.position.set(0, 0, pR / Math.sin(THREE.MathUtils.degToRad(Math.min(16, THREE.MathUtils.radToDeg(Math.atan(Math.tan(THREE.MathUtils.degToRad(16)) * cam.aspect))))) * 1.05); cam.lookAt(0, 0, 0) }
   function paint() { if (!hasGL) return; scene.background = new THREE.Color(css('--paper')); R3.render(scene, cam) }
+  document.addEventListener('ppr-themechange', () => { if (shown) show(...shown); else paint() });
   function show(pk, res) {
     if (!hasGL) return;
+    shown = [pk, res];
+    const geometries = new Set(), materials = new Set();
+    world.traverse(node => { if (node.geometry) geometries.add(node.geometry); if (node.material) (Array.isArray(node.material) ? node.material : [node.material]).forEach(material => materials.add(material)) });
+    geometries.forEach(geometry => geometry.dispose()); materials.forEach(material => material.dispose());
     while (world.children.length) world.remove(world.children[0]);
     const C = D.solids[pk.container], P = D.solids[pk.piece];
     const cp = []; C.E.forEach(([a, b]) => cp.push(...C.V[a].map((x, k) => x * pk.s + pk.cc[k]), ...C.V[b].map((x, k) => x * pk.s + pk.cc[k])));
@@ -154,7 +162,7 @@
     pk.pcs.forEach((p, i) => {
       const grp = new THREE.Group();
       grp.add(new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color: new THREE.Color(badSet.has(i) ? '#c8524a' : '#4c6fd6'), flatShading: true, roughness: 0.6, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1 })));
-      grp.add(new THREE.LineSegments(eg, new THREE.LineBasicMaterial({ color: 0x10181b, transparent: true, opacity: 0.5 })));
+      grp.add(new THREE.LineSegments(eg, new THREE.LineBasicMaterial({ color: new THREE.Color(badSet.has(i) ? '#c8524a' : '#4c6fd6') })));
       grp.quaternion.copy(new THREE.Quaternion(p[4], p[5], p[6], p[3]).normalize()); grp.position.set(p[0], p[1], p[2]);
       world.add(grp);
     });
@@ -163,16 +171,17 @@
   }
 
   // ---------- run the check
-  let last = null;
-  function invalidate() { last = null; $('send').disabled = true; $('sendnote').textContent = '' }
+  let last = null, inputVersion = 0;
+  function invalidate() { inputVersion++; last = null; $('send').disabled = true; $('sendnote').textContent = '' }
   $('json').addEventListener('input', invalidate); $('sval').addEventListener('input', invalidate);
   const fmt = (x, d = 10) => Number.isFinite(x) ? x.toPrecision(d) : '—';
   $('check').onclick = async () => {
-    invalidate(); const out = $('result');
+    invalidate(); const version = inputVersion, out = $('result');
     let pk; try { pk = parse() } catch (e) { out.innerHTML = `<p class="verdict bad">Cannot check this yet</p><p>${esc(e.message)}</p>`; return }
     $('check').disabled = true; $('busy').textContent = 'Checking…'; show(pk, null);
     let res; try { res = await check(pk) } catch (e) { out.innerHTML = `<p class="verdict bad">Cannot check this yet</p><p>${esc(e.message)}</p>`; $('check').disabled = false; $('busy').textContent = ''; return }
     $('check').disabled = false; $('busy').textContent = '';
+    if (version !== inputVersion) { out.innerHTML = '<p class="mut">The packing changed during the check. Check it again before submitting.</p>'; return }
     show(pk, res);
     const ok = res.wall > 0 && !res.over.length;
     const prob = D.problems.find(p => p.piece === pk.piece && p.container === pk.container);
@@ -206,7 +215,8 @@
     const r = p.rows.find(r => r.n === 12) || p.rows[p.rows.length - 1]; if (!r) return;
     $('busy').textContent = 'Loading the record…';
     try {
-      const rec = await (await fetch(RAW + r.file)).json();
+      const response = await fetch(RAW + r.file); if (!response.ok) throw new Error('Record request failed');
+      const rec = await response.json();
       $('json').value = JSON.stringify({ piece: rec.piece, container: rec.container, n: rec.n, s_full: rec.s_full, ...(rec.container_center ? { container_center: rec.container_center } : {}), pieces: rec.pieces }, null, 1);
       $('busy').textContent = `Loaded ${p.id}_n${String(r.n).padStart(2, '0')}. Check it, or change it and check again.`;
     } catch (e) {
@@ -218,31 +228,50 @@
 
   // ---------- GitHub issues
   function openIssue(template, title, fields, big) {
-    const u = new URL(REPO + '/issues/new'); u.searchParams.set('template', template); u.searchParams.set('title', title);
-    Object.entries(fields).forEach(([k, v]) => { if (v) u.searchParams.set(k, v) });
-    let note = '';
-    if (big && u.href.length + encodeURIComponent(big[1]).length < 7800) u.searchParams.set(big[0], big[1]);
-    else if (big) { try { navigator.clipboard.writeText(big[1]) } catch (e) {} note = 'The packing is too long for a link, so it was copied to your clipboard: paste it into the Packing box of the issue.' }
+    const u = new URL(REPO + '/issues/new'); u.searchParams.set('template', template); u.searchParams.set('title', title.slice(0, 240));
+    const values = { ...fields, ...(big ? { [big[0]]: big[1] } : {}) };
+    Object.entries(values).forEach(([k, v]) => { if (v) u.searchParams.set(k, v) });
+    const manual = [];
+    // GitHub/browser URL limits apply to every form, including long descriptions and coordinates.
+    const largest = Object.entries(values).filter(([, v]) => v).sort((a, b) => encodeURIComponent(b[1]).length - encodeURIComponent(a[1]).length);
+    while (u.href.length > 7800 && largest.length) { const [key, value] = largest.shift(); u.searchParams.delete(key); manual.push([key, value]) }
+    const handoff = $('issue_handoff'); handoff.replaceChildren(); handoff.hidden = !manual.length;
+    if (manual.length) {
+      const heading = document.createElement('h3'); heading.textContent = 'Finish the GitHub form'; handoff.appendChild(heading);
+      const info = document.createElement('p'); info.textContent = 'These fields are too large to put in a link. Copy or download each one below, then paste it into the matching GitHub field. Your data stays here even if clipboard access is unavailable.'; handoff.appendChild(info);
+      const labels = { packing: 'Packing', credit: 'Credit', method: 'How you found it', pieces: 'Pieces', container: 'Container', measure: 'What to minimize', motivation: 'Why it is interesting', details: 'Definitions, coordinates or known results', summary: 'Title', description: 'Description', data: 'Data', links: 'Links and references' };
+      manual.forEach(([key, value]) => {
+        const label = document.createElement('label'); label.className = 'field'; const text = document.createElement('span'); text.textContent = labels[key] || key; label.appendChild(text);
+        const area = document.createElement('textarea'); area.rows = 5; area.readOnly = true; area.value = value; label.appendChild(area); handoff.appendChild(label);
+        const copy = document.createElement('button'); copy.type = 'button'; copy.className = 'secondary'; copy.textContent = 'Copy ' + (labels[key] || key);
+        copy.onclick = async () => { try { await navigator.clipboard.writeText(value); copy.textContent = 'Copied' } catch (e) { area.focus(); area.select(); copy.textContent = 'Selected — use Ctrl+C or ⌘C' } }; handoff.appendChild(copy);
+        const download = document.createElement('button'); download.type = 'button'; download.className = 'secondary'; download.textContent = 'Download ' + (labels[key] || key);
+        download.onclick = () => { const url = URL.createObjectURL(new Blob([value], { type: key === 'packing' ? 'application/json' : 'text/plain' })); const link = document.createElement('a'); link.href = url; link.download = key + (key === 'packing' ? '.json' : '.txt'); link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000) }; handoff.appendChild(download);
+      });
+    }
     window.open(u.href, '_blank', 'noopener');
-    return note;
+    return manual.length ? 'GitHub opened. Copy the large fields from the “Finish the GitHub form” panel below.' : 'Opened GitHub in a new tab. Review the fields and submit the issue there.';
   }
   $('send').onclick = () => {
     if (!last) return;
+    if (!$('credit').value.trim()) { $('sendnote').textContent = 'Add the name, handle or team to credit before submitting.'; $('credit').focus(); return }
     const pk = last, prob = D.problems.find(p => p.piece === pk.piece && p.container === pk.container);
     const rec = { piece: pk.piece, container: pk.container, n: pk.n, s_full: pk.s, ...(pk.cc.some(x => x) ? { container_center: pk.cc } : {}), pieces: pk.pcs };
     const json = JSON.stringify(rec);
     const pid = prob ? prob.id : `${pk.piece} in ${pk.container}`;
     $('sendnote').textContent = openIssue('submit-packing.yml', `[packing] ${pid} n=${pk.n}: s = ${pk.s}`,
-      { problem: pid, n: String(pk.n), s: String(pk.s), credit: $('credit').value.trim(), method: $('how').value.trim() }, ['packing', json]) || 'Opened GitHub in a new tab.';
+      { problem: pid, n: String(pk.n), s: String(pk.s), credit: $('credit').value.trim(), method: $('how').value.trim() }, ['packing', json]);
   };
   $('c_send').onclick = () => {
     const v = id => $(id).value.trim();
-    openIssue('new-category.yml', `[category] ${v('c_pieces') || 'pieces'} in ${v('c_container') || 'a container'}`,
+    if (!v('c_pieces') || !v('c_container')) { $('c_note').textContent = 'Describe both the pieces and the container before opening the proposal.'; $(v('c_pieces') ? 'c_container' : 'c_pieces').focus(); return }
+    $('c_note').textContent = openIssue('new-category.yml', `[category] ${v('c_pieces')} in ${v('c_container')}`,
       { pieces: v('c_pieces'), container: v('c_container'), measure: v('c_measure'), motivation: v('c_motivation'), details: v('c_details') });
   };
   $('o_send').onclick = () => {
     const v = id => $(id).value.trim();
-    openIssue('other-construction.yml', `[construction] ${v('o_title') || 'a new construction'}`,
+    if (!v('o_title') || !v('o_description')) { $('o_note').textContent = 'Add a title and description before opening the construction.'; $(v('o_title') ? 'o_description' : 'o_title').focus(); return }
+    $('o_note').textContent = openIssue('other-construction.yml', `[construction] ${v('o_title')}`,
       { summary: v('o_title'), description: v('o_description'), data: v('o_data'), links: v('o_links') });
   };
 })();

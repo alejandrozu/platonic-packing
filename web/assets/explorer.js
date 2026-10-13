@@ -12,11 +12,23 @@
                   dodecahedron: ['dodecahedron', 'dodecahedra'], icosahedron: ['icosahedron', 'icosahedra'] };
   const SRC = { F: 'E. Friedman 1998', W: 'R. Walsh 2026', L: 'H. Lin 2026', N: 'Y. Nakajima 2026', T: 'trivial grid' };
   const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+  const escapeHTML = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  function submissionIssue(value) {
+    try {
+      const url = new URL(value);
+      if (url.origin !== 'https://github.com' || url.username || url.password ||
+          !/^\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+\/issues\/[1-9]\d*\/?$/.test(url.pathname)) return null;
+      return url;
+    } catch (e) { return null }
+  }
   const store = { get(k) { try { return localStorage.getItem(k) } catch (e) { return null } }, set(k, v) { try { localStorage.setItem(k, v) } catch (e) {} } };
   const hashId = location.hash.slice(1);
   let prob = D.problems.find(p => p.id === hashId.split('_')[0]) || D.problems.find(p => p.id === store.get('ppr-prob')) || D.problems[0];
   let row = null, sel = null, isolate = false;
   let colMode = store.get('ppr-col') || 'orient', axis = 2;
+  let edgeMode = store.get('ppr-edge-mode') === 'contrast' ? 'contrast' : 'piece';
+  const storedWidth = Number(store.get('ppr-edge-width'));
+  let edgeWidth = storedWidth >= 0.5 && storedWidth <= 6 ? storedWidth : 1.5;
   const PAL = ['#4c6fd6', '#d9822b', '#3f9a6a', '#c8524a', '#7a5fc4', '#2a9fb0', '#c9a227', '#b5577f', '#6d8a2f', '#8a6a4b',
                '#5a86c2', '#d36b3b', '#4aa087', '#a8484a', '#8c76d1', '#3b8fa0', '#b8962e', '#9c5c8f', '#7f9a3a', '#a37b5a'];
   const POLY = { 3: 'triangular', 4: 'square', 5: 'pentagonal', 6: 'hexagonal', 8: 'octagonal', 12: 'dodecagonal' };
@@ -147,6 +159,8 @@
       tr.onclick = open; tr.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open() } };
       tb.appendChild(tr);
     }
+    if ($('table-scroll-region')) $('table-scroll-region').scrollTop = 0;
+    syncTableScroll();
     const want = wantN || +((hashId.split('_n')[1]) || 0);
     selectRow(p.rows.find(r => r.n === want) || p.rows.find(r => r.n === 12) || p.rows[p.rows.length - 1], true);
   }
@@ -154,7 +168,10 @@
   function niceStep(range, k) { const raw = range / k, p = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / p; return (f < 1.5 ? 1 : f < 3.5 ? 2 : f < 7.5 ? 5 : 10) * p }
   function txt(x, y, s, o) { o = o || {}; return `<text x="${x}" y="${y}" font-size="${o.fs || 12}" text-anchor="${o.a || 'start'}" fill="${o.c || css('--muted')}" font-family="${o.f || 'IBM Plex Sans, sans-serif'}"${o.rot ? ` transform="rotate(${o.rot} ${x} ${y})"` : ''}>${s}</text>` }
   function drawChart() { drawS(); drawInc() }
-  function dims(box) { const W = Math.max(300, Math.round($(box).clientWidth || 800)); return [W, Math.round(W / 2)] }
+  function dims(box) {
+    const el = $(box), W = Math.max(300, Math.round(el.clientWidth || 800));
+    return [W, Math.max(240, Math.round(el.clientHeight || W / 2))];
+  }
   function drawS() {
     const svg = $('chart'), [W, H] = dims('box1'), L = 62, R = 18, T = 16, B = 62;
     svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
@@ -232,12 +249,13 @@
     $('cap').innerHTML = `${r.n} ${pl(prob.piece)}, s = ${r.s}` + (r.cf ? ` <span class="cf">≈ ${fmtCF(r.cf)}</span>` : '');
     const oc = orient(r), id = `${prob.id}_n${pad(r.n)}`;
     const facts = [['Record', id], ['s_full', String(r.sf)], ['Touching limit', r.st != null ? String(r.st) : '—']];
-    if (r.ref != null) facts.push(['Published', `${r.ref} (${r.refsrc})`]);
+    if (r.ref != null) facts.push(['Published', escapeHTML(`${r.ref} (${r.refsrc})`)]);
     const k = oc.sizes.length;
     facts.push(['Orientations', k === 1 ? 'all pieces are translates of one another' : k === r.n ? `${k}, every piece oriented differently` :
       k <= 8 ? `${k} (${oc.sizes.join(' + ')} pieces)` : `${k} (largest groups: ${oc.sizes.slice(0, 5).join(', ')} pieces)`]);
-    facts.push(['Origin', r.who && /published packing/.test(r.who) ? r.who : r.derived ? `record = ${r.derived}` : `found by ${r.who || 'the search'}` + (r.move ? ` (move: ${r.move})` : '')]);
-    if (r.issue) facts.push(['Submitted in', `<a href="${r.issue}" target="_blank" rel="noopener">${r.issue.replace(/^https:\/\/github.com\//, '')}</a>`]);
+    facts.push(['Origin', escapeHTML(r.who && /published packing/.test(r.who) ? r.who : r.derived ? `record = ${r.derived}` : `found by ${r.who || 'the search'}` + (r.move ? ` (move: ${r.move})` : ''))]);
+    const issue = r.issue ? submissionIssue(r.issue) : null;
+    if (issue) facts.push(['Submitted in', `<a href="${escapeHTML(issue.href)}" target="_blank" rel="noopener">${escapeHTML(issue.pathname.slice(1))}</a>`]);
     if (r.cert.length) facts.push(['Certificate', r.cert.join(' ')]);
     $('facts').innerHTML = facts.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
     const url = `${D.repo}/blob/main/${r.file}`;
@@ -259,7 +277,27 @@
     if (e.key === 'ArrowLeft' && !$('prevn').disabled) { e.preventDefault(); $('prevn').click() }
     if (e.key === 'ArrowRight' && !$('nextn').disabled) { e.preventDefault(); $('nextn').click() }
   });
-  new ResizeObserver(() => drawChart()).observe($('box1'));
+  const chartResize = new ResizeObserver(() => drawChart());
+  ['box1', 'box2'].forEach(id => chartResize.observe($(id)));
+  function syncTableScroll() {
+    const region = $('table-scroll-region'), range = $('table-scroll');
+    if (!region || !range) return;
+    const max = Math.max(0, region.scrollHeight - region.clientHeight);
+    range.disabled = max === 0;
+    range.value = max ? String(100 * region.scrollTop / max) : '0';
+    range.setAttribute('aria-valuetext', max ? `${Math.round(Number(range.value))}% through the record table` : 'All records are visible');
+  }
+  if ($('table-scroll-region') && $('table-scroll')) {
+    const region = $('table-scroll-region'), range = $('table-scroll');
+    range.addEventListener('input', () => {
+      region.scrollTop = Number(range.value) / 100 * Math.max(0, region.scrollHeight - region.clientHeight);
+      syncTableScroll();
+    });
+    region.addEventListener('scroll', syncTableScroll, { passive: true });
+    const tableResize = new ResizeObserver(syncTableScroll);
+    tableResize.observe(region);
+    tableResize.observe($('rows'));
+  }
   function copyCoords() {
     const t = JSON.stringify({ record_id: `${prob.id}_n${pad(row.n)}`, piece: prob.piece, container: prob.container, n: row.n, s_full: row.sf,
       format: '[x, y, z, qw, qx, qy, qz] per piece (rounded to 7 decimals; full precision in the record file); container = s_full x canonical container centred at the origin',
@@ -287,9 +325,80 @@
     const S = D.solids[name], pos = [];
     S.F.forEach(f => { for (let i = 1; i + 1 < f.length; i++) [f[0], f[i], f[i + 1]].forEach(k => pos.push(...S.V[k])) });
     const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.computeVertexNormals();
-    const ep = []; S.E.forEach(([a, b]) => ep.push(...S.V[a], ...S.V[b]));
-    const eg = new THREE.BufferGeometry(); eg.setAttribute('position', new THREE.Float32BufferAttribute(ep, 3));
+    const eg = edgeGeom(S);
     return { g, eg };
+  }
+  // WebGL ignores LineBasicMaterial.linewidth on most platforms. Each edge is
+  // therefore two camera-facing triangles, expanded in clip space by CSS pixels.
+  // The geometry remains attached to its piece, so rotation/spread/slicing and
+  // opacity behave exactly like the surface without rebuilding on width changes.
+  function edgeGeom(S) {
+    const pos = [], starts = [], ends = [];
+    const corners = [[0, -1], [1, -1], [1, 1], [0, -1], [1, 1], [0, 1]];
+    S.E.forEach(([a, b]) => corners.forEach(([along, side]) => {
+      pos.push(along, side, 0); starts.push(...S.V[a]); ends.push(...S.V[b]);
+    }));
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+    g.setAttribute('edgeStart', new THREE.Float32BufferAttribute(starts, 3));
+    g.setAttribute('edgeEnd', new THREE.Float32BufferAttribute(ends, 3));
+    return g;
+  }
+  function edgeMaterial(colour) {
+    return new THREE.ShaderMaterial({
+      transparent: true, depthWrite: false, side: THREE.DoubleSide,
+      uniforms: { lineColour: { value: new THREE.Color(colour) }, lineOpacity: { value: 1 },
+        lineWidth: { value: edgeWidth }, viewport: { value: new THREE.Vector2(1, 1) } },
+      vertexShader: `
+        attribute vec3 edgeStart;
+        attribute vec3 edgeEnd;
+        uniform vec2 viewport;
+        uniform float lineWidth;
+        void main() {
+          vec4 a = projectionMatrix * modelViewMatrix * vec4(edgeStart, 1.0);
+          vec4 b = projectionMatrix * modelViewMatrix * vec4(edgeEnd, 1.0);
+          // Trim against the near plane before dividing by w when zooming in.
+          float da = a.z + a.w, db = b.z + b.w;
+          if (da < 0.0 && db < 0.0) { gl_Position = vec4(2.0, 2.0, 2.0, 1.0); return; }
+          if (da < 0.0) a = mix(a, b, da / (da - db));
+          else if (db < 0.0) b = mix(b, a, db / (db - da));
+          vec2 screenDelta = (b.xy / b.w - a.xy / a.w) * viewport;
+          vec2 tangent = screenDelta / max(length(screenDelta), 0.0001);
+          vec2 normal = vec2(-tangent.y, tangent.x);
+          vec4 point = mix(a, b, position.x);
+          vec2 offset = (normal * position.y + tangent * (position.x * 2.0 - 1.0)) * lineWidth / viewport;
+          point.xy += offset * point.w;
+          gl_Position = point;
+        }`,
+      fragmentShader: `
+        uniform vec3 lineColour;
+        uniform float lineOpacity;
+        void main() { gl_FragColor = vec4(lineColour, lineOpacity); }`
+    });
+  }
+  function darkTheme() {
+    const theme = document.documentElement.dataset.theme;
+    if (theme === 'dark' || theme === 'light') return theme === 'dark';
+    return matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function edgeColour(i) { return edgeMode === 'contrast' ? (darkTheme() ? '#ffffff' : '#000000') : pieceColour(i) }
+  function updateEdges() {
+    pieceObjs.forEach(g => {
+      const u = g.userData.edges.material.uniforms;
+      u.lineColour.value.set(edgeColour(g.userData.i));
+      u.lineWidth.value = edgeWidth;
+      u.viewport.value.set(stage.clientWidth || 400, stage.clientHeight || stage.clientWidth || 400);
+    });
+  }
+  function updateEdgeControls() {
+    const button = $('edge-mode'), range = $('edge-width'), output = $('edge-width-value');
+    if (button) {
+      button.setAttribute('aria-pressed', String(edgeMode === 'contrast'));
+      button.textContent = edgeMode === 'contrast' ? `Edges: ${darkTheme() ? 'white' : 'black'}` : 'Edges: piece colour';
+      button.title = edgeMode === 'contrast' ? 'Switch edges to the colour of each piece' : `Switch edges to ${darkTheme() ? 'white' : 'black'}`;
+    }
+    if (range) range.value = String(edgeWidth);
+    if (output) output.value = `${edgeWidth.toFixed(1)} px`;
   }
   function pieceColour(i) {
     if (colMode === 'index') return PAL[i % PAL.length];
@@ -308,21 +417,30 @@
   function build() {
     legend();
     if (!hasGL || !row) return;
+    const oldGeometry = new Set(), oldMaterials = new Set();
+    world.traverse(obj => {
+      if (obj.geometry) oldGeometry.add(obj.geometry);
+      if (obj.material) (Array.isArray(obj.material) ? obj.material : [obj.material]).forEach(m => oldMaterials.add(m));
+    });
     while (world.children.length) world.remove(world.children[0]);
+    oldGeometry.forEach(g => g.dispose()); oldMaterials.forEach(m => m.dispose());
     pieceObjs = [];
     const C = D.solids[prob.container], piece = solidGeom(prob.piece);
     const cp = []; C.E.forEach(([a, b]) => cp.push(...C.V[a].map(x => x * row.sf), ...C.V[b].map(x => x * row.sf)));
     const cg = new THREE.BufferGeometry(); cg.setAttribute('position', new THREE.Float32BufferAttribute(cp, 3));
     contLines = new THREE.LineSegments(cg, new THREE.LineBasicMaterial({ color: new THREE.Color(css('--ink')), transparent: true, opacity: 0.85 }));
     world.add(contLines);
-    contFaces = new THREE.Mesh(solidGeom(prob.container).g, new THREE.MeshBasicMaterial({ color: new THREE.Color(css('--accent')), transparent: true, opacity: 0.07, side: THREE.DoubleSide, depthWrite: false }));
+    const containerGeometry = solidGeom(prob.container);
+    containerGeometry.eg.dispose();
+    contFaces = new THREE.Mesh(containerGeometry.g, new THREE.MeshBasicMaterial({ color: new THREE.Color(css('--accent')), transparent: true, opacity: 0.07, side: THREE.DoubleSide, depthWrite: false }));
     contFaces.scale.setScalar(row.sf); world.add(contFaces);
     row.p.forEach((p, i) => {
       const grp = new THREE.Group();
       const mat = new THREE.MeshStandardMaterial({ color: new THREE.Color(pieceColour(i)), flatShading: true, roughness: 0.55, metalness: 0.05,
         polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1, transparent: true, opacity: 1 });
       const mesh = new THREE.Mesh(piece.g, mat); mesh.userData.i = i;
-      const edges = new THREE.LineSegments(piece.eg, new THREE.LineBasicMaterial({ color: 0x10181b, transparent: true, opacity: 0.55 }));
+      const edges = new THREE.Mesh(piece.eg, edgeMaterial(edgeColour(i)));
+      edges.frustumCulled = false;
       grp.add(mesh); grp.add(edges);
       grp.quaternion.copy(new THREE.Quaternion(p[4], p[5], p[6], p[3]).normalize()); grp.userData = { c: new THREE.Vector3(p[0], p[1], p[2]), mesh, edges, i };
       world.add(grp); pieceObjs.push(grp);
@@ -345,7 +463,7 @@
       const dim = vis && sel != null && !isolate && i !== sel;
       const op = +$('opac').value;
       m.opacity = vis ? (dim ? 0.3 * op : op) : 0.07; m.depthWrite = vis && !dim && op > 0.99; g.userData.edges.visible = vis;
-      g.userData.edges.material.opacity = 0.25 + 0.3 * op;
+      g.userData.edges.material.uniforms.lineOpacity.value = dim ? 0.35 * op : 0.6 + 0.4 * op;
       m.emissive.set(i === sel ? css('--accent') : '#000000'); m.emissiveIntensity = i === sel ? 0.45 : 0;
       m.needsUpdate = true;
     });
@@ -357,6 +475,7 @@
   function fit() {
     if (!hasGL) return;
     const w = stage.clientWidth || 400, hgt = stage.clientHeight || w; renderer.setSize(w, hgt, false); camera.aspect = w / hgt; camera.updateProjectionMatrix();
+    updateEdges();
     const k = +$('explode').value;
     const half = Math.min(16, THREE.MathUtils.radToDeg(Math.atan(Math.tan(THREE.MathUtils.degToRad(16)) * camera.aspect)));
     camera.position.set(0, 0, (R0 * Math.max(1, 0.55 + 0.45 * k)) / Math.sin(THREE.MathUtils.degToRad(half)) * 1.04 / zoom); camera.lookAt(0, 0, 0);
@@ -394,6 +513,15 @@
   $('opac').oninput = () => { store.set('ppr-opac', $('opac').value); applyVisibility() };
   $('ghost').onchange = () => applyVisibility();
   $('faces').onchange = () => applyVisibility();
+  updateEdgeControls();
+  if ($('edge-mode')) $('edge-mode').onclick = () => {
+    edgeMode = edgeMode === 'piece' ? 'contrast' : 'piece';
+    store.set('ppr-edge-mode', edgeMode); updateEdgeControls(); updateEdges(); paint();
+  };
+  if ($('edge-width')) $('edge-width').oninput = e => {
+    edgeWidth = Math.min(6, Math.max(0.5, Number(e.target.value)));
+    store.set('ppr-edge-width', String(edgeWidth)); updateEdgeControls(); updateEdges(); paint();
+  };
 
   if (hasGL) {
     RESET();
@@ -435,8 +563,14 @@
       requestAnimationFrame(loop) })(last);
     new ResizeObserver(() => { fit(); paint() }).observe(stage);
   }
-  const repaintAll = () => { build(); drawChart(); atlas.querySelectorAll('.tile').forEach(t => { const p = D.problems.find(q => 'tab-' + q.id === t.id); if (p) thumb(t.querySelector('canvas'), p) }) };
+  const repaintAll = () => {
+    updateEdgeControls(); updateEdges();
+    if (contFaces) contFaces.material.color.set(css('--accent'));
+    applyVisibility(); paint(); drawChart();
+    atlas.querySelectorAll('.tile').forEach(t => { const p = D.problems.find(q => 'tab-' + q.id === t.id); if (p) thumb(t.querySelector('canvas'), p) });
+  };
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', repaintAll);
+  document.addEventListener('ppr-themechange', repaintAll);
   new MutationObserver(repaintAll).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
   selectProb(prob);
 })();

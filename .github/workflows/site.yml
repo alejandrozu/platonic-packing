@@ -14,8 +14,9 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: site
-  cancel-in-progress: true
+  group: packing-record-publication
+  queue: max
+  cancel-in-progress: false
 jobs:
   deploy:
     runs-on: ubuntu-latest

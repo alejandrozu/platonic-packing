@@ -12,7 +12,9 @@ permissions:
   contents: write
   issues: write
 concurrency:
-  group: submission-${{ github.event.issue.number }}
+  # Acceptances share a lock with the normal site publisher; two reviewed records cannot race during comparison/push.
+  group: ${{ github.event.action == 'labeled' && 'packing-record-publication' || format('submission-{0}', github.event.issue.number) }}
+  queue: max
   cancel-in-progress: false
 jobs:
   check:
@@ -35,6 +37,26 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install --quiet numpy scipy
+      - name: Authorize maintainer acceptance
+        if: env.MODE == 'accept'
+        env:
+          ACTOR: ${{ github.actor }}
+        run: |
+          permission=$(gh api "repos/$GITHUB_REPOSITORY/collaborators/$ACTOR/permission" --jq '.permission')
+          case "$permission" in
+            admin|maintain|write) echo "SUBMISSION_CAN_ACCEPT=1" >> "$GITHUB_ENV" ;;
+            *) echo "Acceptance requires a maintainer with write, maintain or admin access." >&2; exit 1 ;;
+          esac
+          gh api "repos/$GITHUB_REPOSITORY/issues/$NUM" > "$RUNNER_TEMP/current-issue.json"
+          python3 - <<'PY'
+          import json, os
+          with open(os.environ['GITHUB_EVENT_PATH']) as f: event = json.load(f)
+          with open(os.path.join(os.environ['RUNNER_TEMP'], 'current-issue.json')) as f: current = json.load(f)
+          labels = {label['name'] for label in current['labels']}
+          if (current['state'] != 'open' or not {'submission', 'accepted'} <= labels
+                  or current.get('body') != event['issue'].get('body')):
+              raise SystemExit('The issue or acceptance changed. Review it again and reapply the accepted label.')
+          PY
       - name: Labels
         run: |
           gh label create submission    --color 2c49a8 --description "Packing submitted for certification" --force
@@ -47,13 +69,21 @@ jobs:
           gh label create construction  --color 2a9fb0 --description "Another polyhedra-in-polyhedra construction" --force
       - name: Check the packing
         run: python3 scripts/check_submission.py "$MODE" "$GITHUB_EVENT_PATH" "$RUNNER_TEMP/out"
-      - name: Reply
+      - name: Confirm the reviewed packing is still current
+        if: env.MODE == 'accept'
         run: |
-          gh issue comment "$NUM" --body-file "$RUNNER_TEMP/out/comment.md"
-          add=$(python3 -c "import json,sys; print(','.join(json.load(open(sys.argv[1]))['labels_add']))" "$RUNNER_TEMP/out/result.json")
-          rem=$(python3 -c "import json,sys; print(','.join(json.load(open(sys.argv[1]))['labels_remove']))" "$RUNNER_TEMP/out/result.json")
-          [ -n "$add" ] && gh issue edit "$NUM" --add-label "$add" || true
-          [ -n "$rem" ] && gh issue edit "$NUM" --remove-label "$rem" || true
+          gh api "repos/$GITHUB_REPOSITORY/issues/$NUM" > "$RUNNER_TEMP/current-issue.json"
+          python3 - <<'PY'
+          import json, os
+          with open(os.environ['GITHUB_EVENT_PATH']) as f: event = json.load(f)
+          with open(os.path.join(os.environ['RUNNER_TEMP'], 'current-issue.json')) as f: current = json.load(f)
+          labels = {label['name'] for label in current['labels']}
+          if (current['state'] != 'open' or not {'submission', 'accepted'} <= labels
+                  or current.get('body') != event['issue'].get('body')):
+              raise SystemExit('The packing changed during certification. Review it again and reapply the accepted label.')
+          PY
+      - name: Read acceptance result
+        run: |
           echo "ACCEPTED=$(python3 -c "import json,sys; print('1' if json.load(open(sys.argv[1]))['accepted'] else '')" "$RUNNER_TEMP/out/result.json")" >> "$GITHUB_ENV"
       - name: Commit the record
         if: env.ACCEPTED == '1'
@@ -62,7 +92,17 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add records
           git commit -q -m "Record from submission #$NUM"
-          for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep 5; done
+          record=$(python3 -c "import json,sys; print(json.load(open(sys.argv[1]))['record'])" "$RUNNER_TEMP/out/result.json")
+          before=$(git rev-parse --verify "HEAD^:$record" 2>/dev/null || true)
+          pushed=0
+          for i in 1 2 3; do
+            git fetch -q origin main
+            current=$(git rev-parse --verify "origin/main:$record" 2>/dev/null || true)
+            [ "$before" = "$current" ] || { echo "The current record changed; review this submission again." >&2; exit 1; }
+            if git pull -q --rebase origin main && git push -q origin HEAD:main; then pushed=1; break; fi
+            sleep 5
+          done
+          [ "$pushed" = 1 ] || { echo "The record could not be pushed; the issue remains open." >&2; exit 1; }
       - name: Rebuild and deploy the site
         if: env.ACCEPTED == '1'
         run: |
@@ -74,8 +114,19 @@ jobs:
           find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
           cp -r "$GITHUB_WORKSPACE/site/." .
           git add -A
-          git commit -q -m "Site: record from submission #$NUM" || exit 0
-          git push -q origin gh-pages
+          if git diff --cached --quiet; then
+            echo "The deployed site is already current."
+          else
+            git commit -q -m "Site: record from submission #$NUM"
+            git push -q origin gh-pages
+          fi
+      - name: Reply
+        run: |
+          gh issue comment "$NUM" --body-file "$RUNNER_TEMP/out/comment.md"
+          add=$(python3 -c "import json,sys; print(','.join(json.load(open(sys.argv[1]))['labels_add']))" "$RUNNER_TEMP/out/result.json")
+          rem=$(python3 -c "import json,sys; print(','.join(json.load(open(sys.argv[1]))['labels_remove']))" "$RUNNER_TEMP/out/result.json")
+          [ -n "$add" ] && gh issue edit "$NUM" --add-label "$add" || true
+          [ -n "$rem" ] && gh issue edit "$NUM" --remove-label "$rem" || true
       - name: Close
         if: env.ACCEPTED == '1'
         run: gh issue close "$NUM" --reason completed
