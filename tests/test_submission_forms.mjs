@@ -24,13 +24,16 @@ const elements = new Map();
 const el = name => { if (!elements.has(name)) elements.set(name, new Element()); return elements.get(name) };
 el('prob').value = 'cubincub';
 const opened = [];
+const dataRequests = [];
 const window = { open: (url, ...args) => { opened.push(new URL(url)); return {} }, addEventListener() {} };
-const context = { document: { documentElement: { dataset: { root: './', repo: 'https://github.com/alejandrozu/platonic-packing' } }, getElementById: el, createElement: () => new Element(), addEventListener() {} },
+const context = { document: { documentElement: { dataset: { root: './', repo: 'https://github.com/alejandrozu/platonic-packing', recordsVersion: 'fixture-v1' } }, getElementById: el, createElement: () => new Element(), addEventListener() {} },
   window, URL, Blob, location: { hash: '' }, navigator: { clipboard: { writeText: async () => { throw new Error('Denied') } } },
   getComputedStyle: () => ({ getPropertyValue: () => '#ffffff' }), setTimeout, console,
-  fetch: async () => ({ ok: true, json: async () => D }),
+  fetch: async (url, options) => { dataRequests.push({ url, options }); return { ok: true, json: async () => D } },
 };
 await vm.runInNewContext(fs.readFileSync(path.join(root, 'web/assets/contribute.js'), 'utf8'), context);
+assert.equal(dataRequests[0].url, './data/records.json?v=fixture-v1');
+assert.equal(dataRequests[0].options.cache, 'no-cache');
 
 // A real record passes the production SAT checker; required credit prevents an incomplete packing form.
 el('json').value = JSON.stringify(record);
@@ -118,7 +121,8 @@ D.problems[0].rows = [{ n: 2, sf: 1.99, p: [], file: null, source_only: true, au
   who: 'Reported construction author', alternatives: [alternative] }];
 context.fetch = async url => { fetched.push(url); return { ok: true, json: async () => record } };
 await el('loadrec').onclick();
-assert.match(fetched.at(-1), /records\/cubincub\/cubincub_n02\.json$/);
+assert.match(new URL(fetched.at(-1)).pathname, /records\/cubincub\/cubincub_n02\.json$/);
+assert.equal(new URL(fetched.at(-1)).searchParams.get('v'), 'fixture-v1');
 assert.equal(JSON.parse(el('json').value).pieces.length, 2);
 assert.match(el('busy').textContent, /certified alternative/);
 await el('check').onclick();

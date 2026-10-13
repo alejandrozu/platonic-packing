@@ -9,7 +9,7 @@
 
 usage: python3 scripts/site.py [--fragment PATH]   (--fragment also writes a one-file explorer for a Claude artifact)
 The site is deployed to the gh-pages branch by scripts/pages.sh (and by .github/workflows/site.yml on GitHub)."""
-import json, os, sys, glob, re, html, shutil, datetime, math
+import json, os, sys, glob, re, html, shutil, datetime, math, hashlib
 from pathlib import Path
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'scripts'))
@@ -249,14 +249,28 @@ def mark_svg():
     return d(cube, ce), d(octv, oe)
 
 
+def content_version(path):
+    """A changed resource gets a different cache key, independent of build time."""
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()[:16]
+
+
+def asset_url(root, filename):
+    source = Path(WEB, 'assets', filename)
+    if not source.exists():
+        source = Path(OUT, 'assets', filename)  # Generated assets, such as icon.svg.
+    return f'{root}assets/{filename}?v={content_version(source)}'
+
+
 def page(path, title, desc, body, active, scripts=(), styles=(), depth=1, root=None):
     root = root if root is not None else ('./' if depth == 0 else '../' * depth)
     cpath, opath = mark_svg()
     nav = ''.join(f'<a href="{root}{h}"{" aria-current=\"page\"" if h == active else ""}>{t}</a>' for h, t in NAV)
     nav += f'<a href="{REPO}" rel="noopener">GitHub</a>'
     canon = SITE_URL + path
+    records = Path(OUT, 'data', 'records.json')
+    records_version = content_version(records) if records.exists() else ''
     return f'''<!doctype html>
-<html lang="en" data-root="{root}" data-repo="{REPO}">
+<html lang="en" data-root="{root}" data-repo="{REPO}" data-records-version="{records_version}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -269,13 +283,13 @@ def page(path, title, desc, body, active, scripts=(), styles=(), depth=1, root=N
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#eef1f0">
 <script>try{{const t=localStorage.getItem('ppr-theme');document.documentElement.dataset.theme=['light','dark'].includes(t)?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}}catch(e){{}}</script>
-<script src="{root}assets/theme.js" defer></script>
-<link rel="icon" href="{root}assets/icon.svg" type="image/svg+xml">
+<script src="{asset_url(root, 'theme.js')}" defer></script>
+<link rel="icon" href="{asset_url(root, 'icon.svg')}" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="{root}assets/style.css">
-{''.join(f'<link rel="stylesheet" href="{root}assets/{s}">' for s in styles)}
+<link rel="stylesheet" href="{asset_url(root, 'style.css')}">
+{''.join(f'<link rel="stylesheet" href="{asset_url(root, s)}">' for s in styles)}
 </head>
 <body>
 <header class="top"><div class="in">
@@ -291,7 +305,7 @@ def page(path, title, desc, body, active, scripts=(), styles=(), depth=1, root=N
   <p>This site is updated and maintained by Alejandro Zarzuelo Urdiales.</p>
   <p>Built {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')} UTC{datetime.datetime.now().astimezone().strftime('%z')[:3]}</p>
 </div></footer>
-{''.join(s if s.startswith('<script') else f'<script src="{s if s.startswith("http") else root + "assets/" + s}"></script>' for s in scripts)}
+{''.join(s if s.startswith('<script') else f'<script src="{s if s.startswith("http") else asset_url(root, s)}"></script>' for s in scripts)}
 </body>
 </html>
 '''
