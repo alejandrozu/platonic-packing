@@ -282,6 +282,7 @@ if (typeof document !== 'undefined') (async () => {
         k <= 8 ? `${k} (${sizes.join(' + ')} pieces)` : `${k} (largest groups: ${sizes.slice(0, 5).join(', ')} pieces)`]);
     }
     facts.push(['Origin', escapeHTML(r.external ? `Published construction by ${r.source_author || r.who}` : r.who && /published packing/.test(r.who) ? r.who : r.derived ? `record = ${r.derived}` : `found by ${r.who || 'the search'}` + (r.move ? ` (move: ${r.move})` : ''))]);
+    if (r.refined_by) facts.push(['Certificate refinement', escapeHTML(`${r.refined_by}; inherited piece positions and orientations, smaller certified container padding.`)]);
     if (r.source_only) facts.push(['Status', r.author_report ? 'Author-reported result; coordinates and the claimed certificate are unavailable for local verification.' : 'Published source; coordinates and a local certificate are unavailable. The displayed scale retains the catalogue precision.']);
     else if (r.external) facts.push(['Import', 'Original construction, normalized to this viewer and given 1e-7 clearance for exact certification.']);
     const issue = r.issue ? submissionIssue(r.issue) : null;
