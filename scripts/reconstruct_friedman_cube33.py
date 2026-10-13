@@ -38,7 +38,7 @@ if len(indices)>=33:
     quats=[]
     for i in indices[:33]:
         q=Rotation.from_matrix(rots[i]).as_quat();quats.append([q[3],*q[:3]])
-    out={'piece':'cube','container':'cube','C':C[indices[:33]].tolist(),'Q':quats,'source':'https://erich-friedman.github.io/packing/cubincub/','published_bound':S,'reconstruction':'Finite candidate reconstruction from axis-grid shell, 45degreeface cubes, and central cube; matching numeric bound, not a claim of the originalauthorpose.'}
+    out={'piece':'cube','container':'cube','C':C[indices[:33]].tolist(),'Q':quats,'source':'https://erich-friedman.github.io/packing/cubincub/','published_bound':S,'reconstruction':'Finite candidate reconstruction from axis-grid shell, 45-degree face cubes, and central cube; matching numeric bound, not a claim of the original author pose.'}
     (HERE/'cube33-candidate.json').write_text(json.dumps(out,indent=2)+'\n')
 
 PACKAGE=REPO
@@ -55,12 +55,12 @@ source={'kind':'external','author':'Erich Friedman (1998); matching-bound coordi
  'source_file':dest.relative_to(PACKAGE).as_posix(),'sha256':hashlib.sha256(dest.read_bytes()).hexdigest(),
  'historical_author':'Erich Friedman','historical_year':1998,
  'published_s_full':candidate['published_bound'],'published_expression':'3 + 1/sqrt(2)',
- 'derivation':'Reconstruct a feasible matching-bound configuration from an axis-grid shell, 45-degree face cubes and a central cube using a finite independent-set model. The resulting33poses are separately certified. These are project-generated matching-bound coordinates, not a claim of the originalauthorcoordinatefile or a new improvement over the1998bound.',
+ 'derivation':'Reconstruct a feasible matching-bound configuration from an axis-grid shell, 45-degree face cubes and a central cube using a finite independent-set model. The resulting 33 poses are separately certified. These are project-generated matching-bound coordinates, not a claim of the original author coordinate file or a new improvement over the 1998 bound.',
  'derivation_by':'Polyhedra in Polyhedra Packing project','reconstructed_on':'2026-10-13',
  'normalization':'Candidate coordinates are in the optimization engine internal cube units. Convert to canonical unit-edge cube poses and add standard1e-7pair/wallclearance. No further shape optimization.',
  'method':'Reconstruction of a previously published cubic packing bound; finite axis-grid and45-degree-face candidate search'}
 rid='cubincub_n33_friedman_reconstruction'
-meta={'record_id':rid,'title':'33 unit cubes in a cube — reconstruction of the1998bound','found_by':source['author'],
+meta={'record_id':rid,'title':'33 unit cubes in a cube — reconstruction of the 1998 bound','found_by':source['author'],
  'credit':'Historicalbound by Erich Friedman (1998). Matching-bound coordinates reconstructed by the project; not asserted to be the originalpublishedpose.',
  'method':source['method'],'date':'2026-10-13','source':source,'search':{'move':'historicalconstructionreconstruction'},
  'volume_lower_bound':33**(1/3),'closed_form_conjecture':None}
