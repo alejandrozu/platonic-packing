@@ -3,94 +3,100 @@
  "piece": "deltoidal_hexecontahedron",
  "container": "deltoidal_hexecontahedron",
  "n": 6,
- "s": 2.3965,
- "s_plus": "2.39650+",
- "s_full": 2.3965064526987,
+ "s": 2.38868,
+ "s_plus": "2.38868+",
+ "s_full": 2.3886893839037,
  "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020426134547e-07,
-  "min_wall_gap": 1.0000020811418153e-07
+  "min_pair_gap": 1.0000020376095619e-07,
+  "min_wall_gap": 1.000001930151484e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-13",
  "pieces": [
   [
-   -2.505119675339961,
-   -0.0485047802250236,
-   -1.5421388268340717,
-   0.20171808045827905,
-   0.5002883189734492,
-   0.7771595389900237,
-   -0.32410563844487766
+   -2.601842293272555,
+   0.008458619115916518,
+   -1.428667604261357,
+   0.23782562233760843,
+   0.49668762738265115,
+   0.7668210747530189,
+   -0.3297359754096407
   ],
   [
-   2.532939385534195,
-   -0.05949508093174216,
-   1.5087694292599931,
-   0.6559666655006877,
-   0.660484382701143,
-   0.1362433698981342,
-   -0.3389776661058944
+   2.591918296770235,
+   -0.01427350325981971,
+   1.442382229281647,
+   0.6231253609484759,
+   0.6941331284700203,
+   0.14852778999481672,
+   -0.32838008481409087
   ],
   [
-   1.6180325618685092,
-   0.02707183984011863,
-   -2.7135679872798173,
-   0.04516010689832552,
-   0.425050206829576,
-   0.8405961891206227,
-   -0.3327024695654556
+   1.4441538777026761,
+   -0.02919180544030225,
+   -2.728176836190891,
+   0.04603677446145298,
+   0.3960951613352716,
+   0.8429737289954518,
+   -0.36108798205904513
   ],
   [
-   0.0016666970076224875,
-   -3.121711682092705,
-   -0.0019961955053744815,
-   0.3545333697720333,
-   -0.35465983432072773,
-   0.35273813072834803,
-   0.7899989258017707
+   -1.0668816920195218e-09,
+   -3.1052037560917345,
+   1.0534993659782996e-09,
+   0.35355339059327373,
+   -0.3535533905932741,
+   0.3535533905932733,
+   0.790569415042095
   ],
   [
-   -1.6043227660948656,
-   -0.08094331218646293,
-   2.6670397082439177,
-   0.12548795396139414,
-   -0.8513509095793469,
-   0.46215027114244134,
-   0.21417639704684982
+   -1.5292815286496728,
+   0.03428480813490116,
+   2.688512767195023,
+   0.25417523326159513,
+   -0.8436414154992851,
+   0.2569820481062637,
+   0.39701931917966715
   ],
   [
-   -0.009235911810990505,
-   3.0425117120712133,
-   0.09821440612722346,
-   0.5887140577341187,
-   0.7939720584942925,
-   0.12063027329337198,
-   -0.0920459978583048
+   0.040087488169049494,
+   3.0952288849607394,
+   0.0019410286682374816,
+   0.7074127322208733,
+   0.7067975039570091,
+   -0.0018059460394780134,
+   0.0011194868660479441
   ]
  ],
  "record_id": "dhcindhc_n06",
  "title": "6 deltoidal hexecontahedra in a deltoidal hexecontahedron",
  "family": "catalan",
  "source": {
-  "hash": "79ae1a1501f0043d",
+  "hash": "55825895c88c934a",
   "clear": 1e-07,
-  "cap": 2.5649757447331
+  "cap": 2.5648713830393
  },
- "s_tight": 2.396506372607,
+ "s_tight": 2.388689303903,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.8171205928321397,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "ascend",
-  "seed": 1581145950,
-  "var": "base",
-  "raw": 2.398288020873855
+  "move": "hop",
+  "seed": 786799243,
+  "var": "gentle",
+  "minDiff": 0.028141271264684214,
+  "expand": 0.02853882241095556,
+  "rh": 0.1206745906414249,
+  "focus": 0,
+  "from": "best",
+  "raw": 2.3967171786594457,
+  "host": "laptop"
  },
- "density": 0.43592867988146594
+ "density": 0.4402224760114218
 }

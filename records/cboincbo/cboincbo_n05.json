@@ -3,86 +3,86 @@
  "piece": "cuboctahedron",
  "container": "cuboctahedron",
  "n": 5,
- "s": 2.25,
- "s_plus": "2.25000+",
- "s_full": 2.2500002298099,
+ "s": 2.19558,
+ "s_plus": "2.19558+",
+ "s_full": 2.1955827187998,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020110881316e-07,
-  "min_wall_gap": 1.0000000960630473e-07
+  "min_pair_gap": 1.000002015798409e-07,
+  "min_wall_gap": 1.0000000316701119e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-13",
  "pieces": [
   [
-   0.5303301233899881,
-   -0.8838835389833134,
-   -0.22864455383290375,
-   1.293458697448098e-16,
-   -0.7071067811865476,
-   0.7071067811865475,
-   9.483047629056125e-17
+   0.5636030319551886,
+   -0.5636030319551883,
+   -0.56360303195519,
+   0.05312385154810284,
+   0.7321704520104633,
+   -0.6790466004623608,
+   7.581725140481978e-17
   ],
   [
-   -0.8838835389833113,
-   -0.8838835389833131,
-   -1.1356419705202783e-17,
-   1.6587691996296284e-16,
+   -0.8454045479327836,
+   -0.8454045479327836,
+   -9.07695431010551e-17,
+   3.402129024577754e-16,
+   0.7071067811865478,
+   0.7071067811865475,
+   -4.4873963382213026e-17
+  ],
+  [
+   4.542753029188609e-16,
+   0.8454045479327832,
+   -0.8454045479327833,
+   0.7071067811865479,
    0.7071067811865474,
-   0.7071067811865477,
-   2.8967982790469154e-17
+   9.530704172807414e-17,
+   3.780809040201313e-16
   ],
   [
-   0.5303301233899886,
-   0.530330123389983,
-   -0.7071068311866504,
-   0.7071067811865475,
-   0.7071067811865476,
-   1.5428487216928555e-16,
-   1.1176685771539328e-17
+   -0.5636030319551888,
+   0.5636030319551893,
+   0.563603031955189,
+   0.03756423567240821,
+   -0.9978811475296261,
+   0.03756423567240855,
+   -0.037564235672408276
   ],
   [
-   0.530330123389989,
-   0.5303301233899858,
-   0.7071068311866491,
-   2.0907145179246592e-16,
-   -1.0,
-   4.832491241501151e-16,
-   5.503207062647103e-17
-  ],
-  [
-   -0.883883538983311,
-   0.5303301233899862,
-   -0.22864455394897443,
-   2.503503475905265e-16,
-   0.7071067811865476,
-   0.7071067811865475,
-   -3.0265753307911183e-16
+   0.845404547932784,
+   8.137832289270048e-17,
+   0.8454045479327832,
+   0.5000000000000003,
+   -0.49999999999999956,
+   0.49999999999999944,
+   0.5000000000000008
   ]
  ],
  "record_id": "cboincbo_n05",
  "title": "5 cuboctahedra in a cuboctahedron",
  "family": "archimedean",
  "source": {
-  "hash": "d600a3edd124ed16",
+  "hash": "0239559b8ad33a68",
   "clear": 1e-07,
   "cap": 2.3054741645258
  },
- "s_tight": 2.25,
- "closed_form_conjecture": "9/4",
+ "s_tight": 2.195582495781,
+ "closed_form_conjecture": "(2 + \u221a46)/4",
  "volume_lower_bound": 1.7099759466766968,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
   "move": "ascend",
-  "seed": 590198171,
+  "seed": 593692308,
   "var": "base",
-  "raw": 2.2637262392114943,
-  "host": "laptop"
+  "raw": 2.1963733543410946,
+  "host": "actions"
  },
- "density": 0.43895734149217563
+ "density": 0.47241164319881496
 }

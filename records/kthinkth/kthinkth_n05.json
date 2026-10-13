@@ -3,90 +3,93 @@
  "piece": "tetrakis_hexahedron",
  "container": "tetrakis_hexahedron",
  "n": 5,
- "s": 2.24208,
- "s_plus": "2.24208+",
- "s_full": 2.2420838538919,
+ "s": 2.23965,
+ "s_plus": "2.23965+",
+ "s_full": 2.2396557609068,
  "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020311855862e-07,
-  "min_wall_gap": 1.0000007222288332e-07
+  "min_pair_gap": 1.0000020280258361e-07,
+  "min_wall_gap": 1.0000004069254942e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-13",
  "pieces": [
   [
-   -0.21144837784669923,
-   1.3594802241462507,
-   -1.2333259490225694,
-   0.5998035580928993,
-   -0.07563717055043177,
-   0.5241663875424678,
-   0.5998035580928998
+   -1.314853416952259,
+   -0.21030583146303866,
+   1.314853417446272,
+   0.7071067811865515,
+   -0.7071067811865436,
+   1.8411678259084095e-15,
+   -1.9595972425015113e-15
   ],
   [
-   -1.304833544258005,
-   0.008659184664117555,
-   1.318920555952268,
-   0.709888401207248,
-   -0.704278002179707,
-   0.006379946546894663,
-   -0.0032015245175974804
+   -1.31485341695226,
+   -1.3148534149761513,
+   -1.3148534179402993,
+   0.28867513459481364,
+   0.8660254037844382,
+   -0.2886751345948138,
+   0.2886751345948128
   ],
   [
-   -1.1818325439554482,
-   -1.3675487150697045,
-   -1.1927197011591946,
-   0.2809468700813452,
-   0.877710893722363,
-   -0.2711886297874543,
-   0.27775739469290445
-  ],
-  [
-   1.3174287989117763,
-   -1.3174287994915193,
-   0.22318274184629305,
-   2.369958802297215e-16,
+   1.314853418434329,
+   -1.3148534149761437,
+   -0.21030583442722722,
+   1.7750987652999212e-15,
    1.0,
-   -1.5661360993277686e-16,
-   -6.332242029213982e-16
+   -1.304956004056762e-15,
+   -6.70158338686534e-15
   ],
   [
-   1.3174287989117757,
-   1.317428798994598,
-   1.317428799160238,
-   9.614813431917815e-17,
-   0.5773502691896257,
-   0.5773502691896257,
-   0.5773502691896258
+   -0.05359442406698632,
+   1.2364977157243475,
+   -1.2747228336686764,
+   0.39541929891295596,
+   0.395419298912948,
+   0.35415489240051923,
+   -0.7495741913134122
+  ],
+  [
+   1.221384158798656,
+   1.0811802713213292,
+   1.3615880472641,
+   0.28867513459481553,
+   0.8660254037844357,
+   -0.2886751345948182,
+   0.28867513459481403
   ]
  ],
  "record_id": "kthinkth_n05",
  "title": "5 tetrakis hexahedra in a tetrakis hexahedron",
  "family": "catalan",
  "source": {
-  "hash": "3c2775b392597a66",
+  "hash": "c280ba3700eb2951",
   "clear": 1e-07,
   "cap": 2.319470949652
  },
- "s_tight": 2.242083739924,
+ "s_tight": 2.239655646999,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.7099759466766968,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "hop",
-  "seed": 1951815020,
-  "var": "gentle",
-  "minDiff": 0.021545251455703456,
-  "expand": 0.023226944206133762,
-  "rh": 0.09623855110549295,
-  "focus": 0,
-  "from": "pool",
-  "raw": 2.243081439693852
+  "move": "reinsert",
+  "seed": 1837706565,
+  "var": "base",
+  "expand": 0.015753519753282996,
+  "rh": 0.13072231628312309,
+  "remove": [
+   4,
+   0
+  ],
+  "from": "best",
+  "raw": 2.240358810390399,
+  "host": "actions"
  },
- "density": 0.44362340493173286
+ "density": 0.4450678149689864
 }
