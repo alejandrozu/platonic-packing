@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-root="../" data-repo="https://github.com/alejandrozu/platonic-packing" data-records-version="11b36a81cec42ef7">
+<html lang="en" data-root="../" data-repo="https://github.com/alejandrozu/platonic-packing" data-records-version="a8159d95da8e564b">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -47,7 +47,7 @@ translate and rotate, fit inside s·A with pairwise disjoint interiors. Pieces a
 <p>For solids with all edges equal (Platonic and Archimedean solids, regular prisms and antiprisms) this is container
 edge ÷ piece edge. Catalan solids have edges of two or three lengths, so their s is the ratio of sizes of the same
 canonical solid (defined <a href="#solids">below</a>); Catalan solids are only packed in themselves.</p>
-<p>The site tracks 71 problems for n = 2–40, 2,769 table slots in all:</p>
+<p>The site tracks 86 problems for n = 2–40, 3,354 table slots in all:</p>
 <ul>
   <li><b>Platonic</b> (25): every ordered pair of the five Platonic solids, including identical solids, dual solids and the other mixed pairs.</li>
   <li><b>Archimedean</b> (13) and <b>Catalan</b> (13): each solid in itself.</li>
@@ -157,7 +157,7 @@ containment and for a separating plane between every pair. The <a href="../certi
 explains what it proves and how. 2,600 selected coordinate constructions are certified exactly; 9 better published entries link to the original constructions and have no coordinates or local certificate. Their certified alternatives remain available in the viewer.</p>
 
 <h2 id="generalize">Generalizing it</h2>
-<p>Nothing in the pipeline is specific to these 41 solids. To pack other convex polyhedra:</p>
+<p>Nothing in the pipeline is specific to these 56 solids. To pack other convex polyhedra:</p>
 <ul>
   <li><b>A new solid</b>: add it to <a href="https://github.com/alejandrozu/platonic-packing/blob/main/polyhedra.py"><code>polyhedra.py</code></a> (vertices in high precision; faces, checks and r-rounding cores are derived) and give its number field in <a href="https://github.com/alejandrozu/platonic-packing/blob/main/scripts/exact_solids.py"><code>scripts/exact_solids.py</code></a>. Everything downstream reads <code>src/solids.json</code>.</li>
   <li><b>A new pair</b>: any piece can go in any container. Add the problem id to <code>PROBLEMS</code> in <a href="https://github.com/alejandrozu/platonic-packing/blob/main/scripts/engine.py"><code>scripts/engine.py</code></a>.</li>
@@ -213,7 +213,7 @@ python3 scripts/publish.py --no-push                                # records, c
 <footer class="foot"><div class="in">
   <p>Certified coordinate constructions and attributed published values, not optimality claims. Generalized packing method by Alejandro Zarzuelo Urdiales, building on Yohei Nakajima's soft-to-rigid cube-packing method. Code, records and certificates: <a href="https://github.com/alejandrozu/platonic-packing">github.com/alejandrozu/platonic-packing</a>. Project code: MIT license; external constructions retain their source attribution.</p>
   <p>This site is updated and maintained by Alejandro Zarzuelo Urdiales.</p>
-  <p>Built 2026-10-13 09:24 UTC+00</p>
+  <p>Built 2026-10-13 13:07 UTC+00</p>
 </div></footer>
 
 </body>
