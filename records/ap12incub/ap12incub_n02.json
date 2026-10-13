@@ -5,44 +5,44 @@
  "n": 2,
  "s": 3.83064,
  "s_plus": "3.83064+",
- "s_full": 3.8306489877703,
+ "s_full": 3.8306489877702,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 0.25177889384486873,
-  "min_wall_gap": 1.0000004935228901e-07
+  "min_pair_gap": 1.0000020073575924e-07,
+  "min_wall_gap": 1.0000000116860974e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
- "date": "2026-10-12",
+ "date": "2026-10-13",
  "pieces": [
   [
+   0.6200441943767033,
    0.0,
-   -0.7035614877833233,
-   -2.6843596076482524e-15,
-   0.48715627385788524,
-   0.6599351886144919,
-   -0.2539400457359037,
-   0.5125219652277386
+   0.0,
+   0.046246996189453715,
+   -0.7055928112895226,
+   0.0462469961894535,
+   -0.7055928112895239
   ],
   [
+   1.4835643607157012,
    0.0,
-   1.1917403453327113,
    0.0,
-   0.7055928112895238,
-   0.7055928112895228,
-   0.046246996189453285,
-   -0.04624699618945259
+   0.531631026234373,
+   -0.46622789700423084,
+   0.5316310262343733,
+   -0.4662278970042302
   ]
  ],
  "record_id": "ap12incub_n02",
  "title": "2 antiprism12s in a cube",
  "family": "prisms",
  "source": {
-  "hash": "1b4c046cae6ebde6",
+  "hash": "5b1367b487485f68",
   "clear": 1e-07,
-  "cap": 4.2611565383107
+  "cap": 3.8306489877702
  },
  "s_tight": 3.83064878777,
  "closed_form_conjecture": null,
@@ -51,12 +51,9 @@
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "descend",
-  "seed": 1613775243,
-  "var": "base",
-  "removed": 1,
-  "raw": 4.261156088749251,
-  "host": "laptop"
+  "move": "monotone",
+  "from_n": 3,
+  "removed": 2
  },
- "density": 0.3480415676852044
+ "density": 0.34804156768523165
 }

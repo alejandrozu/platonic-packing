@@ -3,95 +3,100 @@
  "piece": "disdyakis_triacontahedron",
  "container": "disdyakis_triacontahedron",
  "n": 6,
- "s": 2.40352,
- "s_plus": "2.40352+",
- "s_full": 2.40352666835,
+ "s": 2.39906,
+ "s_plus": "2.39906+",
+ "s_full": 2.3990647457872,
  "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.000002067734463e-07,
-  "min_wall_gap": 1.0000007399924016e-07
+  "min_pair_gap": 1.000002067604822e-07,
+  "min_wall_gap": 1.0000003314303285e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-13",
  "pieces": [
   [
-   -0.5359297571603051,
-   1.5448909930466177,
-   -5.036108502480185,
-   0.5053244362261001,
-   0.46655682261548603,
-   -0.6052099887246863,
-   -0.40086508325318276
+   -0.40075749189792376,
+   1.678333651961101,
+   -5.042373792847585,
+   0.49999999999998435,
+   0.499999999999992,
+   -0.5000000000000111,
+   -0.5000000000000125
   ],
   [
-   -2.6505063965254654,
-   4.341386596295111,
-   1.5822782803464988,
-   0.4941990621020324,
-   -0.8092560372982411,
-   0.0055843117011342295,
-   0.317554355310463
+   -2.6337939165526634,
+   4.332101864302737,
+   1.5841818794552864,
+   0.5000000000000054,
+   -0.8090169943749435,
+   -1.0824674490095158e-15,
+   0.3090169943749493
   ],
   [
-   0.5279370298718069,
-   -1.5223957129894115,
-   5.04701024974489,
-   0.46563430471350903,
-   -0.5068610685883984,
-   0.3999741765132531,
-   -0.6052249247560275
+   0.5565034829252298,
+   -1.5465797899849438,
+   5.012078519646139,
+   0.4427314114957522,
+   -0.49609453304743795,
+   0.4207074032541246,
+   -0.6171583203705472
   ],
   [
-   -4.774442062669137,
-   -2.6373163247492677,
-   -0.23274777178850042,
-   0.720381286590357,
-   0.4222450035613212,
-   0.37119224363956355,
-   -0.4061727183843701
+   -4.83323426409897,
+   -2.6308599695600097,
+   -0.15850477165821744,
+   0.7090463401792633,
+   0.4127933728848336,
+   0.40151043243490064,
+   -0.4069942154708031
   ],
   [
-   2.749329861370972,
-   -4.265425135951213,
-   -1.5785115963712755,
-   0.2251763903253728,
-   -0.5944915142466464,
-   -0.37467880781427987,
-   0.6749008991723414
+   2.6250352753196133,
+   -4.305904343624853,
+   -1.6614050216201794,
+   0.22608461419584228,
+   -0.5841376608329034,
+   -0.3571486428451362,
+   0.6929024370966368
   ],
   [
-   4.622592292097648,
-   2.783502747217588,
-   0.3634881498871691,
-   0.005433913241882669,
-   0.6834065760320093,
-   0.5351109472462879,
-   0.49657043665553224
+   4.8892421685111005,
+   2.60490759243908,
+   0.3954166072078308,
+   0.06460095391011153,
+   -0.808917660183195,
+   -0.2970311535056865,
+   -0.5032409260431132
   ]
  ],
  "record_id": "dtcindtc_n06",
  "title": "6 disdyakis triacontahedra in a disdyakis triacontahedron",
  "family": "catalan",
  "source": {
-  "hash": "0728b3a09b3cc4ea",
+  "hash": "608b85d566113476",
   "clear": 1e-07,
   "cap": 2.5349116779812
  },
- "s_tight": 2.403526622424,
+ "s_tight": 2.399064699833,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.8171205928321397,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "fresh",
-  "seed": 1116402895,
-  "var": "base",
-  "raw": 2.4036062688412168,
+  "move": "hop",
+  "seed": 2121687148,
+  "var": "gentle",
+  "minDiff": 0.06979056919788004,
+  "expand": 0.011560951597064346,
+  "rh": 0.15387856504478784,
+  "focus": 0,
+  "from": "best",
+  "raw": 2.4003508737009236,
   "host": "laptop"
  },
- "density": 0.4321200470994959
+ "density": 0.43453558138212395
 }

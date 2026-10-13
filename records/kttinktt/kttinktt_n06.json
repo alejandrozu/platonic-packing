@@ -3,95 +3,95 @@
  "piece": "triakis_tetrahedron",
  "container": "triakis_tetrahedron",
  "n": 6,
- "s": 2.33192,
- "s_plus": "2.33192+",
- "s_full": 2.3319228660123,
+ "s": 2.32051,
+ "s_plus": "2.32051+",
+ "s_full": 2.3205131032745,
  "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020218634031e-07,
-  "min_wall_gap": 1.0000005401522571e-07
+  "min_pair_gap": 1.0000020186679484e-07,
+  "min_wall_gap": 1.0000000871812631e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-13",
  "pieces": [
   [
-   -1.4127174253078483,
-   -1.41271742530785,
-   -1.4127174253078418,
-   0.5000000000000001,
-   0.49999999999999956,
-   0.4999999999999998,
-   0.5000000000000006
+   -0.6729034311071167,
+   -0.6363047832677778,
+   0.8993353948359977,
+   0.43048132629826225,
+   0.5041621384976975,
+   -0.5407949002293545,
+   0.5177327898634971
   ],
   [
-   -1.4127174253078516,
-   1.4127174253078432,
-   1.4127174253078532,
-   8.878795601719896e-16,
-   8.691510933739062e-16,
+   1.4006155444024349,
+   -1.4006155444024422,
+   1.4006155444024526,
    1.0,
-   7.791196983962022e-16
+   -9.645805606944487e-18,
+   -1.8598177687903709e-16,
+   9.936922559442447e-17
   ],
   [
-   1.412717425307843,
-   1.412717425307828,
-   -1.4127174253078525,
-   0.49999999999999967,
+   1.4006155444024317,
+   1.400615544402447,
+   -1.4006155444024446,
+   0.28867513459481126,
+   -0.8660254037844404,
+   0.2886751345948079,
+   0.28867513459481425
+  ],
+  [
+   0.2145701263583068,
+   -0.27018327516008694,
+   -0.9789447161506712,
+   0.24740157038434907,
+   -0.6897148152534536,
+   0.4470839538302812,
+   0.5130320407330673
+  ],
+  [
+   -1.4006155444024506,
+   1.4006155444024444,
+   1.4006155444024493,
+   0.4999999999999997,
+   -0.4999999999999995,
    0.5000000000000001,
-   0.4999999999999999,
-   -0.5000000000000003
+   0.5000000000000009
   ],
   [
-   -0.938456312513061,
-   -0.46212433649138435,
-   0.47867823357180506,
-   0.2827221676973855,
-   -0.4988379023372549,
-   0.4720637928913426,
-   0.6696153362381259
-  ],
-  [
-   0.47867823357179606,
-   0.9384563125130563,
-   0.4621243364913933,
-   0.48955580669071175,
-   -0.29200426334393154,
-   0.6788974318846653,
-   -0.46278169724480306
-  ],
-  [
-   0.46212433649137363,
-   -0.47867823357180056,
-   -0.9384563125130441,
-   0.18005952954741777,
-   0.9616195995820522,
-   -0.009282095646544319,
-   0.2068336389933335
+   -1.4006155444024504,
+   -1.4006155444024404,
+   -1.400615544402433,
+   1.2239037238402228e-15,
+   -1.0503851071598848e-15,
+   4.006230280860872e-16,
+   1.0
   ]
  ],
  "record_id": "kttinktt_n06",
  "title": "6 triakis tetrahedra in a triakis tetrahedron",
  "family": "catalan",
  "source": {
-  "hash": "7f233c4a40a78edc",
+  "hash": "cad950ddcf71f30c",
   "clear": 1e-07,
   "cap": 2.3412128663384
  },
- "s_tight": 2.331922694819,
+ "s_tight": 2.320512930586,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.8171205928321397,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "tighten",
-  "seed": 1551109978,
+  "move": "fresh",
+  "seed": 2031568432,
   "var": "base",
-  "raw": 2.341212694891225,
-  "host": "actions"
+  "raw": 2.3268876678265835,
+  "host": "laptop"
  },
- "density": 0.4731607455498986
+ "density": 0.48017459095412035
 }
