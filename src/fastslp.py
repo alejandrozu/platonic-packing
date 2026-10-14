@@ -157,7 +157,9 @@ def solve(pb, C, R, L, outer=600, trust=0.03, tlimit=None, slp_floor=1e-6, abort
         lb = np.concatenate([np.full(3 * n, -trust), np.full(3 * n, -3 * trust), [-2 * trust], np.full(2 * P, -3 * trust), np.full(P, -cb)])
         ub = np.concatenate([np.full(3 * n, trust), np.full(3 * n, 3 * trust), [0.01], np.full(2 * P, 3 * trust), np.full(P, cb)])
         cvec = np.zeros(nvar); cvec[iL] = 1.0
-        tl = lp_limit or max(5.0, (tlimit - (time.time() - t_start)) if tlimit else 120.0)
+        # one LP never gets more than 30 s (typical: 0.05-1 s at n <= 100); degenerate LPs at perfect lattice packings
+        # can otherwise stall HiGHS for the whole budget
+        tl = lp_limit or min(30.0, max(5.0, (tlimit - (time.time() - t_start)) if tlimit else 120.0))
         if reg > 0:      # prefer small moves among the many optimal steps: + reg * sum |dC| + |dphi| (split variables)
             from scipy.sparse import hstack, vstack, identity, csr_matrix as csr
             m6 = 6 * n

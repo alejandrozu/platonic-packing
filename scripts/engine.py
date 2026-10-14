@@ -282,9 +282,10 @@ class Sim:
 def tighten(row, best_s, n, gate, explore=False):
     """Sequential-LP tightening with an optimistic early abort, SLSQP polish for small n when it wins.
     Policy 'tightener': 'exact' (exact.py SLP, the default until 14 Oct) or 'fast' (src/fastslp.py, 14 Oct large-n
-    study): a vectorized SLP whose LP prefers small moves (reg 1e-4: 3-10x fewer rounds to the nearby optimum); when
-    that lands within 0.3% of the best (or explore=True) it continues with the unregularized LP, whose vertex jumps
-    explore (perturb + unregularized SLP beat 5 of 7 n = 40 records in the study)."""
+    study): a vectorized SLP whose LP prefers small moves (reg 1e-4: 2-10x faster to the nearby optimum); when that
+    lands within 0.3% of the best, the unregularized LP is also run from the same raw start, since its vertex jumps
+    explore (expand 1% + displace + unregularized SLP beat 11 of 14 records at n = 35-40 in the study). explore=True
+    (the 'perturb' move) runs only the unregularized LP."""
     hist = []
 
     def abort(it, L):
@@ -299,10 +300,13 @@ def tighten(row, best_s, n, gate, explore=False):
         if explore:
             return fastslp.tighten_run(row, tlimit=tl, slp_floor=1e-6, abort=abort, reg=0.0)
         out = fastslp.tighten_run(row, tlimit=tl, slp_floor=1e-6, abort=abort, reg=1e-4)
-        if best_s is None or out['s'] < best_s * 1.003:
+        if (best_s is None or out['s'] < best_s * 1.003) and out['s_start'] - out['s'] > 1e-4 * out['s']:
+            # near the best: the unregularized LP from the same raw start explores (its vertex jumps use the slack
+            # of the loose start; from the regularized optimum, or from an already tight start, it finds little and
+            # its degenerate LPs are slow: 14 Oct study)
             hist.clear()
-            out2 = fastslp.tighten_run(dict(row, C=out['C'], Q=out['Q']), tlimit=tl, slp_floor=1e-6, reg=0.0)
-            if out2['s'] < out['s']: out = dict(out2, s_start=out['s_start'])
+            out2 = fastslp.tighten_run(row, tlimit=tl, slp_floor=1e-6, abort=abort, reg=0.0)
+            if out2['s'] < out['s']: out = out2
         return out
     out = exact.tighten_run(row, tlimit=30 + 4 * n, method='slp', slp_floor=1e-6, abort=abort)
     if n <= 14 and (best_s is None or out['s'] < best_s + 1e-9):
@@ -370,8 +374,9 @@ def attempt(sim, p, n, move, rng, log, vname='base'):
         raw = {'s': s0, 'C': C2, 'Q': Q2}; info['removed'] = i; lin = lineage_of(hi['best'].get('src'))
     elif move == 'tighten':
         raw = {'s': best_s, 'C': best['C'], 'Q': best['Q']}; lin = lineage_of(best.get('src'))
-    elif move == 'perturb':         # 14 Oct large-n study: expand 0.5-2%, displace centres, re-tighten (exploratory LP)
-        e, sg = rng.uniform(0.005, 0.02), rng.uniform(0.003, 0.015)
+    elif move == 'perturb':         # 14 Oct large-n study: expand 0.3-5%, displace centres, re-tighten (exploratory LP)
+        # sizes from the 14 Oct sweep (n = 28-40): small kicks win most often, large ones (2-5%) gain the most per CPU-hour
+        e = math.exp(rng.uniform(math.log(0.003), math.log(0.05))); sg = e * rng.uniform(0.5, 0.9)
         C0 = np.array(best['C']); nr = np.random.default_rng(seed)
         raw = {'s': best_s * (1 + e), 'C': (C0 * (1 + e) + nr.normal(0, sg, C0.shape)).tolist(), 'Q': best['Q']}
         info.update(expand=round(e, 4), sigma=round(sg, 4)); lin = lineage_of(best.get('src'))
