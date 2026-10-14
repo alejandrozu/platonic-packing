@@ -236,7 +236,12 @@
       $('busy').textContent = `Loaded ${r.id || p.id + '_n' + String(r.n).padStart(2, '0')}. Check it, or change it and check again.` +
         (listed.source_only ? ' The smaller published entry has no downloadable coordinates; this is a certified alternative.' : '');
     } catch (e) {
-      $('json').value = JSON.stringify({ piece: p.piece, container: p.container, n: r.n, s_full: r.sf, pieces: r.p }, null, 1);
+      let pieces = r.p;
+      if (!pieces && D.lazy) {                 // coordinates are kept per problem in data/pieces/<id>.json (14 Oct)
+        try { const m = await (await fetch(ROOT + 'data/pieces/' + encodeURIComponent(p.id) + '.json?v=' + encodeURIComponent(p.pv || DATA_VERSION || ''), { cache: 'no-cache' })).json();
+              pieces = m[r === listed ? listed.id : listed.id + '|' + r.id] } catch (e2) { pieces = null }
+      }
+      $('json').value = JSON.stringify({ piece: p.piece, container: p.container, n: r.n, s_full: r.sf, pieces }, null, 1);
       $('busy').textContent = 'GitHub did not answer, so this copy is rounded to 7 decimals and may show tiny overlaps.';
     }
     $('sval').value = ''; invalidate();

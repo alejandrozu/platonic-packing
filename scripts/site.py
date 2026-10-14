@@ -170,7 +170,7 @@ def load():
 def stats(data):
     rows = [r for p in data['problems'] for r in p['rows']]
     st = {'records': len(rows), 'certified': sum(1 for r in rows if r['ok']), 'problems': len(data['problems']),
-          'cases': len(data['problems']) * (data['nmax'] - data['nmin'] + 1), 'solids': len(SOL), 'attempts': None,
+          'cases': sum(p.get('nmax', data['nmax']) - data['nmin'] + 1 for p in data['problems']), 'solids': len(SOL), 'attempts': None,
           'contributed': sum(1 for r in rows if r.get('issue')),
           'source_only': sum(1 for r in rows if r.get('source_only')),
           'external': sum(1 for r in rows if r.get('external'))}

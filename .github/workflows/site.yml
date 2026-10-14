@@ -33,7 +33,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install --quiet numpy scipy mpmath
-      - run: PP_SITE_NMAX=40 python3 scripts/site.py
+      - run: python3 scripts/site.py
       - name: Deploy to gh-pages
         run: |
           git config user.name "github-actions[bot]"

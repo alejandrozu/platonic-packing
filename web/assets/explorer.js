@@ -92,6 +92,15 @@ if (typeof document !== 'undefined') (async () => {
     } catch (e) { return null }
   }
   const store = { get(k) { try { return localStorage.getItem(k) } catch (e) { return null } }, set(k, v) { try { localStorage.setItem(k, v) } catch (e) {} } };
+  // 14 Oct (n <= 100): coordinates live in data/pieces/<problem>.json and are loaded when a problem is opened
+  async function ensurePieces(p) {
+    if (!D.lazy || p.piecesLoaded) return;
+    const res = await fetch(ROOT + 'data/pieces/' + encodeURIComponent(p.id) + '.json?v=' + encodeURIComponent(p.pv || DATA_VERSION || ''), { cache: 'no-cache' });
+    if (!res.ok) throw new Error('coordinates request failed');
+    const m = await res.json();
+    p.rows.forEach(r => { if (m[r.id]) r.p = m[r.id]; (r.alternatives || []).forEach(a => { const k = r.id + '|' + a.id; if (m[k]) a.p = m[k] }) });
+    p.piecesLoaded = true;
+  }
   const hashId = location.hash.slice(1);
   let prob = D.problems.find(p => p.id === hashId.split('_')[0]) || D.problems.find(p => p.id === store.get('ppr-prob')) || D.problems[0];
   let row = null, sel = null, isolate = false;
@@ -184,7 +193,7 @@ if (typeof document !== 'undefined') (async () => {
       ps.forEach(p => {
         const b = document.createElement('button'); b.className = 'tile'; b.type = 'button'; b.setAttribute('role', 'tab'); b.id = 'tab-' + p.id;
         const cv = document.createElement('canvas'); cv.setAttribute('aria-hidden', 'true');
-        b.innerHTML = `<span><span class="t">${ptitle(p)}</span><span class="m" style="display:block">${p.rows.length} of ${D.nmax - D.nmin + 1} values` +
+        b.innerHTML = `<span><span class="t">${ptitle(p)}</span><span class="m" style="display:block">${p.rows.length} of ${(p.nmax || D.nmax) - D.nmin + 1} values` +
           (p.hasref ? ', published values' : '') + `</span></span>`;
         b.prepend(cv); thumb(cv, p);
         b.onclick = () => { selectProb(p); $('viewer').scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'start' }) };
@@ -209,12 +218,17 @@ if (typeof document !== 'undefined') (async () => {
 
   // ---------- table + charts
   function selectProb(p, wantN) {
+    if (D.lazy && !p.piecesLoaded) {
+      if ($('psub')) $('psub').textContent = 'Loading the coordinates…';
+      ensurePieces(p).then(() => selectProb(p, wantN), () => { if ($('psub')) $('psub').textContent = 'The coordinates did not load. Reload the page, or open the record files on GitHub.' });
+      return;
+    }
     prob = p; store.set('ppr-prob', p.id);
     const cur = (fams.querySelector('.fam[aria-selected="true"]') || {}).dataset;
     if (!cur || cur.g !== p.group) showGroup(p.group, false);
     markTile();
     $('ptitle').textContent = ptitle(p);
-    $('psub').textContent = `${p.rows.length} of ${D.nmax - D.nmin + 1} values of n (${D.nmin}–${D.nmax}) recorded. ` +
+    $('psub').textContent = `${p.rows.length} of ${(p.nmax || D.nmax) - D.nmin + 1} values of n (${D.nmin}–${p.nmax || D.nmax}) recorded. ` +
       (p.unit === 'size' ? 's = container size ÷ piece size (the same canonical solid at both sizes).' : 's = container edge ÷ piece edge.') + (p.note ? ' ' + p.note : '');
     const refs = p.rows.filter(r => r.cmp);
     if (p.hasref && refs.length) {
@@ -227,7 +241,7 @@ if (typeof document !== 'undefined') (async () => {
       '<th>Density</th><th title="(n · volume of a piece / volume of the unit container)^(1/3)">Volume bound</th><th>Proof</th></tr>';
     const tb = $('rows'); tb.innerHTML = '';
     const ncol = p.hasref ? 7 : 5;
-    for (let n = D.nmin; n <= D.nmax; n++) {
+    for (let n = D.nmin; n <= (p.nmax || D.nmax); n++) {
       const r = p.rows.find(r => r.n === n);
       const tr = document.createElement('tr');
       if (!r) { tr.innerHTML = `<td class="n">${n}</td><td class="pending" colspan="${ncol}">no packing yet</td>`; tr.style.cursor = 'default'; tb.appendChild(tr); continue }
@@ -261,11 +275,11 @@ if (typeof document !== 'undefined') (async () => {
     const ys = rows.flatMap(r => [chartScale(r), r.vlb].concat(r.ref != null ? [r.ref] : []));
     const st = niceStep(Math.max(...ys) - Math.min(...ys), 6);
     const y0 = Math.floor(Math.min(...ys) / st) * st, y1 = Math.ceil(Math.max(...ys) / st) * st;
-    const X = n => L + (n - D.nmin) / (D.nmax - D.nmin) * (W - L - R), Y = v => T + (1 - (v - y0) / (y1 - y0)) * (H - T - B);
+    const X = n => L + (n - D.nmin) / ((prob.nmax || D.nmax) - D.nmin) * (W - L - R), Y = v => T + (1 - (v - y0) / (y1 - y0)) * (H - T - B);
     let g = '';
     for (let v = y0; v <= y1 + st / 2; v += st) g += `<line x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}" stroke="${rule}" stroke-width="1"/>` + txt(L - 8, Y(v) + 4, v.toFixed(st < 0.1 ? 2 : 1), { a: 'end' });
-    const every = W < 700 ? 5 : W < 1000 ? 2 : 1;
-    for (let n = D.nmin; n <= D.nmax; n++) {
+    const every = (k => [1, 2, 5, 10, 20].find(e => e >= k) || 20)(((prob.nmax || D.nmax) - D.nmin) / Math.max(1, (W - L - R) / 32));   // ~32 px per label
+    for (let n = D.nmin; n <= (prob.nmax || D.nmax); n++) {
       g += `<line x1="${X(n)}" x2="${X(n)}" y1="${H - B}" y2="${H - B + 4}" stroke="${mut}" stroke-width="1"/>`;
       if (n % every === 0 || n === D.nmin) g += txt(X(n), H - B + 18, n, { a: 'middle' });
     }
@@ -289,7 +303,7 @@ if (typeof document !== 'undefined') (async () => {
     svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
     const by = {}; prob.rows.forEach(r => by[r.n] = r);
     const inc = [];
-    for (let n = D.nmin + 1; n <= D.nmax; n++) if (by[n] && by[n - 1]) {
+    for (let n = D.nmin + 1; n <= (prob.nmax || D.nmax); n++) if (by[n] && by[n - 1]) {
       const s1 = chartScale(by[n]), s0 = chartScale(by[n - 1]), d = s1 - s0;
       const tolerance = by[n].source_only || by[n - 1].source_only ? 1e-5 : 1e-9 * s1;
       inc.push({ n, pct: 100 * (s1 / s0 - 1), abs: d, zero: Math.abs(d) < tolerance });
@@ -299,14 +313,14 @@ if (typeof document !== 'undefined') (async () => {
     const pmax = Math.max(1e-6, ...inc.map(d => d.pct)), amax = Math.max(1e-6, ...inc.map(d => d.abs));
     const ps = niceStep(pmax, 5), as = niceStep(amax, 5);
     const P1 = Math.ceil(pmax / ps) * ps, A1 = Math.ceil(amax / as) * as;
-    const n0 = D.nmin + 1, slot = (W - L - R) / (D.nmax - n0 + 1);
+    const n0 = D.nmin + 1, slot = (W - L - R) / ((prob.nmax || D.nmax) - n0 + 1);
     const X = n => L + (n - n0 + 0.5) * slot, YP = v => T + (1 - v / P1) * (H - T - B), YA = v => T + (1 - v / A1) * (H - T - B);
     let g = '';
     inc.filter(d => d.zero).forEach(d => g += `<rect x="${X(d.n) - slot / 2}" y="${T}" width="${slot}" height="${H - T - B}" fill="${zc}" fill-opacity="0.16"><title>n = ${d.n}: no increase over n = ${d.n - 1}</title></rect>`);
     for (let v = 0; v <= P1 + ps / 2; v += ps) g += `<line x1="${L}" x2="${W - R}" y1="${YP(v)}" y2="${YP(v)}" stroke="${rule}" stroke-width="1"/>` + txt(L - 8, YP(v) + 4, (ps < 1 ? v.toFixed(1) : v.toFixed(0)) + '%', { a: 'end' });
     for (let v = 0; v <= A1 + as / 2; v += as) g += `<line x1="${W - R}" x2="${W - R + 4}" y1="${YA(v)}" y2="${YA(v)}" stroke="${ex}" stroke-width="1"/>` + txt(W - R + 8, YA(v) + 4, v.toFixed(as < 0.01 ? 3 : as < 0.1 ? 2 : 1), { c: ex });
-    const every = W < 700 ? 5 : W < 1000 ? 2 : 1;
-    for (let n = n0; n <= D.nmax; n++) if (n % every === 0 || n === n0) g += txt(X(n), H - B + 18, n, { a: 'middle' });
+    const every = (k => [1, 2, 5, 10, 20].find(e => e >= k) || 20)(((prob.nmax || D.nmax) - D.nmin) / Math.max(1, (W - L - R) / 32));   // ~32 px per label
+    for (let n = n0; n <= (prob.nmax || D.nmax); n++) if (n % every === 0 || n === n0) g += txt(X(n), H - B + 18, n, { a: 'middle' });
     g += txt((L + W - R) / 2, H - B + 38, 'n', { a: 'middle' });
     g += txt(16, (T + H - B) / 2, 'Increase over n − 1 (%)', { a: 'middle', rot: -90 });
     g += txt(W - 14, (T + H - B) / 2, 'Increase over n − 1 (absolute)', { a: 'middle', rot: 90, c: ex });
