@@ -17,7 +17,7 @@ fi
 a=$(wc -l < state/attempts.jsonl); i=$(grep -c '"improved": true' state/attempts.jsonl)
 read pa pi pt < <(cat state/.cycle 2>/dev/null || echo "0 0 0")
 now=$(date +%s)
-if [ "$pt" -gt 0 ] && [ "$a" -eq "$pa" ] && [ $((now - pt)) -gt 480 ]; then
+if [ "$pt" -gt 0 ] && [ "$a" -eq "$pa" ] && [ $((now - pt)) -gt 1800 ]; then   # n <= 100: one attempt can take 10 min
   pkill -f "^python3 scripts/engine.py work"; pkill -f "src/server.js"; note="$note NO-PROGRESS:workers-restarted"
 fi
 echo "$a $i $now" > state/.cycle
