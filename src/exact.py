@@ -385,7 +385,11 @@ def solve(pb, C, R, L, outer=40, trust=0.03, verbose=False, tlimit=None, method=
         if method == 'slp':
             from scipy.sparse import csr_matrix
             J0 = jac(z0); g0 = cons(z0); cvec = np.zeros(nvar); cvec[iL] = 1.0
-            res = linprog(cvec, A_ub=csr_matrix(-J0), b_ub=g0 - J0 @ z0, bounds=bounds, method='highs')
+            # 14 Oct 04:50: a degenerate LP (24 rhombic dodecahedra at s = 3.5 exactly) kept HiGHS busy for 15+ min;
+            # every LP now gets a wall-clock limit (status 1 -> keep z0, the trust region shrinks as for a failed step)
+            tl = max(5.0, (tlimit - (time.time() - t_start)) if tlimit else 120.0)
+            res = linprog(cvec, A_ub=csr_matrix(-J0), b_ub=g0 - J0 @ z0, bounds=bounds, method='highs',
+                          options={'time_limit': tl})
             z = res.x if res.status == 0 else z0
         else:
             res = minimize(lambda z: z[iL], z0, jac=lambda z: np.eye(nvar)[iL], method='SLSQP', bounds=bounds,
