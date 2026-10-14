@@ -1,5 +1,6 @@
-# Extra search capacity. Since 14 Oct 16:49 (Alejandro: "mass production ... on 20 jobs instead of 4"): 20 jobs
-# (4 cores each, GitHub's limit of concurrent jobs for a public repository) run the same engine as the main machine
+# Extra search capacity. Since 14 Oct 16:49 (Alejandro: "mass production ... on 20 jobs instead of 4"): 18 jobs
+# (4 cores each; GitHub runs at most 20 jobs at once for a public repository, and 2 slots stay free so that the
+# tests, the site deploy and contributors' submission checks are never queued behind the search) run the same engine as the main machine
 # for MINUTES (default 300) on n <= 100; a new run starts when the previous one has finished (scripts/actions_kick.sh).
 # Before: every hour, 4 jobs for 50 minutes ("medium", 12 Oct).
 # starting from the archive in main. Each job then pushes the packings that beat that archive to
@@ -22,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        job: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+        job: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
     env:
       MINUTES: ${{ inputs.minutes || '300' }}
     steps:
@@ -42,7 +43,7 @@ jobs:
           export PP_DEADLINE=$(( $(date +%s) + MINUTES * 60 ))
           pids=""
           for w in 0 1 2 3; do
-            PP_SHARD="${{ matrix.job }}/20" timeout $(( MINUTES * 60 + 600 )) python3 scripts/engine.py work "A${{ matrix.job }}$w" > /dev/null 2>&1 &
+            PP_SHARD="${{ matrix.job }}/18" timeout $(( MINUTES * 60 + 600 )) python3 scripts/engine.py work "A${{ matrix.job }}$w" > /dev/null 2>&1 &
             pids="$pids $!"
           done
           # partial results every 30 minutes (the main machine harvests each branch commit once)

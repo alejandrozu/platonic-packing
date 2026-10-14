@@ -1,6 +1,6 @@
 #!/bin/bash
 # Keep the GitHub Actions search running. Since 14 Oct 16:49 (Alejandro: mass production, 20 jobs instead of 4) a run
-# is 20 jobs x MINUTES (300) on n <= 100, and a new run is started as soon as the previous one has finished (none
+# is 18 jobs (2 of GitHub's 20 slots stay free for tests, site and submissions) x MINUTES (300) on n <= 100, and a new run is started as soon as the previous one has finished (none
 # queued or in progress). Before: one 4-job, 50-minute run an hour.
 cd "$(dirname "$0")/.."
 if [ -f state/STOP ]; then echo "actions: stopped (state/STOP)"; exit 0; fi
@@ -18,6 +18,6 @@ print('idle')")
 case "$st" in
   running*) echo "actions: run in progress (${st#running } min)";;
   idle) timeout 30 gh api -X POST repos/alejandrozu/platonic-packing/actions/workflows/search.yml/dispatches -f ref=main -f 'inputs[minutes]=300' > /dev/null 2>&1 \
-          && echo "actions: run started (20 jobs x 300 min)" || echo "actions: start FAILED";;
+          && echo "actions: run started (18 jobs x 300 min)" || echo "actions: start FAILED";;
   *) echo "actions: status unknown";;
 esac
