@@ -238,12 +238,29 @@ def fields_table():
 
 
 # ------------------------------------------------------------------ constructions index
+# 14 Oct (Alejandro): the same sub-groups as the columns of the records page
+DUAL = {'cube': 'octahedron', 'octahedron': 'cube', 'dodecahedron': 'icosahedron', 'icosahedron': 'dodecahedron', 'tetrahedron': 'tetrahedron'}
+SUBGROUPS = {'platonic': ['Self packings', 'Dual packings', 'Heterogeneous packings'], 'prisms': ['Prisms', 'Antiprisms', 'Elongated prisms']}
+
+
+def subgroup(p):
+    pc, cc = p['piece'], p['container']
+    if p['family'] == 'platonic':
+        return 'Self packings' if pc == cc else 'Dual packings' if DUAL.get(pc) == cc else 'Heterogeneous packings'
+    if p['family'] == 'prisms':
+        return 'Antiprisms' if pc.startswith('antiprism') else 'Elongated prisms' if '_l' in pc else 'Prisms'
+    return ''
+
+
 def constructions(data):
     parts = []
     for fam in ('platonic', 'archimedean', 'catalan', 'prisms'):
         ps = [p for p in data['problems'] if p['family'] == fam]
         parts.append(f'<h2 id="{fam}">{FAMILY_NAME[fam]}</h2>')
-        for p in ps:
+        sub = None
+        for p in sorted(ps, key=lambda q: SUBGROUPS.get(fam, ['']).index(subgroup(q))):
+            if subgroup(p) != sub and fam in SUBGROUPS:
+                sub = subgroup(p); parts.append(f'<h3 id="{fam}-{sub.lower().replace(" ", "-")}">{sub}</h3>')
             rows = []
             for r in p['rows']:
                 rid = r.get('id') or f"{p['id']}_n{r['n']:02d}"; url = f"{REPO}/blob/main/{r['file']}" if r['file'] else r['source_url']

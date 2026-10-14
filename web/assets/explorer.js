@@ -145,8 +145,15 @@ if (typeof document !== 'undefined') (async () => {
   }
 
   // ---------- families and the atlas of problems (each tile is a drawing of a real packing from the archive)
-  const GROUPS = [['platonic', 'Platonic', [['platonic', '']]], ['archcat', 'Archimedean and Catalan', [['archimedean', 'Archimedean solids'], ['catalan', 'Catalan solids']]],
-                  ['prisms', 'Prisms and antiprisms', [['prisms', '']]]];
+  // 14 Oct (Alejandro): each family tab is split into side-by-side columns so a packing is easy to find
+  const DUAL = { cube: 'octahedron', octahedron: 'cube', dodecahedron: 'icosahedron', icosahedron: 'dodecahedron', tetrahedron: 'tetrahedron' };
+  const isPrism = p => /^prism\d+$/.test(p.piece), isElong = p => /^prism\d+_l/.test(p.piece), isAnti = p => /^antiprism/.test(p.piece);
+  const GROUPS = [['platonic', 'Platonic', [['Self packings', p => p.family === 'platonic' && p.piece === p.container],
+                                           ['Dual packings', p => p.family === 'platonic' && p.piece !== p.container && DUAL[p.piece] === p.container],
+                                           ['Heterogeneous packings', p => p.family === 'platonic' && p.piece !== p.container && DUAL[p.piece] !== p.container]]],
+                  ['archcat', 'Archimedean and Catalan', [['Archimedean solids', p => p.family === 'archimedean'], ['Catalan solids', p => p.family === 'catalan']]],
+                  ['prisms', 'Prisms and antiprisms', [['Prisms', p => p.family === 'prisms' && isPrism(p)], ['Antiprisms', p => p.family === 'prisms' && isAnti(p)],
+                                                       ['Elongated prisms', p => p.family === 'prisms' && isElong(p)]]]];
   const ptitle = p => p.title || `${cap(pl(p.piece))} in ${article(dn(p.container))}`;
   const ROT = (() => { const a = -0.5, b = 0.62, ca = Math.cos(a), sa = Math.sin(a), cb = Math.cos(b), sb = Math.sin(b);
     return v => { const x1 = cb * v[0] + sb * v[2], z1 = -sb * v[0] + cb * v[2]; return [x1, ca * v[1] - sa * z1] } })();
@@ -167,21 +174,22 @@ if (typeof document !== 'undefined') (async () => {
     fams.querySelectorAll('.fam').forEach(t => t.setAttribute('aria-selected', t.dataset.g === g));
     atlas.innerHTML = '';
     const grp = GROUPS.find(x => x[0] === g);
-    grp[2].forEach(([fam, head]) => {
-      const ps = D.problems.filter(p => p.family === fam); if (!ps.length) return;
-      if (head) { const h = document.createElement('h2'); h.textContent = head; atlas.appendChild(h) }
-      const box = document.createElement('div'); box.className = 'tiles'; box.setAttribute('role', 'tablist'); box.setAttribute('aria-label', head || grp[1]);
+    const cols = grp[2].map(([head, f]) => [head, D.problems.filter(f)]).filter(c => c[1].length);
+    atlas.className = 'atlas cols'; atlas.style.setProperty('--ncol', cols.length);
+    cols.forEach(([head, ps]) => {
+      const col = document.createElement('section'); col.className = 'col';
+      const h = document.createElement('h2'); h.innerHTML = `${head} <span class="k">${ps.length}</span>`; col.appendChild(h);
+      const box = document.createElement('div'); box.className = 'tiles'; box.setAttribute('role', 'tablist'); box.setAttribute('aria-label', head);
       ps.forEach(p => {
         const b = document.createElement('button'); b.className = 'tile'; b.type = 'button'; b.setAttribute('role', 'tab'); b.id = 'tab-' + p.id;
         const cv = document.createElement('canvas'); cv.setAttribute('aria-hidden', 'true');
-        const best = p.rows.length ? p.rows[p.rows.length - 1] : null;
         b.innerHTML = `<span><span class="t">${ptitle(p)}</span><span class="m" style="display:block">${p.rows.length} of ${D.nmax - D.nmin + 1} values` +
           (p.hasref ? ', published values' : '') + `</span></span>`;
         b.prepend(cv); thumb(cv, p);
         b.onclick = () => { selectProb(p); $('viewer').scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'start' }) };
         box.appendChild(b);
       });
-      atlas.appendChild(box);
+      col.appendChild(box); atlas.appendChild(col);
     });
     if (pick) { const p = D.problems.find(p => p.group === g); if (p) selectProb(p) }
     else markTile();
