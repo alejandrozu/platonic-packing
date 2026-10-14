@@ -15,7 +15,7 @@
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
- "date": "2026-10-13",
+ "date": "2026-10-14",
  "pieces": [
   [
    -2.8660255038551923,
@@ -220,27 +220,21 @@
  "title": "22 dodecagonal prisms of height 2 in a cube",
  "family": "prisms",
  "source": {
-  "hash": "088dea09ef89cd5c",
+  "hash": "55fbc3846e6c95b8",
   "clear": 1e-07,
   "cap": 9.4641020757675
  },
- "s_tight": 9.464101615305,
- "closed_form_conjecture": null,
+ "s_tight": 9.464101615139,
+ "closed_form_conjecture": "6 + 2\u221a3",
  "volume_lower_bound": 7.897818692744051,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "hop",
-  "seed": 1994825695,
-  "var": "gentle",
-  "minDiff": 0.037659019526603825,
-  "expand": 0.022450263241549456,
-  "rh": 0.17208711662381393,
-  "focus": 0,
-  "from": "best",
-  "raw": 9.475885557340602,
-  "host": "actions"
+  "move": "ascend",
+  "seed": 1959559186,
+  "var": "base",
+  "raw": 9.465589428151437
  },
  "density": 0.5811432950093323,
  "derived_from": "pr12l2incub_n23 minus its last piece"
