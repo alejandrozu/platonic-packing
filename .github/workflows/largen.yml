@@ -1,0 +1,51 @@
+# Large-n study (scripts/largen_bench.py, 14 Oct 2026). Started by hand (workflow_dispatch): one job per problem,
+# 4 workers each; every job force-pushes its results (attempts.jsonl and best/<problem>_nNNN.json) to the branch
+# largen-<tag>-<problem>. Nothing is written to main.
+name: largen
+on:
+  workflow_dispatch:
+    inputs:
+      problems: {description: 'JSON list of problem ids (at most 20)', default: '["rcoinrco"]'}
+      nmax: {description: 'largest n', default: '100'}
+      minutes: {description: 'minutes per job (at most 320)', default: '300'}
+      tag: {description: 'result tag', default: 'a'}
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        problem: ${{ fromJSON(inputs.problems) }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, fetch-depth: 1}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - name: Install
+        run: pip install --quiet numpy scipy highspy mpmath
+      - name: Run
+        run: |
+          out="$RUNNER_TEMP/out"; mkdir -p "$out"
+          ( while sleep 1200; do
+              d="$RUNNER_TEMP/push"; rm -rf "$d"; mkdir -p "$d"; cp -r "$out"/. "$d"/ 2>/dev/null; cd "$d"
+              git init -q -b x && git -c user.name=largen -c user.email=actions@users.noreply.github.com add -A > /dev/null &&
+              git -c user.name=largen -c user.email=actions@users.noreply.github.com commit -q -m "largen partial results" &&
+              git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" "HEAD:refs/heads/largen-${{ inputs.tag }}-${{ matrix.problem }}"
+              cd - > /dev/null
+            done ) &
+          timeout $(( ${{ inputs.minutes }} * 60 + 900 )) python3 scripts/largen_bench.py "$out" "${{ matrix.problem }}" ${{ inputs.nmax }} ${{ inputs.minutes }} 4 || true
+          wc -l "$out/attempts.jsonl" || true
+      - name: Push results
+        if: always()
+        run: |
+          d="$RUNNER_TEMP/final"; mkdir -p "$d"; cp -r "$RUNNER_TEMP/out"/. "$d"/; cd "$d"
+          git init -q -b x
+          git -c user.name=largen -c user.email=actions@users.noreply.github.com add -A
+          git -c user.name=largen -c user.email=actions@users.noreply.github.com commit -q -m "largen results, run $GITHUB_RUN_ID, ${{ matrix.problem }}"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" "HEAD:refs/heads/largen-${{ inputs.tag }}-${{ matrix.problem }}"
