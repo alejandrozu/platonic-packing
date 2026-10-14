@@ -3,95 +3,93 @@
  "piece": "prism5_l3",
  "container": "cube",
  "n": 6,
- "s": 4.18684,
- "s_plus": "4.18684+",
- "s_full": 4.1868462145791,
+ "s": 4.04508,
+ "s_plus": "4.04508+",
+ "s_full": 4.0450853482121,
  "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020145147003e-07,
-  "min_wall_gap": 1.000000127149292e-07
+  "min_pair_gap": 1.0000020141326776e-07,
+  "min_wall_gap": 1.0000000116860974e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
- "date": "2026-10-13",
+ "date": "2026-10-14",
  "pieces": [
   [
-   0.32932153430047584,
-   1.3493918077597262,
-   -0.5217228121802749,
-   0.21633922312417464,
-   0.035368363808418436,
-   -0.007842562946305191,
-   -0.9756458955922365
+   9.057330048099094e-09,
+   -0.5147278054079207,
+   0.5225425741060489,
+   0.15643447154008458,
+   -0.0,
+   -0.0,
+   -0.987688339565662
   ],
   [
-   0.010844551874363754,
-   -1.40523204233245,
-   -0.5914609200705527,
-   0.6227649998347069,
-   -0.33490857704883775,
-   -0.334908577048839,
-   0.6227649998347067
+   9.057329736365233e-09,
+   1.0241140749835576,
+   0.5225425741060489,
+   0.15643447154008458,
+   -0.0,
+   -0.0,
+   -0.987688339565662
   ],
   [
-   -1.2844060081930904,
-   -0.5934229435865335,
-   1.4052320423324522,
-   0.11061587104123699,
-   0.11061587104123752,
-   0.6984011233337103,
-   -0.6984011233337102
+   1.213525583190872,
+   0.20449028123658172,
+   0.5225425741060489,
+   0.987688339565662,
+   0.0,
+   0.0,
+   0.15643447154008458
   ],
   [
-   1.4052320423324485,
-   0.34076865484710783,
-   -0.5200911852102403,
-   0.9498658171753263,
-   -0.047575482649404234,
-   0.015458211370579662,
-   0.30863011277862756
+   1.2135255831908724,
+   -1.3343515991548964,
+   0.5225425741060489,
+   0.987688339565662,
+   0.0,
+   0.0,
+   0.15643447154008458
   ],
   [
-   0.34536515127045625,
-   -0.5978850899203274,
-   0.6623031218092081,
-   0.35181181243841464,
-   -0.22784122542692423,
-   0.4596932930146534,
-   -0.7829424633918507
+   -1.2135255762713306,
+   -1.334351607289587,
+   0.5225425741060489,
+   0.987688339565662,
+   0.0,
+   0.0,
+   0.15643447154008458
   ],
   [
-   -1.2844060081930904,
-   0.4551778210530715,
-   -0.7215338887390775,
-   0.862111758244336,
-   -0.48196636235782847,
-   -0.07633597255729457,
-   -0.13654508832672854
+   -1.2135255762713308,
+   0.20449027310189113,
+   0.5225425741060489,
+   0.987688339565662,
+   0.0,
+   0.0,
+   0.15643447154008458
   ]
  ],
  "record_id": "pr5l3incub_n06",
  "title": "6 pentagonal prisms of height 3 in a cube",
  "family": "prisms",
  "source": {
-  "hash": "9c537cad0398c79b",
+  "hash": "d634df276796a2cf",
   "clear": 1e-07,
   "cap": 4.3061131368764
  },
- "s_tight": 4.186845809722,
- "closed_form_conjecture": null,
+ "s_tight": 4.045084971876,
+ "closed_form_conjecture": "(5 + 5\u221a5)/4",
  "volume_lower_bound": 3.140319426393764,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "ascend",
-  "seed": 988139981,
-  "var": "base",
-  "raw": 4.186850998805438,
-  "host": "actions"
+  "crystal": 3,
+  "move": "latcut",
+  "raw": 4.045084989987948
  },
- "density": 0.4219494737310617
+ "density": 0.467884231985544
 }
