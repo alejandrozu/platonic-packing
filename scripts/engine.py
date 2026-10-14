@@ -315,7 +315,9 @@ def tighten(row, best_s, n, gate, explore=False):
         if explore:
             return fastslp.tighten_run(row, tlimit=tl, slp_floor=1e-6, abort=abort, reg=0.0)
         out = fastslp.tighten_run(row, tlimit=tl, slp_floor=1e-6, abort=abort, reg=1e-4)
-        if (best_s is None or out['s'] < best_s * 1.003) and out['s_start'] - out['s'] > 1e-4 * out['s']:
+        # explore only for a close call: within +-0.3% of the best (a clear win over a weak seed is taken as it is;
+        # the 'perturb' move explores it later) -- at n = 75-90 the second LP doubled a 5-13 min attempt (14 Oct 22:20)
+        if best_s is not None and best_s * 0.997 <= out['s'] < best_s * 1.003 and out['s_start'] - out['s'] > 1e-4 * out['s']:
             # near the best: the unregularized LP from the same raw start explores (its vertex jumps use the slack
             # of the loose start; from the regularized optimum, or from an already tight start, it finds little and
             # its degenerate LPs are slow: 14 Oct study)
