@@ -90,6 +90,16 @@ await assert.rejects(packingFullPrecisionRecord(repo, { ...rawRow, sf: 2.99 }, p
 
 if (process.argv[2]) {
   const data = JSON.parse(readFileSync(process.argv[2], 'utf8'));
+  if (data.lazy) {     // 14 Oct: coordinates live in data/pieces/<problem>.json (loaded by the explorer per problem)
+    const dir = process.argv[2].replace(/records\.json$/, 'pieces/');
+    for (const problem of data.problems) {
+      const m = JSON.parse(readFileSync(dir + problem.id + '.json', 'utf8'));
+      for (const r of problem.rows) {
+        r.p = m[r.id] || r.p || [];
+        for (const a of r.alternatives || []) a.p = m[r.id + '|' + a.id] || a.p || [];
+      }
+    }
+  }
   let checked = 0;
   for (const problem of data.problems) for (const primary of problem.rows) {
     const selection = packingConstructionChoices(primary);
