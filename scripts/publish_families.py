@@ -184,6 +184,14 @@ def write_tables(rows):
             w = csv.DictWriter(f, fieldnames=list(rows[0].keys())); w.writeheader(); w.writerows(rows)
 
 
+def _build(args):
+    p, deadline = args
+    logf = open(os.path.join(ROOT, 'logs', 'publish_families.log'), 'a')
+
+    def log(m): logf.write(time.strftime('%m-%d %H:%M:%S ') + m + '\n'); logf.flush()
+    return build_problem(p, log, deadline)
+
+
 def main():
     args = sys.argv[1:]
     minutes = float(args[args.index('--minutes') + 1]) if '--minutes' in args else 1e9
@@ -193,9 +201,15 @@ def main():
 
     def log(m): logf.write(time.strftime('%m-%d %H:%M:%S ') + m + '\n'); logf.flush(); print(m, flush=True)
     rows, total = [], 0
-    for p in PID:
-        if FAM[p] not in FAMILIES or (only and p not in only): continue
-        r, k = build_problem(p, log, deadline); rows += r; total += k
+    todo = [p for p in PID if FAM[p] in FAMILIES and (not only or p in only)]
+    procs = int(os.environ.get('PP_PUBLISH_PROCS', '1'))
+    if procs > 1:                     # 14 Oct (n <= 100): problems certified in parallel processes
+        import multiprocessing as mp
+        with mp.Pool(procs) as pool:
+            for r, k in pool.imap_unordered(_build, [(p, deadline) for p in todo]): rows += r; total += k
+    else:
+        for p in todo:
+            r, k = build_problem(p, log, deadline); rows += r; total += k
     rows.sort(key=lambda r: (list(PID).index(r['problem']), r['n']))
     write_tables(rows)
     log(f'publish_families: {len(rows)} records, {total} rebuilt')
