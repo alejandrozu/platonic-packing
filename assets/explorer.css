@@ -5,11 +5,11 @@
 .fam[aria-selected="true"] { border-color: var(--accent); color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent) }
 .atlas { display: grid; gap: 14px }
 .atlas h2 { font: 600 17px/1.2 var(--f-display); margin: 4px 0 0; color: var(--muted) }
-.atlas.cols { grid-template-columns: repeat(var(--ncol, 3), minmax(0, 1fr)); align-items: start; gap: 14px }
+.atlas.cols { grid-template-columns: var(--cols, repeat(3, minmax(0, 1fr))); align-items: start; gap: 14px }
 .atlas.cols .col { display: grid; gap: 8px; min-width: 0; align-content: start }
 .atlas.cols .col h2 { margin: 0; padding-bottom: 6px; border-bottom: 1px solid var(--rule) }
 .atlas.cols .col h2 .k { font: 500 12px var(--f-body); color: var(--muted); margin-left: 4px }
-.atlas.cols .tiles { grid-template-columns: minmax(0, 1fr); gap: 6px }
+.atlas.cols .tiles { grid-template-columns: repeat(var(--w, 1), minmax(0, 1fr)); gap: 6px }
 @media (max-width: 860px) { .atlas.cols { grid-template-columns: minmax(0, 1fr) } .atlas.cols .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)) } }
 @media (max-width: 520px) { .atlas.cols .tiles { grid-template-columns: minmax(0, 1fr) } }
 .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(228px, 1fr)); gap: 8px }
