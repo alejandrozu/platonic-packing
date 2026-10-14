@@ -148,9 +148,10 @@ if __name__ == '__main__':
     res = {}
     for n in range(2, nmax + 1):
         s_est, arg = best[n]
-        rec = engine.load_case(p, n)['best']['s'] if n <= engine.NMAX else None
-        line = f'{p} n={n} cut {s_est:.6f}' + (f' record {rec:.6f}' if rec else '')
-        if rec is not None and s_est < rec - 1e-9:
+        cb = engine.load_case(p, n)['best'] if n <= engine.NMAX else None
+        rec = cb['s'] if cb else (float('inf') if n <= engine.NMAX else None)
+        line = f'{p} n={n} cut {s_est:.6f}' + (f' record {rec:.6f}' if rec is not None else '')
+        if rec is not None and np.isfinite(s_est) and s_est < rec - 1e-9:
             s, C0, Q, _ = certify_cut(p, cuts, arg, n)
             line += f' certified {s:.10f}' + (' BETTER' if s < rec - 1e-9 else '')
             if '--insert' in sys.argv and s < rec - 1e-9:
