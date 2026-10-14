@@ -14,7 +14,7 @@ import base64, gzip, json, os, sys, tempfile, glob
 
 def export(state, ref):
     out = {}
-    for f in glob.glob(os.path.join(state, 'best', '*', 'n[0-9][0-9].json')):
+    for f in glob.glob(os.path.join(state, 'best', '*', 'n[0-9]*.json')):
         p, nn = f.split(os.sep)[-2], os.path.basename(f)
         try:
             b = json.load(open(f)).get('best')

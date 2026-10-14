@@ -29,6 +29,7 @@ HAS_DOMAIN = os.path.exists(os.path.join(WEB, 'CNAME'))     # web/CNAME switches
 SITE_URL = f'https://{DOMAIN}/' if HAS_DOMAIN else 'https://alejandrozu.github.io/platonic-packing/'
 from engine import FAM, PID
 POLY = {3: 'triangular', 4: 'square', 5: 'pentagonal', 6: 'hexagonal', 8: 'octagonal', 12: 'dodecagonal'}
+SITE_NMAX = int(os.environ.get('PP_SITE_NMAX', '100000'))   # 14 Oct: production sets 40 until the explorer loads coordinates per problem
 FAMILY_GROUP = {'platonic': 'platonic', 'archimedean': 'archcat', 'catalan': 'archcat', 'prisms': 'prisms'}
 FAMILY_NAME = {'platonic': 'Platonic', 'archimedean': 'Archimedean', 'catalan': 'Catalan', 'prisms': 'Prisms and antiprisms'}
 
@@ -86,12 +87,13 @@ def ptitle(piece, container):
 
 def load():
     probs = {}
-    files = glob.glob(os.path.join(ROOT, 'records', '*', '*_n[0-9][0-9].json'))
+    files = glob.glob(os.path.join(ROOT, 'records', '*', '*_n[0-9][0-9].json')) + glob.glob(os.path.join(ROOT, 'records', '*', '*_n[0-9][0-9][0-9].json'))
     files += [os.path.join(ROOT, e['file']) for e in EXTERNAL['entries'] if e['kind'] == 'coordinates']
     files += [os.path.join(ROOT, e['file']) for e in COMMUNITY['entries']]
     for f in sorted(set(files)):
         r = json.loads(Path(f).read_text(encoding='utf-8')); pid = r['record_id'].split('_')[0]
         if pid not in FAM: continue
+        if r.get('n', 0) > SITE_NMAX: continue        # n > 40 is shown once the explorer loads coordinates per problem
         cert = Path(f.replace('.json', '.certify.txt')).read_text(encoding='utf-8') if os.path.exists(f.replace('.json', '.certify.txt')) else ''
         vtxt = Path(f.replace('.json', '.verify.txt')).read_text(encoding='utf-8') if os.path.exists(f.replace('.json', '.verify.txt')) else ''
         p = probs.setdefault(pid, {'id': pid, 'piece': r['piece'], 'container': r['container'], 'rows': [], 'hasref': bool(REF.get(pid)),
@@ -173,7 +175,7 @@ def stats(data):
     try:                                              # attempts across all machines (main archive + remote totals)
         import engine
         tot = 0
-        for f in glob.glob(os.path.join(ROOT, 'state', 'best', '*', 'n[0-9][0-9].json')):
+        for f in glob.glob(os.path.join(ROOT, 'state', 'best', '*', 'n[0-9]*.json')):
             c = json.loads(Path(f).read_text(encoding='utf-8')); tot += engine.total_attempts(c.get('stats', {}))
         st['attempts'] = tot or None
     except Exception:

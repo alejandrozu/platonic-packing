@@ -1,5 +1,7 @@
-# Extra search capacity ("medium", chosen by Alejandro on 12 Oct; "light" = 25 minutes on 11 Oct): every hour, 4 jobs
-# (4 cores each) run the same engine as the main machine for 50 minutes,
+# Extra search capacity. Since 14 Oct 16:49 (Alejandro: "mass production ... on 20 jobs instead of 4"): 20 jobs
+# (4 cores each, GitHub's limit of concurrent jobs for a public repository) run the same engine as the main machine
+# for MINUTES (default 300) on n <= 100; a new run starts when the previous one has finished (scripts/actions_kick.sh).
+# Before: every hour, 4 jobs for 50 minutes ("medium", 12 Oct).
 # starting from the archive in main. Each job then pushes the packings that beat that archive to
 # its own branch (search-results-<job>, one file, force-pushed). The main machine's 10-minute cycle fetches those
 # branches, re-legalizes every packing (engine.py harvest) and only then merges it; records are certified exactly
@@ -8,19 +10,21 @@ name: search
 # Started once an hour by the main machine's 10-minute cycle (scripts/actions_kick.sh, workflow_dispatch). GitHub's own
 # cron trigger was removed: it fired hours late and then overlapped a dispatched run (11 Oct, 10:42).
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      minutes: {description: 'minutes of search per job', default: '300'}
 permissions:
   contents: write
 jobs:
   search:
     runs-on: ubuntu-latest
-    timeout-minutes: 62
+    timeout-minutes: 350
     strategy:
       fail-fast: false
       matrix:
-        job: [0, 1, 2, 3]
+        job: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
     env:
-      MINUTES: 50
+      MINUTES: ${{ inputs.minutes || '300' }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -36,10 +40,23 @@ jobs:
           export PP_STATE="$RUNNER_TEMP/pp-state"
           mkdir -p "$PP_STATE" logs && cp -r state/best "$PP_STATE/best" && cp state/policy.json "$PP_STATE/"
           export PP_DEADLINE=$(( $(date +%s) + MINUTES * 60 ))
+          pids=""
           for w in 0 1 2 3; do
-            PP_SHARD="$(( 4 + ${{ matrix.job }} ))/8" timeout $(( MINUTES * 60 + 240 )) python3 scripts/engine.py work "A${{ matrix.job }}$w" > /dev/null 2>&1 &
+            PP_SHARD="${{ matrix.job }}/20" timeout $(( MINUTES * 60 + 600 )) python3 scripts/engine.py work "A${{ matrix.job }}$w" > /dev/null 2>&1 &
+            pids="$pids $!"
           done
-          wait || true
+          # partial results every 30 minutes (the main machine harvests each branch commit once)
+          ( while sleep 1800; do
+              python3 scripts/remote.py export "$PP_STATE" state/best > "$RUNNER_TEMP/export_p.txt" 2>/dev/null || continue
+              d="$RUNNER_TEMP/partial"; rm -rf "$d"; mkdir -p "$d"; cp "$RUNNER_TEMP/export_p.txt" "$d/export.txt"
+              echo "{\"run\": \"$GITHUB_RUN_ID\", \"job\": ${{ matrix.job }}, \"partial\": true, \"attempts\": 0, \"finished\": \"$(date -u +%FT%TZ)\"}" > "$d/meta.json"
+              ( cd "$d" && git init -q -b x && git -c user.name="platonic-packing search" -c user.email="actions@users.noreply.github.com" add -A &&
+                git -c user.name="platonic-packing search" -c user.email="actions@users.noreply.github.com" commit -q -m "partial search results" &&
+                git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" "HEAD:refs/heads/search-results-${{ matrix.job }}" ) || true
+            done ) &
+          ploop=$!
+          wait $pids || true
+          kill $ploop 2>/dev/null || true
           python3 scripts/remote.py export "$PP_STATE" state/best > "$RUNNER_TEMP/export.txt"
           echo "attempts $(wc -l < "$PP_STATE/attempts.jsonl"), exported $(cut -d' ' -f2 "$RUNNER_TEMP/export.txt") cases"
           { echo "{\"run\": \"$GITHUB_RUN_ID\", \"job\": ${{ matrix.job }}, \"main\": \"$(git rev-parse HEAD)\","

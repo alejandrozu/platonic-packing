@@ -1,5 +1,5 @@
 #!/bin/bash
-# Merge the GitHub Actions search results (branches search-results-0..3, see .github/workflows/search.yml) into the
+# Merge the GitHub Actions search results (branches search-results-0..19, see .github/workflows/search.yml) into the
 # archive. Each branch holds one export.txt (scripts/remote.py format); a branch commit is imported once.
 cd "$(dirname "$0")/.."
 timeout 60 git fetch -q origin '+refs/heads/search-results-*:refs/remotes/origin/search-results-*' 2>/dev/null || { echo "actions: fetch failed"; exit 0; }

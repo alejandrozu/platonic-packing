@@ -78,7 +78,8 @@ for _s in PRISMS:
     for _c in (_s, 'cube'): PROBLEMS.append((_s, _c)); FAMILY[(_s, _c)] = 'prisms'
 ELONGATED = [f'prism{k}_{t}' for k in (3, 5, 6, 8, 12) for t in ELONG_TAGS]
 for _s in ELONGATED: PROBLEMS.append((_s, 'cube')); FAMILY[(_s, 'cube')] = 'prisms'
-NMIN, NMAX, POOL = 2, int(os.environ.get('PP_NMAX', '40')), 6
+NMIN, NMAX, POOL = 2, int(os.environ.get('PP_NMAX', '100')), 6     # n <= 100 since 14 Oct 16:49 (Alejandro); 40 before
+CHAIN_FROM = 41                                                        # n above the old range: crystal-cut seeds, ascend chain first
 
 # Hop settings. A variant overrides some of HOP_DEFAULT (ranges are sampled uniformly, minDiff log-uniformly).
 # state/policy.json selects what the workers do (re-read before every attempt, so no restart is needed):
@@ -167,6 +168,20 @@ def _read(path, default=None):
     try:
         with open(path) as f: return json.load(f)
     except (FileNotFoundError, json.JSONDecodeError): return default
+
+
+_RCACHE = {}
+
+
+def _read_cached(path):
+    """Read-only view of a case for the scheduler: re-parsed only when the file changed (6,000 cases at n <= 100)."""
+    try: st = os.stat(path)
+    except FileNotFoundError: _RCACHE.pop(path, None); return None
+    key = (st.st_mtime_ns, st.st_size); hit = _RCACHE.get(path)
+    if hit and hit[0] == key: return hit[1]
+    obj = _read(path)
+    if obj is not None: _RCACHE[path] = (key, obj)
+    return obj
 
 
 def _write(path, obj):
@@ -439,7 +454,7 @@ def choose(rng, wid):
     idx = {}
     for p in act:
         for n in range(NMIN, NMAX + 1):
-            c = _read(_path('best', p, n))
+            c = _read_cached(_path('best', p, n))
             idx[(p, n)] = c
     order = list(act); rng.shuffle(order)
     sh = shard()
@@ -455,6 +470,16 @@ def choose(rng, wid):
             if n < NMAX and idx[(p, n + 1)] and idx[(p, n + 1)].get('best'): return p, n, 'descend'
             if n == NMIN or rng.random() < 0.3: return p, n, 'symfresh' if FAM[p] == 'prisms' else 'fresh'
             break
+    # ascend chain over the crystal-cut seeds above the old range (14 Oct large-n study: the chain n-1 -> n is the
+    # reliable first draft; the cut competes as the seed): per problem, the lowest n whose seed has not had an ascend
+    for p in (order if not fast else ()):
+        for n in range(max(NMIN + 1, CHAIN_FROM), NMAX + 1):
+            c = idx[(p, n)]
+            if not c or not c.get('best'): break
+            if (c['best'].get('src') or {}).get('move') not in ('latcut', 'monotone'): continue
+            if ((c['stats'].get('moves') or {}).get('ascend') or [0])[0] > 0: continue
+            if (p, str(n)) in claimed: break
+            return p, n, 'ascend'
     for (p, n), c in sorted(idx.items(), key=(lambda kv: kv[0][1]) if fast else (lambda kv: rng.random())):
         if fast and n > 20: break                # fast mode: only quick re-tightenings, smallest n first
         if c and c['stats'].get('needs_tighten') and (p, str(n)) not in claimed: return p, n, 'tighten'

@@ -13,7 +13,8 @@ import numpy as np
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'src')); sys.path.insert(0, os.path.join(ROOT, 'scripts'))
 import claim
-from engine import PID, PROBLEMS, NMIN, NMAX, STATE, _read, _path, AB
+from engine import PID, PROBLEMS, NMIN, NMAX, STATE, _read, _path, AB, FAM
+PNMAX = 40          # the Platonic problems stay at n <= 40 (their search is inactive); the families go to NMAX = 100
 import engine as _engine
 # the records pipeline (exact certificates) covers the Platonic problems; the new families get their own records
 # (scripts/records_new.py) until the general certifier is in place
@@ -53,7 +54,7 @@ def build_problem(p, log):
     piece, container = PID[p]
     d = os.path.join(ROOT, 'records', p); os.makedirs(d, exist_ok=True)
     rows, prev, rebuilt = [], None, 0
-    for n in range(NMAX, NMIN - 1, -1):
+    for n in range(PNMAX, NMIN - 1, -1):
         case = _read(_path('best', p, n))
         fn = os.path.join(d, f'{p}_n{n:02d}.json')
         if not case or not case.get('best'): prev = None; continue
@@ -145,7 +146,7 @@ def tables(rows, link_prefix):
             cols.append((title(p), p, False))
             if REF.get(p): cols.append(('previous', p, True))          # only where a published value exists
         out += [f'### {name}', '', '| n | ' + ' | '.join(c[0] for c in cols) + ' |', '|---:|' + '---|' * len(cols)]
-        for n in range(NMIN, NMAX + 1):
+        for n in range(NMIN, PNMAX + 1):
             out.append(f'| {n} | ' + ' | '.join(fmt_ref(by.get(p, {}).get(n)) if isref else fmt_cell(by.get(p, {}).get(n), link_prefix)
                                                  for _, p, isref in cols) + ' |')
         out.append('')
@@ -243,12 +244,13 @@ def progress():
              '* by move (attempts / improvements): ' + ', '.join(f'{m} {v[0]}/{v[1]}' for m, v in sorted(mv.items())), '',
              '| problem | n with a packing | attempts | CPU hours | improvements (24 h) | last improvement |', '|---|---|---|---|---|---|']
     for p in PID:
-        cs = [_read(_path('best', p, n)) for n in range(NMIN, NMAX + 1)]
+        nm = PNMAX if FAM[p] == 'platonic' else NMAX
+        cs = [_read(_path('best', p, n)) for n in range(NMIN, nm + 1)]
         cs = [c for c in cs if c and c.get('best')]
         a = sum(c['stats'].get('attempts', 0) for c in cs); e = sum(c['stats'].get('effort', 0) for c in cs) / 3600
         imp = sum(1 for x in day if x['p'] == p and x['improved'])
         last = max([c['stats'].get('last_improve') or 0 for c in cs] + [0])
-        lines.append(f"| {title(p)} ({p}) | {len(cs)}/{NMAX - NMIN + 1} | {a} | {e:.1f} | {imp} | "
+        lines.append(f"| {title(p)} ({p}) | {len(cs)}/{nm - NMIN + 1} | {a} | {e:.1f} | {imp} | "
                      f"{time.strftime('%m-%d %H:%M', time.localtime(last)) if last else '-'} |")
     # live values straight from the archive (not yet certified records; records follow at the next publish)
     lines += ['', '## Current best values (live archive, uncertified until the next records publish)', '',
@@ -309,7 +311,7 @@ def main():
     # records of the Archimedean, Catalan and prism families (time-bounded; the next publish continues)
     r = subprocess.run([sys.executable, os.path.join(ROOT, 'scripts', 'publish_families.py'), '--minutes', '25'], capture_output=True, text=True)
     log((r.stdout.strip().splitlines() or ['publish_families: ?'])[-1] + (' ' + r.stderr.strip()[-300:] if r.returncode else ''))
-    subprocess.run([sys.executable, os.path.join(ROOT, 'scripts', 'site.py')], capture_output=True)
+    subprocess.run([sys.executable, os.path.join(ROOT, 'scripts', 'site.py')], capture_output=True, env=dict(os.environ, PP_SITE_NMAX=os.environ.get('PP_SITE_NMAX', '40')))
     log(f'publish: {len(rows)} records, {total} rebuilt, {time.time() - t0:.0f}s')
     if '--no-push' not in sys.argv:
         git_push(log)
