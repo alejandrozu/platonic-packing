@@ -57,7 +57,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: pip install --quiet numpy scipy
+      - run: pip install --quiet numpy scipy mpmath
       - run: node --check web/assets/theme.js && node --check web/assets/explorer.js && node --check web/assets/contribute.js
       - run: node tests/test_submission_forms.mjs
       - run: node tests/test_explorer_selection.mjs

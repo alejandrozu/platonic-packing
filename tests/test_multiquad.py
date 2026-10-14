@@ -21,6 +21,10 @@ class TestField(unittest.TestCase):
         self.assertEqual(M.num('3/4'), Fr(3, 4))
 
     def test_closed_forms(self):
+        # closed-form display needs mpmath (installed in every workflow since 14 Oct; skipped on machines without it,
+        # since it only affects how a record value is printed, never whether a packing is certified)
+        try: import mpmath  # noqa: F401
+        except ImportError: self.skipTest('mpmath not installed (closed forms are display only)')
         from records import closed_form
         self.assertEqual(closed_form(1 + 2 * 3 ** .5), '1 + 2√3')
         self.assertEqual(closed_form((2 ** .5 + 6 ** .5) / 2), '(√2 + √6)/2')
