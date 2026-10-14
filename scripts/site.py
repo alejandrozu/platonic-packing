@@ -29,7 +29,7 @@ HAS_DOMAIN = os.path.exists(os.path.join(WEB, 'CNAME'))     # web/CNAME switches
 SITE_URL = f'https://{DOMAIN}/' if HAS_DOMAIN else 'https://alejandrozu.github.io/platonic-packing/'
 from engine import FAM, PID
 POLY = {3: 'triangular', 4: 'square', 5: 'pentagonal', 6: 'hexagonal', 8: 'octagonal', 12: 'dodecagonal'}
-SITE_NMAX = int(os.environ.get('PP_SITE_NMAX', '100000'))   # 14 Oct: production sets 40 until the explorer loads coordinates per problem
+SITE_NMAX = int(os.environ.get('PP_SITE_NMAX', '100000'))   # optional cap on n shown (unset: all records)
 FAMILY_GROUP = {'platonic': 'platonic', 'archimedean': 'archcat', 'catalan': 'archcat', 'prisms': 'prisms'}
 FAMILY_NAME = {'platonic': 'Platonic', 'archimedean': 'Archimedean', 'catalan': 'Catalan', 'prisms': 'Prisms and antiprisms'}
 
@@ -93,7 +93,7 @@ def load():
     for f in sorted(set(files)):
         r = json.loads(Path(f).read_text(encoding='utf-8')); pid = r['record_id'].split('_')[0]
         if pid not in FAM: continue
-        if r.get('n', 0) > SITE_NMAX: continue        # n > 40 is shown once the explorer loads coordinates per problem
+        if r.get('n', 0) > SITE_NMAX: continue
         cert = Path(f.replace('.json', '.certify.txt')).read_text(encoding='utf-8') if os.path.exists(f.replace('.json', '.certify.txt')) else ''
         vtxt = Path(f.replace('.json', '.verify.txt')).read_text(encoding='utf-8') if os.path.exists(f.replace('.json', '.verify.txt')) else ''
         p = probs.setdefault(pid, {'id': pid, 'piece': r['piece'], 'container': r['container'], 'rows': [], 'hasref': bool(REF.get(pid)),
@@ -159,6 +159,8 @@ def load():
             probs[pid] = {'id': pid, 'piece': pc, 'container': cc, 'rows': [], 'hasref': bool(REF.get(pid)), 'family': FAM[pid],
                           'group': FAMILY_GROUP[FAM[pid]], 'title': ptitle(pc, cc), 'unit': 'edge' if SOL[pc].get('unit', 'edge') == 'edge' else 'size'}
     out = [probs[i] for i in PID if i in probs]
+    for p in out:                                    # the families go to n = 100 since 14 Oct; the Platonic problems stay at 40
+        p['nmax'] = max([40 if FAM[p['id']] == 'platonic' else 100, *[r['n'] for r in p['rows']]])
     solids = {k: {'V': v['V'], 'F': v['faces'], 'E': v['edges'], 'vol': v['volume']} for k, v in SOL.items()}
     ns = [r['n'] for p in out for r in p['rows']]
     return {'problems': out, 'solids': solids, 'nmin': min([2, *ns]), 'nmax': max([40, *ns]), 'repo': REPO,
@@ -388,6 +390,35 @@ def write(rel, text):
     p = os.path.join(OUT, rel); os.makedirs(os.path.dirname(p), exist_ok=True); open(p, 'w').write(text)
 
 
+def split_pieces(data):
+    """14 Oct (n <= 100): the viewer coordinates move to one file per problem, data/pieces/<id>.json, loaded when the
+    problem is opened; records.json keeps every value and only the coordinates of the row drawn as the thumbnail.
+    Keys: the row id, and '<row id>|<alternative id>' for alternatives. Each problem carries 'pv', the hash of its file."""
+    out = dict(data); out['lazy'] = True; out['problems'] = []
+    for p in data['problems']:
+        q = dict(p); pieces = {}; rows = []
+        thumb = (next((r for r in p['rows'] if r['n'] == 6), None) or next((r for r in p['rows'] if r['n'] == 5), None)
+                 or (p['rows'][0] if p['rows'] else None))
+        for r in p['rows']:
+            r2 = dict(r)
+            if r.get('p'): pieces[r['id']] = r['p']
+            if r is not thumb: r2.pop('p', None)
+            if r.get('alternatives'):
+                alts = []
+                for a in r['alternatives']:
+                    a2 = dict(a)
+                    if a.get('p'): pieces[f"{r['id']}|{a.get('id')}"] = a['p']
+                    a2.pop('p', None); alts.append(a2)
+                r2['alternatives'] = alts
+            rows.append(r2)
+        q['rows'] = rows
+        txt = json.dumps(pieces, separators=(',', ':'))
+        q['pv'] = hashlib.sha1(txt.encode()).hexdigest()[:12]
+        write(f"data/pieces/{p['id']}.json", txt)
+        out['problems'].append(q)
+    return out
+
+
 def build(fragment=None):
     data = load(); st = stats(data); data['built'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
     if os.path.isdir(OUT):
@@ -404,8 +435,9 @@ def build(fragment=None):
             'N_SOLIDS': str(st['solids']), 'CERT_SENTENCE': cert_sentence(st),
             'N_ATTEMPTS': f"{st['attempts']:,}" if st['attempts'] else 'many thousands of',
             'FIELDS_TABLE': fields_table()}
-    desc = ('Smallest known containers for n = 2–40 copies of Platonic, Archimedean and Catalan solids, prisms and '
-            'antiprisms, with exact-certified coordinates and attributed published constructions. Browse in 3D, check your own and submit it.')
+    desc = ('Smallest known containers for n = 2–100 copies of Archimedean and Catalan solids, prisms and antiprisms '
+            '(n = 2–40 for the Platonic solids), with exact-certified coordinates and attributed published constructions. '
+            'Browse in 3D, check your own and submit it.')
     T3 = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'
     # assets
     os.makedirs(os.path.join(OUT, 'assets'), exist_ok=True)
@@ -413,7 +445,7 @@ def build(fragment=None):
     cpath, opath = mark_svg()
     write('assets/icon.svg', f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" stroke-width="1.6" stroke-linecap="round">'
                              f'<rect width="32" height="32" rx="6" fill="#f8faf9"/><path d="{cpath}" stroke="#172024"/><path d="{opath}" stroke="#2c49a8"/></svg>')
-    write('data/records.json', json.dumps(data, separators=(',', ':')))
+    write('data/records.json', json.dumps(split_pieces(data), separators=(',', ':')))
     # pages
     home = fill(open(os.path.join(WEB, 'pages', 'home.html')).read(), vals, './')
     write('index.html', page('', 'Polyhedra in Polyhedra: record packings with proofs', desc, home, '', scripts=(T3, 'explorer.js'), styles=('explorer.css',), depth=0))
