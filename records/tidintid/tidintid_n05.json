@@ -3,87 +3,91 @@
  "piece": "truncated_icosidodecahedron",
  "container": "truncated_icosidodecahedron",
  "n": 5,
- "s": 2.33787,
- "s_plus": "2.33787+",
- "s_full": 2.3378719142884,
+ "s": 2.33766,
+ "s_plus": "2.33766+",
+ "s_full": 2.3376694233133,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020689529387e-07,
-  "min_wall_gap": 1.0000001893217814e-07
+  "min_pair_gap": 1.0000020679978818e-07,
+  "min_wall_gap": 1.0000003136667601e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
- "date": "2026-10-13",
+ "date": "2026-10-14",
  "pieces": [
   [
-   -4.985386547126078,
-   0.5883409965374041,
-   0.4385506822755413,
-   0.8060139076130916,
-   0.32382065716081676,
-   0.0067020070495195485,
-   0.4954158312283933
+   -4.970053233135571,
+   0.5987004178849362,
+   0.4317034219920222,
+   0.8140803669118628,
+   0.3166299708024054,
+   0.023840519991786,
+   0.4862615010514776
   ],
   [
-   0.6091642793497415,
-   -0.4229267465828627,
-   4.976586413866104,
-   0.31364353059446853,
-   -0.48540659278412196,
-   -0.003720373018767866,
-   0.8160847592147201
+   0.6626327633226181,
+   0.41275184024459644,
+   4.989386719315795,
+   0.3102920790124803,
+   -0.5014765748249885,
+   0.009688706761799833,
+   0.8075556944045372
   ],
   [
-   0.5023628528970655,
-   4.989275254283312,
-   0.6097126279522573,
-   0.3139993562911516,
-   -0.4848037168247736,
-   -0.003261916431171219,
-   0.8163082262863846
+   0.6255445183950854,
+   4.977568501638984,
+   -0.6464247725419687,
+   0.3163454017740564,
+   -0.49151125094081555,
+   0.017674252298024523,
+   0.8111904201731621
   ],
   [
-   -0.5970653919060509,
-   0.4237395013604907,
-   -4.976558961895055,
-   0.9998501536316651,
-   0.00981955180937894,
-   0.014244627595811426,
-   -0.0005807492189902388
+   -0.5349089095874217,
+   -0.4124532956436888,
+   -4.96851232959524,
+   0.99958047645681,
+   -0.007699917739031709,
+   0.027346395138457838,
+   -0.005635337267670053
   ],
   [
-   -0.3791657927684025,
-   -4.989275791326701,
-   -0.6141149792731292,
-   0.49565010787763225,
-   -0.005970738375998668,
-   0.3236747228188037,
-   -0.8059342371759048
+   0.6778315838439503,
+   -4.988476812537377,
+   0.6100275476094916,
+   0.4970201758604629,
+   -0.016566503864548436,
+   0.31035286859617867,
+   -0.8101713353923746
   ]
  ],
  "record_id": "tidintid_n05",
  "title": "5 truncated icosidodecahedra in a truncated icosidodecahedron",
  "family": "archimedean",
  "source": {
-  "hash": "889746e715e56bb0",
+  "hash": "2d5386f101fd8adb",
   "clear": 1e-07,
   "cap": 2.3381391444182
  },
- "s_tight": 2.33787186596,
+ "s_tight": 2.33766937485,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.7099759466766968,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "descend",
-  "seed": 1392018206,
-  "var": "base",
-  "removed": 2,
-  "raw": 2.338201594187826,
+  "move": "hop",
+  "seed": 471307570,
+  "var": "gentle",
+  "minDiff": 0.026494641153922714,
+  "expand": 0.005543446817149315,
+  "rh": 0.11471411017515125,
+  "focus": 0,
+  "from": "best",
+  "raw": 2.3381231037046564,
   "host": "laptop"
  },
- "density": 0.39129821194924197
+ "density": 0.3913999045400546
 }
