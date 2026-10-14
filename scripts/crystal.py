@@ -94,8 +94,10 @@ def lll(B, delta=0.75):
     return B
 
 
-def densest_lattice(pb, starts=60, seed=0, double=False, verbose=False):
-    """Best lattice (or double lattice) found from random starts. Returns dict(B, t, density, double)."""
+def densest_lattice(pb, starts=60, seed=0, double=False, verbose=False, column=None):
+    """Best lattice (or double lattice) found from random starts. Returns dict(B, t, density, double).
+    column = h: a columnar crystal of a prism (axis z): straight stacks with period h, i.e. B[2] = (0, 0, h) and a
+    planar lattice (and planar offset of the flipped copy) of the base polygon."""
     rng = np.random.default_rng(seed)
     U, w = axes_widths(pb); vol = ConvexHull(pb.V).volume
     N, h = face_planes(pb)
@@ -104,14 +106,27 @@ def densest_lattice(pb, starts=60, seed=0, double=False, verbose=False):
     for st in range(starts):
         # random start: a random basis scaled up until admissible (and the reflected copy far enough)
         B0 = rng.normal(size=(3, 3))
-        while abs(np.linalg.det(B0)) < 0.3 * np.prod(np.linalg.norm(B0, axis=1)): B0 = rng.normal(size=(3, 3))
-        g = (np.abs((MSET @ B0) @ U.T) / w).max(1).min(); B0 = B0 / g * 1.05
-        x0 = B0.ravel()
-        if double:
-            t0 = (B0[0] + B0[1] + B0[2]) / 2 * rng.uniform(0.6, 1.0)
-            B0 = B0 * 2.2; x0 = np.concatenate([B0.ravel(), t0 * 2.2])
+        if column is not None: B0[:2, 2] = 0; B0[2] = (0, 0, column)
+        while abs(np.linalg.det(B0)) < 0.3 * np.prod(np.linalg.norm(B0, axis=1)):
+            B0 = rng.normal(size=(3, 3))
+            if column is not None: B0[:2, 2] = 0; B0[2] = (0, 0, column)
+        if column is None:
+            g = (np.abs((MSET @ B0) @ U.T) / w).max(1).min(); B0 = B0 / g * 1.05
+        else:
+            for _ in range(200):
+                if (np.abs((MSET @ B0) @ U.T) / w).max(1).min() >= 1 - 1e-9: break
+                B0[:2, :2] *= 1.1
+        t0 = (B0[0] + B0[1]) / 2 * rng.uniform(0.6, 1.0) if column is not None else (B0[0] + B0[1] + B0[2]) / 2 * rng.uniform(0.6, 1.0)
+        if double: B0[:2 if column is not None else 3] *= 2.2; t0 = t0 * 2.2
+        if column is None:
+            x0 = np.concatenate([B0.ravel()] + ([t0] if double else []))
+        else:
+            x0 = np.concatenate([B0[:2, :2].ravel()] + ([t0[:2]] if double else []))
 
-        def unpack(x): return x[:9].reshape(3, 3), (x[9:12] if double else None)
+        def unpack(x):
+            if column is None: return x[:9].reshape(3, 3), (x[9:12] if double else None)
+            B = np.array([[x[0], x[1], 0], [x[2], x[3], 0], [0, 0, column]])
+            return B, (np.array([x[4], x[5], 0]) if double else None)
 
         def obj(x): return abs(np.linalg.det(unpack(x)[0]))
 
@@ -129,14 +144,16 @@ def densest_lattice(pb, starts=60, seed=0, double=False, verbose=False):
                 break
             B, t = unpack(r.x)
             if abs(np.linalg.det(B)) < 1e-9: break
-            B = lll(B)
+            if column is None: B = lll(B)
+            else: B[:2, :2] = lll(B[:2, :2])
             if double: t = t - np.round(t @ np.linalg.inv(B)) @ B
             for fac in (1.0, 1 + 1e-9, 1 + 1e-7, 1 + 1e-5):
                 Bf = B * fac; tf = t * fac if double else None
                 ok = double_ok(Bf, tf, U, w, N, h)[0] if double else lattice_ok(Bf, U, w)[0]
                 if ok: break
             if ok: break
-            x0 = np.concatenate([B.ravel()] + ([t] if double else []))
+            x0 = (np.concatenate([B.ravel()] + ([t] if double else [])) if column is None
+                  else np.concatenate([B[:2, :2].ravel()] + ([t[:2]] if double else [])))
         if not ok: continue
         dens = (2 if double else 1) * vol / abs(np.linalg.det(Bf))
         if best is None or dens > best['density'] + 1e-12:
@@ -177,6 +194,13 @@ def crystals(pb, name, starts=60, recompute=False):
     if sig is not None and not cs:                    # achiral, not centrally symmetric: -K is the rotated copy R(-sigma)K
         dl = densest_lattice(pb, starts=starts, double=True)
         if dl: dl['flip'] = (-sig).tolist(); out.append(dl)
+    if name.startswith('prism'):                       # straight stacks of the densest planar (double) lattice of the base
+        h = float(pb.V[:, 2].max() - pb.V[:, 2].min())
+        col = densest_lattice(pb, starts=starts, column=h)
+        if col: col['column'] = h; out.append(col)
+        if sig is not None and not cs:
+            cd = densest_lattice(pb, starts=starts, double=True, column=h)
+            if cd: cd['flip'] = (-sig).tolist(); cd['column'] = h; out.append(cd)
     json.dump(out, open(fn, 'w'), indent=1)
     return out
 

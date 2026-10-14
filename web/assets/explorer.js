@@ -150,8 +150,8 @@ if (typeof document !== 'undefined') (async () => {
   const isPrism = p => /^prism\d+$/.test(p.piece), isElong = p => /^prism\d+_l/.test(p.piece), isAnti = p => /^antiprism/.test(p.piece);
   const GROUPS = [['platonic', 'Platonic', [['Self packings', p => p.family === 'platonic' && p.piece === p.container],
                                            ['Dual packings', p => p.family === 'platonic' && p.piece !== p.container && DUAL[p.piece] === p.container],
-                                           ['Heterogeneous packings', p => p.family === 'platonic' && p.piece !== p.container && DUAL[p.piece] !== p.container]]],
-                  ['archcat', 'Archimedean and Catalan', [['Archimedean solids', p => p.family === 'archimedean'], ['Catalan solids', p => p.family === 'catalan']]],
+                                           ['Heterogeneous packings', p => p.family === 'platonic' && p.piece !== p.container && DUAL[p.piece] !== p.container, 2]]],
+                  ['archcat', 'Archimedean and Catalan', [['Archimedean solids', p => p.family === 'archimedean', 2], ['Catalan solids', p => p.family === 'catalan', 2]]],
                   ['prisms', 'Prisms and antiprisms', [['Prisms', p => p.family === 'prisms' && isPrism(p)], ['Antiprisms', p => p.family === 'prisms' && isAnti(p)],
                                                        ['Elongated prisms', p => p.family === 'prisms' && isElong(p)]]]];
   const ptitle = p => p.title || `${cap(pl(p.piece))} in ${article(dn(p.container))}`;
@@ -174,10 +174,11 @@ if (typeof document !== 'undefined') (async () => {
     fams.querySelectorAll('.fam').forEach(t => t.setAttribute('aria-selected', t.dataset.g === g));
     atlas.innerHTML = '';
     const grp = GROUPS.find(x => x[0] === g);
-    const cols = grp[2].map(([head, f]) => [head, D.problems.filter(f)]).filter(c => c[1].length);
-    atlas.className = 'atlas cols'; atlas.style.setProperty('--ncol', cols.length);
-    cols.forEach(([head, ps]) => {
-      const col = document.createElement('section'); col.className = 'col';
+    // a column may be several tiles wide (Platonic 1 | 1 | 2, so the columns are about equally long; Archimedean 2 | Catalan 2)
+    const cols = grp[2].map(([head, f, w]) => [head, D.problems.filter(f), w || 1]).filter(c => c[1].length);
+    atlas.className = 'atlas cols'; atlas.style.setProperty('--cols', cols.map(c => `minmax(0, ${c[2]}fr)`).join(' '));
+    cols.forEach(([head, ps, w]) => {
+      const col = document.createElement('section'); col.className = 'col'; col.style.setProperty('--w', w);
       const h = document.createElement('h2'); h.innerHTML = `${head} <span class="k">${ps.length}</span>`; col.appendChild(h);
       const box = document.createElement('div'); box.className = 'tiles'; box.setAttribute('role', 'tablist'); box.setAttribute('aria-label', head);
       ps.forEach(p => {
