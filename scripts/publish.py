@@ -309,7 +309,7 @@ def main():
     write_tables(rows)
     progress()
     # records of the Archimedean, Catalan and prism families (time-bounded; the next publish continues)
-    r = subprocess.run([sys.executable, os.path.join(ROOT, 'scripts', 'publish_families.py'), '--minutes', '25'], capture_output=True, text=True)
+    r = subprocess.run([sys.executable, os.path.join(ROOT, 'scripts', 'publish_families.py'), '--minutes', '40'], capture_output=True, text=True)
     log((r.stdout.strip().splitlines() or ['publish_families: ?'])[-1] + (' ' + r.stderr.strip()[-300:] if r.returncode else ''))
     subprocess.run([sys.executable, os.path.join(ROOT, 'scripts', 'site.py')], capture_output=True)
     log(f'publish: {len(rows)} records, {total} rebuilt, {time.time() - t0:.0f}s')

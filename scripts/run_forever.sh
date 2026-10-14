@@ -18,7 +18,7 @@ publisher() {
   sleep "${FIRST_PUBLISH:-1800}"
   while [ ! -f state/STOP ]; do
     nice -n 10 python3 scripts/publish.py >> logs/publish.out 2>&1
-    for i in $(seq 1 540); do [ -f state/STOP ] && break; sleep 10; done
+    for i in $(seq 1 120); do [ -f state/STOP ] && break; sleep 10; done   # 20 min between publishes since 14 Oct (n <= 100 certification)
   done
 }
 echo "$(date) supervisor started (pid $$)" >> logs/supervisor.out
