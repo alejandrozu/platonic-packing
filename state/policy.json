@@ -13,11 +13,12 @@
   "fresh": 0.08,
   "ascend": 0.15,
   "descend": 0.1,
-  "symfresh": 0.05
+  "symfresh": 0.05,
+  "perturb": 0.2
  },
- "started": 1791896796,
- "started_local": "2026-10-13 15:06",
- "note": "13 Oct afternoon (Alejandro): adaptive search after the bake-off (docs/SEARCH_METHODS_REVIEW.md). Family weights in engine.FAMILY_WEIGHTS (symmetric seeding leads on prisms/antiprisms, hops on Archimedean/Catalan), times learned gain-per-second multipliers; after switch_after failures in a row the move class that failed more is damped (polish after failed explorations, explore after failed polishing); cascade from n-1/n+1; hot and plateau cases first. New: 15 elongated prisms (height 1.5, 2, 3) in a cube. Contributions checked every cycle (scripts/community_sync.py).",
+ "started": 1791963259,
+ "started_local": "2026-10-14 09:34",
+ "note": "14 Oct 09:40, after the large-n study (docs/LARGE_N_REVIEW.md): fast vectorized tightener (src/fastslp.py, small-move LP 2-10x faster, exploratory unregularized LP from the raw start when within 0.3% of the best) and the new 'perturb' move (expand 0.3-5%, displace, unregularized SLP; 17/21 paired wins vs 11/21 for hops at n = 32-40). n <= 40 only (PP_NMAX unset); the hourly Actions search stays paused (state/ACTIONS_PAUSE) until Alejandro decides on n <= 100.",
  "previous_platonic": {
   "mode": "production",
   "hop_variant": "gentle",
@@ -62,5 +63,19 @@
   "started_local": "2026-10-12 17:14"
  },
  "adaptive": true,
- "switch_after": 6
+ "switch_after": 6,
+ "previous_14oct_morning": {
+  "weights": {
+   "hop": 0.55,
+   "reinsert": 0.07,
+   "fresh": 0.08,
+   "ascend": 0.15,
+   "descend": 0.1,
+   "symfresh": 0.05
+  },
+  "started": 1791896796,
+  "started_local": "2026-10-13 15:06",
+  "note": "13 Oct afternoon (Alejandro): adaptive search after the bake-off (docs/SEARCH_METHODS_REVIEW.md). Family weights in engine.FAMILY_WEIGHTS (symmetric seeding leads on prisms/antiprisms, hops on Archimedean/Catalan), times learned gain-per-second multipliers; after switch_after failures in a row the move class that failed more is damped (polish after failed explorations, explore after failed polishing); cascade from n-1/n+1; hot and plateau cases first. New: 15 elongated prisms (height 1.5, 2, 3) in a cube. Contributions checked every cycle (scripts/community_sync.py)."
+ },
+ "tightener": "fast"
 }
