@@ -78,7 +78,7 @@ for _s in PRISMS:
     for _c in (_s, 'cube'): PROBLEMS.append((_s, _c)); FAMILY[(_s, _c)] = 'prisms'
 ELONGATED = [f'prism{k}_{t}' for k in (3, 5, 6, 8, 12) for t in ELONG_TAGS]
 for _s in ELONGATED: PROBLEMS.append((_s, 'cube')); FAMILY[(_s, 'cube')] = 'prisms'
-NMIN, NMAX, POOL = 2, 40, 6
+NMIN, NMAX, POOL = 2, int(os.environ.get('PP_NMAX', '40')), 6
 
 # Hop settings. A variant overrides some of HOP_DEFAULT (ranges are sampled uniformly, minDiff log-uniformly).
 # state/policy.json selects what the workers do (re-read before every attempt, so no restart is needed):
@@ -94,7 +94,7 @@ VARIANTS = {
     'volume': dict(nraw=3),                                           # 3 raw hops, tighten only the best one
     'gentle': dict(minDiff=(0.02, 0.10), expand=(0.005, 0.03), from_best=0.9),  # small hops from the best
 }
-WEIGHTS = {'hop': 0.55, 'reinsert': 0.12, 'fresh': 0.13, 'ascend': 0.10, 'descend': 0.10, 'symfresh': 0.0}
+WEIGHTS = {'hop': 0.55, 'reinsert': 0.12, 'fresh': 0.13, 'ascend': 0.10, 'descend': 0.10, 'symfresh': 0.0, 'perturb': 0.0}
 # Adaptive search (13 Oct 2026, docs/SEARCH_METHODS_REVIEW.md). Per-family move weights (policy 'family_weights'
 # overrides these): symmetric seeding leads on prisms and antiprisms, hops on Archimedean and Catalan solids.
 FAMILY_WEIGHTS = {
@@ -106,7 +106,7 @@ FAMILY_WEIGHTS = {
 # Move classes for the explore/polish switch: after `switch_after` failures in a row on a case, the class that has
 # failed more since the last improvement is damped and the other one boosted (polish after failed explorations,
 # explore after failed polishing).
-DISCOVERY, POLISH = ('symfresh', 'fresh', 'reinsert'), ('hop', 'tighten')
+DISCOVERY, POLISH = ('symfresh', 'fresh', 'reinsert'), ('hop', 'tighten', 'perturb')
 
 
 def policy():
@@ -279,8 +279,12 @@ class Sim:
 
 
 # ------------------------------------------------------------------ one attempt
-def tighten(row, best_s, n, gate):
-    """Sequential-LP tightening with an optimistic early abort, SLSQP polish for small n when it wins."""
+def tighten(row, best_s, n, gate, explore=False):
+    """Sequential-LP tightening with an optimistic early abort, SLSQP polish for small n when it wins.
+    Policy 'tightener': 'exact' (exact.py SLP, the default until 14 Oct) or 'fast' (src/fastslp.py, 14 Oct large-n
+    study): a vectorized SLP whose LP prefers small moves (reg 1e-4: 3-10x fewer rounds to the nearby optimum); when
+    that lands within 0.3% of the best (or explore=True) it continues with the unregularized LP, whose vertex jumps
+    explore (perturb + unregularized SLP beat 5 of 7 n = 40 records in the study)."""
     hist = []
 
     def abort(it, L):
@@ -289,6 +293,17 @@ def tighten(row, best_s, n, gate):
         rate = max(0.0, (hist[-6] - s) / 5) if len(hist) >= 6 else 0.0
         return s - 150 * rate > best_s                       # even 150 more rounds at this rate cannot win
 
+    if policy().get('tightener', 'exact') == 'fast':
+        import fastslp
+        tl = 30 + 4 * n
+        if explore:
+            return fastslp.tighten_run(row, tlimit=tl, slp_floor=1e-6, abort=abort, reg=0.0)
+        out = fastslp.tighten_run(row, tlimit=tl, slp_floor=1e-6, abort=abort, reg=1e-4)
+        if best_s is None or out['s'] < best_s * 1.003:
+            hist.clear()
+            out2 = fastslp.tighten_run(dict(row, C=out['C'], Q=out['Q']), tlimit=tl, slp_floor=1e-6, reg=0.0)
+            if out2['s'] < out['s']: out = dict(out2, s_start=out['s_start'])
+        return out
     out = exact.tighten_run(row, tlimit=30 + 4 * n, method='slp', slp_floor=1e-6, abort=abort)
     if n <= 14 and (best_s is None or out['s'] < best_s + 1e-9):
         row2 = dict(row, C=out['C'], Q=out['Q'])
@@ -355,18 +370,23 @@ def attempt(sim, p, n, move, rng, log, vname='base'):
         raw = {'s': s0, 'C': C2, 'Q': Q2}; info['removed'] = i; lin = lineage_of(hi['best'].get('src'))
     elif move == 'tighten':
         raw = {'s': best_s, 'C': best['C'], 'Q': best['Q']}; lin = lineage_of(best.get('src'))
+    elif move == 'perturb':         # 14 Oct large-n study: expand 0.5-2%, displace centres, re-tighten (exploratory LP)
+        e, sg = rng.uniform(0.005, 0.02), rng.uniform(0.003, 0.015)
+        C0 = np.array(best['C']); nr = np.random.default_rng(seed)
+        raw = {'s': best_s * (1 + e), 'C': (C0 * (1 + e) + nr.normal(0, sg, C0.shape)).tolist(), 'Q': best['Q']}
+        info.update(expand=round(e, 4), sigma=round(sg, 4)); lin = lineage_of(best.get('src'))
     else:
         raise ValueError(move)
     t_raw = time.time() - t0
     s_raw = raw['s']
     gate = case['stats'].get('gate', 0.03)
     if move in ('fresh', 'symfresh'): gate = max(gate, 0.04)       # bake-off: 10-14% of start wins come from > 3%
-    do_tight = best is None or move in ('descend', 'tighten') or s_raw <= best_s * (1 + gate)
+    do_tight = best is None or move in ('descend', 'tighten', 'perturb') or s_raw <= best_s * (1 + gate)
     out = None
     if do_tight:
         row = {'piece': piece, 'container': container, 'problem': p, 'n': n, 'seed': seed, 'mode': move, 'B': 0,
                'C': raw['C'], 'Q': raw['Q']}
-        out = tighten(row, best_s, n, gate)
+        out = tighten(row, best_s, n, gate, explore=(move == 'perturb'))
     secs = time.time() - t0
     s_new = out['s'] if out else s_raw
     # ---- update the archive
@@ -530,7 +550,7 @@ def choose_move(rng, idx, p, n):
             if m in W: W[m] *= 0.4
         for m in boost:
             if m in W: W[m] *= 2.5
-    moves = [(m, W.get(m, 0)) for m in ('hop', 'reinsert', 'fresh', 'symfresh') if W.get(m, 0) > 0]
+    moves = [(m, W.get(m, 0)) for m in ('hop', 'reinsert', 'fresh', 'symfresh', 'perturb') if W.get(m, 0) > 0 and (m != 'perturb' or c.get('best'))]
     if lo and lo.get('best'): moves.append(('ascend', W['ascend']))
     if hi and hi.get('best'): moves.append(('descend', W['descend']))
     r = rng.random() * sum(w for _, w in moves)
