@@ -379,11 +379,17 @@ def default_L0(pb, n):
 
 
 def random_inside(pb, L, rng, margin):
-    Rc = (L / 2) * pb.Ccirc / pb.rhoC
-    for _ in range(1000000):
-        p = rng.uniform(-Rc, Rc, pb.d)
-        if np.all(pb.CN @ p <= (L / 2) * pb.off - margin): return p
-    raise RuntimeError('cannot place a centre')
+    """a random point of the container kept `margin` inside every wall: a Dirichlet-random convex combination of the
+    container's vertices, pulled towards the centre as far as the margin needs (rejection sampling from a bounding box
+    fails for the pointed simplices of 5 and 6 dimensions)"""
+    V = pb.CV * (pb.s_of_L(L))
+    lam = rng.dirichlet(np.ones(len(V)) * 0.5)
+    p = lam @ V
+    lim = (L / 2) * pb.off - margin
+    if np.any(lim <= 0): return np.zeros(pb.d)
+    np_ = pb.CN @ p
+    t = np.min(np.where(np_ > 0, lim / np.maximum(np_, 1e-300), np.inf))
+    return p * min(1.0, t * (1 - 1e-9))
 
 
 def near_pairs(C, lim2):

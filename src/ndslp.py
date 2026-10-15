@@ -105,7 +105,9 @@ def solve(pb, C, R, L, pairs, U, outer=600, trust=0.03, tlimit=None, slp_floor=1
         lb = np.concatenate([-np.tile(per, n), [-2 * trust], np.full((d - 1) * P, -3 * trust), np.full(P, -cb)])
         ub = np.concatenate([np.tile(per, n), [0.01], np.full((d - 1) * P, 3 * trust), np.full(P, cb)])
         cvec = np.zeros(nvar); cvec[iL] = 1.0
-        tl = lp_limit or min(30.0, max(5.0, (tlimit - (time.time() - t_start)) if tlimit else 120.0))
+        # one LP gets at most 5 + n/4 s: degenerate LPs at perfect lattice packings (hypercubes at s = 2) can stall
+        # HiGHS for its whole budget (as in 3D, fastslp)
+        tl = lp_limit or min(5.0 + n / 4, max(2.0, (tlimit - (time.time() - t_start)) if tlimit else 120.0))
         if reg > 0:
             mm = nd_ * n
             Sel = csr_matrix((np.ones(mm), (np.arange(mm), np.arange(mm))), shape=(mm, nvar))
