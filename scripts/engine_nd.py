@@ -378,7 +378,8 @@ def learned_multipliers():
 
 
 def total_remote(st):
-    return st.get('attempts_remote', 0)
+    """attempts made elsewhere: per-host totals (since 15 Oct 12:00) + the older, over-counted sum (kept, damped)"""
+    return sum((st.get('remote') or {}).values()) + st.get('attempts_remote', 0) // 3
 
 
 def choose(rng):
@@ -547,13 +548,16 @@ def do_import(blobfile, host):
         with open(os.path.join(STATE, 'actions_moves.jsonl'), 'a') as f:
             f.write(json.dumps({'t': round(time.time()), 'host': host, 'moves': moves}) + '\n')
     if totals:
+        # 15 Oct 12:00: each export carries the job's CUMULATIVE totals (partial exports every 20 min), so they are stored
+        # per host (one Actions job of one run: 'actions-<run>-j<job>'), replacing that host's previous value; before,
+        # they were added at every export (attempts_remote over-counted)
         with locked():
             for key, k in totals.items():
                 p, n = key.split(':'); n = int(n)
                 if p not in PID: continue
                 c = load_case(p, n)
                 if not c.get('best'): continue
-                c['stats']['attempts_remote'] = c['stats'].get('attempts_remote', 0) + int(k); save_case(c)
+                c['stats'].setdefault('remote', {})[host] = int(k); save_case(c)
     with tempfile.TemporaryDirectory() as d:
         for p, cases in data.items():
             os.makedirs(os.path.join(d, p), exist_ok=True)

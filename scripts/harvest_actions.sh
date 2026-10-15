@@ -14,7 +14,8 @@ for ref in $(git for-each-ref --format='%(refname:short)' 'refs/remotes/origin/s
   tot=$((tot + ${k:-0}))
   # 4D/5D/6D results of the same job (15 Oct): engine_nd.py import re-legalizes every packing
   if git show "$ref:export_nd.txt" > /tmp/actions_export_nd.txt 2>/dev/null; then
-    kn=$(python3 scripts/engine_nd.py import /tmp/actions_export_nd.txt "actions-j${ref##*-}" | grep -o 'nd harvest from actions-j[0-9]*: [0-9]*' | grep -o '[0-9]*$')
+    run=$(git show "$ref:meta.json" 2>/dev/null | python3 -c "import json,sys; print(json.load(sys.stdin).get('run', 'x'))" 2>/dev/null || echo x)
+    kn=$(python3 scripts/engine_nd.py import /tmp/actions_export_nd.txt "actions-$run-j${ref##*-}" | grep -o 'nd harvest from actions-[0-9x]*-j[0-9]*: [0-9]*' | grep -o '[0-9]*$')
     ndt=$((ndt + ${kn:-0}))
   fi
 done
