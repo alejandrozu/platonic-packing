@@ -341,6 +341,10 @@ def learned_multipliers():
     return mult
 
 
+def total_remote(st):
+    return st.get('attempts_remote', 0)
+
+
 def choose(rng):
     """fill missing cases in ascending n (ascend from n-1), re-tighten flagged ones, then the case with the least
     effort per piece (favouring recently improved cases), and a move by the weights x case signals"""
@@ -366,6 +370,8 @@ def choose(rng):
         if known_optimal(p, n) and c.get('best') and c['best']['s'] <= 2 + 1e-9: continue
         st = c['stats']
         score = (st.get('effort', 0) + 30) / n * (1 + st.get('since', 0) / 12) * rng.uniform(0.7, 1.3)
+        if sh and PID_INDEX[p] % sh[1] != sh[0]: score *= 3     # sharded workers (Actions jobs) mostly keep to their own problems
+        score *= 1 + total_remote(st) / 20                         # attempts made elsewhere count too
         if best_score is None or score < best_score: best_key, best_score = (p, n), score
     if best_key is None: return None
     p, n = best_key; c = idx[(p, n)]; st = c['stats']
