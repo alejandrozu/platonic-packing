@@ -5,138 +5,137 @@
  "n": 11,
  "s": 2.59807,
  "s_plus": "2.59807+",
- "s_full": 2.5980767613539,
+ "s_full": 2.5980767613541,
  "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000014283216914e-07,
-  "min_wall_gap": 1.0000004180277244e-07
+  "min_pair_gap": 1.0000020054508676e-07,
+  "min_wall_gap": 1.0000004113663863e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-10-15",
  "pieces": [
   [
-   -1.0103631460820952,
-   -0.7990382806769082,
-   0.2990382806769081,
-   1.0,
-   0.0,
-   0.0,
-   0.0
-  ],
-  [
-   -0.721687961487211,
-   -0.2990381940742439,
-   0.2990382806769081,
+   -0.7216879614872829,
+   -0.29903819407429455,
+   0.2990382806770088,
    0.0,
    0.0,
    0.0,
    1.0
   ],
   [
-   -1.0103631460820952,
-   0.2009618925284204,
-   0.2990382806769081,
+   -1.010363146082196,
+   0.2009618925284195,
+   0.2990382806770088,
    1.0,
    0.0,
    0.0,
    0.0
   ],
   [
-   -0.721687961487211,
-   0.7009619791310845,
-   0.2990382806769081,
+   -0.7216879614872829,
+   0.7009619791311337,
+   0.2990382806770088,
    0.0,
    0.0,
    0.0,
    1.0
   ],
   [
-   -0.14433759229744225,
-   -0.7990382806769082,
-   0.2990382806769081,
+   -0.14433759229745657,
+   -0.7990382806770088,
+   0.2990382806770088,
    1.0,
    0.0,
    0.0,
    0.0
   ],
   [
-   0.14433759229744217,
-   -0.2990381940742439,
-   0.2990382806769081,
+   0.14433759229745657,
+   -0.29903819407429455,
+   0.2990382806770088,
    0.0,
    0.0,
    0.0,
    1.0
   ],
   [
-   -0.14433759229744225,
-   0.2009618925284204,
-   0.2990382806769081,
+   -0.14433759229745657,
+   0.2009618925284195,
+   0.2990382806770088,
    1.0,
    0.0,
    0.0,
    0.0
   ],
   [
-   0.14433759229744217,
-   0.7009619791310845,
-   0.2990382806769081,
+   0.14433759229745657,
+   0.7009619791311337,
+   0.2990382806770088,
    0.0,
    0.0,
    0.0,
    1.0
   ],
   [
-   0.7216879614872109,
-   -0.7990382806769082,
-   0.2990382806769081,
+   0.7216879614872829,
+   -0.7990382806770088,
+   0.2990382806770088,
    1.0,
    0.0,
    0.0,
    0.0
   ],
   [
-   1.0103631460820952,
-   -0.2990381940742439,
-   0.2990382806769081,
+   1.010363146082196,
+   -0.29903819407429455,
+   0.2990382806770088,
    0.0,
    0.0,
    0.0,
    1.0
   ],
   [
-   0.7216879614872109,
-   0.2009618925284204,
-   0.2990382806769081,
+   0.7216879614872829,
+   0.2009618925284195,
+   0.2990382806770088,
    1.0,
    0.0,
    0.0,
    0.0
+  ],
+  [
+   1.010363146082196,
+   0.7009619791311337,
+   0.2990382806770088,
+   0.0,
+   0.0,
+   0.0,
+   1.0
   ]
  ],
  "record_id": "pr3l2incub_n11",
  "title": "11 triangular prisms of height 2 in a cube",
  "family": "prisms",
  "source": {
-  "hash": "f7010fc83e40f393",
+  "hash": "e6e84d41709272c8",
   "clear": 1e-07,
-  "cap": 2.5980767613539
+  "cap": 2.5980767613541
  },
- "s_tight": 2.598076413426,
+ "s_tight": 2.598076211374,
  "closed_form_conjecture": null,
  "volume_lower_bound": 2.1198628902685757,
- "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/36)",
+ "found_by": "PingYou Ltd (their packing for n + 1 minus one piece)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "community",
-  "lineage": "PingYou Ltd",
-  "issue": "https://github.com/alejandrozu/platonic-packing/issues/36",
-  "submitted_by": "BuddenPing",
-  "record_file": "records/community/pr3l2incub/pr3l2incub_n11_submission_36_4a416266dba5.json"
+  "move": "monotone",
+  "from_n": 12,
+  "removed": 0,
+  "lineage": "PingYou Ltd"
  },
- "density": 0.5432095315583841
+ "density": 0.5432095315582588
 }
