@@ -262,7 +262,7 @@ if (typeof document !== 'undefined') (async () => {
     const g = cv.getContext('2d'); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, W, W);
     const r = p.rows.find(x => x.n === 6) || p.rows.find(x => x.n === 5) || p.rows[0]; if (!r) return;
     if (p.dim) {                   // higher polytopes: the central 3D slice
-      const d = p.dim, t = new Array(d - 3).fill(0), cs = r.sf * p.mu, Cs = D.solids[p.container], Ps = D.solids[p.piece];
+      const d = p.dim, ext = ndExtent(p, r), t = ndAutoF(p, r).map((f, k) => f * ext[k]), cs = r.sf * p.mu, Cs = D.solids[p.container], Ps = D.solids[p.piece];
       const cont = ndSlice(Cs, new Array(d).fill(0), ndIdentity(d), cs, t); if (!cont) return;
       const Rr = Math.max(...cont.pts.map(v => Math.hypot(...v))), k = (W / 2 - 3) / Rr;
       const tp = v => { const [x, y] = ROT(v); return [W / 2 + k * x, W / 2 - k * y] };
@@ -619,7 +619,11 @@ if (typeof document !== 'undefined') (async () => {
     if (theme === 'dark' || theme === 'light') return theme === 'dark';
     return matchMedia('(prefers-color-scheme: dark)').matches;
   }
-  function edgeColour(i) { return edgeMode === 'contrast' ? (darkTheme() ? '#ffffff' : '#000000') : pieceColour(i) }
+  function edgeColour(i) {
+    if (edgeMode === 'contrast') return darkTheme() ? '#ffffff' : '#000000';
+    if (prob && prob.dim) return '#' + new THREE.Color(pieceColour(i)).lerp(new THREE.Color(darkTheme() ? '#ffffff' : '#000000'), 0.45).getHexString();
+    return pieceColour(i);
+  }
   function updateEdges() {
     pieceObjs.forEach(g => {
       const u = g.userData.edges.material.uniforms;
@@ -638,8 +642,10 @@ if (typeof document !== 'undefined') (async () => {
     if (range) range.value = String(edgeWidth);
     if (output) output.value = `${edgeWidth.toFixed(1)} px`;
   }
+  // one orientation class (all pieces translates, e.g. grids of cubes): colour by piece, or the pieces merge into one block
+  const oneClass = () => colMode === 'orient' && row && orient(row).sizes.length === 1 && row.p.length > 1;
   function pieceColour(i) {
-    if (colMode === 'index') return PAL[i % PAL.length];
+    if (colMode === 'index' || oneClass()) return PAL[i % PAL.length];
     if (colMode === 'orient') return PAL[orient(row).cls[i] % PAL.length];
     const zs = row.p.map(p => p[axis]), lo = Math.min(...zs), hi = Math.max(...zs), t = hi > lo ? (row.p[i][axis] - lo) / (hi - lo) : 0.5;
     const a = new THREE.Color('#3557b8'), b = new THREE.Color('#3f9a6a'), c = new THREE.Color('#d9822b');
@@ -647,7 +653,8 @@ if (typeof document !== 'undefined') (async () => {
   }
   function legend() {
     const el = $('legend'); if (!row) { el.innerHTML = ''; return }
-    if (colMode === 'orient') { const oc = orient(row);
+    if (oneClass()) el.innerHTML = `<span>all ${row.p.length} pieces are translates of one another: coloured by piece</span>`;
+    else if (colMode === 'orient') { const oc = orient(row);
       el.innerHTML = oc.sizes.slice(0, 8).map((s, k) => `<span><i style="background:${PAL[k % PAL.length]}"></i>${s}</span>`).join('') + (oc.sizes.length > 8 ? `<span>+${oc.sizes.length - 8} more</span>` : '');
     } else if (colMode === 'height') el.innerHTML = `<span><i style="background:#3557b8"></i>low ${'xyz'[axis]}</span><span><i style="background:#d9822b"></i>high ${'xyz'[axis]}</span>`;
     else el.innerHTML = '';
@@ -735,19 +742,28 @@ if (typeof document !== 'undefined') (async () => {
   }
   let ndPending = false;
   function ndRebuild() { if (ndPending) return; ndPending = true; requestAnimationFrame(() => { ndPending = false; build() }) }
-  function ndAuto(prob, row) {                    // default slice: greedily, the offsets met by the most pieces (vertex ranges)
-    const d = prob.dim, P = D.solids[prob.piece], ext = ndExtent(prob, row);
-    const rng = row.p.map(pc => { const { c, R } = ndPiece(pc, d);
-      return Array.from({ length: d - 3 }, (_, k) => { const a = k + 3; let lo = Infinity, hi = -Infinity;
-        P.V.forEach(v => { let x = c[a]; for (let b = 0; b < d; b++) x += R[a * d + b] * v[b]; lo = Math.min(lo, x); hi = Math.max(hi, x) }); return [lo, hi] }) });
-    let alive = rng.map(() => true);
-    ndF = ext.map((e, k) => {
-      let best = 0, bc = -1;
-      for (let q = 0; q <= 38; q++) { const f = -0.95 + q * 0.05, t = f * e, cnt = rng.filter((r, i) => alive[i] && r[k][0] < t && t < r[k][1]).length;
-        if (cnt > bc || (cnt === bc && Math.abs(f) < Math.abs(best))) { bc = cnt; best = f } }
-      alive = alive.map((a, i) => a && rng[i][k][0] < best * e && best * e < rng[i][k][1]);
-      return best;
-    });
+  function ndAutoF(prob, row) {                   // the slice offsets (fractions of the extent) that cut the most pieces deeply
+    // 15 Oct (Alejandro: "not all of the visualizations work correctly"): a slice meets a piece for certain when it passes
+    // within the inradius of the piece's centre (it then cuts the inscribed ball). Candidates: the pieces' centres in
+    // x_4..x_d and midpoints of pairs; the one that cuts the most pieces this way (then: the deepest) is taken. The
+    // vertex-range rule used before missed pointed pieces (simplices) whose ranges overlap but whose projections do not,
+    // and its central default sliced grid packings exactly through shared facets (empty or merged slices).
+    const d = prob.dim, m = d - 3, P = D.solids[prob.piece], ext = ndExtent(prob, row);
+    const rin = Math.min(...P.B.map((b, f) => b / Math.hypot(...P.N[f])));
+    const cs = row.p.map(pc => pc.slice(3, d)), cand = cs.slice();
+    const step = Math.max(1, Math.floor(cs.length * (cs.length - 1) / 2 / 600));
+    let q = 0;
+    for (let i = 0; i < cs.length; i++) for (let j = i + 1; j < cs.length; j++) if (q++ % step === 0) cand.push(cs[i].map((x, k) => (x + cs[j][k]) / 2));
+    let best = new Array(m).fill(0), bc = -1, bd = -1;
+    for (const t of cand) {
+      let cnt = 0, dep = 0;
+      for (const c of cs) { let s2 = 0; for (let k = 0; k < m; k++) s2 += (c[k] - t[k]) ** 2; const dist = Math.sqrt(s2); if (dist < 0.98 * rin) { cnt++; dep += rin - dist } }
+      if (cnt > bc || (cnt === bc && dep > bd + 1e-12)) { bc = cnt; bd = dep; best = t }
+    }
+    return best.map((x, k) => Math.max(-1, Math.min(1, ext[k] > 0 ? x / ext[k] : 0)));
+  }
+  function ndAuto(prob, row) {                    // default slice of the viewer
+    ndF = ndAutoF(prob, row);
     ndF.forEach((v, k) => { if ($('ndt' + k)) $('ndt' + k).value = v });
   }
   function ndControls() {
