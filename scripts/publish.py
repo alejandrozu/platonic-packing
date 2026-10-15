@@ -14,7 +14,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'src')); sys.path.insert(0, os.path.join(ROOT, 'scripts'))
 import claim
 from engine import PID, PROBLEMS, NMIN, NMAX, STATE, _read, _path, AB, FAM
-PNMAX = 40          # the Platonic problems stay at n <= 40 (their search is inactive); the families go to NMAX = 100
+PNMAX = 100         # 15 Oct 18:14 (Alejandro): the Platonic problems go to n = 100 like the families (40 before)
 import engine as _engine
 # the records pipeline (exact certificates) covers the Platonic problems; the new families get their own records
 # (scripts/records_new.py) until the general certifier is in place

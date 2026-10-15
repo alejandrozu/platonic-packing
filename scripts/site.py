@@ -160,8 +160,8 @@ def load():
             probs[pid] = {'id': pid, 'piece': pc, 'container': cc, 'rows': [], 'hasref': bool(REF.get(pid)), 'family': FAM[pid],
                           'group': FAMILY_GROUP[FAM[pid]], 'title': ptitle(pc, cc), 'unit': 'edge' if SOL[pc].get('unit', 'edge') == 'edge' else 'size'}
     out = [probs[i] for i in PID if i in probs]
-    for p in out:                                    # the families go to n = 100 since 14 Oct; the Platonic problems stay at 40
-        p['nmax'] = max([40 if FAM[p['id']] == 'platonic' else 100, *[r['n'] for r in p['rows']]])
+    for p in out:                                    # the families go to n = 100 since 14 Oct; the Platonic problems too since 15 Oct
+        p['nmax'] = max([100, *[r['n'] for r in p['rows']]])     # 15 Oct 18:14 (Alejandro): the Platonic problems also go to n = 100
     solids = {k: {'V': v['V'], 'F': v['faces'], 'E': v['edges'], 'vol': v['volume']} for k, v in SOL.items()}
     nd_probs, nd_solids = load_nd()
     out += nd_probs; solids.update(nd_solids)
@@ -509,8 +509,8 @@ def build(fragment=None):
             'N_SOLIDS': str(st['solids']), 'CERT_SENTENCE': cert_sentence(st),
             'N_ATTEMPTS': f"{st['attempts']:,}" if st['attempts'] else 'many thousands of',
             'FIELDS_TABLE': fields_table()}
-    desc = ('Smallest known containers for n = 2–100 copies of Archimedean and Catalan solids, prisms and antiprisms '
-            '(n = 2–40 for the Platonic solids), with exact-certified coordinates and attributed published constructions. '
+    desc = ('Smallest known containers for n = 2–100 copies of the Platonic, Archimedean and Catalan solids, prisms and antiprisms, '
+            'and of the regular polytopes of dimensions 4–6, with exact-certified coordinates and attributed published constructions. '
             'Browse in 3D, check your own and submit it.')
     T3 = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'
     # assets

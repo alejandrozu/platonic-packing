@@ -17,6 +17,11 @@ arithmetic). Their tables are in [records/families.md](records/families.md); the
 [website](https://alejandrozu.github.io/platonic-packing/method/). The rest of this README describes the original nine Platonic
 problems.
 
+**Since 15 Oct 2026: the 25 Platonic problems go to n = 100** like the other families (n = 41–100 were first filled by
+nested packings, `scripts/compose3d.py`: a packing of one solid inside each piece of another, scales multiply, then
+searched). **Related work** (the separating-plane / quasi-phi-function optimization literature, dense polyhedral
+packings, benchmarks, certification): [docs/RELATED_WORK.md](docs/RELATED_WORK.md).
+
 **Since 15 Oct 2026: higher polytopes.** Every pair of regular polytopes of the same dimension, piece in container:
 5-cell, tesseract, 16-cell, 24-cell, 120-cell and 600-cell in 4D (36 problems, n ≤ 40), simplex, hypercube and
 orthoplex in 5D and 6D (9 problems each, n ≤ 32 and n ≤ 24): 54 problems, 1,890 cases. The d-dimensional method
@@ -47,7 +52,7 @@ published one (cubes in a cube: Friedman's catalogue and later records; octahedr
 non-decreasing in n by construction. The search is still running and this table is regenerated automatically.
 
 <!-- RESULTS:START -->
-_Auto-generated 2026-10-15 18:41 CEST from the running search; see [PROGRESS.md](PROGRESS.md) for search statistics._
+_Auto-generated 2026-10-15 18:49 CEST from the running search; see [PROGRESS.md](PROGRESS.md) for search statistics._
 
 ### Same solid
 

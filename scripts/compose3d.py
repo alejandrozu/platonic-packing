@@ -129,7 +129,8 @@ def main_compose(apply):
                                 f.write(json.dumps({'t': round(time.time()), 'p': p, 'n': N, 'move': 'compose', 'raw': v, 's': s,
                                                     'best_before': b0['s'] if b0 else None, 'improved': True, 'secs': 0, 'raw_secs': 0,
                                                     'host': 'compose'}) + '\n')
-                    S[(p, N)] = s; cur = s; took += 1
+                    took += 1
+                    if apply: S[(p, N)] = s; cur = s
                     break
             if apply: E.enforce_monotone(p, lambda m: None)
     print(f'{took} composite packings ' + ('stored' if apply else '(dry run)'))

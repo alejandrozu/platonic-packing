@@ -130,8 +130,9 @@ PID_INDEX = {p: i for i, p in enumerate(PID)}
 
 
 def active_problems():
-    """Problems the workers work on: policy 'families' (default: all)."""
-    fams = policy().get('families')
+    """Problems the workers work on: PP_FAMILIES (comma list, e.g. a GitHub Actions worker kept to 'platonic'), else
+    policy 'families' (default: all)."""
+    fams = os.environ.get('PP_FAMILIES', '').split(',') if os.environ.get('PP_FAMILIES') else policy().get('families')
     return [p for p in PID if not fams or FAM[p] in fams]
 
 
