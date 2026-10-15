@@ -54,7 +54,10 @@ def nmax(p):
 POOL = 6
 # symfresh (15 Oct 08:10): soft-to-rigid run constrained to central symmetry (pairs x, -x), then released; in a first
 # test it beat 3 of 5 records (2 24-cells in a 24-cell: 1.8780 against 1.8856)
-WEIGHTS = {'hop': 0.45, 'reinsert': 0.08, 'fresh': 0.10, 'symfresh': 0.20, 'ascend': 0.09, 'descend': 0.07, 'perturb': 0.08}
+# 15 Oct 09:09, first per-move statistics of 18 Actions jobs (20 min): improvements per CPU-hour perturb 47-60,
+# tighten (continuations) 35-57, hop 40-53, ascend ~30, descend/reinsert ~20, fresh 0-16, symfresh 0-10 (its gains
+# came at small n, now improved) -> weights shifted to perturb; the per-job bandit adapts further
+WEIGHTS = {'hop': 0.40, 'reinsert': 0.06, 'fresh': 0.05, 'symfresh': 0.07, 'ascend': 0.10, 'descend': 0.07, 'perturb': 0.25}
 DISCOVERY, POLISH = ('fresh', 'symfresh', 'reinsert'), ('hop', 'tighten', 'perturb')
 _pb = {}
 
