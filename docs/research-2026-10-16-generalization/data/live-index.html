@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" data-root="./" data-repo="https://github.com/alejandrozu/platonic-packing" data-records-version="538e4f4362be3be9">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Polyhedra in Polyhedra: record packings with proofs</title>
+<meta name="description" content="Smallest known containers for n = 2–100 copies of the Platonic, Archimedean and Catalan solids, prisms and antiprisms, and of the regular polytopes of dimensions 4–6, with exact-certified coordinates and attributed published constructions. Browse in 3D, check your own and submit it.">
+<link rel="canonical" href="https://polyhedrainpolyhedra.wiki/">
+<meta property="og:title" content="Polyhedra in Polyhedra: record packings with proofs">
+<meta property="og:description" content="Smallest known containers for n = 2–100 copies of the Platonic, Archimedean and Catalan solids, prisms and antiprisms, and of the regular polytopes of dimensions 4–6, with exact-certified coordinates and attributed published constructions. Browse in 3D, check your own and submit it.">
+<meta property="og:url" content="https://polyhedrainpolyhedra.wiki/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#eef1f0">
+<script>try{const t=localStorage.getItem('ppr-theme');document.documentElement.dataset.theme=['light','dark'].includes(t)?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){}</script>
+<script src="./assets/theme.js?v=8261100ba0ce1a84" defer></script>
+<link rel="icon" href="./assets/icon.svg?v=9b846979fa74557b" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="./assets/style.css?v=ce4dfd6f1d546634">
+<link rel="stylesheet" href="./assets/explorer.css?v=688ee200fb04cb6c">
+</head>
+<body>
+<header class="top"><div class="in">
+  <a class="mark" href="./"><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke-width="1.3" stroke-linecap="round"><path class="c" d="M2.53 25.17L14.30 17.64 M2.53 25.17L2.53 8.51 M2.53 25.17L17.70 31.02 M14.30 17.64L14.30 0.98 M14.30 17.64L29.47 23.49 M2.53 8.51L14.30 0.98 M2.53 8.51L17.70 14.36 M14.30 0.98L29.47 6.83 M17.70 31.02L29.47 23.49 M17.70 31.02L17.70 14.36 M29.47 23.49L29.47 6.83 M17.70 14.36L29.47 6.83"/><path class="p" d="M22.98 18.69L16.00 8.34 M22.98 18.69L16.00 23.66 M22.98 18.69L21.42 12.53 M22.98 18.69L10.58 19.47 M9.02 13.31L16.00 8.34 M9.02 13.31L16.00 23.66 M9.02 13.31L21.42 12.53 M9.02 13.31L10.58 19.47 M16.00 8.34L21.42 12.53 M16.00 8.34L10.58 19.47 M16.00 23.66L21.42 12.53 M16.00 23.66L10.58 19.47"/></svg>Polyhedra in Polyhedra</a>
+  <nav class="nav" aria-label="Site"><a href="./" aria-current="page">Records</a><a href="./constructions/">All constructions</a><a href="./method/">Method</a><a href="./certification/">Certification</a><a href="./contribute/">Contribute</a><a href="./literature/">Literature</a><a href="./about/">About</a><a href="https://github.com/alejandrozu/platonic-packing" rel="noopener">GitHub</a></nav>
+  <div class="theme-switch seg" role="group" aria-label="Colour theme"><button type="button" data-theme="light" aria-pressed="false">Light</button><button type="button" data-theme="dark" aria-pressed="false">Dark</button></div>
+</div></header>
+<main class="wrap record-page">
+<div class="intro">
+  <h1>How small a container can hold n copies of a polyhedron?</h1>
+  <p class="lede">Smallest containers found so far for <b>n = 2–100</b> copies of a solid: every Archimedean and Catalan solid in
+    itself, regular prisms and antiprisms in themselves and in a cube, all 25 Platonic-solid piece/container pairs, and, new, the <b>higher polytopes</b>: every pair of regular polytopes of dimension 4 (n ≤ 40), 5 (n ≤ 32) and 6 (n ≤ 24), shown as 3D slices.
+    10,404 cases in 140 problems, with 6 attributed source-only entries and certified alternatives. Pick a family, a problem, then any n. Public constructions are included regardless of their author;
+    where a better published result has no downloadable coordinates, the viewer shows an available coordinate construction at its own scale and links the published best separately.</p>
+</div>
+
+<div class="fams" id="fams" role="tablist" aria-label="Family"></div>
+<div class="atlas" id="atlas"></div>
+
+<div class="grid">
+  <section class="panel viewer" id="viewer" aria-label="3D view of the selected packing">
+    <div class="stage" id="stage"><canvas id="cv"></canvas><p class="meta" id="geometry-note" hidden style="padding:18px">No coordinates are available for this result. The published source is linked beside the viewer.</p>
+      <div class="views" role="group" aria-label="View direction">
+        <button class="small" type="button" data-view="x" title="Look along the container's x axis">x</button>
+        <button class="small" type="button" data-view="y" title="Look along the container's y axis">y</button>
+        <button class="small" type="button" data-view="z" title="Look along the container's z axis">z</button>
+        <button class="small" type="button" data-view="d" title="Look along the (1,1,1) diagonal">111</button>
+        <button class="small" type="button" data-view="r" title="Reset the view">reset</button>
+      </div>
+      <span class="hint">Drag to turn, scroll or pinch to zoom, click a piece to inspect it</span></div>
+    <div class="caption">
+     <div class="capcol">
+      <div class="big" id="cap"></div>
+      <div class="stepper"><button class="small" id="prevn" type="button" aria-label="Previous n" title="Previous n (← key)">◀ n − 1</button><span class="nnow" id="nnow"></span><button class="small" id="nextn" type="button" aria-label="Next n" title="Next n (→ key)">n + 1 ▶</button></div>
+      <dl class="facts" id="facts"></dl>
+      <div class="links" id="links"></div>
+     </div>
+     <div class="capcol">
+      <div class="tools">
+        <div class="trow" id="ndrow" hidden><span class="lab">3D slice</span><span id="ndsliders"></span>
+          <label class="inl" for="ndsweep"><input type="checkbox" id="ndsweep"> sweep x<sub>4</sub></label><span id="ndinfo" class="meta"></span></div>
+        <div class="trow"><span class="lab">Colour</span>
+          <div class="seg" id="colmode" role="group" aria-label="Colour pieces by">
+            <button type="button" data-m="orient" aria-pressed="true">orientation</button><button type="button" data-m="height" aria-pressed="false">height</button><button type="button" data-m="index" aria-pressed="false">index</button>
+          </div>
+          <div class="legend" id="legend"></div>
+        </div>
+        <div class="trow edge-controls"><span class="lab">Edges</span>
+          <button class="small" type="button" id="edge-mode" aria-pressed="false">Edges: piece colour</button>
+          <label class="inl" for="edge-width">thickness <input type="range" id="edge-width" min="0.5" max="6" step="0.1" value="1.5"></label>
+          <output id="edge-width-value" for="edge-width">1.5 px</output>
+        </div>
+        <div class="trow"><span class="lab">Slice</span>
+          <div class="seg" id="axis" role="group" aria-label="Slice axis">
+            <button type="button" data-a="0" aria-pressed="false">x</button><button type="button" data-a="1" aria-pressed="false">y</button><button type="button" data-a="2" aria-pressed="true">z</button>
+          </div>
+          <label class="inl" for="cut">keep up to <input type="range" id="cut" min="0" max="1" step="0.005" value="1"></label>
+          <span id="cutinfo"></span>
+        </div>
+        <div class="trow"><span class="lab">Show</span>
+          <label class="inl" for="ghost"><input type="checkbox" id="ghost" checked> hidden pieces as ghosts</label>
+          <label class="inl" for="faces"><input type="checkbox" id="faces"> container faces</label>
+          <label class="inl" for="spin"><input type="checkbox" id="spin"> turn slowly</label>
+          <label class="inl" for="explode">spread <input type="range" id="explode" min="1" max="1.8" step="0.01" value="1"></label>
+          <label class="inl" for="opac">opacity <input type="range" id="opac" min="0.1" max="1" step="0.05" value="1"></label>
+        </div>
+        <div class="pick" id="pick" hidden></div>
+      </div>
+     </div>
+    </div>
+  </section>
+  <section class="panel records-panel" aria-labelledby="ptitle">
+    <div class="phead"><h2 id="ptitle"></h2><p id="psub"></p><div class="litline" id="lit"></div></div>
+    <div class="records-body">
+    <div class="tablewrap record-table-scroll" id="table-scroll-region" tabindex="0" aria-label="Scrollable record table"><table>
+      <thead id="thead"></thead>
+      <tbody id="rows"></tbody>
+    </table></div>
+    <div class="table-slider"><input type="range" id="table-scroll" min="0" max="100" step="0.1" value="0" aria-label="Scroll record table" title="Scroll to other values of n"></div>
+    </div>
+  </section>
+</div>
+
+<section class="charts" aria-label="Charts">
+  <div class="panel">
+    <div class="phead"><h2 id="c1title">s(n)</h2><p>Best available construction for each n (click a point to open it), the volume bound, and published comparison values. Source-only entries use the catalogue's displayed scale and retain its precision.</p></div>
+    <div class="chart"><div class="chartbox" id="box1"><svg id="chart" role="img" aria-label="s against n"></svg></div></div>
+  </div>
+  <div class="panel">
+    <div class="phead"><h2 id="c2title">Increase from n − 1 to n</h2><p>Bars: s(n)/s(n − 1) − 1 in percent (left axis). Line: s(n) − s(n − 1) (right axis). Touching limits are used where available; imported coordinates use their published scale, and source-only entries use the displayed catalogue estimate. Shaded columns mark equal scales within the available precision.</p></div>
+    <div class="chart"><div class="chartbox" id="box2"><svg id="chart2" role="img" aria-label="Increase of s from n − 1 to n"></svg></div></div>
+  </div>
+</section>
+
+<section class="next" aria-label="Learn more">
+  <div><h3><a href="./method/">How the project search works</a></h3><p>The project search starts with soft pieces, sharpens them under pressure, then hops between arrangements. Independently published constructions retain their original methods and credit.</p></div>
+  <div><h3><a href="./certification/">How coordinates are certified</a></h3><p>Coordinate records carry exact certificates: coordinates in number fields, rational rotations and a separating plane for every pair of pieces. Source-only entries are labelled separately.</p></div>
+  <div><h3><a href="./contribute/">Beat a record</a></h3><p>Paste a packing to check it in your browser, then submit it. A GitHub Action certifies it exactly and reports back.</p></div>
+  <div><h3><a href="./literature/">Literature</a></h3><p>The project's write-ups, the published values it compares against, and the research on packing as optimization, dense packings of polyhedra and proofs.</p></div>
+  <div><h3><a href="./constructions/">Every construction, one page</a></h3><p>All 10,404 cases with coordinate files, certificates, published source links and alternative constructions.</p></div>
+</section>
+
+</main>
+<footer class="foot"><div class="in">
+  <p>Certified coordinate constructions and attributed published values, not optimality claims. Generalized packing method by Alejandro Zarzuelo Urdiales, building on Yohei Nakajima's soft-to-rigid cube-packing method. Code, records and certificates: <a href="https://github.com/alejandrozu/platonic-packing">github.com/alejandrozu/platonic-packing</a>. Project code: MIT license; external constructions retain their source attribution.</p>
+  <p>This site is updated and maintained by Alejandro Zarzuelo Urdiales.</p>
+  <p>Built 2026-10-15 23:21 UTC+00</p>
+</div></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script><script src="./assets/explorer.js?v=78faed75b478fcf7"></script>
+</body>
+</html>

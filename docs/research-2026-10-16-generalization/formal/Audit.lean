@@ -1,0 +1,18 @@
+import PackingCertificates
+
+/- Print the kernel dependencies of every exported mathematical claim. -/
+#print axioms PackingCertificates.hull_le_of_vertices_le
+#print axioms PackingCertificates.hull_ge_of_vertices_ge
+#print axioms PackingCertificates.vertex_tests_imply_containment
+#print axioms PackingCertificates.separating_vertex_tests_imply_disjoint
+#print axioms PackingCertificates.finite_certificate_sound
+#print axioms PackingCertificates.affine_placement_of_vertex_body
+#print axioms PackingCertificates.placed_outer_approximation
+#print axioms PackingCertificates.minkowskiOpening_subset
+#print axioms PackingCertificates.minkowskiOpening_mono
+#print axioms PackingCertificates.convex_blend_subset
+#print axioms PackingCertificates.transported_packing
+#print axioms PackingCertificates.subpacking_sound
+#print axioms PackingCertificates.nested_packing_sound
+#print axioms PackingCertificates.Example.two_cube_certificate
+#print axioms PackingCertificates.Example.two_cube_packing

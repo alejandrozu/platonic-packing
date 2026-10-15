@@ -1,0 +1,64 @@
+{
+  "source_files_hash_checked": 55,
+  "counts": {
+    "problems": 140,
+    "slots": 10404,
+    "populated": 10404,
+    "coordinates": 10398,
+    "certified": 10398,
+    "source_only": 6
+  },
+  "round_d": {
+    "fresh": {
+      "attempts": 607,
+      "wins": 71,
+      "elapsed_seconds": 15409.3,
+      "positive_log_gain_per_worker_hour": 0.2921516209220077
+    },
+    "hop": {
+      "attempts": 608,
+      "wins": 200,
+      "elapsed_seconds": 10092.8,
+      "positive_log_gain_per_worker_hour": 0.16511171350221976
+    },
+    "symfresh": {
+      "attempts": 609,
+      "wins": 86,
+      "elapsed_seconds": 15249.4,
+      "positive_log_gain_per_worker_hour": 0.5446220679001587
+    }
+  },
+  "round_d_best_methods": {
+    "hop": 5,
+    "symfresh": 21,
+    "fresh": 5
+  },
+  "exact_rechecks": [
+    {
+      "case": "pr5inpr5_n12",
+      "exit_code": 0,
+      "output": "solid check: prism5: V=10 E=15 F=7, faces planar and supporting, closed surface, all edges exactly 1\ncontainment: 840 vertex/face inequalities, smallest slack >= 9.511e-08 (times |normal|)\ndisjointness: 36 near pairs separated by explicit rational planes (smallest gap >= 1.000e-07 along the plane normal), 30 pairs farther apart than twice the circumradius\nCERTIFIED: 12 prism5 in s = 2.6180343063072 x prism5  (0.0s)\n"
+    },
+    {
+      "case": "tocintoc_n08",
+      "exit_code": 0,
+      "output": "solid check: truncated_octahedron: V=24 E=36 F=14, faces planar and supporting, closed surface, all edges exactly 1\ncontainment: 2688 vertex/face inequalities, smallest slack >= 8.660e-08 (times |normal|)\ndisjointness: 12 near pairs separated by explicit rational planes (smallest gap >= 1.000e-07 along the plane normal), 16 pairs farther apart than twice the circumradius\nCERTIFIED: 8 truncated_octahedron in s = 2.5000001428871 x truncated_octahedron  (0.0s)\n"
+    },
+    {
+      "case": "phcinphc_n04",
+      "exit_code": 0,
+      "output": "solid check: pentagonal_hexecontahedron: V=92 E=150 F=60, faces planar and supporting, closed surface, insphere (Catalan)\ncontainment: 22080 vertex/face inequalities, smallest slack >= 8.175e-07 (times |normal|)\ndisjointness: 6 near pairs separated by explicit rational planes (smallest gap >= 1.000e-07 along the plane normal), 0 pairs farther apart than twice the circumradius\nCERTIFIED: 4 pentagonal_hexecontahedron in s = 2.2051534370001 x pentagonal_hexecontahedron  (2.5s)\n"
+    },
+    {
+      "case": "c5inc8_n04",
+      "exit_code": 0,
+      "output": "polytope check: 5-cell (4D, 5 vertices): 10 edges of equal length, 5 = all facets, each supporting and spanning (exact)\npolytope check: tesseract (4D, 16 vertices): 32 edges of equal length, 8 = all facets, each supporting and spanning (exact)\nedge ratio mu = 2*sqrt2 = edge(piece) / edge(container polytope), exact\ncontainment: 4 pieces x 8 facets; 0 piece/facet pairs by the circumscribed ball, 32 vertex by vertex, smallest slack >= 1.131e-06 (times |normal|)\ndisjointness: 6 near pairs separated by explicit rational hyperplanes (smallest margin >= 1.414e-07 along the normal), 0 pairs farther apart than twice the circumradius\nCERTIFIED: 4 x c5 in s = 0.8896812614235 x c8 (4D, 0.0s)\n"
+    },
+    {
+      "case": "c5inc8_n08",
+      "exit_code": 0,
+      "output": "polytope check: 5-cell (4D, 5 vertices): 10 edges of equal length, 5 = all facets, each supporting and spanning (exact)\npolytope check: tesseract (4D, 16 vertices): 32 edges of equal length, 8 = all facets, each supporting and spanning (exact)\nedge ratio mu = 2*sqrt2 = edge(piece) / edge(container polytope), exact\ncontainment: 8 pieces x 8 facets; 8 piece/facet pairs by the circumscribed ball, 56 vertex by vertex, smallest slack >= 1.131e-06 (times |normal|)\ndisjointness: 28 near pairs separated by explicit rational hyperplanes (smallest margin >= 1.414e-07 along the normal), 0 pairs farther apart than twice the circumradius\nCERTIFIED: 8 x c5 in s = 0.9771978857222 x c8 (4D, 0.0s)\n"
+    }
+  ],
+  "lean": "Run formal/ separately; no archive-wide Lean claim."
+}
