@@ -479,7 +479,64 @@ def seed():
                     pool_insert(p, n, {'s': lg['s'], 'C': C2, 'R': R2, 'src': 'construction', 't': time.time()})
                 enforce_monotone(p, print)
             print(f'{p}: {k}^{d} grid -> n = {n}, s = {lg["s"]:.10f}')
+    # lattice cuts: hypercubes and 24-cells in every container of their dimension
+    for p in PID:
+        if PID[p][0] not in LATTICE: continue
+        pb = problem(p); cuts = lattice_cuts(p); took = []
+        for n, (L, X, Q) in sorted(cuts.items()):
+            cur = load_case(p, n)['best']
+            if cur and pb.s_of_L(L) >= cur['s'] - 1e-9: continue
+            lg = ndsim.legalize(pb, X, np.array([Q] * n))
+            with locked():
+                case = load_case(p, n)
+                if case['best'] and lg['s'] >= case['best']['s'] - 1e-12: continue
+                C2, R2 = rnd(lg['C'], lg['R'])
+                case['best'] = {'s': lg['s'], 'C': C2, 'R': R2, 'src': {'move': 'latcut'}, 't': time.time(), 'tightened': False}
+                case['stats']['needs_tighten'] = True
+                save_case(case); n_new += 1; took.append(f'{n}:{lg["s"]:.4f}')
+                pool_insert(p, n, {'s': lg['s'], 'C': C2, 'R': R2, 'src': 'latcut', 't': time.time()})
+        with locked(): enforce_monotone(p)
+        print(f'{p}: lattice cuts {len(took)} cases ' + ' '.join(took[:12]))
     print(f'seeded {n_new} cases')
+
+
+LATTICE = {'c8': 'Z', 'hc5': 'Z', 'hc6': 'Z', 'c24': 'F4'}     # pieces whose translates by a lattice tile space
+
+
+def lattice_cuts(p, rots=8, offsets=60, seed=1):
+    """Best cut of a lattice tiling by the container, for every n (the 3D crystal cuts of 14 Oct, for the pieces that
+    tile d-space by translations: hypercubes on Z^d, the 24-cell on the F4 lattice). For random rotations Q (and Q = I)
+    and offsets t, every lattice cell Q(z + P) + t needs the container size L_z = max_f 2 (N_f.x + h_QP(N_f)) / off_f;
+    the n-th smallest L_z is the cut's size for n pieces. Returns {n: (L, centres, Q)}."""
+    import itertools
+    pb = problem(p); d = pb.d; piece = PID[p][0]
+    if piece not in LATTICE: return {}
+    if LATTICE[piece] == 'Z': B = np.eye(d)
+    else: B = np.vstack([np.eye(4)[:3], np.full(4, 0.5)])          # F4 = D4*: e_1, e_2, e_3, (1,1,1,1)/2 (internal units)
+    rng = np.random.default_rng(seed)
+    N = pb.CN; off = pb.off
+    best = {}
+    k = int(np.ceil(1.3 * nmax(p) ** (1 / d))) + 2
+    Z = np.array(list(itertools.product(range(-k, k + 1), repeat=d)), float) @ B
+    Z = Z[np.linalg.norm(Z, axis=1) <= k + 0.5]
+    import ndsim
+    Qs = [np.eye(d)] + [ndsim.random_rotation(rng, d) for _ in range(rots)]
+    # only lattice points that can lie in the container of the n = nmax cut at Q = I, t = 0 (plus a margin) matter
+    h0 = (N @ pb.V.T).max(1)
+    L0 = np.sort((2 * (Z @ N.T + h0[None, :]) / off[None, :]).max(1))[min(nmax(p), len(Z)) - 1]
+    Z = Z[np.linalg.norm(Z, axis=1) <= (L0 / 2) * pb.Ccirc / pb.rhoC + 2 * pb.circ + 1.0]
+    for qi, Q in enumerate(Qs):
+        h = (N @ Q @ pb.V.T).max(1)                                   # support of Q P in the facet normals
+        X0 = Z @ Q.T
+        for ti in range(offsets):
+            t = (rng.random(d) - 0.5) @ B @ Q.T if ti else np.zeros(d)
+            X = X0 + t
+            Lz = (2 * (X @ N.T + h[None, :]) / off[None, :]).max(1)
+            order = np.argsort(Lz)
+            for n in range(NMIN, min(nmax(p), len(order)) + 1):
+                L = Lz[order[n - 1]]
+                if n not in best or L < best[n][0] - 1e-12: best[n] = (L, X[order[:n]].copy(), Q)
+    return best
 
 
 def table():
