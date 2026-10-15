@@ -1,0 +1,1060 @@
+{
+ "problem": "min/antiprism6_in_cube",
+ "piece": "antiprism6",
+ "container": "cube",
+ "n": 5,
+ "s_full": 2.787451331039376,
+ "pieces": [
+  [
+   0.4277998386340262,
+   -0.427799838634026,
+   0.8769422415698856,
+   1.3649959646848982e-17,
+   0.923879532511287,
+   0.38268343236508934,
+   -2.3685396675342773e-16
+  ],
+  [
+   0.4277998386340229,
+   -0.38650770420495284,
+   -0.9564886763455448,
+   0.923872675583081,
+   0.0035594808937030363,
+   -0.0014743852611749843,
+   0.3826805921324313
+  ],
+  [
+   0.42779983863402593,
+   -0.4277998386340265,
+   0.010115734827893368,
+   0.6087614290087208,
+   -1.2858846108677942e-16,
+   -1.8632708464180052e-17,
+   -0.793353340291235
+  ],
+  [
+   -0.23253354451321065,
+   0.9659258263932309,
+   0.39151220707590867,
+   0.037363270650413866,
+   -0.03736327065041415,
+   0.7061189602370863,
+   0.7061189602370864
+  ],
+  [
+   -0.9659258263932313,
+   -0.4277998386340263,
+   0.4257928829380795,
+   0.27059805007309834,
+   0.6532814824381884,
+   -0.2705980500730986,
+   -0.6532814824381883
+  ]
+ ],
+ "s": 2.78745,
+ "s_plus": "2.78745+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 1.545121e-10,
+  "min_wall_gap": 5.427803e-10
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "Common center return after releasing artificial prism-envelope facets, retaining all actual antiprism frames.",
+ "date": "2026-10-15",
+ "record_id": "ap6incub_n05_submission_86_8d0f4b71c41f",
+ "title": "5 hexagonal antiprisms in a cube",
+ "family": "prisms",
+ "source": {
+  "author": "PingYou Ltd",
+  "kind": "same-source antiprism facet release",
+  "attribution_note": "The complete included parent and all finite prism donor author/source metadata are retained verbatim. This stage changes only all centers by one common contraction and common cube recentering; native frames are unchanged.",
+  "construction": {
+   "name": "whole_source_prism_facet_release",
+   "complete_parent": {
+    "record_id": "ap6incub_n05_pingyou_near_ring_control_74228aa6_20261015",
+    "case_id": "ap6incub_n5",
+    "piece": "antiprism6",
+    "container": "cube",
+    "n": 5,
+    "s_full": 2.885906050760691,
+    "container_center": [
+     0,
+     0,
+     0
+    ],
+    "pieces": [
+     [
+      0.47702719849468395,
+      -0.4770271984946835,
+      0.9576352059216269,
+      1.3649959646848982e-17,
+      0.923879532511287,
+      0.38268343236508934,
+      -2.3685396675342773e-16
+     ],
+     [
+      0.47702719849468034,
+      -0.43281813025006655,
+      -1.0053118224316686,
+      0.923872675583081,
+      0.0035594808937030363,
+      -0.0014743852611749843,
+      0.3826805921324313
+     ],
+     [
+      0.4770271984946836,
+      -0.47702719849468406,
+      0.029574868943308685,
+      0.6087614290087208,
+      -1.2858846108677942e-16,
+      -1.8632708464180052e-17,
+      -0.793353340291235
+     ],
+     [
+      -0.2299530533956334,
+      1.0151531862538885,
+      0.43791371853295263,
+      0.037363270650413866,
+      -0.03736327065041415,
+      0.7061189602370863,
+      0.7061189602370864
+     ],
+     [
+      -1.0151531862538887,
+      -0.47702719849468384,
+      0.47461602902420325,
+      0.27059805007309834,
+      0.6532814824381884,
+      -0.2705980500730986,
+      -0.6532814824381883
+     ]
+    ],
+    "date": "2026-10-15",
+    "found_by": "PingYou Ltd",
+    "credit": "PingYou Ltd",
+    "method": "Whole prism envelopes replaced by phase-registered antiprism rings and complete axial slots.",
+    "source": {
+     "author": "PingYou Ltd",
+     "kind": "whole-owner prism-to-antiprism envelope composition",
+     "attribution_note": "Original donor author and complete donor source metadata are preserved verbatim. PingYou Ltd supplies the canonical ring/slot transfer, common restoration and certificate. Historical donor construction descriptions apply only to that donor.",
+     "construction": {
+      "name": "prism_envelope_antiprism_ring_slots",
+      "proof": "WHOLE PRISM ENVELOPE TO ANTIPRISM RING/SLOT COMPOSITION\n\nTake a complete native source of canonical regular p-prisms of height h, with centers c_i and actual rational proper frames R_i. Retain every full source owner and source provenance. The target is canonical q-antiprism, full height H, whose two horizontal rings together project to a regular 2q-gon of radius R_q.\n\nLet L=lcm(p,2q). The source facet normal angles form a p-grid and the projected target vertex angles a 2q-grid. Their differences form an L-grid. Choose the ONE canonical phase theta=arg(n_0)-arg(v_0)+pi/L (mod 2pi/L), so every source facet lies midway between two nearest points of the difference grid. Then max over all source normals/target vertices of cos angular difference is cos(pi/L). This proves the concentric whole projected target lies in alpha times the source base when alpha >= R_q*cos(pi/L)/a_p, where a_p is the source apothem. No optimized angle or frame approximation is inferred from a metric search.\n\nFor k complete target children per source, require alpha*h >= k*H. Put child (i,j) at alpha*c_i + R_i((j-(k-1)/2)*H*e3), j=0..k-1, with frame R_i Q_theta. Every child lies inside the same uniformly scaled complete parent; siblings have disjoint open axial intervals, and different parents inherit the original complete parent separation. The inverse decoder is (parent index i, axial slot j). Both axial signs of an arbitrary frame are respected by R_i e3; there is no common-axis hypothesis.\n\nThe source inequality proves this at the exact forced phase. A native implementation will choose a declared rational quaternion lift close to that single phase and recheck ALL actual source facet/target vertex inequalities with outward intervals, selecting a rational alpha no smaller than that actual containment requirement and k*H/h. All centers and all common cube wall costs are evaluated from the transformed actual child vertices. A common center/host dilation restores binary64 rounding; both inherited cross-parent and sibling separators and actual final native checks are mandatory.\n\nFirst screen only actual retained/current prism parents with count n and k*n<=100 against current full public/private/pending AP cube gates. Preserve known-nominal certificate classification. The screen is only a proposal; full canonical containment and physical native decoding are required before claiming a gain. No antiprism record follows merely from a circular radius or volume inequality.\n\nThis complete AP6 N5 inclusion is retained as a NONRECORD source control for the same-source common facet return.\n",
+      "source_native_path": "heterogeneous/constructive/root_rectangular_product/public_parents/74228aa62dcf7e2d0cdccd946a96800fa1d74cafbfc001a144187426f4f99aa3.json",
+      "source_native_sha256": "74228aa62dcf7e2d0cdccd946a96800fa1d74cafbfc001a144187426f4f99aa3",
+      "source_provenance": {
+       "kind": "authenticated_public_native",
+       "git_path": "records/pr12l15incub/pr12l15incub_n05.json",
+       "git_blob": "16efc6d67a2633e58571c893949bebc8e05d91fe",
+       "git_commit": "6dcb76f8dd0c8a1c92f07bdc75391024ed2ed24f"
+      },
+      "source_authentication": {
+       "kind": "authenticated_public_native",
+       "sha256": "74228aa62dcf7e2d0cdccd946a96800fa1d74cafbfc001a144187426f4f99aa3",
+       "git_path": "records/pr12l15incub/pr12l15incub_n05.json",
+       "git_blob": "16efc6d67a2633e58571c893949bebc8e05d91fe",
+       "git_commit": "6dcb76f8dd0c8a1c92f07bdc75391024ed2ed24f",
+       "blob_bytes_equal": true
+      },
+      "inherited_author_fields": {
+       "found_by": "Alejandro Zarzuelo",
+       "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+       "source_author": null,
+       "authors": null,
+       "source": {
+        "hash": "4f0e40562bf427e1",
+        "clear": 1e-07,
+        "cap": 5.2320511502303
+       }
+      },
+      "complete_parent": {
+       "problem": "min/prism12_l15_in_cube",
+       "piece": "prism12_l15",
+       "container": "cube",
+       "n": 5,
+       "s": 5.23205,
+       "s_plus": "5.23205+",
+       "s_full": 5.2320511075691,
+       "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+       "clearance": {
+        "min_pair_gap_target": 1e-07,
+        "wall_gap_target": 1e-07,
+        "min_pair_gap": 1.0000020278511101e-07,
+        "min_wall_gap": 1.0000000738585868e-07
+       },
+       "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+       "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+       "date": "2026-10-13",
+       "pieces": [
+        [
+         0.7500000500001031,
+         -0.7500000500001017,
+         1.5968081829147016,
+         1.3649959646848982e-17,
+         0.923879532511287,
+         0.38268343236508934,
+         -2.3685396675342773e-16
+        ],
+        [
+         0.7500000500000967,
+         -0.6724946416670732,
+         -1.844544847346281,
+         0.923872675583081,
+         0.0035594808937030363,
+         -0.0014743852611749843,
+         0.3826805921324313
+        ],
+        [
+         0.7500000500001025,
+         -0.7500000500001027,
+         -0.03022668190516556,
+         0.6087614290087208,
+         -1.2858846108677942e-16,
+         -1.8632708464180052e-17,
+         -0.793353340291235
+        ],
+        [
+         -0.48944686172752483,
+         1.866025453784541,
+         0.6856551616244843,
+         0.037363270650413866,
+         -0.03736327065041415,
+         0.7061189602370863,
+         0.7061189602370864
+        ],
+        [
+         -1.866025453784541,
+         -0.7500000500001024,
+         0.7500000500001027,
+         0.27059805007309834,
+         0.6532814824381884,
+         -0.2705980500730986,
+         -0.6532814824381883
+        ]
+       ],
+       "record_id": "pr12l15incub_n05",
+       "title": "5 dodecagonal prisms of height 1.5 in a cube",
+       "family": "prisms",
+       "source": {
+        "hash": "4f0e40562bf427e1",
+        "clear": 1e-07,
+        "cap": 5.2320511502303
+       },
+       "s_tight": 5.232050807569,
+       "closed_form_conjecture": "(7 + 2\u221a3)/2",
+       "volume_lower_bound": 4.37901757833007,
+       "found_by": "Alejandro Zarzuelo",
+       "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+       "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+       "search": {
+        "move": "ascend",
+        "seed": 1716864873,
+        "var": "base",
+        "raw": 5.232053747765243
+       },
+       "density": 0.5862922222115017
+      },
+      "source_native_review": {
+       "record_id": "pr12l15incub_n05",
+       "status": "PASS",
+       "candidate_sha256": "74228aa62dcf7e2d0cdccd946a96800fa1d74cafbfc001a144187426f4f99aa3",
+       "piece": "prism12_l15",
+       "container": "cube",
+       "n": 5,
+       "scale_exact": "5890765854607897/1125899906842624",
+       "native_numeric_schema": true,
+       "rational_rotation_congruence": true,
+       "rotation_matrix_sha256": [
+        "9e894c6ed8c804c6c1ce73ccf5be2e7e631a1fd5b0991be69d7f29fb5d5718c9",
+        "2d73ab046091fec5b348f4cd644ba603e2278d473340e1b2468814d79d599154",
+        "fb2c1d259052e01aba509896dbfc652c24c866d6f955b84bace372eb5dfe5e23",
+        "ae97fed036afdf5a872eb9479cb80723a702267f1a59043be5e3d34b7d1546e2",
+        "48d872c79ead0854c9470bd89cb259494fb7335e55178f6bb60c0afa5b77ba98"
+       ],
+       "wall_tests": 720,
+       "pair_tests": 10,
+       "far_pairs": 0,
+       "min_wall_lower_dyadic": "149657778607483928740720538326381308773358929",
+       "active_wall": [
+        0,
+        3,
+        0
+       ],
+       "min_pair_lower_dyadic": "149658071039700991690403279975092276967613354",
+       "fixed_point_bits": 170,
+       "planes_file": "74228aa62dcf7e2d0cdccd946a96800fa1d74cafbfc001a144187426f4f99aa3.planes.json",
+       "planes_sha256": "cf2d20d504d009af3f67459d6ef8c95d42688bed451f48bbf2ffd558b5f97d07",
+       "construction_decoder_review": "SEPARATE_OBLIGATION",
+       "seconds": 0.008012790989596397,
+       "comparison_status": "NOT_PROVIDED"
+      },
+      "canonical_inclusion": {
+       "source_piece": "prism12_l15",
+       "target_piece": "antiprism6",
+       "grid_lcm": 12,
+       "forced_phase_float_proposal": 0.0,
+       "phase_rational_quaternion": [
+        "1",
+        "0",
+        "0",
+        "0"
+       ],
+       "phase_rotation_rational": [
+        [
+         "1",
+         "0",
+         "0"
+        ],
+        [
+         "0",
+         "1",
+         "0"
+        ],
+        [
+         "0",
+         "0",
+         "1"
+        ]
+       ],
+       "axial_multiplicity": 1,
+       "target_height_upper": "640235688488897117680069352990587211749180659814887/748288838313422294120286634350736906063837462003712",
+       "slot_period_rational": "855599677169/1000000000000",
+       "alpha": "7129997311/12500000000",
+       "alpha_required_upper": "80029461061112139710008669123823401468647582476861/140304157183766680147553743940763169886969524125696",
+       "actual_native_frame_local_envelope_tests": [
+        {
+         "source_owner": 0,
+         "tests": 168,
+         "minimum_slack": "57112325097071012312906056391626911998207/1496577676626844588240573268701473812127674924007424",
+         "controller_facet": 8,
+         "controller_vertex": 0
+        },
+        {
+         "source_owner": 1,
+         "tests": 168,
+         "minimum_slack": "57112325097071012312906056391626911998207/1496577676626844588240573268701473812127674924007424",
+         "controller_facet": 8,
+         "controller_vertex": 0
+        },
+        {
+         "source_owner": 2,
+         "tests": 168,
+         "minimum_slack": "57112325097071012312906056391626911998207/1496577676626844588240573268701473812127674924007424",
+         "controller_facet": 8,
+         "controller_vertex": 0
+        },
+        {
+         "source_owner": 3,
+         "tests": 168,
+         "minimum_slack": "57112325097071012312906056391626911998207/1496577676626844588240573268701473812127674924007424",
+         "controller_facet": 8,
+         "controller_vertex": 0
+        },
+        {
+         "source_owner": 4,
+         "tests": 168,
+         "minimum_slack": "57112325097071012312906056391626911998207/1496577676626844588240573268701473812127674924007424",
+         "controller_facet": 8,
+         "controller_vertex": 0
+        }
+       ],
+       "scope": "The exact geometric phase follows the regular p/2q difference-grid law. The stored quaternion is one declared rational approximation to that phase; ALL actual rounded target frames and two extreme slot endpoints are independently interval-contained in the same alpha-scaled source. No correctly-rounded transcendental or exact algebraic phase is claimed."
+      },
+      "alpha": "7129997311/12500000000",
+      "slot_period": "855599677169/1000000000000",
+      "axial_multiplicity": 1,
+      "phase_rational_quaternion": [
+       "1",
+       "0",
+       "0",
+       "0"
+      ],
+      "box_lower": [
+       "-21808240334913693973581847123213044424924027323192830706601/14615016373309029182036848327162830196559325429760000000000",
+       "-25461654787440766697197328808802592247234866634404926309031/18268770466636286477546060408953537745699156787200000000000",
+       "-5434440443085236332611018234676365427200991956219992247991/3653754093327257295509212081790707549139831357440000000000"
+      ],
+      "box_upper": [
+       "10184661914976311160136490909092487200979873573334070089057/7307508186654514591018424163581415098279662714880000000000",
+       "10904120167456847168065460732300262007755279346074642892363/7307508186654514591018424163581415098279662714880000000000",
+       "50923309574881538889080452353598129282411237223717909258687/36537540933272572955092120817907075491398313574400000000000"
+      ],
+      "box_midpoint": [
+       "-1438916504961071653308865305028070022964280176524690528487/29230032746618058364073696654325660393118650859520000000000",
+       "3597291262402702445932646043896125544306663461563361843753/73075081866545145910184241635814150982796627148800000000000",
+       "-3421094855970824437029729993165524989598682338482013221223/73075081866545145910184241635814150982796627148800000000000"
+      ],
+      "full_owner_decoder": [
+       {
+        "source_owner": 0,
+        "axial_slot": 0,
+        "local_slot_offset": [
+         "0",
+         "0",
+         "0"
+        ],
+        "source_center": [
+         "6755399891416635/9007199254740992",
+         "-6755399891416623/9007199254740992",
+         "7191384737556809/4503599627370496"
+        ],
+        "source_quaternion": [
+         1.3649959646848982e-17,
+         0.923879532511287,
+         0.38268343236508934,
+         -2.3685396675342773e-16
+        ],
+        "exact_product_quaternion": [
+         "4429665162091321/324518553658426726783156020576256",
+         "1040195879588265/1125899906842624",
+         "6893811853601115/18014398509481984",
+         "-1200992292485679/5070602400912917605986812821504"
+        ],
+        "native_quaternion_rounding_error": [
+         "0",
+         "0",
+         "0",
+         "0"
+        ],
+        "unrecentered_child_center": [
+         "9633196612106059906133697/22517998136852480000000000",
+         "-48165983060530213970700753/112589990684262400000000000",
+         "51274553841146488879740599/56294995342131200000000000"
+        ],
+        "ideal_center": [
+         "2788704126326546296291696331326871184481697145444873864443/5846006549323611672814739330865132078623730171904000000000",
+         "-34858801579081796484712728022309253386498614086329748085289/73075081866545145910184241635814150982796627148800000000000",
+         "69979271064010772777736900014651617370256647303041127690599/73075081866545145910184241635814150982796627148800000000000"
+        ],
+        "native_center_rounding_error": [
+         "1512505098377419091949452638323629564210125126135557/58460065493236116728147393308651320786237301719040000000000000000000",
+         "-16577094864702711706526640041526203905060780251914711/730750818665451459101842416358141509827966271488000000000000000000000",
+         "29228538567677460071180195750495332075790968872309401/730750818665451459101842416358141509827966271488000000000000000000000"
+        ]
+       },
+       {
+        "source_owner": 1,
+        "axial_slot": 0,
+        "local_slot_offset": [
+         "0",
+         "0",
+         "0"
+        ],
+        "source_center": [
+         "3377699945708289/4503599627370496",
+         "-1514323308810243/2251799813685248",
+         "-519193217948555/281474976710656"
+        ],
+        "source_quaternion": [
+         0.923872675583081,
+         0.0035594808937030363,
+         -0.0014743852611749843,
+         0.3826805921324313
+        ],
+        "exact_product_quaternion": [
+         "8321505274987493/9007199254740992",
+         "4103802067587429/1152921504606846976",
+         "-849925236842011/576460752303423488",
+         "6893760688518153/18014398509481984"
+        ],
+        "native_quaternion_rounding_error": [
+         "0",
+         "0",
+         "0",
+         "0"
+        ],
+        "unrecentered_child_center": [
+         "24082991530264946560410879/56294995342131200000000000",
+         "-10797121119801655199256573/28147497671065600000000000",
+         "-740369249572526817267121/703687441776640000000000"
+        ],
+        "ideal_center": [
+         "69717603158163129857149798727447204001066077742285144554627/146150163733090291820368483271628301965593254297600000000000",
+         "-31628220298185789724812308106215847925462705765741407689257/73075081866545145910184241635814150982796627148800000000000",
+         "-73463243718253550891022074323171362470144604966958652051097/73075081866545145910184241635814150982796627148800000000000"
+        ],
+        "native_center_rounding_error": [
+         "39887557133108555438116469678480082476711444855445373/1461501637330902918203684832716283019655932542976000000000000000000000",
+         "-11915754626343621704151734224913123217341688592310743/730750818665451459101842416358141509827966271488000000000000000000000",
+         "-53305549394655538654036603169236268874522071347948903/730750818665451459101842416358141509827966271488000000000000000000000"
+        ]
+       },
+       {
+        "source_owner": 2,
+        "axial_slot": 0,
+        "local_slot_offset": [
+         "0",
+         "0",
+         "0"
+        ],
+        "source_center": [
+         "3377699945708315/4503599627370496",
+         "-844424986427079/1125899906842624",
+         "-1089030986918001/36028797018963968"
+        ],
+        "source_quaternion": [
+         0.6087614290087208,
+         -1.2858846108677942e-16,
+         -1.8632708464180052e-17,
+         -0.793353340291235
+        ],
+        "exact_product_quaternion": [
+         "5483235489682411/9007199254740992",
+         "-652020959516321/5070602400912917605986812821504",
+         "-1511664900383709/81129638414606681695789005144064",
+         "-7145891615417489/9007199254740992"
+        ],
+        "native_quaternion_rounding_error": [
+         "0",
+         "0",
+         "0",
+         "0"
+        ],
+        "unrecentered_child_center": [
+         "4816598306053026388068193/11258999068426240000000000",
+         "-6020747882566284767584569/14073748835532800000000000",
+         "-7764788008321023307495311/450359962737049600000000000"
+        ],
+        "ideal_center": [
+         "13943520631632722226192821839867258104672058518560567531751/29230032746618058364073696654325660393118650859520000000000",
+         "-34858801579081838133408197197761193566312536525316856142377/73075081866545145910184241635814150982796627148800000000000",
+         "432237193801701447834789499578731292276727513845778850683/14615016373309029182036848327162830196559325429760000000000"
+        ],
+        "native_center_rounding_error": [
+         "2759616001782014062794588388645722266163929432468249/292300327466180583640736966543256603931186508595200000000000000000000",
+         "-5738332204332905314498074597276518902050913143857623/730750818665451459101842416358141509827966271488000000000000000000000",
+         "-249020270437487873938222743454734516020675778850683/146150163733090291820368483271628301965593254297600000000000000000000"
+        ]
+       },
+       {
+        "source_owner": 3,
+        "axial_slot": 0,
+        "local_slot_offset": [
+         "0",
+         "0",
+         "0"
+        ],
+        "source_center": [
+         "-4408545408187479/9007199254740992",
+         "525239471145495/281474976710656",
+         "6175832660793369/9007199254740992"
+        ],
+        "source_quaternion": [
+         0.037363270650413866,
+         -0.03736327065041415,
+         0.7061189602370863,
+         0.7061189602370864
+        ],
+        "exact_product_quaternion": [
+         "1346153694228375/36028797018963968",
+         "-5384614776913541/144115188075855872",
+         "397509635775373/562949953421312",
+         "6360154172405969/9007199254740992"
+        ],
+        "native_quaternion_rounding_error": [
+         "0",
+         "0",
+         "0",
+         "0"
+        ],
+        "unrecentered_child_center": [
+         "-31432916905798122653868969/112589990684262400000000000",
+         "748991203379688287952789/703687441776640000000000",
+         "44033670264642696096630759/112589990684262400000000000"
+        ],
+        "ideal_center": [
+         "-33607676401335108394582329900716502354014424443661733757821/146150163733090291820368483271628301965593254297600000000000",
+         "74182402185168810907075892585567876749229283803173399111127/73075081866545145910184241635814150982796627148800000000000",
+         "32000580829078664796819410018193294126386394558240482537831/73075081866545145910184241635814150982796627148800000000000"
+        ],
+        "native_center_rounding_error": [
+         "-6890837921249144225457719233497368237978128266242179/1461501637330902918203684832716283019655932542976000000000000000000000",
+         "39543358777672462101278481811171036725085556600888873/730750818665451459101842416358141509827966271488000000000000000000000",
+         "-8710176115773251367032225324188791219936550482537831/730750818665451459101842416358141509827966271488000000000000000000000"
+        ]
+       },
+       {
+        "source_owner": 4,
+        "axial_slot": 0,
+        "local_slot_offset": [
+         "0",
+         "0",
+         "0"
+        ],
+        "source_center": [
+         "-525239471145495/281474976710656",
+         "-6755399891416629/9007199254740992",
+         "844424986427079/1125899906842624"
+        ],
+        "source_quaternion": [
+         0.27059805007309834,
+         0.6532814824381884,
+         -0.2705980500730986,
+         -0.6532814824381883
+        ],
+        "exact_product_quaternion": [
+         "2437330554952777/9007199254740992",
+         "5884236481753341/9007199254740992",
+         "-4874661109905559/18014398509481984",
+         "-1471059120438335/2251799813685248"
+        ],
+        "native_quaternion_rounding_error": [
+         "0",
+         "0",
+         "0",
+         "0"
+        ],
+        "unrecentered_child_center": [
+         "-748991203379688287952789/703687441776640000000000",
+         "-48165983060530256750684619/112589990684262400000000000",
+         "6020747882566284767584569/14073748835532800000000000"
+        ],
+        "ideal_center": [
+         "-5934592174813506737578910029351506178890019745874002770693/5846006549323611672814739330865132078623730171904000000000",
+         "-34858801579081824250509707472610546839707895712321153456681/73075081866545145910184241635814150982796627148800000000000",
+         "34682605172649960124505281147030593011604555402235507519847/73075081866545145910184241635814150982796627148800000000000"
+        ],
+        "native_center_rounding_error": [
+         "2505917539539207559583503478511230047452804002770693/58460065493236116728147393308651320786237301719040000000000000000000",
+         "17691959713746053120088738635994919430279131153456681/730750818665451459101842416358141509827966271488000000000000000000000",
+         "-14055869981772467025353016811353959630600705507519847/730750818665451459101842416358141509827966271488000000000000000000000"
+        ]
+       }
+      ],
+      "rho": "10000000001/10000000000",
+      "inverse_decoder": "Undo stored center rounding error, divide by rho, add midpoint, subtract R_source times local slot offset, and divide by alpha. Parent/slot labels recover the complete original source and each child; source quaternion and exact phase product are retained separately from rounded native target quaternion.",
+      "classification": "nonrecord_complete_source_control",
+      "nominal_claim": "No record claimed for this included source control; all geometric owners retained for subsequent same-source return",
+      "screen_row": {
+       "source": {
+        "path": "heterogeneous/constructive/root_rectangular_product/public_parents/74228aa62dcf7e2d0cdccd946a96800fa1d74cafbfc001a144187426f4f99aa3.json",
+        "sha256": "74228aa62dcf7e2d0cdccd946a96800fa1d74cafbfc001a144187426f4f99aa3",
+        "piece": "prism12_l15",
+        "n": 5,
+        "provenance": {
+         "kind": "authenticated_public_native",
+         "git_path": "records/pr12l15incub/pr12l15incub_n05.json",
+         "git_blob": "16efc6d67a2633e58571c893949bebc8e05d91fe",
+         "git_commit": "6dcb76f8dd0c8a1c92f07bdc75391024ed2ed24f"
+        },
+        "lower": [
+         "-1957542647810778271900401747256250353344681629152329/748288838313422294120286634350736906063837462003712",
+         "-1957542647810778094997667257101671864979027467551925/748288838313422294120286634350736906063837462003712",
+         "-3904423221709631604795890804920196945311594194124091/1496577676626844588240573268701473812127674924007424"
+        ],
+        "upper": [
+         "3915085295621557424175077990126551221707765491999407/1496577676626844588240573268701473812127674924007424",
+         "489385661952694570525644778424781644455262709268159/187072209578355573530071658587684226515959365500928",
+         "1957542647810778075941943653067715799364397964253649/748288838313422294120286634350736906063837462003712"
+        ],
+        "widths": [
+         "7830170591243113967975881484639051928397128750304065/1496577676626844588240573268701473812127674924007424",
+         "3915085295621556377100246370800798442800078304624561/748288838313422294120286634350736906063837462003712",
+         "7819508517331187756679778111055628544040390122631389/1496577676626844588240573268701473812127674924007424"
+        ]
+       },
+       "target": "antiprism6",
+       "n": 5,
+       "k": 1,
+       "source_count": 5,
+       "alpha": 0.5703997847782348,
+       "planar_alpha": 0.5176380902050416,
+       "source_height": 1.5,
+       "target_height": 0.8555996771673522,
+       "theta": 0.0,
+       "predicted_side": 2.8859060492058797,
+       "widths": [
+        2.8859060492058797,
+        2.8859060492058792,
+        2.881083710267586
+       ],
+       "native_gate": 2.7874514299410116,
+       "nominal_gate": 2.787451329745,
+       "ratio": 1.0353206582211019,
+       "uncredited": false
+      }
+     }
+    }
+   },
+   "parent_native_path": "continuation/proceed_20261015/cubic/near_inclusion_next/built/antiprism6_5/records/ap6incub_n05_pingyou_near_ring_control_74228aa6_20261015.json",
+   "parent_native_sha256": "f297632e4216f9ce12806f1d500c519623e77dd2de72e16426a2204ed751e51e",
+   "parent_entry": {
+    "record_id": "ap6incub_n05_pingyou_near_ring_control_74228aa6_20261015",
+    "piece": "antiprism6",
+    "container": "cube",
+    "n": 5,
+    "s_full": 2.885906050760691,
+    "previous_native_gate": 2.7874514299410116,
+    "previous_nominal_gate": 2.787451329745,
+    "classification": "nonrecord_complete_source_control",
+    "uncredited_at_input": false,
+    "witness": "continuation/proceed_20261015/cubic/near_inclusion_next/built/antiprism6_5/records/ap6incub_n05_pingyou_near_ring_control_74228aa6_20261015.json",
+    "sha256": "f297632e4216f9ce12806f1d500c519623e77dd2de72e16426a2204ed751e51e",
+    "source_sha256": "74228aa62dcf7e2d0cdccd946a96800fa1d74cafbfc001a144187426f4f99aa3",
+    "canonical_inclusion": "continuation/proceed_20261015/cubic/near_inclusion_next/built/antiprism6_5/CANONICAL_INCLUSION.json",
+    "canonical_inclusion_sha256": "5864595006d5b7cb72be00b960978ad625d8b709982fb1f14d629ddd245ee48b",
+    "certificate": "continuation/proceed_20261015/cubic/near_inclusion_next/built/antiprism6_5/CERTIFICATE.json",
+    "certificate_sha256": "76cd5aed37d4388f86df25a6f58080925ba8b4d9f5f556da27c63400aecf274f"
+   },
+   "all_pair_rows": [
+    {
+     "i": 0,
+     "j": 1,
+     "normal": [
+      "0",
+      "2705487216/351113391313",
+      "-956793044975/956821450547"
+     ],
+     "actual_minkowski_feature": {
+      "kind": "owner_face",
+      "owner": 1,
+      "face": 13
+     },
+     "sign": 1,
+     "source_center_separation": "371295028490905005283139340224231388715/189124626837932234360210707959966072832",
+     "local_support_cost_upper": "322897809994127693237414477853943240099260558195999/374144419156711147060143317175368453031918731001856",
+     "source_gap": "411633515159777411138640015800814673458043438685707/374144419156711147060143317175368453031918731001856",
+     "required_t_upper": "108478431254477217710116107595853393761841430292850753534085539904698457789/246767873282934448650377163499964749132370825324393477479151610747598929920"
+    },
+    {
+     "i": 0,
+     "j": 2,
+     "normal": [
+      "0",
+      "0",
+      "-1"
+     ],
+     "actual_minkowski_feature": {
+      "kind": "edge_cross",
+      "owner_i_edge": 23,
+      "owner_j_edge": 23
+     },
+     "sign": 1,
+     "source_center_separation": "16718448751171563/18014398509481984",
+     "local_support_cost_upper": "320117844244448811318005198880861020157696512350457/374144419156711147060143317175368453031918731001856",
+     "source_gap": "27110751476685663410581916931512485110423820969735/374144419156711147060143317175368453031918731001856",
+     "required_t_upper": "320117844244448811318005198880861020157696512350457/347228595721134474728587115812373505268120333320192"
+    },
+    {
+     "i": 0,
+     "j": 3,
+     "normal": [
+      "0",
+      "1",
+      "0"
+     ],
+     "actual_minkowski_feature": {
+      "kind": "owner_face",
+      "owner": 3,
+      "face": 12
+     },
+     "sign": 1,
+     "source_center_separation": "26880732098892929/18014398509481984",
+     "local_support_cost_upper": "2085818717390456897563659783122710734863757041702699/1496577676626844588240573268701473812127674924007424",
+     "source_gap": "147345135924712042064045470449351943705772223916245/1496577676626844588240573268701473812127674924007424",
+     "required_t_upper": "2085818717390456897563659783122710734863757041702699/2233163853315168939627705253572062678569529265618944"
+    },
+    {
+     "i": 0,
+     "j": 4,
+     "normal": [
+      "-1",
+      "0",
+      "0"
+     ],
+     "actual_minkowski_feature": {
+      "kind": "owner_face",
+      "owner": 4,
+      "face": 13
+     },
+     "sign": -1,
+     "source_center_separation": "26880732098892941/18014398509481984",
+     "local_support_cost_upper": "1042909358695228372850842806534581044247706096011617/748288838313422294120286634350736906063837462003712",
+     "source_gap": "73672567962356595423508239594902633964706141927071/748288838313422294120286634350736906063837462003712",
+     "required_t_upper": "1042909358695228372850842806534581044247706096011617/1116581926657584968274351046129483678212412237938688"
+    },
+    {
+     "i": 1,
+     "j": 2,
+     "normal": [
+      "0",
+      "-2705487216/351113391313",
+      "956793044975/956821450547"
+     ],
+     "actual_minkowski_feature": {
+      "kind": "owner_face",
+      "owner": 1,
+      "face": 13
+     },
+     "sign": -1,
+     "source_center_separation": "6264997577188648776520201984769555460875/6051988058813831499526742654718914330624",
+     "local_support_cost_upper": "645795619988255417477251033826952844476285572680171/748288838313422294120286634350736906063837462003712",
+     "source_gap": "257660911056231375543403504625818552018503133367699/1496577676626844588240573268701473812127674924007424",
+     "required_t_upper": "216956862508954445835583475036696137974940490481533962237475837728677074081/260237817910119418500387992719896812946531354343039812107967445652733952000"
+    },
+    {
+     "i": 1,
+     "j": 3,
+     "normal": [
+      "-301308542219/592392291249",
+      "479092828089/951974773415",
+      "327921048403/469406702980"
+     ],
+     "actual_minkowski_feature": {
+      "kind": "edge_cross",
+      "owner_i_edge": 13,
+      "owner_j_edge": 22
+     },
+     "sign": 1,
+     "source_center_separation": "1999550962362612406595660546420499140023378923403417/953748541738964512180325598112337558147912108605440",
+     "local_support_cost_upper": "704808250997184296386897987549450676248305518715825/374144419156711147060143317175368453031918731001856",
+     "source_gap": "159184498787992295743488111556927633229712067319719/748288838313422294120286634350736906063837462003712",
+     "required_t_upper": "9328785543968246040751311813775531118057111602936619314742203105764105366219120154875/10382262180355683754764734446538525733831366723614015757467854872968946512081591468032"
+    },
+    {
+     "i": 1,
+     "j": 4,
+     "normal": [
+      "-573932901391/838860343638",
+      "-32841031000/173983249531",
+      "361795378729/513577658560"
+     ],
+     "actual_minkowski_feature": {
+      "kind": "edge_cross",
+      "owner_i_edge": 1,
+      "owner_j_edge": 23
+     },
+     "sign": -1,
+     "source_center_separation": "466254989978781518154943706075244994897784853668351/225046229213085826164836481397026324680701137387520",
+     "local_support_cost_upper": "688312462876089470621276857647722541030168765736101/374144419156711147060143317175368453031918731001856",
+     "source_gap": "173693895536347553582909616487880902002427019484101/748288838313422294120286634350736906063837462003712",
+     "required_t_upper": "134356175742821794470557077298379623280707073934349446660897168968006068382446685645/151308394983938425872827888285669613683147573956039125286510311343832077758529273856"
+    },
+    {
+     "i": 2,
+     "j": 3,
+     "normal": [
+      "0",
+      "1",
+      "0"
+     ],
+     "actual_minkowski_feature": {
+      "kind": "edge_cross",
+      "owner_i_edge": 12,
+      "owner_j_edge": 19
+     },
+     "sign": -1,
+     "source_center_separation": "26880732098892939/18014398509481984",
+     "local_support_cost_upper": "2085818717390456908170192291899339179728220635289579/1496577676626844588240573268701473812127674924007424",
+     "source_gap": "147345135924712862225010327245144063720721305544725/1496577676626844588240573268701473812127674924007424",
+     "required_t_upper": "2085818717390456908170192291899339179728220635289579/2233163853315169770395202619144483243448941940834304"
+    },
+    {
+     "i": 2,
+     "j": 4,
+     "normal": [
+      "-1",
+      "0",
+      "0"
+     ],
+     "actual_minkowski_feature": {
+      "kind": "owner_face",
+      "owner": 4,
+      "face": 13
+     },
+     "sign": -1,
+     "source_center_separation": "26880732098892935/18014398509481984",
+     "local_support_cost_upper": "2085818717390456894549323459117227263704674665550295/1496577676626844588240573268701473812127674924007424",
+     "source_gap": "147345135924712543538880213798287753792502205197865/1496577676626844588240573268701473812127674924007424",
+     "required_t_upper": "417163743478091378909864691823445452740934933110059/446632770663033887617640734583103003499435374149632"
+    },
+    {
+     "i": 3,
+     "j": 4,
+     "normal": [
+      "0",
+      "-1",
+      "0"
+     ],
+     "actual_minkowski_feature": {
+      "kind": "edge_cross",
+      "owner_i_edge": 19,
+      "owner_j_edge": 14
+     },
+     "sign": 1,
+     "source_center_separation": "26880732098892935/18014398509481984",
+     "local_support_cost_upper": "1042909358695228449786515608766128962300936929868459/748288838313422294120286634350736906063837462003712",
+     "source_gap": "73672567962356269257586227691628546447651505505621/748288838313422294120286634350736906063837462003712",
+     "required_t_upper": "1042909358695228449786515608766128962300936929868459/1116581926657584719044101836457757508748588435374080"
+    }
+   ],
+   "t": "9340195589843/10000000000000",
+   "rho": "10000000001/10000000000",
+   "box_lower": [
+    "-502746614036565511053372837539602519617727978234307588660097/365375409332725729550921208179070754913983135744000000000000",
+    "-644649445712219067365815388157998374258538074331276563055183/456719261665907161938651510223838443642478919680000000000000",
+    "-627628604960133099249868632129360686847623848915666104332123/456719261665907161938651510223838443642478919680000000000000"
+   ],
+   "box_upper": [
+    "1289298891424438602648281302021720016257522280427294466375317/913438523331814323877303020447676887284957839360000000000000",
+    "1256866535091413610851076508769082091343743558436793996497567/913438523331814323877303020447676887284957839360000000000000",
+    "257448351060271204130663801473709183874470711123425468934331/182687704666362864775460604089535377456991567872000000000000"
+   ],
+   "box_midpoint": [
+    "64864712666049650029698416345427434426404669683050989450149/3653754093327257295509212081790707549139831357440000000000000",
+    "-32432356333024523880554267546914657173332590225759129612799/1826877046663628647754606040895353774569915678720000000000000",
+    "31984545381089822153581743109824545677105857785795136007409/1826877046663628647754606040895353774569915678720000000000000"
+   ],
+   "full_owner_decoder": [
+    {
+     "parent_owner": 0,
+     "source_center": [
+      "8593358053545001/18014398509481984",
+      "-8593358053544993/18014398509481984",
+      "4312805556545507/4503599627370496"
+     ],
+     "ideal_returned_center": [
+      "15630754115338134960855416175127902492725521705634192386309734133045339/36537540933272572955092120817907075491398313574400000000000000000000000",
+      "-7815377057669062914103747780523878577231306722215554496638854761492993/18268770466636286477546060408953537745699156787200000000000000000000000",
+      "16020656523737750361961185622729670965757899335682506670036656582897423/18268770466636286477546060408953537745699156787200000000000000000000000"
+     ],
+     "native_rounding_error": [
+      "-904101376829511401349226868009634192386309734133045339/36537540933272572955092120817907075491398313574400000000000000000000000",
+      "-57791351161950287205067762922584445503361145238507007/18268770466636286477546060408953537745699156787200000000000000000000000",
+      "563606018643646183794259784734717493329963343417102577/18268770466636286477546060408953537745699156787200000000000000000000000"
+     ],
+     "unchanged_native_quaternion": [
+      1.3649959646848982e-17,
+      0.923879532511287,
+      0.38268343236508934,
+      -2.3685396675342773e-16
+     ]
+    },
+    {
+     "parent_owner": 1,
+     "source_center": [
+      "1074169756693117/2251799813685248",
+      "-3898479140226789/9007199254740992",
+      "-4527521948894417/4503599627370496"
+     ],
+     "ideal_returned_center": [
+      "15630754115338011823768128440602081577691323857649222137173561993238619/36537540933272572955092120817907075491398313574400000000000000000000000",
+      "-7061020531706835691931073753097937652846613665700219452183100646175233/18268770466636286477546060408953537745699156787200000000000000000000000",
+      "-17473872082093521568523036058023909921804381345705488069458490061148401/18268770466636286477546060408953537745699156787200000000000000000000000"
+     ],
+     "native_rounding_error": [
+      "538528288994991875882299613742350777862826438006761381/36537540933272572955092120817907075491398313574400000000000000000000000",
+      "-387413216447609933924149098539099780547816899353824767/18268770466636286477546060408953537745699156787200000000000000000000000",
+      "-842253436824595417873134680516694511930541509938851599/18268770466636286477546060408953537745699156787200000000000000000000000"
+     ],
+     "unchanged_native_quaternion": [
+      0.923872675583081,
+      0.0035594808937030363,
+      -0.0014743852611749843,
+      0.3826805921324313
+     ]
+    },
+    {
+     "parent_owner": 2,
+     "source_center": [
+      "8593358053544995/18014398509481984",
+      "-8593358053545003/18014398509481984",
+      "532773475010465/18014398509481984"
+     ],
+     "ideal_returned_center": [
+      "15630754115338123594355051153479365177491595750435579747927933627832411/36537540933272572955092120817907075491398313574400000000000000000000000",
+      "-7815377057669072386187385298564326339926245018214398361957021849170433/18268770466636286477546060408953537745699156787200000000000000000000000",
+      "184802037672142447064264071840843448636254438441041091540762518433551/18268770466636286477546060408953537745699156787200000000000000000000000"
+     ],
+     "native_rounding_error": [
+      "321194186366301923992381414937564420252072066372167589/36537540933272572955092120817907075491398313574400000000000000000000000",
+      "287207964712838469781364096666214398361957021849170433/18268770466636286477546060408953537745699156787200000000000000000000000",
+      "11320479331336379346637654604758958908459237481566449/18268770466636286477546060408953537745699156787200000000000000000000000"
+     ],
+     "unchanged_native_quaternion": [
+      0.6087614290087208,
+      -1.2858846108677942e-16,
+      -1.8632708464180052e-17,
+      -0.793353340291235
+     ]
+    },
+    {
+     "parent_owner": 3,
+     "source_center": [
+      "-8284931884682259/36028797018963968",
+      "571480438917123/562949953421312",
+      "7888752238421735/18014398509481984"
+     ],
+     "ideal_returned_center": [
+      "-1699240780202078767419010933054875790863370869441899839907359571540769/7307508186654514591018424163581415098279662714880000000000000000000000",
+      "17646277210173905594756483464857689520350598917251452786090935423389183/18268770466636286477546060408953537745699156787200000000000000000000000",
+      "7152446645955950387136208004311276093698137309826194112561998100508431/18268770466636286477546060408953537745699156787200000000000000000000000"
+     ],
+     "native_rounding_error": [
+      "-35482629034153113942524808340798100160092640428459231/7307508186654514591018424163581415098279662714880000000000000000000000",
+      "-456202780561933071309216480619651452786090935423389183/18268770466636286477546060408953537745699156787200000000000000000000000",
+      "52144608994881862759606775790973805887438001899491569/18268770466636286477546060408953537745699156787200000000000000000000000"
+     ],
+     "unchanged_native_quaternion": [
+      0.037363270650413866,
+      -0.03736327065041415,
+      0.7061189602370863,
+      0.7061189602370864
+     ]
+    },
+    {
+     "parent_owner": 4,
+     "source_center": [
+      "-4571843511336985/4503599627370496",
+      "-8593358053544999/18014398509481984",
+      "8549922285829865/18014398509481984"
+     ],
+     "ideal_returned_center": [
+      "-35292554420347824789865776358932308332906141483697047455913447247144869/36537540933272572955092120817907075491398313574400000000000000000000000",
+      "-7815377057669068597353930291348147234848269699814860815829755014099457/18268770466636286477546060408953537745699156787200000000000000000000000",
+      "7778712444723107913253747994825797727765849718061200697527911447867151/18268770466636286477546060408953537745699156787200000000000000000000000"
+     ],
+     "native_rounding_error": [
+      "-1713169312368253267247163123924302952544086552752855131/36537540933272572955092120817907075491398313574400000000000000000000000",
+      "-459264049746627145731626185749785139184170244985900543/18268770466636286477546060408953537745699156787200000000000000000000000",
+      "172338432596478797085756745302738799302472088552132849/18268770466636286477546060408953537745699156787200000000000000000000000"
+     ],
+     "unchanged_native_quaternion": [
+      0.27059805007309834,
+      0.6532814824381884,
+      -0.2705980500730986,
+      -0.6532814824381883
+     ]
+    }
+   ],
+   "proof": "For each selected actual source pair plane u, t*u.(c_j-c_i) exceeds the complete directed target support cost. The maximum of all required ratios supplies ONE shared center factor. The same rational plane is verified at both complete native endpoints. Host walls are checked at both endpoints; their affine interpolation with the host side proves the entire common motion. Common outward restoration and recorded rounding errors retain strict native endpoint gaps. No independent per-pair translations or frame choices are made.",
+   "inverse_decoder": "Undo stored rounding error, divide by rho, add box midpoint, divide by common t; unchanged source-owner index/frame then gives the original ring/slot and finite donor inverse maps.",
+   "classification": "complete_certificate_reduction",
+   "geometry_change": "All actual centers undergo a nonzero common return; source frame bytes unchanged."
+  }
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.2693934444398387,
+ "density": 0.5396441928819059,
+ "found_by": "PingYou Ltd",
+ "credit": "PingYou Ltd",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/86",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "construction",
+  "replayed_on": "2026-10-15",
+  "witness_sha256": "aaf22edddc2ceb871f89a91c2d05ff09fa8f9dcce1bc5c685509b265ab375e85",
+  "method": "Three complete physical constructions: forced-phase prism-to-antiprism inclusion followed by a common center return using the actual antiprism faces and complete same-source separating planes. Every actual owner frame, source owner, shared host, finite inverse decoder and restoration error is retained. One case improves the retained nominal bound; two tighten the complete native certificate without claiming a new ideal nominal value.\n\nAll active witnesses passed independent source, full geometry and current-public/private comparison review, and both official checks on the packaged natives. A fresh successor comparison also confirms all three still improve the current records. The archive includes complete source/proof dependencies, original donor attribution, checker outputs, manifest and checksums.\n\nCredit the new finite constructions exactly to PingYou Ltd. Original donors and authors remain credited. These contributions may be published under the repository MIT license. No global optimum is claimed.",
+  "archive": "https://github.com/user-attachments/files/33504047/pingyou_new_constructions_batch056_20261015.zip",
+  "archive_sha256": "ccb7dbcf4e61de70402420a26b264f58421b537037efda2a319468fd112b0206"
+ },
+ "previous_record": {
+  "s_full": 2.7874514299410116,
+  "found_by": "Alejandro Zarzuelo",
+  "date": "2026-10-13"
+ },
+ "case_id": "ap6incub_n05"
+}
