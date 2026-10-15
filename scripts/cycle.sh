@@ -23,7 +23,6 @@ fi
 echo "$a $i $now" > state/.cycle
 w=$(pgrep -c -f "^python3 scripts/engine(_nd)?.py work")
 act=$(scripts/harvest_actions.sh 2>&1 | tail -1)
-kick=$(scripts/actions_kick.sh 2>&1 | tail -1)
 chk=$(python3 scripts/engine.py check 2>&1 | tail -1); chk="$chk; $(python3 scripts/engine_nd.py check 2>&1 | tail -1)"
 python3 -c "import sys; sys.path.insert(0, 'scripts'); import publish; publish.progress()" 2>/dev/null
 exec 9> state/.gitlock; flock 9
@@ -36,6 +35,8 @@ Claude-Session: https://claude.ai/code/session_015sjhNzKTinVQnSnofRcCoP"
 timeout 60 git fetch -q origin && git merge -q --no-edit origin/main > /dev/null 2>&1 || git merge --abort > /dev/null 2>&1
 if timeout 90 git push -q origin HEAD:main > /dev/null 2>&1; then push=pushed; else push=PUSH-FAILED; fi
 flock -u 9
+# a new Actions run starts only after the push (15 Oct 14:00), so its jobs check out the archive just harvested
+kick=$(scripts/actions_kick.sh 2>&1 | tail -1)
 # contributions from other people (Alejandro, 13 Oct): accept certified record-beating submissions (credit) and make
 # contributed / published packings that beat the archive its starting points (scripts/community_sync.py)
 com=$(timeout 300 python3 scripts/community_sync.py 2>&1 | tail -1)
