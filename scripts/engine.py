@@ -576,6 +576,9 @@ def choose_move(rng, idx, p, n):
     t_self = st.get('last_improve', 0) or 0
     if lo and lo.get('best') and (lo['stats'].get('last_improve') or 0) > t_self: W['ascend'] *= 2.0     # cascade
     if hi and hi.get('best') and (hi['stats'].get('last_improve') or 0) > t_self: W['descend'] *= 1.5
+    # 15 Oct (Platonic n = 41-100 seeded by nested packings): a case far above its n-1 neighbour (a jump of more than
+    # 4%) is most likely a weak seed, and n-1 plus one piece is the quickest way down
+    if lo and lo.get('best') and c.get('best') and c['best']['s'] > 1.04 * lo['best']['s']: W['ascend'] *= 4.0
     if st.get('since', 0) >= int(pol.get('switch_after', 6)):
         f = st.get('fails') or {}
         damp, boost = (DISCOVERY, POLISH) if f.get('disc', 0) >= f.get('pol', 0) else (POLISH, DISCOVERY)

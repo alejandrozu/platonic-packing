@@ -364,6 +364,8 @@ if (typeof document !== 'undefined') (async () => {
     selectRow(packingInitialSelection(p, hashId, wantN), true);
   }
 
+  // a line is drawn only between consecutive n: a gap (cases not yet recorded) breaks it instead of bridging it
+  const runs = (a, key) => { const out = []; let cur = []; a.forEach(r => { if (cur.length && r.n !== cur[cur.length - 1].n + 1) { out.push(cur); cur = [] } cur.push(r) }); if (cur.length) out.push(cur); return out };
   function niceStep(range, k) { const raw = range / k, p = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / p; return (f < 1.5 ? 1 : f < 3.5 ? 2 : f < 7.5 ? 5 : 10) * p }
   function txt(x, y, s, o) { o = o || {}; return `<text x="${x}" y="${y}" font-size="${o.fs || 12}" text-anchor="${o.a || 'start'}" fill="${o.c || css('--muted')}" font-family="${o.f || 'IBM Plex Sans, sans-serif'}"${o.rot ? ` transform="rotate(${o.rot} ${x} ${y})"` : ''}>${s}</text>` }
   function drawChart() { drawS(); drawInc() }
@@ -390,8 +392,9 @@ if (typeof document !== 'undefined') (async () => {
     }
     g += txt((L + W - R) / 2, H - B + 38, 'n (number of pieces)', { a: 'middle' });
     g += txt(16, (T + H - B) / 2, prob.unit === 'size' ? 's = container size ÷ piece size' : 's = container edge ÷ piece edge', { a: 'middle', rot: -90 });
-    g += `<polyline points="${rows.map(r => `${X(r.n)},${Y(r.vlb)}`).join(' ')}" fill="none" stroke="${mut}" stroke-width="1.4" stroke-dasharray="5 5"/>`;
-    g += `<polyline points="${rows.map(r => `${X(r.n)},${Y(chartScale(r))}`).join(' ')}" fill="none" stroke="${acc}" stroke-width="2.2"/>`;
+    runs(rows).forEach(seg => {
+      g += `<polyline points="${seg.map(r => `${X(r.n)},${Y(r.vlb)}`).join(' ')}" fill="none" stroke="${mut}" stroke-width="1.4" stroke-dasharray="5 5"/>`;
+      g += `<polyline points="${seg.map(r => `${X(r.n)},${Y(chartScale(r))}`).join(' ')}" fill="none" stroke="${acc}" stroke-width="2.2"/>` });
     rows.filter(r => r.ref != null).forEach(r => { const x = X(r.n), y = Y(r.ref);
       g += `<path d="M${x} ${y - 6}L${x + 6} ${y}L${x} ${y + 6}L${x - 6} ${y}Z" fill="none" stroke="${ex}" stroke-width="1.6"><title>n = ${r.n}: published ${r.ref.toFixed(5)} (${escapeHTML(r.refsrc || SRC[r.refcode] || '')})</title></path>` });
     rows.forEach(r => { const on = row && row.n === r.n;
@@ -433,7 +436,7 @@ if (typeof document !== 'undefined') (async () => {
     inc.forEach(d => { const on = row && row.n === d.n, y = YP(Math.max(0, d.pct));
       g += `<rect x="${X(d.n) - bw / 2}" y="${y}" width="${bw}" height="${Math.max(0, YP(0) - y)}" fill="${acc}" fill-opacity="${on ? 1 : 0.62}" data-n="${d.n}" style="cursor:pointer"><title>n = ${d.n}: +${d.pct.toFixed(3)}% (+${d.abs.toFixed(5)})</title></rect>` });
     g += `<line x1="${L}" x2="${W - R}" y1="${YP(0)}" y2="${YP(0)}" stroke="${mut}" stroke-width="1"/>`;
-    g += `<polyline points="${inc.map(d => `${X(d.n)},${YA(Math.max(0, d.abs))}`).join(' ')}" fill="none" stroke="${ex}" stroke-width="2"/>`;
+    runs(inc).forEach(seg => g += `<polyline points="${seg.map(d => `${X(d.n)},${YA(Math.max(0, d.abs))}`).join(' ')}" fill="none" stroke="${ex}" stroke-width="2"/>`);
     inc.forEach(d => g += `<circle cx="${X(d.n)}" cy="${YA(Math.max(0, d.abs))}" r="3" fill="${ex}"/>`);
     const ly = H - 10; let lx = L;
     g += `<rect x="${lx}" y="${ly - 10}" width="14" height="12" fill="${acc}" fill-opacity="0.62"/>` + txt(lx + 20, ly, '% increase');
