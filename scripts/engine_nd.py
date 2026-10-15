@@ -234,7 +234,8 @@ def attempt(p, n, move, rng, log):
     elif move == 'tighten':
         raw = {'s': best_s, 'C': best['C'], 'R': best['R']}
     elif move == 'perturb':
-        e = math.exp(rng.uniform(math.log(0.003), math.log(0.05))); sg = e * rng.uniform(0.5, 0.9)
+        # 15 Oct 11:40: kicks up to 12% (was 5%): the small ones have mostly been used up (gains per save falling)
+        e = math.exp(rng.uniform(math.log(0.003), math.log(0.12))); sg = e * rng.uniform(0.5, 0.9)
         C0 = np.array(best['C']); nr = np.random.default_rng(seed)
         R0 = np.array(best['R'])
         if rng.random() < 0.5:      # half of the kicks also turn every piece a little (random skew, angle ~ sigma / circumradius)
