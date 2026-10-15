@@ -51,13 +51,16 @@ def make_claim(problem, piece, container, C, R, GAP=1e-7, WALL=1e-7, meta=None, 
     Rx = np.array([x[2] for x in rots])
     # spread the centres (internal units) until every near pair has gap >= GAP x edge along a found hyperplane
     Ci = np.array(C, float); cen = Ci.mean(0); e = pb.edge
-    lim = (2 * pb.circ) ** 2 * 1.0001
+    # one fixed set of pairs (centres closer than 2.01 circumradii at the start; spreading only separates them more),
+    # whose hyperplanes are carried from round to round and stored as the witnesses (15 Oct: recomputing them from
+    # scratch afterwards lost one, c120inc600 n = 32)
+    pairs = ndsim.near_pairs(Ci, (2 * pb.circ) ** 2 * 1.01 ** 2)
     k = 1.0; U = None
+    g = np.zeros(0); mid = np.zeros(0); U = np.zeros((0, d))
     for _ in range(80):
         Pp = cen + k * (Ci - cen)
-        pairs = ndsim.near_pairs(Pp, lim)
         if not len(pairs): break
-        g, U, mid = ndsim.planes_lp(pb, Pp, Rx, pairs, U0=U if U is not None and len(U) == len(pairs) else None)
+        g, U, mid = ndsim.planes_lp(pb, Pp, Rx, pairs, U0=U if len(U) == len(pairs) else None)
         bad = g < GAP * e * (1 + 1e-9)
         if not bad.any(): break
         dc = Ci[pairs[bad, 1]] - Ci[pairs[bad, 0]]
@@ -67,8 +70,6 @@ def make_claim(problem, piece, container, C, R, GAP=1e-7, WALL=1e-7, meta=None, 
     else:
         raise RuntimeError('could not spread the centres to the clearance')
     Pp = cen + k * (Ci - cen)
-    pairs = ndsim.near_pairs(Pp, (2 * pb.circ) ** 2 * 1.01)
-    g, U, mid = ndsim.planes_lp(pb, Pp, Rx, pairs) if len(pairs) else (np.zeros(0), np.zeros((0, d)), np.zeros(0))
     pg = float(g.min()) / e if len(g) else float('inf')
     # exact frame: divide by sc; container cc + s mu C with C's facets (unit normals N, offsets beta in its own frame)
     C2 = Pp / sc

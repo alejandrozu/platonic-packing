@@ -64,7 +64,7 @@ def build(p, deadline):
         h = hashlib.sha1(json.dumps([round(b['s'], 13), b['C'], b['R']]).encode()).hexdigest()[:16]
         src = {'hash': h, 'clear': CLEAR, 'cap': prev['s_full'] if prev else None}
         old = E._read(fn)
-        if old and old.get('source') == src and cert_ok(fn) is not None:
+        if old and old.get('source') == src and cert_ok(fn):          # (a failed certificate is rebuilt)
             rec = old; ok = cert_ok(fn)
         elif time.time() > deadline:
             if old: rec = old; ok = cert_ok(fn)
