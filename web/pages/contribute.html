@@ -1,28 +1,37 @@
 <div class="doc">
 <article>
 <h1>Contribute</h1>
-<p class="lede">Found a smaller container, want a new category tracked, or have a different polyhedra-in-polyhedra
-construction? Submissions go through public GitHub issues, so every check and every review is visible to everyone.</p>
+<p class="lede">Help improve a living catalogue of polyhedral and higher-dimensional polytope packings.
+Submit a smaller container, share another construction, contribute a proof or propose a new category.
+Public GitHub issues and pull requests keep the data, source credit and review inspectable.</p>
+<p>The current catalogue has <b>{{N_RECORDS}} cases in {{N_PROBLEMS}} problems</b>.
+Its 3D problems include all 25 ordered Platonic-solid pairs, the 13 Archimedean and 13 Catalan self-packing families,
+and 35 prism and antiprism problems, including elongated prisms. The higher-dimensional section covers all ordered
+pairs of the six regular 4-polytopes and of the simplex, hypercube and orthoplex in both 5D and 6D.
+The current search ranges are n = 2–100 in 3D, 2–40 in 4D, 2–32 in 5D and 2–24 in 6D;
+the live <a href="{{ROOT}}">tables</a> show which cases have records.</p>
 
-<h2 id="submit">Check and submit a packing</h2>
-<p>Paste a packing below. Your browser checks it in floating point: every vertex inside the container, every pair of
-pieces separated by a plane. When it passes, <b>Submit on GitHub</b> opens a pre-filled issue. A GitHub Action then
-runs the same exact certifier that proves every record on this site and posts the result on the issue, usually
-within a few minutes.</p>
-<p class="note">You need a GitHub account to submit. The check on this page runs entirely in your browser and sends nothing anywhere.</p>
-<p>All 25 Platonic-solid piece/container pairs are already tracked. For a batch, use the
-<a href="{{REPO}}/issues/new?template=submit-packing.yml">GitHub packing form</a> with a JSON array of full records or
-GitHub-hosted ZIP attachments containing native witnesses. Each witness is checked and reported separately;
-large batches take longer. Square and other planar packings are outside this site's polyhedra-in-polyhedra scope.</p>
+<h2 id="submit">Check and submit a 3D packing</h2>
+<p>Paste a 3D packing below. Your browser checks containment and pairwise separation in floating point and draws a
+preview. Passing this check enables <b>Submit on GitHub</b>, which opens a pre-filled issue for you to review and
+submit. The repository then runs an independent exact check. A browser pass is a useful diagnostic;
+the exact certificate establishes that the submitted coordinates fit.</p>
+<p class="note">The local check sends nothing anywhere. Submission needs a GitHub account and an explicit issue
+submission. This browser tool supports 3D convex solids from the library, with 1–200 pieces.
+For dimensions 4–6, use the <a href="#higher">higher-dimensional route below</a>.</p>
+<p>For multiple 3D packings, use the <a href="{{REPO}}/issues/new?template=submit-packing.yml">GitHub packing form</a>
+and follow the <a href="#batch">batch instructions</a>. To share a construction that does not improve the current
+scale, use <a href="#other">Share another construction</a>.</p>
+
 </article>
 </div>
 
-<section class="panel tool" id="tool" aria-label="Packing checker">
+<section class="panel tool" id="tool" aria-label="3D packing checker">
   <div class="toolgrid">
     <div class="toolin">
       <label class="field"><span>Problem</span>
         <select id="prob"></select>
-        <small>Pick one of the tracked problems, or “Another pair of solids” to check any piece and container from the library.</small></label>
+        <small>Pick a tracked 3D problem, or “Another pair of solids” to check any piece and container from the library.</small></label>
       <div class="pair" id="pair" hidden>
         <label class="field"><span>Piece</span><select id="piece"></select></label>
         <label class="field"><span>Container</span><select id="container"></select></label>
@@ -50,26 +59,103 @@ large batches take longer. Square and other planar packings are outside this sit
 
 <div class="doc">
 <article>
-<h2 id="after">What happens after you submit</h2>
+<h2 id="after">What happens after a 3D submission</h2>
 <ol>
-  <li>The issue is labelled <code>submission</code> and the <a href="{{REPO}}/blob/main/.github/workflows/submission.yml">submission workflow</a> starts. It runs the floating-point check (<a href="{{REPO}}/blob/main/verify_general.py"><code>verify_general.py</code></a>) and the exact certifier (<a href="{{REPO}}/blob/main/certify_general.py"><code>certify_general.py</code></a>), compares the size with the current record, and comments with the result.</li>
-  <li>A maintainer reviews it. Certified packings that beat the record, or fill a case with no record, are accepted by adding the <code>accepted</code> label.</li>
-  <li>The workflow then writes the record file with your credit, its exact certificate and float check, and rebuilds this site. The issue is closed with a link to the new record.</li>
+  <li>The issue receives the <code>submission</code> label. The
+  <a href="{{REPO}}/blob/main/.github/workflows/submission.yml">submission workflow</a> parses the witnesses as data,
+  runs <a href="{{REPO}}/blob/main/verify_general.py"><code>verify_general.py</code></a> and
+  <a href="{{REPO}}/blob/main/certify_general.py"><code>certify_general.py</code></a>, and reports each candidate's
+  result and comparison with the current certified coordinate record. Published bounds without available coordinates
+  are reported separately.</li>
+  <li>A maintainer reviews certified improvements or missing cases. Applying <code>accepted</code> reruns the checks
+  against the current archive; an edited submission or a newer competing record can change the outcome.</li>
+  <li>Eligible improvements are stored as immutable community witnesses with source credit, exact certificates and
+  float-check logs. The site is rebuilt. Batches that still contain deferred or unresolved candidates remain open
+  for review.</li>
 </ol>
-<p>A packing has to be strictly valid, not just touching: the certifier needs a positive clearance between pieces and
-from the walls. Spread the centres by about 10<sup>−7</sup> and round s up before you submit; <a href="{{REPO}}/blob/main/src/claim.py"><code>src/claim.py</code></a> does exactly that for the packings here.</p>
+<p>Acceptance requires a strictly smaller <code>s_full</code> than the current certified coordinate record
+(the comparison uses a 10<sup>−12</sup> tolerance), or a case without one. Equal-scale alternatives, symmetric
+arrangements, proofs, lower bounds and reconstructions remain useful: share those through the
+<a href="#other">construction form</a> for review. A feasible witness supplies an upper bound on the minimum
+container scale. Optimality needs a matching lower bound or a separate proof.</p>
+
+<h3 id="clearance">Clearance and precision</h3>
+<p>The current certifiers require every piece to lie strictly inside the container and each pair to have a positive
+separating gap. Preserve full coordinate precision and test the final <code>s_full</code>, rather than a rounded
+table label or a touching-limit estimate. The claim builders
+<a href="{{REPO}}/blob/main/src/claim.py"><code>src/claim.py</code></a> and
+<a href="{{REPO}}/blob/main/src/claim_nd.py"><code>src/claim_nd.py</code></a> can construct clearance and round the
+container outward. A gap near 10<sup>−7</sup> piece edges is a common project setting, not a universal minimum;
+smaller positive gaps may certify. Uniformly enlarging the container alone does not separate touching pieces:
+recheck both containment and pairwise separation after any change.</p>
+
+<h2 id="batch">Submit a 3D batch</h2>
+<p>In the packing form, supply a JSON array of complete records, an object <code>{"records": [...]}</code>, or
+GitHub user-attachment ZIP links in <b>Batch archives</b>. Every record needs its own <code>piece</code>,
+<code>container</code>, <code>n</code>, <code>s_full</code> and <code>pieces</code>. Put native witnesses under
+<code>records/</code> or <code>witnesses/</code>. A top-level <code>MANIFEST.json</code> may select them with
+<code>{"cases": [{"file": "records/example.json", "sha256": "…"}]}</code>;
+<code>witness</code>/<code>witness_sha256</code> entries are also supported.</p>
+<p>The 3D batch limits are 2,000 candidates, eight ZIPs, 64 MiB compressed and 256 MiB expanded per ZIP,
+8 MiB per witness, and 12,000 ZIP entries. Source/history files and submitted scripts are ignored; submitted code
+is never run. Every candidate gets its own outcome. The workflow artifact contains complete JSON/CSV results and
+checker logs even when the issue comment is abbreviated. Large batches may reach the 70-minute checking budget;
+a deferred candidate has not yet been certified and needs a later review or a smaller resubmission.</p>
+
+<h2 id="provenance">Credit, sources and refinements</h2>
+<p>Give the original construction's author or team, the method, a source URL, and any prior packing used as a seed.
+For a batch, preserve each record's <code>found_by</code> and <code>credit</code> fields. If only the safety padding
+or certificate changes, retain the construction author and identify <code>certificate_refined_by</code> separately.
+If a construction is derived by deletion, nesting, scaling or subsequent search, explain that lineage.
+Credit for a refinement or reconstruction does not by itself establish a new geometric discovery.</p>
+<p>The <a href="{{ROOT}}method/">method page</a> traces the project's search methods and their sources, including
+Alejandro Zarzuelo Urdiales's generalization of Yohei Nakajima's soft-to-rigid method and subsequent community
+contributions. Include enough detail to distinguish your contribution from its starting point. The issue form also
+asks permission to publish the submitted material under the repository's MIT license; credit any outside source and
+make its applicable permission or license clear.</p>
+
+<h2 id="higher">Submit a 4D, 5D or 6D packing</h2>
+<p>Higher-dimensional packings have a separate exact format and a maintainer-run intake route. Open a
+<a href="{{REPO}}/issues/new?template=other-construction.yml">construction issue</a> or a pull request with native
+JSON records, your name or team, method, sources and publication permission. For a batch, attach a ZIP to GitHub and
+include its SHA-256 checksum. Use the canonical polytope keys and exact coordinate frames in
+<a href="{{REPO}}/blob/main/src/polytopes_nd.json"><code>src/polytopes_nd.json</code></a>.
+The 3D browser form and its <code>accepted</code>-label workflow do not process these records.</p>
+<ol>
+  <li>Run <code>python3 certify_nd.py my-record.json</code> locally from a repository checkout. This verifier uses
+  Python's standard library and the repository's exact polytope data. Supply the native rotation parameters and
+  separating hyperplanes described <a href="#format-nd">below</a>.</li>
+  <li>A maintainer runs the
+  <a href="{{REPO}}/blob/main/.github/workflows/nd_submission.yml"><code>nd-submission</code> workflow</a> with the
+  GitHub attachment URL, expected SHA-256 and issue number. It runs this repository's <code>certify_nd.py</code>
+  separately on each native record and saves the results and logs as an artifact.</li>
+  <li>The maintainer imports certified improvements using
+  <a href="{{REPO}}/blob/main/scripts/import_nd_submission.py"><code>scripts/import_nd_submission.py</code></a>.
+  This converts the exact frame to search units, rechecks the geometry, compares the current archive and retains
+  contributor/issue credit. <a href="{{REPO}}/blob/main/scripts/publish_nd.py"><code>publish_nd.py</code></a> then
+  creates the published witness and a fresh exact certificate. The record must fit a tracked problem and its current
+  n range to enter this archive.</li>
+</ol>
+<p>The site displays these packings as 3D sections with sliders for the remaining coordinates and an optional
+sweep. A screenshot of a section is helpful context; the full-dimensional coordinates and certificate are the
+submission evidence.</p>
 
 <h2 id="category">Propose a new category</h2>
-<p>New categories are new (piece, container) problems: a solid that is not in the library yet, a different container,
-mixed pieces, or a different measure. Describe it and it becomes a GitHub issue where it can be discussed and,
-if adopted, added to the search.</p>
+<p>For a new 3D pair, describe the convex piece and container, their canonical coordinates and scale convention,
+the desired n range, and known constructions or references. The form below opens a public category proposal;
+maintainers review the geometry, search and exact-checker support before adding it. For a new higher-dimensional
+polytope, use a construction issue or pull request and include its dimension and facets.</p>
+<p>The present record/checker model uses congruent copies of one convex piece inside one convex container.
+Mixed-piece or nonconvex problems need an explicit extension. Planar square/circle packings and curved containers
+are outside the catalogue's scope.</p>
+
 </article>
 </div>
 
 <section class="panel formbox" aria-label="Propose a new category">
   <div class="fgrid">
     <label class="field"><span>Pieces</span><input type="text" id="c_pieces" placeholder="e.g. regular dodecahedra, or a solid not in the library"></label>
-    <label class="field"><span>Container</span><input type="text" id="c_container" placeholder="e.g. a sphere, a cube, a truncated octahedron"></label>
+    <label class="field"><span>Container</span><input type="text" id="c_container" placeholder="e.g. a cube or a truncated octahedron"></label>
     <label class="field wide"><span>What to minimize</span><input type="text" id="c_measure" placeholder="e.g. container edge ÷ piece edge, for n = 2–100"></label>
     <label class="field wide"><span>Why it is interesting</span><textarea id="c_motivation" rows="3" style="font-family:var(--f-body)"></textarea></label>
     <label class="field wide"><span>Definitions, coordinates or known results</span><textarea id="c_details" rows="4" placeholder="Vertex coordinates, references, links"></textarea></label>
@@ -80,8 +166,11 @@ if adopted, added to the search.</p>
 <div class="doc">
 <article>
 <h2 id="other">Share another construction</h2>
-<p>Any packing of polyhedra inside a polyhedron is welcome here, even if it does not fit a tracked category: a beautiful
-symmetric arrangement, a proof of optimality for small n, a lattice construction, a lower bound, a physical model.</p>
+<p>Share a symmetric or equal-scale alternative, a lattice or tiling construction, a proof, a lower bound, a physical
+model, or a historical source. Include coordinates where available and distinguish a conjectured formula from a
+proved value. These issues are reviewed separately from automatic record acceptance. This form also provides the
+entry point for <a href="#higher">higher-dimensional contributions</a>.</p>
+
 </article>
 </div>
 
@@ -100,33 +189,87 @@ symmetric arrangement, a proof of optimality for small n, a lattice construction
 <div class="doc">
 <article>
 <h2 id="code">Improve the code or add a solid</h2>
-<p>Pull requests are welcome; <a href="{{REPO}}/blob/main/CONTRIBUTING.md"><code>CONTRIBUTING.md</code></a> has the details. Adding a solid takes four steps:</p>
+<p>Pull requests are welcome; <a href="{{REPO}}/blob/main/CONTRIBUTING.md"><code>CONTRIBUTING.md</code></a>
+describes local checks. Keep search, rigorous verification and presentation as separate stages.</p>
 <ol>
-  <li>Define it in <a href="{{REPO}}/blob/main/polyhedra.py"><code>polyhedra.py</code></a> (high-precision vertices; faces are derived from the hull and checked) and run it to regenerate <a href="{{REPO}}/blob/main/src/solids.json"><code>src/solids.json</code></a>, including the r-rounding cores used by the soft shapes.</li>
-  <li>Give its number field in <a href="{{REPO}}/blob/main/scripts/exact_solids.py"><code>scripts/exact_solids.py</code></a> and run it; it finds exact coordinates and proves them right, writing <a href="{{REPO}}/blob/main/src/solids_exact.json"><code>src/solids_exact.json</code></a>.</li>
-  <li>Add the problem id to <a href="{{REPO}}/blob/main/scripts/engine.py"><code>scripts/engine.py</code></a> (<code>AB</code>, the family lists) and start the search with <code>scripts/run_forever.sh</code>.</li>
-  <li>Publish with <code>python3 scripts/publish.py</code>: record files, certificates and this site are rebuilt from the archive.</li>
+  <li>For a new 3D solid, define high-precision vertices in
+  <a href="{{REPO}}/blob/main/polyhedra.py"><code>polyhedra.py</code></a> and regenerate
+  <code>src/solids.json</code> and <code>src/solids_hp.json</code>. Add its number field and exact construction in
+  <a href="{{REPO}}/blob/main/scripts/exact_solids.py"><code>scripts/exact_solids.py</code></a>, and regenerate and
+  self-check <code>src/solids_exact.json</code>.</li>
+  <li>Register a 3D problem in <a href="{{REPO}}/blob/main/scripts/engine.py"><code>scripts/engine.py</code></a>
+  (<code>PROBLEMS</code> and the family lists). Higher-dimensional geometry and pair definitions instead live in
+  <a href="{{REPO}}/blob/main/src/polytopes_nd.py"><code>src/polytopes_nd.py</code></a> and
+  <a href="{{REPO}}/blob/main/scripts/engine_nd.py"><code>scripts/engine_nd.py</code></a>.
+  A new nD solid also needs exact verifier support, including the appropriate facet checks.</li>
+  <li>Run the relevant geometry, certification and site checks. Maintainer publication uses
+  <code>scripts/publish.py</code> / <code>scripts/publish_nd.py</code>; <code>python3 scripts/site.py</code>
+  builds the local site from the records and certificates. Records enter the public catalogue only after review
+  and the relevant checks.</li>
 </ol>
 
-<h2 id="format">Format of a packing</h2>
-<p>The same JSON as the record files. Pieces are copies of the canonical piece solid of
-<a href="{{REPO}}/blob/main/src/solids.json"><code>src/solids.json</code></a> (50-digit coordinates in
-<a href="{{REPO}}/blob/main/src/solids_hp.json"><code>src/solids_hp.json</code></a>, exact ones in
-<a href="{{REPO}}/blob/main/src/solids_exact.json"><code>src/solids_exact.json</code></a>), each rotated by a
-scalar-first quaternion and then moved to its centre. The container is <code>s_full</code> times the canonical container
-solid, centred at the origin (or at <code>container_center</code>) in its canonical orientation.</p>
+<h2 id="format">3D packing format</h2>
+<p>Use the same JSON as the record files. Canonical solids are in
+<a href="{{REPO}}/blob/main/src/solids.json"><code>src/solids.json</code></a> (high-precision coordinates in
+<a href="{{REPO}}/blob/main/src/solids_hp.json"><code>src/solids_hp.json</code></a>, exact definitions in
+<a href="{{REPO}}/blob/main/src/solids_exact.json"><code>src/solids_exact.json</code></a>).
+Each piece row is <code>[x, y, z, qw, qx, qy, qz]</code>: a scalar-first quaternion rotates the canonical piece,
+then its centre translates it. The quaternion must be nonzero and is normalized by the checker.
+The container is <code>s_full</code> times the canonical container in its canonical orientation, centred at the
+origin or at the optional <code>container_center</code>.</p>
+<p>This complete example places two unit cubes in a larger cube with positive gaps:</p>
 <pre><code>{
-  "piece": "truncated_octahedron",
-  "container": "truncated_octahedron",
+  "piece": "cube",
+  "container": "cube",
   "n": 2,
-  "s_full": 2.0000001,
+  "s_full": 2.2,
   "pieces": [
-    [x, y, z, qw, qx, qy, qz],
-    [x, y, z, qw, qx, qy, qz]
+    [-0.55, 0, 0, 1, 0, 0, 0],
+    [ 0.55, 0, 0, 1, 0, 0, 0]
   ]
 }</code></pre>
-<p>Canonical solids have unit edges (Platonic and Archimedean solids, prisms, antiprisms). A Catalan solid is the
-canonical dual of the unit-edge Archimedean solid, reflected in their common midsphere, and its s is a ratio of sizes of
-that same solid. Names are the keys of <code>src/solids.json</code>: <span id="names"></span>.</p>
+<p>Platonic and Archimedean solids and the regular unit-edge prisms/antiprisms use unit-edge geometry.
+Elongated prism keys encode their fixed aspect ratio; their base edge defines the size unit. Catalan solids use the
+canonical dual of the corresponding unit-edge Archimedean solid, obtained by polar reciprocity in their common midsphere, and use that
+canonical size convention. Use the recorded normalization when comparing scales or densities; do not rescale a
+source's coordinates without documenting the conversion. Available 3D keys: <span id="names"></span>.</p>
+
+<h2 id="format-nd">Higher-dimensional native format</h2>
+<p>In dimensions d = 4, 5 or 6, each <code>pieces</code> row contains d centre coordinates, the
+d(d−1)/2 upper-triangular entries of a skew-symmetric matrix S (row by row), and d signs D, in that order.
+The signs are ±1 with an even number of −1 entries, and the exact rotation is
+<code>R = diag(D) (I − S)<sup>−1</sup> (I + S)</code>.
+The container is <code>container_center + s_full × mu × C</code>, where C is the canonical container polytope and
+<code>mu = edge(P) / edge(C)</code> is required and checked exactly. Thus <code>s_full</code> remains the ratio of
+container edge to piece edge even when the two stored canonical polytopes have different edge lengths.</p>
+<p>A plane row <code>[i, j, u_1, …, u_d, t]</code> uses zero-based piece indices and proves
+<code>u·x &lt; t</code> for piece i and <code>u·x &gt; t</code> for piece j. Supply a plane for every pair not already
+separated by the verifier's circumscribed-ball test. Coordinates and plane parameters may be finite JSON numbers
+or rational strings such as <code>"1/2"</code>. Preserve the native values: display-rounded poses or an arbitrary
+floating rotation matrix are not this certificate format.</p>
+<p>This complete example certifies two tesseracts; each row has 4 centre coordinates, 6 zero skew parameters and
+4 positive signs. Save it as <code>two-tesseracts.json</code> and run
+<code>python3 certify_nd.py two-tesseracts.json</code>:</p>
+<pre><code>{
+  "dim": 4,
+  "piece": "c8",
+  "container": "c8",
+  "n": 2,
+  "s_full": 2.2,
+  "mu": "1",
+  "pieces": [
+    [-0.55, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+    [ 0.55, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1]
+  ],
+  "planes": [[0, 1, 1, 0, 0, 0, 0]]
+}</code></pre>
+<p>4D keys: <code>c5</code> (5-cell), <code>c8</code> (tesseract), <code>c16</code> (16-cell),
+<code>c24</code> (24-cell), <code>c120</code> (120-cell), <code>c600</code> (600-cell).
+5D: <code>sx5</code>, <code>hc5</code>, <code>op5</code>; 6D: <code>sx6</code>, <code>hc6</code>,
+<code>op6</code>, for the simplex, hypercube and orthoplex respectively. Piece and container must have the same
+dimension. For producing a native record from numerical centre/rotation arrays, see
+<a href="{{REPO}}/blob/main/src/claim_nd.py"><code>claim_nd.make_claim</code></a> and its documented internal-unit
+conversion.</p>
+
 </article>
 </div>

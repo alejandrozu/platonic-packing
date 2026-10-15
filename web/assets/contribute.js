@@ -17,7 +17,9 @@
   const dn = s => { const m = /^(anti)?prism(\d+)$/.exec(s); return m ? `${POLY[m[2]]} ${m[1] ? 'antiprism' : 'prism'}` : s.replace(/_/g, ' ') };
   const pl = s => { const w = dn(s); return w.endsWith('hedron') ? w.slice(0, -6) + 'hedra' : w + 's' };
   const art = s => (/^[aeiou]/.test(s) ? 'an ' : 'a ') + s;
-  const names = Object.keys(D.solids).sort((a, b) => dn(a).localeCompare(dn(b)));
+  // The catalogue also contains 4D–6D polytopes; this SAT checker and its native format are 3D only.
+  const names = Object.keys(D.solids).filter(n => D.solids[n].dim == null || D.solids[n].dim === 3).sort((a, b) => dn(a).localeCompare(dn(b)));
+  const problems = D.problems.filter(p => (p.dim == null || p.dim === 3) && names.includes(p.piece) && names.includes(p.container));
   $('names').innerHTML = names.map(n => `<code>${n}</code>`).join(', ');
 
   // ---------- selects
@@ -25,16 +27,16 @@
   const ps = $('prob');
   FAMS.forEach(([f, label]) => {
     const g = document.createElement('optgroup'); g.label = label;
-    D.problems.filter(p => p.family === f).forEach(p => { const o = document.createElement('option'); o.value = p.id; o.textContent = p.title; g.appendChild(o) });
+    problems.filter(p => p.family === f).forEach(p => { const o = document.createElement('option'); o.value = p.id; o.textContent = p.title; g.appendChild(o) });
     ps.appendChild(g);
   });
   const other = document.createElement('option'); other.value = '_pair'; other.textContent = 'Another pair of solids'; ps.appendChild(other);
   ['piece', 'container'].forEach(id => names.forEach(n => { const o = document.createElement('option'); o.value = n; o.textContent = dn(n); $(id).appendChild(o) }));
   $('container').value = 'cube';
-  const hashP = D.problems.find(p => p.id === location.hash.slice(1).split('_')[0]);
+  const hashP = problems.find(p => p.id === location.hash.slice(1).split('_')[0]);
   if (hashP) ps.value = hashP.id;
   ps.onchange = () => { $('pair').hidden = ps.value !== '_pair'; invalidate() };
-  const current = () => ps.value === '_pair' ? { piece: $('piece').value, container: $('container').value } : D.problems.find(p => p.id === ps.value);
+  const current = () => ps.value === '_pair' ? { piece: $('piece').value, container: $('container').value } : problems.find(p => p.id === ps.value);
   ['piece', 'container'].forEach(id => $(id).onchange = invalidate);
 
   // ---------- geometry
@@ -76,17 +78,23 @@
   }
 
   // ---------- parsing
+  function higherDimensionalError() {
+    const error = new Error('This browser checker accepts only 3D packings. Use the separate higher-dimensional submission route for native 4D, 5D or 6D records.');
+    error.code = 'higher-dimensional'; return error;
+  }
   function parse() {
     const txt = $('json').value.trim(); if (!txt) throw new Error('Paste a packing first.');
     let obj; try { obj = JSON.parse(txt) } catch (e) { throw new Error('This is not valid JSON: ' + e.message) }
     if (Array.isArray(obj)) obj = { pieces: obj };
     if (!obj || !Array.isArray(obj.pieces)) throw new Error('The JSON needs a "pieces" list: one [x, y, z, qw, qx, qy, qz] per piece.');
-    const cur = current();
+    if (obj.dim != null && obj.dim !== 3) throw higherDimensionalError();
+    const cur = current() || {};
     const piece = obj.piece || cur.piece, container = obj.container || cur.container;
     if (!D.solids[piece]) throw new Error(`Unknown piece solid "${piece}". Use one of the names listed under “Format of a packing”.`);
     if (!D.solids[container]) throw new Error(`Unknown container solid "${container}".`);
+    if (!names.includes(piece) || !names.includes(container)) throw higherDimensionalError();
     if (obj.piece && obj.container && ps.value !== '_pair') {
-      const p = D.problems.find(p => p.piece === obj.piece && p.container === obj.container);
+      const p = problems.find(p => p.piece === obj.piece && p.container === obj.container);
       if (p && p.id !== ps.value) { ps.value = p.id; $('pair').hidden = true }
       else if (!p) { ps.value = '_pair'; $('pair').hidden = false; $('piece').value = piece; $('container').value = container }
     }
@@ -185,14 +193,15 @@
   const fmt = (x, d = 10) => Number.isFinite(x) ? x.toPrecision(d) : '—';
   $('check').onclick = async () => {
     invalidate(); const version = inputVersion, out = $('result');
-    let pk; try { pk = parse() } catch (e) { out.innerHTML = `<p class="verdict bad">Cannot check this yet</p><p>${esc(e.message)}</p>`; return }
+    let pk; try { pk = parse() } catch (e) { out.innerHTML = `<p class="verdict bad">Cannot check this yet</p><p>${esc(e.message)}</p>` +
+      (e.code === 'higher-dimensional' ? '<p><a href="#higher">Higher-dimensional submission instructions</a></p>' : ''); return }
     $('check').disabled = true; $('busy').textContent = 'Checking…'; show(pk, null);
     let res; try { res = await check(pk) } catch (e) { out.innerHTML = `<p class="verdict bad">Cannot check this yet</p><p>${esc(e.message)}</p>`; $('check').disabled = false; $('busy').textContent = ''; return }
     $('check').disabled = false; $('busy').textContent = '';
     if (version !== inputVersion) { out.innerHTML = '<p class="mut">The packing changed during the check. Check it again before submitting.</p>'; return }
     show(pk, res);
     const ok = res.wall > 0 && !res.over.length;
-    const prob = D.problems.find(p => p.piece === pk.piece && p.container === pk.container);
+    const prob = problems.find(p => p.piece === pk.piece && p.container === pk.container);
     const listed = prob && prob.rows.find(r => r.n === pk.n);
     const rec = listed && (listed.file ? listed : (listed.alternatives || []).find(r => r.file && r.ok));
     let cmp = '';
@@ -276,7 +285,7 @@
   $('send').onclick = () => {
     if (!last) return;
     if (!$('credit').value.trim()) { $('sendnote').textContent = 'Add the name, handle or team to credit before submitting.'; $('credit').focus(); return }
-    const pk = last, prob = D.problems.find(p => p.piece === pk.piece && p.container === pk.container);
+    const pk = last, prob = problems.find(p => p.piece === pk.piece && p.container === pk.container);
     const rec = { piece: pk.piece, container: pk.container, n: pk.n, s_full: pk.s, ...(pk.cc.some(x => x) ? { container_center: pk.cc } : {}), pieces: pk.pcs };
     const json = JSON.stringify(rec);
     const pid = prob ? prob.id : `${pk.piece} in ${pk.container}`;
