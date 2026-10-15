@@ -78,6 +78,7 @@ for _s in PRISMS:
     for _c in (_s, 'cube'): PROBLEMS.append((_s, _c)); FAMILY[(_s, _c)] = 'prisms'
 ELONGATED = [f'prism{k}_{t}' for k in (3, 5, 6, 8, 12) for t in ELONG_TAGS]
 for _s in ELONGATED: PROBLEMS.append((_s, 'cube')); FAMILY[(_s, 'cube')] = 'prisms'
+STREAK = int(os.environ.get('PP_STREAK', 3))
 NMIN, NMAX, POOL = 2, int(os.environ.get('PP_NMAX', '100')), 6     # n <= 100 since 14 Oct 16:49 (Alejandro); 40 before
 CHAIN_FROM = 41                                                        # n above the old range: crystal-cut seeds, ascend chain first
 
@@ -334,7 +335,7 @@ def tighten(row, best_s, n, gate, explore=False):
     return out
 
 
-def attempt(sim, p, n, move, rng, log, vname='base'):
+def attempt(sim, p, n, move, rng, log, vname='base', streak=0):
     piece, container = PID[p]
     pb = problem(p)
     V = dict(HOP_DEFAULT, **VARIANTS.get(vname, {}))
@@ -443,7 +444,8 @@ def attempt(sim, p, n, move, rng, log, vname='base'):
     with open(os.path.join(STATE, 'attempts.jsonl'), 'a') as f:
         f.write(json.dumps({'t': round(time.time()), 'p': p, 'n': n, 'move': move, 'raw': s_raw, 's': s_new if out else None,
                             'best_before': best_s, 'improved': improved, 'secs': round(secs, 1), 'raw_secs': round(t_raw, 1),
-                            **{k: (round(v, 4) if isinstance(v, float) else v) for k, v in info.items() if k in ('minDiff', 'expand', 'focus', 'from', 'var', 'sym')}}) + '\n')
+                            **{k: (round(v, 4) if isinstance(v, float) else v) for k, v in info.items() if k in ('minDiff', 'expand', 'focus', 'from', 'var', 'sym')},
+                            **({'streak': streak} if streak else {})}) + '\n')
     return improved
 
 
@@ -508,6 +510,7 @@ def choose(rng, wid):
         score = (st.get('effort', 0) + 30) / n * (1 + st.get('since', 0) / 12) * rng.uniform(0.7, 1.3)
         if c.get('best') and _plateau(idx, p, n): score *= 0.5            # equal s for n-1, n, n+1: likely weak
         if c.get('best') and c['best']['src'].get('move') == 'community': score *= 0.7   # new contributed packing
+        if sh and PID_INDEX[p] % sh[1] != sh[0]: score *= 3     # 16 Oct: Actions jobs (no shared archive) keep mostly to their own problems
         if best_score is None or score < best_score: best_key, best_score = (p, n), score
     p, n = best_key
     c = idx[(p, n)]
@@ -637,7 +640,12 @@ def work(wid):
                 if pol.get('mode') == 'experiment': vname = rng.choice(pol.get('variants') or ['base'])
                 elif pol.get('hop_variant') in VARIANTS: vname = pol['hop_variant']
             try:
-                attempt(sim, p, n, move, rng, log, vname)
+                improved = attempt(sim, p, n, move, rng, log, vname)
+                # 16 Oct (as engine_nd.py since 15 Oct 13:00, where follow-ups improved 58% of the time): a case that
+                # just improved is still far from its local optimum: up to STREAK more perturbs while it keeps improving
+                k = 0
+                while improved and k < STREAK and rng.random() < 0.7 and not os.path.exists(os.path.join(STATE, 'STOP')):
+                    k += 1; improved = attempt(sim, p, n, 'perturb', rng, log, 'base', streak=k)
             except Exception as e:
                 log(f'ERROR {p} n={n} {move}: {type(e).__name__}: {str(e)[:300]}')
                 time.sleep(2)
