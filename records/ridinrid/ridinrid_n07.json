@@ -3,109 +3,104 @@
  "piece": "rhombicosidodecahedron",
  "container": "rhombicosidodecahedron",
  "n": 7,
- "s": 2.55227,
- "s_plus": "2.55227+",
- "s_full": 2.5522785341318,
+ "s": 2.54847,
+ "s_plus": "2.54847+",
+ "s_full": 2.5484712951591,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020414473025e-07,
-  "min_wall_gap": 1.0000005978838544e-07
+  "min_pair_gap": 8.270678149269789e-06,
+  "min_wall_gap": 1.000001299544806e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
- "date": "2026-10-14",
+ "date": "2026-10-15",
  "pieces": [
   [
-   1.4747993772207535,
-   2.4589418278209987,
-   1.8506996441767503,
-   0.692491330509477,
-   -0.5168461712537556,
-   0.43271399837046015,
-   -0.2570688391147348
+   -3.1752132261589545,
+   0.6051486363940866,
+   1.0478241153291206,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   -1.0521432743657078,
-   2.8588695311938945,
-   -1.4524538409114234,
-   0.008999976861306169,
-   -0.3034355807772065,
-   0.503406745217946,
-   -0.8089669323303452
+   1.4215797412089444,
+   1.021499073961345,
+   -2.8796340639138793,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   3.0640398521014034,
-   0.14023453085974374,
-   -1.330543165545853,
-   0.40160444967013,
-   0.17556495096356192,
-   -0.14438914548498794,
-   0.8871542079393127
+   1.4553172725550847,
+   -3.0195646902821864,
+   -0.3533040150459116,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   -3.2640586461497314,
-   -0.5171320068992747,
-   -0.02963276107929259,
-   0.27873624013149834,
-   -0.5046204845540472,
-   -0.00047527608343512514,
-   -0.8171071221807084
+   0.025925711133513187,
+   3.27971473116026,
+   0.4276979684009325,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   -0.5860833091483382,
-   -0.9979390668528361,
-   -3.2042158132535414,
-   0.7097599516307025,
-   0.15539538602900874,
-   0.16867687345401922,
-   0.6660639589587889
+   0.11111533450998755,
+   -1.0723050360988997,
+   3.165862346501213,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   0.9271691287406705,
-   -3.2430537633506087,
-   0.10609479993404221,
-   0.25443826287574733,
-   0.958973022857567,
-   -0.06852788081469566,
-   -0.10457457323479452
+   3.25378902002779,
+   0.6483895779755192,
+   0.8421100162886043,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   -0.682669153434043,
-   -0.9273770244025197,
-   3.2300108999200488,
-   0.5000000000000001,
-   -0.30901699437494873,
-   0.8090169943749469,
-   7.033094534188352e-16
+   -1.9013759315329564,
+   -1.4559634024480708,
+   -2.4278545049782325,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ]
  ],
  "record_id": "ridinrid_n07",
  "title": "7 rhombicosidodecahedra in a rhombicosidodecahedron",
  "family": "archimedean",
  "source": {
-  "hash": "6e23cab12bcf0cc4",
+  "hash": "11491e779cfda511",
   "clear": 1e-07,
-  "cap": 2.6213753779938
+  "cap": 2.6180372764902
  },
- "s_tight": 2.552278447997,
+ "s_tight": 2.548471246723,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.912931182772389,
- "found_by": "Alejandro Zarzuelo",
+ "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/21)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "hop",
-  "seed": 1524898306,
-  "var": "gentle",
-  "minDiff": 0.060459104718205176,
-  "expand": 0.011184365845017856,
-  "rh": 0.18468324455632396,
-  "focus": 0,
-  "from": "best",
-  "raw": 2.5532725027544685,
-  "host": "laptop"
+  "move": "community",
+  "lineage": "PingYou Ltd",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/21",
+  "submitted_by": "BuddenPing",
+  "record_file": "records/community/ridinrid/ridinrid_n07_submission_21_d0d315e26ebd.json"
  },
- "density": 0.42103077006469825
+ "density": 0.42292056258853605
 }

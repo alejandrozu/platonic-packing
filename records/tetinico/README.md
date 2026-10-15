@@ -33,3 +33,13 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 28 | [1.48202+](tetinico_n28.json) | 1.482028010497 |  | 1.14789 | 0.4647 | ![](tetinico_n28.png) |
 | 29 | [1.52537+](tetinico_n29.json) | 1.525378423359 |  | 1.16139 | 0.4414 | ![](tetinico_n29.png) |
 | 30 | [1.52645+](tetinico_n30.json) | 1.526457260117 |  | 1.17459 | 0.4556 | ![](tetinico_n30.png) |
+| 31 | [1.76499+](tetinico_n31.json) | 1.764995694846 |  | 1.18750 | 0.3046 | ![](tetinico_n31.png) |
+| 32 | [1.77697+](tetinico_n32.json) | 1.776977874076 |  | 1.20013 | 0.3081 | ![](tetinico_n32.png) |
+| 33 | [1.77697+](tetinico_n33.json) | 1.776977928533 |  | 1.21251 | 0.3177 | ![](tetinico_n33.png) |
+| 34 | [1.80807+](tetinico_n34.json) | 1.808074669963 |  | 1.22463 | 0.3107 | ![](tetinico_n34.png) |
+| 35 | [1.83661+](tetinico_n35.json) | 1.836619378567 |  | 1.23652 | 0.3052 | ![](tetinico_n35.png) |
+| 36 | [1.83661+](tetinico_n36.json) | 1.836619558627 |  | 1.24819 | 0.3139 | ![](tetinico_n36.png) |
+| 37 | [1.86269+](tetinico_n37.json) | 1.862691744709 |  | 1.25964 | 0.3093 | ![](tetinico_n37.png) |
+| 38 | [1.86269+](tetinico_n38.json) | 1.862691834739 |  | 1.27089 | 0.3176 | ![](tetinico_n38.png) |
+| 39 | [1.89636+](tetinico_n39.json) | 1.896360364774 |  | 1.28194 | 0.3089 | ![](tetinico_n39.png) |
+| 40 | [1.90044+](tetinico_n40.json) | 1.900447950639 |  | 1.29281 | 0.3148 | ![](tetinico_n40.png) |

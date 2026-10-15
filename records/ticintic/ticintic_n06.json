@@ -3,94 +3,95 @@
  "piece": "truncated_icosahedron",
  "container": "truncated_icosahedron",
  "n": 6,
- "s": 2.36963,
- "s_plus": "2.36963+",
- "s_full": 2.3696397171472,
+ "s": 2.34166,
+ "s_plus": "2.34166+",
+ "s_full": 2.3416624016727,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020484456698e-07,
-  "min_wall_gap": 1.0000006867016964e-07
+  "min_pair_gap": 4.5343246043860936e-07,
+  "min_wall_gap": 1.0000006156474228e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
- "date": "2026-10-13",
+ "date": "2026-10-15",
  "pieces": [
   [
-   -0.8350604935641667,
-   -1.4843121063402853,
-   -2.900787769122155,
-   0.05422156740933293,
-   -0.40997249748954323,
-   0.010987526071818961,
-   -0.9104185011304872
+   0.6708584144126828,
+   -2.427068667379923,
+   -2.1708493984934045,
+   0.8090092738855065,
+   0.3090199432550798,
+   -0.5000106692329734,
+   -9.54291316798516e-06
   ],
   [
-   0.8298174884211201,
-   1.4655665153975623,
-   2.912151553703162,
-   0.5804889945584775,
-   -0.00991565186655042,
-   -0.12116295192205417,
-   -0.8051420658033484
-  ],
-  [
-   2.8748544350517475,
-   1.176363515852927,
-   -1.2918651540102408,
-   0.5000000000000815,
-   -0.8090169943748887,
-   0.30901699437496954,
-   7.283063041539843e-14
-  ],
-  [
-   1.3535138019238633,
-   -2.8909770397262253,
-   1.1341539770672797,
-   0.5000000000000008,
-   0.5000000000000004,
-   0.5000000000000004,
-   0.4999999999999985
-  ],
-  [
-   -2.888636140706983,
-   -1.140282530263891,
-   1.3497261441451087,
-   0.5000000000000006,
-   -0.4999999999999986,
-   -0.49999999999999917,
-   -0.5000000000000017
-  ],
-  [
-   -1.340223975851401,
-   2.849349183614589,
-   -1.1890716636372025,
+   0.6708707022559409,
+   2.4270184452533425,
+   -2.170877764366809,
    1.0,
-   -7.239536842210198e-14,
-   7.824918511383077e-14,
-   -6.289324579047065e-14
+   -9.907771515557643e-17,
+   1.6274425552654412e-16,
+   -2.263564111939649e-16
+  ],
+  [
+   3.2562829439504184,
+   1.1132307956256929e-11,
+   0.670794300356389,
+   0.8090169943749476,
+   3.430777821555291e-17,
+   0.3090169943749474,
+   0.4999999999999998
+  ],
+  [
+   -0.6708311787885479,
+   -2.4270900055371554,
+   2.170855295978909,
+   0.5000000000000002,
+   -0.5000000000000001,
+   -0.49999999999999994,
+   -0.49999999999999994
+  ],
+  [
+   -3.256240519895538,
+   -0.00011106762214470367,
+   -0.6708998223531298,
+   0.3090169943749477,
+   -3.430777821555291e-17,
+   -0.4999999999999994,
+   0.8090169943749478
+  ],
+  [
+   -0.6707796824298695,
+   2.42700313605394,
+   2.1708312895510393,
+   0.8090095723571897,
+   -0.5000434373927901,
+   -6.861618592412505e-17,
+   -0.30896613496440023
   ]
  ],
  "record_id": "ticintic_n06",
  "title": "6 truncated icosahedra in a truncated icosahedron",
  "family": "archimedean",
  "source": {
-  "hash": "ed70866aa0ee81a0",
+  "hash": "e854db0f769944ab",
   "clear": 1e-07,
   "cap": 2.5466575096081
  },
- "s_tight": 2.369639641912,
+ "s_tight": 2.341662357571,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.8171205928321397,
- "found_by": "Alejandro Zarzuelo",
+ "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/20)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "bench-hop",
-  "from": "best",
-  "minDiff": 0.0758,
-  "host": "bench"
+  "move": "community",
+  "lineage": "PingYou Ltd",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/20",
+  "submitted_by": "BuddenPing",
+  "record_file": "records/community/ticintic/ticintic_n06_submission_20_9d354e2ac623.json"
  },
- "density": 0.4509249743534697
+ "density": 0.467281300384679
 }

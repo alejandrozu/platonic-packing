@@ -3,109 +3,104 @@
  "piece": "truncated_cuboctahedron",
  "container": "truncated_cuboctahedron",
  "n": 7,
- "s": 2.48312,
- "s_plus": "2.48312+",
- "s_full": 2.4831226016026,
+ "s": 2.4576,
+ "s_plus": "2.45760+",
+ "s_full": 2.4576089787578,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020356387921e-07,
-  "min_wall_gap": 1.0000006422927754e-07
+  "min_pair_gap": 1.0000016542975046e-07,
+  "min_wall_gap": 1.000000846573812e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
- "date": "2026-10-13",
+ "date": "2026-10-15",
  "pieces": [
   [
-   -1.8924125051188019,
-   2.4253131857227914,
-   1.358941368074316,
-   0.2765414720539794,
-   -0.20767473411929127,
-   0.8439193971162351,
-   0.41011714206269184
+   -2.171278804347284,
+   2.068937605230332,
+   -1.0382524489720901,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   -1.2092972625869114,
-   -2.0867766495190945,
-   -2.0747879498178508,
-   0.7250730823794367,
-   -1.5168328689848586e-15,
-   0.6876546257476006,
-   -0.03741845663185468
+   2.7901747757747635,
+   -0.8311456623757341,
+   1.6571484203990736,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   2.60345768655648,
-   -1.6794472028528566,
-   -1.0879569789256922,
-   0.5121860597454724,
-   -0.5121860597454849,
-   -0.5121860597454756,
-   0.4615152441764045
+   1.6571484203990725,
+   2.790174775774893,
+   -0.8311456623758617,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   -0.899220495875225,
-   1.7001797068184181,
-   -2.759759202800333,
-   0.48716551771571154,
-   0.4897388238008715,
-   0.48417446201850234,
-   -0.5370295458724925
+   -0.831145662375863,
+   1.657148420399201,
+   2.7901747757747652,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   2.1623949220002032,
-   2.4669056649765855,
-   0.00018304782311206664,
-   0.4250877920074235,
-   -0.4250877920074214,
-   0.05279659123507745,
-   -0.7973789927797602
+   2.0689376052302024,
+   -1.0382524489719627,
+   -2.171278804347282,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   1.833309653362956,
-   -0.7688906002013188,
-   2.755472383181133,
-   0.002043285701682558,
-   0.039710497082905444,
-   -0.6899188983872733,
-   -0.7227937569272865
+   -1.7594896195166527,
+   -1.7594896195165242,
+   -1.7594896195166514,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   -1.8928072908247768,
-   -1.7620523451618668,
-   1.7160022230017418,
-   0.02811670851140198,
-   0.02811670851139965,
-   -0.028116708511400156,
-   -0.9988134721295339
+   -1.0382524489720915,
+   -2.1712788043471547,
+   2.068937605230204,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ]
  ],
  "record_id": "tcointco_n07",
  "title": "7 truncated cuboctahedra in a truncated cuboctahedron",
  "family": "archimedean",
  "source": {
-  "hash": "f27e4ff0cbe64935",
+  "hash": "b9e778dd05caab04",
   "clear": 1e-07,
-  "cap": 2.5835521459685
+  "cap": 2.5374141494177
  },
- "s_tight": 2.483122510937,
+ "s_tight": 2.457608903063,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.912931182772389,
- "found_by": "Alejandro Zarzuelo",
+ "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/21)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "hop",
-  "seed": 1268067044,
-  "var": "gentle",
-  "minDiff": 0.05349262713181619,
-  "expand": 0.0075831677495686485,
-  "rh": 0.06584233551483497,
-  "focus": 0,
-  "from": "best",
-  "raw": 2.4964140643425536,
-  "host": "actions"
+  "move": "community",
+  "lineage": "PingYou Ltd",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/21",
+  "submitted_by": "BuddenPing",
+  "record_file": "records/community/tcointco/tcointco_n07_submission_21_55b9b754da7a.json"
  },
- "density": 0.45719718868307174
+ "density": 0.47158467658924963
 }
