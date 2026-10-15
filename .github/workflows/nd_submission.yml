@@ -1,0 +1,69 @@
+# Higher-dimensional contributions (15 Oct 2026): fetch a submitted archive (an issue attachment; the main machine's
+# network cannot reach it), check its SHA256, extract only data files (JSON / text) with safe paths, and run THIS
+# repository's exact certifier (certify_nd.py, standard library only) on every record in the format of records/<id>/.
+# Nothing from the archive is executed. The results and the extracted records are uploaded as an artifact; the main
+# machine imports certified improvements with credit (scripts/import_nd_submission.py).
+name: nd-submission
+on:
+  workflow_dispatch:
+    inputs:
+      url: {description: 'attachment URL (https://github.com/user-attachments/...)', required: true}
+      sha256: {description: 'expected SHA256 of the archive', required: true}
+      issue: {description: 'issue number', required: true}
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, fetch-depth: 1}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Fetch and extract data files
+        env:
+          URL: ${{ inputs.url }}
+          SHA: ${{ inputs.sha256 }}
+        run: |
+          case "$URL" in https://github.com/user-attachments/*) ;; *) echo "not a GitHub attachment URL"; exit 1;; esac
+          mkdir -p sub/x
+          curl -sSL --max-filesize 200000000 -o sub/sub.zip "$URL"
+          echo "$SHA  sub/sub.zip" | sha256sum -c
+          python3 - <<'PY'
+          import zipfile, os, json
+          z = zipfile.ZipFile('sub/sub.zip'); out = []
+          for i in z.infolist():
+              out.append(f'{i.filename}\t{i.file_size}')
+              name = i.filename
+              if i.is_dir() or name.startswith('/') or '..' in name.split('/'): continue
+              if not name.lower().endswith(('.json', '.txt', '.md', '.csv')) or i.file_size > 50_000_000: continue
+              dst = os.path.join('sub/x', name)
+              os.makedirs(os.path.dirname(dst), exist_ok=True)
+              with z.open(i) as src, open(dst, 'wb') as f: f.write(src.read())
+          open('sub/listing.txt', 'w').write('\n'.join(out) + '\n')
+          PY
+          wc -l sub/listing.txt
+      - name: Certify every native nD record with this repository's certify_nd.py
+        run: |
+          python3 - <<'PY'
+          import json, os, glob, subprocess
+          res = []
+          for f in sorted(glob.glob('sub/x/**/*.json', recursive=True)):
+              try: r = json.load(open(f))
+              except Exception: continue
+              if not isinstance(r, dict) or 'pieces' not in r or 'dim' not in r or 'planes' not in r: continue
+              p = subprocess.run(['python3', 'certify_nd.py', f], capture_output=True, text=True, timeout=1800)
+              open(f.replace('.json', '.certify_here.txt'), 'w').write(p.stdout + p.stderr)
+              res.append({'file': f, 'piece': r.get('piece'), 'container': r.get('container'), 'n': r.get('n'), 's_full': r.get('s_full'),
+                          'certified': p.returncode == 0 and 'CERTIFIED' in p.stdout and 'NOT CERTIFIED' not in p.stdout})
+              print(res[-1], flush=True)
+          json.dump(res, open('sub/results.json', 'w'), indent=1)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nd-submission-${{ inputs.issue }}
+          path: |
+            sub/x
+            sub/listing.txt
+            sub/results.json
