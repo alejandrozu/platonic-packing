@@ -6,7 +6,7 @@ cd "$(dirname "$0")/.."
 if [ -f state/STOP ]; then echo "actions: stopped (state/STOP)"; exit 0; fi
 # state/ACTIONS_PAUSE pauses the search (its text says why)
 if [ -f state/ACTIONS_PAUSE ]; then echo "actions: paused ($(head -c 80 state/ACTIONS_PAUSE))"; exit 0; fi
-st=$(timeout 30 gh api "repos/alejandrozu/platonic-packing/actions/runs?per_page=30" 2>/dev/null | python3 -c "
+st=$(timeout 30 gh api "repos/alejandrozu/platonic-packing/actions/workflows/search.yml/runs?per_page=30" 2>/dev/null | python3 -c "
 import json, sys, datetime
 try: runs = [r for r in json.load(sys.stdin)['workflow_runs'] if r['name'] == 'search']
 except Exception: print('unknown'); sys.exit()
