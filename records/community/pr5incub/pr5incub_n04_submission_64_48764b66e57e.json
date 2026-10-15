@@ -1,0 +1,219 @@
+{
+ "problem": "min/prism5_in_cube",
+ "piece": "prism5",
+ "container": "cube",
+ "n": 4,
+ "s_full": 2.4898986338726092,
+ "pieces": [
+  [
+   -0.5567582378816216,
+   0.40450853763832345,
+   -0.50000005,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   0.5567582378816216,
+   -0.40450853763832345,
+   -0.50000005,
+   0,
+   0,
+   0,
+   1
+  ],
+  [
+   -0.5567582378816216,
+   0.40450853763832345,
+   0.50000005,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   0.5567582378816216,
+   -0.40450853763832345,
+   0.50000005,
+   0,
+   0,
+   0,
+   1
+  ]
+ ],
+ "s": 2.48989,
+ "s_plus": "2.48989+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 1e-07,
+  "min_wall_gap": 1.188191e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "Complete pentagonal-prism dimers glued at a marked side face, then stacked as whole modules.",
+ "date": "2026-10-15",
+ "record_id": "pr5incub_n04_submission_64_48764b66e57e",
+ "title": "4 pentagonal prisms in a cube",
+ "family": "prisms",
+ "source": {
+  "author": "PingYou Ltd",
+  "kind": "new finite construction",
+  "attribution_note": "Classical marked edge gluing and Cartesian composition. No finite published donor packing. PingYou Ltd supplies the finite whole-dimer assembly and native certificate.",
+  "construction": {
+   "name": "marked_pentagonal_prism_edge_dimer_return",
+   "proof": "MARKED PENTAGON EDGE-DIMER RETURN\n\nLet P be the canonical regular pentagonal prism and choose one actual\nvertical side face. Its centroid m=(mx,my,0) is the radial midpoint of the\nmarked base edge. Put a complete copy of P at -m and its half-turn about\nthe prism axis at +m. Because the prism is symmetric in z, the second\ncopy is the central image -P. The marked edge face of the first and the\nopposite marked edge face of the second now both lie in the plane\nm dot x=0, with their interiors on opposite sides. This is one complete\ntwo-owner module, with a retained common separator and marked source face.\n\nThe module is centrally symmetric and its rectangular bounding box is\ncomputed from ALL vertices of BOTH owners. Treat that box as a whole cell\nin the complete grid/row/layer constructions. The two owners and their\nshared face are never independently repositioned. Deletion, if used for\nan odd final count, removes a named whole owner and preserves its complete\nparent module and cell.\n\nThe five actual side faces give five marked host registrations of this\nsame source operation. They form a finite exact list, not an angle sweep.\nThe source is classical edge gluing; no new infinite pentagon packing is\nclaimed. Every resulting finite witness must improve a pinned baseline\nand pass native and independent complete geometry/decoder checks.\n",
+   "source_face_index": 1,
+   "source_face_vertex_indices": [
+    9,
+    1,
+    0,
+    8
+   ],
+   "source_face_midpoint": [
+    0.5567581822058033,
+    -0.4045084971874737,
+    0.0
+   ],
+   "two_quaternions": [
+    [
+     1,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     1
+    ]
+   ],
+   "module_dimensions": [
+    2.48989828488278,
+    2.4270509831248424,
+    1.0
+   ],
+   "grid_counts": [
+    1,
+    1,
+    2
+   ],
+   "parent_owner_count": 4,
+   "retained_owner_words": [
+    [
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     0,
+     1,
+     1
+    ]
+   ],
+   "deleted_owner_words": [],
+   "undilated_centers": [
+    [
+     -0.5567581822058033,
+     0.4045084971874737,
+     -0.5
+    ],
+    [
+     0.5567581822058033,
+     -0.4045084971874737,
+     -0.5
+    ],
+    [
+     -0.5567581822058033,
+     0.4045084971874737,
+     0.5
+    ],
+    [
+     0.5567581822058033,
+     -0.4045084971874737,
+     0.5
+    ]
+   ],
+   "common_native_dilation": 1.0000001,
+   "native_decoder": "Compute the exact centroid m of the marked canonical side face. In each centered module-grid cell place the canonical owner at -m and the z-half-turn owner at +m. Retain the listed whole-owner words; multiply every resulting center by1.0000001 and use nominal_s*1.0000001+1e-7, rounded upward.",
+   "baseline": {
+    "problem": "pr5incub",
+    "piece": "prism5",
+    "container": "cube",
+    "n": 4,
+    "target": 2.491499256819,
+    "native_files": [
+     {
+      "path": "records/pr5incub/pr5incub_n04.json",
+      "sha256": "f61f771f1a10e5f4c814fd70af0a15e18aba2c1344831e5447b2e6be8b4701c9"
+     }
+    ],
+    "nominal_s": 2.48989828488278,
+    "dimer_decoder": {
+     "source_face_index": 1,
+     "source_face_vertex_indices": [
+      9,
+      1,
+      0,
+      8
+     ],
+     "source_midpoint": [
+      0.5567581822058033,
+      -0.4045084971874737,
+      0.0
+     ],
+     "module_dimensions": [
+      2.48989828488278,
+      2.4270509831248424,
+      1.0
+     ],
+     "grid_counts": [
+      1,
+      1,
+      2
+     ],
+     "parent_owner_count": 4
+    }
+   },
+   "source_attribution": "Classical marked edge gluing and Cartesian composition. No finite published donor packing. PingYou Ltd supplies the finite whole-dimer assembly and native certificate."
+  }
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.902113032590307,
+ "density": 0.4458245325433501,
+ "found_by": "PingYou Ltd",
+ "credit": "PingYou Ltd",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/64",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "construction",
+  "replayed_on": "2026-10-15",
+  "witness_sha256": "55305ddbbe48d7e9e28907785c80f4df55926fcaca61f6de4b4dc10dcda33eaf",
+  "method": "PINGYOU NEW PHYSICAL CONSTRUCTIONS \u2014 BATCH047\n\nExactly32 fresh occupied-record improvements. The complete finite packings use fixed declared frames, explicit lattice-source windows, physical boundary marks, complete-owner deletion and continued pair-port returns, or whole-prism modules and their rows/layers, as declared separately in each witness. Every inherited mark, parent/deletion word, frame, pair separator and one common host scale remains explicit. No arbitrary angle search is used.\n\nEach selected version passes independent source and full physical-decoder review, native interval containment for every vertex and complete native pair separation. Whole-parent deletion is checked before subsequent returns. Neutral fixed-map states, where present, remain complete geometries, with convex interpolation preserving all selected linear walls and separators. Prism compositions retain every module/strip end cost and common layer boundary.\n\nEach selected native scale lies below all pinned current native, nominal and reference baselines, including community records. Complete public-native comparisons prove changed geometry by centered-radius or full pair-distance spectra. All32 cases are distinct from every earlier frozen batch. Equal-value, stronger replacement and nonrecord predecessor geometries remain retained separately.\n\nClassical lattices, triangular tiling, Cartesian products, cube symmetries and published source authors retain attribution in each native witness. Finite assembly credit is exactly PingYou Ltd. Exact ideal endpoints, when present, are stated and proved only in their separate theorem companions. Other native improvements carry no global optimum claim. No invention of those classical source operations is claimed.\n\nOwnership classification at 2026-10-15 10:26: 30 previously unheld selected cases and 2 self-improvements. This describes the baseline, not acceptance of this archive.\n\nArchive SHA256: 567711ef4b3d1a79a7b38169165e2bbfb6c99bd0b55dda9f55e87ae8",
+  "archive": "https://github.com/user-attachments/files/33488004/pingyou_new_constructions_batch047_20261015.zip",
+  "archive_sha256": "567711ef4b3d1a79a7b38169165e2bbfb6c99bd0b55dda9f55e87ae89d5d2824"
+ },
+ "previous_record": {
+  "s_full": 2.4914995568373,
+  "found_by": "Alejandro Zarzuelo",
+  "date": "2026-10-13"
+ },
+ "case_id": "pr5incub_n04"
+}
