@@ -247,7 +247,9 @@ def attempt(p, n, move, rng, log):
             improved = True; mv[1] += 1
             C2, R2 = rnd(out['C'], out['R'])
             case['best'] = {'s': out['s'], 'C': C2, 'R': R2, 'src': dict(info, raw=s_raw), 't': time.time(), 'tightened': True}
-            st['improvements'] += 1; st['since'] = 0; st['last_improve'] = time.time(); st['needs_tighten'] = False; st['fails'] = {}
+            st['improvements'] += 1; st['since'] = 0; st['last_improve'] = time.time(); st['fails'] = {}
+            # a tightening stopped by its time limit is continued later (from this best, with a full time budget)
+            st['needs_tighten'] = bool(out.get('timed_out'))
         else:
             st['since'] += 1
             cls = 'disc' if move in DISCOVERY else 'pol' if move in POLISH else 'nbr'

@@ -179,8 +179,11 @@ def tighten(pb, C, R, tlimit=None, reg=0.0, verbose=False, **kw):
     """legalize, SLP, legalize; returns dict(s_start, s, C, R, iters)"""
     lg0 = ndsim.legalize(pb, C, R)
     pairs = lg0['pairs']; U = lg0['U']
+    t0 = time.time()
     L, C1, R1, hist = solve(pb, lg0['C'], lg0['R'], lg0['L'], pairs, U, tlimit=tlimit, reg=reg, verbose=verbose, **kw)
+    timed_out = bool(tlimit) and time.time() - t0 >= 0.95 * tlimit
     lg = ndsim.legalize(pb, C1, R1)
     if lg['L'] > L * (1 + 1e-12):            # the final re-legalization lost more than float noise: keep the SLP's own
         lg = dict(L=L, C=C1, R=R1)
-    return dict(s_start=pb.s_of_L(lg0['L']), s=pb.s_of_L(lg['L']), C=np.asarray(lg['C']), R=np.asarray(lg['R']), iters=len(hist))
+    return dict(s_start=pb.s_of_L(lg0['L']), s=pb.s_of_L(lg['L']), C=np.asarray(lg['C']), R=np.asarray(lg['R']), iters=len(hist),
+                timed_out=timed_out)
