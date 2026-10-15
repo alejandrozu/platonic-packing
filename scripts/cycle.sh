@@ -14,14 +14,14 @@ if ! pgrep -f run_forever.sh > /dev/null && [ ! -f state/STOP ]; then
   FIRST_PUBLISH=900 nohup setsid scripts/run_forever.sh > logs/supervisor.out 2>&1 < /dev/null &
   sleep 5; note="$note SUPERVISOR-RESTARTED"
 fi
-a=$(wc -l < state/attempts.jsonl); i=$(grep -c '"improved": true' state/attempts.jsonl)
+a=$(( $(wc -l < state/attempts.jsonl) + $(cat state/nd/attempts.jsonl 2>/dev/null | wc -l) )); i=$(grep -c '"improved": true' state/attempts.jsonl)
 read pa pi pt < <(cat state/.cycle 2>/dev/null || echo "0 0 0")
 now=$(date +%s)
 if [ "$pt" -gt 0 ] && [ "$a" -eq "$pa" ] && [ $((now - pt)) -gt 1800 ]; then   # n <= 100: one attempt can take 10 min
-  pkill -f "^python3 scripts/engine.py work"; pkill -f "src/server.js"; note="$note NO-PROGRESS:workers-restarted"
+  pkill -f "^python3 scripts/engine.py work"; pkill -f "^python3 scripts/engine_nd.py work"; pkill -f "src/server.js"; note="$note NO-PROGRESS:workers-restarted"
 fi
 echo "$a $i $now" > state/.cycle
-w=$(pgrep -c -f "^python3 scripts/engine.py work")
+w=$(pgrep -c -f "^python3 scripts/engine(_nd)?.py work")
 act=$(scripts/harvest_actions.sh 2>&1 | tail -1)
 kick=$(scripts/actions_kick.sh 2>&1 | tail -1)
 chk=$(python3 scripts/engine.py check 2>&1 | tail -1); chk="$chk; $(python3 scripts/engine_nd.py check 2>&1 | tail -1)"

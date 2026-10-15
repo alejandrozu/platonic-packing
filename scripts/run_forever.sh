@@ -9,8 +9,9 @@ mkdir -p logs state
 rm -f state/STOP
 [ -d state/best ] || python3 scripts/engine.py seed >> logs/seed.log 2>&1
 worker() {
+  # 15 Oct 06:12 (Alejandro): all search on the higher polytopes (4D/5D/6D, scripts/engine_nd.py)
   while [ ! -f state/STOP ]; do
-    PP_SHARD="$1/8" python3 scripts/engine.py work "$1" >> "logs/worker$1.out" 2>&1
+    python3 scripts/engine_nd.py work "c$1" >> "logs/worker_nd$1.out" 2>&1
     echo "$(date) worker $1 exited ($?)" >> logs/supervisor.out; sleep 10
   done
 }
