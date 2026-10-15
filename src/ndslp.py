@@ -40,8 +40,11 @@ def cayley(Om):
     return np.linalg.solve(I - Om / 2, I + Om / 2)
 
 
+# LP solver: HiGHS interior point (15 Oct benchmark, 60 s from the same start: better in all 6 cases tested, e.g.
+# 24 6-cubes 2.484 against 2.686 with the dual simplex, 24 6-simplices 2.910 against 3.054; the simplex stalls on the
+# degenerate LPs of near-lattice packings)
 def solve(pb, C, R, L, pairs, U, outer=600, trust=0.03, tlimit=None, slp_floor=1e-6, abort=None, verbose=False,
-          stall=50, stall_rel=1e-7, reg=0.0, lp_limit=None, lp_method='highs', rot=3.0):
+          stall=50, stall_rel=1e-7, reg=0.0, lp_limit=None, lp_method='highs-ipm', rot=3.0):
     d = pb.d; n = len(C); SK = skew_index(d); m = len(SK)
     C = np.array(C, float); R = np.array(R, float)
     hint = {tuple(p): u for p, u in zip(pairs.tolist(), U)} if len(pairs) else {}
