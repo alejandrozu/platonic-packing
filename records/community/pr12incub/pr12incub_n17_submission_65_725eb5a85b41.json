@@ -1,0 +1,724 @@
+{
+ "problem": "min/prism12_in_cube",
+ "piece": "prism12",
+ "container": "cube",
+ "n": 17,
+ "s_full": 6.7320518916485135,
+ "pieces": [
+  [
+   -1.5000001945630432,
+   -2.8660257458241607,
+   -1.5000001945630796,
+   0.6532814824381882,
+   -0.6532814824381884,
+   0.27059805007309856,
+   0.2705980500730986
+  ],
+  [
+   -1.5000001945630435,
+   -1.8660256458241604,
+   -1.5000001945630799,
+   0.6532814824381882,
+   -0.6532814824381884,
+   0.27059805007309856,
+   0.2705980500730986
+  ],
+  [
+   -1.5000001945630437,
+   -0.8660255458241605,
+   -1.50000019456308,
+   0.6532814824381882,
+   -0.6532814824381884,
+   0.27059805007309856,
+   0.2705980500730986
+  ],
+  [
+   1.3452996361179246,
+   -1.5000001945630386,
+   2.8660257458241523,
+   2.316614308682836e-15,
+   0.9238795325112872,
+   0.38268343236508895,
+   -1.0365511507784397e-15
+  ],
+  [
+   1.3452996361179244,
+   -1.5000001945630437,
+   1.8660256458241522,
+   2.316614308682836e-15,
+   0.9238795325112872,
+   0.38268343236508895,
+   -1.0365511507784397e-15
+  ],
+  [
+   1.3452996361179244,
+   -1.5000001945630488,
+   0.8660255458241523,
+   2.316614308682836e-15,
+   0.9238795325112872,
+   0.38268343236508895,
+   -1.0365511507784397e-15
+  ],
+  [
+   -2.8660257458241594,
+   1.133974743301759,
+   1.5000001945630042,
+   0.6532814824381892,
+   0.27059805007309784,
+   0.6532814824381884,
+   0.27059805007309706
+  ],
+  [
+   -1.8660256458241593,
+   1.1339747433017575,
+   1.5000001945630048,
+   0.6532814824381892,
+   0.27059805007309784,
+   0.6532814824381884,
+   0.27059805007309706
+  ],
+  [
+   -0.8660255458241594,
+   1.1339747433017562,
+   1.5000001945630055,
+   0.6532814824381892,
+   0.27059805007309784,
+   0.6532814824381884,
+   0.27059805007309706
+  ],
+  [
+   2.8660257458241616,
+   -1.5000001945630397,
+   -1.5000001945630794,
+   0.09229595564125549,
+   -0.7010573846499781,
+   -0.09229595564125549,
+   0.7010573846499782
+  ],
+  [
+   1.8660256458241613,
+   -1.5000001945630397,
+   -1.5000001945630792,
+   0.09229595564125549,
+   -0.7010573846499781,
+   -0.09229595564125549,
+   0.7010573846499782
+  ],
+  [
+   0.8660255458241614,
+   -1.5000001945630397,
+   -1.500000194563079,
+   0.09229595564125549,
+   -0.7010573846499781,
+   -0.09229595564125549,
+   0.7010573846499782
+  ],
+  [
+   1.5000001945630512,
+   2.8660257458241625,
+   1.2313555309111197,
+   0.7010573846499811,
+   0.7010573846499751,
+   0.09229595564126214,
+   -0.09229595564125068
+  ],
+  [
+   1.5000001945630683,
+   1.8660256458241624,
+   1.2313555309111262,
+   0.7010573846499811,
+   0.7010573846499751,
+   0.09229595564126214,
+   -0.09229595564125068
+  ],
+  [
+   1.5000001945630856,
+   0.8660255458241625,
+   1.2313555309111324,
+   0.7010573846499811,
+   0.7010573846499751,
+   0.09229595564126214,
+   -0.09229595564125068
+  ],
+  [
+   -1.5000001945630435,
+   1.5000001945630677,
+   -2.8660257458241913,
+   0.7933533402912348,
+   -2.3198739847966447e-15,
+   1.3576618602152444e-15,
+   0.6087614290087211
+  ],
+  [
+   -1.5000001945630441,
+   1.500000194563073,
+   -1.8660256458241913,
+   0.7933533402912348,
+   -2.3198739847966447e-15,
+   1.3576618602152444e-15,
+   0.6087614290087211
+  ]
+ ],
+ "s": 6.73205,
+ "s_plus": "6.73205+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 1e-07,
+  "min_wall_gap": 2.000001e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "Subdivide each complete long prism axially into whole canonical shorter prisms in its exact original frame, then retain the declared ordered child prefix.",
+ "date": "2026-10-15",
+ "record_id": "pr12incub_n17_submission_65_725eb5a85b41",
+ "title": "17 dodecagonal prisms in a cube",
+ "family": "prisms",
+ "source": {
+  "author": "PingYou Ltd",
+  "kind": "new finite construction",
+  "attribution_note": "Source packing by Alejandro Zarzuelo. Original source credit: soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction.  PingYou Ltd supplies this full-owner axial subdivision and declared whole-child deletion; original source authors and frames are retained.",
+  "construction": {
+   "name": "complete_parent_axial_subdivision_and_whole_child_prefix",
+   "proof": "Exact whole-prism axial subdivision and retained-prefix return\n\nLet a complete parent prism be B times[-H/2,H/2], in center c and\nproper frame R, where H=k*h and k is2 or3. For j=0,...,k-1 define\ndelta_j=(j-(k-1)/2)*h. Then the k whole target prisms with the same\nbase B, height h, frame R and centers c+delta_j*R*e_z have disjoint\ninteriors and their union is the parent. This is an exact physical\nsubdivision. All full target owners are present; there is no fractional\nowner and no new outer end cost. Their pairwise and wall compatibility\nis inherited simultaneously from the complete parent packing.\n\nFor robust native coordinates, use lambda=10000001/10000000. Scale\nthe ideal child centers by lambda while retaining target unit shape\nand frame. Each target child lies strictly inside the homothetic\nlambda-parent: transverse sections are B inside lambda*B, and its\naxial extreme is lambda*|delta_j|+h/2 <=lambda*H/2-(lambda-1)*h/2.\nThe homothetic complete parent packing remains disjoint in a host\nscaled by lambda. The implementation recomputes every actual rounded\nchild center as an exact binary rational, transforms it back through\nthe exact native quaternion, and checks all its canonical vertices\nagainst every lambda-parent face in the common exact number field.\nIt also checks adjacent children using the same actual axial separator.\nThus rounding is covered by actual containment, not an assumed epsilon.\n\nParents are ordered as in the SHA-bound native witness. For each parent\norder children by j. The complete child map and full native child array\nare retained. Keep a declared prefix for a smaller target count; this\ndeletes whole children without moving any other child. Source authors,\nsource frames and the full parent proof remain embedded. The final\nindependent native checker verifies all target owners and target host\nwalls directly. No angle or center optimization occurs in this transfer.\n",
+   "complete_native_parent": {
+    "problem": "min/prism12_l3_in_cube",
+    "piece": "prism12_l3",
+    "container": "cube",
+    "n": 6,
+    "s": 6.73205,
+    "s_plus": "6.73205+",
+    "s_full": 6.7320511184434,
+    "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+    "clearance": {
+     "min_pair_gap_target": 1e-07,
+     "wall_gap_target": 1e-07,
+     "min_pair_gap": 1.0000020361777828e-07,
+     "min_wall_gap": 1.000000442452631e-07
+    },
+    "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+    "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+    "date": "2026-10-13",
+    "pieces": [
+     [
+      -1.500000044563039,
+      -1.8660254592216146,
+      -1.5000000445630755,
+      0.6532814824381882,
+      -0.6532814824381884,
+      0.27059805007309856,
+      0.2705980500730986
+     ],
+     [
+      1.3452995015879743,
+      -1.5000000445630393,
+      1.8660254592216063,
+      2.316614308682836e-15,
+      0.9238795325112872,
+      0.38268343236508895,
+      -1.0365511507784397e-15
+     ],
+     [
+      -1.8660254592216134,
+      1.1339746299042945,
+      1.5000000445630004,
+      0.6532814824381892,
+      0.27059805007309784,
+      0.6532814824381884,
+      0.27059805007309706
+     ],
+     [
+      1.8660254592216154,
+      -1.5000000445630353,
+      -1.5000000445630748,
+      0.09229595564125549,
+      -0.7010573846499781,
+      -0.09229595564125549,
+      0.7010573846499782
+     ],
+     [
+      1.500000044563064,
+      1.8660254592216166,
+      1.2313554077755853,
+      0.7010573846499811,
+      0.7010573846499751,
+      0.09229595564126214,
+      -0.09229595564125068
+     ],
+     [
+      -1.5000000445630397,
+      1.5000000445630686,
+      -1.8660254592216454,
+      0.7933533402912348,
+      -2.3198739847966447e-15,
+      1.3576618602152444e-15,
+      0.6087614290087211
+     ]
+    ],
+    "record_id": "pr12l3incub_n06",
+    "title": "6 dodecagonal prisms of height 3 in a cube",
+    "family": "prisms",
+    "source": {
+     "hash": "1a3ff6f0d9dc6ec0",
+     "clear": 1e-07,
+     "cap": 7.4641019151381
+    },
+    "s_tight": 6.732050807569,
+    "closed_form_conjecture": "5 + \u221a3",
+    "volume_lower_bound": 5.862917311846354,
+    "found_by": "Alejandro Zarzuelo",
+    "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+    "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+    "search": {
+     "move": "symfresh",
+     "seed": 1250665830,
+     "var": "base",
+     "sym": "C3+0",
+     "raw": 6.7320508701354544,
+     "host": "actions"
+    },
+    "density": 0.6605399545592616
+   },
+   "native_parent_sha256": "b85ac53928e68035916a282f4c53c9764099883d9ea622f1b46eee256106ce96",
+   "target_height": "1",
+   "multiplicity": 3,
+   "homothetic_parent_factor": "10000001/10000000",
+   "full_child_count": 18,
+   "full_child_owner_map": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     3,
+     1
+    ],
+    [
+     3,
+     2
+    ],
+    [
+     4,
+     0
+    ],
+    [
+     4,
+     1
+    ],
+    [
+     4,
+     2
+    ],
+    [
+     5,
+     0
+    ],
+    [
+     5,
+     1
+    ],
+    [
+     5,
+     2
+    ]
+   ],
+   "retained_child_owner_map": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     3,
+     1
+    ],
+    [
+     3,
+     2
+    ],
+    [
+     4,
+     0
+    ],
+    [
+     4,
+     1
+    ],
+    [
+     4,
+     2
+    ],
+    [
+     5,
+     0
+    ],
+    [
+     5,
+     1
+    ]
+   ],
+   "deleted_child_owner_map": [
+    [
+     5,
+     2
+    ]
+   ],
+   "full_child_native_pieces": [
+    [
+     -1.5000001945630432,
+     -2.8660257458241607,
+     -1.5000001945630796,
+     0.6532814824381882,
+     -0.6532814824381884,
+     0.27059805007309856,
+     0.2705980500730986
+    ],
+    [
+     -1.5000001945630435,
+     -1.8660256458241604,
+     -1.5000001945630799,
+     0.6532814824381882,
+     -0.6532814824381884,
+     0.27059805007309856,
+     0.2705980500730986
+    ],
+    [
+     -1.5000001945630437,
+     -0.8660255458241605,
+     -1.50000019456308,
+     0.6532814824381882,
+     -0.6532814824381884,
+     0.27059805007309856,
+     0.2705980500730986
+    ],
+    [
+     1.3452996361179246,
+     -1.5000001945630386,
+     2.8660257458241523,
+     2.316614308682836e-15,
+     0.9238795325112872,
+     0.38268343236508895,
+     -1.0365511507784397e-15
+    ],
+    [
+     1.3452996361179244,
+     -1.5000001945630437,
+     1.8660256458241522,
+     2.316614308682836e-15,
+     0.9238795325112872,
+     0.38268343236508895,
+     -1.0365511507784397e-15
+    ],
+    [
+     1.3452996361179244,
+     -1.5000001945630488,
+     0.8660255458241523,
+     2.316614308682836e-15,
+     0.9238795325112872,
+     0.38268343236508895,
+     -1.0365511507784397e-15
+    ],
+    [
+     -2.8660257458241594,
+     1.133974743301759,
+     1.5000001945630042,
+     0.6532814824381892,
+     0.27059805007309784,
+     0.6532814824381884,
+     0.27059805007309706
+    ],
+    [
+     -1.8660256458241593,
+     1.1339747433017575,
+     1.5000001945630048,
+     0.6532814824381892,
+     0.27059805007309784,
+     0.6532814824381884,
+     0.27059805007309706
+    ],
+    [
+     -0.8660255458241594,
+     1.1339747433017562,
+     1.5000001945630055,
+     0.6532814824381892,
+     0.27059805007309784,
+     0.6532814824381884,
+     0.27059805007309706
+    ],
+    [
+     2.8660257458241616,
+     -1.5000001945630397,
+     -1.5000001945630794,
+     0.09229595564125549,
+     -0.7010573846499781,
+     -0.09229595564125549,
+     0.7010573846499782
+    ],
+    [
+     1.8660256458241613,
+     -1.5000001945630397,
+     -1.5000001945630792,
+     0.09229595564125549,
+     -0.7010573846499781,
+     -0.09229595564125549,
+     0.7010573846499782
+    ],
+    [
+     0.8660255458241614,
+     -1.5000001945630397,
+     -1.500000194563079,
+     0.09229595564125549,
+     -0.7010573846499781,
+     -0.09229595564125549,
+     0.7010573846499782
+    ],
+    [
+     1.5000001945630512,
+     2.8660257458241625,
+     1.2313555309111197,
+     0.7010573846499811,
+     0.7010573846499751,
+     0.09229595564126214,
+     -0.09229595564125068
+    ],
+    [
+     1.5000001945630683,
+     1.8660256458241624,
+     1.2313555309111262,
+     0.7010573846499811,
+     0.7010573846499751,
+     0.09229595564126214,
+     -0.09229595564125068
+    ],
+    [
+     1.5000001945630856,
+     0.8660255458241625,
+     1.2313555309111324,
+     0.7010573846499811,
+     0.7010573846499751,
+     0.09229595564126214,
+     -0.09229595564125068
+    ],
+    [
+     -1.5000001945630435,
+     1.5000001945630677,
+     -2.8660257458241913,
+     0.7933533402912348,
+     -2.3198739847966447e-15,
+     1.3576618602152444e-15,
+     0.6087614290087211
+    ],
+    [
+     -1.5000001945630441,
+     1.500000194563073,
+     -1.8660256458241913,
+     0.7933533402912348,
+     -2.3198739847966447e-15,
+     1.3576618602152444e-15,
+     0.6087614290087211
+    ],
+    [
+     -1.5000001945630448,
+     1.5000001945630783,
+     -0.8660255458241913,
+     0.7933533402912348,
+     -2.3198739847966447e-15,
+     1.3576618602152444e-15,
+     0.6087614290087211
+    ]
+   ],
+   "exact_inclusion": {
+    "status": "PASS_exact_rounded_children_inside_homothetic_parents",
+    "parent_piece": "prism12_l3",
+    "target_piece": "prism12",
+    "parent_height": "3",
+    "target_height": "1",
+    "multiplicity": 3,
+    "same_exact_base_vertex_set": true,
+    "field_polynomial": [
+     "1",
+     "0",
+     "-4",
+     "0",
+     "1"
+    ],
+    "lambda": "10000001/10000000",
+    "vertex_face_checks": 6048,
+    "minimum_slack_field": [
+     "365375407740121457589133032272171147497971226161/14615016373309031634249834337172710233130013818880000000",
+     "0",
+     "0",
+     "0"
+    ],
+    "parent_axes_as_exact_rationals": [
+     [
+      "-62534234806257828/324518553658426781233222387638653",
+      "324518553658426781233222387638636/324518553658426781233222387638653",
+      "-84398461488242323/324518553658426781233222387638653"
+     ],
+     [
+      "-228565974264616295028805307273806786156560384/1606938044258990530020944001759567465708734116980863715019205",
+      "-8153422042019103959935471065296563196959653888/1606938044258990530020944001759567465708734116980863715019205",
+      "-321387608851798106004188800347773287883830123730487890719039/321387608851798106004188800351913493141746823396172743003841"
+     ],
+     [
+      "162259276829213402588019030812067/162259276829213402588019030812263",
+      "-233003877027771178/162259276829213402588019030812263",
+      "96513365950416114/162259276829213402588019030812263"
+     ],
+     [
+      "-2596148429267414199799462231021633/2596148429267414199799462231021665",
+      "-53204996023521544/2596148429267414199799462231021665",
+      "80826413472639392/519229685853482839959892446204333"
+     ],
+     [
+      "22299852870260137352/1298074214633707336774914628075881",
+      "-1298074214633707336774914627858656/1298074214633707336774914628075881",
+      "8164857899091990089/1298074214633707336774914628075881"
+     ],
+     [
+      "-538556014010583313980387903688763002834649088/803469022129495164333954467793164785684625233376548953724621",
+      "4285658687865326578257113158124318126793293824/803469022129495164333954467793164785684625233376548953724621",
+      "803469022129495164333954467781554560240180167882059300268339/803469022129495164333954467793164785684625233376548953724621"
+     ]
+    ],
+    "adjacent_whole_children_axial_separation": "PASS"
+   },
+   "complete_child_control": "selfdual/constructive/prism_returns/public_axial_subdivision/complete_child_controls/children_9132db6edd2c3a26.json",
+   "complete_child_control_sha256": "9132db6edd2c3a2665326352aea2a36a02a29cc4a26f2f77b500a6d51f4e189e",
+   "exact_parent_host_scale_after_dilation": "75796164850767797115207/11258999068426240000000",
+   "native_decoder": "For ordered parent i and j=0..k-1, delta=(j-(k-1)/2)*target_height, child_center=lambda*(parent_center+delta*R_i*e_z). Round once to binary64, retain the parent quaternion, and keep exactly the declared prefix. Host is lambda*parent_native_s_full plus1e-7 rounded outward. Exact rounded-child inclusion and adjacent-child axial separation are checked.",
+   "baseline": {
+    "main_commit": "1769e6f330fc2acb8d75646b487a0d651a68f48e",
+    "site_built": "2026-10-15 10:26",
+    "target": 7.06217782725,
+    "previous_private_or_public_target": 7.06217782725,
+    "native_files": [
+     {
+      "path": "records/community/pr12incub/pr12incub_n17_pingyou_20261013.json",
+      "sha256": "83ca9f0a935a85dc1da5c64b44d8ff6ba75cdebe65651c007ba1649088ce3024"
+     },
+     {
+      "path": "records/pr12incub/pr12incub_n17.json",
+      "sha256": "f23fdfbd57c56f849e64295c59a3abe4ee63e12857cf4a7cc462b14c1f07a161"
+     }
+    ]
+   },
+   "parent_public_provenance": {
+    "parent_sha256": "b85ac53928e68035916a282f4c53c9764099883d9ea622f1b46eee256106ce96",
+    "git_commit": "1769e6f330fc2acb8d75646b487a0d651a68f48e",
+    "repository": "https://github.com/alejandrozu/platonic-packing",
+    "repository_path": "records/pr12l3incub/pr12l3incub_n06.json",
+    "git_blob_sha1": "af7258afa905d07042e7a125a5a6547eb0b963b5",
+    "local_path": "selfdual/constructive/prism_returns/baseline_snapshots/1769e6f330fc2acb8d75646b487a0d651a68f48e/records/pr12l3incub/pr12l3incub_n06.json",
+    "record_id": "pr12l3incub_n06",
+    "piece": "prism12_l3",
+    "n": 6,
+    "s_full": 6.7320511184434,
+    "source_found_by": "Alejandro Zarzuelo",
+    "source_credit_verbatim": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+    "source_metadata_verbatim": {
+     "hash": "1a3ff6f0d9dc6ec0",
+     "clear": 1e-07,
+     "cap": 7.4641019151381
+    }
+   },
+   "all_parent_provenance_file": "selfdual/constructive/prism_returns/PUBLIC_AXIAL_SOURCE_PROVENANCE_d409fec2f7d0.json",
+   "all_parent_provenance_sha256": "d409fec2f7d0a40cecb1859506c0218116120df8e76bdcfff613626883f2d58f",
+   "metadata_predecessor_sha256": "3be29158d019b05fbd0d4a765203b47182340754fe27a9ac30e45dbcd08a9b44"
+  }
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 5.752269714522,
+ "density": 0.6238430754638502,
+ "found_by": "PingYou Ltd",
+ "credit": "PingYou Ltd",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/65",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "construction",
+  "replayed_on": "2026-10-15",
+  "witness_sha256": "adfb240ec7e26c94307785008e6b032b77abf513455ef200f1688b5d504f1e2c",
+  "method": "PINGYOU NEW PHYSICAL CONSTRUCTIONS \u2014 BATCH048\n\nExactly32 fresh occupied-record improvements. The complete finite packings use fixed declared frames, explicit lattice-source windows, physical boundary marks, complete-owner deletion and continued pair-port returns, or whole-prism modules and their rows/layers, as declared separately in each witness. Every inherited mark, parent/deletion word, frame, pair separator and one common host scale remains explicit. No arbitrary angle search is used.\n\nEach selected version passes independent source and full physical-decoder review, native interval containment for every vertex and complete native pair separation. Whole-parent deletion is checked before subsequent returns. Neutral fixed-map states, where present, remain complete geometries, with convex interpolation preserving all selected linear walls and separators. Prism compositions retain every module/strip end cost and common layer boundary.\n\nEach selected native scale lies below all pinned current native, nominal and reference baselines, including community records. Complete public-native comparisons prove changed geometry by centered-radius or full pair-distance spectra. All32 cases are distinct from every earlier frozen batch. Equal-value, stronger replacement and nonrecord predecessor geometries remain retained separately.\n\nClassical lattices, triangular tiling, Cartesian products, cube symmetries and published source authors retain attribution in each native witness. Finite assembly credit is exactly PingYou Ltd. Exact ideal endpoints, when present, are stated and proved only in their separate theorem companions. Other native improvements carry no global optimum claim. No invention of those classical source operations is claimed.\n\nOwnership classification at 2026-10-15 10:29: 32 previously unheld selected cases and 0 self-improvements. This describes the baseline, not acceptance of this archive.\n\nArchive SHA256: cdafc67d919679650039b515b2a9b9c899bb7f8a9284331a88c1dfad",
+  "archive": "https://github.com/user-attachments/files/33488076/pingyou_new_constructions_batch048_20261015.zip",
+  "archive_sha256": "cdafc67d919679650039b515b2a9b9c899bb7f8a9284331a88c1dfad1f6d2605"
+ },
+ "previous_record": {
+  "s_full": 7.0621786327102,
+  "found_by": "Alejandro Zarzuelo",
+  "date": "2026-10-14"
+ },
+ "case_id": "pr12incub_n17"
+}
