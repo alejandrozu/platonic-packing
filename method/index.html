@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="en" data-root="../" data-repo="https://github.com/alejandrozu/platonic-packing" data-records-version="cf4d444f4d808ac5">
+<html lang="en" data-root="../" data-repo="https://github.com/alejandrozu/platonic-packing" data-records-version="31f4437e5d0e621f">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Method: Polyhedra in Polyhedra</title>
-<meta name="description" content="How the packings are found: soft-to-rigid homotopy, r-rounding, separating axis contacts, basin hopping, tightening.">
+<meta name="description" content="Packing in 3D–6D: dimension-correct bounds, soft-to-rigid search, adaptive moves, symmetric and crystal seeds, nested constructions and exact certification.">
 <link rel="canonical" href="https://polyhedrainpolyhedra.wiki/method/">
 <meta property="og:title" content="Method: Polyhedra in Polyhedra">
-<meta property="og:description" content="How the packings are found: soft-to-rigid homotopy, r-rounding, separating axis contacts, basin hopping, tightening.">
+<meta property="og:description" content="Packing in 3D–6D: dimension-correct bounds, soft-to-rigid search, adaptive moves, symmetric and crystal seeds, nested constructions and exact certification.">
 <meta property="og:url" content="https://polyhedrainpolyhedra.wiki/method/">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#eef1f0">
@@ -30,190 +30,234 @@
 <div class="doc">
 <article>
 <h1>Method</h1>
-<p class="lede">The project's search starts each piece as a soft, rounded body that is
-sharpened into the solid while pressure shrinks the container, a search then hops between arrangements, and the best
-one is tightened, given a small clearance and proved valid in exact arithmetic. This page explains each step and links
-the code that does it, so the method can be reused for other solids and containers. Independently published and
-community constructions can use other methods; their original sources are linked, and their coordinates are checked with the same certifiers.</p>
-<p>The generalized packing method was developed by <b>Alejandro Zarzuelo Urdiales</b>, building on
-<a href="https://github.com/yoheinakajima/soft-to-rigid-packing">Yohei Nakajima's soft-to-rigid method for cube packing</a>.
-The generalization extends the construction to multiple solid families and containers, with r-rounding, a generalized
-search engine and exact certification.</p>
+<p class="lede">This project combines soft-to-rigid search, structured constructions and local tightening to find small
+containers for identical convex polyhedra and regular polytopes. Every published coordinate witness is checked separately
+in exact arithmetic. The catalogue also preserves independent constructions, their source credit and published bounds
+whose coordinates have not yet been recovered.</p>
+<p><b>Alejandro Zarzuelo Urdiales</b> developed this project's generalized pipeline from
+<a href="https://github.com/yoheinakajima/soft-to-rigid-packing">Yohei Nakajima's soft-to-rigid cube-packing method</a>.
+The implementation now includes non-tangential 3D solids, adaptive search, symmetric and crystal seeds, nested
+constructions, and a separate engine and certifier for 4–6 dimensions. Contributors can use any construction method;
+the same geometric acceptance criteria apply.</p>
 
-<h2 id="problem">The problem</h2>
-<p>For a container solid A, a piece solid B and a number n, find the smallest scale s such that n copies of B, free to
-translate and rotate, fit inside s·A with pairwise disjoint interiors. Pieces and containers are fixed canonical solids, so</p>
-<p class="eq">s(A, B, n) = size of the container ÷ size of each piece.</p>
-<p>For solids with all edges equal (Platonic and Archimedean solids, regular prisms and antiprisms) this is container
-edge ÷ piece edge. Catalan solids have edges of two or three lengths, so their s is the ratio of sizes of the same
-canonical solid (defined <a href="#solids">below</a>); Catalan solids are only packed in themselves.</p>
-<p>The site tracks 140 problems, for n = 2–100, 10,404 table slots in all:</p>
+<h2 id="problem">Problem, scale and scope</h2>
+<p>Let P be the piece and C the container in dimension d. We seek a small scale s for which n translated and properly
+rotated copies of P have pairwise disjoint interiors inside sC. Reflections of a chiral piece are not interchangeable
+with rotations. Write s<sup>*</sup><sub>P→C</sub>(n) for the infimum over all valid arrangements; a coordinate witness at
+scale s proves s<sup>*</sup><sub>P→C</sub>(n) ≤ s.</p>
+<p>For unit-edge regular and Archimedean solids, and equilateral prisms and antiprisms, s is the container edge divided
+by the piece edge. Catalan solids use the fixed canonical dual described below; their self-packing scale compares two
+copies of that same solid. Elongated prisms retain their specified aspect ratio and use their base edge as the size
+unit. In higher dimensions the records also report an edge ratio, even when the exact canonical vertex coordinates
+have a different native edge length.</p>
+<p>The catalogue currently tracks 140 problems and 10,404 table slots. Its supported families are:</p>
 <ul>
-  <li><b>Platonic</b> (25): every ordered pair of the five Platonic solids, including identical solids, dual solids and the other mixed pairs.</li>
-  <li><b>Archimedean</b> (13) and <b>Catalan</b> (13): each solid in itself.</li>
-  <li><b>Prisms and antiprisms</b> (20): the regular triangular, pentagonal, hexagonal, octagonal and dodecagonal prisms and the square, pentagonal, hexagonal, octagonal and dodecagonal antiprisms, each in itself and in a cube. The square prism with unit edges is the cube and the triangular antiprism is the octahedron, so those cases are the Platonic problems and are not repeated.</li>
+  <li><b>3D, n = 2–100:</b> all 25 ordered Platonic-solid pairs; 13 Archimedean and 13 Catalan self-packing problems; and 35 prism, antiprism and elongated-prism problems, including self-packings and cube containers. The cube and octahedron are not duplicated as a square prism and a triangular antiprism.</li>
+  <li><b>4D, n = 2–40:</b> all 36 ordered pairs of the six convex regular polytopes: the 5-cell, tesseract, 16-cell, 24-cell, 120-cell and 600-cell.</li>
+  <li><b>5D, n = 2–32, and 6D, n = 2–24:</b> all nine ordered pairs of the regular simplex, hypercube and orthoplex in each dimension.</li>
 </ul>
-<p>Each certified coordinate entry is an <b>upper bound with a proof</b>: the packing exists. Source-only catalogue values
-are labelled separately and link to their original reports. None is claimed optimal. The general lower
-bound used is the volume bound s ≥ (n · vol B / vol A)<sup>1/3</sup>, drawn as a dashed line in every chart.</p>
+<p>These are the current search ranges, not mathematical limits. The <a href="../constructions/">construction
+catalogue</a> links the selected witnesses, alternative arrangements, source material and certificates.</p>
 
-<h2 id="solids">The solids</h2>
-<p>All solids are centred at the origin.</p>
+<h2 id="bounds">Density and lower bounds in dimension d</h2>
+<p>Use V<sub>d</sub> for d-dimensional volume, with P and C expressed in the normalization used to define s. The occupied
+fraction and the necessary volume bound are</p>
+<p class="eq">η = n V<sub>d</sub>(P) / (s<sup>d</sup> V<sub>d</sub>(C)),<br>
+s ≥ [n V<sub>d</sub>(P) / V<sub>d</sub>(C)]<sup>1/d</sup>.</p>
+<p>Thus the exponent is 1/3 in 3D, 1/4 in 4D, 1/5 in 5D and 1/6 in 6D. The simplified bound s ≥ n<sup>1/d</sup>
+applies to self-packings or equal-volume reference shapes; a mixed pair needs its volume ratio. An equivalent
+volume-normalized scale is σ = s [V<sub>d</sub>(C)/V<sub>d</sub>(P)]<sup>1/d</sup>, for which η = n/σ<sup>d</sup>.</p>
+<p>For higher-dimensional native coordinates, let μ = edge(P<sub>0</sub>)/edge(C<sub>0</sub>). A record's edge ratio
+<code>s_full</code> places the pieces inside <code>container_center + s_full × μ × C₀</code>. Using the raw canonical
+volumes therefore gives η = nV<sub>d</sub>(P<sub>0</sub>)/[(sμ)<sup>d</sup>V<sub>d</sub>(C<sub>0</sub>)] and
+s ≥ [nV<sub>d</sub>(P<sub>0</sub>)/V<sub>d</sub>(C<sub>0</sub>)]<sup>1/d</sup>/μ. The publisher applies this conversion.</p>
+<p>The dashed chart line is a volume lower bound. A certified construction gives an upper bound; equality of suitable
+exact bounds can establish optimality, while a small numerical gap alone cannot. The charts also show absolute scale
+increments Δs = s(n) − s(n − 1) and relative increments Δs/s(n − 1). A plateau or jump in the current catalogue is an
+observed property of those witnesses, not a proof that the unknown optimum has the same pattern.</p>
+
+<h2 id="solids">Canonical geometry</h2>
+<p>The geometry files define the shapes, their normalization and their supporting facets, independently of the search.</p>
 <ul>
-  <li><b>Platonic</b>: exact unit-edge coordinates in ℚ(√2, √5), built and self-checked by <a href="https://github.com/alejandrozu/platonic-packing/blob/main/solids.py"><code>solids.py</code></a>.</li>
-  <li><b>Archimedean</b>: the classical coordinates (permutations and sign patterns) for the eleven non-snub solids. The snub cube and snub dodecahedron are built as the orbit of one point under the rotation group, with the point chosen by Newton's method so the three Wythoff rotations move it by equal distances. All are scaled to unit edge.</li>
-  <li><b>Catalan</b>: the canonical duals of the unit-edge Archimedean solids, by polar reciprocity in their common midsphere: a face with unit normal m at distance h becomes the vertex (r<sub>m</sub><sup>2</sup>/h)·m. Every Catalan solid has an insphere.</li>
-  <li><b>Prisms and antiprisms</b>: the regular ones, with all edges equal to 1.</li>
+  <li><a href="https://github.com/alejandrozu/platonic-packing/blob/main/solids.py"><code>solids.py</code></a> constructs the exact Platonic solids.</li>
+  <li><a href="https://github.com/alejandrozu/platonic-packing/blob/main/polyhedra.py"><code>polyhedra.py</code></a> builds Archimedean and Catalan solids, prisms, antiprisms and elongated prisms. Catalan solids are polar duals of unit-edge Archimedean solids in their common midsphere: a face with unit normal m at distance h gives a dual vertex (r<sub>m</sub><sup>2</sup>/h)m. The generator checks the hull, face planarity, edge and face counts, supporting planes, and the appropriate equal-edge or insphere conditions.</li>
+  <li><a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/polytopes_nd.py"><code>src/polytopes_nd.py</code></a> builds the regular 4D–6D polytopes; their exact algebraic coordinates and facets are stored in <a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/polytopes_nd.json"><code>src/polytopes_nd.json</code></a> and checked by the higher-dimensional certifier.</li>
 </ul>
-<p><a href="https://github.com/alejandrozu/platonic-packing/blob/main/polyhedra.py"><code>polyhedra.py</code></a> builds the non-Platonic solids in 60-digit
-arithmetic, derives the faces from the convex hull and checks the vertex, edge and face counts, Euler's formula, equal
-edges or an insphere, planarity, and that every face plane supports the solid. The floats used by the search go to
-<a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/solids.json"><code>src/solids.json</code></a> and 50-digit coordinates to
-<a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/solids_hp.json"><code>src/solids_hp.json</code></a>. Exact coordinates for the
-certificates are on the <a href="../certification/#solids">certification page</a>.</p>
+<p>The 3D search reads <a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/solids.json"><code>src/solids.json</code></a>; high-precision and
+exact geometry are kept separately in <code>src/solids_hp.json</code> and <code>src/solids_exact.json</code>. See
+<a href="../certification/#solids">exact solid definitions</a> for the certificate's interpretation.</p>
 
-<h2 id="soft">Soft shapes: from balls to polyhedra</h2>
-<p>The soft-to-rigid starting point comes from Yohei Nakajima's <a href="https://github.com/yoheinakajima/soft-to-rigid-packing">soft-to-rigid
-packing</a> of unit cubes. Packing hard polyhedra directly gets stuck: sharp corners lock against each other long before
-the arrangement is good. Balls slide past each other easily. So every piece starts as a ball and is sharpened into
-the polyhedron through a family of convex shapes S<sub>r</sub> that grows as the softness r goes to 0.</p>
-<h3 id="tangential">Solids with an insphere</h3>
-<p>Platonic and Catalan solids have an inscribed ball of radius ρ touching every face. For them</p>
-<p class="eq">S<sub>r</sub> = (1 − r/ρ)·P <span class="op">⊕</span> B(r),&nbsp;&nbsp;<span>0 ≤ r ≤ ρ,</span></p>
-<p>a shrunken copy of P dilated by a ball of radius r. S<sub>ρ</sub> is the insphere, S<sub>0</sub> = P, every
-S<sub>r</sub> lies inside P, and S<sub>r</sub> only grows as r decreases (its support function is
-h<sub>P</sub>(u) − (r/ρ)(h<sub>P</sub>(u) − ρ), non-increasing in r because h<sub>P</sub> ≥ ρ). So a packing of the
-polyhedra is a packing of every S<sub>r</sub>, and the smallest container grows monotonically along the path: the search
-never has to undo anything, only make room.</p>
-<h3 id="rounding">Solids without one: the r-rounding</h3>
-<p>Archimedean solids, prisms and antiprisms have no ball touching every face, so the generalization uses the r-rounding</p>
-<p class="eq">S<sub>r</sub> = (P <span class="op">⊖</span> B(r)) <span class="op">⊕</span> B(r),</p>
-<p>the union of all balls of radius r inside P. Its core P <span class="op">⊖</span> B(r) = {x : n<sub>f</sub>·x ≤ h<sub>f</sub> − r} is again
-a polytope; faces vanish from it at finitely many values of r, and between those values every core vertex moves
-linearly, V(r) = V<sub>0</sub> + r·W. <a href="https://github.com/alejandrozu/platonic-packing/blob/main/polyhedra.py"><code>polyhedra.py</code></a> precomputes
-these intervals ("cores"), and the simulator reads the core for any r in constant time. The r-rounding also lies inside P
-and grows as r decreases, and for a solid with an insphere it is exactly Nakajima's shape, so this is one homotopy, not
-two. The search starts at r = 0.49 in internal units, where every solid is scaled so its inradius is ½; for solids
-without an insphere the starting shape is a rounded body rather than a ball.</p>
-<h3 id="contacts">Contacts between soft shapes</h3>
-<p>Two rounded bodies K <span class="op">⊕</span> B(r) and L <span class="op">⊕</span> B(r) overlap exactly when their cores come closer than 2r, and the overlap depth
-is 2r minus the signed distance of the cores. So all contact geometry is computed on the cores, which are polytopes:</p>
+<h2 id="soft">Soft shapes and hardening</h2>
+<p>Nakajima's starting idea lets rounded pieces rearrange under pressure before their sharp features lock together.
+For a convex polytope P with an insphere of radius ρ touching every facet, the project uses</p>
+<p class="eq">S<sub>r</sub> = (1 − r/ρ)P ⊕ B<sub>d</sub>(r), &nbsp; 0 ≤ r ≤ ρ.</p>
+<p>Here ⊕ is a Minkowski sum and B<sub>d</sub>(r) is the radius-r ball in the ambient dimension. The endpoints are the
+insphere and P. Its support function is (1 − r/ρ)h<sub>P</sub>(u) + r for unit u. Since h<sub>P</sub>(u) ≥ ρ,
+the rounded bodies are nested and grow as r decreases. This formula applies to the Platonic and Catalan solids and
+every regular higher-dimensional polytope supported here. Internally ρ = 1/2, so the nD simulator uses
+(1 − 2r)P ⊕ B<sub>d</sub>(r).</p>
+<p>For 3D solids whose facets are not all tangent to one insphere, the generalized implementation uses erosion followed
+by dilation:</p>
+<p class="eq">S<sub>r</sub> = (P ⊖ B<sub>3</sub>(r)) ⊕ B<sub>3</sub>(r).</p>
+<p>For unit facet normals, the eroded core is {x : n<sub>f</sub>·x ≤ h<sub>f</sub> − r}. Its vertices vary linearly
+between finitely many changes of face structure, precomputed by <code>polyhedra.py</code>. The rounded shape stays
+inside P and grows toward P as r decreases. For a tangential polytope this reduces to the insphere formula. A
+non-tangential solid starts as a rounded body rather than necessarily a ball.</p>
+
+<h2 id="dynamics">Pressure, contact geometry and legalizing</h2>
+<p>The 3D simulator, <a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/sim.js"><code>src/sim.js</code></a>, minimizes squared positive
+overlaps and wall violations plus a pressure term proportional to container size. Heavy-ball updates act on centers,
+orientations and scale, with bounded velocities and annealed noise. A fresh start compresses rounded bodies, lowers
+the softness to zero, then settles the hard pieces. Hop schedules and step budgets depend on the move and piece count.</p>
+<p><a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/geom.js"><code>src/geom.js</code></a> evaluates contacts between rounded 3D bodies
+through their polyhedral cores: separating-axis penetration tests for overlapping cores and feature distances for
+disjoint cores. A Gauss-map filter prunes edge pairs in the separating-axis test, following
+<a href="https://gdcvault.com/play/1017646/">Dirk Gregorius's presentation of the convex-polyhedron test</a>.</p>
+<p>A simulation is only a candidate. Legalizing spreads centers as needed, finds separating planes and refits the
+container, including its translation. Only a candidate passing the appropriate geometric checks can replace an archived
+witness. Approximate dynamics, legalizing and the final exact certificate serve distinct purposes.</p>
+
+<h2 id="search">Search moves and adaptive allocation</h2>
+<p><a href="https://github.com/alejandrozu/platonic-packing/blob/main/scripts/engine.py"><code>scripts/engine.py</code></a> maintains the best known packing
+and a pool of distinct good arrangements for each case. Its move portfolio includes:</p>
 <ul>
-  <li><b>overlapping cores</b>: the exact penetration depth by the separating axis test over the face normals of both cores and the cross products of their edges. For solids with many faces the edge pairs are pruned with the Gauss map (an edge pair can only give a face of the Minkowski difference when the arcs of the two edges on the sphere of normals cross, as in <a href="https://gdcvault.com/play/1017646/">D. Gregorius, “The Separating Axis Test between Convex Polyhedra”, GDC 2013</a>), which keeps the test exact;</li>
-  <li><b>disjoint cores</b>: the exact Euclidean distance by enumerating vertex–face, face–vertex and edge–edge features, limited to the slabs between the two support planes of a separating direction.</li>
+  <li><b>Hop:</b> slightly expand a packing, soften and perturb its pieces, then harden and tighten it again. Some hops move a local cluster rather than the whole configuration.</li>
+  <li><b>Fresh and symmetric starts:</b> start from new rounded arrangements. In 3D, <code>symfresh</code> holds the soft phase in orbits of a randomly chosen cyclic container symmetry, then releases the symmetry during unconstrained tightening. The final witness need not retain that symmetry.</li>
+  <li><b>Ascend and descend:</b> insert a piece into a good (n − 1)-packing, or remove a piece from an (n + 1)-packing and refit.</li>
+  <li><b>Reinsert:</b> remove a few pieces and try placing them in larger holes before relaxing.</li>
+  <li><b>Cheap perturbation:</b> expand and perturb a hard packing, then use sequential linear programming directly, avoiding a full soft simulation.</li>
 </ul>
-<p>Both come with analytic gradients with respect to the centres and the rotation vectors of the two pieces. This is
-<a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/geom.js"><code>src/geom.js</code></a>.</p>
+<p>The old fixed move percentages have been replaced by family-aware policies and measured performance. Recent
+improvements, logarithmic scale gains, CPU time, failure streaks, neighboring n values and long plateaus affect where
+the engine spends effort. Exploration and polishing use different move balances. These are implemented adaptive
+heuristics, not a guarantee of convergence to a global optimum.</p>
+<p>Deleting a piece preserves feasibility, hence s<sup>*</sup>(n) ≤ s<sup>*</sup>(n + 1). The archive propagates such
+deletions when they improve a smaller case and schedules further tightening. Distributed workers export candidates;
+the harvesting process rechecks them before admission. The live archive currently records 440,797 attempts.</p>
+<p>The project's <a href="https://github.com/alejandrozu/platonic-packing/blob/main/docs/SEARCH_METHODS_REVIEW.md">search-method study</a> reports measured
+comparisons of moves. Its proposed experiments are not all production features: for example, the current engine does
+not implement every GPU, projection or orbit-reduction idea discussed there.</p>
 
-<h2 id="dynamics">Dynamics: sharpening under pressure</h2>
-<p><a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/sim.js"><code>src/sim.js</code></a> minimizes</p>
-<p class="eq">E = Σ<sub>pairs</sub> (2r − d<sub>core</sub>)<sub>+</sub><sup>2</sup> + Σ<sub>walls</sub> (violation)<sub>+</sub><sup>2</sup> + μ · (container size)</p>
-<p>by heavy-ball descent on all centres, quaternions and the container size, with a velocity cap and annealed noise.
-The wall term uses the support function of S<sub>r</sub> in each container face normal. A fresh run spends 5,000 steps
-compressing the soft bodies, 45,000 steps lowering r linearly to 0 and 3,000 steps settling the rigid pieces. Then the
-packing is legalized: centres are scaled apart until no pair overlaps, and the container is shrunk to the smallest one
-over all translations, a four-variable linear program (solved with a small simplex method for containers with many faces).
-<a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/server.js"><code>src/server.js</code></a> runs these simulations for the search engine.</p>
+<h2 id="crystals">Structured seeds: grids, lattices and crystal cuts</h2>
+<p>Known grids and space-filling structures provide useful baselines. For larger 3D cases,
+<a href="https://github.com/alejandrozu/platonic-packing/blob/main/scripts/crystal.py"><code>scripts/crystal.py</code></a> constructs numerical lattice,
+double-lattice and prism-column packings. <a href="https://github.com/alejandrozu/platonic-packing/blob/main/scripts/crystal_cut.py"><code>scripts/crystal_cut.py</code></a>
+selects finite windows, varies orientations and offsets, and refits and tightens them inside the chosen container.
+These seeds compete with insertions, hops and community arrangements. A dense infinite packing need not give the best
+small finite-container packing because boundary effects are substantial.</p>
+<p>The project's finite-cut implementation builds on an established subject: <a href="https://arxiv.org/abs/math/9909172">Betke
+and Henk's lattice work</a>, <a href="https://arxiv.org/abs/0909.0940">Torquato and Jiao's dense-polyhedron packing
+work</a>, and <a href="https://arxiv.org/abs/1107.2300">Jiao and Torquato's truncated-tetrahedron double lattice</a>.
+The numerical periodic seeds are not certificates of globally densest infinite packings; the extracted finite
+constructions receive their own exact checks.</p>
 
-<h2 id="search">The search engine</h2>
-<p>A fresh run takes 20–60 seconds and mostly re-discovers dense packings. The engine,
-<a href="https://github.com/alejandrozu/platonic-packing/blob/main/scripts/engine.py"><code>scripts/engine.py</code></a>, instead keeps an archive with the
-best packing and a pool of distinct good packings for every (problem, n), and repeatedly applies one move:</p>
+<h2 id="composition">Nested constructions and reuse</h2>
+<p>If a witness puts m copies of P inside Q at edge ratio a, and another puts k copies of Q inside C at ratio b,
+substituting a scaled inner arrangement into every outer piece gives mk copies of P inside C at ratio ab. Any subset
+is still a packing, so</p>
+<p class="eq">s<sup>*</sup><sub>P→C</sub>(N) ≤ ab &nbsp; for 1 ≤ N ≤ mk.</p>
+<p>All shapes must have the same ambient dimension and compatible normalization. With an inner map R<sub>i</sub>x +
+p<sub>i</sub> in aQ and outer map U<sub>j</sub>y + q<sub>j</sub> in bC, scale the entire outer construction by a:
+the composite pose is U<sub>j</sub>R<sub>i</sub>x + U<sub>j</sub>p<sub>i</sub> + aq<sub>j</sub> in abC. Nonzero
+container centers are translated consistently. One-piece inclusions are included by taking m = 1.</p>
+<p><a href="https://github.com/alejandrozu/platonic-packing/blob/main/scripts/compose3d.py"><code>scripts/compose3d.py</code></a> and
+<a href="https://github.com/alejandrozu/platonic-packing/blob/main/scripts/compose_nd.py"><code>scripts/compose_nd.py</code></a> search over intermediary
+Platonic solids in 3D and supported regular polytopes in 4D–6D, respectively, and available multiplicities, construct
+improving candidates and re-legalize them. Improvements can therefore
+propagate to other problems without a fresh numerical search.</p>
+<p>The automated higher-dimensional sweep generalizes the whole-body inclusion construction in
+<a href="https://github.com/alejandrozu/platonic-packing/issues/79">PingYou Ltd's contribution #79</a>, including a 120-cell placed inside each 24-cell of
+an existing packing. PingYou Ltd's related contributions use <a href="https://github.com/alejandrozu/platonic-packing/issues/28">honeycomb windows and
+fixed-orientation center optimization</a>, <a href="https://github.com/alejandrozu/platonic-packing/issues/78">prism subdivisions</a> and
+<a href="https://github.com/alejandrozu/platonic-packing/issues/85">face lifts into a higher dimension</a>. Their original issues describe the actual construction;
+derived witnesses retain the relevant source lineage. Product constructions and inclusion are general geometric
+principles, not claimed here as newly invented principles.</p>
+
+<h2 id="tightening">Tightening and witness files</h2>
+<p>The hard-packing tighteners minimize container scale subject to vertex containment and separating-plane constraints.
+<a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/fastslp.py"><code>src/fastslp.py</code></a> uses sequential linear programming with
+trust regions and regularization. Exploratory perturbations and close comparisons can use unregularized tightening;
+<a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/exact.py"><code>src/exact.py</code></a> also contains the earlier tightening path.
+Despite that filename, numerical optimization itself is not an exact proof.</p>
+<p>Separating-plane nonlinear models for freely translating and rotating polyhedra predate this project; see
+<a href="https://doi.org/10.1016/j.ejor.2018.01.025">Romanova, Bennell, Stoyan and Pankratov (2018)</a>.
+Sequential-LP packing methods also have prior literature, including <a href="https://arxiv.org/abs/1008.2747">Torquato
+and Jiao (2010)</a>. <a href="https://arxiv.org/abs/2605.04850">Berthold, Kamp, Mexi, Pokutta and Pólik (2026)</a>
+studied every ordered Platonic-solid pair before this project. This site's <a href="../literature/">literature
+page</a> distinguishes those results and methods from the present implementation.</p>
+<p>The publisher generates full-precision JSON witnesses and certificates. Search-generated records normally add a
+small positive clearance; community witnesses may use different margins. The certificate, not a blanket decimal
+padding rule, determines whether a file is strictly valid. The displayed trailing “+” marks a truncated display:
+the printed base value alone is not the certified scale. Use <code>s_full</code> and the complete coordinate file
+for calculations and for the construction's upper bound.</p>
+
+<h2 id="higher">Search and visualization in 4–6 dimensions</h2>
+<p><a href="https://github.com/alejandrozu/platonic-packing/blob/main/scripts/engine_nd.py"><code>scripts/engine_nd.py</code></a> and
+<a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/ndsim.py"><code>src/ndsim.py</code></a> extend the archive and hardening search to
+SO(d). An orientation has d(d − 1)/2 infinitesimal rotation parameters. Skew-matrix increments are applied with a
+Cayley map; simulation matrices are numerical and periodically reorthonormalized.</p>
+<p>Support-point queries and separating-hyperplane optimization replace exhaustive enumeration of 3D edge-cross-edge
+axes. <a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/ndslp.py"><code>src/ndslp.py</code></a> tightens centers, rotations, scale
+and separating hyperplanes. Higher-dimensional symmetric starts use central inversion, reflections and suitable
+four-element symmetry groups, with constraints released for final settling. The engine also uses grid seeds, local
+perturbations, insertion, deletion and reinsertions.</p>
+<p>The viewer shows <b>3D slices</b>, not a full-dimensional projection: in 4D it fixes x<sub>4</sub>; in 5D and 6D it
+also fixes the remaining coordinates. Sliders and a sweep move the section. A piece missing the current slice still
+belongs to the packing. The certificate checks the whole d-dimensional bodies, independently of this visualization.</p>
+<p><a href="https://github.com/alejandrozu/platonic-packing/blob/main/docs/HIGHER_DIM.md">Higher-dimensional implementation notes</a> explain the geometry,
+cost and current search limits. The <a href="../contribute/#higher">higher-dimensional contribution instructions</a>
+describe the native matrix-format witnesses and the separate review route.</p>
+
+<h2 id="verification">What exact verification proves</h2>
+<p>For 3D, <a href="https://github.com/alejandrozu/platonic-packing/blob/main/verify_general.py"><code>verify_general.py</code></a> supplies a floating-point
+diagnostic and <a href="https://github.com/alejandrozu/platonic-packing/blob/main/certify_general.py"><code>certify_general.py</code></a> performs exact
+verification. In 4–6D, <a href="https://github.com/alejandrozu/platonic-packing/blob/main/certify_nd.py"><code>certify_nd.py</code></a> checks the native
+polytopes, rational rotations, containment and separation. Its rational skew-matrix/Cayley representation gives
+exactly orthogonal proper rotations; rigorous outward interval arithmetic proves the geometric inequalities.</p>
+<p>The certificate proves that the supplied construction fits at its stated scale, with positive margins. It does
+not prove that every smaller scale is impossible, validate every theorem in an accompanying write-up, or establish
+priority for a construction. Source-only published bounds are labelled separately. 10,398 selected coordinate constructions are certified exactly; 6 better published entries link to the original constructions and have no coordinates or local certificate. Their certified alternatives remain available in the viewer.</p>
+<p>Construction authorship, source witnesses and certificate refinement are recorded separately. Re-padding or
+re-certifying an unchanged arrangement does not transfer its construction credit. A deletion or nested construction
+can inherit or combine earlier source credit. See <a href="../certification/">certification</a> and
+<a href="../contribute/#provenance">contributor attribution</a>.</p>
+
+<h2 id="generalize">Extending the library and reproducing a result</h2>
+<p>A new convex 3D solid needs canonical high-precision geometry, exact geometry and validation, and a problem
+definition. A new higher-dimensional polytope needs exact vertices and supporting facets plus a compatible engine and
+certifier definition. Adding a name to the viewer alone does not establish support. Mixed pieces, curved containers
+and new objectives require changes to the appropriate geometry, optimizer and proof checks.</p>
+<p>The <a href="../contribute/">contribution page</a> explains existing problems, new categories and alternative
+constructions. The current implementation does not accept planar packings as catalogue entries.</p>
+<pre><code>git clone https://github.com/alejandrozu/platonic-packing.git
+cd platonic-packing
+# Exact witness checks use the Python standard library:
+python3 certify_general.py records/phcinphc/phcinphc_n12.json
+python3 certify_nd.py path/to/native-nd-witness.json
+# Building/searching additionally needs the dependencies in the repository's instructions.
+python3 scripts/site.py</code></pre>
+<p>Download a complete native record from the viewer or construction catalogue and check that exact file. Preserve
+numeric strings, translations, orientations, scale and provenance when sharing it. Search-generated and community
+files can have different filenames and locations; use the linked record rather than reconstructing one from a rounded
+table value.</p>
+
+<h2 id="reading">Code and research notes</h2>
 <ul>
-  <li><b>hop</b> (55%): expand the best packing slightly, soften the pieces, shake them at fixed container size until their relative arrangement has changed by a random target, then re-sharpen under pressure. For larger n many hops shake only a cluster of neighbouring pieces.</li>
-  <li><b>fresh</b> (15%): a full soft-to-rigid run from random balls, which keeps the archive diverse.</li>
-  <li><b>ascend</b> (15%): the best (n − 1)-packing plus one piece in its largest hole, re-sharpened.</li>
-  <li><b>descend</b> (10%): the best (n + 1)-packing minus the piece whose removal lets the container shrink most.</li>
-  <li><b>reinsert</b> (5%): remove one to three pieces and put them back into the largest holes.</li>
-</ul>
-<p>Removing a piece never makes a packing invalid, so s(n) ≤ s(n + 1) always holds, and the archive enforces it on every
-write: whenever the best n-packing is worse than the best (n + 1)-packing minus a piece, the latter replaces it and is
-queued for re-tightening. The scheduler fills every empty case first, then brings every case to a minimum number of
-attempts, then spends effort where it pays most per piece.</p>
-<p>For the Archimedean, Catalan and prism families the engine ran on three kinds of machines at once: two workers in the
-cloud, two on a laptop in short bounded runs, and four GitHub Actions jobs of four workers each, started every hour by
-<a href="https://github.com/alejandrozu/platonic-packing/blob/main/.github/workflows/search.yml"><code>.github/workflows/search.yml</code></a>. Remote results come back
-through <a href="https://github.com/alejandrozu/platonic-packing/blob/main/scripts/remote.py"><code>scripts/remote.py</code></a> and are re-legalized before they can
-enter the archive. In total the archive records 440,667 attempts.</p>
-
-<h2 id="tightening">Tightening and record files</h2>
-<p>Promising results are tightened by <a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/exact.py"><code>src/exact.py</code></a>: the container
-size is minimized subject to hard constraints (every vertex inside every container face, and a separating plane for
-every nearby pair, with its normal and offset as variables), first by sequential linear programming with trust regions
-and then, for small n, by SLSQP. A round is accepted only if the legalized size went down, and tightening stops when
-50 rounds gain less than 10<sup>−7</sup> relative.</p>
-<p><a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/claim.py"><code>src/claim.py</code></a> then turns the tightened packing into a record
-file: centres are spread until every pair has a separation of at least 10<sup>−7</sup>, the container is refitted with
-at least 10<sup>−7</sup> clearance on every wall, and s is rounded up at the 13th decimal. The displayed value
-(“4.10646+”) is s truncated to five decimals. Record files live in
-<a href="https://github.com/alejandrozu/platonic-packing/tree/main/records"><code>records/</code></a>, one folder per problem, next to their certificate and
-float check; the <a href="../constructions/">constructions page</a> links every one.</p>
-
-<h2 id="verification">Verification</h2>
-<p>Every record is checked twice. <a href="https://github.com/alejandrozu/platonic-packing/blob/main/verify_general.py"><code>verify_general.py</code></a> is a
-floating-point separating-axis check. <a href="https://github.com/alejandrozu/platonic-packing/blob/main/certify_general.py"><code>certify_general.py</code></a> is a
-proof: exact coordinates in number fields, exactly orthogonal rational rotations, and rigorous interval arithmetic for
-containment and for a separating plane between every pair. The <a href="../certification/">certification page</a>
-explains what it proves and how. 10,398 selected coordinate constructions are certified exactly; 6 better published entries link to the original constructions and have no coordinates or local certificate. Their certified alternatives remain available in the viewer.</p>
-
-<h2 id="generalize">Generalizing it</h2>
-<p>Nothing in the pipeline is specific to these 56 solids. To pack other convex polyhedra:</p>
-<ul>
-  <li><b>A new solid</b>: add it to <a href="https://github.com/alejandrozu/platonic-packing/blob/main/polyhedra.py"><code>polyhedra.py</code></a> (vertices in high precision; faces, checks and r-rounding cores are derived) and give its number field in <a href="https://github.com/alejandrozu/platonic-packing/blob/main/scripts/exact_solids.py"><code>scripts/exact_solids.py</code></a>. Everything downstream reads <code>src/solids.json</code>.</li>
-  <li><b>A new pair</b>: any piece can go in any container. Add the problem id to <code>PROBLEMS</code> in <a href="https://github.com/alejandrozu/platonic-packing/blob/main/scripts/engine.py"><code>scripts/engine.py</code></a>.</li>
-  <li><b>Mixed pieces</b> or <b>non-polyhedral containers</b> (a sphere, a cylinder) need changes in the energy (<code>src/sim.js</code>), in the tightening constraints (<code>src/exact.py</code>) and in the certificate, but the homotopy itself carries over unchanged.</li>
-  <li><b>Other measures</b>, such as volume ratios or a container of fixed shape but free aspect, only change the objective.</li>
-</ul>
-<p>Ideas and questions are welcome as <a href="../contribute/#category">category proposals</a>.</p>
-
-<h2 id="code">Code map</h2>
-<dl class="files">
-  <dt><a href="https://github.com/alejandrozu/platonic-packing/blob/main/polyhedra.py">polyhedra.py</a></dt><dd>Archimedean, Catalan, prism and antiprism solids; faces, checks, r-rounding cores</dd>
-  <dt><a href="https://github.com/alejandrozu/platonic-packing/blob/main/solids.py">solids.py</a></dt><dd>exact Platonic solids in ℚ(√2, √5) with self-check</dd>
-  <dt><a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/geom.js">src/geom.js</a></dt><dd>signed distances, penetration depths and gradients; pruned separating axis test</dd>
-  <dt><a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/sim.js">src/sim.js</a></dt><dd>soft-to-rigid dynamics, hops, legalization, container LP</dd>
-  <dt><a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/server.js">src/server.js</a></dt><dd>JSON-lines compute server used by the engine</dd>
-  <dt><a href="https://github.com/alejandrozu/platonic-packing/blob/main/scripts/engine.py">scripts/engine.py</a></dt><dd>basin-hopping search, monotone archive, scheduler</dd>
-  <dt><a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/exact.py">src/exact.py</a></dt><dd>sequential LP and SLSQP tightening, legalization</dd>
-  <dt><a href="https://github.com/alejandrozu/platonic-packing/blob/main/src/claim.py">src/claim.py</a></dt><dd>record files with explicit clearance</dd>
-  <dt><a href="https://github.com/alejandrozu/platonic-packing/blob/main/verify_general.py">verify_general.py</a></dt><dd>floating-point check of any record</dd>
-  <dt><a href="https://github.com/alejandrozu/platonic-packing/blob/main/certify_general.py">certify_general.py</a></dt><dd>exact certificate of any record (standard library only)</dd>
-  <dt><a href="https://github.com/alejandrozu/platonic-packing/blob/main/algebraic.py">algebraic.py</a></dt><dd>number fields, Sturm sequences, rational interval arithmetic</dd>
-  <dt><a href="https://github.com/alejandrozu/platonic-packing/blob/main/scripts/exact_solids.py">scripts/exact_solids.py</a></dt><dd>exact coordinates of every solid by PSLQ, proved by self-check</dd>
-  <dt><a href="https://github.com/alejandrozu/platonic-packing/blob/main/certify_exact.py">certify_exact.py</a></dt><dd>the original certifier for Platonic records, over ℚ(√2, √5)</dd>
-  <dt><a href="https://github.com/alejandrozu/platonic-packing/blob/main/scripts/publish.py">scripts/publish.py</a></dt><dd>records, certificates, tables and this site from the archive</dd>
-  <dt><a href="https://github.com/alejandrozu/platonic-packing/blob/main/scripts/site.py">scripts/site.py</a></dt><dd>builds this website from <code>web/</code> and the records</dd>
-  <dt><a href="https://github.com/alejandrozu/platonic-packing/blob/main/scripts/check_submission.py">scripts/check_submission.py</a></dt><dd>checks and accepts packings submitted through GitHub issues</dd>
-  <dt><a href="https://github.com/alejandrozu/platonic-packing/tree/main/test">test/</a></dt><dd>test suite: gradients, optimality conditions, broken files that must be rejected</dd>
-</dl>
-
-<h2 id="reproduce">Reproduce</h2>
-<pre><code>git clone https://github.com/alejandrozu/platonic-packing.git && cd platonic-packing
-pip install numpy scipy mpmath sympy        # Node ≥ 18 for the simulator
-python3 certify_general.py records/phcinphc/phcinphc_n12.json   # check one record exactly
-nohup setsid scripts/run_forever.sh &gt; logs/supervisor.out 2&gt;&amp;1 &amp;   # run the search (resumes from state/best)
-python3 scripts/engine.py status                                    # current table
-touch state/STOP                                                    # stop gracefully
-python3 scripts/publish.py --no-push                                # records, certificates, site</code></pre>
-
-<h2 id="reading">Further reading</h2>
-<ul>
-  <li><a href="https://github.com/alejandrozu/platonic-packing/blob/main/docs/FINAL_REPORT.md">Full report of the Platonic project</a>: everything that was tried, including what did not work.</li>
-  <li><a href="https://github.com/alejandrozu/platonic-packing/blob/main/docs/MATH.md">Mathematical notes</a>: the homotopy lemma, the certificate, lattice constructions, open questions.</li>
-  <li>Y. Nakajima, <i>Twelve unit cubes in a cube of side 2.9315: soft-to-rigid packing</i>, 2026, <a href="https://doi.org/10.5281/zenodo.23248095">doi:10.5281/zenodo.23248095</a>, code at <a href="https://github.com/yoheinakajima/soft-to-rigid-packing">yoheinakajima/soft-to-rigid-packing</a>.</li>
-  <li><a href="https://erich-friedman.github.io/packing/">Erich Friedman's Packing Center</a>, the source of the previously published values for cubes in a cube and octahedra in a cube.</li>
-  <li>M. Firsching, <i>Computing maximal copies of polytopes contained in a polytope</i>, Experimental Mathematics, 2018, <a href="https://arxiv.org/abs/1407.0683">arXiv:1407.0683</a> (the case n = 1).</li>
-  <li>Background: <a href="https://en.wikipedia.org/wiki/Archimedean_solid">Archimedean solids</a>, <a href="https://en.wikipedia.org/wiki/Catalan_solid">Catalan solids</a>, <a href="https://en.wikipedia.org/wiki/Antiprism">antiprisms</a>, <a href="https://en.wikipedia.org/wiki/Minkowski_addition">Minkowski sums</a>, <a href="https://en.wikipedia.org/wiki/Hyperplane_separation_theorem">the separating axis theorem</a>, <a href="https://en.wikipedia.org/wiki/Basin-hopping">basin hopping</a>.</li>
+  <li><a href="https://github.com/alejandrozu/platonic-packing/blob/main/docs/FINAL_REPORT.md">Original Platonic-project report</a> and <a href="https://github.com/alejandrozu/platonic-packing/blob/main/docs/MATH.md">mathematical notes</a>.</li>
+  <li><a href="https://github.com/alejandrozu/platonic-packing/blob/main/docs/SEARCH_METHODS_REVIEW.md">Measured search-method comparisons</a>, <a href="https://github.com/alejandrozu/platonic-packing/blob/main/docs/LARGE_N_REVIEW.md">large-n constructions and tightening</a>, and <a href="https://github.com/alejandrozu/platonic-packing/blob/main/docs/HIGHER_DIM.md">4D–6D implementation</a>.</li>
+  <li><a href="https://github.com/alejandrozu/platonic-packing/blob/main/docs/RELATED_WORK.md">Detailed related-work review</a> and the public <a href="../literature/">literature guide</a>.</li>
+  <li>Y. Nakajima, <i>Twelve unit cubes in a cube of side 2.9315: soft-to-rigid packing</i> (2026), <a href="https://doi.org/10.5281/zenodo.23248095">doi:10.5281/zenodo.23248095</a>.</li>
+  <li>A. Zarzuelo Urdiales, project methodology and pattern studies: <a href="https://doi.org/10.5281/zenodo.23306098">methods</a> and <a href="https://doi.org/10.5281/zenodo.23306126">patterns</a>. These are dated research snapshots; the code and catalogue continue to evolve.</li>
 </ul>
 </article>
-<nav class="toc" aria-label="On this page"><b>On this page</b><a href="#problem">The problem</a><a href="#solids">The solids</a><a href="#soft">Soft shapes: from balls to polyhedra</a><a href="#tangential" class="sub">Solids with an insphere</a><a href="#rounding" class="sub">Solids without one: the r-rounding</a><a href="#contacts" class="sub">Contacts between soft shapes</a><a href="#dynamics">Dynamics: sharpening under pressure</a><a href="#search">The search engine</a><a href="#tightening">Tightening and record files</a><a href="#verification">Verification</a><a href="#generalize">Generalizing it</a><a href="#code">Code map</a><a href="#reproduce">Reproduce</a><a href="#reading">Further reading</a></nav>
+<nav class="toc" aria-label="On this page"><b>On this page</b><a href="#problem">Problem, scale and scope</a><a href="#bounds">Density and lower bounds in dimension d</a><a href="#solids">Canonical geometry</a><a href="#soft">Soft shapes and hardening</a><a href="#dynamics">Pressure, contact geometry and legalizing</a><a href="#search">Search moves and adaptive allocation</a><a href="#crystals">Structured seeds: grids, lattices and crystal cuts</a><a href="#composition">Nested constructions and reuse</a><a href="#tightening">Tightening and witness files</a><a href="#higher">Search and visualization in 4–6 dimensions</a><a href="#verification">What exact verification proves</a><a href="#generalize">Extending the library and reproducing a result</a><a href="#reading">Code and research notes</a></nav>
 </div>
 
 </main>
 <footer class="foot"><div class="in">
   <p>Certified coordinate constructions and attributed published values, not optimality claims. Generalized packing method by Alejandro Zarzuelo Urdiales, building on Yohei Nakajima's soft-to-rigid cube-packing method. Code, records and certificates: <a href="https://github.com/alejandrozu/platonic-packing">github.com/alejandrozu/platonic-packing</a>. Project code: MIT license; external constructions retain their source attribution.</p>
   <p>This site is updated and maintained by Alejandro Zarzuelo Urdiales.</p>
-  <p>Built 2026-10-15 17:55 UTC+00</p>
+  <p>Built 2026-10-15 19:40 UTC+00</p>
 </div></footer>
 
 </body>
