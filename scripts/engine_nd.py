@@ -52,12 +52,15 @@ def nmax(p):
 
 
 POOL = 6
+STREAK = int(os.environ.get("PP_ND_STREAK", 3))
 # symfresh (15 Oct 08:10): soft-to-rigid run constrained to central symmetry (pairs x, -x), then released; in a first
 # test it beat 3 of 5 records (2 24-cells in a 24-cell: 1.8780 against 1.8856)
 # 15 Oct 09:09, first per-move statistics of 18 Actions jobs (20 min): improvements per CPU-hour perturb 47-60,
 # tighten (continuations) 35-57, hop 40-53, ascend ~30, descend/reinsert ~20, fresh 0-16, symfresh 0-10 (its gains
 # came at small n, now improved) -> weights shifted to perturb; the per-job bandit adapts further
-WEIGHTS = {'hop': 0.40, 'reinsert': 0.06, 'fresh': 0.05, 'symfresh': 0.07, 'ascend': 0.10, 'descend': 0.07, 'perturb': 0.25}
+# 15 Oct 13:00, run 12 (18 jobs, 50 min): improvements per CPU-hour perturb 50, tighten 31, hop 29, reinsert 19,
+# descend 17, ascend 16, fresh 6, symfresh 1.4 -> fresh/symfresh down, perturb up
+WEIGHTS = {'hop': 0.40, 'reinsert': 0.06, 'fresh': 0.04, 'symfresh': 0.04, 'ascend': 0.10, 'descend': 0.07, 'perturb': 0.29}
 DISCOVERY, POLISH = ('fresh', 'symfresh', 'reinsert'), ('hop', 'tighten', 'perturb')
 _pb = {}
 
@@ -191,7 +194,7 @@ def tighten(pb, C, R, best_s, n, explore=False, budget=1.0):
     return ndslp.tighten(pb, C, R, tlimit=budget * (30 + 4 * n), reg=0.0 if explore else 1e-4, abort=abort)
 
 
-def attempt(p, n, move, rng, log):
+def attempt(p, n, move, rng, log, streak=0):
     import ndsim
     pb = problem(p); d = pb.d
     with locked():
@@ -295,7 +298,7 @@ def attempt(p, n, move, rng, log):
     with open(os.path.join(STATE, 'attempts.jsonl'), 'a') as f:
         f.write(json.dumps({'t': round(time.time()), 'p': p, 'n': n, 'move': move, 'raw': s_raw, 's': s_new if out else None,
                             'best_before': best_s, 'improved': improved, 'secs': round(secs, 1), 'raw_secs': round(t_raw, 1),
-                            **{k: info[k] for k in ('expand', 'sym', 'turn') if k in info}}) + '\n')
+                            **{k: info[k] for k in ('expand', 'sym', 'turn') if k in info}, **({'streak': streak} if streak else {})}) + '\n')
     return improved
 
 
@@ -468,7 +471,13 @@ def work(wid):
         with claim(p, n) as ok:
             if not ok: time.sleep(0.5); continue
             try:
-                attempt(p, n, move, rng, log)
+                improved = attempt(p, n, move, rng, log)
+                # 15 Oct 13:00: perturb succeeded in 45% of its attempts in run 12 (tighten continuations 77%), so a case
+                # that just improved is still far from its local optimum: follow up on it while it keeps improving
+                # (up to STREAK extra perturbs, each with probability 0.7), holding the claim
+                k = 0
+                while improved and k < STREAK and rng.random() < 0.7 and not known_optimal(p, n) and not os.path.exists(os.path.join(STATE, 'STOP')):
+                    k += 1; improved = attempt(p, n, 'perturb', rng, log, streak=k)
             except Exception as e:
                 import traceback
                 log(f'ERROR {p} n={n} {move}: {type(e).__name__}: {str(e)[:300]} | {traceback.format_exc()[-600:]}')
@@ -541,6 +550,7 @@ def export(state, ref):
         if a.get('move') == 'harvest' or a.get('p') not in DIM: continue
         m = a['move']
         if m == 'perturb' and 'expand' in a: m = 'perturb>5%' if a['expand'] > 0.05 else 'perturb<=5%'
+        if a.get('streak'): m = 'perturb/streak'
         if m == 'symfresh' and a.get('sym'): m = 'symfresh/' + a['sym']
         k = f"{DIM[a['p']]}:{m}"; r = mv.setdefault(k, [0, 0, 0.0]); r[0] += 1; r[1] += bool(a.get('improved')); r[2] += a.get('secs', 0)
     out['_moves'] = mv
