@@ -46,6 +46,14 @@ jobs:
           export PP_STATE_ND="$RUNNER_TEMP/pp-nd"
           mkdir -p "$PP_STATE_ND/best"; [ -d state/nd/best ] && cp -r state/nd/best/. "$PP_STATE_ND/best/"
           python3 -c "import sys; sys.path.insert(0, 'src'); import ndsim; ndsim.fresh(ndsim.Problem('c8', 'c8'), 2, 1, B=0.05)" > /dev/null 2>&1 || true
+          # 16 Oct: start from the previous run's results too, in case the main machine has not merged them into main yet
+          # (each packing is re-legalized on import; packings already in main are skipped), so runs chain on GitHub alone
+          git fetch -q --depth=1 origin '+refs/heads/search-results-*:refs/remotes/origin/search-results-*' 2>/dev/null || true
+          for ref in $(git for-each-ref --format='%(refname:short)' 'refs/remotes/origin/search-results-*'); do
+            git show "$ref:export.txt" > "$RUNNER_TEMP/prev.txt" 2>/dev/null && timeout 900 python3 scripts/remote.py import "$RUNNER_TEMP/prev.txt" previous-run > /dev/null 2>&1 || true
+            git show "$ref:export_nd.txt" > "$RUNNER_TEMP/prev_nd.txt" 2>/dev/null && timeout 900 python3 scripts/engine_nd.py import "$RUNNER_TEMP/prev_nd.txt" previous-run > /dev/null 2>&1 || true
+          done
+          rm -f "$PP_STATE/attempts.jsonl" "$PP_STATE_ND/attempts.jsonl"      # this job's own attempts only (export totals)
           pids=""
           for w in 0 1; do
             PP_SHARD="${{ matrix.job }}/18" timeout $(( MINUTES * 60 + 600 )) python3 scripts/engine_nd.py work "N${{ matrix.job }}$w" > /dev/null 2>&1 &
@@ -87,3 +95,22 @@ jobs:
           git -c user.name="platonic-packing search" -c user.email="actions@users.noreply.github.com" add -A
           git -c user.name="platonic-packing search" -c user.email="actions@users.noreply.github.com" commit -q -m "search results, run $GITHUB_RUN_ID job ${{ matrix.job }}"
           git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" "HEAD:refs/heads/search-results-${{ matrix.job }}"
+  next:
+    # 16 Oct (Alejandro: "keep all cores working"): when the search jobs end, this job starts the next run itself, so the
+    # 18 jobs keep running even while the main machine is away (its 6-minute cycle only harvests and merges then);
+    # state/ACTIONS_PAUSE or state/STOP in main pause the chain
+    needs: search
+    if: ${{ !cancelled() }}            # a cancelled run (a manual restart) does not start another one
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Start the next run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for f in state/ACTIONS_PAUSE state/STOP; do
+            if gh api "repos/${{ github.repository }}/contents/$f?ref=main" > /dev/null 2>&1; then echo "paused ($f)"; exit 0; fi
+          done
+          gh workflow run search.yml -R "${{ github.repository }}" --ref main -f minutes="${{ inputs.minutes || '300' }}"
