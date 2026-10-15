@@ -1,0 +1,552 @@
+{
+ "problem": "min/triakis_tetrahedron_in_triakis_tetrahedron",
+ "piece": "triakis_tetrahedron",
+ "container": "triakis_tetrahedron",
+ "n": 13,
+ "s_full": 2.777778155555556,
+ "pieces": [
+  [
+   -1.4142137037944515,
+   0.0,
+   1.4142137037944515,
+   -5,
+   3,
+   1,
+   -1
+  ],
+  [
+   -1.885618271725935,
+   1.885618271725935,
+   1.885618271725935,
+   1,
+   1,
+   -1,
+   1
+  ],
+  [
+   0.0,
+   1.4142137037944515,
+   1.4142137037944515,
+   3,
+   1,
+   5,
+   -1
+  ],
+  [
+   -1.4142137037944515,
+   1.4142137037944515,
+   0.0,
+   5,
+   3,
+   -1,
+   1
+  ],
+  [
+   -1.4142137037944515,
+   -1.4142137037944515,
+   0.0,
+   3,
+   -1,
+   5,
+   -1
+  ],
+  [
+   0.0,
+   -1.4142137037944515,
+   -1.4142137037944515,
+   -5,
+   -1,
+   1,
+   3
+  ],
+  [
+   -1.885618271725935,
+   -1.885618271725935,
+   -1.885618271725935,
+   1,
+   -1,
+   -1,
+   1
+  ],
+  [
+   -1.4142137037944515,
+   0.0,
+   -1.4142137037944515,
+   -3,
+   -1,
+   -1,
+   5
+  ],
+  [
+   1.885618271725935,
+   1.885618271725935,
+   -1.885618271725935,
+   1,
+   1,
+   -1,
+   -1
+  ],
+  [
+   0.0,
+   1.4142137037944515,
+   -1.4142137037944515,
+   3,
+   -1,
+   5,
+   1
+  ],
+  [
+   1.4142137037944515,
+   0.0,
+   -1.4142137037944515,
+   -1,
+   -2,
+   0,
+   -2
+  ],
+  [
+   1.4142137037944515,
+   1.4142137037944515,
+   0.0,
+   1,
+   -2,
+   2,
+   0
+  ],
+  [
+   0.0,
+   -1.4142137037944515,
+   1.4142137037944515,
+   5,
+   1,
+   3,
+   -1
+  ]
+ ],
+ "s": 2.77777,
+ "s_plus": "2.77777+",
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap": 1.989873e-07,
+  "min_wall_gap": 1.918806e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "Recursive whole-owner composition of the exact four-owner return, with retained word decoder and complete common host.",
+ "date": "2026-10-15",
+ "record_id": "kttinktt_n13_submission_23_7b09fc3cb65a",
+ "title": "13 triakis tetrahedra in a triakis tetrahedron",
+ "family": "catalan",
+ "source": {
+  "author": "PingYou Ltd",
+  "kind": "new finite construction",
+  "donor": {
+   "public_path": "records/community/kttinktt/kttinktt_n04_pingyou_20261013.json",
+   "sha256": "32dcc45071ebd690f87758418dfe50a2d25527bdbdced9d60b1ca79f35b0b511",
+   "record": {
+    "problem": "min/triakis_tetrahedron_in_triakis_tetrahedron",
+    "piece": "triakis_tetrahedron",
+    "container": "triakis_tetrahedron",
+    "n": 4,
+    "s": 1.66666,
+    "s_plus": "1.66666+",
+    "s_full": 1.666666700271531,
+    "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+    "clearance": {
+     "min_wall_gap": 9.765633e-11,
+     "min_pair_gap": 1.000002e-07
+    },
+    "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+    "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+    "date": "2026-10-13",
+    "pieces": [
+     [
+      -0.7071068167218982,
+      0.7071068167218906,
+      0.7071068167218854,
+      0.2886751345948086,
+      0.8660254037844379,
+      0.2886751345948145,
+      -0.288675134594818
+     ],
+     [
+      -0.7071068167219,
+      -0.7071068167219001,
+      -0.7071068167218936,
+      0.28867513459481375,
+      -0.28867513459481325,
+      0.2886751345948131,
+      0.8660254037844382
+     ],
+     [
+      0.7071068167219102,
+      0.7071068167219021,
+      -0.7071068167218904,
+      0.5773502691896302,
+      -0.5773502691896241,
+      -1.6345182834260161e-15,
+      -0.5773502691896232
+     ],
+     [
+      0.7071068167218763,
+      -0.7071068167218917,
+      0.7071068167218919,
+      0.5773502691896292,
+      -0.5773502691896166,
+      -5.768888059150658e-15,
+      0.5773502691896317
+     ]
+    ],
+    "record_id": "kttinktt_n04_pingyou_20261013",
+    "title": "4 triakis tetrahedra in a triakis tetrahedron",
+    "family": "catalan",
+    "source": {
+     "hash": "97ec02c25df85874",
+     "clear": 1e-07,
+     "cap": 2.1485613814237
+    },
+    "s_tight": 1.666666666667,
+    "closed_form_conjecture": "5/3",
+    "volume_lower_bound": 1.5874010519681994,
+    "found_by": "Alejandro Zarzuelo",
+    "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+    "certificate": "exact geometry certificate: current certify_general.py canonical solids; 170-bit outward-interval full replay",
+    "search": {
+     "move": "ascend",
+     "seed": 128787677,
+     "var": "base",
+     "raw": 1.6666666779292298,
+     "host": "actions"
+    },
+    "density": 0.8639999477377173,
+    "source_refinement": {
+     "type": "certified wall-padding reduction only",
+     "source_record": "records/kttinktt/kttinktt_n04.json",
+     "source_commit": "1d0bb6d8179d7e10069f1f7727ada2e7983fced9",
+     "source_sha256": "2d3a0193ba6a985092756e83a983493e03880d63f760706a0eaf98b7f445a2a6",
+     "source_s_full": 1.6666668044013,
+     "pieces_unchanged": true,
+     "source_credit_preserved": true
+    },
+    "contribution": {
+     "issue": "https://github.com/alejandrozu/platonic-packing/issues/7",
+     "submitted_by": "BuddenPing",
+     "credit": "PingYou Ltd",
+     "kind": "wall_padding",
+     "archive": "https://github.com/user-attachments/files/33363620/pingyou-3d-certificate-refinements-2026-10-13-v1.zip",
+     "archive_sha256": "48285558f37bc071c2f368796874cce5f4442edcce2c71f931ebf348a27cb2d1",
+     "witness_sha256": "68e620d5ec2a1cc5c6e797a7266126e547bcdf065d1a47c143b19ee5049c061b",
+     "replayed_on": "2026-10-13"
+    },
+    "certificate_refined_by": "PingYou Ltd",
+    "certificate_refinement": {
+     "kind": "wall-padding reduction only; inherited piece poses unchanged",
+     "previous_scale_exact": "3752999999626235/2251799813685248",
+     "scale_exact": "7505999530293681/4503599627370496",
+     "decrease_exact": "468958789/4503599627370496",
+     "new_nominal_construction": false
+    },
+    "previous_record": {
+     "s_full": 1.6666668044013,
+     "s_tight": 1.666666666667,
+     "found_by": "Alejandro Zarzuelo",
+     "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+     "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+     "source": {
+      "hash": "97ec02c25df85874",
+      "clear": 1e-07,
+      "cap": 2.1485613814237
+     },
+     "date": "2026-10-12"
+    },
+    "certificate_refined_on": "2026-10-13",
+    "case_id": "kttinktt_n04"
+   }
+  },
+  "derivation": {
+   "source_exact_reconstruction": {
+    "scale": "5/3",
+    "centers_sqrt2_coefficients": [
+     [
+      "-1/2",
+      "1/2",
+      "1/2"
+     ],
+     [
+      "-1/2",
+      "-1/2",
+      "-1/2"
+     ],
+     [
+      "1/2",
+      "1/2",
+      "-1/2"
+     ],
+     [
+      "1/2",
+      "-1/2",
+      "1/2"
+     ]
+    ],
+    "quaternions": [
+     [
+      1,
+      3,
+      1,
+      -1
+     ],
+     [
+      1,
+      -1,
+      1,
+      3
+     ],
+     [
+      1,
+      -1,
+      0,
+      -1
+     ],
+     [
+      1,
+      -1,
+      0,
+      1
+     ]
+    ],
+    "recognition_note": "These are the exact tetrahedral centers and proportional integer quaternions recognized from the credited numerical four-owner witness; this exact source is independently checked, not assumed from a decimal fit."
+   },
+   "depth": 2,
+   "retained_words": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     0
+    ]
+   ],
+   "full_parent_count": 16,
+   "composition_decoder": "For word(i1,...,id), center=sqrt2*sum_j (5/3)^(d-j) R(q_i1...q_i(j-1)) c_ij, with listed c coefficients; quaternion is product q_i1...q_id. All prefix images are whole copies of the exact four-owner packing.",
+   "rational_centers_sqrt2_coefficients": [
+    [
+     "-1",
+     "0",
+     "1"
+    ],
+    [
+     "-4/3",
+     "4/3",
+     "4/3"
+    ],
+    [
+     "0",
+     "1",
+     "1"
+    ],
+    [
+     "-1",
+     "1",
+     "0"
+    ],
+    [
+     "-1",
+     "-1",
+     "0"
+    ],
+    [
+     "0",
+     "-1",
+     "-1"
+    ],
+    [
+     "-4/3",
+     "-4/3",
+     "-4/3"
+    ],
+    [
+     "-1",
+     "0",
+     "-1"
+    ],
+    [
+     "4/3",
+     "4/3",
+     "-4/3"
+    ],
+    [
+     "0",
+     "1",
+     "-1"
+    ],
+    [
+     "1",
+     "0",
+     "-1"
+    ],
+    [
+     "1",
+     "1",
+     "0"
+    ],
+    [
+     "0",
+     "-1",
+     "1"
+    ]
+   ],
+   "product_quaternions": [
+    [
+     -5,
+     3,
+     1,
+     -1
+    ],
+    [
+     1,
+     1,
+     -1,
+     1
+    ],
+    [
+     3,
+     1,
+     5,
+     -1
+    ],
+    [
+     5,
+     3,
+     -1,
+     1
+    ],
+    [
+     3,
+     -1,
+     5,
+     -1
+    ],
+    [
+     -5,
+     -1,
+     1,
+     3
+    ],
+    [
+     1,
+     -1,
+     -1,
+     1
+    ],
+    [
+     -3,
+     -1,
+     -1,
+     5
+    ],
+    [
+     1,
+     1,
+     -1,
+     -1
+    ],
+    [
+     3,
+     -1,
+     5,
+     1
+    ],
+    [
+     -1,
+     -2,
+     0,
+     -2
+    ],
+    [
+     1,
+     -2,
+     2,
+     0
+    ],
+    [
+     5,
+     1,
+     3,
+     -1
+    ]
+   ],
+   "exact_nominal_scale": "25/9",
+   "whole_owner_deletion": "Retain the listed lexicographic words of the complete4^depth parent; no partial owners are removed.",
+   "native_decoder": "Multiply each listed rational coefficient by sqrt2 and(1+1e-7), then store the resulting binary64 numeric center. Use listed exact integer quaternion. s_full=nextafter((5/3)^depth*(1+1e-7)+1e-7,+infinity). Complete native interval verification treats all stored inputs as exact rationals."
+  },
+  "attribution_note": "The four-owner construction is credited to Alejandro Zarzuelo and retains the complete original source attribution. PingYou Ltd supplies its exact recognition and new recursive finite compositions with complete retained words."
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.3513346877207573,
+ "density": 0.6065277525366429,
+ "found_by": "PingYou Ltd",
+ "credit": "PingYou Ltd",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/23",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "construction",
+  "replayed_on": "2026-10-15",
+  "witness_sha256": "6319871a06eb2b2e1629b272e8a53ccac3f212363f99ea33592da936abd96a7e",
+  "method": "Exact recursive whole-solid composition of a four-owner triakis-tetrahedron base, and finite marked lattice-return constructions for the other families. Source lattices are reconstructed in the canonical solid frames, with infinite nonoverlap verified before taking finite patches. Complete boundary-controller deletions retain their predecessor configurations. Published source cells, including de Graaf and collaborators, are credited in the individual records. The archive retains complete native coordinates, explicit physical construction decoders, original source and donor credits, independent geometry and construction reviews, and SHA256 manifests. All 32 witnesses pass the unmodified upstream floating checker and exact certifier.",
+  "archive": "https://github.com/user-attachments/files/33484938/pingyou_new_constructions_batch012_20261015.zip",
+  "archive_sha256": "bac398c55efa363936566b9f6fb4f493a139f73a80f7db2826e9a1f074f0d04f"
+ },
+ "previous_record": {
+  "s_full": 2.7947451946422,
+  "found_by": "Alejandro Zarzuelo",
+  "date": "2026-10-14"
+ },
+ "case_id": "kttinktt_n13"
+}
