@@ -2113,3 +2113,4 @@ Exactly certified, maintainer-accepted coordinate records.
 | 2026-10-15 | [pr5incub_n92](community/pr5incub/pr5incub_n92_submission_81_5703028fa367.json) | 6.155367552974118 | 6.1553682301577 | PingYou Ltd | [#81](https://github.com/alejandrozu/platonic-packing/issues/81) |
 | 2026-10-15 | [pr5incub_n94](community/pr5incub/pr5incub_n94_submission_81_248088c47db6.json) | 6.155367552974118 | 6.1553682301577 | PingYou Ltd | [#81](https://github.com/alejandrozu/platonic-packing/issues/81) |
 | 2026-10-15 | [pr3l2incub_n11](community/pr3l2incub/pr3l2incub_n11_submission_81_09dc04f60b9f.json) | 2.598076211383524 | 2.5980765711609375 | PingYou Ltd | [#81](https://github.com/alejandrozu/platonic-packing/issues/81) |
+| 2026-10-15 | [octincub_n18](community/octincub/octincub_n18_submission_84_9f6f69b99e7c.json) | 2.4809997 | 2.518753780002672 | Stian | [#84](https://github.com/alejandrozu/platonic-packing/issues/84) |
