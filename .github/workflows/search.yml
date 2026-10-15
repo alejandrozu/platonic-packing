@@ -51,8 +51,8 @@ jobs:
             PP_SHARD="${{ matrix.job }}/18" timeout $(( MINUTES * 60 + 600 )) python3 scripts/engine_nd.py work "N${{ matrix.job }}$w" > /dev/null 2>&1 &
             pids="$pids $!"
           done
-          # partial results every 30 minutes (the main machine harvests each branch commit once)
-          ( while sleep 1800; do
+          # partial results every 20 minutes (the main machine harvests each branch commit once)
+          ( while sleep 1200; do
               python3 scripts/remote.py export "$PP_STATE" state/best > "$RUNNER_TEMP/export_p.txt" 2>/dev/null || continue
               d="$RUNNER_TEMP/partial"; rm -rf "$d"; mkdir -p "$d"; cp "$RUNNER_TEMP/export_p.txt" "$d/export.txt"
               python3 scripts/engine_nd.py export "$PP_STATE_ND" state/nd/best > "$d/export_nd.txt" 2>/dev/null || rm -f "$d/export_nd.txt"
