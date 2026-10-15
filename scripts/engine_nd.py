@@ -294,6 +294,13 @@ def claim(p, n):
         with contextlib.suppress(Exception): os.remove(f)
 
 
+def known_optimal(p, n):
+    """cases whose stored value is a proven optimum (no search needed): n hypercubes in a hypercube need s >= 2 for every
+    n >= 2 (two unit cubes do not fit in a cube of side < 2), and the 2 x ... x 2 grid holds 2^d at s = 2"""
+    pc, cc = PID[p]
+    return pc == cc and pc in ('c8', 'hc5', 'hc6') and 2 <= n <= 2 ** DIM[p]
+
+
 def active_problems():
     only = os.environ.get('PP_ND_PROBLEMS')
     return [p for p in PID if not only or p in only.split(',')]
@@ -317,10 +324,11 @@ def choose(rng):
             if n < nmax(p) and idx[(p, n + 1)] and idx[(p, n + 1)].get('best'): return p, n, 'descend'
             return p, n, 'fresh'
     for (p, n), c in sorted(idx.items(), key=lambda kv: rng.random()):
-        if c and c['stats'].get('needs_tighten') and (p, str(n)) not in claimed: return p, n, 'tighten'
+        if c and c['stats'].get('needs_tighten') and (p, str(n)) not in claimed and not known_optimal(p, n): return p, n, 'tighten'
     best_key, best_score = None, None
     for (p, n), c in idx.items():
         if (p, str(n)) in claimed or not c: continue
+        if known_optimal(p, n) and c.get('best') and c['best']['s'] <= 2 + 1e-9: continue
         st = c['stats']
         score = (st.get('effort', 0) + 30) / n * (1 + st.get('since', 0) / 12) * rng.uniform(0.7, 1.3)
         if best_score is None or score < best_score: best_key, best_score = (p, n), score
