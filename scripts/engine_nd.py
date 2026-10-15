@@ -431,10 +431,10 @@ def choose(rng):
         if best_score is None or score < best_score: best_key, best_score = (p, n), score
     if best_key is None: return None
     p, n = best_key; c = idx[(p, n)]; st = c['stats']
-    if c['best']['src'].get('move') == 'monotone':
-        r = rng.random()
-        return p, n, 'ascend' if (n > NMIN and r < 0.4) else 'symfresh' if (sym_ok(p, n) and r < 0.75) else 'fresh'
     W = dict(WEIGHTS)
+    # 15 Oct 15:00: a case filled from n+1 minus one piece (203 of 1890) used to get only ascend / symfresh / fresh,
+    # but in run 13 fresh improved 0 of 205 and symfresh 1 of 242: such a case now takes the ordinary moves, ascend x3
+    if c['best']['src'].get('move') == 'monotone': W['ascend'] *= 3.0
     for m, k in (learned_multipliers().get(DIM[p]) or {}).items():
         if m in W: W[m] *= k
     lo = idx.get((p, n - 1)); hi = idx.get((p, n + 1))
