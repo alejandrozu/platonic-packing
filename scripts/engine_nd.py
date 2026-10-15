@@ -455,6 +455,33 @@ def do_import(blobfile, host):
         return harvest(d, host)
 
 
+def seed():
+    """Exact constructions as starting records (15 Oct): k x ... x k grids of hypercubes in a hypercube (k = 2 in 4, 5
+    and 6 dimensions, k = 3 in 4 dimensions), trimmed to nmax by the best LP removals; monotonicity then gives s = 2
+    for every n <= 2^d (the 14 Oct benchmark: random starts did not find the grid at n = 16-32 in 5D and 6D)."""
+    import itertools, ndsim
+    n_new = 0
+    for d, hc, ks in ((4, 'c8', (2, 3)), (5, 'hc5', (2,)), (6, 'hc6', (2,))):
+        p = f'{hc}in{hc}'; pb = problem(p)
+        for k in ks:
+            C = np.array(list(itertools.product(range(k), repeat=d)), float) - (k - 1) / 2
+            R = np.array([np.eye(d)] * len(C))
+            while len(C) > nmax(p):
+                _, i, C, R = remove_one(pb, C, R)[0]
+            lg = ndsim.legalize(pb, C, R); n = len(C)
+            with locked():
+                case = load_case(p, n)
+                if not case['best'] or lg['s'] < case['best']['s'] - 1e-12:
+                    C2, R2 = rnd(lg['C'], lg['R'])
+                    case['best'] = {'s': lg['s'], 'C': C2, 'R': R2, 'src': {'move': 'construction', 'name': f'{k}^{d} grid'},
+                                    't': time.time(), 'tightened': True}
+                    save_case(case); n_new += 1
+                    pool_insert(p, n, {'s': lg['s'], 'C': C2, 'R': R2, 'src': 'construction', 't': time.time()})
+                enforce_monotone(p, print)
+            print(f'{p}: {k}^{d} grid -> n = {n}, s = {lg["s"]:.10f}')
+    print(f'seeded {n_new} cases')
+
+
 def table():
     lines = []
     for p in PID:
@@ -484,6 +511,7 @@ if __name__ == '__main__':
     cmd = sys.argv[1]
     if cmd == 'work': work(sys.argv[2] if len(sys.argv) > 2 else '0')
     elif cmd == 'status': print(table())
+    elif cmd == 'seed': seed()
     elif cmd == 'check': sys.exit(1 if check() else 0)
     elif cmd == 'harvest': harvest(sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else 'remote')
     elif cmd == 'export': export(sys.argv[2], sys.argv[3])
