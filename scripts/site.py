@@ -523,9 +523,9 @@ def build(fragment=None):
     # pages
     home = fill(open(os.path.join(WEB, 'pages', 'home.html')).read(), vals, './')
     write('index.html', page('', 'Polyhedra in Polyhedra: record packings with proofs', desc, home, '', scripts=(T3, 'explorer.js'), styles=('explorer.css',), depth=0))
-    arts = [('method', 'Method', 'How the packings are found: soft-to-rigid homotopy, r-rounding, separating axis contacts, basin hopping, tightening.'),
+    arts = [('method', 'Method', 'Packing in 3D–6D: dimension-correct bounds, soft-to-rigid search, adaptive moves, symmetric and crystal seeds, nested constructions and exact certification.'),
             ('certification', 'Certification', 'How every record is proved valid: exact solids in number fields, rational rotations, interval arithmetic and separating planes.'),
-            ('contribute', 'Contribute', 'Check a packing in your browser, submit it for exact certification, propose a new category or share another construction.'),
+            ('contribute', 'Contribute', 'Check a 3D packing locally, submit 3D or higher-dimensional witnesses for exact certification, propose a category or share another construction with source credit.'),
             ('literature', 'Literature', 'The project write-ups, the sources it compares against, and the research on packing as optimization, dense packings of polyhedra and certification.'),
             ('about', 'About', 'What Polyhedra in Polyhedra is, who made it, how to cite it.')]
     for slug, title, d in arts:
