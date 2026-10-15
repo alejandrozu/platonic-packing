@@ -14,6 +14,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'src')); sys.path.insert(0, os.path.join(ROOT, 'scripts'))
 import claim
 from engine import PID, PROBLEMS, NMIN, NMAX, STATE, _read, _path, AB, FAM
+DEADLINE = time.time() + 60 * float(os.environ.get('PP_PLATONIC_MINUTES', '20'))   # per publish run
 PNMAX = 100         # 15 Oct 18:14 (Alejandro): the Platonic problems go to n = 100 like the families (40 before)
 import engine as _engine
 # the records pipeline (exact certificates) covers the Platonic problems; the new families get their own records
@@ -39,7 +40,10 @@ def run_checkers(fn):
     x = subprocess.run([sys.executable, os.path.join(ROOT, 'certify_exact.py'), fn], capture_output=True, text=True)
     open(fn.replace('.json', '.verify.txt'), 'w').write(v.stdout + v.stderr[-2000:])
     open(fn.replace('.json', '.certify.txt'), 'w').write(x.stdout + x.stderr[-2000:])
-    subprocess.run([sys.executable, os.path.join(ROOT, 'scripts', 'figures.py'), fn], capture_output=True)
+    try: n = int(fn.rsplit('_n', 1)[1].split('.')[0])
+    except (IndexError, ValueError): n = 0
+    if n <= 40:                                         # figures for n <= 40 only (as the families: none for larger n)
+        subprocess.run([sys.executable, os.path.join(ROOT, 'scripts', 'figures.py'), fn], capture_output=True)
     return v.returncode == 0, x.returncode == 0
 
 
@@ -64,6 +68,9 @@ def build_problem(p, log):
         old = _read(fn); st = status_of(fn)
         if old and old.get('source') == src and st is not None:
             rec, (ver, cert) = old, st
+        elif time.time() > DEADLINE:                    # time budget (15 Oct: n <= 100): the next publish continues
+            if old and st is not None: rec, (ver, cert) = old, st
+            else: prev = None; continue
         else:
             try: cf = closed_form(b['s'])
             except Exception: cf = None                   # a hint only; never let it stop a publish

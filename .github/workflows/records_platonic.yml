@@ -1,0 +1,34 @@
+# Platonic records for n = 41-100 (15 Oct 2026, Alejandro: the Platonic problems up to n = 99). Builds and certifies
+# exactly (verify.py + certify_exact.py) the records of the archive's Platonic packings on GitHub's runners, five
+# problems per job, and uploads them as an artifact; the main machine copies the record files into records/ (its own
+# publisher then rebuilds only records whose packing changed). Nothing is pushed from here.
+name: records-platonic
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  records:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        group: [0, 1, 2, 3, 4]
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, fetch-depth: 1}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install
+        run: pip install --quiet numpy scipy mpmath matplotlib
+      - name: Build and certify
+        run: |
+          P=$(python3 -c "import sys; sys.path.insert(0, 'scripts'); import engine as E; ps = [p for p in E.PID if E.FAM[p] == 'platonic']; print(','.join(ps[${{ matrix.group }}::5]))")
+          echo "problems: $P"
+          PP_PLATONIC_MINUTES=600 python3 scripts/records_batch.py "$P" 5
+          mkdir -p out && for p in ${P//,/ }; do mkdir -p out/$p && cp records/$p/${p}_n*.json records/$p/${p}_n*.txt out/$p/ 2>/dev/null; cp records/$p/${p}_n*.png out/$p/ 2>/dev/null || true; done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: records-platonic-${{ matrix.group }}
+          path: out
