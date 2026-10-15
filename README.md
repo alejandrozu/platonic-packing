@@ -47,7 +47,7 @@ published one (cubes in a cube: Friedman's catalogue and later records; octahedr
 non-decreasing in n by construction. The search is still running and this table is regenerated automatically.
 
 <!-- RESULTS:START -->
-_Auto-generated 2026-10-15 11:28 CEST from the running search; see [PROGRESS.md](PROGRESS.md) for search statistics._
+_Auto-generated 2026-10-15 11:50 CEST from the running search; see [PROGRESS.md](PROGRESS.md) for search statistics._
 
 ### Same solid
 
@@ -121,9 +121,9 @@ _Auto-generated 2026-10-15 11:28 CEST from the running search; see [PROGRESS.md]
 | 23 | [4.62576+](records/cubinoct/cubinoct_n23.json) | [2.62246+](records/octincub/octincub_n23.json) | 2.61533 W | [5.40195+](records/dodinico/dodinico_n23.json) | [2.34871+](records/icoindod/icoindod_n23.json) |
 | 24 | [4.70710+](records/cubinoct/cubinoct_n24.json) | [2.62792+](records/octincub/octincub_n24.json) ✱ | 2.63319 L | [5.47474+](records/dodinico/dodinico_n24.json) | [2.36541+](records/icoindod/icoindod_n24.json) |
 | 25 | [4.70710+](records/cubinoct/cubinoct_n25.json) | [2.63620+](records/octincub/octincub_n25.json) ✱ | 2.63622 W | [5.53087+](records/dodinico/dodinico_n25.json) | [2.39258+](records/icoindod/icoindod_n25.json) |
-| 26 | [4.74530+](records/cubinoct/cubinoct_n26.json) | [2.63986+](records/octincub/octincub_n26.json) | 2.63986 W | [5.61552+](records/dodinico/dodinico_n26.json) | [2.42244+](records/icoindod/icoindod_n26.json) |
+| 26 | [4.70710+](records/cubinoct/cubinoct_n26.json) | [2.63986+](records/octincub/octincub_n26.json) | 2.63986 W | [5.61552+](records/dodinico/dodinico_n26.json) | [2.42244+](records/icoindod/icoindod_n26.json) |
 | 27 | [4.81053+](records/cubinoct/cubinoct_n27.json) | [2.63986+](records/octincub/octincub_n27.json) | 2.63986 W | [5.66985+](records/dodinico/dodinico_n27.json) | [2.44475+](records/icoindod/icoindod_n27.json) |
-| 28 | [4.84419+](records/cubinoct/cubinoct_n28.json) | [2.75731+](records/octincub/octincub_n28.json) ✱ | 2.75738 W | [5.73945+](records/dodinico/dodinico_n28.json) | [2.46823+](records/icoindod/icoindod_n28.json) |
+| 28 | [4.82842+](records/cubinoct/cubinoct_n28.json) | [2.75731+](records/octincub/octincub_n28.json) ✱ | 2.75738 W | [5.73945+](records/dodinico/dodinico_n28.json) | [2.46823+](records/icoindod/icoindod_n28.json) |
 | 29 | [4.89243+](records/cubinoct/cubinoct_n29.json) | [2.82842+](records/octincub/octincub_n29.json) ≈ 2√2 ✱ | 2.85384 W | [5.77917+](records/dodinico/dodinico_n29.json) | [2.47572+](records/icoindod/icoindod_n29.json) |
 | 30 | [4.91981+](records/cubinoct/cubinoct_n30.json) | [2.88658+](records/octincub/octincub_n30.json) ✱ | 2.89186 W | [5.84833+](records/dodinico/dodinico_n30.json) | [2.49070+](records/icoindod/icoindod_n30.json) |
 | 31 | [4.96097+](records/cubinoct/cubinoct_n31.json) | [2.93422+](records/octincub/octincub_n31.json) |  | [5.90253+](records/dodinico/dodinico_n31.json) | [2.50916+](records/icoindod/icoindod_n31.json) |
