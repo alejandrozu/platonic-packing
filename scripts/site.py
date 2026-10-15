@@ -364,7 +364,7 @@ def constructions(data):
 
 # ------------------------------------------------------------------ page shell
 NAV = [('', 'Records'), ('constructions/', 'All constructions'), ('method/', 'Method'), ('certification/', 'Certification'),
-       ('contribute/', 'Contribute'), ('about/', 'About')]
+       ('contribute/', 'Contribute'), ('literature/', 'Literature'), ('about/', 'About')]
 
 
 def mark_svg():
@@ -526,6 +526,7 @@ def build(fragment=None):
     arts = [('method', 'Method', 'How the packings are found: soft-to-rigid homotopy, r-rounding, separating axis contacts, basin hopping, tightening.'),
             ('certification', 'Certification', 'How every record is proved valid: exact solids in number fields, rational rotations, interval arithmetic and separating planes.'),
             ('contribute', 'Contribute', 'Check a packing in your browser, submit it for exact certification, propose a new category or share another construction.'),
+            ('literature', 'Literature', 'The project write-ups, the sources it compares against, and the research on packing as optimization, dense packings of polyhedra and certification.'),
             ('about', 'About', 'What Polyhedra in Polyhedra is, who made it, how to cite it.')]
     for slug, title, d in arts:
         body = fill(open(os.path.join(WEB, 'pages', slug + '.html')).read(), vals, '../')
@@ -553,7 +554,7 @@ def build(fragment=None):
         write('CNAME', open(os.path.join(WEB, 'CNAME')).read().strip() + '\n')
     write('.nojekyll', '')
     write('robots.txt', f'User-agent: *\nAllow: /\nSitemap: {SITE_URL}sitemap.xml\n')
-    urls = ['', 'constructions/', 'method/', 'certification/', 'contribute/', 'about/']
+    urls = ['', 'constructions/', 'method/', 'certification/', 'contribute/', 'literature/', 'about/']
     write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
           + ''.join(f'  <url><loc>{SITE_URL}{u}</loc></url>\n' for u in urls) + '</urlset>\n')
     if fragment:                                       # one-file explorer for the Claude artifact
