@@ -52,7 +52,7 @@ def solve(pb, C, R, L, pairs, U, outer=600, trust=0.03, tlimit=None, slp_floor=1
         if P:
             U0 = np.array([hint.get(tuple(p)) if tuple(p) in hint else C[p[1]] - C[p[0]] for p in pairs.tolist()], float)
             U0 /= np.linalg.norm(U0, axis=1, keepdims=True)
-            g, U0, mid = ndsim.planes(pb, C, R, pairs, U0=U0)
+            g, U0, mid = ndsim.planes_lp(pb, C, R, pairs, U0=U0)
             M0 = (C[pairs[:, 0]] + C[pairs[:, 1]]) / 2
             c0 = mid - np.einsum('pd,pd->p', U0, M0)
             E = tangent_basis(U0)                                    # P x (d-1) x d

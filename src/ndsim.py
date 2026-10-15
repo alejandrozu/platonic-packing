@@ -454,7 +454,7 @@ def legalize(pb, C, R, tol=1e-12, st=None, hint=None):
         sel = ((P[near[:, 0]] - P[near[:, 1]]) ** 2).sum(1) <= lim
         if not sel.any(): break
         pr = near[sel]
-        g, Us, _ = planes(pb, P, R, pr, U0=Uall[sel])
+        g, Us, _ = planes_lp(pb, P, R, pr, U0=Uall[sel])
         Uall[sel] = Us
         bad = g < -tol
         if not bad.any(): break
@@ -538,3 +538,58 @@ def hop(pb, C, R, L, seed, expand=0.03, rh=0.12, noise=0.004, shake=400, morph=6
     out = legalize(pb, st.C, st.R, st=st)
     out.update(diff=diff, esc=esc)
     return out
+
+
+def planes_lp(pb, C, R, pairs, U0=None, rounds=6, rho=0.5, delta=None, verbose=False):
+    """Max-gap separating hyperplanes of many pairs at once, robustly: for each pair, maximize beta - alpha over u with
+    u.x_v <= alpha (vertices of piece i), u.y_w >= beta (vertices of piece j), the linear normalization u.u0 = 1 and
+    the box |u - u0| <= rho; all pairs in one block-diagonal LP (HiGHS), u0 <- u/|u|, repeated while any gap grows.
+    Only vertices within `delta` of the supports along u0 enter the LP; every gap is then measured exactly (all
+    vertices, normalized u). Returns (gaps, U, mid) like planes(); starts from the better of U0 and the tracked axes."""
+    from scipy.optimize import linprog
+    from scipy.sparse import csr_matrix
+    C = np.ascontiguousarray(C, float); R = np.ascontiguousarray(R, float); d = pb.d
+    if not len(pairs): return np.zeros(0), np.zeros((0, d)), np.zeros(0)
+    g, U, _ = planes(pb, C, R, pairs, U0=U0)
+    X = C[:, None, :] + np.einsum('vd,ned->nve', pb.V, R)
+    if delta is None: delta = max(0.6, 2 * pb.edge)
+    XA, XB = X[pairs[:, 0]], X[pairs[:, 1]]
+    for rnd_ in range(rounds):
+        P = len(pairs)
+        pa = np.einsum('pvd,pd->pv', XA, U); pb_ = np.einsum('pvd,pd->pv', XB, U)
+        selA = pa >= pa.max(1, keepdims=True) - delta; selB = pb_ <= pb_.min(1, keepdims=True) + delta
+        rows, cols, vals, rhs = [], [], [], []
+        r = 0
+        nv = d + 2
+        # u.x - alpha <= 0
+        pp, vv = np.nonzero(selA); m1 = len(pp)
+        rr = np.arange(m1)
+        for a in range(d): rows.append(rr); cols.append(nv * pp + a); vals.append(XA[pp, vv, a])
+        rows.append(rr); cols.append(nv * pp + d); vals.append(-np.ones(m1))
+        pp2, ww = np.nonzero(selB); m2 = len(pp2)
+        rr2 = m1 + np.arange(m2)
+        for a in range(d): rows.append(rr2); cols.append(nv * pp2 + a); vals.append(-XB[pp2, ww, a])
+        rows.append(rr2); cols.append(nv * pp2 + d + 1); vals.append(np.ones(m2))
+        A_ub = csr_matrix((np.concatenate(vals), (np.concatenate(rows), np.concatenate(cols))), shape=(m1 + m2, nv * P))
+        # u.u0 = 1
+        er = np.repeat(np.arange(P), d); ec = (nv * np.arange(P))[:, None] + np.arange(d)[None, :]
+        A_eq = csr_matrix((U.ravel(), (er, ec.ravel())), shape=(P, nv * P))
+        c = np.zeros(nv * P); c[nv * np.arange(P) + d] = 1.0; c[nv * np.arange(P) + d + 1] = -1.0
+        lb = np.full((P, nv), -np.inf); ub = np.full((P, nv), np.inf)
+        lb[:, :d] = U - rho; ub[:, :d] = U + rho
+        res = linprog(c, A_ub=A_ub, b_ub=np.zeros(m1 + m2), A_eq=A_eq, b_eq=np.ones(P),
+                      bounds=np.stack([lb.ravel(), ub.ravel()], 1), method='highs')
+        if res.status != 0:
+            if verbose: print('planes_lp: LP status', res.status, res.message)
+            break
+        Un = res.x.reshape(P, nv)[:, :d]; Un /= np.linalg.norm(Un, axis=1, keepdims=True)
+        gn = np.einsum('pvd,pd->pv', XB, Un).min(1) - np.einsum('pvd,pd->pv', XA, Un).max(1)
+        better = gn > g + 1e-15
+        if verbose: print(f'planes_lp round {rnd_}: {better.sum()} of {P} improved, min gap {min(g.min(), gn.min()):.3e} -> {np.where(better, gn, g).min():.3e}')
+        if not better.any(): break
+        U[better] = Un[better]; g[better] = gn[better]
+        # the tracker polishes kinks the LP's box left
+        g2, U2, _ = planes(pb, C, R, pairs, U0=U, iters=50)
+        b2 = g2 > g; U[b2] = U2[b2]; g[b2] = g2[b2]
+    a = np.einsum('pvd,pd->pv', XA, U).max(1); b = np.einsum('pvd,pd->pv', XB, U).min(1)
+    return b - a, U, (a + b) / 2
