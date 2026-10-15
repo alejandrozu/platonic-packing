@@ -1,0 +1,2118 @@
+{
+ "problem": "min/tetrakis_hexahedron_in_tetrakis_hexahedron",
+ "piece": "tetrakis_hexahedron",
+ "container": "tetrakis_hexahedron",
+ "n": 8,
+ "s_full": 2.5000000350300002,
+ "pieces": [
+  [
+   -1.590990273611454,
+   1.590990273611454,
+   1.590990273611454,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   1.590990273611454,
+   -1.590990273611454,
+   -1.590990273611454,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   1.590990273611454,
+   1.590990273611454,
+   -1.590990273611454,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   1.590990273611454,
+   -1.590990273611454,
+   1.590990273611454,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   1.590990273611454,
+   1.590990273611454,
+   1.590990273611454,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   -1.590990273611454,
+   1.590990273611454,
+   -1.590990273611454,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   -1.590990273611454,
+   -1.590990273611454,
+   1.590990273611454,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   -1.590990273611454,
+   -1.590990273611454,
+   -1.590990273611454,
+   1,
+   0,
+   0,
+   0
+  ]
+ ],
+ "s": 2.5,
+ "s_plus": "2.50000+",
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap": 2.851742e-08,
+  "min_wall_gap": 2.84605e-08
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "Finite whole-owner source-boundary return with common walls, fixed source frames and exact rational normalized geometry.",
+ "date": "2026-10-15",
+ "record_id": "kthinkth_n08_submission_24_8d299d15cc2e",
+ "title": "8 tetrakis hexahedra in a tetrakis hexahedron",
+ "family": "catalan",
+ "source": {
+  "author": "PingYou Ltd",
+  "kind": "new finite construction",
+  "references": [
+   {
+    "authors": "Joost de Graaf, Laura Filion, Matthieu Marechal, Rene van Roij, Marjolein Dijkstra",
+    "title": "Crystal-structure prediction via the Floppy-Box Monte Carlo algorithm: Method and application to hard (non)convex particles",
+    "doi": "10.1063/1.4767529",
+    "supplement_url": "https://web.science.uu.nl/scm/Articles/2012/SI-10.1063-1.4767529.zip",
+    "supplement_section": "CS11 Tetrakis Hexahedron, printed p153"
+   }
+  ],
+  "attribution_note": "The infinite lattice is reconstructed from de Graaf et al.2012 with its original provenance. PingYou Ltd supplies the new finite whole-owner boundary return, without claiming invention of the source lattice.",
+  "construction": {
+   "name": "tetrakis_hexahedron_complete_boundary_return",
+   "normalized_canonical_body": "Kprime=conv{(+/-1,+/-1,+/-1),+/-3e_i/2}; native K=(3sqrt2/4)*Kprime. The24 facet normals are all signed permutations of(2,1,0), support3.",
+   "source_lattice": {
+    "article": {
+     "authors": "Joost de Graaf, Laura Filion, Matthieu Marechal, Rene van Roij, Marjolein Dijkstra",
+     "title": "Crystal-structure prediction via the Floppy-Box Monte Carlo algorithm: Method and application to hard (non)convex particles",
+     "doi": "10.1063/1.4767529",
+     "supplement_url": "https://web.science.uu.nl/scm/Articles/2012/SI-10.1063-1.4767529.zip",
+     "supplement_section": "CS11 Tetrakis Hexahedron, printed p153"
+    },
+    "config_sha256": "17d67eb912f45bf0534c952a8be16a27be0aec8daceba08f0dd50d0c8b6e7952",
+    "model_sha256": "6172c5bf04ccc3273044d918b77a3bc0b0de19dbe08e698ab7a53650c58d7fbf",
+    "stored_rotation_matrix": [
+     [
+      "0.3903763589660675",
+      "-0.4304664928669998",
+      "-0.8138211700854068"
+     ],
+     [
+      "0.7360571339870974",
+      "0.6769011769777722",
+      "-0.00496911589785734"
+     ],
+     [
+      "0.5530155457734399",
+      "-0.5970790526596054",
+      "0.5810941498655895"
+     ]
+    ],
+    "configuration_basis_rows": [
+     [
+      "1.2212027830320678",
+      "-0.6067794046754132",
+      "-0.6091325801822542"
+     ],
+     [
+      "1.3877787807814457e-16",
+      "-1.0577438449652097",
+      "-0.35253294846664246"
+     ],
+     [
+      "1.942890293094024e-16",
+      "1.1102230246251565e-16",
+      "0.9510373794949054"
+     ]
+    ],
+    "canonical_to_model_rotation": "F=[[1/sqrt2,-1/sqrt2,0],[1/sqrt2,1/sqrt2,0],[0,0,1]]",
+    "normalized_to_model_scale": "0.43679023236814946",
+    "model_vertex_match_error": 0.0,
+    "convention": "Draw_Configurations.nb uses Transpose[Rotation] for model-to-world. Therefore pullback basis is F^T*R*B/m in normalized x/(3sqrt2/4) coordinates.",
+    "native_coordinate_factor": "3sqrt2/4",
+    "source_reconstruction_inflation": "1000001/1000000",
+    "rational_basis_rows": [
+     [
+      "17815411001/8000000000",
+      "-1528476501813/1000000000000",
+      "-2512042338411/1000000000000"
+     ],
+     [
+      "170850218873/250000000000",
+      "-2235764761183/1000000000000",
+      "272455394453/1000000000000"
+     ],
+     [
+      "386538404969/250000000000",
+      "338833750541/500000000000",
+      "24398035077/25000000000"
+     ]
+    ],
+    "basis_rows": [
+     [
+      2.226926375125,
+      -1.528476501813,
+      -2.512042338411
+     ],
+     [
+      0.683400875492,
+      -2.235764761183,
+      0.272455394453
+     ],
+     [
+      1.546153619876,
+      0.677667501082,
+      0.97592140308
+     ]
+    ]
+   },
+   "source_lattice_proof": {
+    "status": "PASS",
+    "normalized_vertices": [
+     [
+      -1.0,
+      -1.0,
+      -1.0
+     ],
+     [
+      -1.0,
+      -1.0,
+      1.0
+     ],
+     [
+      -1.0,
+      1.0,
+      -1.0
+     ],
+     [
+      -1.0,
+      1.0,
+      1.0
+     ],
+     [
+      1.0,
+      -1.0,
+      -1.0
+     ],
+     [
+      1.0,
+      -1.0,
+      1.0
+     ],
+     [
+      1.0,
+      1.0,
+      -1.0
+     ],
+     [
+      1.0,
+      1.0,
+      1.0
+     ],
+     [
+      -1.5,
+      -0.0,
+      -0.0
+     ],
+     [
+      1.5,
+      0.0,
+      0.0
+     ],
+     [
+      -0.0,
+      -1.5,
+      -0.0
+     ],
+     [
+      0.0,
+      1.5,
+      0.0
+     ],
+     [
+      -0.0,
+      -0.0,
+      -1.5
+     ],
+     [
+      0.0,
+      0.0,
+      1.5
+     ]
+    ],
+    "facet_axes": [
+     [
+      -2,
+      -1,
+      0
+     ],
+     [
+      -2,
+      0,
+      -1
+     ],
+     [
+      -2,
+      0,
+      1
+     ],
+     [
+      -2,
+      1,
+      0
+     ],
+     [
+      -1,
+      -2,
+      0
+     ],
+     [
+      -1,
+      0,
+      -2
+     ],
+     [
+      -1,
+      0,
+      2
+     ],
+     [
+      -1,
+      2,
+      0
+     ],
+     [
+      0,
+      -2,
+      -1
+     ],
+     [
+      0,
+      -2,
+      1
+     ],
+     [
+      0,
+      -1,
+      -2
+     ],
+     [
+      0,
+      -1,
+      2
+     ],
+     [
+      0,
+      1,
+      -2
+     ],
+     [
+      0,
+      1,
+      2
+     ],
+     [
+      0,
+      2,
+      -1
+     ],
+     [
+      0,
+      2,
+      1
+     ],
+     [
+      1,
+      -2,
+      0
+     ],
+     [
+      1,
+      0,
+      -2
+     ],
+     [
+      1,
+      0,
+      2
+     ],
+     [
+      1,
+      2,
+      0
+     ],
+     [
+      2,
+      -1,
+      0
+     ],
+     [
+      2,
+      0,
+      -1
+     ],
+     [
+      2,
+      0,
+      1
+     ],
+     [
+      2,
+      1,
+      0
+     ]
+    ],
+    "host_support": 3,
+    "word_proofs": [
+     {
+      "word": [
+       -2,
+       -2,
+       -2
+      ],
+      "axis_index": 17,
+      "strict_gap": "208523100527/20000000000"
+     },
+     {
+      "word": [
+       -2,
+       -2,
+       -1
+      ],
+      "axis_index": 12,
+      "strict_gap": "7679399666921/1000000000000"
+     },
+     {
+      "word": [
+       -2,
+       -2,
+       0
+      ],
+      "axis_index": 12,
+      "strict_gap": "3000006127607/500000000000"
+     },
+     {
+      "word": [
+       -2,
+       -2,
+       1
+      ],
+      "axis_index": 1,
+      "strict_gap": "2644802504453/500000000000"
+     },
+     {
+      "word": [
+       -2,
+       -2,
+       2
+      ],
+      "axis_index": 3,
+      "strict_gap": "524580370359/50000000000"
+     },
+     {
+      "word": [
+       -2,
+       -1,
+       -2
+      ],
+      "axis_index": 17,
+      "strict_gap": "7542343522373/1000000000000"
+     },
+     {
+      "word": [
+       -2,
+       -1,
+       -1
+      ],
+      "axis_index": 12,
+      "strict_gap": "2044149951787/500000000000"
+     },
+     {
+      "word": [
+       -2,
+       -1,
+       0
+      ],
+      "axis_index": 5,
+      "strict_gap": "893065146021/200000000000"
+     },
+     {
+      "word": [
+       -2,
+       -1,
+       1
+      ],
+      "axis_index": 1,
+      "strict_gap": "153377810229/20000000000"
+     },
+     {
+      "word": [
+       -2,
+       -1,
+       2
+      ],
+      "axis_index": 1,
+      "strict_gap": "1464631723149/125000000000"
+     },
+     {
+      "word": [
+       -2,
+       0,
+       -2
+      ],
+      "axis_index": 10,
+      "strict_gap": "3000006315857/500000000000"
+     },
+     {
+      "word": [
+       -2,
+       0,
+       -1
+      ],
+      "axis_index": 5,
+      "strict_gap": "4078267697503/1000000000000"
+     },
+     {
+      "word": [
+       -2,
+       0,
+       0
+      ],
+      "axis_index": 1,
+      "strict_gap": "1500003185063/250000000000"
+     },
+     {
+      "word": [
+       -2,
+       0,
+       1
+      ],
+      "axis_index": 1,
+      "strict_gap": "5024088006997/500000000000"
+     },
+     {
+      "word": [
+       -2,
+       0,
+       2
+      ],
+      "axis_index": 1,
+      "strict_gap": "1762042410967/125000000000"
+     },
+     {
+      "word": [
+       -2,
+       1,
+       -2
+      ],
+      "axis_index": 10,
+      "strict_gap": "6880442390733/1000000000000"
+     },
+     {
+      "word": [
+       -2,
+       1,
+       -1
+      ],
+      "axis_index": 4,
+      "strict_gap": "1305082681723/250000000000"
+     },
+     {
+      "word": [
+       -2,
+       1,
+       0
+      ],
+      "axis_index": 0,
+      "strict_gap": "9567225016293/1000000000000"
+     },
+     {
+      "word": [
+       -2,
+       1,
+       1
+      ],
+      "axis_index": 0,
+      "strict_gap": "7159427149331/500000000000"
+     },
+     {
+      "word": [
+       -2,
+       1,
+       2
+      ],
+      "axis_index": 0,
+      "strict_gap": "19070483581031/1000000000000"
+     },
+     {
+      "word": [
+       -2,
+       2,
+       -2
+      ],
+      "axis_index": 8,
+      "strict_gap": "522764958413/50000000000"
+     },
+     {
+      "word": [
+       -2,
+       2,
+       -1
+      ],
+      "axis_index": 4,
+      "strict_gap": "11220336751071/1000000000000"
+     },
+     {
+      "word": [
+       -2,
+       2,
+       0
+      ],
+      "axis_index": 0,
+      "strict_gap": "7429971390551/500000000000"
+     },
+     {
+      "word": [
+       -2,
+       2,
+       1
+      ],
+      "axis_index": 0,
+      "strict_gap": "19611572063471/1000000000000"
+     },
+     {
+      "word": [
+       -2,
+       2,
+       2
+      ],
+      "axis_index": 0,
+      "strict_gap": "304540016823/12500000000"
+     },
+     {
+      "word": [
+       -1,
+       -2,
+       -2
+      ],
+      "axis_index": 21,
+      "strict_gap": "5280777019423/500000000000"
+     },
+     {
+      "word": [
+       -1,
+       -2,
+       -1
+      ],
+      "axis_index": 12,
+      "strict_gap": "5270493302661/1000000000000"
+     },
+     {
+      "word": [
+       -1,
+       -2,
+       0
+      ],
+      "axis_index": 14,
+      "strict_gap": "1119436478947/250000000000"
+     },
+     {
+      "word": [
+       -1,
+       -2,
+       1
+      ],
+      "axis_index": 14,
+      "strict_gap": "2023367650807/500000000000"
+     },
+     {
+      "word": [
+       -1,
+       -2,
+       2
+      ],
+      "axis_index": 7,
+      "strict_gap": "6860136919881/1000000000000"
+     },
+     {
+      "word": [
+       -1,
+       -1,
+       -2
+      ],
+      "axis_index": 21,
+      "strict_gap": "3413466767069/500000000000"
+     },
+     {
+      "word": [
+       -1,
+       -1,
+       -1
+      ],
+      "axis_index": 17,
+      "strict_gap": "88523100527/40000000000"
+     },
+     {
+      "word": [
+       -1,
+       -1,
+       0
+      ],
+      "axis_index": 12,
+      "strict_gap": "6127607/1000000000000"
+     },
+     {
+      "word": [
+       -1,
+       -1,
+       1
+      ],
+      "axis_index": 3,
+      "strict_gap": "224580370359/100000000000"
+     },
+     {
+      "word": [
+       -1,
+       -1,
+       2
+      ],
+      "axis_index": 3,
+      "strict_gap": "1508468754973/200000000000"
+     },
+     {
+      "word": [
+       -1,
+       0,
+       -2
+      ],
+      "axis_index": 17,
+      "strict_gap": "3793151153769/1000000000000"
+     },
+     {
+      "word": [
+       -1,
+       0,
+       -1
+      ],
+      "axis_index": 10,
+      "strict_gap": "6315857/1000000000000"
+     },
+     {
+      "word": [
+       -1,
+       0,
+       0
+      ],
+      "axis_index": 1,
+      "strict_gap": "3185063/500000000000"
+     },
+     {
+      "word": [
+       -1,
+       0,
+       1
+      ],
+      "axis_index": 1,
+      "strict_gap": "1012042410967/250000000000"
+     },
+     {
+      "word": [
+       -1,
+       0,
+       2
+      ],
+      "axis_index": 2,
+      "strict_gap": "4453855645089/500000000000"
+     },
+     {
+      "word": [
+       -1,
+       1,
+       -2
+      ],
+      "axis_index": 8,
+      "strict_gap": "937120444029/250000000000"
+     },
+     {
+      "word": [
+       -1,
+       1,
+       -1
+      ],
+      "axis_index": 8,
+      "strict_gap": "222764958413/100000000000"
+     },
+     {
+      "word": [
+       -1,
+       1,
+       0
+      ],
+      "axis_index": 0,
+      "strict_gap": "4429971390551/1000000000000"
+     },
+     {
+      "word": [
+       -1,
+       1,
+       1
+      ],
+      "axis_index": 0,
+      "strict_gap": "229540016823/25000000000"
+     },
+     {
+      "word": [
+       -1,
+       1,
+       2
+      ],
+      "axis_index": 0,
+      "strict_gap": "13933229955289/1000000000000"
+     },
+     {
+      "word": [
+       -1,
+       2,
+       -2
+      ],
+      "axis_index": 8,
+      "strict_gap": "37711718987/5000000000"
+     },
+     {
+      "word": [
+       -1,
+       2,
+       -1
+      ],
+      "axis_index": 4,
+      "strict_gap": "3813304312481/500000000000"
+     },
+     {
+      "word": [
+       -1,
+       2,
+       0
+      ],
+      "axis_index": 0,
+      "strict_gap": "60766807221/6250000000"
+     },
+     {
+      "word": [
+       -1,
+       2,
+       1
+      ],
+      "axis_index": 0,
+      "strict_gap": "14474318437729/1000000000000"
+     },
+     {
+      "word": [
+       -1,
+       2,
+       2
+      ],
+      "axis_index": 0,
+      "strict_gap": "9612973860049/500000000000"
+     },
+     {
+      "word": [
+       0,
+       -2,
+       -2
+      ],
+      "axis_index": 23,
+      "strict_gap": "3522173523589/250000000000"
+     },
+     {
+      "word": [
+       0,
+       -2,
+       -1
+      ],
+      "axis_index": 23,
+      "strict_gap": "9337064811987/1000000000000"
+     },
+     {
+      "word": [
+       0,
+       -2,
+       0
+      ],
+      "axis_index": 19,
+      "strict_gap": "3000006024179/500000000000"
+     },
+     {
+      "word": [
+       0,
+       -2,
+       1
+      ],
+      "axis_index": 19,
+      "strict_gap": "4032880498853/1000000000000"
+     },
+     {
+      "word": [
+       0,
+       -2,
+       2
+      ],
+      "axis_index": 7,
+      "strict_gap": "300000614787/50000000000"
+     },
+     {
+      "word": [
+       0,
+       -1,
+       -2
+      ],
+      "axis_index": 21,
+      "strict_gap": "152103635383/15625000000"
+     },
+     {
+      "word": [
+       0,
+       -1,
+       -1
+      ],
+      "axis_index": 23,
+      "strict_gap": "2022173523589/500000000000"
+     },
+     {
+      "word": [
+       0,
+       -1,
+       0
+      ],
+      "axis_index": 19,
+      "strict_gap": "6024179/1000000000000"
+     },
+     {
+      "word": [
+       0,
+       -1,
+       1
+      ],
+      "axis_index": 7,
+      "strict_gap": "614787/100000000000"
+     },
+     {
+      "word": [
+       0,
+       -1,
+       2
+      ],
+      "axis_index": 3,
+      "strict_gap": "3771891900107/1000000000000"
+     },
+     {
+      "word": [
+       0,
+       0,
+       -2
+      ],
+      "axis_index": 21,
+      "strict_gap": "1500003039951/250000000000"
+     },
+     {
+      "word": [
+       0,
+       0,
+       -1
+      ],
+      "axis_index": 21,
+      "strict_gap": "3039951/500000000000"
+     },
+     {
+      "word": [
+       0,
+       0,
+       1
+      ],
+      "axis_index": 2,
+      "strict_gap": "3039951/500000000000"
+     },
+     {
+      "word": [
+       0,
+       0,
+       2
+      ],
+      "axis_index": 2,
+      "strict_gap": "1500003039951/250000000000"
+     },
+     {
+      "word": [
+       0,
+       1,
+       -2
+      ],
+      "axis_index": 20,
+      "strict_gap": "3771891900107/1000000000000"
+     },
+     {
+      "word": [
+       0,
+       1,
+       -1
+      ],
+      "axis_index": 16,
+      "strict_gap": "614787/100000000000"
+     },
+     {
+      "word": [
+       0,
+       1,
+       0
+      ],
+      "axis_index": 4,
+      "strict_gap": "6024179/1000000000000"
+     },
+     {
+      "word": [
+       0,
+       1,
+       1
+      ],
+      "axis_index": 0,
+      "strict_gap": "2022173523589/500000000000"
+     },
+     {
+      "word": [
+       0,
+       1,
+       2
+      ],
+      "axis_index": 2,
+      "strict_gap": "152103635383/15625000000"
+     },
+     {
+      "word": [
+       0,
+       2,
+       -2
+      ],
+      "axis_index": 16,
+      "strict_gap": "300000614787/50000000000"
+     },
+     {
+      "word": [
+       0,
+       2,
+       -1
+      ],
+      "axis_index": 4,
+      "strict_gap": "4032880498853/1000000000000"
+     },
+     {
+      "word": [
+       0,
+       2,
+       0
+      ],
+      "axis_index": 4,
+      "strict_gap": "3000006024179/500000000000"
+     },
+     {
+      "word": [
+       0,
+       2,
+       1
+      ],
+      "axis_index": 0,
+      "strict_gap": "9337064811987/1000000000000"
+     },
+     {
+      "word": [
+       0,
+       2,
+       2
+      ],
+      "axis_index": 0,
+      "strict_gap": "3522173523589/250000000000"
+     },
+     {
+      "word": [
+       1,
+       -2,
+       -2
+      ],
+      "axis_index": 23,
+      "strict_gap": "9612973860049/500000000000"
+     },
+     {
+      "word": [
+       1,
+       -2,
+       -1
+      ],
+      "axis_index": 23,
+      "strict_gap": "14474318437729/1000000000000"
+     },
+     {
+      "word": [
+       1,
+       -2,
+       0
+      ],
+      "axis_index": 23,
+      "strict_gap": "60766807221/6250000000"
+     },
+     {
+      "word": [
+       1,
+       -2,
+       1
+      ],
+      "axis_index": 19,
+      "strict_gap": "3813304312481/500000000000"
+     },
+     {
+      "word": [
+       1,
+       -2,
+       2
+      ],
+      "axis_index": 15,
+      "strict_gap": "37711718987/5000000000"
+     },
+     {
+      "word": [
+       1,
+       -1,
+       -2
+      ],
+      "axis_index": 23,
+      "strict_gap": "13933229955289/1000000000000"
+     },
+     {
+      "word": [
+       1,
+       -1,
+       -1
+      ],
+      "axis_index": 23,
+      "strict_gap": "229540016823/25000000000"
+     },
+     {
+      "word": [
+       1,
+       -1,
+       0
+      ],
+      "axis_index": 23,
+      "strict_gap": "4429971390551/1000000000000"
+     },
+     {
+      "word": [
+       1,
+       -1,
+       1
+      ],
+      "axis_index": 15,
+      "strict_gap": "222764958413/100000000000"
+     },
+     {
+      "word": [
+       1,
+       -1,
+       2
+      ],
+      "axis_index": 15,
+      "strict_gap": "937120444029/250000000000"
+     },
+     {
+      "word": [
+       1,
+       0,
+       -2
+      ],
+      "axis_index": 21,
+      "strict_gap": "4453855645089/500000000000"
+     },
+     {
+      "word": [
+       1,
+       0,
+       -1
+      ],
+      "axis_index": 22,
+      "strict_gap": "1012042410967/250000000000"
+     },
+     {
+      "word": [
+       1,
+       0,
+       0
+      ],
+      "axis_index": 22,
+      "strict_gap": "3185063/500000000000"
+     },
+     {
+      "word": [
+       1,
+       0,
+       1
+      ],
+      "axis_index": 13,
+      "strict_gap": "6315857/1000000000000"
+     },
+     {
+      "word": [
+       1,
+       0,
+       2
+      ],
+      "axis_index": 6,
+      "strict_gap": "3793151153769/1000000000000"
+     },
+     {
+      "word": [
+       1,
+       1,
+       -2
+      ],
+      "axis_index": 20,
+      "strict_gap": "1508468754973/200000000000"
+     },
+     {
+      "word": [
+       1,
+       1,
+       -1
+      ],
+      "axis_index": 20,
+      "strict_gap": "224580370359/100000000000"
+     },
+     {
+      "word": [
+       1,
+       1,
+       0
+      ],
+      "axis_index": 11,
+      "strict_gap": "6127607/1000000000000"
+     },
+     {
+      "word": [
+       1,
+       1,
+       1
+      ],
+      "axis_index": 6,
+      "strict_gap": "88523100527/40000000000"
+     },
+     {
+      "word": [
+       1,
+       1,
+       2
+      ],
+      "axis_index": 2,
+      "strict_gap": "3413466767069/500000000000"
+     },
+     {
+      "word": [
+       1,
+       2,
+       -2
+      ],
+      "axis_index": 16,
+      "strict_gap": "6860136919881/1000000000000"
+     },
+     {
+      "word": [
+       1,
+       2,
+       -1
+      ],
+      "axis_index": 9,
+      "strict_gap": "2023367650807/500000000000"
+     },
+     {
+      "word": [
+       1,
+       2,
+       0
+      ],
+      "axis_index": 9,
+      "strict_gap": "1119436478947/250000000000"
+     },
+     {
+      "word": [
+       1,
+       2,
+       1
+      ],
+      "axis_index": 11,
+      "strict_gap": "5270493302661/1000000000000"
+     },
+     {
+      "word": [
+       1,
+       2,
+       2
+      ],
+      "axis_index": 2,
+      "strict_gap": "5280777019423/500000000000"
+     },
+     {
+      "word": [
+       2,
+       -2,
+       -2
+      ],
+      "axis_index": 23,
+      "strict_gap": "304540016823/12500000000"
+     },
+     {
+      "word": [
+       2,
+       -2,
+       -1
+      ],
+      "axis_index": 23,
+      "strict_gap": "19611572063471/1000000000000"
+     },
+     {
+      "word": [
+       2,
+       -2,
+       0
+      ],
+      "axis_index": 23,
+      "strict_gap": "7429971390551/500000000000"
+     },
+     {
+      "word": [
+       2,
+       -2,
+       1
+      ],
+      "axis_index": 19,
+      "strict_gap": "11220336751071/1000000000000"
+     },
+     {
+      "word": [
+       2,
+       -2,
+       2
+      ],
+      "axis_index": 15,
+      "strict_gap": "522764958413/50000000000"
+     },
+     {
+      "word": [
+       2,
+       -1,
+       -2
+      ],
+      "axis_index": 23,
+      "strict_gap": "19070483581031/1000000000000"
+     },
+     {
+      "word": [
+       2,
+       -1,
+       -1
+      ],
+      "axis_index": 23,
+      "strict_gap": "7159427149331/500000000000"
+     },
+     {
+      "word": [
+       2,
+       -1,
+       0
+      ],
+      "axis_index": 23,
+      "strict_gap": "9567225016293/1000000000000"
+     },
+     {
+      "word": [
+       2,
+       -1,
+       1
+      ],
+      "axis_index": 19,
+      "strict_gap": "1305082681723/250000000000"
+     },
+     {
+      "word": [
+       2,
+       -1,
+       2
+      ],
+      "axis_index": 13,
+      "strict_gap": "6880442390733/1000000000000"
+     },
+     {
+      "word": [
+       2,
+       0,
+       -2
+      ],
+      "axis_index": 22,
+      "strict_gap": "1762042410967/125000000000"
+     },
+     {
+      "word": [
+       2,
+       0,
+       -1
+      ],
+      "axis_index": 22,
+      "strict_gap": "5024088006997/500000000000"
+     },
+     {
+      "word": [
+       2,
+       0,
+       0
+      ],
+      "axis_index": 22,
+      "strict_gap": "1500003185063/250000000000"
+     },
+     {
+      "word": [
+       2,
+       0,
+       1
+      ],
+      "axis_index": 18,
+      "strict_gap": "4078267697503/1000000000000"
+     },
+     {
+      "word": [
+       2,
+       0,
+       2
+      ],
+      "axis_index": 13,
+      "strict_gap": "3000006315857/500000000000"
+     },
+     {
+      "word": [
+       2,
+       1,
+       -2
+      ],
+      "axis_index": 22,
+      "strict_gap": "1464631723149/125000000000"
+     },
+     {
+      "word": [
+       2,
+       1,
+       -1
+      ],
+      "axis_index": 22,
+      "strict_gap": "153377810229/20000000000"
+     },
+     {
+      "word": [
+       2,
+       1,
+       0
+      ],
+      "axis_index": 18,
+      "strict_gap": "893065146021/200000000000"
+     },
+     {
+      "word": [
+       2,
+       1,
+       1
+      ],
+      "axis_index": 11,
+      "strict_gap": "2044149951787/500000000000"
+     },
+     {
+      "word": [
+       2,
+       1,
+       2
+      ],
+      "axis_index": 6,
+      "strict_gap": "7542343522373/1000000000000"
+     },
+     {
+      "word": [
+       2,
+       2,
+       -2
+      ],
+      "axis_index": 20,
+      "strict_gap": "524580370359/50000000000"
+     },
+     {
+      "word": [
+       2,
+       2,
+       -1
+      ],
+      "axis_index": 22,
+      "strict_gap": "2644802504453/500000000000"
+     },
+     {
+      "word": [
+       2,
+       2,
+       0
+      ],
+      "axis_index": 11,
+      "strict_gap": "3000006127607/500000000000"
+     },
+     {
+      "word": [
+       2,
+       2,
+       1
+      ],
+      "axis_index": 11,
+      "strict_gap": "7679399666921/1000000000000"
+     },
+     {
+      "word": [
+       2,
+       2,
+       2
+      ],
+      "axis_index": 6,
+      "strict_gap": "208523100527/20000000000"
+     }
+    ],
+    "inverse_inf_norm": "5863325392934928616540984500000000000/7370864578975495490614302741043343353",
+    "inverse_matrix": [
+     [
+      "1183282424502904797470893000000000000/7370864578975495490614302741043343353",
+      "105328260929506514438331000000000000/7370864578975495490614302741043343353",
+      "3016388703516328383671751000000000000/7370864578975495490614302741043343353"
+     ],
+     [
+      "122843823444001812183766000000000000/7370864578975495490614302741043343353",
+      "-3028654233691893929121018000000000000/7370864578975495490614302741043343353",
+      "1161735018647759831152418500000000000/7370864578975495490614302741043343353"
+     ],
+     [
+      "-1959977171113105379677826000000000000/7370864578975495490614302741043343353",
+      "1936187553949065351110219000000000000/7370864578975495490614302741043343353",
+      "1967160667872757885752939500000000000/7370864578975495490614302741043343353"
+     ]
+    ],
+    "tail_upper": "17589976178804785849622953500000000000/7370864578975495490614302741043343353",
+    "integer_word_limit": 2,
+    "tail_argument": "Kprime has max coordinate3/2. If Bz is in2Kprime then ||z||infinity<=3||B^-1||infinity=tail_upper. Every nonzero integer word in that cube is explicitly separated by one exact facet."
+   },
+   "lattice_words": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     0,
+     0,
+     -1
+    ],
+    [
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     0,
+     0
+    ],
+    [
+     -1,
+     0,
+     -1
+    ],
+    [
+     0,
+     1,
+     0
+    ],
+    [
+     -1,
+     1,
+     -1
+    ]
+   ],
+   "boundary_mark": {
+    "type": "face",
+    "source_indices": [
+     12,
+     7,
+     9
+    ],
+    "point": [
+     "2/3",
+     "-7/6",
+     "0"
+    ]
+   },
+   "initial_centers_decoder": "In normalized coordinates B*lattice_word-boundary_mark.point, using the exact rational basis. Boundary marks are actual canonical source-owner vertices, edge midpoints or face centroids with retained vertex indices.",
+   "rational_centers_normalized": [
+    [
+     "-150000000003/100000000000",
+     "150000000003/100000000000",
+     "150000000003/100000000000"
+    ],
+    [
+     "150000000003/100000000000",
+     "-150000000003/100000000000",
+     "-150000000003/100000000000"
+    ],
+    [
+     "150000000003/100000000000",
+     "150000000003/100000000000",
+     "-150000000003/100000000000"
+    ],
+    [
+     "150000000003/100000000000",
+     "-150000000003/100000000000",
+     "150000000003/100000000000"
+    ],
+    [
+     "150000000003/100000000000",
+     "150000000003/100000000000",
+     "150000000003/100000000000"
+    ],
+    [
+     "-150000000003/100000000000",
+     "150000000003/100000000000",
+     "-150000000003/100000000000"
+    ],
+    [
+     "-150000000003/100000000000",
+     "-150000000003/100000000000",
+     "150000000003/100000000000"
+    ],
+    [
+     "-150000000003/100000000000",
+     "-150000000003/100000000000",
+     "-150000000003/100000000000"
+    ]
+   ],
+   "all_pair_face_indices": [
+    [
+     0,
+     1,
+     16
+    ],
+    [
+     0,
+     2,
+     20
+    ],
+    [
+     0,
+     3,
+     9
+    ],
+    [
+     0,
+     4,
+     22
+    ],
+    [
+     0,
+     5,
+     10
+    ],
+    [
+     0,
+     6,
+     4
+    ],
+    [
+     0,
+     7,
+     8
+    ],
+    [
+     1,
+     2,
+     19
+    ],
+    [
+     1,
+     3,
+     13
+    ],
+    [
+     1,
+     4,
+     15
+    ],
+    [
+     1,
+     5,
+     14
+    ],
+    [
+     1,
+     6,
+     3
+    ],
+    [
+     1,
+     7,
+     1
+    ],
+    [
+     2,
+     3,
+     6
+    ],
+    [
+     2,
+     4,
+     13
+    ],
+    [
+     2,
+     5,
+     1
+    ],
+    [
+     2,
+     6,
+     2
+    ],
+    [
+     2,
+     7,
+     0
+    ],
+    [
+     3,
+     4,
+     19
+    ],
+    [
+     3,
+     5,
+     12
+    ],
+    [
+     3,
+     6,
+     1
+    ],
+    [
+     3,
+     7,
+     5
+    ],
+    [
+     4,
+     5,
+     5
+    ],
+    [
+     4,
+     6,
+     0
+    ],
+    [
+     4,
+     7,
+     0
+    ],
+    [
+     5,
+     6,
+     6
+    ],
+    [
+     5,
+     7,
+     4
+    ],
+    [
+     6,
+     7,
+     10
+    ]
+   ],
+   "facet_axes": [
+    [
+     -2,
+     -1,
+     0
+    ],
+    [
+     -2,
+     0,
+     -1
+    ],
+    [
+     -2,
+     0,
+     1
+    ],
+    [
+     -2,
+     1,
+     0
+    ],
+    [
+     -1,
+     -2,
+     0
+    ],
+    [
+     -1,
+     0,
+     -2
+    ],
+    [
+     -1,
+     0,
+     2
+    ],
+    [
+     -1,
+     2,
+     0
+    ],
+    [
+     0,
+     -2,
+     -1
+    ],
+    [
+     0,
+     -2,
+     1
+    ],
+    [
+     0,
+     -1,
+     -2
+    ],
+    [
+     0,
+     -1,
+     2
+    ],
+    [
+     0,
+     1,
+     -2
+    ],
+    [
+     0,
+     1,
+     2
+    ],
+    [
+     0,
+     2,
+     -1
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     1,
+     -2,
+     0
+    ],
+    [
+     1,
+     0,
+     -2
+    ],
+    [
+     1,
+     0,
+     2
+    ],
+    [
+     1,
+     2,
+     0
+    ],
+    [
+     2,
+     -1,
+     0
+    ],
+    [
+     2,
+     0,
+     -1
+    ],
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     0
+    ]
+   ],
+   "exact_nominal_scale": "250000000003/100000000000",
+   "scale_controller_owner_and_face": [
+    7,
+    10
+   ],
+   "rational_reconstruction_dilation": "50000000001/50000000000",
+   "continued_contact_history": [
+    {
+     "before": 2.6000000000000014,
+     "after": 2.5000000000000004,
+     "previous_centers": [
+      [
+       -0.7999999999999967,
+       2.0000000000000036,
+       0.400000000000016
+      ],
+      [
+       0.8000000000000078,
+       -2.000000000000001,
+       -0.4000000000000159
+      ],
+      [
+       1.9999999999999827,
+       0.40000000000003966,
+       -0.8000000000000201
+      ],
+      [
+       0.4000000000000048,
+       -0.7999999999999945,
+       2.000000000000015
+      ],
+      [
+       1.60000000000001,
+       1.6000000000000034,
+       1.5999999999999979
+      ],
+      [
+       -0.4000000000000314,
+       0.8000000000000194,
+       -1.9999999999999931
+      ],
+      [
+       -1.999999999999994,
+       -0.39999999999999813,
+       0.8000000000000129
+      ],
+      [
+       -1.600000000000004,
+       -1.5999999999999943,
+       -1.5999999999999888
+      ]
+     ],
+     "previous_pair_face_indices": [
+      [
+       0,
+       1,
+       16
+      ],
+      [
+       0,
+       2,
+       21
+      ],
+      [
+       0,
+       3,
+       11
+      ],
+      [
+       0,
+       4,
+       22
+      ],
+      [
+       0,
+       5,
+       10
+      ],
+      [
+       0,
+       6,
+       4
+      ],
+      [
+       0,
+       7,
+       8
+      ],
+      [
+       1,
+       2,
+       19
+      ],
+      [
+       1,
+       3,
+       13
+      ],
+      [
+       1,
+       4,
+       15
+      ],
+      [
+       1,
+       5,
+       12
+      ],
+      [
+       1,
+       6,
+       2
+      ],
+      [
+       1,
+       7,
+       1
+      ],
+      [
+       2,
+       3,
+       6
+      ],
+      [
+       2,
+       4,
+       13
+      ],
+      [
+       2,
+       5,
+       1
+      ],
+      [
+       2,
+       6,
+       0
+      ],
+      [
+       2,
+       7,
+       0
+      ],
+      [
+       3,
+       4,
+       19
+      ],
+      [
+       3,
+       5,
+       12
+      ],
+      [
+       3,
+       6,
+       1
+      ],
+      [
+       3,
+       7,
+       5
+      ],
+      [
+       4,
+       5,
+       5
+      ],
+      [
+       4,
+       6,
+       0
+      ],
+      [
+       4,
+       7,
+       4
+      ],
+      [
+       5,
+       6,
+       6
+      ],
+      [
+       5,
+       7,
+       4
+      ],
+      [
+       6,
+       7,
+       10
+      ]
+     ]
+    }
+   ],
+   "physical_operation": "Cut a finite set of complete owners around one source-owner boundary mark. Retain a realized directed facet separator for every pair and restore all24 common host walls. Any following contact return uses only facets exposed on the actual preceding complete packing. Owner frames remain identity.",
+   "native_decoder": "Multiply the exact rational normalized centers by(3sqrt2/4)*(100000001/100000000), round to binary64 and retain identity quaternions. Use exact nominal scale*(1+1e-8)+1e-8 rounded outward. The full native checker treats all numeric inputs as exact rationals."
+  }
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.0,
+ "density": 0.5119999784775685,
+ "found_by": "PingYou Ltd",
+ "credit": "PingYou Ltd",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/24",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "construction",
+  "replayed_on": "2026-10-15",
+  "witness_sha256": "70a08b91d883b241f9ea9e84f1efecc917bc11992188ea4a5c9435dd33c16e8d",
+  "method": "New finite whole-polyhedron constructions from exact lattice sources, marked boundary returns, and compatible common-center continuations. Comparison uses the strongest pinned public native, nominal and retained construction baselines. The archive retains complete native coordinates, explicit physical construction decoders, original source and donor credits, independent geometry and construction reviews, and SHA256 manifests. All 32 witnesses pass the unmodified upstream floating checker and exact certifier.",
+  "archive": "https://github.com/user-attachments/files/33485645/pingyou_new_constructions_batch013_20261015.zip",
+  "archive_sha256": "871ecbab46563b8468dcd8339c3acf8d91019720f7329b1f126d8afe3012aebf"
+ },
+ "previous_record": {
+  "s_full": 2.5575766539625,
+  "found_by": "Alejandro Zarzuelo",
+  "date": "2026-10-13"
+ },
+ "case_id": "kthinkth_n08"
+}
