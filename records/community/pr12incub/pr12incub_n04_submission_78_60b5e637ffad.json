@@ -1,0 +1,423 @@
+{
+ "problem": "min/prism12_in_cube",
+ "piece": "prism12",
+ "container": "cube",
+ "n": 4,
+ "s_full": 4.000000000500001,
+ "pieces": [
+  [
+   0.0,
+   0.0,
+   -1.50000000015,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   0.0,
+   0.0,
+   -0.50000000005,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   0.0,
+   0.0,
+   0.50000000005,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   0.0,
+   0.0,
+   1.50000000015,
+   1,
+   0,
+   0,
+   0
+  ]
+ ],
+ "s": 4.0,
+ "s_plus": "4.00000+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 1e-10,
+  "min_wall_gap": 1.000005e-10
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "One complete common-axis affine map followed by exact whole-prism subdivision.",
+ "date": "2026-10-15",
+ "record_id": "pr12incub_n04_submission_78_60b5e637ffad",
+ "title": "4 dodecagonal prisms in a cube",
+ "family": "prisms",
+ "source": {
+  "author": "PingYou Ltd",
+  "kind": "complete affine axial subdivision",
+  "attribution_note": "Inherited parent attribution (statements about creating the original source apply to that parent only): The canonical solid and normalization are inherited from the authenticated project solid definitions. This is a single identity-frame owner and its explicit enclosing box. This finite transfer uses the explicitly named complete native parent; PingYou Ltd supplies the affine/subdivision realization and certificate.",
+  "construction": {
+   "name": "common_axis_affine_then_full_axial_subdivision",
+   "mechanism_kind": "common_axis_affine_subdivision",
+   "proof": "COMMON-AXIS AFFINE TRANSFER FOLLOWED BY COMPLETE AXIAL SUBDIVISION\n\nInherited controls are common_axis_prism_transfer/SOURCE_DECODER.txt and\nreview/constructive/AXIAL_SUBDIVISION_LEMMA.txt. Earlier public axial work\npermits kH=h (and triangle/hexagon base subdivisions with uniform scaling).\nIt does not include this general axial-only common stretch kH/h while\nleaving the canonical base unchanged. Those earlier identities remain\ncontrols and their reviewed cases are included in comparison gates.\n\nFor a complete source of n regular prisms P_h with actual common axis\nR_i e3=epsilon_i d, let k be an integer >=2 with kn<=100. For target height\nH in {1,3/2,2,3}, put r=kH/h and A=I+(r-1)dd^T/(d.d). Apply A to every\ncomplete source owner and center simultaneously. Its owner i is now\nAc_i+R_i P_(kH). A is invertible, so distinct full parents stay disjoint.\n\nFor each complete parent i introduce ALL slots j=0,...,k-1 with centers\n  Ac_i + R_i ((j-(k-1)/2) H e3),\nand the same actual frame R_i. Their closed axial intervals partition\n[-kH/2,kH/2] and their common base is exactly the source/target canonical\npolygon. They are complete height-H owners. The sign epsilon_i is not\nignored: offsets use the actual frame R_i. All sibling pairs have the\nparent axial separator and all cross-parent pairs inherit one transformed\nsource separator A^{-T}u. No independent choice of pair translation occurs.\n\nCompute the full transformed parent union's coordinate bounds from every\nactual canonical source vertex under A. That is exactly the full child\nunion; no axial end cost is dropped. Recenter their common box once, then\napply one common center dilation rho>1 and outward cube restoration as in\nthe reviewed subdivision lemma. Native centers and unchanged quaternions\nare checked on every actual wall and every sibling/cross-parent pair.\n\nThe inverse retains source path/hash/Git provenance and authors, n,k,h,H,\nrational d,A,A^{-1}, common box midpoint and rho, and the complete ordered\n(parent index i, slot j) map. Subtract the inherited axial slot offset and\ninvert A to recover the original parent center. No proper subset or count\nis promoted in the present screen. The bounded k range follows kn<=100,\nnot a coordinate or angle search. The r=1 cases preserve earlier controls.\n",
+   "complete_parent_path": "heterogeneous/constructive/pinwheel_boxes/single_owners/prism12.json",
+   "complete_parent_sha256": "2b5eba3419d8f52fc565e5a2a605f92cbb74fe6c51e1f68f2cc4110d79a4f42d",
+   "complete_parent": {
+    "record_id": "prism12_canonical_single_pinwheel_source",
+    "piece": "prism12",
+    "container": "cube",
+    "n": 1,
+    "pieces": [
+     [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+     ]
+    ],
+    "container_center": [
+     0,
+     0,
+     0
+    ],
+    "s_full": 3.8637034051562735,
+    "found_by": "PingYou Ltd",
+    "credit": "PingYou Ltd",
+    "source": {
+     "author": "PingYou Ltd",
+     "kind": "canonical single-owner control",
+     "attribution_note": "The canonical solid and normalization are inherited from the authenticated project solid definitions. This is a single identity-frame owner and its explicit enclosing box.",
+     "construction": {
+      "name": "canonical_single_owner",
+      "proof": "The sole center is zero and its frame is the identity; the cube side is outward of twice every absolute canonical vertex coordinate."
+     }
+    }
+   },
+   "source_provenance": {
+    "kind": "canonical_single_owner",
+    "canonical_checker_sha256": "508ae88a9f17bb0d29606b6c8425288039b6da0e40e353f6acb432aaf28845c3"
+   },
+   "inherited_author_fields": {
+    "found_by": "PingYou Ltd",
+    "credit": "PingYou Ltd",
+    "source_author": "PingYou Ltd",
+    "source_authors": null
+   },
+   "parent_native_review": {
+    "record_id": "prism12_canonical_single_pinwheel_source",
+    "status": "PASS",
+    "candidate_sha256": "2b5eba3419d8f52fc565e5a2a605f92cbb74fe6c51e1f68f2cc4110d79a4f42d",
+    "piece": "prism12",
+    "container": "cube",
+    "n": 1,
+    "scale_exact": "8700286607865955/2251799813685248",
+    "native_numeric_schema": true,
+    "rational_rotation_congruence": true,
+    "rotation_matrix_sha256": [
+     "c24ecf7d64263f883c5052ed2a56466190eee43399095d818cd0f63eeca7d972"
+    ],
+    "wall_tests": 144,
+    "pair_tests": 0,
+    "far_pairs": 0,
+    "min_wall_lower_dyadic": "74828884117403480829823147296392653502628348",
+    "active_wall": [
+     0,
+     0,
+     0
+    ],
+    "min_pair_lower_dyadic": "None",
+    "fixed_point_bits": 170,
+    "planes_file": "prism12.planes.json",
+    "planes_sha256": "5acd3bbefc45bc86ee03324c2024cf146b1c6ec2ab36126a4016370f77eb3dc2",
+    "construction_decoder_review": "SEPARATE_OBLIGATION",
+    "seconds": 0.0023741659824736416,
+    "comparison_status": "NOT_PROVIDED"
+   },
+   "source_height": "1",
+   "target_height": "1",
+   "k": 4,
+   "axis": [
+    "0",
+    "0",
+    "1"
+   ],
+   "affine_matrix": [
+    [
+     "1",
+     "0",
+     "0"
+    ],
+    [
+     "0",
+     "1",
+     "0"
+    ],
+    [
+     "0",
+     "0",
+     "4"
+    ]
+   ],
+   "inverse_affine_matrix": [
+    [
+     "1",
+     "0",
+     "0"
+    ],
+    [
+     "0",
+     "1",
+     "0"
+    ],
+    [
+     "0",
+     "0",
+     "1/4"
+    ]
+   ],
+   "box_midpoint": [
+    "0",
+    "0",
+    "0"
+   ],
+   "rho": "10000000001/10000000000",
+   "full_child_map": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ]
+   ],
+   "full_child_decoder": [
+    {
+     "parent_index": 0,
+     "axial_slot": 0,
+     "axis_sign": 1,
+     "ideal_center": [
+      "0",
+      "0",
+      "-3/2"
+     ],
+     "inherited_world_offset": [
+      "0",
+      "0",
+      "-3/2"
+     ],
+     "native_center_rounding_error": [
+      "0",
+      "0",
+      "-136461/10995116277760000000000"
+     ]
+    },
+    {
+     "parent_index": 0,
+     "axial_slot": 1,
+     "axis_sign": 1,
+     "ideal_center": [
+      "0",
+      "0",
+      "-1/2"
+     ],
+     "inherited_world_offset": [
+      "0",
+      "0",
+      "-1/2"
+     ],
+     "native_center_rounding_error": [
+      "0",
+      "0",
+      "-45487/10995116277760000000000"
+     ]
+    },
+    {
+     "parent_index": 0,
+     "axial_slot": 2,
+     "axis_sign": 1,
+     "ideal_center": [
+      "0",
+      "0",
+      "1/2"
+     ],
+     "inherited_world_offset": [
+      "0",
+      "0",
+      "1/2"
+     ],
+     "native_center_rounding_error": [
+      "0",
+      "0",
+      "45487/10995116277760000000000"
+     ]
+    },
+    {
+     "parent_index": 0,
+     "axial_slot": 3,
+     "axis_sign": 1,
+     "ideal_center": [
+      "0",
+      "0",
+      "3/2"
+     ],
+     "inherited_world_offset": [
+      "0",
+      "0",
+      "3/2"
+     ],
+     "native_center_rounding_error": [
+      "0",
+      "0",
+      "136461/10995116277760000000000"
+     ]
+    }
+   ],
+   "intrinsic_partition_intervals": [
+    [
+     "-2",
+     "-1"
+    ],
+    [
+     "-1",
+     "0"
+    ],
+    [
+     "0",
+     "1"
+    ],
+    [
+     "1",
+     "2"
+    ]
+   ],
+   "exact_base_and_full_parent_vertex_count": 24,
+   "screen_row": {
+    "source": {
+     "path": "heterogeneous/constructive/pinwheel_boxes/single_owners/prism12.json",
+     "sha256": "2b5eba3419d8f52fc565e5a2a605f92cbb74fe6c51e1f68f2cc4110d79a4f42d",
+     "piece": "prism12",
+     "n": 1,
+     "original_container": "cube",
+     "provenance": {
+      "kind": "canonical_single_owner",
+      "canonical_checker_sha256": "508ae88a9f17bb0d29606b6c8425288039b6da0e40e353f6acb432aaf28845c3"
+     },
+     "lower": [
+      "-722791514450779448820169391956059414827021588049793/374144419156711147060143317175368453031918731001856",
+      "-722791514450779448820169391956059414827021588049793/374144419156711147060143317175368453031918731001856",
+      "-1/2"
+     ],
+     "upper": [
+      "722791514450779448820169391956059414827021588049793/374144419156711147060143317175368453031918731001856",
+      "722791514450779448820169391956059414827021588049793/374144419156711147060143317175368453031918731001856",
+      "1/2"
+     ],
+     "widths": [
+      "722791514450779448820169391956059414827021588049793/187072209578355573530071658587684226515959365500928",
+      "722791514450779448820169391956059414827021588049793/187072209578355573530071658587684226515959365500928",
+      "1"
+     ]
+    },
+    "source_piece": "prism12",
+    "target_piece": "prism12",
+    "parent_n": 1,
+    "k": 4,
+    "n": 4,
+    "source_height": "1",
+    "target_height": "1",
+    "parent_target_height": "4",
+    "ratio": "4",
+    "axis": [
+     "0",
+     "0",
+     "1"
+    ],
+    "owner_axis_signs": [
+     1
+    ],
+    "affine_matrix": [
+     [
+      "1",
+      "0",
+      "0"
+     ],
+     [
+      "0",
+      "1",
+      "0"
+     ],
+     [
+      "0",
+      "0",
+      "4"
+     ]
+    ],
+    "lower": [
+     "-722791514450779448820169391956059414827021588049793/374144419156711147060143317175368453031918731001856",
+     "-722791514450779448820169391956059414827021588049793/374144419156711147060143317175368453031918731001856",
+     "-2"
+    ],
+    "upper": [
+     "722791514450779448820169391956059414827021588049793/374144419156711147060143317175368453031918731001856",
+     "722791514450779448820169391956059414827021588049793/374144419156711147060143317175368453031918731001856",
+     "2"
+    ],
+    "box_midpoint": [
+     "0",
+     "0",
+     "0"
+    ],
+    "exact_side_bound": "4",
+    "side": 4.0,
+    "exact_gate": "4",
+    "gate": 4.0,
+    "exact_native_gate": "2251800095160675/562949953421312",
+    "native_gate": 4.0000005000008,
+    "strict_nominal": false,
+    "restoration_safe_nominal": false,
+    "restoration_safe_native": true,
+    "existing_ratio_one_subdivision": false,
+    "relative_nominal_gain": 0.0
+   }
+  }
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 3.55120926047602,
+ "density": 0.6997595261567541,
+ "found_by": "PingYou Ltd",
+ "credit": "PingYou Ltd",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/78",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "construction",
+  "replayed_on": "2026-10-15",
+  "witness_sha256": "c9b6e9eb86784bf3aad317c2b883556e41bae1c0ef1662bc6f8f0c58e69778cd",
+  "method": "This batch contains 31 fresh campaign cases, distinct from our earlier submissions: 10 improvements beyond the pinned current nominal/reference bounds and 21 improved complete certificates from physical source operations. Twenty certificate cases retain explicitly known nominal values; PR12L1.5/cube N24 conservatively claims only a reduced complete certificate. No new ideal bound is claimed for those 21 cases.\n\nThe constructions use marked cap exchanges and common separator returns, whole-child collar and height transfers, cross-base whole-prism inclusion and axial subdivision, complete prism self-host enclosure, and marked Catalan returns. Complete source owners, inherited author credits, frames, all host walls, pair separators, and the relevant common restoration paths are retained. The 75-dodecagonal-prism construction, for example, comes from 25 complete octagonal source prisms through a certified whole-envelope inclusion and three-child axial partition; its certified cube side is 10.834711256138021, below the retained bound of 11. Fixed-contact stress certificates and local frame results retain their stated scope; no global optimum is claimed.\n\nAll 31 packaged witnesses passed verify_general.py and certify_general.py (62 checks), independent complete geometry/source reviews, current public and retained-construction comparisons, and archive checksums/privacy/dependency checks. The trusted batch parser selects exactly 31 native candidates. Pinned comparison: repository 307ef472925069eabd9890cc38146f88dbdac9db and site build 2026-10-15 12:01. A further successor check passed at fe86acefe7a0b2d7092c241eecb772d914ae466b and site build 12:03. Acceptance and later site selection remain separate observations.\n\nThe archive retains all proof dependencies. Thirty-nine large proof companions are stored losslessly with gzip and an explicit original-path/hash restoration manifest; active native JSON witnesses remain directly readable. Original donors and classical mechanisms",
+  "archive": "https://github.com/user-attachments/files/33491311/pingyou_new_constructions_batch054_20261015.zip",
+  "archive_sha256": "476b249a2041f541ec57dc23f02780b902106c64917cc72263f3fbe6037c6f99"
+ },
+ "previous_record": {
+  "s_full": 4.0000005000008,
+  "found_by": "Alejandro Zarzuelo",
+  "date": "2026-10-13"
+ },
+ "case_id": "pr12incub_n04"
+}

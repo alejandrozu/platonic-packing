@@ -1,0 +1,237 @@
+{
+ "problem": "min/prism5_l15_in_cube",
+ "piece": "prism5_l15",
+ "container": "cube",
+ "n": 2,
+ "s_full": 2.463451651382106,
+ "pieces": [
+  [
+   -0.4227088313098952,
+   -0.5435348654504651,
+   -0.02064571820481412,
+   7.047626344833989e-16,
+   0.9876883405951379,
+   0.15643446504023087,
+   5.863744081661574e-16
+  ],
+  [
+   0.4227088313098946,
+   0.543534865450464,
+   0.02064571820481405,
+   8.407249530723044e-17,
+   0.7071067811865483,
+   -0.7071067811865468,
+   -9.083049947490599e-16
+  ]
+ ],
+ "s": 2.46345,
+ "s_plus": "2.46345+",
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap": 1.376347e-11,
+  "min_wall_gap": 5e-12
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "Shorten every complete parent prism by two axial collars, then apply one common center contraction with all inherited frames fixed.",
+ "date": "2026-10-15",
+ "record_id": "pr5l15incub_n02_submission_78_6e83dea6c5c2",
+ "title": "2 prism5 l15s in a cube",
+ "family": "prisms",
+ "source": {
+  "author": "PingYou Ltd",
+  "kind": "whole-child arbitrary-axis collar transfer",
+  "inherited_author_fields": {
+   "found_by": "Alejandro Zarzuelo",
+   "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+   "date": "2026-10-13",
+   "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+   "record_id": "pr5l2incub_n02",
+   "source_author_fields": {
+    "author": null,
+    "authors": null,
+    "attribution_note": null,
+    "url": null,
+    "kind": null
+   }
+  },
+  "attribution_note": "Original parent authors and credit are retained verbatim in inherited_author_fields and the hash-pinned complete native parent. PingYou Ltd supplies the whole-child collar transfer and native certificate.",
+  "construction": {
+   "name": "whole_child_shared_contraction_inherited_planes",
+   "source_native_path": "heterogeneous/constructive/root_rectangular_product/public_parents/7ec4a3a394dc54219ac14ac9535ce324c4a582594d032818e77dbf2e01e3ba63.json",
+   "source_native_sha256": "7ec4a3a394dc54219ac14ac9535ce324c4a582594d032818e77dbf2e01e3ba63",
+   "source_provenance": {
+    "kind": "authenticated_public_native",
+    "git_path": "records/pr5l2incub/pr5l2incub_n02.json",
+    "git_blob": "534e2eb78d87ded7d7ffbdf458dd6b37b5802f2d",
+    "git_commit": "6dcb76f8dd0c8a1c92f07bdc75391024ed2ed24f"
+   },
+   "complete_parent_geometry": {
+    "piece": "prism5_l2",
+    "container": "cube",
+    "n": 2,
+    "s_full": 2.4634519478988,
+    "pieces": [
+     [
+      -0.42270886201732405,
+      -0.5435348961566855,
+      0.1904344169830522,
+      7.047626344833989e-16,
+      0.9876883405951379,
+      0.15643446504023087,
+      5.863744081661574e-16
+     ],
+     [
+      0.4227088620173244,
+      0.5435349137137717,
+      0.23172585639227197,
+      8.407249530723044e-17,
+      0.7071067811865483,
+      -0.7071067811865468,
+      -9.083049947490599e-16
+     ]
+    ]
+   },
+   "proof_path": "heterogeneous/constructive/arbitrary_axis_collar_transfer/SOURCE_DECODER.txt",
+   "proof_sha256": "4a0ecba4eddefef08ccb26f5e504bd22528cd4ab2531986f476249a9e24a39f8",
+   "canonical_map_sha256": "82bb3e7204358022f33d695c74e751d1a94d47b4932d3104efddbd78122f1de1",
+   "source_height": "2",
+   "target_height": "3/2",
+   "removed_collar_each_end": "1/4",
+   "certified_selected_plane_t_upper": "9796482028461431915291994538690187496071057796235749968106578166213031686627/9796482740218953069047888876418646555490292868389570417748135350247578664960",
+   "native_center_restoration": "1/100000000000",
+   "common_contraction": "95668769810150358815372891302545570164406682244049344695219471390532353907514411979/95668776759950713564920789808775845268459891292866898610821634279761510400000000000",
+   "common_translation": [
+    "-3247386907367637426789116336654753659429276690592763733958457145778529820359557709373/6893661877873683220221052941444755056298206349753587651660562316377269185608178261714534400000000000",
+    "-60516307209668168781093974719314583929392665522194464130840530165000451447495269185382993009/6893661877873683220221052941444755056298206349753587651660562316377269185608178261714534400000000000",
+    "-11640919886033183220687683326948834499224598399808033076071212471943666737494647064561800537093575351/55149295022989465761768423531558040450385650798028701213284498531018153484865426093716275200000000000"
+   ],
+   "full_owner_decoder": [
+    {
+     "source_owner": 0,
+     "child_owner": 0,
+     "source_center": [
+      "-1903711473467427/4503599627370496",
+      "-1223931777897055/2251799813685248",
+      "1715280738726783/9007199254740992"
+     ],
+     "axis": [
+      "141802246242129289951839834232179849214126194688/102844034832575409159268433342022621542549948437578100907616053",
+      "-124308956864515607272732610655574298148791648256/102844034832575409159268433342022621542549948437578100907616053",
+      "-102844034832575409159268433341849735512485354910379509173278923/102844034832575409159268433342022621542549948437578100907616053"
+     ],
+     "removed_collar_each_end": "1/4",
+     "ideal_center": [
+      "-2914011755841562223353966787090726316959256101971263361048054576475798879498648715924999145399437901/6893661877873683220221052941444755056298206349753587651660562316377269185608178261714534400000000000",
+      "-3746945581251072957000373193787631465625158943583561473200581760587251054672483724009601906049292049/6893661877873683220221052941444755056298206349753587651660562316377269185608178261714534400000000000",
+      "-1138596804238798395809083200898447111719174247967877055680213761905400158359685138485627264560227703/55149295022989465761768423531558040450385650798028701213284498531018153484865426093716275200000000000"
+     ],
+     "native_rounding_error": [
+      "-93593433798709551269498073317533634386074508252459191372831533285947077654600562099/6893661877873683220221052941444755056298206349753587651660562316377269185608178261714534400000000000",
+      "-325059416202534819846428600568372809397978790110884430990355419627020158093950707951/6893661877873683220221052941444755056298206349753587651660562316377269185608178261714534400000000000",
+      "-11178682432431704840058381228330277606762963044839081844988775657998366335439772297/55149295022989465761768423531558040450385650798028701213284498531018153484865426093716275200000000000"
+     ]
+    },
+    {
+     "source_owner": 1,
+     "child_owner": 1,
+     "source_center": [
+      "3807422946934857/9007199254740992",
+      "2447863634864197/4503599627370496",
+      "8348803844002761/36028797018963968"
+     ],
+     "axis": [
+      "-9237426232742080852469836158022639702171841462272/6582018229284825068488220662918880544495480966357187134867865017",
+      "7672268857882534404933459812340703610017889124352/6582018229284825068488220662918880544495480966357187134867865017",
+      "-6582018229284825068488220662907926932107153289317334056704442951/6582018229284825068488220662918880544495480966357187134867865017"
+     ],
+     "removed_collar_each_end": "1/4",
+     "ideal_center": [
+      "2914011755841558024630627495424484307675974053557628448255047248132603647851670531641852206629906651/6893661877873683220221052941444755056298206349753587651660562316377269185608178261714534400000000000",
+      "3746945581251065770809033305403705270737135954626081123505044176410064115766048025530335678217260799/6893661877873683220221052941444755056298206349753587651660562316377269185608178261714534400000000000",
+      "1138596804238794497219681574503579384401906384474041195397669950610381942024296984155215375986008953/55149295022989465761768423531558040450385650798028701213284498531018153484865426093716275200000000000"
+     ],
+     "native_rounding_error": [
+      "82890595652544396422266603779810077486632298694658847728326603160723766993370093349/6893661877873683220221052941444755056298206349753587651660562316377269185608178261714534400000000000",
+      "-142251384705138339152346561144737331729116975734290270936468887055421407678217260799/6893661877873683220221052941444755056298206349753587651660562316377269185608178261714534400000000000",
+      "83017013660798029970544056740790302728649855141458155628458792621868362224013991047/55149295022989465761768423531558040450385650798028701213284498531018153484865426093716275200000000000"
+     ]
+    }
+   ],
+   "classification": "certificate_reduction",
+   "screen_row": {
+    "source_path": "heterogeneous/constructive/root_rectangular_product/public_parents/7ec4a3a394dc54219ac14ac9535ce324c4a582594d032818e77dbf2e01e3ba63.json",
+    "source_sha256": "7ec4a3a394dc54219ac14ac9535ce324c4a582594d032818e77dbf2e01e3ba63",
+    "source_piece": "prism5_l2",
+    "target_piece": "prism5_l15",
+    "n": 2,
+    "source_height": "2",
+    "target_height": "3/2",
+    "each_collar": "1/4",
+    "t_proposal": 0.9999999273456055,
+    "controlling_pair": [
+     0,
+     1
+    ],
+    "controlling_direction": [
+     0.5877852522924731,
+     0.8090169943749475,
+     -1.6742623528313808e-16
+    ],
+    "lower": [
+     -1.231725825680616,
+     -1.2317258169020744,
+     -0.5595655968528466
+    ],
+    "upper": [
+     1.231725825680617,
+     1.2317258344591604,
+     0.9817258395563717
+    ],
+    "midpoint": [
+     4.440892098500626e-16,
+     8.778543003629125e-09,
+     0.21108012135176257
+    ],
+    "lower_owners": [
+     0,
+     0,
+     0
+    ],
+    "upper_owners": [
+     1,
+     1,
+     1
+    ],
+    "side_proposal": 2.463451651361235,
+    "nominal_gate": 2.463451651361,
+    "native_gate": 2.4634519478988,
+    "nominal_crossing_proposal": false,
+    "certificate_crossing_proposal": true
+   }
+  }
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.7281843807071189,
+ "density": 0.34525350626900114,
+ "found_by": "PingYou Ltd",
+ "credit": "PingYou Ltd",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/78",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "construction",
+  "replayed_on": "2026-10-15",
+  "witness_sha256": "7857a4363b5d78303201e2ed98b0c0e78376493783b816bab6299a9425d8245a",
+  "method": "This batch contains 31 fresh campaign cases, distinct from our earlier submissions: 10 improvements beyond the pinned current nominal/reference bounds and 21 improved complete certificates from physical source operations. Twenty certificate cases retain explicitly known nominal values; PR12L1.5/cube N24 conservatively claims only a reduced complete certificate. No new ideal bound is claimed for those 21 cases.\n\nThe constructions use marked cap exchanges and common separator returns, whole-child collar and height transfers, cross-base whole-prism inclusion and axial subdivision, complete prism self-host enclosure, and marked Catalan returns. Complete source owners, inherited author credits, frames, all host walls, pair separators, and the relevant common restoration paths are retained. The 75-dodecagonal-prism construction, for example, comes from 25 complete octagonal source prisms through a certified whole-envelope inclusion and three-child axial partition; its certified cube side is 10.834711256138021, below the retained bound of 11. Fixed-contact stress certificates and local frame results retain their stated scope; no global optimum is claimed.\n\nAll 31 packaged witnesses passed verify_general.py and certify_general.py (62 checks), independent complete geometry/source reviews, current public and retained-construction comparisons, and archive checksums/privacy/dependency checks. The trusted batch parser selects exactly 31 native candidates. Pinned comparison: repository 307ef472925069eabd9890cc38146f88dbdac9db and site build 2026-10-15 12:01. A further successor check passed at fe86acefe7a0b2d7092c241eecb772d914ae466b and site build 12:03. Acceptance and later site selection remain separate observations.\n\nThe archive retains all proof dependencies. Thirty-nine large proof companions are stored losslessly with gzip and an explicit original-path/hash restoration manifest; active native JSON witnesses remain directly readable. Original donors and classical mechanisms",
+  "archive": "https://github.com/user-attachments/files/33491311/pingyou_new_constructions_batch054_20261015.zip",
+  "archive_sha256": "476b249a2041f541ec57dc23f02780b902106c64917cc72263f3fbe6037c6f99"
+ },
+ "previous_record": {
+  "s_full": 2.4634519478988,
+  "found_by": "Alejandro Zarzuelo",
+  "date": "2026-10-13"
+ },
+ "case_id": "pr5l15incub_n02"
+}
