@@ -1,16 +1,16 @@
 # Search progress
 
-Updated 2026-10-16 01:42 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
+Updated 2026-10-16 01:49 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
 
-* attempts: 97869 total, 6725 in the last 24 h, 1341 in the last hour
+* attempts: 97870 total, 6726 in the last 24 h, 1342 in the last hour
 * improvements: 33763 total, 6653 in the last 24 h
-* by move (attempts / improvements): ascend 11228/1738, community 1935/1935, compose 1600/1600, descend 6200/141, fresh 7162/129, harvest 19881/19881, hop 36025/3130, latcut 3830/3830, literature 475/475, reinsert 7172/456, symfresh 1492/39, tighten 869/409
+* by move (attempts / improvements): ascend 11229/1738, community 1935/1935, compose 1600/1600, descend 6200/141, fresh 7162/129, harvest 19881/19881, hop 36025/3130, latcut 3830/3830, literature 475/475, reinsert 7172/456, symfresh 1492/39, tighten 869/409
 
 | problem | n with a packing | attempts | CPU hours | improvements (24 h) | last improvement |
 |---|---|---|---|---|---|
 | Tetrahedra in a tetrahedron (tetintet) | 99/99 | 8642 | 9.7 | 141 | 10-16 01:26 |
 | Octahedra in an octahedron (octinoct) | 99/99 | 6279 | 7.7 | 193 | 10-16 01:26 |
-| Icosahedra in an icosahedron (icoinico) | 99/99 | 3916 | 12.9 | 183 | 10-16 01:26 |
+| Icosahedra in an icosahedron (icoinico) | 99/99 | 3917 | 13.0 | 183 | 10-16 01:26 |
 | Dodecahedra in a dodecahedron (dodindod) | 99/99 | 3589 | 12.2 | 141 | 10-16 01:26 |
 | Cubes in a cube (cubincub) | 99/99 | 8058 | 7.9 | 60 | 10-15 18:54 |
 | Cubes in an octahedron (cubinoct) | 99/99 | 9038 | 11.4 | 62 | 10-15 18:54 |
