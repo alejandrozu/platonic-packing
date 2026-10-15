@@ -188,6 +188,16 @@ def main(full=True):
     print('wrote', OUT, os.path.getsize(OUT) // 1024, 'kB')
 
 
+# exact edge lengths (EDGE^2 = edge2 exactly, EDGE > 0; checked by certify_nd.py through mu^2 edge(C)^2 = edge(P)^2)
+EDGE = {'c5': '2*sqrt2', 'c8': '1', 'c16': 'sqrt2', 'c24': 'sqrt2', 'c600': '-1/2+1/2*sqrt5', 'c120': '7-3*sqrt5',
+        'sx5': 'sqrt2', 'hc5': '1', 'op5': 'sqrt2', 'sx6': 'sqrt2', 'hc6': '1', 'op6': 'sqrt2'}
+
+
+def mu_of(piece, container):
+    """edge(piece) / edge(container polytope), exactly, as a string of multiquad.py"""
+    return repr(M.parse(EDGE[piece]) / M.parse(EDGE[container]))
+
+
 def load():
     return json.load(open(OUT))
 

@@ -17,15 +17,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import ndsim
 
-# exact edge lengths of the polytopes in src/polytopes_nd.json (checked: EDGE^2 = edge2 exactly, EDGE > 0)
-EDGE = {'c5': '2*sqrt2', 'c8': '1', 'c16': 'sqrt2', 'c24': 'sqrt2', 'c600': '-1/2+1/2*sqrt5', 'c120': '7-3*sqrt5',
-        'sx5': 'sqrt2', 'hc5': '1', 'op5': 'sqrt2', 'sx6': 'sqrt2', 'hc6': '1', 'op6': 'sqrt2'}
-
-
-def mu_of(piece, container):
-    """edge(piece) / edge(container polytope), exactly, as a string of multiquad.py"""
-    from multiquad import parse
-    return repr(parse(EDGE[piece]) / parse(EDGE[container]))
+from polytopes_nd import EDGE, mu_of          # exact edge lengths and edge ratios
 
 
 DEN = 2 ** 44

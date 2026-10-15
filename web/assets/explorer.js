@@ -111,8 +111,9 @@ if (typeof document !== 'undefined') (async () => {
   const PAL = ['#4c6fd6', '#d9822b', '#3f9a6a', '#c8524a', '#7a5fc4', '#2a9fb0', '#c9a227', '#b5577f', '#6d8a2f', '#8a6a4b',
                '#5a86c2', '#d36b3b', '#4aa087', '#a8484a', '#8c76d1', '#3b8fa0', '#b8962e', '#9c5c8f', '#7f9a3a', '#a37b5a'];
   const POLY = { 3: 'triangular', 4: 'square', 5: 'pentagonal', 6: 'hexagonal', 8: 'octagonal', 12: 'dodecagonal' };
-  const dn = s => { const m = /^(anti)?prism(\d+)$/.exec(s); return m ? `${POLY[m[2]]} ${m[1] ? 'antiprism' : 'prism'}` : s.replace(/_/g, ' ') };
-  const pl = s => { if (NAMES[s]) return NAMES[s][1]; const w = dn(s); return w.endsWith('hedron') ? w.slice(0, -6) + 'hedra' : w + 's' };
+  const ndPlural = w => w.endsWith('simplex') ? w.slice(0, -2) + 'ices' : w.endsWith('plex') ? w + 'es' : w + 's';     // 5-simplices, 6-orthoplexes
+  const dn = s => { if (D.solids[s] && D.solids[s].dim) return D.solids[s].name; const m = /^(anti)?prism(\d+)$/.exec(s); return m ? `${POLY[m[2]]} ${m[1] ? 'antiprism' : 'prism'}` : s.replace(/_/g, ' ') };
+  const pl = s => { if (NAMES[s]) return NAMES[s][1]; if (D.solids[s] && D.solids[s].dim) return ndPlural(D.solids[s].name); const w = dn(s); return w.endsWith('hedron') ? w.slice(0, -6) + 'hedra' : w + 's' };
   const cap = s => s[0].toUpperCase() + s.slice(1);
   const article = s => (/^[aeiou]/.test(s) ? 'an ' : 'a ') + s;
   const fmtCF = s => s.replace(/√(\d+)/g, '√<span style="text-decoration:overline">$1</span>');
@@ -137,6 +138,21 @@ if (typeof document !== 'undefined') (async () => {
   function orient(r) {           // orientation classes: pieces that are exact translates of each other
     if (r._oc) return r._oc;
     const V = D.solids[prob.piece].V, reps = [], cls = [];
+    if (prob.dim) {                // d dimensions: compare the sorted projections of the rotated vertices on two fixed directions
+      const d = prob.dim, nz = u => { const l = Math.hypot(...u); return u.map(x => x / l) };
+      const u1 = nz([0.537, 0.209, 0.711, 0.317, 0.143, 0.271].slice(0, d)), u2 = nz([0.122, 0.683, -0.251, 0.448, 0.392, -0.307].slice(0, d));
+      const fp = pc => { const { R } = ndPiece(pc, d), W = V.map(v => { const o = []; for (let a = 0; a < d; a++) { let x = 0; for (let b = 0; b < d; b++) x += R[a * d + b] * v[b]; o.push(x) } return o });
+        return [u1, u2].map(u => W.map(w => w.reduce((x, y, a) => x + y * u[a], 0)).sort((x, y) => x - y)) };
+      r.p.forEach(pc => {
+        const f = fp(pc);
+        let k = reps.findIndex(g => g.every((arr, q) => arr.reduce((x, y, m) => x + Math.abs(y - f[q][m]), 0) / arr.length < 3e-3));
+        if (k < 0) { reps.push(f); k = reps.length - 1 }
+        cls.push(k);
+      });
+      const size = reps.map((_, k) => cls.filter(c => c === k).length), rank = size.map((_, k) => k).sort((a, b) => size[b] - size[a] || a - b);
+      const rk = []; rank.forEach((k, i) => rk[k] = i);
+      return r._oc = { cls: cls.map(k => rk[k]), sizes: rank.map(k => size[k]) };
+    }
     r.p.forEach(p => {
       const q = qn(p), W = V.map(v => qrot(q, v));
       let k = reps.findIndex(R => W.every(a => R.some(b => Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1]) + Math.abs(a[2] - b[2]) < 3e-3)));
@@ -149,9 +165,82 @@ if (typeof document !== 'undefined') (async () => {
     return r._oc = { cls: cls.map(k => rk[k]), sizes: rank.map(k => size[k]) };
   }
   function neighbours(r, i) {
-    const c = r.p[i];
-    return r.p.map((p, j) => [j, Math.hypot(p[0] - c[0], p[1] - c[1], p[2] - c[2])]).filter(x => x[0] !== i).sort((a, b) => a[1] - b[1]);
+    const c = r.p[i], d = prob.dim || 3;
+    return r.p.map((p, j) => [j, Math.hypot(...p.slice(0, d).map((x, a) => x - c[a]))]).filter(x => x[0] !== i).sort((a, b) => a[1] - b[1]);
   }
+
+  // ---------- higher polytopes (15 Oct 2026): a d-dimensional packing is drawn as its 3D slice
+  // {x_4 = t_1, ..., x_d = t_(d-3)}; each slice of a piece is a convex polyhedron, and slices of disjoint pieces are disjoint
+  const isND = p => !!(p && p.dim);
+  let ndF = [], ndDim = 0;                       // slice offsets as fractions of the container's extent along x_4..x_d
+  function ndPiece(pc, d) { return { c: pc.slice(0, d), R: pc.slice(d, d + d * d) } }
+  function ndSlice(S, c, R, scale, t) {
+    const d = S.dim, V = S.V, F = S.N.length;
+    const mv = v => { const o = new Array(d); for (let a = 0; a < d; a++) { let x = 0; for (let b = 0; b < d; b++) x += R[a * d + b] * v[b]; o[a] = x } return o };
+    const A = new Array(F), b = new Float64Array(F);
+    for (let f = 0; f < F; f++) {                  // the piece's facets restricted to the slice: A y <= b, y in R^3
+      const n = mv(S.N[f]); let off = scale * S.B[f];
+      for (let a = 0; a < d; a++) off += n[a] * c[a];
+      for (let a = 3; a < d; a++) off -= n[a] * t[a - 3];
+      A[f] = [n[0], n[1], n[2]]; b[f] = off;
+    }
+    const size = scale * Math.max(...V.map(v => Math.hypot(...v))), pts = [];
+    const add = p => { for (const q of pts) if (Math.abs(q[0] - p[0]) + Math.abs(q[1] - p[1]) + Math.abs(q[2] - p[2]) < 1e-8 * (1 + size)) return; pts.push(p) };
+    if (d === 4) {                                 // vertices of the slice: edges crossing the hyperplane x_4 = t
+      const X = V.map(v => mv(v).map((x, a) => c[a] + scale * x));
+      for (const [i, j] of S.E) {
+        const u = X[i][3] - t[0], w = X[j][3] - t[0];
+        if (u * w > 0 || (u === 0 && w === 0)) continue;
+        const l = u / (u - w); add([0, 1, 2].map(a => X[i][a] + l * (X[j][a] - X[i][a])));
+      }
+    } else {                                       // 5D, 6D: vertices of the 3D H-polytope (triples of facets)
+      const cr = (p, q) => [p[1] * q[2] - p[2] * q[1], p[2] * q[0] - p[0] * q[2], p[0] * q[1] - p[1] * q[0]];
+      for (let i = 0; i < F; i++) for (let j = i + 1; j < F; j++) {
+        const ij = cr(A[i], A[j]); if (Math.hypot(...ij) < 1e-9) continue;
+        for (let k = j + 1; k < F; k++) {
+          const det = A[k][0] * ij[0] + A[k][1] * ij[1] + A[k][2] * ij[2]; if (Math.abs(det) < 1e-9) continue;
+          const jk = cr(A[j], A[k]), ki = cr(A[k], A[i]);
+          const y = [0, 1, 2].map(a => (b[i] * jk[a] + b[j] * ki[a] + b[k] * ij[a]) / det);
+          let ok = true;
+          for (let f = 0; f < F && ok; f++) if (A[f][0] * y[0] + A[f][1] * y[1] + A[f][2] * y[2] > b[f] + 1e-9 * (1 + Math.abs(b[f]))) ok = false;
+          if (ok) add(y);
+        }
+      }
+    }
+    if (pts.length < 4) return null;
+    const faces = [], seen = new Set();
+    for (let f = 0; f < F; f++) {                  // each facet meets the slice in a polygon (or less)
+      const n = A[f], nn = Math.hypot(...n); if (nn < 1e-9) continue;
+      const on = []; pts.forEach((p, k) => { if (Math.abs(n[0] * p[0] + n[1] * p[1] + n[2] * p[2] - b[f]) <= 1e-7 * nn * (1 + size)) on.push(k) });
+      if (on.length < 3) continue;
+      const g = [0, 1, 2].map(a => on.reduce((x, k) => x + pts[k][a], 0) / on.length), un = n.map(x => x / nn);
+      let u1 = [0, 1, 2].map(a => pts[on[0]][a] - g[a]); const l1 = Math.hypot(...u1); if (l1 < 1e-12) continue; u1 = u1.map(x => x / l1);
+      const u2 = [un[1] * u1[2] - un[2] * u1[1], un[2] * u1[0] - un[0] * u1[2], un[0] * u1[1] - un[1] * u1[0]];
+      const ang = k => { const v = [0, 1, 2].map(a => pts[k][a] - g[a]); return Math.atan2(v[0] * u2[0] + v[1] * u2[1] + v[2] * u2[2], v[0] * u1[0] + v[1] * u1[1] + v[2] * u1[2]) };
+      on.sort((x, y) => ang(x) - ang(y));
+      let area = 0;
+      for (let q = 1; q + 1 < on.length; q++) {
+        const a0 = pts[on[0]], e1 = [0, 1, 2].map(a => pts[on[q]][a] - a0[a]), e2 = [0, 1, 2].map(a => pts[on[q + 1]][a] - a0[a]);
+        area += Math.hypot(e1[1] * e2[2] - e1[2] * e2[1], e1[2] * e2[0] - e1[0] * e2[2], e1[0] * e2[1] - e1[1] * e2[0]);
+      }
+      const key = [...on].sort((x, y) => x - y).join(',');
+      if (area < 1e-10 * (1 + size * size) || seen.has(key)) continue;
+      seen.add(key); faces.push(on);
+    }
+    return faces.length >= 4 ? { pts, faces } : null;
+  }
+  const centroid = pts => [0, 1, 2].map(a => pts.reduce((x, p) => x + p[a], 0) / pts.length);
+  function sliceEdges(sl) {
+    const E = [], seen = new Set();
+    sl.faces.forEach(f => f.forEach((a, i) => { const b = f[(i + 1) % f.length], k = a < b ? a + ',' + b : b + ',' + a; if (!seen.has(k)) { seen.add(k); E.push([a, b]) } }));
+    return E;
+  }
+  function ndExtent(prob, row) {                    // half-extent of the container along x_4..x_d
+    const C = D.solids[prob.container], cs = row.sf * prob.mu;
+    return Array.from({ length: prob.dim - 3 }, (_, k) => cs * Math.max(...C.V.map(v => Math.abs(v[k + 3]))));
+  }
+  const ndT = (prob, row) => { const e = ndExtent(prob, row); return e.map((x, k) => (ndF[k] || 0) * x) };
+  function ndIdentity(d) { const I = []; for (let a = 0; a < d; a++) for (let b = 0; b < d; b++) I.push(a === b ? 1 : 0); return I }
 
   // ---------- families and the atlas of problems (each tile is a drawing of a real packing from the archive)
   // 14 Oct (Alejandro): each family tab is split into side-by-side columns so a packing is easy to find
@@ -162,7 +251,9 @@ if (typeof document !== 'undefined') (async () => {
                                            ['Heterogeneous packings', p => p.family === 'platonic' && p.piece !== p.container && DUAL[p.piece] !== p.container, 2]]],
                   ['archcat', 'Archimedean and Catalan', [['Archimedean solids', p => p.family === 'archimedean', 2], ['Catalan solids', p => p.family === 'catalan', 2]]],
                   ['prisms', 'Prisms and antiprisms', [['Prisms', p => p.family === 'prisms' && isPrism(p)], ['Antiprisms', p => p.family === 'prisms' && isAnti(p)],
-                                                       ['Elongated prisms', p => p.family === 'prisms' && isElong(p)]]]];
+                                                       ['Elongated prisms', p => p.family === 'prisms' && isElong(p)]]],
+                  // 15 Oct (Alejandro): regular polytopes of dimensions 4-6 in each other; 4D is 4 tiles wide so all three columns are 9 deep
+                  ['higher', 'Higher polytopes', [['4D', p => p.dim === 4, 4], ['5D', p => p.dim === 5], ['6D', p => p.dim === 6]]]];
   const ptitle = p => p.title || `${cap(pl(p.piece))} in ${article(dn(p.container))}`;
   const ROT = (() => { const a = -0.5, b = 0.62, ca = Math.cos(a), sa = Math.sin(a), cb = Math.cos(b), sb = Math.sin(b);
     return v => { const x1 = cb * v[0] + sb * v[2], z1 = -sb * v[0] + cb * v[2]; return [x1, ca * v[1] - sa * z1] } })();
@@ -170,6 +261,18 @@ if (typeof document !== 'undefined') (async () => {
     const dpr = Math.min(2, window.devicePixelRatio || 1), W = 64; cv.width = W * dpr; cv.height = W * dpr;
     const g = cv.getContext('2d'); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, W, W);
     const r = p.rows.find(x => x.n === 6) || p.rows.find(x => x.n === 5) || p.rows[0]; if (!r) return;
+    if (p.dim) {                   // higher polytopes: the central 3D slice
+      const d = p.dim, t = new Array(d - 3).fill(0), cs = r.sf * p.mu, Cs = D.solids[p.container], Ps = D.solids[p.piece];
+      const cont = ndSlice(Cs, new Array(d).fill(0), ndIdentity(d), cs, t); if (!cont) return;
+      const Rr = Math.max(...cont.pts.map(v => Math.hypot(...v))), k = (W / 2 - 3) / Rr;
+      const tp = v => { const [x, y] = ROT(v); return [W / 2 + k * x, W / 2 - k * y] };
+      g.lineWidth = 0.8; g.strokeStyle = css('--accent'); g.globalAlpha = 0.8; g.beginPath();
+      r.p.forEach(pc => { const { c, R } = ndPiece(pc, d), sl = ndSlice(Ps, c, R, 1, t); if (!sl) return;
+        sliceEdges(sl).forEach(([a, b]) => { g.moveTo(...tp(sl.pts[a])); g.lineTo(...tp(sl.pts[b])) }) });
+      g.stroke(); g.globalAlpha = 1; g.strokeStyle = css('--ink'); g.lineWidth = 1.1; g.beginPath();
+      sliceEdges(cont).forEach(([a, b]) => { g.moveTo(...tp(cont.pts[a])); g.lineTo(...tp(cont.pts[b])) }); g.stroke();
+      return;
+    }
     const C = D.solids[p.container], P = D.solids[p.piece], R = Math.max(...C.V.map(v => Math.hypot(...v))) * r.sf, k = (W / 2 - 3) / R;
     const tp = v => { const [x, y] = ROT(v); return [W / 2 + k * x, W / 2 - k * y] };
     g.lineWidth = 0.8; g.strokeStyle = css('--accent'); g.globalAlpha = 0.8; g.beginPath();
@@ -229,7 +332,9 @@ if (typeof document !== 'undefined') (async () => {
     markTile();
     $('ptitle').textContent = ptitle(p);
     $('psub').textContent = `${p.rows.length} of ${(p.nmax || D.nmax) - D.nmin + 1} values of n (${D.nmin}–${p.nmax || D.nmax}) recorded. ` +
-      (p.unit === 'size' ? 's = container size ÷ piece size (the same canonical solid at both sizes).' : 's = container edge ÷ piece edge.') + (p.note ? ' ' + p.note : '');
+      (p.unit === 'size' ? 's = container size ÷ piece size (the same canonical solid at both sizes).' : 's = container edge ÷ piece edge.') + (p.note ? ' ' + p.note : '') +
+      (p.dim ? ` The ${p.dim}-dimensional packing is drawn as a 3D slice; move x${p.dim > 4 ? '₄…x' + '₄₅₆'[p.dim - 4] : '₄'} below the view.` : '');
+    ndControls();
     const refs = p.rows.filter(r => r.cmp);
     if (p.hasref && refs.length) {
       const g = k => refs.filter(r => r.cmp === k).map(r => r.n);
@@ -238,7 +343,7 @@ if (typeof document !== 'undefined') (async () => {
         `<span class="chip better">better at ${rng(g('better'))}</span><span class="chip">equal at ${rng(g('equal'))}</span><span class="chip behind">behind at ${rng(g('behind'))}</span>`;
     } else $('lit').innerHTML = `<span>No reference values registered yet for this problem. <a href="${ROOT}contribute/">Submit a better packing</a>.</span>`;
     $('thead').innerHTML = '<tr><th>n</th><th>s</th><th>Closed form?</th>' + (p.hasref ? '<th title="Published comparison value; its source is linked in the viewer">Reference</th><th>Compared</th>' : '') +
-      '<th>Density</th><th title="(n · volume of a piece / volume of the unit container)^(1/3)">Volume bound</th><th>Proof</th></tr>';
+      `<th>Density</th><th title="${p.dim ? `(n · volume of a piece / volume of the container at the piece's edge)^(1/${p.dim})` : '(n · volume of a piece / volume of the unit container)^(1/3)'}">Volume bound</th><th>Proof</th></tr>`;
     const tb = $('rows'); tb.innerHTML = '';
     const ncol = p.hasref ? 7 : 5;
     for (let n = D.nmin; n <= (p.nmax || D.nmax); n++) {
@@ -378,7 +483,7 @@ if (typeof document !== 'undefined') (async () => {
     const url = `${D.repo}/blob/main/${r.file}`;
     $('links').innerHTML = (r.file ? `<a href="${url}" target="_blank" rel="noopener">Record file (JSON)</a>` +
       (r.ok ? `<a href="${url.replace('.json', '.certify.txt')}" target="_blank" rel="noopener">Exact certificate</a>` : '') +
-      `<a href="${url.replace('.json', '.verify.txt')}" target="_blank" rel="noopener">Float check</a>` +
+      (prob.dim ? '' : `<a href="${url.replace('.json', '.verify.txt')}" target="_blank" rel="noopener">Float check</a>`) +
       `<button class="small" type="button" id="copy">Copy coordinates</button><span id="copied"></span>` : '') +
       (packingPublicURL(r.source_url) ? sourceLink(r.source_url, 'Original published construction') : '') +
       (packingPublicURL(r.refurl) && r.refurl !== r.source_url ? sourceLink(r.refurl, 'Published reference') : '') +
@@ -394,6 +499,7 @@ if (typeof document !== 'undefined') (async () => {
     $('nnow').textContent = `n = ${r.n}`;
     try { history.replaceState(null, '', '#' + id) } catch (e) {}
     $('pick').hidden = true;
+    if (prob.dim && !($('ndsweep') && $('ndsweep').checked)) ndAuto(prob, r);
     drawChart(); build();
   }
   $('prevn').onclick = () => selectRow(prob.rows.find(x => x.n === row.n - 1));
@@ -566,6 +672,7 @@ if (typeof document !== 'undefined') (async () => {
     pieceObjs = [];
     contLines = null; contFaces = null;
     if (sourceOnly) return;
+    if (prob.dim) { buildND(); return }
     const C = D.solids[prob.container], piece = solidGeom(prob.piece);
     const cp = []; C.E.forEach(([a, b]) => cp.push(...C.V[a].map(x => x * row.sf), ...C.V[b].map(x => x * row.sf)));
     const cg = new THREE.BufferGeometry(); cg.setAttribute('position', new THREE.Float32BufferAttribute(cp, 3));
@@ -589,6 +696,67 @@ if (typeof document !== 'undefined') (async () => {
     });
     R0 = Math.max(...C.V.map(v => Math.hypot(...v))) * row.sf;
     applyVisibility(); applySpread(); fit(); paint();
+  }
+  function sliceGeom(sl, cen) {
+    const P = sl.pts.map(p => [p[0] - cen[0], p[1] - cen[1], p[2] - cen[2]]), pos = [];
+    sl.faces.forEach(f => { for (let i = 1; i + 1 < f.length; i++) [f[0], f[i], f[i + 1]].forEach(k => pos.push(...P[k])) });
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.computeVertexNormals();
+    const E = sliceEdges(sl);
+    return { g, E, P, eg: edgeGeom({ V: P, E }) };
+  }
+  function buildND() {
+    const d = prob.dim, t = ndT(prob, row), C = D.solids[prob.container], P = D.solids[prob.piece], cs = row.sf * prob.mu;
+    const cont = ndSlice(C, new Array(d).fill(0), ndIdentity(d), cs, t);
+    if (cont) {
+      const s = sliceGeom(cont, [0, 0, 0]); s.eg.dispose();
+      const cp = []; s.E.forEach(([a, b]) => cp.push(...s.P[a], ...s.P[b]));
+      const cg = new THREE.BufferGeometry(); cg.setAttribute('position', new THREE.Float32BufferAttribute(cp, 3));
+      contLines = new THREE.LineSegments(cg, new THREE.LineBasicMaterial({ color: new THREE.Color(css('--ink')), transparent: true, opacity: 0.85 }));
+      world.add(contLines);
+      contFaces = new THREE.Mesh(s.g, new THREE.MeshBasicMaterial({ color: new THREE.Color(css('--accent')), transparent: true, opacity: 0.07, side: THREE.DoubleSide, depthWrite: false }));
+      world.add(contFaces);
+    }
+    row.p.forEach((pc, i) => {
+      const { c, R } = ndPiece(pc, d), sl = ndSlice(P, c, R, 1, t);
+      if (!sl) return;
+      const cen = centroid(sl.pts), s = sliceGeom(sl, cen), grp = new THREE.Group();
+      const mat = new THREE.MeshStandardMaterial({ color: new THREE.Color(pieceColour(i)), flatShading: true, roughness: 0.55, metalness: 0.05, side: THREE.DoubleSide,
+        polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1, transparent: true, opacity: 1 });
+      const mesh = new THREE.Mesh(s.g, mat); mesh.userData.i = i;
+      const edges = new THREE.Mesh(s.eg, edgeMaterial(edgeColour(i))); edges.frustumCulled = false;
+      grp.add(mesh); grp.add(edges);
+      grp.userData = { c: new THREE.Vector3(...cen), mesh, edges, i };
+      world.add(grp); pieceObjs.push(grp);
+    });
+    R0 = cont ? Math.max(...cont.pts.map(v => Math.hypot(...v))) : 1;
+    if ($('ndinfo')) $('ndinfo').textContent = `${pieceObjs.length} of ${row.p.length} pieces meet this slice`;
+    t.forEach((x, k) => { if ($('ndv' + k)) $('ndv' + k).value = x.toFixed(3) });
+    applyVisibility(); applySpread(); fit(); paint();
+  }
+  let ndPending = false;
+  function ndRebuild() { if (ndPending) return; ndPending = true; requestAnimationFrame(() => { ndPending = false; build() }) }
+  function ndAuto(prob, row) {                    // default slice: greedily, the offsets met by the most pieces (vertex ranges)
+    const d = prob.dim, P = D.solids[prob.piece], ext = ndExtent(prob, row);
+    const rng = row.p.map(pc => { const { c, R } = ndPiece(pc, d);
+      return Array.from({ length: d - 3 }, (_, k) => { const a = k + 3; let lo = Infinity, hi = -Infinity;
+        P.V.forEach(v => { let x = c[a]; for (let b = 0; b < d; b++) x += R[a * d + b] * v[b]; lo = Math.min(lo, x); hi = Math.max(hi, x) }); return [lo, hi] }) });
+    let alive = rng.map(() => true);
+    ndF = ext.map((e, k) => {
+      let best = 0, bc = -1;
+      for (let q = 0; q <= 38; q++) { const f = -0.95 + q * 0.05, t = f * e, cnt = rng.filter((r, i) => alive[i] && r[k][0] < t && t < r[k][1]).length;
+        if (cnt > bc || (cnt === bc && Math.abs(f) < Math.abs(best))) { bc = cnt; best = f } }
+      alive = alive.map((a, i) => a && rng[i][k][0] < best * e && best * e < rng[i][k][1]);
+      return best;
+    });
+    ndF.forEach((v, k) => { if ($('ndt' + k)) $('ndt' + k).value = v });
+  }
+  function ndControls() {
+    const el = $('ndrow'); if (!el) return;
+    if (!prob.dim) { el.hidden = true; return }
+    el.hidden = false;
+    if (ndDim !== prob.dim) { ndF = new Array(prob.dim - 3).fill(0); ndDim = prob.dim }
+    $('ndsliders').innerHTML = ndF.map((v, k) => `<label class="inl" for="ndt${k}">x<sub>${k + 4}</sub> <input type="range" id="ndt${k}" min="-1" max="1" step="0.002" value="${v}"></label> <output id="ndv${k}" for="ndt${k}"></output>`).join(' ');
+    ndF.forEach((_, k) => { $('ndt' + k).oninput = e => { ndF[k] = +e.target.value; ndRebuild() } });
   }
   function applyVisibility() {
     if (!row || row.source_only) return;
@@ -639,7 +807,8 @@ if (typeof document !== 'undefined') (async () => {
     const p = row.p[sel], nb = neighbours(row, sel).slice(0, 4), oc = orient(row);
     el.hidden = false;
     el.innerHTML = `<div><b>Piece ${sel + 1}</b> of ${row.p.length}, orientation class ${oc.cls[sel] < 26 ? String.fromCharCode(65 + oc.cls[sel]) : oc.cls[sel] + 1} (${oc.sizes[oc.cls[sel]]} piece${oc.sizes[oc.cls[sel]] > 1 ? 's' : ''})</div>` +
-      `<div class="meta">centre (${p.slice(0, 3).map(v => v.toFixed(4)).join(', ')})   q = (${qn(p).map(v => v.toFixed(4)).join(', ')})</div>` +
+      (prob.dim ? `<div class="meta">centre (${p.slice(0, prob.dim).map(v => v.toFixed(4)).join(', ')}) in ${prob.dim} dimensions</div>` :
+      `<div class="meta">centre (${p.slice(0, 3).map(v => v.toFixed(4)).join(', ')})   q = (${qn(p).map(v => v.toFixed(4)).join(', ')})</div>`) +
       `<div class="meta">nearest centres: ${nb.map(([j, d]) => `#${j + 1} at ${d.toFixed(4)}`).join(', ')}</div>` +
       `<div class="trow"><label class="inl" for="iso"><input type="checkbox" id="iso" ${isolate ? 'checked' : ''}> isolate this piece and its possible contacts</label>` +
       `<button class="small" type="button" id="unpick">Clear</button></div>`;
@@ -699,9 +868,11 @@ if (typeof document !== 'undefined') (async () => {
     const spin = $('spin');
     spin.checked = !reduceMotion() && store.get('ppr-spin') === '1';
     spin.onchange = () => store.set('ppr-spin', spin.checked ? '1' : '0');
-    let last = performance.now();
+    let last = performance.now(), ndLast = 0;
     (function loop(t) { const dt = Math.min(50, t - last); last = t;
       if (spin.checked && ptrs.size === 0 && !(row && row.source_only)) { world.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), dt * 0.00025)); paint() }
+      if (prob.dim && $('ndsweep') && $('ndsweep').checked && !ndPending && t - ndLast > 90) {     // sweep x_4 through the packing
+        ndLast = t; ndF[0] = Math.sin(t * 0.0004) * 0.98; if ($('ndt0')) $('ndt0').value = ndF[0]; ndRebuild() }
       requestAnimationFrame(loop) })(last);
     new ResizeObserver(() => { fit(); paint() }).observe(stage);
   }

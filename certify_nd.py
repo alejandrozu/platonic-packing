@@ -127,11 +127,21 @@ def cayley(S, Dg):
     return [[Dg[a] * A[a][d + b] for b in range(d)] for a in range(d)]
 
 
+_POLY = {}
+
+
+def poly(pid):
+    """each polytope is checked exactly once per process (the check is printed with every certificate)"""
+    if pid not in _POLY:
+        D = json.load(open(os.path.join(HERE, 'src', 'polytopes_nd.json')))
+        _POLY[pid] = Poly(D, pid)
+    return _POLY[pid]
+
+
 def main(fn):
     t0 = time.time()
     rec = json.load(open(fn))
-    D = json.load(open(os.path.join(HERE, 'src', 'polytopes_nd.json')))
-    P = Poly(D, rec['piece']); C = P if rec['container'] == rec['piece'] else Poly(D, rec['container'])
+    P = poly(rec['piece']); C = P if rec['container'] == rec['piece'] else poly(rec['container'])
     d = P.d; n = rec['n']; m = d * (d - 1) // 2
     assert C.d == d == rec['dim'], 'dimension'
     print('polytope check:', P.check)
@@ -206,4 +216,4 @@ def main(fn):
 
 
 if __name__ == '__main__':
-    sys.exit(main(sys.argv[1]))
+    sys.exit(max(main(f) for f in sys.argv[1:]))

@@ -22,7 +22,8 @@ EXTERNAL = json.loads(Path(EXTERNAL_PATH).read_text(encoding='utf-8')) if os.pat
 COMMUNITY_PATH = Path(ROOT, 'docs', 'community_records.json')
 COMMUNITY = json.loads(COMMUNITY_PATH.read_text(encoding='utf-8')) if COMMUNITY_PATH.exists() else {'entries': []}
 WEB = os.path.join(ROOT, 'web')
-OUT = os.path.join(ROOT, 'site')
+OUT = os.environ.get('PP_SITE_OUT') or os.path.join(ROOT, 'site')
+ND_RECORDS = os.environ.get('PP_ND_RECORDS') or os.path.join(ROOT, 'records')     # 4D/5D/6D records (tests: elsewhere)
 REPO = 'https://github.com/alejandrozu/platonic-packing'
 DOMAIN = 'polyhedrainpolyhedra.wiki'
 HAS_DOMAIN = os.path.exists(os.path.join(WEB, 'CNAME'))     # web/CNAME switches the site to the custom domain
@@ -162,14 +163,71 @@ def load():
     for p in out:                                    # the families go to n = 100 since 14 Oct; the Platonic problems stay at 40
         p['nmax'] = max([40 if FAM[p['id']] == 'platonic' else 100, *[r['n'] for r in p['rows']]])
     solids = {k: {'V': v['V'], 'F': v['faces'], 'E': v['edges'], 'vol': v['volume']} for k, v in SOL.items()}
+    nd_probs, nd_solids = load_nd()
+    out += nd_probs; solids.update(nd_solids)
     ns = [r['n'] for p in out for r in p['rows']]
     return {'problems': out, 'solids': solids, 'nmin': min([2, *ns]), 'nmax': max([40, *ns]), 'repo': REPO,
             'external_checked_on': EXTERNAL.get('checked_on')}
 
 
+ND_NAME = {'c5': '5-cell', 'c8': 'tesseract', 'c16': '16-cell', 'c24': '24-cell', 'c120': '120-cell', 'c600': '600-cell',
+           'sx5': '5-simplex', 'hc5': '5-cube', 'op5': '5-orthoplex', 'sx6': '6-simplex', 'hc6': '6-cube', 'op6': '6-orthoplex'}
+
+
+def nd_plural(w):
+    return w[:-2] + 'ices' if w.endswith('simplex') else w + 'es' if w.endswith('plex') else w + 's'
+
+
+def nd_rotation(S, Dg):
+    """the exact rotation of a record piece, D (I - S)^-1 (I + S), in floating point"""
+    import numpy as np
+    d = len(Dg); M = np.zeros((d, d)); t = 0
+    for a in range(d):
+        for b in range(a + 1, d): M[a, b] = S[t]; M[b, a] = -S[t]; t += 1
+    I = np.eye(d)
+    return np.diag(Dg) @ np.linalg.solve(I - M, I + M)
+
+
+def load_nd():
+    """Higher polytopes (15 Oct 2026): records/<id>/<id>_nNN.json of every problem of scripts/engine_nd.py. A row's
+    viewer pieces are [c_1..c_d, R_11..R_dd] (centre and rotation matrix, row by row) in the exact frame of
+    src/polytopes_nd.json; the container is s_full x mu x the container polytope."""
+    import engine_nd as EN
+    sys.path.insert(0, os.path.join(ROOT, 'src')); sys.path.insert(0, ROOT)
+    import polytopes_nd
+    from multiquad import parse
+    PT = json.loads(Path(ROOT, 'src', 'polytopes_nd.json').read_text(encoding='utf-8'))
+    probs = []
+    for pid, (pc, cc) in EN.PID.items():
+        d = EN.DIM[pid]; m = d * (d - 1) // 2
+        rows = []
+        for f in sorted(glob.glob(os.path.join(ND_RECORDS, pid, f'{pid}_n[0-9][0-9].json'))):
+            r = json.loads(Path(f).read_text(encoding='utf-8'))
+            if r.get('n', 0) > SITE_NMAX: continue
+            ct = f.replace('.json', '.certify.txt')
+            cert = Path(ct).read_text(encoding='utf-8') if os.path.exists(ct) else ''
+            ok = 'CERTIFIED' in cert and 'NOT CERTIFIED' not in cert
+            pcs = []
+            for q in r['pieces']:
+                R = nd_rotation([float(x) for x in q[d:d + m]], [int(x) for x in q[d + m:d + m + d]])
+                pcs.append([round(float(x), 7) for x in q[:d]] + [round(float(x), 7) for x in R.ravel()])
+            rows.append({'n': r['n'], 'id': r['record_id'], 's': r['s_plus'], 'sf': r['s_full'], 'st': r.get('s_tight'), 'cf': None,
+                         'den': round(r['density'], 4), 'vlb': round(r['volume_lower_bound'], 5), 'ref': None, 'cmp': None,
+                         'move': (r.get('search') or {}).get('move'), 'derived': r.get('derived_from'), 'who': r.get('found_by'),
+                         'file': 'records/' + os.path.relpath(f, ND_RECORDS).replace(os.sep, '/'), 'ok': ok, 'ver': ok,
+                         'cert': [l for l in cert.splitlines() if l.startswith(('polytope check:', 'edge ratio', 'containment:', 'disjointness:'))],
+                         'p': pcs})
+        probs.append({'id': pid, 'piece': pc, 'container': cc, 'dim': d, 'family': f'{d}d', 'group': 'higher', 'kind': EN.KIND[pid],
+                      'title': f'{nd_plural(ND_NAME[pc])[0].upper() + nd_plural(ND_NAME[pc])[1:]} in a {ND_NAME[cc]}', 'unit': 'edge', 'rows': rows,
+                      'hasref': False, 'nmax': EN.nmax(pid), 'mu': float(parse(polytopes_nd.mu_of(pc, cc)))})
+    solids = {k: {'V': v['Vf'], 'E': v['edges'], 'N': v['N'], 'B': v['beta'], 'vol': v['volume'], 'dim': v['dim'], 'name': v['name']}
+              for k, v in PT.items()}
+    return probs, solids
+
+
 def stats(data):
     rows = [r for p in data['problems'] for r in p['rows']]
-    st = {'records': len(rows), 'certified': sum(1 for r in rows if r['ok']), 'problems': len(data['problems']),
+    st = {'records': len(rows), 'records_nd': sum(len(p['rows']) for p in data['problems'] if p.get('dim')), 'certified': sum(1 for r in rows if r['ok']), 'problems': len(data['problems']),
           'cases': sum(p.get('nmax', data['nmax']) - data['nmin'] + 1 for p in data['problems']), 'solids': len(SOL), 'attempts': None,
           'contributed': sum(1 for r in rows if r.get('issue')),
           'source_only': sum(1 for r in rows if r.get('source_only')),
@@ -177,7 +235,7 @@ def stats(data):
     try:                                              # attempts across all machines (main archive + remote totals)
         import engine
         tot = 0
-        for f in glob.glob(os.path.join(ROOT, 'state', 'best', '*', 'n[0-9]*.json')):
+        for f in glob.glob(os.path.join(ROOT, 'state', 'best', '*', 'n[0-9]*.json')) + glob.glob(os.path.join(ROOT, 'state', 'nd', 'best', '*', 'n[0-9]*.json')):
             c = json.loads(Path(f).read_text(encoding='utf-8')); tot += engine.total_attempts(c.get('stats', {}))
         st['attempts'] = tot or None
     except Exception:
@@ -285,6 +343,21 @@ def constructions(data):
                          f'<div class="tablewrap"><table><thead><tr><th>n</th><th>s</th><th>Record file</th><th>Exact certificate</th><th>Float check</th><th>Viewer</th><th>Found by</th></tr></thead>'
                          f'<tbody>{"".join(rows)}</tbody></table></div>'
                          f'<p class="mut" style="font:13px var(--f-body)">Folder: <a href="{REPO}/tree/main/records/{p["id"]}">records/{p["id"]}</a></p></details>')
+    nd = [p for p in data['problems'] if p.get('dim')]
+    if nd:
+        parts.append('<h2 id="higher">Higher polytopes</h2>')
+        for d in (4, 5, 6):
+            parts.append(f'<h3 id="higher-{d}d">{d} dimensions</h3>')
+            for p in [q for q in nd if q['dim'] == d]:
+                rows = []
+                for r in p['rows']:
+                    url = f"{REPO}/blob/main/{r['file']}"
+                    rows.append(f'<tr><td class="n">{r["n"]}</td><td class="s">{r["s"]}</td><td><a href="{url}">{html.escape(os.path.basename(r["file"]))}</a></td>'
+                                f'<td>{"<a href=\"" + url.replace(".json", ".certify.txt") + "\">certificate</a>" if r["ok"] else "pending"}</td>'
+                                f'<td><a href="../#{p["id"]}_n{r["n"]:02d}">view slices</a></td><td class="mut">{html.escape(r["who"] or "")}</td></tr>')
+                parts.append(f'<details id="{p["id"]}"><summary><b>{html.escape(p["title"])}</b> <span class="mut">{p["id"]}, {len(p["rows"])} records</span></summary>'
+                             f'<div class="tablewrap"><table><thead><tr><th>n</th><th>s</th><th>Record file</th><th>Exact certificate</th><th>Viewer</th><th>Found by</th></tr></thead>'
+                             f'<tbody>{"".join(rows)}</tbody></table></div></details>')
     return '\n'.join(parts)
 
 
