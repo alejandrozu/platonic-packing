@@ -197,10 +197,12 @@ def attempt(p, n, move, rng, log):
     seed = rng.randrange(1, 2 ** 31 - 1)
     t0 = time.time(); info = {'move': move, 'seed': seed}
     hopkw = dict(morph=4000 + 150 * n, settle=1000 + 25 * n)
-    if move == 'symfresh':          # central symmetry (pairs x, -x) or a mirror symmetry of the container
-        kind = 'central' if (central_ok(p, n) and rng.random() < 0.5) else 'mirror'
-        raw = ndsim.symfresh(pb, n, seed, B=1.0 if n <= 16 else 0.7, kind=kind)
-        info['sym'] = kind
+    if move == 'symfresh':          # a symmetry group of the container: {I,-I}, {I,G}, {I,-I,G,-G}, {I,G1,G2,G1G2}
+        kinds = ['central', 'mirror', 'klein', 'mirror2'] if n >= 4 else ['central', 'mirror']
+        rng.shuffle(kinds); raw = None
+        for kind in kinds + ['mirror']:
+            raw = ndsim.symfresh(pb, n, seed, B=1.0 if n <= 16 else 0.7, kind=kind)
+            if raw is not None: info['sym'] = kind; break
         if raw is None: move = info['move'] = 'fresh'
     if move == 'fresh':
         raw = ndsim.fresh(pb, n, seed, B=1.0 if n <= 16 else 0.7)

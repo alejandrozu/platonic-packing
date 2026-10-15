@@ -193,72 +193,63 @@ def _orth(R):
 
 
 @njit(cache=True)
-def _symmetrize(C, R, Vel, W, partner, Gm, Mref):
-    """symmetric seeds (15 Oct): piece partner[i] = j > i is the image of piece i under the involution Gm (an orthogonal
-    symmetry of the container): c_j = Gm c_i, R_j = Gm R_i Mref (Mref a symmetry of the piece with det Mref = det Gm, so
-    that R_j is a rotation); partner[i] = i: a piece kept on the fixed subspace of Gm. Each pair is projected onto the
-    symmetric configuration (mean centre, mean rotation projected back onto SO(d), mean velocities)."""
-    n, d = C.shape
-    t = np.empty(d); A = np.empty((d, d)); T = np.empty((d, d))
-    for i in range(n):
-        j = partner[i]
-        if j < 0 or j < i: continue
-        if j == i:
+def _symmetrize(C, R, Vel, W, OI, OG, OM, FIX):
+    """symmetric seeds (15 Oct): each row of OI is an orbit (k piece indices) of a group {g_0 = I, g_1, ..., g_(k-1)} of
+    orthogonal symmetries of the container (OG); piece OI[o, t] = g_t applied to the orbit's representative: c = g_t c_0,
+    R = g_t R_0 OM[t] (OM[t] a symmetry of the piece with det OM[t] = det g_t, so that R is a rotation; t -> OM[t] a
+    homomorphism). Each orbit is projected onto the symmetric configuration: mean of g_t^-1 c (centres, velocities),
+    mean of g_t^-1 R OM[t]^-1 projected back onto SO(d) (rotations), mean of g_t^-1 W g_t (angular velocities).
+    FIX[i] = 1: piece i is kept on the fixed subspace of the group (centre: mean of g_t c)."""
+    m, k = OI.shape; n, d = C.shape
+    cm = np.empty(d); vm = np.empty(d); A = np.empty((d, d)); Wm = np.empty((d, d))
+    for o in range(m):
+        cm[:] = 0.0; vm[:] = 0.0; A[:] = 0.0; Wm[:] = 0.0
+        for t in range(k):
+            i = OI[o, t]
             for a in range(d):
                 s1 = 0.0; s2 = 0.0
-                for b in range(d): s1 += Gm[a, b] * C[i, b]; s2 += Gm[a, b] * Vel[i, b]
-                t[a] = 0.5 * (C[i, a] + s1); A[0, a] = 0.5 * (Vel[i, a] + s2)
-            for a in range(d): C[i, a] = t[a]; Vel[i, a] = A[0, a]
-            continue
-        for a in range(d):                                   # c_i <- (c_i + Gm c_j) / 2, c_j = Gm c_i
-            s1 = 0.0; s2 = 0.0
-            for b in range(d): s1 += Gm[a, b] * C[j, b]; s2 += Gm[a, b] * Vel[j, b]
-            t[a] = 0.5 * (C[i, a] + s1); A[0, a] = 0.5 * (Vel[i, a] + s2)
-        for a in range(d): C[i, a] = t[a]; Vel[i, a] = A[0, a]
-        for a in range(d):
-            s1 = 0.0; s2 = 0.0
-            for b in range(d): s1 += Gm[a, b] * C[i, b]; s2 += Gm[a, b] * Vel[i, b]
-            C[j, a] = s1; Vel[j, a] = s2
-        for a in range(d):                                   # T = Gm R_j Mref (= R_i when symmetric)
-            for b in range(d):
-                x = 0.0
-                for c in range(d):
-                    for e in range(d): x += Gm[a, c] * R[j, c, e] * Mref[e, b]
-                T[a, b] = x
-        for a in range(d):
-            for b in range(d): A[a, b] = 0.5 * (R[i, a, b] + T[a, b])
+                for b in range(d): s1 += OG[t, b, a] * C[i, b]; s2 += OG[t, b, a] * Vel[i, b]     # g^-1 = g^T
+                cm[a] += s1 / k; vm[a] += s2 / k
+            for a in range(d):
+                for b in range(d):
+                    x = 0.0; y = 0.0
+                    for c in range(d):
+                        for e in range(d):
+                            x += OG[t, c, a] * R[i, c, e] * OM[t, b, e]          # g^T R M^T
+                            y += OG[t, c, a] * W[i, c, e] * OG[t, e, b]          # g^T W g
+                    A[a, b] += x / k; Wm[a, b] += y / k
         Uu, sv, Vt = np.linalg.svd(A)
         Q = Uu @ Vt
         if np.linalg.det(Q) < 0:
             for a in range(d): Uu[a, d - 1] = -Uu[a, d - 1]
             Q = Uu @ Vt
+        for t in range(k):
+            i = OI[o, t]
+            for a in range(d):
+                s1 = 0.0; s2 = 0.0
+                for b in range(d): s1 += OG[t, a, b] * cm[b]; s2 += OG[t, a, b] * vm[b]
+                C[i, a] = s1; Vel[i, a] = s2
+            for a in range(d):
+                for b in range(d):
+                    x = 0.0; y = 0.0
+                    for c in range(d):
+                        for e in range(d):
+                            x += OG[t, a, c] * Q[c, e] * OM[t, e, b]
+                            y += OG[t, a, c] * Wm[c, e] * OG[t, b, e]            # g W g^T
+                    R[i, a, b] = x; W[i, a, b] = y
+    for i in range(n):
+        if FIX[i] == 0: continue
         for a in range(d):
-            for b in range(d): R[i, a, b] = Q[a, b]
-        for a in range(d):
-            for b in range(d):
-                x = 0.0
-                for c in range(d):
-                    for e in range(d): x += Gm[a, c] * Q[c, e] * Mref[e, b]
-                R[j, a, b] = x
-        for a in range(d):                                   # W_j = Gm W_i Gm
-            for b in range(d):
-                x = 0.0
-                for c in range(d):
-                    for e in range(d): x += Gm[a, c] * W[j, c, e] * Gm[e, b]
-                T[a, b] = 0.5 * (W[i, a, b] + x)
-        for a in range(d):
-            for b in range(d): W[i, a, b] = T[a, b]
-        for a in range(d):
-            for b in range(d):
-                x = 0.0
-                for c in range(d):
-                    for e in range(d): x += Gm[a, c] * T[c, e] * Gm[e, b]
-                W[j, a, b] = x
+            s1 = 0.0; s2 = 0.0
+            for t in range(k):
+                for b in range(d): s1 += OG[t, a, b] * C[i, b] / k; s2 += OG[t, a, b] * Vel[i, b] / k
+            cm[a] = s1; vm[a] = s2
+        for a in range(d): C[i, a] = cm[a]; Vel[i, a] = vm[a]
 
 
 @njit(cache=True)
 def _phase(C, R, Vel, W, Lst, U, UOK, TH, SI, WI, P, aptr, aidx, circ, CN, off, mask, wts,
-           steps, r_a, r_b, mu_a, mu_b, mu_geom, nz_a, nz_b, moveL, iters, seed, partner, Gm, Mref):
+           steps, r_a, r_b, mu_a, mu_b, mu_geom, nz_a, nz_b, moveL, iters, seed, OI, OG, OM, FIX):
     """`steps` dynamics steps; softness r linear r_a -> r_b, pressure mu linear (or geometric) mu_a -> mu_b, noise
     linear nz_a -> nz_b. State arrays are updated in place; Lst = [L, vL]. Returns the last step's total overlap."""
     np.random.seed(seed)
@@ -365,7 +356,7 @@ def _phase(C, R, Vel, W, Lst, U, UOK, TH, SI, WI, P, aptr, aidx, circ, CN, off, 
             Lst[1] = beta * Lst[1] - 0.02 * gL
             if abs(Lst[1]) > cap: Lst[1] = cap if Lst[1] > 0 else -cap
             Lst[0] += Lst[1]
-        if np.any(partner >= 0): _symmetrize(C, R, Vel, W, partner, Gm, Mref)
+        if OI.shape[0] > 0 or FIX.any(): _symmetrize(C, R, Vel, W, OI, OG, OM, FIX)
         if st % 500 == 499: _orth(R)
     _orth(R)
     return tot
@@ -421,14 +412,15 @@ class State:
         self.U = np.zeros((n, n, d)); self.UOK = np.zeros((n, n), np.int8); self.TH = np.zeros((n, n))
         self.SI = np.zeros((n, n), np.int64); self.WI = np.zeros((n, F), np.int64)
         self.mask = np.ones(n); self.wts = np.ones((n, n)); self.seed = 1
-        self.partner = np.full(n, -1, np.int64); self.Gm = -np.eye(d); self.Mref = np.eye(d)
+        self.OI = np.zeros((0, 1), np.int64); self.OG = np.eye(d)[None]; self.OM = np.eye(d)[None]; self.FIX = np.zeros(n, np.int64)
 
     def phase(self, steps, r_a, r_b, mu_a, mu_b, nz_a, nz_b, moveL=True, mu_geom=False, iters=1):
         pb = self.pb; self.seed += 1
         return _phase(self.C, self.R, self.Vel, self.W, self.Lst, self.U, self.UOK, self.TH, self.SI, self.WI, pb.V,
                       pb.adj_ptr, pb.adj_idx, pb.circ, pb.CN, pb.off, self.mask, self.wts, int(steps), float(r_a), float(r_b),
                       float(mu_a), float(mu_b), bool(mu_geom), float(nz_a), float(nz_b), bool(moveL), int(iters), int(self.seed % 2 ** 31),
-                      self.partner, np.ascontiguousarray(self.Gm, float), np.ascontiguousarray(self.Mref, float))
+                      np.ascontiguousarray(self.OI, np.int64), np.ascontiguousarray(self.OG, float), np.ascontiguousarray(self.OM, float),
+                      np.ascontiguousarray(self.FIX, np.int64))
 
     @property
     def L(self): return float(self.Lst[0])
@@ -571,56 +563,80 @@ def reflection_symmetry(V):
     return M if _same_set(V, V @ M.T) else None
 
 
-def symmetry_spec(pb, kind):
-    """(Gm, Mref, centre_ok) for symmetric seeds, or None: kind 'central' (Gm = -I, needs a centrally symmetric container)
-    or 'mirror' (Gm a reflection symmetry of the container); Mref = I or a reflection symmetry of the piece, with
-    det Mref = det Gm"""
+def coordinate_reflections(V):
+    """coordinate reflections (diag with one -1) that map the vertex set to itself"""
+    d = V.shape[1]; out = []
+    for k in range(d):
+        M = np.eye(d); M[k, k] = -1
+        if _same_set(V, V @ M.T): out.append(M)
+    return out
+
+
+def symmetry_group(pb, kind):
+    """(OG, OM, centre_ok) for symmetric seeds, or None. kind: 'central' {I, -I}; 'mirror' {I, G} (G a reflection
+    symmetry of the container); 'klein' {I, -I, G, -G}; 'mirror2' {I, G1, G2, G1 G2} (two commuting coordinate
+    reflections). OM[t] = I or the piece's reflection symmetry so that det OM[t] = det OG[t] (a homomorphism, since
+    both reflections are involutions)."""
     d = pb.d; CV = pb.CV / np.linalg.norm(pb.CV, axis=1).max(); PV = pb.V / pb.circ
+    I = np.eye(d); central = _same_set(CV, -CV)
     if kind == 'central':
-        if not _same_set(CV, -CV): return None
-        Gm = -np.eye(d)
+        if not central: return None
+        G = [I, -I]
+    elif kind == 'mirror':
+        g = reflection_symmetry(CV)
+        if g is None: return None
+        G = [I, g]
+    elif kind == 'klein':
+        g = reflection_symmetry(CV)
+        if not central or g is None: return None
+        G = [I, -I, g, -g]
+    elif kind == 'mirror2':
+        cr = coordinate_reflections(CV)
+        if len(cr) < 2: return None
+        G = [I, cr[0], cr[1], cr[0] @ cr[1]]
     else:
-        Gm = reflection_symmetry(CV)
-        if Gm is None: return None
-    if np.linalg.det(Gm) > 0: Mref = np.eye(d)
-    else:
-        Mref = reflection_symmetry(PV)
-        if Mref is None: return None
-    centre_ok = kind == 'central' and _same_set(PV, -PV)        # a piece at the centre is mapped to itself
-    return Gm, Mref, centre_ok
+        raise ValueError(kind)
+    MP = reflection_symmetry(PV)
+    OM = []
+    for g in G:
+        if np.linalg.det(g) > 0: OM.append(I)
+        elif MP is None: return None
+        else: OM.append(MP)
+    centre_ok = kind in ('central', 'klein') and _same_set(PV, -PV)
+    return np.array(G), np.array(OM), centre_ok
 
 
 def central_symmetric(pb):
-    spec = symmetry_spec(pb, 'central')
+    spec = symmetry_group(pb, 'central')
     return (spec is not None), spec
 
 
 def symfresh(pb, n, seed, B=1.0, iters=1, kind='central'):
-    """fresh run constrained to a symmetry of the container (kind 'central': pairs x, -x, for odd n one piece at the
-    centre; 'mirror': pairs mirrored in a reflection hyperplane, for odd n one free piece), released for the final
-    settle; returns None if the symmetry does not apply"""
-    spec = symmetry_spec(pb, kind)
+    """fresh run constrained to a symmetry group of the container (see symmetry_group): n // k orbits of k pieces, the
+    remaining pieces at the centre (central symmetry, centrally symmetric piece: one piece) or free; the constraint is
+    released for the final settle. Returns None if the symmetry does not apply."""
+    spec = symmetry_group(pb, kind)
     if spec is None: return None
-    Gm, Mref, centre_ok = spec
-    if kind == 'central' and n % 2 and not centre_ok: return None
+    OG, OM, centre_ok = spec; k = len(OG)
+    if n < k: return None
     rng = np.random.default_rng(seed)
     L0 = default_L0(pb, n)
-    C = np.zeros((n, pb.d)); R = np.zeros((n, pb.d, pb.d)); partner = np.full(n, -1, np.int64)
-    for k in range(n // 2):
-        i, j = 2 * k, 2 * k + 1
-        C[i] = random_inside(pb, L0, rng, 0.7); C[j] = Gm @ C[i]
-        R[i] = random_rotation(rng, pb.d); R[j] = Gm @ R[i] @ Mref
-        partner[i] = j; partner[j] = i
-    if n % 2:
-        R[n - 1] = random_rotation(rng, pb.d)
-        if kind == 'central': partner[n - 1] = n - 1
-        else: C[n - 1] = random_inside(pb, L0, rng, 0.7)
+    C = np.zeros((n, pb.d)); R = np.zeros((n, pb.d, pb.d)); FIX = np.zeros(n, np.int64)
+    m = n // k; OI = np.arange(m * k, dtype=np.int64).reshape(m, k)
+    for o in range(m):
+        c0 = random_inside(pb, L0, rng, 0.7); R0 = random_rotation(rng, pb.d)
+        for t in range(k): C[OI[o, t]] = OG[t] @ c0; R[OI[o, t]] = OG[t] @ R0 @ OM[t]
+    rest = list(range(m * k, n))
+    for i in rest:
+        R[i] = random_rotation(rng, pb.d)
+        if centre_ok and len(rest) == 1: FIX[i] = 1
+        else: C[i] = random_inside(pb, L0, rng, 0.7)
     st = State(pb, C, R, L0); st.seed = seed * 7919 + 23
-    st.partner, st.Gm, st.Mref = partner, Gm, Mref
+    st.OI, st.OG, st.OM, st.FIX = OI, OG, OM, FIX
     mu = 0.02
     st.phase(int(5000 * B), 0.5, 0.5, mu * 3, mu * 3, 0.015, 0.0, iters=iters)
     st.phase(int(45000 * B), 0.5, 0.0, mu, mu, 0.004, 0.0, iters=iters)
-    st.partner = np.full(n, -1, np.int64)
+    st.OI = np.zeros((0, 1), np.int64); st.FIX = np.zeros(n, np.int64)
     st.phase(int(3000 * B), 0.0, 0.0, mu, mu * 1e-4, 0.0, 0.0, mu_geom=True, iters=iters)
     out = legalize(pb, st.C, st.R, st=st)
     out['Lsoft'] = st.L; out['kind'] = kind
