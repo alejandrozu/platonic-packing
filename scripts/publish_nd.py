@@ -27,6 +27,17 @@ def log(msg):
     with open(LOG, 'a') as f: f.write(time.strftime('%m-%d %H:%M:%S ') + msg + '\n')
 
 
+def credit_of(src):
+    """found_by of a record: contributed packings keep their contributor's credit, and packings the search derived
+    from them name it (as for the 3D records)"""
+    src = src or {}
+    if src.get('contributor'):
+        return f"{src['contributor']} (contribution" + (f", issue #{src['issue']}" if src.get('issue') else '') + ')'
+    if src.get('lineage'):
+        return f"Alejandro Zarzuelo (search started from the packing of {src['lineage']})"
+    return 'Alejandro Zarzuelo'
+
+
 def plural(w):
     return w[:-2] + 'ices' if w.endswith('simplex') else w + 'es' if w.endswith('plex') else w + 's'
 
@@ -86,7 +97,7 @@ def build(p, deadline):
                     'closed_form_conjecture': cf,
                     'kind': E.KIND[p], 'source': src, 's_tight': round(b['s'], 12),
                     'volume_lower_bound': (n * vP / vC) ** (1 / d) / mu,
-                    'found_by': 'Alejandro Zarzuelo',
+                    'found_by': credit_of(b.get('src')),
                     'credit': "soft-to-rigid method by Yohei Nakajima (2026); generalization to regular polytopes of dimensions "
                               "4-6, basin-hopping search and exact certification developed with Claude (Anthropic) under "
                               "Alejandro Zarzuelo's direction",

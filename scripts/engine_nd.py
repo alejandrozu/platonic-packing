@@ -270,7 +270,13 @@ def attempt(p, n, move, rng, log):
         if out and (cur is None or out['s'] < cur['s'] - 1e-12):
             improved = True; mv[1] += 1
             C2, R2 = rnd(out['C'], out['R'])
-            case['best'] = {'s': out['s'], 'C': C2, 'R': R2, 'src': dict(info, raw=s_raw), 't': time.time(), 'tightened': True}
+            src = dict(info, raw=s_raw)
+            parent = (best or {}).get('src') or {} if move not in ('fresh', 'symfresh', 'ascend', 'descend') else {}
+            if move == 'ascend': parent = (lo['best'] or {}).get('src') or {}
+            if move == 'descend': parent = (hi['best'] or {}).get('src') or {}
+            lin = parent.get('lineage') or parent.get('contributor')       # credit: packings descending from a contribution
+            if lin: src['lineage'] = lin
+            case['best'] = {'s': out['s'], 'C': C2, 'R': R2, 'src': src, 't': time.time(), 'tightened': True}
             st['improvements'] += 1; st['since'] = 0; st['last_improve'] = time.time(); st['fails'] = {}
             # a tightening stopped by its time limit is continued later (from this best, with a full time budget)
             st['needs_tighten'] = bool(out.get('timed_out'))
