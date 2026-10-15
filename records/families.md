@@ -1,6 +1,6 @@
 # Records: Archimedean, Catalan, prism and antiprism families
 
-_Generated 2026-10-15 03:10 CEST from the running search._ s = container size ÷ piece size (edge ratio; for Catalan solids the ratio of the same canonical solid). Each entry: the record's container, with 10⁻⁷ clearance, truncated to 5 decimals, linking to the record file. Every record is proven by `certify_general.py` (exact number fields for the solids, rigorous interval arithmetic for the packing) and checked by `verify_general.py` (floating point). "≈ x" = conjectured closed form. The square prism is the cube and the triangular antiprism the octahedron: see the Platonic tables (cubes in a cube, octahedra in an octahedron, octahedra in a cube).
+_Generated 2026-10-15 03:27 CEST from the running search._ s = container size ÷ piece size (edge ratio; for Catalan solids the ratio of the same canonical solid). Each entry: the record's container, with 10⁻⁷ clearance, truncated to 5 decimals, linking to the record file. Every record is proven by `certify_general.py` (exact number fields for the solids, rigorous interval arithmetic for the packing) and checked by `verify_general.py` (floating point). "≈ x" = conjectured closed form. The square prism is the cube and the triangular antiprism the octahedron: see the Platonic tables (cubes in a cube, octahedra in an octahedron, octahedra in a cube).
 
 ## Archimedean solids
 
@@ -614,8 +614,8 @@ _Generated 2026-10-15 03:10 CEST from the running search._ s = container size ÷
 | 95 | [5.54465+](dhcindhc/dhcindhc_n95.json) | [5.54698+](dtcindtc/dtcindtc_n95.json) | [5.88467+](phcinphc/phcinphc_n95.json) |
 | 96 | [5.56380+](dhcindhc/dhcindhc_n96.json) | [5.56941+](dtcindtc/dtcindtc_n96.json) | [5.91382+](phcinphc/phcinphc_n96.json) |
 | 97 | [5.59524+](dhcindhc/dhcindhc_n97.json) | [5.58805+](dtcindtc/dtcindtc_n97.json) | [5.91500+](phcinphc/phcinphc_n97.json) |
-| 98 | [5.82261+](dhcindhc/dhcindhc_n98.json) | [5.60922+](dtcindtc/dtcindtc_n98.json) | [5.93172+](phcinphc/phcinphc_n98.json) |
-| 99 | [5.87760+](dhcindhc/dhcindhc_n99.json) | [5.62452+](dtcindtc/dtcindtc_n99.json) | [5.95332+](phcinphc/phcinphc_n99.json) |
+| 98 | [5.64141+](dhcindhc/dhcindhc_n98.json) | [5.60922+](dtcindtc/dtcindtc_n98.json) | [5.93172+](phcinphc/phcinphc_n98.json) |
+| 99 | [5.65296+](dhcindhc/dhcindhc_n99.json) | [5.62452+](dtcindtc/dtcindtc_n99.json) | [5.95332+](phcinphc/phcinphc_n99.json) |
 | 100 | [5.88568+](dhcindhc/dhcindhc_n100.json) | [5.84928+](dtcindtc/dtcindtc_n100.json) | [5.95986+](phcinphc/phcinphc_n100.json) |
 
 ## Prisms and antiprisms
