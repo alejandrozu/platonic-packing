@@ -556,7 +556,8 @@ def export(state, ref):
         if m == 'perturb' and 'expand' in a: m = 'perturb>5%' if a['expand'] > 0.05 else 'perturb<=5%'
         if a.get('streak'): m = 'perturb/streak'
         if m == 'symfresh' and a.get('sym'): m = 'symfresh/' + a['sym']
-        k = f"{DIM[a['p']]}:{m}"; r = mv.setdefault(k, [0, 0, 0.0]); r[0] += 1; r[1] += bool(a.get('improved')); r[2] += a.get('secs', 0)
+        k = f"{DIM[a['p']]}:{m}"; r = mv.setdefault(k, [0, 0, 0.0, 0.0]); r[0] += 1; r[1] += bool(a.get('improved')); r[2] += a.get('secs', 0)
+        if a.get('improved') and a.get('best_before') and a.get('s'): r[3] += math.log(a['best_before'] / a['s'])   # total log gain
     out['_moves'] = mv
     blob = base64.b64encode(gzip.compress(json.dumps(out, separators=(',', ':')).encode())).decode()
     print(f'EXPORT {sum(len(v) for k, v in out.items() if not k.startswith("_"))} {blob}')
