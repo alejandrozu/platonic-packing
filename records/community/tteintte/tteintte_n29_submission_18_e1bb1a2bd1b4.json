@@ -1,0 +1,985 @@
+{
+ "problem": "min/truncated_tetrahedron_in_truncated_tetrahedron",
+ "piece": "truncated_tetrahedron",
+ "container": "truncated_tetrahedron",
+ "n": 29,
+ "s_full": 3.6666667033433336,
+ "pieces": [
+  [
+   -2.1213203647728456,
+   -0.7071067882576152,
+   0.7071067882576152,
+   1,
+   0,
+   0,
+   1
+  ],
+  [
+   -2.1213203647728456,
+   0.7071067882576152,
+   -0.7071067882576152,
+   1,
+   0,
+   0,
+   1
+  ],
+  [
+   -2.8284271530304608,
+   0.0,
+   0.0,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   -0.7071067882576152,
+   -2.1213203647728456,
+   0.7071067882576152,
+   1,
+   0,
+   0,
+   1
+  ],
+  [
+   -0.7071067882576152,
+   -0.7071067882576152,
+   -0.7071067882576152,
+   1,
+   0,
+   0,
+   1
+  ],
+  [
+   -1.4142135765152304,
+   -1.4142135765152304,
+   0.0,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   -0.7071067882576152,
+   0.7071067882576152,
+   -2.1213203647728456,
+   1,
+   0,
+   0,
+   1
+  ],
+  [
+   -1.4142135765152304,
+   0.0,
+   -1.4142135765152304,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   0.7071067882576152,
+   -2.1213203647728456,
+   -0.7071067882576152,
+   1,
+   0,
+   0,
+   1
+  ],
+  [
+   0.0,
+   -2.8284271530304608,
+   0.0,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   0.7071067882576152,
+   -0.7071067882576152,
+   -2.1213203647728456,
+   1,
+   0,
+   0,
+   1
+  ],
+  [
+   0.0,
+   -1.4142135765152304,
+   -1.4142135765152304,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   0.0,
+   0.0,
+   -2.8284271530304608,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   -0.7071067882576152,
+   -0.7071067882576152,
+   2.1213203647728456,
+   1,
+   0,
+   0,
+   1
+  ],
+  [
+   -0.7071067882576152,
+   0.7071067882576152,
+   0.7071067882576152,
+   1,
+   0,
+   0,
+   1
+  ],
+  [
+   -1.4142135765152304,
+   0.0,
+   1.4142135765152304,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   -0.7071067882576152,
+   2.1213203647728456,
+   -0.7071067882576152,
+   1,
+   0,
+   0,
+   1
+  ],
+  [
+   -1.4142135765152304,
+   1.4142135765152304,
+   0.0,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   0.7071067882576152,
+   -0.7071067882576152,
+   0.7071067882576152,
+   1,
+   0,
+   0,
+   1
+  ],
+  [
+   0.0,
+   -1.4142135765152304,
+   1.4142135765152304,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   0.7071067882576152,
+   0.7071067882576152,
+   -0.7071067882576152,
+   1,
+   0,
+   0,
+   1
+  ],
+  [
+   0.0,
+   0.0,
+   0.0,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   0.0,
+   1.4142135765152304,
+   -1.4142135765152304,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   2.1213203647728456,
+   -0.7071067882576152,
+   -0.7071067882576152,
+   1,
+   0,
+   0,
+   1
+  ],
+  [
+   1.4142135765152304,
+   -1.4142135765152304,
+   0.0,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   1.4142135765152304,
+   0.0,
+   -1.4142135765152304,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   0.7071067882576152,
+   0.7071067882576152,
+   2.1213203647728456,
+   1,
+   0,
+   0,
+   1
+  ],
+  [
+   0.0,
+   0.0,
+   2.8284271530304608,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   0.7071067882576152,
+   2.1213203647728456,
+   0.7071067882576152,
+   1,
+   0,
+   0,
+   1
+  ]
+ ],
+ "s": 3.66666,
+ "s_plus": "3.66666+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 1.224745e-08,
+  "min_wall_gap": 6.129848e-09
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "New finite whole-owner window cut from the classical primitive-Welsh packing. Four integer wall marks retain one common host translation, exact face separators and both proper-rotation species.",
+ "date": "2026-10-15",
+ "record_id": "tteintte_n29_submission_18_e1bb1a2bd1b4",
+ "title": "29 truncated tetrahedra in a truncated tetrahedron",
+ "family": "archimedean",
+ "source": {
+  "author": "PingYou Ltd",
+  "kind": "new finite boundary window of a classical two-orientation packing",
+  "classical_sources": [
+   {
+    "authors": "John H. Conway and Salvatore Torquato",
+    "title": "Packing, tiling, and covering with tetrahedra",
+    "journal": "PNAS 103 (2006), 10612\u201310617",
+    "url": "https://doi.org/10.1073/pnas.0601389103"
+   },
+   {
+    "authors": "Salvatore Torquato and Yang Jiao",
+    "title": "Dense packings of polyhedra: Platonic and Archimedean solids",
+    "journal": "Physical Review E 80 (2009), 041104, Appendix C",
+    "url": "https://doi.org/10.1103/PhysRevE.80.041104"
+   }
+  ],
+  "derivation": {
+   "kind": "finite primitive-Welsh four-wall return",
+   "wall_vectors": [
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     -1,
+     1,
+     -1
+    ],
+    [
+     -1,
+     -1,
+     1
+    ]
+   ],
+   "widths": [
+    2,
+    2,
+    2,
+    2
+   ],
+   "m": 4,
+   "lower_word": [
+    -4,
+    0,
+    0,
+    0
+   ],
+   "parent_count": 35,
+   "parent_words": [
+    {
+     "word": [
+      -4,
+      0,
+      1,
+      2
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -4,
+      0,
+      2,
+      1
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -4,
+      0,
+      2,
+      2
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -4,
+      1,
+      0,
+      2
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -4,
+      1,
+      1,
+      1
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -4,
+      1,
+      1,
+      2
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -4,
+      1,
+      2,
+      0
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -4,
+      1,
+      2,
+      1
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -4,
+      2,
+      0,
+      1
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -4,
+      2,
+      0,
+      2
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -4,
+      2,
+      1,
+      0
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -4,
+      2,
+      1,
+      1
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -4,
+      2,
+      2,
+      0
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -3,
+      0,
+      0,
+      2
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -3,
+      0,
+      1,
+      1
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -3,
+      0,
+      1,
+      2
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -3,
+      0,
+      2,
+      0
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -3,
+      0,
+      2,
+      1
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -3,
+      1,
+      0,
+      1
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -3,
+      1,
+      0,
+      2
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -3,
+      1,
+      1,
+      0
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -3,
+      1,
+      1,
+      1
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -3,
+      1,
+      2,
+      0
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -3,
+      2,
+      0,
+      0
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -3,
+      2,
+      0,
+      1
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -3,
+      2,
+      1,
+      0
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -2,
+      0,
+      0,
+      1
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -2,
+      0,
+      0,
+      2
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -2,
+      0,
+      1,
+      0
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -2,
+      0,
+      1,
+      1
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -2,
+      0,
+      2,
+      0
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -2,
+      1,
+      0,
+      0
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -2,
+      1,
+      0,
+      1
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -2,
+      1,
+      1,
+      0
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -2,
+      2,
+      0,
+      0
+     ],
+     "species": "K"
+    }
+   ],
+   "retained_prefix": 29,
+   "retained_words": [
+    {
+     "word": [
+      -4,
+      0,
+      1,
+      2
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -4,
+      0,
+      2,
+      1
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -4,
+      0,
+      2,
+      2
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -4,
+      1,
+      0,
+      2
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -4,
+      1,
+      1,
+      1
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -4,
+      1,
+      1,
+      2
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -4,
+      1,
+      2,
+      0
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -4,
+      1,
+      2,
+      1
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -4,
+      2,
+      0,
+      1
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -4,
+      2,
+      0,
+      2
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -4,
+      2,
+      1,
+      0
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -4,
+      2,
+      1,
+      1
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -4,
+      2,
+      2,
+      0
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -3,
+      0,
+      0,
+      2
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -3,
+      0,
+      1,
+      1
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -3,
+      0,
+      1,
+      2
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -3,
+      0,
+      2,
+      0
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -3,
+      0,
+      2,
+      1
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -3,
+      1,
+      0,
+      1
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -3,
+      1,
+      0,
+      2
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -3,
+      1,
+      1,
+      0
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -3,
+      1,
+      1,
+      1
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -3,
+      1,
+      2,
+      0
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -3,
+      2,
+      0,
+      0
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -3,
+      2,
+      0,
+      1
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -3,
+      2,
+      1,
+      0
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -2,
+      0,
+      0,
+      1
+     ],
+     "species": "-K"
+    },
+    {
+     "word": [
+      -2,
+      0,
+      0,
+      2
+     ],
+     "species": "K"
+    },
+    {
+     "word": [
+      -2,
+      0,
+      1,
+      0
+     ],
+     "species": "-K"
+    }
+   ],
+   "lower_translation_bounds": [
+    "24",
+    "-8",
+    "-8",
+    "-8"
+   ],
+   "upper_translation_bounds": [
+    "88/3",
+    "-8/3",
+    "-8/3",
+    "-8/3"
+   ],
+   "common_interpolation": "0",
+   "wall_translation": [
+    "24",
+    "-8",
+    "-8",
+    "-8"
+   ],
+   "physical_unit": "1/(2*sqrt(2))",
+   "center_decoder": "(2*F^T*z + F^T*tau/4)/(2*sqrt(2))",
+   "orientation_quaternions": {
+    "K": [
+     1,
+     0,
+     0,
+     0
+    ],
+    "-K": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "center_dilation_exact": "100000001/100000000",
+   "nominal_scale_exact": "11/3",
+   "scale_equation": "1+max(max(widths),2*m/3,2*(sum(widths)-m)/5)",
+   "proof": "WELSH_WINDOW_PROOF.txt"
+  },
+  "attribution_note": "The primitive-Welsh infinite packing is classical. PingYou Ltd supplies the specified complete finite window, common boundary return and certified native witness."
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 3.072316825685847,
+ "density": 0.5882794714527378,
+ "found_by": "PingYou Ltd",
+ "credit": "PingYou Ltd",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/18",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "construction",
+  "replayed_on": "2026-10-15",
+  "witness_sha256": "2cd105843f315f77e0bd966d82081934e5b55942ebaf7ee781d57969486846ed",
+  "method": "New finite truncated-tetrahedron constructions by PingYou Ltd. Four integer boundary words and one common zero-sum translation close finite two-motif arrangements derived from the credited classical Welsh construction. Full physical arrangements, including the two small numerical gains at n96 and n97, were checked for inequivalence to the starting configurations. The archive retains complete native coordinates, explicit physical construction decoders, original source and donor credits, independent geometry and construction reviews, and SHA256 manifests. All 32 witnesses pass the unmodified upstream floating checker and exact certifier.",
+  "archive": "https://github.com/user-attachments/files/33483465/pingyou_new_constructions_batch007_20261015.zip",
+  "archive_sha256": "5aa94cee6e69b9f13c0068b6d7bb4b12d88a5cfb2d3ee1d8669b88b74adf9e97"
+ },
+ "previous_record": {
+  "s_full": 3.6795508920577,
+  "found_by": "Alejandro Zarzuelo",
+  "date": "2026-10-13"
+ },
+ "case_id": "tteintte_n29"
+}
