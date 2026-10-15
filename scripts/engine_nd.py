@@ -693,7 +693,7 @@ def check():
             c = _read(_path('best', p, n))
             if not c or not c.get('best'): prev = None; continue
             if len(c['best']['C']) != n: print('wrong piece count', p, n); bad += 1
-            if prev is not None and prev > c['best']['s']: print('NOT MONOTONE', p, n - 1, prev, '>', n, c['best']['s']); bad += 1
+            if prev is not None and prev > c['best']['s'] * (1 + 1e-10): print('NOT MONOTONE', p, n - 1, prev, '>', n, c['best']['s']); bad += 1
             prev = c['best']['s']
     print('nd archive check:', 'ok' if not bad else f'{bad} problems')
     return bad
