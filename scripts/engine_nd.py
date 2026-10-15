@@ -513,6 +513,13 @@ def export(state, ref):
         if a.get('move') == 'harvest': continue
         k = f"{a['p']}:{a['n']}"; counts[k] = counts.get(k, 0) + 1
     out['_totals'] = counts
+    mv = {}                                  # per dimension and move: attempts, improvements, CPU seconds (for steering)
+    for l in (open(ap).read().splitlines() if os.path.exists(ap) else []):
+        try: a = json.loads(l)
+        except json.JSONDecodeError: continue
+        if a.get('move') == 'harvest' or a.get('p') not in DIM: continue
+        k = f"{DIM[a['p']]}:{a['move']}"; r = mv.setdefault(k, [0, 0, 0.0]); r[0] += 1; r[1] += bool(a.get('improved')); r[2] += a.get('secs', 0)
+    out['_moves'] = mv
     blob = base64.b64encode(gzip.compress(json.dumps(out, separators=(',', ':')).encode())).decode()
     print(f'EXPORT {sum(len(v) for k, v in out.items() if not k.startswith("_"))} {blob}')
 
@@ -522,6 +529,10 @@ def do_import(blobfile, host):
     if txt.startswith('EXPORT'): txt = txt.split(None, 2)[2] if len(txt.split(None, 2)) > 2 else ''
     data = json.loads(gzip.decompress(base64.b64decode(txt))) if txt else {}
     totals = data.pop('_totals', {})
+    moves = data.pop('_moves', None)
+    if moves:
+        with open(os.path.join(STATE, 'actions_moves.jsonl'), 'a') as f:
+            f.write(json.dumps({'t': round(time.time()), 'host': host, 'moves': moves}) + '\n')
     if totals:
         with locked():
             for key, k in totals.items():
