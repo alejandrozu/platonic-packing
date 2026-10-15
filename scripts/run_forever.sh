@@ -15,6 +15,14 @@ worker() {
     echo "$(date) worker $1 exited ($?)" >> logs/supervisor.out; sleep 10
   done
 }
+worker3d() {
+  # 16 Oct (Alejandro: "keep all cores working"): a low-priority 3D worker on the Platonic problems takes whatever the
+  # publisher leaves of the second core (it waits 5 minutes between publishes)
+  while [ ! -f state/STOP ]; do
+    PP_FAMILIES=platonic nice -n 15 python3 scripts/engine.py work "c3d$1" >> "logs/worker3d$1.out" 2>&1
+    echo "$(date) 3D worker $1 exited ($?)" >> logs/supervisor.out; sleep 10
+  done
+}
 publisher() {
   sleep "${FIRST_PUBLISH:-1800}"
   while [ ! -f state/STOP ]; do
@@ -23,5 +31,5 @@ publisher() {
   done
 }
 echo "$(date) supervisor started (pid $$)" >> logs/supervisor.out
-worker 0 & publisher &     # 14 Oct 23:00: one search worker (Actions does the bulk), the other core certifies n <= 100
+worker 0 & worker3d 1 & publisher &     # 14 Oct 23:00: one search worker (Actions does the bulk), the other core certifies n <= 100
 wait
