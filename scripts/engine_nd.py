@@ -236,7 +236,15 @@ def attempt(p, n, move, rng, log):
     elif move == 'perturb':
         e = math.exp(rng.uniform(math.log(0.003), math.log(0.05))); sg = e * rng.uniform(0.5, 0.9)
         C0 = np.array(best['C']); nr = np.random.default_rng(seed)
-        raw = {'s': best_s * (1 + e), 'C': C0 * (1 + e) + nr.normal(0, sg, C0.shape), 'R': best['R']}
+        R0 = np.array(best['R'])
+        if rng.random() < 0.5:      # half of the kicks also turn every piece a little (random skew, angle ~ sigma / circumradius)
+            import ndslp
+            Rn = []
+            for r in R0:
+                Wk = nr.normal(0, sg / pb.circ / math.sqrt(d), (d, d)); Wk = (Wk - Wk.T) / 2
+                Rn.append(ndslp.cayley(Wk) @ r)
+            R0 = np.array(Rn); info['turn'] = 1
+        raw = {'s': best_s * (1 + e), 'C': C0 * (1 + e) + nr.normal(0, sg, C0.shape), 'R': R0}
         info.update(expand=round(e, 4), sigma=round(sg, 4))
     else:
         raise ValueError(move)
