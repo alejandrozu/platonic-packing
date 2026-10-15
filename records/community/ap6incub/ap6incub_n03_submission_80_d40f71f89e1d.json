@@ -1,0 +1,433 @@
+{
+ "problem": "min/antiprism6_in_cube",
+ "piece": "antiprism6",
+ "container": "cube",
+ "n": 3,
+ "s_full": 2.5667990327620327,
+ "pieces": [
+  [
+   0.0,
+   0.0,
+   -0.85559967725456,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.0,
+   0.0,
+   0.0,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.0,
+   0.0,
+   0.85559967725456,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ]
+ ],
+ "s": 2.56679,
+ "s_plus": "2.56679+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 8.72078e-11,
+  "min_wall_gap": 5.427803e-10
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "Whole prism envelopes replaced by phase-registered antiprism rings and complete axial slots.",
+ "date": "2026-10-15",
+ "record_id": "ap6incub_n03_submission_80_d40f71f89e1d",
+ "title": "3 hexagonal antiprisms in a cube",
+ "family": "prisms",
+ "source": {
+  "author": "PingYou Ltd",
+  "kind": "whole-owner prism-to-antiprism envelope composition",
+  "attribution_note": "Original donor author and complete donor source metadata are preserved verbatim. PingYou Ltd supplies the canonical ring/slot transfer, common restoration and certificate. Historical donor construction descriptions apply only to that donor.",
+  "construction": {
+   "name": "prism_envelope_antiprism_ring_slots",
+   "proof": "WHOLE PRISM ENVELOPE TO ANTIPRISM RING/SLOT COMPOSITION\n\nTake a complete native source of canonical regular p-prisms of height h, with centers c_i and actual rational proper frames R_i. Retain every full source owner and source provenance. The target is canonical q-antiprism, full height H, whose two horizontal rings together project to a regular 2q-gon of radius R_q.\n\nLet L=lcm(p,2q). The source facet normal angles form a p-grid and the projected target vertex angles a 2q-grid. Their differences form an L-grid. Choose the ONE canonical phase theta=arg(n_0)-arg(v_0)+pi/L (mod 2pi/L), so every source facet lies midway between two nearest points of the difference grid. Then max over all source normals/target vertices of cos angular difference is cos(pi/L). This proves the concentric whole projected target lies in alpha times the source base when alpha >= R_q*cos(pi/L)/a_p, where a_p is the source apothem. No optimized angle or frame approximation is inferred from a metric search.\n\nFor k complete target children per source, require alpha*h >= k*H. Put child (i,j) at alpha*c_i + R_i((j-(k-1)/2)*H*e3), j=0..k-1, with frame R_i Q_theta. Every child lies inside the same uniformly scaled complete parent; siblings have disjoint open axial intervals, and different parents inherit the original complete parent separation. The inverse decoder is (parent index i, axial slot j). Both axial signs of an arbitrary frame are respected by R_i e3; there is no common-axis hypothesis.\n\nThe source inequality proves this at the exact forced phase. A native implementation will choose a declared rational quaternion lift close to that single phase and recheck ALL actual source facet/target vertex inequalities with outward intervals, selecting a rational alpha no smaller than that actual containment requirement and k*H/h. All centers and all common cube wall costs are evaluated from the transformed actual child vertices. A common center/host dilation restores binary64 rounding; both inherited cross-parent and sibling separators and actual final native checks are mandatory.\n\nFirst screen only actual retained/current prism parents with count n and k*n<=100 against current full public/private/pending AP cube gates. Preserve known-nominal certificate classification. The screen is only a proposal; full canonical containment and physical native decoding are required before claiming a gain. No antiprism record follows merely from a circular radius or volume inequality.\n",
+   "source_native_path": "heterogeneous/constructive/pinwheel_boxes/single_owners/prism12.json",
+   "source_native_sha256": "2b5eba3419d8f52fc565e5a2a605f92cbb74fe6c51e1f68f2cc4110d79a4f42d",
+   "source_provenance": {
+    "kind": "canonical_single_owner",
+    "canonical_checker_sha256": "508ae88a9f17bb0d29606b6c8425288039b6da0e40e353f6acb432aaf28845c3"
+   },
+   "source_authentication": {
+    "kind": "canonical_single_owner",
+    "sha256": "2b5eba3419d8f52fc565e5a2a605f92cbb74fe6c51e1f68f2cc4110d79a4f42d"
+   },
+   "inherited_author_fields": {
+    "found_by": "PingYou Ltd",
+    "credit": "PingYou Ltd",
+    "source_author": null,
+    "authors": null,
+    "source": {
+     "author": "PingYou Ltd",
+     "kind": "canonical single-owner control",
+     "attribution_note": "The canonical solid and normalization are inherited from the authenticated project solid definitions. This is a single identity-frame owner and its explicit enclosing box.",
+     "construction": {
+      "name": "canonical_single_owner",
+      "proof": "The sole center is zero and its frame is the identity; the cube side is outward of twice every absolute canonical vertex coordinate."
+     }
+    }
+   },
+   "complete_parent": {
+    "record_id": "prism12_canonical_single_pinwheel_source",
+    "piece": "prism12",
+    "container": "cube",
+    "n": 1,
+    "pieces": [
+     [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+     ]
+    ],
+    "container_center": [
+     0,
+     0,
+     0
+    ],
+    "s_full": 3.8637034051562735,
+    "found_by": "PingYou Ltd",
+    "credit": "PingYou Ltd",
+    "source": {
+     "author": "PingYou Ltd",
+     "kind": "canonical single-owner control",
+     "attribution_note": "The canonical solid and normalization are inherited from the authenticated project solid definitions. This is a single identity-frame owner and its explicit enclosing box.",
+     "construction": {
+      "name": "canonical_single_owner",
+      "proof": "The sole center is zero and its frame is the identity; the cube side is outward of twice every absolute canonical vertex coordinate."
+     }
+    }
+   },
+   "source_native_review": {
+    "record_id": "prism12_canonical_single_pinwheel_source",
+    "status": "PASS",
+    "candidate_sha256": "2b5eba3419d8f52fc565e5a2a605f92cbb74fe6c51e1f68f2cc4110d79a4f42d",
+    "piece": "prism12",
+    "container": "cube",
+    "n": 1,
+    "scale_exact": "8700286607865955/2251799813685248",
+    "native_numeric_schema": true,
+    "rational_rotation_congruence": true,
+    "rotation_matrix_sha256": [
+     "c24ecf7d64263f883c5052ed2a56466190eee43399095d818cd0f63eeca7d972"
+    ],
+    "wall_tests": 144,
+    "pair_tests": 0,
+    "far_pairs": 0,
+    "min_wall_lower_dyadic": "74828884117403480829823147296392653502628348",
+    "active_wall": [
+     0,
+     0,
+     0
+    ],
+    "min_pair_lower_dyadic": "None",
+    "fixed_point_bits": 170,
+    "planes_file": "prism12.planes.json",
+    "planes_sha256": "5acd3bbefc45bc86ee03324c2024cf146b1c6ec2ab36126a4016370f77eb3dc2",
+    "construction_decoder_review": "SEPARATE_OBLIGATION",
+    "seconds": 0.0009075420093722641,
+    "comparison_status": "NOT_PROVIDED"
+   },
+   "canonical_inclusion": {
+    "source_piece": "prism12",
+    "target_piece": "antiprism6",
+    "grid_lcm": 12,
+    "forced_phase_float_proposal": 0.0,
+    "phase_rational_quaternion": [
+     "1",
+     "0",
+     "0",
+     "0"
+    ],
+    "phase_rotation_rational": [
+     [
+      "1",
+      "0",
+      "0"
+     ],
+     [
+      "0",
+      "1",
+      "0"
+     ],
+     [
+      "0",
+      "0",
+      "1"
+     ]
+    ],
+    "axial_multiplicity": 3,
+    "target_height_upper": "640235688488897117680069352990587211749180659814887/748288838313422294120286634350736906063837462003712",
+    "slot_period_rational": "855599677169/1000000000000",
+    "alpha": "2566799031607/1000000000000",
+    "alpha_required_upper": "240088383183644678032229821924882412155015885225777/93536104789177786765035829293842113257979682750464",
+    "actual_native_frame_local_envelope_tests": [
+     {
+      "source_owner": 0,
+      "tests": 336,
+      "minimum_slack": "9507739930019685953209686803920780223395/374144419156711147060143317175368453031918731001856",
+      "controller_facet": 6,
+      "controller_vertex": 12
+     }
+    ],
+    "scope": "The exact geometric phase follows the regular p/2q difference-grid law. The stored quaternion is one declared rational approximation to that phase; ALL actual rounded target frames and two extreme slot endpoints are independently interval-contained in the same alpha-scaled source. No correctly-rounded transcendental or exact algebraic phase is claimed."
+   },
+   "alpha": "2566799031607/1000000000000",
+   "slot_period": "855599677169/1000000000000",
+   "axial_multiplicity": 3,
+   "phase_rational_quaternion": [
+    "1",
+    "0",
+    "0",
+    "0"
+   ],
+   "box_lower": [
+    "-1",
+    "-1",
+    "-468922623405556011781698870947035961240265400831595601113111/365375409332725729550921208179070754913983135744000000000000"
+   ],
+   "box_upper": [
+    "1",
+    "1",
+    "468922623405556011781698870947035961240265400831595601113111/365375409332725729550921208179070754913983135744000000000000"
+   ],
+   "box_midpoint": [
+    "0",
+    "0",
+    "0"
+   ],
+   "full_owner_decoder": [
+    {
+     "source_owner": 0,
+     "axial_slot": 0,
+     "local_slot_offset": [
+      "0",
+      "0",
+      "-855599677169/1000000000000"
+     ],
+     "source_center": [
+      "0",
+      "0",
+      "0"
+     ],
+     "source_quaternion": [
+      1,
+      0,
+      0,
+      0
+     ],
+     "exact_product_quaternion": [
+      "1",
+      "0",
+      "0",
+      "0"
+     ],
+     "native_quaternion_rounding_error": [
+      "0",
+      "0",
+      "0",
+      "0"
+     ],
+     "unrecentered_child_center": [
+      "0",
+      "0",
+      "-855599677169/1000000000000"
+     ],
+     "ideal_center": [
+      "0",
+      "0",
+      "-855599677169/1000000000000"
+     ],
+     "native_center_rounding_error": [
+      "0",
+      "0",
+      "-208179787799369/10737418240000000000000000000000"
+     ]
+    },
+    {
+     "source_owner": 0,
+     "axial_slot": 1,
+     "local_slot_offset": [
+      "0",
+      "0",
+      "0"
+     ],
+     "source_center": [
+      "0",
+      "0",
+      "0"
+     ],
+     "source_quaternion": [
+      1,
+      0,
+      0,
+      0
+     ],
+     "exact_product_quaternion": [
+      "1",
+      "0",
+      "0",
+      "0"
+     ],
+     "native_quaternion_rounding_error": [
+      "0",
+      "0",
+      "0",
+      "0"
+     ],
+     "unrecentered_child_center": [
+      "0",
+      "0",
+      "0"
+     ],
+     "ideal_center": [
+      "0",
+      "0",
+      "0"
+     ],
+     "native_center_rounding_error": [
+      "0",
+      "0",
+      "0"
+     ]
+    },
+    {
+     "source_owner": 0,
+     "axial_slot": 2,
+     "local_slot_offset": [
+      "0",
+      "0",
+      "855599677169/1000000000000"
+     ],
+     "source_center": [
+      "0",
+      "0",
+      "0"
+     ],
+     "source_quaternion": [
+      1,
+      0,
+      0,
+      0
+     ],
+     "exact_product_quaternion": [
+      "1",
+      "0",
+      "0",
+      "0"
+     ],
+     "native_quaternion_rounding_error": [
+      "0",
+      "0",
+      "0",
+      "0"
+     ],
+     "unrecentered_child_center": [
+      "0",
+      "0",
+      "855599677169/1000000000000"
+     ],
+     "ideal_center": [
+      "0",
+      "0",
+      "855599677169/1000000000000"
+     ],
+     "native_center_rounding_error": [
+      "0",
+      "0",
+      "208179787799369/10737418240000000000000000000000"
+     ]
+    }
+   ],
+   "rho": "10000000001/10000000000",
+   "inverse_decoder": "Undo stored center rounding error, divide by rho, add midpoint, subtract R_source times local slot offset, and divide by alpha. Parent/slot labels recover the complete original source and each child; source quaternion and exact phase product are retained separately from rounded native target quaternion.",
+   "classification": "complete_certificate_reduction",
+   "nominal_claim": "No new ideal nominal claim",
+   "screen_row": {
+    "source": {
+     "path": "heterogeneous/constructive/pinwheel_boxes/single_owners/prism12.json",
+     "sha256": "2b5eba3419d8f52fc565e5a2a605f92cbb74fe6c51e1f68f2cc4110d79a4f42d",
+     "piece": "prism12",
+     "n": 1,
+     "original_container": "cube",
+     "provenance": {
+      "kind": "canonical_single_owner",
+      "canonical_checker_sha256": "508ae88a9f17bb0d29606b6c8425288039b6da0e40e353f6acb432aaf28845c3"
+     },
+     "lower": [
+      "-722791514450779448820169391956059414827021588049793/374144419156711147060143317175368453031918731001856",
+      "-722791514450779448820169391956059414827021588049793/374144419156711147060143317175368453031918731001856",
+      "-1/2"
+     ],
+     "upper": [
+      "722791514450779448820169391956059414827021588049793/374144419156711147060143317175368453031918731001856",
+      "722791514450779448820169391956059414827021588049793/374144419156711147060143317175368453031918731001856",
+      "1/2"
+     ],
+     "widths": [
+      "722791514450779448820169391956059414827021588049793/187072209578355573530071658587684226515959365500928",
+      "722791514450779448820169391956059414827021588049793/187072209578355573530071658587684226515959365500928",
+      "1"
+     ]
+    },
+    "target": "antiprism6",
+    "n": 3,
+    "k": 3,
+    "source_count": 1,
+    "alpha": 2.5667990315020566,
+    "planar_alpha": 0.5176380902050416,
+    "source_height": 1.0,
+    "target_height": 0.8555996771673522,
+    "theta": 0.0,
+    "predicted_side": 2.5667990315020566,
+    "widths": [
+     2.0,
+     2.0,
+     2.5667990315020566
+    ],
+    "native_gate": 2.5667992316977988,
+    "nominal_gate": 2.566799031502,
+    "ratio": 0.9999999220056872,
+    "uncredited": false
+   }
+  }
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.9140805614622103,
+ "density": 0.41467231134144134,
+ "found_by": "PingYou Ltd",
+ "credit": "PingYou Ltd",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/80",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "construction",
+  "replayed_on": "2026-10-15",
+  "witness_sha256": "2aa06240fad031e9ce4e3e553330d400f7fd2c01d2e4ebb4f940d753d215cd65",
+  "method": "This batch contains 23 fresh campaign cases, distinct from all 54 earlier fresh archives: 19 antiprism cases, three prism cases and one pentakis-dodecahedron self-packing. Sixteen improve the pinned current nominal/reference bound; seven improve complete native certificates without claiming a new ideal nominal value.\n\nThe main new construction places fixed-phase antiprism rings and whole axial slots inside actual complete regular-prism parents. The forced phase comes from the full cyclic difference grid. Every child, sibling slab and inherited parent separator is retained. Literal whole-owner prefixes give additional complete cases. For six hexagonal antiprisms in a cube, one common center contraction releases the artificial parent facets while all 15 target-pair separators remain simultaneously valid; the certified side is 2.862714781480716. No angle sweep is used.\n\nA reciprocal golden-host inclusion and common return give eleven pentakis dodecahedra in their own host at 2.82404531854329. The three prism cases retain complete source-column and height/collar operations from the reviewed bank.\n\nAll active witnesses passed independent source, full geometry and current-public/private comparisons, followed by both official checks on the packaged native files. The archive preserves complete parent packings, physical decoders, common-return certificates and original source attribution. Some provenance audit scripts require the authenticated upstream Git snapshot or reviewed-source registry; the bundled official native validators are directly replayable.\n\nCredit the new finite constructions exactly to PingYou Ltd. Original donors and their authors remain explicitly credited. These contributions may be published under the repository\u2019s MIT license. No global optimality is claimed. Fresh campaign cases, live site credit and submission acceptance are tracked separately.",
+  "archive": "https://github.com/user-attachments/files/33494472/pingyou_new_constructions_batch055_20261015.zip",
+  "archive_sha256": "cad7b37ad2ccecf11b34e16f0349e48f1c12643fa0f2bc6bf4921993bb3058d2"
+ },
+ "previous_record": {
+  "s_full": 2.5667992316977988,
+  "found_by": "Alejandro Zarzuelo",
+  "date": "2026-10-13"
+ },
+ "case_id": "ap6incub_n03"
+}
