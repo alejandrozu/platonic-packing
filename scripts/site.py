@@ -192,6 +192,7 @@ def load_nd():
     """Higher polytopes (15 Oct 2026): records/<id>/<id>_nNN.json of every problem of scripts/engine_nd.py. A row's
     viewer pieces are [c_1..c_d, R_11..R_dd] (centre and rotation matrix, row by row) in the exact frame of
     src/polytopes_nd.json; the container is s_full x mu x the container polytope."""
+    if not os.path.exists(os.path.join(ROOT, 'src', 'polytopes_nd.json')): return [], {}    # (test trees without them)
     import engine_nd as EN
     sys.path.insert(0, os.path.join(ROOT, 'src')); sys.path.insert(0, ROOT)
     import polytopes_nd
