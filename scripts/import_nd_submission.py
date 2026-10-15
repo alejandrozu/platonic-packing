@@ -30,6 +30,7 @@ def main(art, who, issue):
     took = []
     for r in res:
         f = r['file'] if os.path.isabs(r['file']) else os.path.join(art, os.path.relpath(r['file'], 'sub'))
+        if '/baseline/' in r['file']: continue                 # copies of this repository's own records
         if not r.get('certified'):
             print('not certified, skipped:', r['file']); continue
         rec = json.load(open(f)); pc, cc, n, d = rec['piece'], rec['container'], rec['n'], rec['dim']
@@ -37,14 +38,15 @@ def main(art, who, issue):
         if p not in E.PID or n > E.nmax(p) or n < E.NMIN:
             print('not an archive case:', p, n); continue
         pb = E.problem(p); m = d * (d - 1) // 2
-        cen = [float(Fraction(str(x))) if isinstance(x, str) else float(x) for x in rec.get('container_center', [0] * d)]
-        C = np.array([[float(x) for x in q[:d]] for q in rec['pieces']]) - np.array(cen)
-        R = np.array([rotation([float(x) for x in q[d:d + m]], [int(x) for x in q[d + m:d + m + d]]) for q in rec['pieces']])
+        num = lambda x: float(Fraction(str(x)))                  # numbers may be JSON numbers or 'p/q' strings
+        cen = [num(x) for x in rec.get('container_center', [0] * d)]
+        C = np.array([[num(x) for x in q[:d]] for q in rec['pieces']]) - np.array(cen)
+        R = np.array([rotation([num(x) for x in q[d:d + m]], [int(num(x)) for x in q[d + m:d + m + d]]) for q in rec['pieces']])
         C = C * pb.scale                                       # exact frame -> internal units (piece inradius 1/2)
         lg = ndsim.legalize(pb, C, R)
         with E.locked():
             case = E.load_case(p, n); cur = case['best']
-            line = f"{p} n={n}: contributed s_full {float(rec['s_full']):.10f}, re-legalized s {lg['s']:.10f}, archive {cur['s'] if cur else None:.10f}"
+            line = f"{p} n={n}: contributed s_full {float(Fraction(str(rec['s_full']))):.10f}, re-legalized s {lg['s']:.10f}, archive {cur['s'] if cur else None:.10f}"
             if cur and lg['s'] >= cur['s'] - 1e-12:
                 print(line, '-> not better'); continue
             C2, R2 = E.rnd(lg['C'], lg['R'])

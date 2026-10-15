@@ -33,6 +33,8 @@ def credit_of(src):
     src = src or {}
     if src.get('contributor'):
         return f"{src['contributor']} (contribution" + (f", issue #{src['issue']}" if src.get('issue') else '') + ')'
+    if src.get('lineage') and src.get('move') == 'tighten':
+        return f"{src['lineage']} (re-tightened by the search)"
     if src.get('lineage'):
         return f"Alejandro Zarzuelo (search started from the packing of {src['lineage']})"
     return 'Alejandro Zarzuelo'
