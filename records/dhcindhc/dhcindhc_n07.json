@@ -3,109 +3,104 @@
  "piece": "deltoidal_hexecontahedron",
  "container": "deltoidal_hexecontahedron",
  "n": 7,
- "s": 2.56487,
- "s_plus": "2.56487+",
- "s_full": 2.5648713830393,
+ "s": 2.56121,
+ "s_plus": "2.56121+",
+ "s_full": 2.5612138105777,
  "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020443795346e-07,
-  "min_wall_gap": 1.0000019212696998e-07
+  "min_pair_gap": 8.486082451829228e-06,
+  "min_wall_gap": 1.0000008554555961e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
- "date": "2026-10-14",
+ "date": "2026-10-15",
  "pieces": [
   [
-   3.181313822194407,
-   0.3401471339539755,
-   -1.0062653026616226,
-   0.6802437764212566,
-   0.47240897525752396,
-   0.3778166837382035,
-   0.41394772402484586
+   1.0559472080266468,
+   2.028495040202193,
+   2.4885554331849167,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   0.9887528072207283,
-   -3.178277239659256,
-   0.3705227998877862,
-   0.5544667259400009,
-   -0.1484872569934901,
-   0.5829367109735015,
-   -0.5750678006420823
+   1.8828414865953427,
+   -4.019262323423908e-12,
+   -3.0465015207343735,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   -3.051235809733268,
-   -1.7261543159784023,
-   0.08066818848325141,
-   0.39269914064047257,
-   0.26124063587267493,
-   0.8421239226683263,
-   0.2614727786573313
+   -3.4700598561623766,
+   -4.019262323423908e-12,
+   -0.0886195852933965,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   -0.09585566944938555,
-   3.0401263835847048,
-   -1.7116950147436119,
-   0.04214755305723579,
-   -0.7630449180762898,
-   0.5267904354244856,
-   0.3721261532256453
+   -0.680381683462354,
+   3.013771699594208,
+   -1.3411055503765583,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   1.7023613955454826,
-   0.11723459523791431,
-   3.0574277023631344,
-   0.2045985467966933,
-   -0.5957006704024296,
-   -0.6677891088213486,
-   0.3966583568644009
+   2.9083078733067467,
+   -1.548030265082371,
+   0.8181232310819798,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   -1.9829266400859475,
-   1.9529034738915312,
-   1.9537590359702341,
-   0.09579267796650603,
-   -0.4678962430682984,
-   0.8139486080580741,
-   0.33073332461501487
+   -0.9004328639838601,
+   -1.7919334929698023,
+   2.7906554397347714,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   -0.26566344180174145,
-   -1.0328469146224464,
-   -3.1551627816710006,
-   0.37674854798759055,
-   -0.38695029184562885,
-   -0.7677182075597124,
-   -0.34487498751160156
+   -0.680381683462354,
+   -3.013771699602246,
+   -1.3411055503765583,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ]
  ],
  "record_id": "dhcindhc_n07",
  "title": "7 deltoidal hexecontahedra in a deltoidal hexecontahedron",
  "family": "catalan",
  "source": {
-  "hash": "79a89f78e6f65719",
+  "hash": "689bc710a75f572c",
   "clear": 1e-07,
   "cap": 2.6326593270519
  },
- "s_tight": 2.564871298389,
+ "s_tight": 2.561213763428,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.912931182772389,
- "found_by": "Alejandro Zarzuelo",
+ "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/23)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "hop",
-  "seed": 513371462,
-  "var": "gentle",
-  "minDiff": 0.03579805941170562,
-  "expand": 0.018759563822617533,
-  "rh": 0.10371268956407725,
-  "focus": 0,
-  "from": "best",
-  "raw": 2.566348616630704,
-  "host": "actions"
+  "move": "community",
+  "lineage": "PingYou Ltd",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/23",
+  "submitted_by": "BuddenPing",
+  "record_file": "records/community/dhcindhc/dhcindhc_n07_submission_23_609145c4fe3f.json"
  },
- "density": 0.4148597142514462
+ "density": 0.4166395899537234
 }

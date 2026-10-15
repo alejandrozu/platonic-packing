@@ -74,9 +74,9 @@ Smallest container found for n unit-edge pieces; entry = s = container edge / pi
 | 23 | [4.62576+](cubinoct/cubinoct_n23.json) | [2.62246+](octincub/octincub_n23.json) | 2.61533 W | [5.40195+](dodinico/dodinico_n23.json) | [2.34871+](icoindod/icoindod_n23.json) |
 | 24 | [4.70710+](cubinoct/cubinoct_n24.json) | [2.62792+](octincub/octincub_n24.json) ✱ | 2.63319 L | [5.47474+](dodinico/dodinico_n24.json) | [2.36541+](icoindod/icoindod_n24.json) |
 | 25 | [4.70710+](cubinoct/cubinoct_n25.json) | [2.63620+](octincub/octincub_n25.json) ✱ | 2.63622 W | [5.53087+](dodinico/dodinico_n25.json) | [2.39258+](icoindod/icoindod_n25.json) |
-| 26 | [4.74530+](cubinoct/cubinoct_n26.json) | [2.63986+](octincub/octincub_n26.json) | 2.63986 W | [5.61552+](dodinico/dodinico_n26.json) | [2.42244+](icoindod/icoindod_n26.json) |
+| 26 | [4.70710+](cubinoct/cubinoct_n26.json) | [2.63986+](octincub/octincub_n26.json) | 2.63986 W | [5.61552+](dodinico/dodinico_n26.json) | [2.42244+](icoindod/icoindod_n26.json) |
 | 27 | [4.81053+](cubinoct/cubinoct_n27.json) | [2.63986+](octincub/octincub_n27.json) | 2.63986 W | [5.66985+](dodinico/dodinico_n27.json) | [2.44475+](icoindod/icoindod_n27.json) |
-| 28 | [4.84419+](cubinoct/cubinoct_n28.json) | [2.75731+](octincub/octincub_n28.json) ✱ | 2.75738 W | [5.73945+](dodinico/dodinico_n28.json) | [2.46823+](icoindod/icoindod_n28.json) |
+| 28 | [4.82842+](cubinoct/cubinoct_n28.json) | [2.75731+](octincub/octincub_n28.json) ✱ | 2.75738 W | [5.73945+](dodinico/dodinico_n28.json) | [2.46823+](icoindod/icoindod_n28.json) |
 | 29 | [4.89243+](cubinoct/cubinoct_n29.json) | [2.82842+](octincub/octincub_n29.json) ≈ 2√2 ✱ | 2.85384 W | [5.77917+](dodinico/dodinico_n29.json) | [2.47572+](icoindod/icoindod_n29.json) |
 | 30 | [4.91981+](cubinoct/cubinoct_n30.json) | [2.88658+](octincub/octincub_n30.json) ✱ | 2.89186 W | [5.84833+](dodinico/dodinico_n30.json) | [2.49070+](icoindod/icoindod_n30.json) |
 | 31 | [4.96097+](cubinoct/cubinoct_n31.json) | [2.93422+](octincub/octincub_n31.json) |  | [5.90253+](dodinico/dodinico_n31.json) | [2.50916+](icoindod/icoindod_n31.json) |

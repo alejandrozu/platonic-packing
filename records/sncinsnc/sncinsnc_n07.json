@@ -3,109 +3,104 @@
  "piece": "snub_cube",
  "container": "snub_cube",
  "n": 7,
- "s": 2.52796,
- "s_plus": "2.52796+",
- "s_full": 2.5279651120947,
+ "s": 2.50289,
+ "s_plus": "2.50289+",
+ "s_full": 2.5028915060257,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020247298982e-07,
-  "min_wall_gap": 1.000000668938128e-07
+  "min_pair_gap": 2.2852270179176374e-07,
+  "min_wall_gap": 1.0000007000243727e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
- "date": "2026-10-14",
+ "date": "2026-10-15",
  "pieces": [
   [
-   -1.2491869666236253,
-   -1.2000403603629795,
-   0.7050681065937889,
-   0.18751507844907536,
-   0.061289459775684,
-   0.6252040338989755,
-   -0.7551169535052771
+   -1.2560177401490649,
+   1.2324047669928642,
+   -0.6700449310033574,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   -1.5959060568351027,
-   0.8987633171622486,
-   -0.5771880078294978,
-   0.25957424786620736,
-   -0.77372036137949,
-   0.19912418198228035,
-   -0.5425196516084667
+   1.6151823153712679,
+   -0.40566384080677914,
+   1.0292095062255626,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   1.2169154819291472,
-   -1.3484749643360747,
-   0.4221416673854054,
-   0.8714657309735235,
-   0.33813588822778895,
-   -0.06705544404437613,
-   0.3488770102130523
+   1.0292095062255613,
+   1.6151823153712677,
+   -0.4056638408067876,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   -0.41108683280239844,
-   -1.1733939737594687,
-   -1.4525039812389822,
-   0.5480342656216508,
-   -0.14051409695301886,
-   -0.8210984084543071,
-   -0.07557536566778446
+   -0.4056638408067783,
+   1.0292095062255622,
+   1.6151823153712688,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   1.5349738075796264,
-   1.007004419118255,
-   0.581829748964892,
-   0.8179904564811912,
-   0.03559350389314133,
-   -0.5739013749250379,
-   -0.01618417268360614
+   1.2324047669928642,
+   -0.6700449310033585,
+   -1.2560177401490635,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   0.5969453667679843,
-   0.9710158135632402,
-   -1.6072947987286976,
-   0.11824437432574886,
-   -0.09824761512009006,
-   0.38388629912552646,
-   -0.9104927146370989
+   -1.052822479381762,
+   -1.052822479381762,
+   -1.052822479381762,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   -0.5371048579204928,
-   0.9974944546489817,
-   1.5767068966401538,
-   0.7238824263802381,
-   0.667844391936771,
-   0.1400438107479936,
-   -0.10181273008638976
+   -0.6700449310033583,
+   -1.256017740149064,
+   1.2324047669928642,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ]
  ],
  "record_id": "sncinsnc_n07",
  "title": "7 snub cubes in a snub cube",
  "family": "archimedean",
  "source": {
-  "hash": "78ae7fcae2834c44",
+  "hash": "311f6b3a7eb19f22",
   "clear": 1e-07,
   "cap": 2.5825640462514
  },
- "s_tight": 2.527964963038,
+ "s_tight": 2.50289142361,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.912931182772389,
- "found_by": "Alejandro Zarzuelo",
+ "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/22)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "hop",
-  "seed": 184548417,
-  "var": "gentle",
-  "minDiff": 0.0345900175789759,
-  "expand": 0.02283333992457088,
-  "rh": 0.10475010787188141,
-  "focus": 0,
-  "from": "best",
-  "raw": 2.5288144511682242,
-  "host": "laptop"
+  "move": "community",
+  "lineage": "PingYou Ltd",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/22",
+  "submitted_by": "BuddenPing",
+  "record_file": "records/community/sncinsnc/sncinsnc_n07_submission_22_7f8c26fd74a0.json"
  },
- "density": 0.4332961317357605
+ "density": 0.446449115256957
 }
