@@ -38,7 +38,7 @@ def cayley(Om):
 
 
 def solve(pb, C, R, L, pairs, U, outer=600, trust=0.03, tlimit=None, slp_floor=1e-6, abort=None, verbose=False,
-          stall=50, stall_rel=1e-7, reg=0.0, lp_limit=None):
+          stall=50, stall_rel=1e-7, reg=0.0, lp_limit=None, lp_method='highs'):
     d = pb.d; n = len(C); SK = skew_index(d); m = len(SK)
     C = np.array(C, float); R = np.array(R, float)
     hint = {tuple(p): u for p, u in zip(pairs.tolist(), U)} if len(pairs) else {}
@@ -52,7 +52,7 @@ def solve(pb, C, R, L, pairs, U, outer=600, trust=0.03, tlimit=None, slp_floor=1
         if P:
             U0 = np.array([hint.get(tuple(p)) if tuple(p) in hint else C[p[1]] - C[p[0]] for p in pairs.tolist()], float)
             U0 /= np.linalg.norm(U0, axis=1, keepdims=True)
-            g, U0, mid = ndsim.planes_lp(pb, C, R, pairs, U0=U0)
+            g, U0, mid = ndsim.planes_lp(pb, C, R, pairs, U0=U0, need=0.0)
             M0 = (C[pairs[:, 0]] + C[pairs[:, 1]]) / 2
             c0 = mid - np.einsum('pd,pd->p', U0, M0)
             E = tangent_basis(U0)                                    # P x (d-1) x d
@@ -116,10 +116,10 @@ def solve(pb, C, R, L, pairs, U, outer=600, trust=0.03, tlimit=None, slp_floor=1
             b = np.concatenate([g0, np.zeros(2 * mm)])
             cv2 = np.concatenate([cvec, np.full(mm, reg)])
             bnd = np.concatenate([np.stack([lb, ub], 1), np.stack([np.zeros(mm), np.tile(per, n)], 1)])
-            res = linprog(cv2, A_ub=A, b_ub=b, bounds=bnd, method='highs', options={'time_limit': tl})
+            res = linprog(cv2, A_ub=A, b_ub=b, bounds=bnd, method=lp_method, options={'time_limit': tl})
             dz = res.x[:nvar] if res.status == 0 else np.zeros(nvar)
         else:
-            res = linprog(cvec, A_ub=-J, b_ub=g0, bounds=np.stack([lb, ub], 1), method='highs', options={'time_limit': tl})
+            res = linprog(cvec, A_ub=-J, b_ub=g0, bounds=np.stack([lb, ub], 1), method=lp_method, options={'time_limit': tl})
             dz = res.x if res.status == 0 else np.zeros(nvar)
         Z = dz[:nd_ * n].reshape(n, nd_)
         Cn = C + Z[:, :d]
