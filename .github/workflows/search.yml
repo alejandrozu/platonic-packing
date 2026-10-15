@@ -35,21 +35,28 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install
-        run: pip install --quiet numpy scipy highspy mpmath
+        run: pip install --quiet numpy scipy highspy mpmath numba
       - name: Search
         run: |
           export PP_STATE="$RUNNER_TEMP/pp-state"
           mkdir -p "$PP_STATE" logs && cp -r state/best "$PP_STATE/best" && cp state/policy.json "$PP_STATE/"
           export PP_DEADLINE=$(( $(date +%s) + MINUTES * 60 ))
+          # 15 Oct (Alejandro: higher polytopes "start running them"): 3 workers on the 3D families, 1 on 4D/5D/6D
+          export PP_STATE_ND="$RUNNER_TEMP/pp-nd"
+          mkdir -p "$PP_STATE_ND/best"; [ -d state/nd/best ] && cp -r state/nd/best/. "$PP_STATE_ND/best/"
+          python3 -c "import sys; sys.path.insert(0, 'src'); import ndsim; ndsim.fresh(ndsim.Problem('c8', 'c8'), 2, 1, B=0.05)" > /dev/null 2>&1 || true
           pids=""
-          for w in 0 1 2 3; do
+          for w in 0 1 2; do
             PP_SHARD="${{ matrix.job }}/18" timeout $(( MINUTES * 60 + 600 )) python3 scripts/engine.py work "A${{ matrix.job }}$w" > /dev/null 2>&1 &
             pids="$pids $!"
           done
+          PP_SHARD="${{ matrix.job }}/18" timeout $(( MINUTES * 60 + 600 )) python3 scripts/engine_nd.py work "N${{ matrix.job }}" > /dev/null 2>&1 &
+          pids="$pids $!"
           # partial results every 30 minutes (the main machine harvests each branch commit once)
           ( while sleep 1800; do
               python3 scripts/remote.py export "$PP_STATE" state/best > "$RUNNER_TEMP/export_p.txt" 2>/dev/null || continue
               d="$RUNNER_TEMP/partial"; rm -rf "$d"; mkdir -p "$d"; cp "$RUNNER_TEMP/export_p.txt" "$d/export.txt"
+              python3 scripts/engine_nd.py export "$PP_STATE_ND" state/nd/best > "$d/export_nd.txt" 2>/dev/null || rm -f "$d/export_nd.txt"
               echo "{\"run\": \"$GITHUB_RUN_ID\", \"job\": ${{ matrix.job }}, \"partial\": true, \"attempts\": 0, \"finished\": \"$(date -u +%FT%TZ)\"}" > "$d/meta.json"
               ( cd "$d" && git init -q -b x && git -c user.name="platonic-packing search" -c user.email="actions@users.noreply.github.com" add -A &&
                 git -c user.name="platonic-packing search" -c user.email="actions@users.noreply.github.com" commit -q -m "partial search results" &&
@@ -59,6 +66,8 @@ jobs:
           wait $pids || true
           kill $ploop 2>/dev/null || true
           python3 scripts/remote.py export "$PP_STATE" state/best > "$RUNNER_TEMP/export.txt"
+          python3 scripts/engine_nd.py export "$PP_STATE_ND" state/nd/best > "$RUNNER_TEMP/export_nd.txt" 2>/dev/null || echo "EXPORT 0" > "$RUNNER_TEMP/export_nd.txt"
+          echo "nd attempts $(wc -l < "$PP_STATE_ND/attempts.jsonl" 2>/dev/null || echo 0), exported $(cut -d' ' -f2 "$RUNNER_TEMP/export_nd.txt") nd cases"
           echo "attempts $(wc -l < "$PP_STATE/attempts.jsonl"), exported $(cut -d' ' -f2 "$RUNNER_TEMP/export.txt") cases"
           { echo "{\"run\": \"$GITHUB_RUN_ID\", \"job\": ${{ matrix.job }}, \"main\": \"$(git rev-parse HEAD)\","
             echo " \"attempts\": $(wc -l < "$PP_STATE/attempts.jsonl"), \"finished\": \"$(date -u +%FT%TZ)\"}"; } > "$RUNNER_TEMP/meta.json"
@@ -66,7 +75,7 @@ jobs:
         run: |
           d="$RUNNER_TEMP/out"; mkdir -p "$d"; cd "$d"
           git init -q -b "search-results-${{ matrix.job }}"
-          cp "$RUNNER_TEMP/export.txt" "$RUNNER_TEMP/meta.json" .
+          cp "$RUNNER_TEMP/export.txt" "$RUNNER_TEMP/export_nd.txt" "$RUNNER_TEMP/meta.json" .
           git -c user.name="platonic-packing search" -c user.email="actions@users.noreply.github.com" add -A
           git -c user.name="platonic-packing search" -c user.email="actions@users.noreply.github.com" commit -q -m "search results, run $GITHUB_RUN_ID job ${{ matrix.job }}"
           git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" "HEAD:refs/heads/search-results-${{ matrix.job }}"

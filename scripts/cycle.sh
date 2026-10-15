@@ -24,10 +24,10 @@ echo "$a $i $now" > state/.cycle
 w=$(pgrep -c -f "^python3 scripts/engine.py work")
 act=$(scripts/harvest_actions.sh 2>&1 | tail -1)
 kick=$(scripts/actions_kick.sh 2>&1 | tail -1)
-chk=$(python3 scripts/engine.py check 2>&1 | tail -1)
+chk=$(python3 scripts/engine.py check 2>&1 | tail -1); chk="$chk; $(python3 scripts/engine_nd.py check 2>&1 | tail -1)"
 python3 -c "import sys; sys.path.insert(0, 'scripts'); import publish; publish.progress()" 2>/dev/null
 exec 9> state/.gitlock; flock 9
-git add state/best state/attempts.jsonl state/policy.json state/snapshot_*.json state/experiment_*.json state/actions_log.jsonl PROGRESS.md STATUS.md EXPERIMENT_LOG.md README.md docs scripts src test .gitignore 2>/dev/null
+git add state/best state/nd/best state/nd/attempts.jsonl state/attempts.jsonl state/policy.json state/snapshot_*.json state/experiment_*.json state/actions_log.jsonl PROGRESS.md STATUS.md EXPERIMENT_LOG.md README.md docs scripts src test .gitignore 2>/dev/null
 git diff --cached --quiet || git commit -q -m "Checkpoint: search archive $(date '+%Y-%m-%d %H:%M') ($a attempts)
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
@@ -40,7 +40,8 @@ flock -u 9
 # contributed / published packings that beat the archive its starting points (scripts/community_sync.py)
 com=$(timeout 300 python3 scripts/community_sync.py 2>&1 | tail -1)
 head=$(git rev-parse HEAD); from=$(cat state/.device_synced 2>/dev/null)
-if [ "$from" != "$head" ]; then
+if [ -f state/.no_laptop_bundle ]; then laptop="laptop: GitHub only (15 Oct, Alejandro clears disk space first)"
+elif [ "$from" != "$head" ]; then
   mkdir -p /mnt/user-data/outputs .sync
   rm -f /mnt/user-data/outputs/sync-*.bundle .sync/sync-*.bundle 2>/dev/null
   bn=/mnt/user-data/outputs/sync-${head:0:12}.bundle          # unique name per cycle (the upload tool caches by path)
