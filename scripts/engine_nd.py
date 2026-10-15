@@ -26,10 +26,18 @@ sys.path.insert(0, os.path.join(ROOT, 'src'))
 sys.path.append(os.path.join(ROOT, 'scripts'))      # appended: scripts/coverage.py must not shadow the package numba imports
 
 STATE = os.environ.get('PP_STATE_ND') or os.path.join(ROOT, 'state', 'nd')
-PROBLEMS = [('c5', 'c5'), ('c8', 'c8'), ('c16', 'c16'), ('c24', 'c24'), ('c120', 'c120'), ('c600', 'c600'),
-            ('c8', 'c16'), ('c16', 'c8'), ('c120', 'c600'), ('c600', 'c120'),
-            ('sx5', 'sx5'), ('hc5', 'hc5'), ('op5', 'op5'), ('hc5', 'op5'), ('op5', 'hc5'),
-            ('sx6', 'sx6'), ('hc6', 'hc6'), ('op6', 'op6'), ('hc6', 'op6'), ('op6', 'hc6')]
+# 15 Oct 05:07 (Alejandro: "could we do all the permutations of the 4d 5d and 6d polytopes?"): every ordered pair of
+# regular polytopes of the same dimension, piece in container: 6 x 6 in 4D, 3 x 3 in 5D and in 6D (54 problems);
+# listed self packings first, then the dual pairs, then the rest
+_ALL = {4: ['c5', 'c8', 'c16', 'c24', 'c120', 'c600'], 5: ['sx5', 'hc5', 'op5'], 6: ['sx6', 'hc6', 'op6']}
+_DUAL = {'c5': 'c5', 'c8': 'c16', 'c16': 'c8', 'c24': 'c24', 'c120': 'c600', 'c600': 'c120', 'sx5': 'sx5', 'hc5': 'op5',
+         'op5': 'hc5', 'sx6': 'sx6', 'hc6': 'op6', 'op6': 'hc6'}
+PROBLEMS = []
+for _d, _ps in _ALL.items():
+    PROBLEMS += [(p, p) for p in _ps]
+    PROBLEMS += [(p, _DUAL[p]) for p in _ps if _DUAL[p] != p]
+    PROBLEMS += [(p, c) for p in _ps for c in _ps if c != p and c != _DUAL[p]]
+KIND = {f'{p}in{c}': 'self' if p == c else 'dual' if _DUAL[p] == c else 'mixed' for p, c in PROBLEMS}
 DIMS = {'c5': 4, 'c8': 4, 'c16': 4, 'c24': 4, 'c120': 4, 'c600': 4, 'sx5': 5, 'hc5': 5, 'op5': 5, 'sx6': 6, 'hc6': 6, 'op6': 6}
 PID = {f'{p}in{c}': (p, c) for p, c in PROBLEMS}
 DIM = {k: DIMS[v[0]] for k, v in PID.items()}

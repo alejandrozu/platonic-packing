@@ -17,8 +17,17 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import ndsim
 
-MU = {('c8', 'c16'): 'sqrt2/2', ('c16', 'c8'): 'sqrt2', ('hc5', 'op5'): 'sqrt2/2', ('op5', 'hc5'): 'sqrt2',
-      ('hc6', 'op6'): 'sqrt2/2', ('op6', 'hc6'): 'sqrt2', ('c120', 'c600'): '-4+2*sqrt5', ('c600', 'c120'): '1+1/2*sqrt5'}
+# exact edge lengths of the polytopes in src/polytopes_nd.json (checked: EDGE^2 = edge2 exactly, EDGE > 0)
+EDGE = {'c5': '2*sqrt2', 'c8': '1', 'c16': 'sqrt2', 'c24': 'sqrt2', 'c600': '-1/2+1/2*sqrt5', 'c120': '7-3*sqrt5',
+        'sx5': 'sqrt2', 'hc5': '1', 'op5': 'sqrt2', 'sx6': 'sqrt2', 'hc6': '1', 'op6': 'sqrt2'}
+
+
+def mu_of(piece, container):
+    """edge(piece) / edge(container polytope), exactly, as a string of multiquad.py"""
+    from multiquad import parse
+    return repr(parse(EDGE[piece]) / parse(EDGE[container]))
+
+
 DEN = 2 ** 44
 
 
@@ -73,7 +82,7 @@ def make_claim(problem, piece, container, C, R, GAP=1e-7, WALL=1e-7, meta=None, 
     C2 = Pp / sc
     Vp = np.array(P['Vf']); CN = np.array(Q['N']); beta = np.array(Q['beta'])
     from multiquad import parse
-    mu = float(parse(MU.get((piece, container), '1')))
+    mu = float(parse(mu_of(piece, container)))
     X = np.concatenate([C2[i] + Vp @ Rx[i].T for i in range(n)])
     S = (X @ CN.T).max(0)
     res = linprog(np.r_[np.zeros(d), 1.0], A_ub=np.hstack([CN, -(mu * beta)[:, None]]), b_ub=-S, bounds=[(None, None)] * (d + 1), method='highs')
@@ -93,7 +102,7 @@ def make_claim(problem, piece, container, C, R, GAP=1e-7, WALL=1e-7, meta=None, 
     rec = {
         'problem': problem, 'piece': piece, 'container': container, 'dim': d, 'n': n,
         's': math.floor(s * 1e5) / 1e5, 's_plus': f'{math.floor(s * 1e5) / 1e5:.5f}+', 's_full': s,
-        'mu': MU.get((piece, container), '1'),
+        'mu': mu_of(piece, container),
         'measure': 'edge length of the container divided by the edge length of the pieces',
         'clearance': {'min_pair_gap_target': GAP, 'wall_gap_target': WALL, 'min_pair_gap': pg, 'min_wall_gap': wall},
         'density': n * P['volume'] / (Q['volume'] * (s * mu) ** d),
