@@ -1,0 +1,344 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,booktabs,array,graphicx,microtype}
+\usepackage{xcolor,hyperref,xurl}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,
+ pdftitle={Shape Continuation for Convex-Polytope Packing},
+ pdfauthor={Yohei Nakajima and Alejandro Zarzuelo Urdiales}}
+\setlength{\emergencystretch}{2em}
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpsep}{20pt}
+\setlength{\@fpbot}{0pt plus 1fil}
+\makeatother
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\B}{\mathbb B}
+\newcommand{\conv}{\operatorname{conv}}
+\newcommand{\SO}{\operatorname{SO}}
+\newcommand{\vol}{\operatorname{vol}}
+\newcommand{\code}[1]{\texttt{\nolinkurl{#1}}}
+\newcommand{\repo}{https://github.com/alejandrozu/platonic-packing}
+\newcommand{\frozen}{https://github.com/alejandrozu/platonic-packing/tree/1abc63218db34cea95802aeb3b6d4a6b6fe1c61b}
+\newcommand{\blob}{https://github.com/alejandrozu/platonic-packing/blob/1abc63218db34cea95802aeb3b6d4a6b6fe1c61b}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+\title{Shape Continuation for Convex-Polytope Packing:\\Generalization and Lean-Verified Certificate Principles}
+\author{Yohei Nakajima \and Alejandro Zarzuelo Urdiales}
+\date{16 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We describe a generalization of soft-to-rigid finite-container packing from polygons and cubes to a canonical library of convex polyhedra and regular polytopes in dimensions four through six. Two geometric paths are distinguished: blending with an inscribed ball, and erosion followed by dilation, which retains an actual eroded core for non-tangential solids. Continuation becomes one move in an archive search alongside symmetry-released starts, insertion, deletion, rigid perturbation, crystal cuts and nested substitution. Independent exact-arithmetic checkers validate exported hard configurations. A new Lean development proves dimension-independent soundness of finite vertex/halfspace certificates, strict separation, affine transport, subset replacement and basic continuation containment, with a fully instantiated rational two-cube example. These formal results do not constitute a Lean check of the numerical archive. A frozen snapshot contains 140 problems and 10,404 populated cases, including 10,398 coordinate witnesses marked exact-certified and six source-only bounds. Five witnesses are independently rechecked for this paper. A reproducible historical comparison of 1,824 attempts on 40 prism-family cases illustrates why improvement frequency and improvement magnitude lead to different search policies. The results establish constructive feasibility and an auditable method; they do not prove global optimality or universal superiority of continuation.
+\end{abstract}
+
+\section{Purpose and relation to earlier work}
+Finite packing asks how small a prescribed container can be while holding a fixed number of congruent bodies. It combines discrete contact patterns with continuous translations and rotations. A numerical optimizer may locate an attractive configuration while leaving imperceptible overlaps; a reliable constructive bound therefore needs a separate validity argument.
+
+Nakajima's soft-to-rigid study~\cite{nakajima2026} uses gradual shape change as an alternative search path. Its controlled comparisons favor tuned rigid starts overall, while showing complementary behavior on particular polygon instances. Section 7 already credits Zarzuelo's extension to Platonic solids, generalized exact checking and repeated softening of archived packings. That downstream use motivates the present account. We do not present the broader catalogue as an independent controlled validation of the original simulator.
+
+The earlier DOI publications document the initial nine-family implementation~\cite{zarzueloMethods}, structural analysis of its 351 constructions~\cite{zarzueloPatterns}, and the associated data release~\cite{zarzueloData}. The present paper concerns a later, substantially larger implementation in the shared repository~\cite{archive}. Its contributions are the geometric distinction needed for non-tangential 3D solids, the supported higher-dimensional search and certification pipeline, the integration of multiple construction families into one archive, and a new, explicitly bounded Lean proof layer. The three earlier DOI objects identify the original scientific and data record; their frozen dataset must not be confused with the expanded snapshot below.
+
+General polyhedron packing and continuous rotations predate this work~\cite{romanova2018}; Berthold et al.~\cite{berthold2026} already studied all 25 ordered Platonic-solid pairs. Rounded polyhedral particles and shape evolution also have established uses~\cite{jin2015}. Sequential linear programming~\cite{torquato2010}, lattice packing~\cite{betke2000}, and periodic polyhedron packing~\cite{torquato2009} supply important context and seed constructions. We claim an implemented and inspectable generalization of a search-and-certification pipeline, rather than invention of these underlying geometric ideas.
+
+The repository is an open, versioned research archive connecting independent contributions with geometry definitions, coordinate witnesses, certificates, source lineage and search code. Its literature review and historical-source audit~\cite{repoRelated,repoAudit} connect the catalogue to prior research; its search-method study, large-population analysis and higher-dimensional notes~\cite{repoSearch,repoLarge,repoHigher} record the implementation's empirical development. These project research materials complement, rather than replace, citations to the original papers.
+
+\section{Packing problem and normalization}
+Let $P,C\subset\R^d$ be compact, full-dimensional convex polytopes, with fixed reference scales and the origin in their interiors. Write
+\begin{equation}
+\begin{split}
+s^*_{P\to C}(n)=\inf\{s>0:\;&p_i+R_iP\subseteq sC,\quad R_i\in\SO(d),\\
+&\operatorname{int}(p_i+R_iP)\cap\operatorname{int}(p_j+R_jP)=\varnothing
+\quad(i\ne j)\}.
+\end{split}
+\end{equation}
+A common container translation can be absorbed into the piece centers. Requiring proper rotations matters for chiral solids: a reflected enantiomer is not generally a rotated copy.
+
+For unit-edge solids, $s$ is container edge divided by piece edge. Catalan self-packings use a fixed canonical polar-dual shape; elongated prisms retain their specified aspect ratio. For mixed shapes, equal numerical edge ratios need not imply equal density. With compatible reference volumes,
+\begin{equation}\label{eq:density}
+\eta=\frac{n\vol_d(P)}{s^d\vol_d(C)},\qquad
+s\geq\left(\frac{n\vol_d(P)}{\vol_d(C)}\right)^{1/d}.
+\end{equation}
+The exponent changes with dimension; $n^{1/d}$ alone is appropriate only when the reference volumes agree. Defining $\sigma=s[\vol_d(C)/\vol_d(P)]^{1/d}$ gives $\eta=n/\sigma^d$.
+
+Native higher-dimensional coordinates need an additional conversion. If $P_0,C_0$ have canonical edge lengths $e_P,e_C$, let $\mu=e_P/e_C$. A record at edge ratio $s$ places copies of $P_0$ in
+\begin{equation}\label{eq:native}
+c_C+s\mu C_0.
+\end{equation}
+Consequently raw canonical volumes give
+$\eta=n\vol_d(P_0)/[(s\mu)^d\vol_d(C_0)]$. Omitting $\mu$ can reverse comparisons. Likewise, comparisons with circumradius-normalized literature require the corresponding edge conversion.
+
+\section{Two continuation paths}
+Let $\B_d$ be the closed unit Euclidean ball and assume $\rho\B_d\subseteq P$, $\rho>0$.
+
+\subsection{Homothetic-core blending}
+For $0\leq\tau\leq1$, set
+\begin{equation}\label{eq:blend}
+H_\tau=(1-\tau)P\oplus\tau\rho\B_d.
+\end{equation}
+Here $\oplus$ denotes Minkowski addition. The endpoints are $H_1=\rho\B_d$ and $H_0=P$. This formula is dimension-independent and does not require all facets to touch the inscribed ball.
+
+\begin{proposition}\label{prop:blend}
+The family satisfies $H_\tau\subseteq P$. If $0\leq\tau_1\leq\tau_2\leq1$, then $H_{\tau_2}\subseteq H_{\tau_1}$.
+\end{proposition}
+\begin{proof}
+Every point of $H_\tau$ is a convex combination of a point of $P$ and a point of $\rho\B_d\subseteq P$. For a unit direction $u$, its support function is
+\[
+h_{H_\tau}(u)=(1-\tau)h_P(u)+\tau\rho.
+\]
+Since $h_P(u)\geq\rho$, this expression decreases with $\tau$. Support-function comparison gives the claimed inclusion.
+\end{proof}
+
+Containment by convex blending is formalized in Lean as \code{convex_blend_subset}. The support-function nesting argument above is a mathematical proof in the manuscript, not a claim that the entire proposition's support-function formulation has been formalized.
+
+\subsection{Actual eroded cores for non-tangential solids}
+For a radius $r\geq0$, define the erosion and opening
+\begin{equation}\label{eq:opening}
+E_r=P\ominus r\B_d=\{x:x+r\B_d\subseteq P\},\qquad
+O_r=E_r\oplus r\B_d.
+\end{equation}
+If $P=\{x:a_f\cdot x\leq b_f,\ f=1,\ldots,F\}$ with unit outward normals, then
+\begin{equation}\label{eq:erosionfacets}
+E_r=\{x:a_f\cdot x\leq b_f-r,\ f=1,\ldots,F\}.
+\end{equation}
+This uses the actual supporting planes. For general $P$, it does \emph{not} imply $h_{E_r}(u)=h_P(u)-r$ in every direction: vertices and active facets can change.
+
+\begin{proposition}\label{prop:opening}
+For $0\leq r\leq R$, $O_R\subseteq O_r\subseteq P$, and $O_0=P$.
+\end{proposition}
+\begin{proof}
+By definition, $y+z\in P$ whenever $y\in E_r$ and $z\in r\B_d$, proving $O_r\subseteq P$. If $R>0$ and $x=y+Ru$ with $y\in E_R$, $\|u\|\leq1$, write
+$x=[y+(R-r)u]+ru$. For $\|v\|\leq1$, the point
+$y+(R-r)u+rv$ belongs to $y+R\B_d\subseteq P$ by the triangle inequality. Thus $y+(R-r)u\in E_r$ and $x\in O_r$. The case $R=0$ and the endpoint follow directly.
+\end{proof}
+
+Lean's \code{minkowskiOpening_subset} proves opening containment for any structuring body; \code{minkowskiOpening_mono} concerns inclusion of the original bodies. The latter is not a formal proof of monotonicity in the radius in Proposition~\ref{prop:opening}.
+
+For a tangential polytope with every unit-normal offset equal to $\rho$, equation~\eqref{eq:erosionfacets} gives
+$E_r=(1-r/\rho)P$ for $0\leq r<\rho$. Hence $O_r=H_{r/\rho}$ on that interval. The distinction matters for prisms with unequal facet distances and for many Archimedean solids: uniform core scaling and true erosion are different paths even though both can stay inside $P$.
+
+The generalized 3D implementation precomputes the eroded core numerically, tracking its changing combinatorics. Sampling and bisection locate transitions; this preprocessing is not an exact proof of every intermediate body. Internal search units set the inradius to $1/2$ and cap the non-tangential erosion radius at $0.49$, before a possibly degenerate core. The initial body is therefore rounded but need not be a sphere. The supported regular 4D--6D polytopes are tangential and use the homothetic-core formula; the implementation is not an arbitrary-dimensional erosion engine. Final rigid certificates are independent of these intermediate approximations.
+
+\section{From one continuation to an archive search}
+\subsection{Candidate generation and tightening}
+The search separates three jobs: generate a promising configuration, reduce its scale numerically, and validate a final exact witness. Soft dynamics minimize squared positive overlap and wall penalties together with inward pressure. Momentum, bounded pose updates and annealed noise help the rounded pieces rearrange. Softness decreases to zero, followed by hard settling. Quaternion orientations are used in 3D. In dimension $d$, skew-matrix increments supply the $d(d-1)/2$ local rotation parameters, with numerical matrices periodically reorthonormalized.
+
+For 3D rounded cores, contact calculations combine separating-axis penetration tests and distances between disjoint features. In higher dimensions, support-point queries and optimized separating hyperplanes avoid treating 3D edge-cross-edge axes as a complete $d$-dimensional test. These are search calculations; their numerical residuals are not feasibility proofs.
+
+A legalizer spreads centers if necessary, finds candidate separating planes and refits the container including its translation. Constrained tightening then minimizes scale using vertex/wall and pair-plane constraints. Sequential linear programming uses trust regions and optional regularization; an earlier constrained nonlinear path remains available. Tightening can fail, stagnate or miss an improved basin. The program name \code{exact.py} refers to the geometric formulation and does not make its numerical optimization exact arithmetic.
+
+\subsection{Reusing and changing arrangements}
+The archive stores selected witnesses and pools of distinct useful arrangements for each problem and population. A hop slightly expands and perturbs an existing packing, optionally softens a cluster or all pieces, then hardens and tightens. This gives continuation a role beyond a new random start. Related remelting and insertion were also explored in the independent cube continuation by \code{@BuilderOfAgents}/tronford~\cite{tronford}; these moves are not claimed as originating here. An insertion move starts from $n-1$ pieces, deletion starts from $n+1$, and reinsertion removes a small set before searching for better holes. Cheap rigid perturbation followed by tightening competes with soft moves.
+
+Deleting pieces preserves feasibility, giving
+\begin{equation}\label{eq:monotone}
+s^*_{P\to C}(n)\leq s^*_{P\to C}(n+1).
+\end{equation}
+The archive propagates useful deletions and retains their lineage. A plateau in selected bounds may result from deleting a loosely constrained piece; it is not by itself a plateau theorem for the unknown optimum.
+
+Adaptive allocation uses measured improvements, logarithmic scale gains, elapsed time, failure streaks, adjacent populations and plateau information. Exploration and polishing use different policies. Such heuristics help distribute finite computation, but no convergence guarantee is asserted.
+
+\subsection{Symmetric starts and finite crystal cuts}
+In 3D, \code{symfresh} creates orbits under a randomly selected cyclic symmetry of the container during the soft phase, then releases the symmetry before unrestricted tightening. A structured start can reduce an unproductive search space while allowing the final packing to break the imposed symmetry. A symmetric seed and a symmetric final witness are therefore distinct observations. Higher-dimensional symmetric starts also use central inversion, reflections and suitable four-element groups, while the exported pieces must still have proper rotations.
+
+Grid, lattice, double-lattice and prism-column arrangements give further seeds. Finite windows are cut from periodic constructions, translated and rotated relative to the container, then refitted and tightened. Prior lattice and dense-periodic work~\cite{betke2000,torquato2009,jiao2011} supplies context. A high infinite-volume density does not guarantee a good small finite cut: wall compatibility and missing boundary cells can dominate. Conversely, a good finite-container packing is not evidence of a physically selected crystal or a densest infinite packing.
+
+\subsection{Nested substitution and community lineage}
+Suppose $m$ copies of $P$ fit in $aQ$ and $k$ copies of $Q$ fit in $bC$, all in compatible units. If inner poses are $R_ix+p_i$ and outer poses are $U_jy+q_j$, scale the whole outer arrangement by $a$ and replace each outer piece by the inner packing. The resulting poses are
+\begin{equation}\label{eq:compose}
+U_jR_ix+U_jp_i+a q_j\quad\hbox{in }abC.
+\end{equation}
+Thus any subset of the $mk$ pieces proves
+\begin{equation}\label{eq:composebound}
+s^*_{P\to C}(N)\leq ab,\qquad 1\leq N\leq mk.
+\end{equation}
+This classical inclusion principle needs dimension and normalization compatibility. Container-center translations must be handled before composing poses. Boundary contacts remain legal for the mathematical packing problem; the production exporter subsequently adds clearance and rechecks its constructed witness.
+
+The implemented 3D sweep currently uses Platonic intermediate solids; the higher-dimensional sweep uses the supported regular polytopes. It generalizes the project's whole-body inclusion contribution by PingYou Ltd~\cite{ping79}; related independent contributions include honeycomb windows, prism subdivisions and face lifts~\cite{pingConstructions}. These construction ideas and inherited coordinates retain their original attribution. Re-padding, exact checking or combining a witness does not transfer its construction authorship. Lean's affine transport and subset-replacement lemmas formalize ingredients of this inclusion reasoning, rather than an end-to-end proof of either composition script or all instances of~\eqref{eq:composebound}.
+
+Other contributions include Stian's octahedron-in-cube improvements for $n=13,15,18$~\cite{stian}; konoha-ily2's exact rational cube witnesses~\cite{konoha}; Ryan Xu's independently published cube coordinates for $n=34,35,36$~\cite{ryan}; and Sam Scott's tightening audit of Haowei Lin's previously published arrangements~\cite{scott}. The archive also incorporates coordinate reconstructions matching Friedman's historical $n=13,14$ cube bounds by \code{@BuilderOfAgents}/tronford~\cite{builderRecon}, alongside original sources from Friedman, Walsh, Lin and Berthold et al., documented in the source audit~\cite{repoAudit}. Imported original constructions, reconstructions and later refinements remain separate provenance roles. The catalogue is the combined result of these searches and contributions, not solely the work of the two manuscript authors.
+
+\section{Exact witnesses and the scope of formal proof}
+\subsection{Finite geometric certificate}
+Write $V_i$ for the transformed vertex set of piece $i$ and let the container be an intersection of closed halfspaces. A sufficient certificate consists of
+\begin{align}
+a_f\cdot v&\leq b_f &&(v\in V_i,\ \hbox{all }i,f),\label{eq:walls}\\
+u_{ij}\cdot v&\leq\ell_{ij}<r_{ij}\leq u_{ij}\cdot w
+&& (v\in V_i,\ w\in V_j,\ i\ne j).\label{eq:pairs}
+\end{align}
+The wall offsets incorporate the scale and center of the container. Strict margins may also be required at walls. Nonzero pair normals and a positive separating gap are implicit in~\eqref{eq:pairs} whenever both vertex sets are nonempty.
+
+\begin{theorem}\label{thm:certificate}
+If~\eqref{eq:walls}--\eqref{eq:pairs} hold, every convex hull $\conv V_i$ lies in the container and these closed convex hulls are pairwise disjoint.
+\end{theorem}
+\begin{proof}
+A linear inequality valid at all vertices is valid on every convex combination. Consequently each hull satisfies every wall inequality. A common point of two hulls would have its projection at once at most $\ell_{ij}$ and at least $r_{ij}$, contradicting $\ell_{ij}<r_{ij}$.
+\end{proof}
+This is a dimension-independent statement. To conclude that these hulls represent congruent copies of the intended solid, one must additionally validate the canonical geometry and the rigid placements. The certificate theorem does not infer these facts from arbitrary coordinate lists.
+
+\subsection{Production exact-arithmetic checks}
+The 3D exporter records full coordinates, scale and scalar-first rational quaternions. The certifier generates or receives rational separator proposals; not every native JSON stores its separating planes. A nonzero rational quaternion $q$ denotes the exactly proper orthogonal rotation $H(q)/\|q\|^2$. Exact canonical geometry is represented in algebraic number fields or multiquadratic extensions, with positive normalization factors where needed. The certifier checks facets and geometry and decides the final inequalities using integer-based outward-rounded enclosures of exact quantities. Floating-point routines may propose a separator but cannot turn a failing exact inequality into a successful one.
+
+Higher-dimensional records use rational skew-symmetric $S$ and a diagonal sign matrix $D$ with determinant $+1$, representing
+\begin{equation}\label{eq:cayley}
+R=D(I-S)^{-1}(I+S).
+\end{equation}
+Over the reals, $I-S$ is invertible and the Cayley factor is proper orthogonal; these exact identities are used by the production representation. The native polytope, facet list, edge conversion $\mu$, containment and separation are independently checked. Circumscribed-ball tests can certify obviously distant pairs or whole-piece containment; otherwise explicit vertices and hyperplanes are used.
+
+The certified scale is the full \code{s_full} value, not the truncated table display and not the fitted zero-clearance contact estimate. Closed-form expressions stored as conjectures remain conjectures. Exact feasibility yields an upper bound on $s^*$, not a matching lower bound or a global optimality proof.
+
+\subsection{New Lean development}
+The supplementary \code{formal/} project uses Lean 4.31.0 with a pinned mathlib revision. It defines a vertex body as the real convex hull of a finite vertex list and a container as a finite intersection of linear halfspaces. The proof interface permits heterogeneous vertex counts and any real vector space, including $\R^d$ for every finite $d$.
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{>{\scriptsize}p{0.48\linewidth}p{0.44\linewidth}}
+\toprule
+Lean declaration & Kernel-checked meaning\\
+\midrule
+\code{vertex_tests_imply_containment} & Vertex/wall inequalities imply whole-hull containment.\\
+\code{separating_vertex_tests_imply_disjoint} & Strict projection gaps separate the entire hulls.\\
+\code{finite_certificate_sound} & Finite wall and pair tests imply containment and pairwise disjointness.\\
+\code{affine_placement_of_vertex_body} & Affine placement commutes with taking the vertex hull.\\
+\code{transported_packing}, \code{subpacking_sound}, \code{nested_packing_sound} & Injective transport, subset replacement and disjoint child packings inside disjoint parents preserve a packing.\\
+\code{minkowskiOpening_subset}, \code{convex_blend_subset} & The two continuation constructions remain inside the target body under the stated hypotheses.\\
+\code{two_cube_packing} & A fully instantiated rational two-cube witness, including all finite tests.\\
+\bottomrule
+\end{tabular}
+\caption{Scope of the new formal development. The declarations prove the stated abstract or concrete results; they do not import or certify the full website archive.}
+\label{tab:formal}
+\end{table}
+
+The concrete test places unit cubes at $(-3/4,0,0)$ and $(3/4,0,0)$ inside $[-5/4,5/4]^3$. All 96 vertex/wall tests and both ordered pair certificates are discharged by exact arithmetic, then Theorem~\ref{thm:certificate}'s formal counterpart establishes whole-body containment and disjointness. Its scale $5/2$ and separating gap $1/2$ make it a deliberately simple integration example, without a record or optimality claim.
+
+The formal source uses no \code{sorry}, \code{admit} or custom axioms. Its build and axiom reports accompany the manuscript. The important boundary is explicit: the Lean kernel checks these proofs and this rational example. It does not check the optimizer, intermediate core preprocessing, JSON parser, production interval implementation, algebraic canonical-shape identification, quaternion/Cayley implementation, every composition, or all archived numerical witnesses. Those remain separately audited computational components. In particular, the 10,398 archive certification flags below are not 10,398 Lean theorems.
+
+\section{Frozen computational evidence}
+\subsection{Coverage and five inspectable witnesses}
+The computational snapshot is repository commit
+\href{\frozen}{\code{1abc63218db34cea95802aeb3b6d4a6b6fe1c61b}}, with site data built on 15 October 2026 at 23:21 and retrieved on 16 October. Table~\ref{tab:coverage} is a coverage statement about the selected catalogue. It includes inherited, community, structured and numerically searched constructions, not 10,404 new discoveries or independent continuation successes.
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{lrrrr}
+\toprule
+Family & Problems & Population & Slots & Coordinate witnesses\\
+\midrule
+3D Platonic pairs & 25 & 2--100 & 2,475 & 2,469\\
+3D Archimedean self-packings & 13 & 2--100 & 1,287 & 1,287\\
+3D Catalan self-packings & 13 & 2--100 & 1,287 & 1,287\\
+3D prism-related problems & 35 & 2--100 & 3,465 & 3,465\\
+4D regular pairs & 36 & 2--40 & 1,404 & 1,404\\
+5D regular pairs & 9 & 2--32 & 279 & 279\\
+6D regular pairs & 9 & 2--24 & 207 & 207\\
+\midrule
+Total & 140 & & 10,404 & 10,398\\
+\bottomrule
+\end{tabular}
+\caption{Frozen selected-catalogue coverage. All coordinate entries are marked exact-certified in the snapshot. The six remaining entries are source-only published octahedron-in-cube bounds; their coordinates are not supplied as certified witnesses here.}
+\label{tab:coverage}
+\end{table}
+
+Five full native witnesses and their geometry are frozen with the paper (Table~\ref{tab:cases}). Each was rerun through the appropriate production exact checker for this manuscript and passed. This is a recheck of the selected examples, not a fresh recertification of the entire archive. All five selected constructions are credited to Alejandro Zarzuelo Urdiales in their native provenance; other catalogue entries retain their own authors.
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{p{0.34\linewidth}rrlp{0.20\linewidth}}
+\toprule
+Pieces and container & $d$ & $n$ & Certified full $s$ & Recorded move\\
+\midrule
+Pentagonal prisms in themselves & 3 & 12 & 2.6180343063072 & symmetric fresh\\
+Truncated octahedra in themselves & 3 & 8 & 2.5000001428871 & symmetric fresh\\
+Pentagonal hexecontahedra in themselves & 3 & 4 & 2.2051534370001 & insertion\\
+5-cells in a tesseract & 4 & 4 & 0.8896812614235 & perturbation\\
+5-cells in a tesseract & 4 & 8 & 0.9771978857222 & composition\\
+\bottomrule
+\end{tabular}
+\caption{Illustrative upper bounds, with complete coordinates and certificate logs in the supplement. A recorded final move is provenance, not a controlled attribution of the entire outcome to that move.}
+\label{tab:cases}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/generalization-examples.pdf}
+\caption{Three exact-rechecked 3D witnesses from Table~\ref{tab:cases}: 12 pentagonal prisms, eight truncated octahedra and four pentagonal hexecontahedra in homothetic containers. Transparent bodies and wireframe containers show interior structure. Colors identify pieces; they do not assert distinct orientation classes. The rendering uses the native positions and rotations without spreading or altering the construction.}
+\label{fig:examples}
+\end{figure}
+
+The prism and truncated-octahedron cases illustrate symmetric starts on non-tangential geometry. Their apparent contact scales $(3+\sqrt5)/2$ and $5/2$ are recorded conjectures, distinct from the slightly larger certified scales. The chiral Catalan example has 92 vertices and 60 facets per piece and requires 22,080 vertex/facet inequalities plus six separating-plane checks. Proper-rotation treatment is essential to its interpretation. The four-dimensional examples exercise native $\SO(4)$ poses and the conversion $\mu=2\sqrt2$. The eight-piece case is a nested inclusion through a 16-cell; its recorded expression $(5\sqrt2-\sqrt{10})/4$ is also only a conjectured contact limit.
+
+The earlier patterns study~\cite{zarzueloPatterns} analyzes scale jumps and orientational domains in its smaller freeze. In the expanded setting, deletion, symmetry release and nested substitution provide specific mechanisms that can generate plateaus, orientation families and unexpectedly competitive mixed pairs. They offer explanations to test rather than proofs that the observed best constructions are optimal or that all their patterns persist to larger populations.
+
+\subsection{A reproducible historical comparison of search moves}
+We recompute the archived Round-D comparison from its six raw JSONL shards. It contains 40 cases across all 20 prism/antiprism problems then supported, with populations from 6 to 28, 1,824 valid attempts and 40,751.5 summed per-attempt elapsed seconds. The script measures elapsed wall-clock time per attempt; summing these intervals across workers does not measure processor utilization or total campaign duration. These are historical internal runs, not a new randomized or independently executed experiment. Every gain is measured against the reference scale stored in that attempt's log.
+
+For attempts $a$ of one method, define positive logarithmic gain and gain per aggregate worker-hour by
+\begin{equation}
+g_a=\max\{0,\log(s_{\mathrm{ref},a}/s_a)\},\qquad
+G=\frac{\sum_a g_a}{\sum_a t_a/3600}.
+\end{equation}
+The table reports wins using the original log's success flag, rather than silently replacing its decision rule with another tolerance. These are not matched-start comparisons: reference states and hop pools were read from an evolving archive.
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{lrrrrr}
+\toprule
+Move & Attempts & Wins & Win rate & Mean seconds & $G$\\
+\midrule
+Fresh & 607 & 71 & 11.70\% & 25.39 & 0.2922\\
+Hop & 608 & 200 & 32.89\% & 16.60 & 0.1651\\
+Symmetric fresh & 609 & 86 & 14.12\% & 25.04 & 0.5446\\
+\bottomrule
+\end{tabular}
+\caption{Recomputed Round-D outcomes. The largest improvement frequency and the largest summed improvement per aggregate worker-hour belong to different moves. Timing and archive dependence limit generalization beyond this cohort.}
+\label{tab:bench}
+\end{table}
+
+Symmetric fresh starts give 3.30 times hop's and 1.86 times fresh's measured $G$, whereas hops improve the reference more often. Among 31 cases improved by more than 0.1\%, the lowest result comes from symmetric fresh in 21, fresh in five and hop in five. The evidence supports keeping distinct search mechanisms available; it does not estimate a causal benefit of temporary softening, demonstrate a fixed-budget portfolio advantage, or establish a universal speedup. There are no independent reruns or uncertainty intervals here, and Elapsed-time observations may depend on implementation, machine load and the selected historical cases.
+
+\section{Limitations and testable next steps}
+The generalized method changes the set of configurations that can be explored and certified, but its numerical search remains local and stochastic. Catalogue completeness over a displayed range is not exhaustive optimization. Source-only bounds and certified coordinate witnesses are distinct evidence classes. A rigorous upper bound can be worse than an uncertified contact estimate while still being the scientifically stronger feasibility statement.
+
+A direct continuation ablation should start from the same archived hard packings, allocate the same measured budget to rigid perturbation and softening/rehardening, use identical tightening and exact acceptance rules, and reserve unseen problems for evaluation. Symmetric and crystal seeds should be compared at equal total cost, including seed construction. Outcomes should include the best certified scale, time-to-target and run-level failures, with uncertainty estimated across independently chosen seeds. The present archive and Round-D reanalysis do not replace that experiment.
+
+Several structural hypotheses are now testable. A plateau may arise from a removable, weakly constrained piece; a sharp gain may mark a change in boundary-compatible layers or orientation domains. Symmetric starts may help when good solutions retain approximate orbits but require a small final symmetry break. Non-tangential opening may preserve useful face contacts better than uniform core scaling. Nested substitution may be especially effective when one-piece inclusions are efficient and the intermediate solid packs well. Each prediction requires comparisons against alternative constructions and compatible normalizations; none follows from visualization alone.
+
+The Lean project removes ambiguity from core certificate implications, but extending it to production requires more work: formal canonical algebraic geometry, exact rigid-map representations, a verified parser or proof-producing exporter, and instantiated proofs for selected archive witnesses. Until then, the correct description is exact-arithmetic numerical witnesses together with Lean-verified certificate principles and one concrete rational example.
+
+\section{Reproducibility and methodological tools}
+The supplement contains the LaTeX source, figure-generation code, the Lean project and build report, five native witnesses and rerun logs, a compressed complete catalogue snapshot, a per-case provenance CSV, the historical benchmark shards and aggregation code, and a source/hash manifest. The implementation is available at \url{https://github.com/alejandrozu/platonic-packing}; the interactive catalogue is \url{https://polyhedrainpolyhedra.wiki/}. The repository commit named above freezes the computational implementation and data used here; the accompanying manuscript commit separately timestamps this document and its new formal development.
+
+The earlier DOI releases~\cite{zarzueloMethods,zarzueloPatterns,zarzueloData} remain citations to their original scope and freeze. They are not retroactive identifiers for the current 140-problem archive. Record links, \code{s_full}, geometry normalization and construction lineage should be retained when reproducing or extending an example.
+
+Software tools include Python, NumPy/SciPy and numerical optimizers, JavaScript dynamics and visualization, Lean/mathlib, and LaTeX. AI coding and drafting tools, including Claude and Codex, assisted implementation, analysis and manuscript preparation under human direction. Generated suggestions are not evidence of correctness; the mathematical arguments, exact checker outputs and Lean build artifacts identify the independently inspectable support for each claim. The recorded construction credit remains distinct from software assistance.
+
+\begin{thebibliography}{99}
+\bibitem{nakajima2026} Y. Nakajima. \emph{Soft-to-Rigid: Shape Continuation as an Alternative Search for Packing Congruent Shapes}. arXiv:2610.14463v1, 2026. \url{https://arxiv.org/abs/2610.14463}.
+\bibitem{zarzueloMethods} A. Zarzuelo Urdiales. \emph{Certified finite packings of Platonic solids: a generalized soft-to-rigid search and its computational development}. 2026. \url{https://doi.org/10.5281/zenodo.23306098}.
+\bibitem{zarzueloPatterns} A. Zarzuelo Urdiales. \emph{Finite polyhedral fits: discrete scale jumps, orientational domains, and contact structure in 351 certified constructions}. 2026. \url{https://doi.org/10.5281/zenodo.23306126}.
+\bibitem{zarzueloData} A. Zarzuelo Urdiales. \emph{Polyhedra in polyhedra packing: 351 certified constructions, structural measurements, software, and visualizations}. 2026. \url{https://doi.org/10.5281/zenodo.23306130}.
+\bibitem{romanova2018} T. Romanova, J. Bennell, Y. Stoyan and A. Pankratov. Packing of concave polyhedra with continuous rotations using nonlinear optimisation. \emph{European Journal of Operational Research} 268(1), 37--53, 2018. \url{https://doi.org/10.1016/j.ejor.2018.01.025}.
+\bibitem{berthold2026} T. Berthold, D. Kamp, G. Mexi, S. Pokutta and I. P\'olik. \emph{Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions}. arXiv:2605.04850, 2026. \url{https://arxiv.org/abs/2605.04850}.
+\bibitem{jin2015} W. Jin, P. Lu and S. Li. Evolution of the dense packings of spherotetrahedral particles: from ideal tetrahedra to spheres. \emph{Scientific Reports} 5, 15640, 2015. \url{https://doi.org/10.1038/srep15640}.
+\bibitem{torquato2010} S. Torquato and Y. Jiao. Robust algorithm to generate a diverse class of dense disordered and ordered sphere packings via linear programming. \emph{Physical Review E} 82, 061302, 2010. \url{https://doi.org/10.1103/PhysRevE.82.061302}.
+\bibitem{betke2000} U. Betke and M. Henk. Densest lattice packings of 3-polytopes. \emph{Computational Geometry} 16(3), 157--186, 2000. \url{https://doi.org/10.1016/S0925-7721(00)00007-9}.
+\bibitem{torquato2009} S. Torquato and Y. Jiao. Dense packings of polyhedra: Platonic and Archimedean solids. \emph{Physical Review E} 80, 041104, 2009. \url{https://doi.org/10.1103/PhysRevE.80.041104}.
+\bibitem{jiao2011} Y. Jiao and S. Torquato. \emph{Analytical Construction of A Dense Packing of Truncated Tetrahedra}. arXiv:1107.2300, 2011. \url{https://arxiv.org/abs/1107.2300}.
+\bibitem{ping79} PingYou Ltd. Whole-body polytope inclusion construction, contribution \#79, 2026. \url{https://github.com/alejandrozu/platonic-packing/issues/79}.
+\bibitem{tronford} \code{@BuilderOfAgents}/tronford. \emph{13 unit cubes in a cube: soft-to-rigid, continued}. Commit \code{c9b9b4e}, 9 October 2026. \url{https://github.com/tronford/cubes-in-cube-n13}.
+\bibitem{pingConstructions} PingYou Ltd. Honeycomb windows, prism subdivision and face-lift constructions, contributions \#28, \#78 and \#85, 2026. \url{https://github.com/alejandrozu/platonic-packing/issues/28}; \url{https://github.com/alejandrozu/platonic-packing/issues/78}; \url{https://github.com/alejandrozu/platonic-packing/issues/85}.
+\bibitem{archive} A. Zarzuelo Urdiales and contributors. \emph{Platonic packing: convex-polytope packing archive}. \href{\frozen}{Computational snapshot \code{1abc63218db34cea95802aeb3b6d4a6b6fe1c61b}}, 15 October 2026. \url{https://github.com/alejandrozu/platonic-packing}.
+\bibitem{repoRelated} Platonic Packing project. \emph{Related work: optimization formulations for packing polytopes, dense polyhedral packings, benchmarks, and certification}. Repository literature review, 15 October 2026. \href{\blob/docs/RELATED_WORK.md}{\code{docs/RELATED_WORK.md}} at snapshot~\cite{archive}.
+\bibitem{repoAudit} Platonic Packing project. \emph{Historical construction audit---13 October 2026}. Repository research note. \href{\blob/docs/HISTORICAL_SOURCE_AUDIT_2026-10-13.md}{\code{docs/HISTORICAL_SOURCE_AUDIT_2026-10-13.md}} at snapshot~\cite{archive}.
+\bibitem{repoSearch} Platonic Packing project. \emph{How to search much more efficiently: literature review, our own data, and a bake-off}. Repository research note, 13 October 2026. \href{\blob/docs/SEARCH_METHODS_REVIEW.md}{\code{docs/SEARCH_METHODS_REVIEW.md}} at snapshot~\cite{archive}.
+\bibitem{repoLarge} Platonic Packing project. \emph{Large n (41--100): where the time goes and how to mass-produce}. Repository research note, 14 October 2026. \href{\blob/docs/LARGE_N_REVIEW.md}{\code{docs/LARGE_N_REVIEW.md}} at snapshot~\cite{archive}.
+\bibitem{repoHigher} Platonic Packing project. \emph{Higher polytopes: packing regular polytopes in 4, 5 and 6 dimensions}. Repository implementation and benchmark note, 15 October 2026. \href{\blob/docs/HIGHER_DIM.md}{\code{docs/HIGHER_DIM.md}} at snapshot~\cite{archive}.
+\bibitem{stian} Stian (\code{kanin-design}). Octahedra in a cube, submitted constructions for $n=13,15,18$. Contributions \#82--84, 2026. \url{https://github.com/alejandrozu/platonic-packing/issues/82}; \href{https://github.com/alejandrozu/platonic-packing/issues/83}{\#83}; \href{https://github.com/alejandrozu/platonic-packing/issues/84}{\#84}.
+\bibitem{konoha} \code{konoha-ily2}. Exact rational cube-in-cube witnesses for $n=28,34,35,36$. Contribution \#1 and associated comments, 2026. \url{https://github.com/alejandrozu/platonic-packing/issues/1}.
+\bibitem{ryan} R. Xu. Cube packing coordinate records, 2026. \href{https://github.com/ry-xu/square_packing/blob/9535d65d84cc33f20f4e26329f8da12bdcef216e/cube_packing_records.json}{\code{ry-xu/square_packing}, frozen coordinate file for $n=34,35,36$}.
+\bibitem{scott} S. Scott. Hyra packing audit: coordinate tightening and source comparison, 2026. \href{https://github.com/shepard5/hyra-packing-audit/tree/c107fda33c2f02df83e9d549fb839b4fd5a7bfbc}{\code{shepard5/hyra-packing-audit}, frozen audit}. Original arrangements by Haowei Lin retain their authorship.
+\bibitem{builderRecon} \code{@BuilderOfAgents}/tronford. Coordinate reconstructions for 13 and 14 cubes, 2026. \href{https://github.com/tronford/cubes-in-cube-n13/tree/1f0c75401b2da4850b7e9f14de7d7b9cbe5e461a}{\code{tronford/cubes-in-cube-n13}, frozen reconstruction}. Matching historical bounds attributed to Erich Friedman.
+\end{thebibliography}
+\end{document}

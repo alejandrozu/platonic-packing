@@ -1,0 +1,112 @@
+<div class="doc">
+<article>
+<h1>Literature</h1>
+<p class="lede">The papers and sources behind this site: the project's own write-ups, the work it starts from and
+compares against, and the research literature on packing as an optimization problem, on dense packings of polyhedra
+and on proving packings correct. Each entry says in one line how it relates to the method used here.</p>
+<p>In short: the project's local optimizer solves the same model as the <b>quasi-phi-function</b> literature (a
+separating plane between every pair of pieces), with linear-programming steps in place of a full nonlinear solve, plus
+exact certification, soft-to-rigid starting points and regular polytopes in dimensions 4–6. The closest work on the
+same problems is Berthold, Kamp, Mexi, Pokutta and Pólik (2026), which treats all 25 Platonic pairs for n ≤ 30 with
+global optimization solvers. No published container values were found for the 4–6-dimensional problems.</p>
+
+<h2 id="project">This project's write-ups</h2>
+<p>By Alejandro Zarzuelo Urdiales, developed with Claude (Anthropic) as a tool; October 2026. All are in the repository.</p>
+<ul>
+  <li><a href="{{REPO}}/blob/main/docs/FINAL_REPORT.md">Polyhedra in polyhedra: the complete record of the project</a> (9–13 October 2026): the generalized soft-to-rigid method, the nine original problems, every idea that did and did not work.</li>
+  <li><a href="{{REPO}}/blob/main/docs/MATH.md">Mathematical notes</a>: what the records are, what is proven about them, what is only conjectured, and how the constructions work.</li>
+  <li><a href="{{REPO}}/blob/main/docs/HIGHER_DIM.md">Regular polytopes in dimensions 4–6</a>: the d-dimensional method, its cost against 3D, nested packings.</li>
+  <li><a href="{{REPO}}/blob/main/docs/LARGE_N_REVIEW.md">Large n (41–100)</a>: where the time goes and how to mass-produce packings (crystal cuts, faster tightening, the perturbation move).</li>
+  <li><a href="{{REPO}}/blob/main/docs/SEARCH_METHODS_REVIEW.md">How to search much more efficiently</a>: a literature review, 69,000 logged attempts and a bake-off of search moves.</li>
+  <li><a href="{{REPO}}/blob/main/docs/HISTORICAL_SOURCE_AUDIT_2026-10-13.md">Historical source audit</a>: how every published comparison value was checked and attributed.</li>
+  <li><a href="{{REPO}}/blob/main/docs/RELATED_WORK.md">Related work review</a>: the full version of this page, with verification notes for every citation.</li>
+  <li>The author's other research: <a href="https://alejandrozarzuelo.com">alejandrozarzuelo.com</a>.</li>
+</ul>
+
+<h2 id="sources">Where the project starts, and what it compares against</h2>
+<ul>
+  <li><b>Y. Nakajima (2026).</b> <a href="https://github.com/yoheinakajima/soft-to-rigid-packing">soft-to-rigid-packing</a>: the soft-to-rigid method for packing unit cubes in a cube (12 cubes in a cube of side 2.9315), which this project generalizes.</li>
+  <li><b>E. Friedman.</b> <a href="https://erich-friedman.github.io/packing/">Erich's Packing Center</a>: catalogue values for cubes in a cube (n = 2–33) and octahedra in a cube (n = 2–30), with constructions by E. Friedman, R. Walsh, H. Lin and others; the only Platonic problems with a catalogue.</li>
+  <li><b>T. Berthold, D. Kamp, G. Mexi, S. Pokutta, I. Pólik (2026).</b> <a href="https://arxiv.org/abs/2605.04850">Out-of-the-box global optimization for packing problems: new models and improved solutions</a>, arXiv:2605.04850, with a <a href="https://github.com/DominikKamp/Packing">coordinate supplement</a>: all 25 Platonic pairs for n ≤ 30 with the global solvers SCIP and FICO Xpress; non-overlap through Farkas multipliers (the dual form of a separating plane); feasible solutions for 429 of 750 instances, and lower bounds above the volume bound only for n ≤ 2. Sizes there are outer circumradii with unit-circumradius pieces; this site's s = R · ρ<sub>piece</sub>/ρ<sub>container</sub>, ρ = circumradius ÷ edge.</li>
+  <li><b>Tencent Hunyuan.</b> <a href="https://github.com/Tencent-Hunyuan/Hyra-results">Hyra-results</a>: published coordinates for cubes and octahedra in a cube.</li>
+  <li><b>R. Xu.</b> <a href="https://github.com/ry-xu/square_packing">square_packing</a>: constructions for 34–36 cubes in a cube.</li>
+  <li><b>E. Friedman (2009).</b> <a href="https://www.combinatorics.org/ojs/index.php/eljc/article/view/DS7">Packing unit squares in squares: a survey and new results</a>, Electronic Journal of Combinatorics, Dynamic Survey DS7: the two-dimensional analogue (n ≤ 100, several proven optima); the pattern s = k + 1/√2 for one more than a perfect square reappears for cubes.</li>
+  <li>Community submissions: credited in each record file and on the records page.</li>
+</ul>
+
+<h2 id="optimization">Packing as an optimization problem</h2>
+<p>Operations research writes non-overlap as explicit constraints and solves the result with nonlinear, linear or
+integer programming. The best single entry point is the review by Leao et al. (2020) below.</p>
+
+<h3 id="phi">Phi-functions and quasi-phi-functions</h3>
+<p>A phi-function of two placed objects is positive when they are apart, zero when they touch and negative when they
+overlap; a quasi-phi-function adds auxiliary variables (for two convex polytopes: a separating plane) so the
+constraints stay smooth. This is exactly the per-pair constraint of this project's tightening step.</p>
+<ul>
+  <li><b>Y. G. Stoyan, M. V. Novozhilova, A. V. Kartashov (1996).</b> <a href="https://iaorifors.com/paper/23651">Mathematical model and method of searching for a local extremum for the non-convex oriented polygons allocation problem</a>. European Journal of Operational Research 92(1), 193–210. <i>Local optimization as an active set over the binding pairwise inequalities: the ancestor of constraint generation in the tightening.</i></li>
+  <li><b>Y. G. Stoyan, N. I. Gil, G. Scheithauer, A. Pankratov, I. Magdalina (2005).</b> <a href="https://doi.org/10.1080/02331930500050681">Packing of convex polytopes into a parallelepiped</a>. Optimization, 215–235. <i>The first 3D polytope-in-box optimization model of this line of work.</i></li>
+  <li><b>J. Bennell, G. Scheithauer, Y. Stoyan, T. Romanova (2010).</b> <a href="https://doi.org/10.1007/s10479-008-0456-5">Tools of mathematical modeling of arbitrary object packing problems</a>. Annals of Operations Research 179(1), 343–368. <i>Tutorial: phi-functions, Minkowski sums, no-fit polygons and continuous rotation.</i></li>
+  <li><b>A. V. Pankratov, T. E. Romanova, A. M. Chugay (2015).</b> <a href="https://journals.uran.ua/jme/article/view/46687/42874">Optimal packing of convex polytopes using quasi-phi-functions</a>. Journal of Mechanical Engineering 18(2), 55–64. <i>Convex polytopes in a minimal cuboid with continuous rotation, one separating plane per pair, solved with IPOPT: the same constraint system as this project's tightening, which updates the plane normal on its tangent plane and takes linear-programming steps instead.</i></li>
+  <li><b>Y. Stoyan, T. Romanova, A. Pankratov, A. Chugay (2015).</b> <a href="https://doi.org/10.1007/978-3-319-18899-7_13">Optimized object packings using quasi-phi-functions</a>. In <i>Optimized Packings with Applications</i>, Springer, 265–293. <i>Introduces quasi-phi-functions for 2D and 3D objects.</i></li>
+  <li><b>Y. Stoyan, A. Pankratov, T. Romanova (2016).</b> <a href="https://ideas.repec.org/a/pal/jorsoc/v67y2016i5p786-800.html">Cutting and packing problems for irregular objects with continuous rotations: mathematical modelling and non-linear optimization</a>. Journal of the Operational Research Society 67(5), 786–800.</li>
+  <li><b>T. Romanova, J. Bennell, Y. Stoyan, A. Pankratov (2018).</b> <a href="https://doi.org/10.1016/j.ejor.2018.01.025">Packing of concave polyhedra with continuous rotations using nonlinear optimisation</a>. European Journal of Operational Research 268(1), 37–53. <i>The flagship 3D paper: non-convex polyhedra as unions of convex parts, compaction by decomposition into smaller nonlinear programs.</i></li>
+  <li><b>Y. E. Stoian, A. M. Chugay, A. V. Pankratov, T. E. Romanova (2018).</b> <a href="https://doi.org/10.1007/s10559-018-0059-3">Two approaches to modeling and solving the packing problem for convex polytopes</a>. Cybernetics and Systems Analysis 54(4), 585–593. <i>Phi- against quasi-phi-function models: the case for the separating-plane form.</i></li>
+  <li><b>M. S. Sofronova (2007).</b> <a href="https://uacademic.info/en/document/0407U003084">Mathematical modeling of the placement of convex n-dimensional polytopes in an n-dimensional parallelepiped</a>. CSc thesis, Kharkiv. <i>The only optimization formulation found for polytopes in dimensions above 3.</i></li>
+</ul>
+
+<h3 id="global">Separating planes, nonlinear and global optimization</h3>
+<ul>
+  <li><b>J. Peralta, M. Andretta, J. F. Oliveira (2018).</b> <a href="https://doi.org/10.1590/0101-7438.2018.038.02.0195">Solving irregular strip packing problems with free rotations using separation lines</a>. Pesquisa Operacional 38(2), 195–214. <i>The 2D twin of the separating-plane model, with freely rotating pieces and lines.</i></li>
+  <li><b>L. H. Cherri, A. C. Cherri, E. M. Soler (2018).</b> <a href="https://doi.org/10.1007/s10898-018-0638-x">Mixed integer quadratically-constrained programming model to solve the irregular strip packing problem with continuous rotations</a>. Journal of Global Optimization 72, 89–107. <i>Exact global solution for small instances; its symmetry breaking suits small-n optimality experiments.</i></li>
+  <li><b>J. Kallrath (2017).</b> <a href="https://doi.org/10.1007/s10898-015-0348-6">Packing ellipsoids into volume-minimizing rectangular boxes</a>. Journal of Global Optimization 67(1), 151–185. <i>Separating hyperplanes with arbitrary orientations; global solvers stall well before n ≈ 10.</i></li>
+  <li><b>E. G. Birgin, R. D. Lobato, J. M. Martínez (2016).</b> <a href="https://doi.org/10.1007/s10898-015-0395-z">Packing ellipsoids by nonlinear optimization</a>. Journal of Global Optimization 65(4), 709–743. <i>Separating-hyperplane models in any dimension, as in the 4–6-dimensional problems here.</i></li>
+  <li><b>P. Rocha, R. Rodrigues, A. M. Gomes, F. M. B. Toledo, M. Andretta (2014).</b> <a href="https://skoge.folk.ntnu.no/prost/proceedings/ifac2014/media/files/1663.pdf">Circle covering representation for nesting problems with continuous rotations</a>. 19th IFAC World Congress, 5235–5240. <i>A smooth proxy first, then the hard model and an LP repair: close in spirit to soft-to-rigid.</i></li>
+</ul>
+
+<h3 id="lp">Linear programming compaction and integer programming</h3>
+<ul>
+  <li><b>Z. Li, V. Milenkovic (1995).</b> <a href="https://www.iaorifors.com/paper/22061">Compaction and separation algorithms for non-convex polygons and their applications</a>. European Journal of Operational Research 84(3), 539–561. <i>Linear programming over positions with locally fixed separating constraints: the origin of the tightening step.</i></li>
+  <li><b>A. M. Gomes, J. F. Oliveira (2006).</b> <a href="https://ideas.repec.org/a/eee/ejores/v171y2006i3p811-829.html">Solving irregular strip packing problems by hybridising simulated annealing and linear programming</a>. European Journal of Operational Research 171(3), 811–829. <i>Stochastic outer search with an LP polish: the same architecture as basin hopping plus tightening.</i></li>
+  <li><b>T. Imamichi, M. Yagiura, H. Nagamochi (2007).</b> <a href="https://www.amp.i.kyoto-u.ac.jp/tecrep/abst/2007/2007-009.html">An iterated local search algorithm based on nonlinear programming for the irregular strip packing problem</a>. Technical Report 2007-009, Kyoto University. <i>Overlap minimization and swap moves: the 2D counterpart of the soft phase.</i></li>
+  <li><b>M. Fischetti, I. Luzzi (2009).</b> <a href="https://doi.org/10.1007/s10732-008-9088-9">Mixed-integer programming models for nesting problems</a>. Journal of Heuristics 15, 201–226. <i>Integer choice of the active facet of the no-fit region: proven-optimal translations for a fixed set of orientations.</i></li>
+  <li><b>L. H. Cherri, L. R. Mundim, M. Andretta, F. M. B. Toledo, J. F. Oliveira, M. A. Carravilla (2016).</b> <a href="https://doi.org/10.1016/j.ejor.2016.03.009">Robust mixed-integer linear programming models for the irregular strip packing problem</a>. European Journal of Operational Research 253(3), 570–583.</li>
+  <li><b>J. J. Lastra-Díaz, M. T. Ortuño (2024).</b> <a href="https://doi.org/10.1016/j.ejor.2023.08.009">Mixed-integer programming models for irregular strip packing based on vertical slices and feasibility cuts</a>. European Journal of Operational Research 313(1), 69–91. <i>Proven optima reach about 20–30 pieces in 2D with translations only.</i></li>
+  <li><b>J. Egeblad, B. K. Nielsen, A. Odgaard (2007).</b> <a href="https://doi.org/10.1016/j.ejor.2005.11.063">Fast neighborhood search for two- and three-dimensional nesting problems</a>. European Journal of Operational Research 183(3), 1249–1266. <i>Exact one-dimensional overlap minimization: a cheap move in any dimension.</i></li>
+</ul>
+
+<h3 id="reviews">Reviews</h3>
+<ul>
+  <li><b>A. A. S. Leao, F. M. B. Toledo, J. F. Oliveira, M. A. Carravilla, R. Alvarez-Valdés (2020).</b> <a href="https://doi.org/10.1016/j.ejor.2019.04.045">Irregular packing problems: a review of mathematical models</a>. European Journal of Operational Research 282(3), 803–822.</li>
+  <li><b>J. A. Bennell, J. F. Oliveira (2008).</b> <a href="https://ideas.repec.org/a/eee/ejores/v184y2008i2p397-415.html">The geometry of nesting problems: a tutorial</a>. European Journal of Operational Research 184(2), 397–415.</li>
+  <li><b>G. Wäscher, H. Haußner, H. Schumann (2007).</b> <a href="https://ideas.repec.org/a/eee/ejores/v183y2007i3p1109-1130.html">An improved typology of cutting and packing problems</a>. European Journal of Operational Research 183(3), 1109–1130.</li>
+</ul>
+
+<h2 id="dense">Dense packings of polyhedra</h2>
+<p>Infinite-space packing densities give a sanity check for large n, s ≈ (n · vol B / (φ · vol A))<sup>1/3</sup>; they are not bounds.</p>
+<ul>
+  <li><b>S. Torquato, Y. Jiao (2009).</b> <a href="https://doi.org/10.1038/nature08239">Dense packings of the Platonic and Archimedean solids</a>. Nature 460, 876–879; long version <a href="https://doi.org/10.1103/PhysRevE.80.041104">Physical Review E 80, 041104</a>. <i>The adaptive shrinking cell: a container that shrinks while the pieces relax. Densities: octahedra 18/19, dodecahedra (5 + √5)/8, icosahedra ≈ 0.836.</i></li>
+  <li><b>S. Torquato, Y. Jiao (2010).</b> <a href="https://doi.org/10.1103/PhysRevE.82.061302">Robust algorithm to generate a diverse class of dense disordered and ordered sphere packings via linear programming</a>. Physical Review E 82, 061302. <i>Sequential linear programming for spheres in dimensions 2–6: the physics analogue of the tightening step.</i></li>
+  <li><b>A. Haji-Akbari, M. Engel, A. S. Keys, X. Zheng, R. G. Petschek, P. Palffy-Muhoray, S. C. Glotzer (2009).</b> <a href="https://doi.org/10.1038/nature08641">Disordered, quasicrystalline and crystalline phases of densely packed tetrahedra</a>. Nature 462, 773–777.</li>
+  <li><b>Y. Kallus, V. Elser, S. Gravel (2010).</b> <a href="https://doi.org/10.1007/s00454-010-9254-3">Dense periodic packings of tetrahedra with small repeating units</a>. Discrete &amp; Computational Geometry 44(2), 245–252.</li>
+  <li><b>E. R. Chen, M. Engel, S. C. Glotzer (2010).</b> <a href="https://doi.org/10.1007/s00454-010-9273-0">Dense crystalline dimer packings of regular tetrahedra</a>. Discrete &amp; Computational Geometry 44(2), 253–280. <i>The densest known tetrahedron packing, 4000/4671 ≈ 0.8563.</i></li>
+  <li><b>S. Gravel, V. Elser (2008).</b> <a href="https://doi.org/10.1103/PhysRevE.78.036706">Divide and concur: a general approach to constraint satisfaction</a>. Physical Review E 78, 036706; and <b>Y. Kallus, V. Elser, S. Gravel (2010)</b>, <a href="https://doi.org/10.1103/PhysRevE.82.056707">Method for dense packing discovery</a>, Physical Review E 82, 056707. <i>A projection-based global search; a 4-simplex packing of density 128/219, the reference for the 5-cell problems here.</i></li>
+  <li><b>E. R. Chen, D. Klotsa, M. Engel, P. F. Damasceno, S. C. Glotzer (2014).</b> <a href="https://doi.org/10.1103/PhysRevX.4.011024">Complexity in surfaces of densest packings for families of polyhedra</a>. Physical Review X 4, 011024. <i>Densest packings across families between Platonic, Archimedean and Catalan solids.</i></li>
+  <li><b>J. C. Lagarias, C. Zong (2012).</b> <a href="https://www.ams.org/notices/201211/rtx121101540p.pdf">Mysteries in packing regular tetrahedra</a>. Notices of the AMS 59(11).</li>
+  <li><b>E. G. Teich, G. van Anders, D. Klotsa, J. Dshemuchadse, S. C. Glotzer (2016).</b> <a href="https://proceedings.aiche.org/conferences/aiche-annual-meeting/2016/proceeding/paper/678h-clusters-polyhedra-spherical-confinement">Clusters of polyhedra in spherical confinement</a>. <i>Up to about 60 Platonic solids in a sphere: a possible new container class with published values.</i></li>
+</ul>
+
+<h2 id="proofs">Proofs, certification and complexity</h2>
+<ul>
+  <li><b>M. Cs. Markót, T. Csendes (2005).</b> <a href="https://doi.org/10.1137/S1052623403425617">A new verified optimization technique for the "packing circles in a unit square" problems</a>. SIAM Journal on Optimization 16(1), 193–219; and <b>M. Cs. Markót (2021)</b>, <a href="https://doi.org/10.1007/s10898-021-01086-z">Improved interval methods for solving circle packing problems in the unit square</a>, Journal of Global Optimization 81(3), 773–803. <i>Interval proofs of optimality reach 33 circles in a square; this site proves that each packing is valid, not that it is optimal.</i></li>
+  <li><b>M. Abrahamsen, T. Miltzow, N. Seiferth (2020).</b> <a href="https://doi.org/10.1109/FOCS46700.2020.00098">Framework for ∃ℝ-completeness of two-dimensional packing problems</a>. FOCS 2020, 1014–1021. <i>Optimal packings with rotations may need algebraic numbers of unbounded degree: the reason the certificates use a small positive clearance in a fixed number field.</i></li>
+</ul>
+
+<h2 id="open">Open ground</h2>
+<ul>
+  <li>Published values exist only for cubes and octahedra in a cube (n ≤ 33 and n ≤ 30) and, from Berthold et al., for the 25 Platonic pairs with n ≤ 30. For n up to 100, for the Archimedean, Catalan and prism families and for the regular polytopes in dimensions 4–6, the values on this site appear to be the first published.</li>
+  <li>No optimality is known for n ≥ 3 beyond trivial grids (for example k<sup>3</sup> cubes in a cube of side k).</li>
+  <li>Better packings, missing references and corrections are welcome: <a href="{{ROOT}}contribute/">contribute</a> or open an <a href="{{REPO}}/issues">issue</a>.</li>
+</ul>
+</article>
+{{TOC}}
+</div>
