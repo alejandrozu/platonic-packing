@@ -8,7 +8,7 @@ archive state/nd (10^-7 clearance, rational rotations and explicit separating hy
 exact certificate records/<id>/<id>_nNN.certify.txt (certify_nd.py, standard library only). Record sizes are kept
 monotone in n (a record larger than the n + 1 record is replaced by that record minus one piece). Only changed cases
 are rebuilt; --minutes bounds the run (the next run continues). Then records/higher.md (tables)."""
-import json, os, sys, time, hashlib, io, contextlib, math
+import json, os, sys, time, hashlib, io, contextlib, math, glob
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'src')); sys.path.insert(0, ROOT)
 sys.path.append(os.path.join(ROOT, 'scripts'))
@@ -125,15 +125,33 @@ def write_tables(allrows):
     open(os.path.join(RECORDS, 'higher.md'), 'w').write('\n'.join(L) + '\n')
 
 
+def _build(arg):
+    p, deadline = arg
+    try: return build(p, deadline)
+    except Exception as e:
+        log(f'problem {p} FAILED: {type(e).__name__}: {e}'); return [], 0
+
+
 def main():
+    """problems in parallel (PP_PUBLISH_PROCS, default 2), the ones with the oldest records first"""
     args = sys.argv[1:]
     minutes = 30.0
     if args and args[0] == '--minutes': minutes = float(args[1]); args = args[2:]
     deadline = time.time() + 60 * minutes
     probs = args or list(E.PID)
+    def age(p):                      # oldest record file first, so every problem gets its turn when time runs out
+        fs = glob.glob(os.path.join(RECORDS, p, f'{p}_n[0-9][0-9].json'))
+        return min((os.path.getmtime(f) for f in fs), default=0)
+    probs.sort(key=age)
+    procs = int(os.environ.get('PP_PUBLISH_PROCS', '2'))
     allrows, tot = [], 0
-    for p in probs:
-        rows, k = build(p, deadline); allrows += rows; tot += k
+    if procs > 1:
+        import multiprocessing as mp
+        with mp.Pool(procs) as pool:
+            for rows, k in pool.imap_unordered(_build, [(p, deadline) for p in probs]): allrows += rows; tot += k
+    else:
+        for p in probs:
+            rows, k = build(p, deadline); allrows += rows; tot += k
     if not args: write_tables(allrows)
     cert = sum(r['certified'] for r in allrows)
     log(f'publish_nd: {len(allrows)} records ({cert} certified), {tot} rebuilt')
