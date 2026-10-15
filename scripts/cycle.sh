@@ -40,6 +40,8 @@ if timeout 90 git push -q origin HEAD:main > /dev/null 2>&1; then push=pushed; e
 flock -u 9
 # a new Actions run starts only after the push (15 Oct 14:00), so its jobs check out the archive just harvested
 kick=$(scripts/actions_kick.sh 2>&1 | tail -1)
+# Platonic records certified on Actions when this machine falls behind (16 Oct)
+kick="$kick; $(timeout 600 scripts/records_offload.sh 2>&1 | tail -1)"
 # contributions from other people (Alejandro, 13 Oct): accept certified record-beating submissions (credit) and make
 # contributed / published packings that beat the archive its starting points (scripts/community_sync.py)
 com=$(timeout 300 python3 scripts/community_sync.py 2>&1 | tail -1)
