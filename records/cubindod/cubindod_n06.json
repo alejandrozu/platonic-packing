@@ -5,90 +5,96 @@
  "n": 6,
  "s": 1.23606,
  "s_plus": "1.23606+",
- "s_full": 1.2360681291091,
+ "s_full": 1.2360681291088,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000027505862406e-07,
-  "min_wall_gap": 1.0000007644173081e-07
+  "min_pair_gap": 1.0000000016984919e-07,
+  "min_wall_gap": 1.0000001626764288e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
  "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
- "date": "2026-10-13",
+ "date": "2026-10-15",
  "pieces": [
   [
-   0.3090170252767615,
-   0.8090170752769487,
-   2.7106672156512544e-14,
-   4.1169333858663487e-16,
-   -0.4999999999999997,
-   -0.8090169943749477,
-   0.30901699437494734
+   0.5000000500000007,
+   0.5000000500000006,
+   0.49878901847272,
+   0.7071067811865476,
+   -0.7071067811865475,
+   1.8527814004366458e-16,
+   7.172393369275132e-17
   ],
   [
-   0.8090170752769482,
-   -3.674838211509268e-14,
-   0.3090170252767474,
-   0.9256147934109581,
-   -0.2185080122244109,
-   0.2185080122244107,
-   0.21850801222441024
+   -0.5000000500000011,
+   0.5000000500000006,
+   -0.5000000500000014,
+   0.5,
+   -0.5,
+   0.5000000000000001,
+   -0.4999999999999999
   ],
   [
-   0.5000000500001048,
-   -0.5000000500002016,
-   -0.5000000500001617,
-   0.2185080122244106,
-   0.21850801222441046,
-   -0.9256147934109581,
-   0.21850801222441057
+   -0.5000000500000004,
+   0.5000000500000004,
+   0.5000000500000006,
+   0.4999999999999999,
+   0.5,
+   -0.5000000000000001,
+   0.5000000000000002
   ],
   [
-   6.188399211008809e-14,
-   -0.30901702527669994,
-   0.8090170752769104,
-   0.21850801222441063,
-   0.2185080122244104,
-   -0.9256147934109581,
-   0.2185080122244104
+   -0.5000000500000007,
+   -0.5000000500000007,
+   -0.500000050000001,
+   0.4999999999999999,
+   0.5,
+   -0.5000000000000001,
+   -0.5
   ],
   [
-   -0.8090170752768242,
-   4.7878367936959876e-14,
-   -0.30901702527685115,
-   0.5720614028176846,
-   -0.5720614028176844,
-   -0.572061402817684,
-   -0.13504537836886332
+   0.5000000500000008,
+   -0.5000000500000009,
+   -0.5000000500000011,
+   0.5000000000000004,
+   -0.4999999999999998,
+   -0.5,
+   0.4999999999999998
   ],
   [
-   -0.5000000500001548,
-   0.5000000500002372,
-   0.5000000500001032,
-   0.5000000000000003,
-   -0.8090169943749473,
-   1.2007722375443523e-16,
-   0.3090169943749473
+   0.49892303595893556,
+   -0.500000050000001,
+   0.5000000500000008,
+   0.7071067811865475,
+   1.4520379433250715e-17,
+   8.7923067723317e-17,
+   0.7071067811865476
   ]
  ],
  "record_id": "cubindod_n06",
  "title": "6 unit cubes in a dodecahedron",
  "source": {
-  "hash": "86b954b25a26290b",
+  "hash": "7d9dfcd22ec3ae34",
   "clear": 1e-07,
-  "cap": 1.2360681291091
+  "cap": 1.2360681291088
  },
- "s_tight": 1.236068039303,
- "closed_form_conjecture": null,
+ "s_tight": 1.2360679775,
+ "closed_form_conjecture": "-1 + \u221a5",
  "volume_lower_bound": 0.9216836729296315,
- "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (their packing for n + 1 minus one piece)",
+ "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "search": {
-  "move": "monotone",
-  "from_n": 7,
-  "removed": 0,
-  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik"
+  "move": "compose",
+  "via": "cube",
+  "inner": [
+   "cubincub",
+   6
+  ],
+  "outer": [
+   "cubindod",
+   1
+  ]
  },
- "density": 0.4145896508211432
+ "density": 0.41458965082144505
 }
