@@ -362,8 +362,11 @@ def choose(rng):
             if n > NMIN and idx[(p, n - 1)] and idx[(p, n - 1)].get('best'): return p, n, 'ascend'
             if n < nmax(p) and idx[(p, n + 1)] and idx[(p, n + 1)].get('best'): return p, n, 'descend'
             return p, n, 'fresh'
-    for (p, n), c in sorted(idx.items(), key=lambda kv: rng.random()):
-        if c and c['stats'].get('needs_tighten') and (p, str(n)) not in claimed and not known_optimal(p, n): return p, n, 'tighten'
+    tq = [(p, n) for (p, n), c in idx.items() if c and c['stats'].get('needs_tighten') and (p, str(n)) not in claimed and not known_optimal(p, n)]
+    if tq:                                       # flagged cases: own shard first (18 Actions jobs must not all re-tighten the same)
+        rng.shuffle(tq)
+        tq.sort(key=lambda k: 0 if not sh or PID_INDEX[k[0]] % sh[1] == sh[0] else 1)
+        if not sh or PID_INDEX[tq[0][0]] % sh[1] == sh[0] or rng.random() < 0.15: return tq[0][0], tq[0][1], 'tighten'
     best_key, best_score = None, None
     for (p, n), c in idx.items():
         if (p, str(n)) in claimed or not c: continue
@@ -451,6 +454,7 @@ def harvest(src_dir, host):
                 C2, R2 = rnd(lg['C'], lg['R'])
                 case['best'] = {'s': s, 'C': C2, 'R': R2, 'src': dict(b.get('src') or {}, host=host), 't': time.time(), 'tightened': True}
                 st = case['stats']; st['improvements'] += 1; st['since'] = 0; st['last_improve'] = time.time()
+                st['needs_tighten'] = False              # a harvested packing was tightened where it was found
                 save_case(case)
                 pool_insert(p, n, {'s': s, 'C': C2, 'R': R2, 'src': 'harvest', 't': time.time()})
                 enforce_monotone(p, print)
