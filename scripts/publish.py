@@ -312,7 +312,7 @@ def main():
     r = subprocess.run([sys.executable, os.path.join(ROOT, 'scripts', 'publish_families.py'), '--minutes', '40'], capture_output=True, text=True)
     log((r.stdout.strip().splitlines() or ['publish_families: ?'])[-1] + (' ' + r.stderr.strip()[-300:] if r.returncode else ''))
     # records of the regular polytopes in 4, 5 and 6 dimensions (15 Oct; exact certificates by certify_nd.py)
-    r = subprocess.run([sys.executable, os.path.join(ROOT, 'scripts', 'publish_nd.py'), '--minutes', '15'], capture_output=True, text=True)
+    r = subprocess.run([sys.executable, os.path.join(ROOT, 'scripts', 'publish_nd.py'), '--minutes', '25'], capture_output=True, text=True)
     log((r.stdout.strip().splitlines() or ['publish_nd: ?'])[-1] + (' ' + r.stderr.strip()[-300:] if r.returncode else ''))
     subprocess.run([sys.executable, os.path.join(ROOT, 'scripts', 'site.py')], capture_output=True)
     log(f'publish: {len(rows)} records, {total} rebuilt, {time.time() - t0:.0f}s')
