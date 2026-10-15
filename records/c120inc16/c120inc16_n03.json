@@ -6,16 +6,16 @@
  "n": 3,
  "s": 16.60948,
  "s_plus": "16.60948+",
- "s_full": 16.609483920635,
+ "s_full": 16.609483920637,
  "mu": "7/2*sqrt2-3/2*sqrt10",
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000022532438386e-07,
-  "min_wall_gap": 1.0000002961161948e-07
+  "min_pair_gap": 1.0000407570799104e-07,
+  "min_wall_gap": 1.0000000678287403e-07
  },
- "density": 0.18633538648875245,
+ "density": 0.1863353864886626,
  "format": "per piece [c_1..c_4, S_12, S_13, ..., S_34, D_1..D_4]: the piece polytope of src/polytopes_nd.json (exact vertex coordinates V) placed as c + R V with R = diag(D) (I - S)^-1 (I + S), S skew-symmetric (upper triangle row by row, exact rationals), D = +-1 with determinant 1; container = s_full x mu x the container polytope of src/polytopes_nd.json, centred at the origin; planes [i, j, u_1..u_4, t]: u.x < t on piece i, u.x > t on piece j",
  "method": "d-dimensional soft-to-rigid homotopy (inscribed balls hardened into the polytope under inward pressure), basin hopping, sequential-LP tightening with per-pair separating hyperplanes (src/ndsim.py, src/ndslp.py)",
  "date": "2026-10-15",
@@ -27,10 +27,10 @@
  ],
  "pieces": [
   [
-   -1.0000000145898447,
-   -9.726565820092786e-24,
-   9.726565820092786e-24,
-   0.42705098935544616,
+   -1.0000000145885695,
+   -9.726935697249721e-24,
+   0.0,
+   0.42705098935715946,
    0.7888543819998404,
    -0.10557280900007981,
    -0.10557280900007981,
@@ -43,32 +43,32 @@
    -1
   ],
   [
-   1.0000000145898527,
-   2.0000000194531318e-15,
-   9.726565820092786e-24,
-   0.42705098935544017,
-   0.29925418795460246,
-   -0.13383054136357941,
-   0.13383054136357941,
-   -0.13383054136357941,
-   -0.13383054136357941,
-   0.5669152706818181,
+   1.0000000145922376,
+   2.0000000194538717e-15,
+   0.0,
+   0.4270509893534894,
+   0.5393446629166192,
+   0.0,
+   -0.20601132958330481,
+   -0.20601132958330481,
+   0.0,
+   0.5393446629166192,
    1,
    -1,
    -1,
    1
   ],
   [
-   -3.887516638348733e-23,
-   -9.726565820092786e-24,
-   -2.0000000194531318e-15,
-   -1.4270510039453088,
-   -0.8090169943749288,
-   -0.3090169943749288,
-   -0.5,
-   -0.5,
-   0.3090169943749288,
-   -0.8090169943749288,
+   -1.7839520331492366e-20,
+   -9.726935697249721e-24,
+   0.0,
+   -1.4270510039457545,
+   -0.5393446629166192,
+   0.0,
+   -0.20601132958330481,
+   -0.20601132958330481,
+   0.0,
+   -0.5393446629166192,
    1,
    -1,
    1,
@@ -81,9 +81,9 @@
    1,
    1.0,
    -0.0,
-   0.0,
-   5.684341886080802e-14,
-   3.143597677160581e-14
+   -0.0,
+   -0.0,
+   1.8359758158226214e-12
   ],
   [
    0,
@@ -92,37 +92,42 @@
    -0.0,
    -0.0,
    -0.850650808352043,
-   0.16245985048671396
+   0.16245985048650885
   ],
   [
    1,
    2,
-   -0.5257311121191037,
+   -0.5181649601653362,
    -0.0,
-   -0.0,
-   -0.850650808352043,
-   0.1624598504867426
+   0.16904505946854442,
+   -0.8384085173267977,
+   0.16012178091727547
   ]
  ],
  "record_id": "c120inc16_n03",
  "title": "3 120-cells in a 16-cell",
  "family": "4d",
+ "closed_form_conjecture": null,
  "kind": "mixed",
  "source": {
-  "hash": "b5e77f37b87b7077",
+  "hash": "4445414bee6d39e9",
   "clear": 1e-07,
   "cap": 17.0383949921282
  },
- "s_tight": 16.609483536884,
+ "s_tight": 16.609483536882,
  "volume_lower_bound": 10.912643638007212,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to regular polytopes of dimensions 4-6, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_nd.py (src/polytopes_nd.json)",
  "search": {
-  "move": "ascend",
-  "seed": 1824251510,
-  "raw": 16.801716060355087,
-  "host": "actions"
- },
- "closed_form_conjecture": null
+  "move": "hop",
+  "seed": 1452286897,
+  "from": "best",
+  "minDiff": 0.2299858869394084,
+  "expand": 0.03843608708793676,
+  "rh": 0.09594836282974209,
+  "focus": 0,
+  "raw": 17.04671910219151,
+  "host": "actions-38717030781-j9"
+ }
 }

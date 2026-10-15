@@ -12,8 +12,8 @@
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020605879784e-07,
-  "min_wall_gap": 1.0000006537665401e-07
+  "min_pair_gap": 1.000002061182477e-07,
+  "min_wall_gap": 1.000000577670722e-07
  },
  "density": 0.13701782415342817,
  "format": "per piece [c_1..c_4, S_12, S_13, ..., S_34, D_1..D_4]: the piece polytope of src/polytopes_nd.json (exact vertex coordinates V) placed as c + R V with R = diag(D) (I - S)^-1 (I + S), S skew-symmetric (upper triangle row by row, exact rationals), D = +-1 with determinant 1; container = s_full x mu x the container polytope of src/polytopes_nd.json, centred at the origin; planes [i, j, u_1..u_4, t]: u.x < t on piece i, u.x > t on piece j",
@@ -27,10 +27,10 @@
  ],
  "pieces": [
   [
-   0.30901699888345924,
-   0.5000000072949204,
-   0.0,
-   -0.8090170061783797,
+   0.3090169988834529,
+   0.5000000072949214,
+   4.000000029180991e-15,
+   -0.8090170061783805,
    0.1909830056250712,
    0.3090169943749288,
    -0.5,
@@ -43,10 +43,10 @@
    -1
   ],
   [
-   -0.30901699888345724,
-   -0.5000000072949204,
-   0.0,
-   0.8090170061783797,
+   -0.3090169988834649,
+   -0.5000000072949194,
+   -2.918099000887156e-23,
+   0.8090170061783785,
    0.1909830056250712,
    0.07294901687515676,
    0.11803398874991444,
@@ -67,28 +67,30 @@
    -0.5,
    -0.0,
    0.8090169943749288,
-   -2.229119666630197e-15
+   -1.3765030781875964e-15
   ]
  ],
  "record_id": "c120inc600_n02",
  "title": "2 120-cells in a 600-cell",
  "family": "4d",
+ "closed_form_conjecture": "(30 + 7\u221a5)/10",
  "kind": "dual",
  "source": {
-  "hash": "962ba1a97a62a9c9",
+  "hash": "2447cb338e781a10",
   "clear": 1e-07,
-  "cap": 4.8913900766826
+  "cap": 4.8855775452193
  },
- "s_tight": 4.56524758425,
+ "s_tight": 4.565247584248,
  "volume_lower_bound": 2.777529058872489,
  "found_by": "Alejandro Zarzuelo",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to regular polytopes of dimensions 4-6, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_nd.py (src/polytopes_nd.json)",
  "search": {
-  "move": "fresh",
-  "seed": 379611278,
-  "raw": 4.565247624015507,
-  "host": "actions"
- },
- "closed_form_conjecture": "(30 + 7\u221a5)/10"
+  "move": "perturb",
+  "seed": 1230780357,
+  "expand": 0.0038,
+  "sigma": 0.002,
+  "raw": 4.582791564916703,
+  "host": "actions-38717030781-j7"
+ }
 }
