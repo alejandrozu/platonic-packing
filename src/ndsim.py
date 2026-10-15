@@ -193,8 +193,48 @@ def _orth(R):
 
 
 @njit(cache=True)
+def _symmetrize(C, R, Vel, W, partner, ssgn, Mref):
+    """central symmetry (15 Oct): piece partner[i] = j > i is the image of piece i under x -> -x, i.e. c_j = -c_i and
+    R_j = ssgn R_i Mref (ssgn = 1, Mref = I for centrally symmetric pieces; ssgn = -1 for simplices in even d; Mref a
+    reflection symmetry of the simplex in odd d); partner[i] = i: a piece fixed at the centre. Each pair is projected
+    onto the symmetric configuration (mean centre, mean rotation projected back onto SO(d))."""
+    n, d = C.shape
+    for i in range(n):
+        j = partner[i]
+        if j < 0 or j < i: continue
+        if j == i:
+            for a in range(d): C[i, a] = 0.0; Vel[i, a] = 0.0
+            continue
+        for a in range(d):
+            m = 0.5 * (C[i, a] - C[j, a]); C[i, a] = m; C[j, a] = -m
+            v = 0.5 * (Vel[i, a] - Vel[j, a]); Vel[i, a] = v; Vel[j, a] = -v
+        A = np.empty((d, d))
+        for a in range(d):
+            for b in range(d):
+                s2 = 0.0
+                for c in range(d): s2 += R[j, a, c] * Mref[c, b]          # T^-1(R_j) = ssgn R_j Mref (Mref an involution)
+                A[a, b] = 0.5 * (R[i, a, b] + ssgn * s2)
+        Uu, sv, Vt = np.linalg.svd(A)
+        Q = Uu @ Vt
+        if np.linalg.det(Q) < 0:
+            for a in range(d): Uu[a, d - 1] = -Uu[a, d - 1]
+            Q = Uu @ Vt
+        for a in range(d):
+            for b in range(d):
+                R[i, a, b] = Q[a, b]
+        for a in range(d):
+            for b in range(d):
+                s2 = 0.0
+                for c in range(d): s2 += Q[a, c] * Mref[c, b]
+                R[j, a, b] = ssgn * s2
+        for a in range(d):
+            for b in range(d):
+                w = 0.5 * (W[i, a, b] + W[j, a, b]); W[i, a, b] = w; W[j, a, b] = w
+
+
+@njit(cache=True)
 def _phase(C, R, Vel, W, Lst, U, UOK, TH, SI, WI, P, aptr, aidx, circ, CN, off, mask, wts,
-           steps, r_a, r_b, mu_a, mu_b, mu_geom, nz_a, nz_b, moveL, iters, seed):
+           steps, r_a, r_b, mu_a, mu_b, mu_geom, nz_a, nz_b, moveL, iters, seed, partner, ssgn, Mref):
     """`steps` dynamics steps; softness r linear r_a -> r_b, pressure mu linear (or geometric) mu_a -> mu_b, noise
     linear nz_a -> nz_b. State arrays are updated in place; Lst = [L, vL]. Returns the last step's total overlap."""
     np.random.seed(seed)
@@ -301,6 +341,7 @@ def _phase(C, R, Vel, W, Lst, U, UOK, TH, SI, WI, P, aptr, aidx, circ, CN, off, 
             Lst[1] = beta * Lst[1] - 0.02 * gL
             if abs(Lst[1]) > cap: Lst[1] = cap if Lst[1] > 0 else -cap
             Lst[0] += Lst[1]
+        if partner[0] >= -1 and np.any(partner >= 0): _symmetrize(C, R, Vel, W, partner, ssgn, Mref)
         if st % 500 == 499: _orth(R)
     _orth(R)
     return tot
@@ -356,12 +397,14 @@ class State:
         self.U = np.zeros((n, n, d)); self.UOK = np.zeros((n, n), np.int8); self.TH = np.zeros((n, n))
         self.SI = np.zeros((n, n), np.int64); self.WI = np.zeros((n, F), np.int64)
         self.mask = np.ones(n); self.wts = np.ones((n, n)); self.seed = 1
+        self.partner = np.full(n, -1, np.int64); self.ssgn = 1.0; self.Mref = np.eye(d)
 
     def phase(self, steps, r_a, r_b, mu_a, mu_b, nz_a, nz_b, moveL=True, mu_geom=False, iters=1):
         pb = self.pb; self.seed += 1
         return _phase(self.C, self.R, self.Vel, self.W, self.Lst, self.U, self.UOK, self.TH, self.SI, self.WI, pb.V,
                       pb.adj_ptr, pb.adj_idx, pb.circ, pb.CN, pb.off, self.mask, self.wts, int(steps), float(r_a), float(r_b),
-                      float(mu_a), float(mu_b), bool(mu_geom), float(nz_a), float(nz_b), bool(moveL), int(iters), int(self.seed % 2 ** 31))
+                      float(mu_a), float(mu_b), bool(mu_geom), float(nz_a), float(nz_b), bool(moveL), int(iters), int(self.seed % 2 ** 31),
+                      self.partner, float(self.ssgn), np.ascontiguousarray(self.Mref, float))
 
     @property
     def L(self): return float(self.Lst[0])
@@ -480,6 +523,45 @@ def fresh(pb, n, seed, B=1.0, iters=1):
     mu = 0.02
     st.phase(int(5000 * B), 0.5, 0.5, mu * 3, mu * 3, 0.015, 0.0, iters=iters)
     st.phase(int(45000 * B), 0.5, 0.0, mu, mu, 0.004, 0.0, iters=iters)
+    st.phase(int(3000 * B), 0.0, 0.0, mu, mu * 1e-4, 0.0, 0.0, mu_geom=True, iters=iters)
+    out = legalize(pb, st.C, st.R, st=st)
+    out['Lsoft'] = st.L
+    return out
+
+
+def central_symmetric(pb):
+    """(applicable, ssgn, Mref, centre_ok) for the central-symmetry seeds: the container must be centrally symmetric (not a
+    simplex); the piece maps to itself under x -> -x unless it is a simplex"""
+    simplex = lambda k: k in ('c5', 'sx5', 'sx6')
+    if simplex(pb.container): return False, 1.0, np.eye(pb.d), False
+    if not simplex(pb.piece): return True, 1.0, np.eye(pb.d), True
+    if pb.d % 2 == 0: return True, -1.0, np.eye(pb.d), False
+    # odd d: a reflection symmetry of the simplex: swap two vertices (the reflection in their perpendicular bisector)
+    V = pb.V; u = V[0] - V[1]; u = u / np.linalg.norm(u)
+    return True, -1.0, np.eye(pb.d) - 2 * np.outer(u, u), False
+
+
+def symfresh(pb, n, seed, B=1.0, iters=1):
+    """fresh run constrained to central symmetry (pairs x, -x; for odd n one piece at the centre), then released:
+    the final settle is unconstrained; returns None if the symmetry does not apply to this problem and n"""
+    ok, ssgn, Mref, centre_ok = central_symmetric(pb)
+    if not ok or (n % 2 and not centre_ok): return None
+    rng = np.random.default_rng(seed)
+    L0 = default_L0(pb, n)
+    C = np.zeros((n, pb.d)); R = np.zeros((n, pb.d, pb.d)); partner = np.full(n, -1, np.int64)
+    for k in range(n // 2):
+        i, j = 2 * k, 2 * k + 1
+        C[i] = random_inside(pb, L0, rng, 0.7); C[j] = -C[i]
+        R[i] = random_rotation(rng, pb.d); R[j] = ssgn * R[i] @ Mref
+        partner[i] = j; partner[j] = i
+    if n % 2:
+        R[n - 1] = random_rotation(rng, pb.d); partner[n - 1] = n - 1
+    st = State(pb, C, R, L0); st.seed = seed * 7919 + 23
+    st.partner, st.ssgn, st.Mref = partner, ssgn, Mref
+    mu = 0.02
+    st.phase(int(5000 * B), 0.5, 0.5, mu * 3, mu * 3, 0.015, 0.0, iters=iters)
+    st.phase(int(45000 * B), 0.5, 0.0, mu, mu, 0.004, 0.0, iters=iters)
+    st.partner = np.full(n, -1, np.int64)
     st.phase(int(3000 * B), 0.0, 0.0, mu, mu * 1e-4, 0.0, 0.0, mu_geom=True, iters=iters)
     out = legalize(pb, st.C, st.R, st=st)
     out['Lsoft'] = st.L

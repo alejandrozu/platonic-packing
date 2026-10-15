@@ -52,8 +52,10 @@ def nmax(p):
 
 
 POOL = 6
-WEIGHTS = {'hop': 0.50, 'reinsert': 0.10, 'fresh': 0.14, 'ascend': 0.10, 'descend': 0.08, 'perturb': 0.08}
-DISCOVERY, POLISH = ('fresh', 'reinsert'), ('hop', 'tighten', 'perturb')
+# symfresh (15 Oct 08:10): soft-to-rigid run constrained to central symmetry (pairs x, -x), then released; in a first
+# test it beat 3 of 5 records (2 24-cells in a 24-cell: 1.8780 against 1.8856)
+WEIGHTS = {'hop': 0.45, 'reinsert': 0.08, 'fresh': 0.10, 'symfresh': 0.20, 'ascend': 0.09, 'descend': 0.07, 'perturb': 0.08}
+DISCOVERY, POLISH = ('fresh', 'symfresh', 'reinsert'), ('hop', 'tighten', 'perturb')
 _pb = {}
 
 
@@ -195,8 +197,13 @@ def attempt(p, n, move, rng, log):
     seed = rng.randrange(1, 2 ** 31 - 1)
     t0 = time.time(); info = {'move': move, 'seed': seed}
     hopkw = dict(morph=4000 + 150 * n, settle=1000 + 25 * n)
+    if move == 'symfresh':
+        raw = ndsim.symfresh(pb, n, seed, B=1.0 if n <= 16 else 0.7)
+        if raw is None: move = info['move'] = 'fresh'
     if move == 'fresh':
         raw = ndsim.fresh(pb, n, seed, B=1.0 if n <= 16 else 0.7)
+    elif move == 'symfresh':
+        pass
     elif move in ('hop', 'reinsert'):
         pool = load_pool(p, n)
         start = best if (rng.random() < 0.6 or not pool) else rng.choice(pool)
@@ -228,7 +235,7 @@ def attempt(p, n, move, rng, log):
         raise ValueError(move)
     t_raw = time.time() - t0; s_raw = raw['s']
     gate = case['stats'].get('gate', 0.03)
-    if move == 'fresh': gate = max(gate, 0.04)
+    if move in ('fresh', 'symfresh'): gate = max(gate, 0.04)
     out = None
     if best is None or move in ('descend', 'tighten', 'perturb') or s_raw <= best_s * (1 + gate):
         out = tighten(pb, raw['C'], raw['R'], best_s, n, explore=(move == 'perturb'))
@@ -294,6 +301,12 @@ def claim(p, n):
     try: yield True
     finally:
         with contextlib.suppress(Exception): os.remove(f)
+
+
+def sym_ok(p, n):
+    """central-symmetry seeds apply: centrally symmetric container; odd n needs a centrally symmetric piece"""
+    pc, cc = PID[p]; simplex = ('c5', 'sx5', 'sx6')
+    return cc not in simplex and (n % 2 == 0 or pc not in simplex)
 
 
 def known_optimal(p, n):
@@ -381,7 +394,8 @@ def choose(rng):
     if best_key is None: return None
     p, n = best_key; c = idx[(p, n)]; st = c['stats']
     if c['best']['src'].get('move') == 'monotone':
-        return p, n, 'ascend' if (n > NMIN and rng.random() < 0.5) else 'fresh'
+        r = rng.random()
+        return p, n, 'ascend' if (n > NMIN and r < 0.4) else 'symfresh' if (sym_ok(p, n) and r < 0.75) else 'fresh'
     W = dict(WEIGHTS)
     for m, k in (learned_multipliers().get(DIM[p]) or {}).items():
         if m in W: W[m] *= k
@@ -397,6 +411,7 @@ def choose(rng):
         for m in boost:
             if m in W: W[m] *= 2.5
     moves = [(m, W[m]) for m in ('hop', 'reinsert', 'fresh', 'perturb')]
+    if sym_ok(p, n): moves.append(('symfresh', W['symfresh']))
     if n > NMIN and lo and lo.get('best'): moves.append(('ascend', W['ascend']))
     if hi and hi.get('best'): moves.append(('descend', W['descend']))
     r = rng.random() * sum(w for _, w in moves)
