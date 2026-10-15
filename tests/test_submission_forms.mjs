@@ -11,6 +11,9 @@ const solids = JSON.parse(fs.readFileSync(path.join(root, 'src/solids.json'), 'u
 const D = { solids: Object.fromEntries(Object.entries(solids).map(([k, s]) => [k, { V: s.V, F: s.faces, E: s.edges }])), problems: [
   { id: 'cubincub', title: 'Cubes in a cube', piece: 'cube', container: 'cube', family: 'platonic', rows: [{ n: 2, sf: record.s_full, p: record.pieces, file: 'records/cubincub/cubincub_n02.json' }] }
 ] };
+// Higher-dimensional catalogue entries must never enter the 3D checker or its selectors.
+D.solids.c8 = { dim: 4, V: [[0, 0, 0, 0]], F: [], E: [] };
+D.problems.push({ id: 'c8inc8', title: 'Tesseracts in a tesseract', piece: 'c8', container: 'c8', dim: 4, family: '4d', rows: [] });
 class Element {
   constructor() { this.value = ''; this.children = []; this.listeners = {}; this.hidden = false; this.disabled = false; this.innerHTML = ''; this.textContent = '' }
   appendChild(element) { this.children.push(element); return element }
@@ -27,13 +30,21 @@ const opened = [];
 const dataRequests = [];
 const window = { open: (url, ...args) => { opened.push(new URL(url)); return {} }, addEventListener() {} };
 const context = { document: { documentElement: { dataset: { root: './', repo: 'https://github.com/alejandrozu/platonic-packing', recordsVersion: 'fixture-v1' } }, getElementById: el, createElement: () => new Element(), addEventListener() {} },
-  window, URL, Blob, location: { hash: '' }, navigator: { clipboard: { writeText: async () => { throw new Error('Denied') } } },
+  window, URL, Blob, location: { hash: '#c8inc8_n02' }, navigator: { clipboard: { writeText: async () => { throw new Error('Denied') } } },
   getComputedStyle: () => ({ getPropertyValue: () => '#ffffff' }), setTimeout, console,
   fetch: async (url, options) => { dataRequests.push({ url, options }); return { ok: true, json: async () => D } },
 };
 await vm.runInNewContext(fs.readFileSync(path.join(root, 'web/assets/contribute.js'), 'utf8'), context);
 assert.equal(dataRequests[0].url, './data/records.json?v=fixture-v1');
 assert.equal(dataRequests[0].options.cache, 'no-cache');
+assert.equal(el('prob').value, 'cubincub', 'A higher-dimensional hash must not select a 3D checker problem.');
+const optionValues = element => element.children.flatMap(child => [child.value, ...optionValues(child)]);
+for (const id of ['piece', 'container']) {
+  assert.ok(optionValues(el(id)).includes('cube'), 'Legacy 3D solids without a dim field remain selectable.');
+  assert.equal(optionValues(el(id)).includes('c8'), false, 'Higher-dimensional solids are excluded.');
+}
+assert.equal(optionValues(el('prob')).includes('c8inc8'), false);
+assert.doesNotMatch(el('names').innerHTML, /<code>c8<\/code>/);
 
 // A real record passes the production SAT checker; required credit prevents an incomplete packing form.
 el('json').value = JSON.stringify(record);
@@ -140,10 +151,30 @@ assert.match(el('result').innerHTML, /does not improve its reported scale/);
 assert.match(el('result').innerHTML, /Reported construction author/);
 D.problems[0].rows = originalRows; context.fetch = originalFetch;
 
+// Explicit native dimensions and known higher-dimensional solids are rejected before 3D geometry runs.
+const nativeND = { dim: 4, piece: 'c8', container: 'c8', n: 2, s_full: 2.2, mu: '1',
+  pieces: [[-.55, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1], [.55, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1]],
+  planes: [[0, 1, 1, 0, 0, 0, 0]] };
+const beforeND = opened.length;
+for (const submitted of [nativeND, { ...record, dim: 4 }, { ...record, piece: 'c8', container: 'c8' }]) {
+  el('json').value = JSON.stringify(submitted); await el('check').onclick();
+  assert.equal(el('send').disabled, true);
+  assert.match(el('result').innerHTML, /Cannot check this yet/);
+  assert.match(el('result').innerHTML, /only 3D packings/);
+  assert.match(el('result').innerHTML, /href="#higher"/);
+  el('send').onclick(); assert.equal(opened.length, beforeND, 'Rejected nD input cannot reuse a prior successful result.');
+}
+// Even a stale or programmatically supplied nD selection cannot load a higher-dimensional record.
+const requestsBeforeND = dataRequests.length;
+el('prob').value = 'c8inc8'; await el('loadrec').onclick();
+assert.equal(dataRequests.length, requestsBeforeND);
+assert.match(el('busy').textContent, /Pick a tracked problem/);
+el('prob').value = 'cubincub';
+
 // Every query key in the captured form links corresponds to a checked-in issue form ID.
 for (const url of opened) {
   const yaml = fs.readFileSync(path.join(root, '.github/ISSUE_TEMPLATE', url.searchParams.get('template')), 'utf8');
   const ids = [...yaml.matchAll(/^\s+id: (\w+)$/gm)].map(match => match[1]);
   for (const key of url.searchParams.keys()) if (!['template', 'title'].includes(key)) assert.ok(ids.includes(key), `${key} is missing from the template`);
 }
-console.log('PASS: packing SAT and rejection, required fields, all 3 issue forms, oversized proposals/constructions, clipboard fallback, source-only certified alternatives, and template mappings.');
+console.log('PASS: packing SAT and rejection, 3D-only solids/problems/hash/input guards, required fields, all 3 issue forms, oversized proposals/constructions, clipboard fallback, source-only certified alternatives, and template mappings.');
