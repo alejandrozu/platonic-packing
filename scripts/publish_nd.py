@@ -32,7 +32,8 @@ def credit_of(src):
     from them name it (as for the 3D records)"""
     src = src or {}
     if src.get('contributor'):
-        return f"{src['contributor']} (contribution" + (f", issue #{src['issue']}" if src.get('issue') else '') + ')'
+        extra = f"; its {src['from_n']}-piece packing minus one piece" if src.get('move') == 'monotone' and src.get('from_n') else ''
+        return f"{src['contributor']} (contribution" + (f", issue #{src['issue']}" if src.get('issue') else '') + extra + ')'
     if src.get('lineage') and src.get('move') == 'tighten':
         return f"{src['lineage']} (re-tightened by the search)"
     if src.get('lineage'):
@@ -79,6 +80,8 @@ def build(p, deadline):
         old = E._read(fn)
         if old and old.get('source') == src and cert_ok(fn):          # (a failed certificate is rebuilt)
             rec = old; ok = cert_ok(fn)
+            if rec.get('found_by') != credit_of(b.get('src')):         # credit corrected without a new packing
+                rec['found_by'] = credit_of(b.get('src')); json.dump(rec, open(fn, 'w'), indent=1)
             if 'closed_form_conjecture' not in rec:                    # records built before 15 Oct 10:20
                 try:
                     from records import closed_form

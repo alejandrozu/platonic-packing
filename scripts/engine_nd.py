@@ -166,15 +166,19 @@ def enforce_monotone(p, log=None):
         up = load_case(p, n + 1)
         if not up['best']: continue
         cur = load_case(p, n)
-        if cur['best'] and cur['best']['s'] <= up['best']['s']: continue
+        # 15 Oct 14:30: a relative tolerance, so re-legalization noise (1e-12) does not replace an equal packing
+        if cur['best'] and cur['best']['s'] <= up['best']['s'] * (1 + 1e-10): continue
         s_up = up['best']['s']
         s_new, i, C2, R2 = remove_one(pb, up['best']['C'], up['best']['R'])[0]
         if s_new > s_up:
             keep = [j for j in range(n + 1) if j != i]
             C2 = np.asarray(up['best']['C'])[keep]; R2 = np.asarray(up['best']['R'])[keep]; s_new = s_up
         C2, R2 = rnd(C2, R2)
-        cur['best'] = {'s': s_new, 'C': C2, 'R': R2, 'src': {'move': 'monotone', 'from_n': n + 1, 'removed': i},
-                       't': time.time(), 'tightened': False}
+        src = {'move': 'monotone', 'from_n': n + 1, 'removed': i}
+        us = up['best'].get('src') or {}             # a packing taken from a contribution keeps its contributor's credit
+        for k in ('contributor', 'issue', 'lineage'):
+            if us.get(k) is not None: src[k] = us[k]
+        cur['best'] = {'s': s_new, 'C': C2, 'R': R2, 'src': src, 't': time.time(), 'tightened': False}
         cur['stats']['needs_tighten'] = True
         save_case(cur); fixed.append(n)
         if log: log(f'monotone: {p} n={n} set to s={s_new:.10f} from n={n + 1} minus piece {i}')
