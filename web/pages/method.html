@@ -97,6 +97,7 @@ and a pool of distinct good arrangements for each case. Its move portfolio inclu
   <li><b>Ascend and descend:</b> insert a piece into a good (n − 1)-packing, or remove a piece from an (n + 1)-packing and refit.</li>
   <li><b>Reinsert:</b> remove a few pieces and try placing them in larger holes before relaxing.</li>
   <li><b>Cheap perturbation:</b> expand and perturb a hard packing, then use sequential linear programming directly, avoiding a full soft simulation.</li>
+  <li><b>Follow-ups:</b> a case that has just improved is usually still short of its local optimum, so up to three further perturbations of it run at once while it keeps improving (in 4D–6D they improved the case in 58% of attempts, against 45% for other perturbations).</li>
 </ul>
 <p>The old fixed move percentages have been replaced by family-aware policies and measured performance. Recent
 improvements, logarithmic scale gains, CPU time, failure streaks, neighboring n values and long plateaus affect where
@@ -133,7 +134,8 @@ the composite pose is U<sub>j</sub>R<sub>i</sub>x + U<sub>j</sub>p<sub>i</sub> +
 container centers are translated consistently. One-piece inclusions are included by taking m = 1.</p>
 <p><a href="{{REPO}}/blob/main/scripts/compose3d.py"><code>scripts/compose3d.py</code></a> and
 <a href="{{REPO}}/blob/main/scripts/compose_nd.py"><code>scripts/compose_nd.py</code></a> search over intermediary
-Platonic solids in 3D and supported regular polytopes in 4D–6D, respectively, and available multiplicities, construct
+Platonic solids in 3D and supported regular polytopes in 4D–6D, respectively (<a href="{{REPO}}/blob/main/scripts/compose3d_all.py"><code>scripts/compose3d_all.py</code></a>
+extends the 3D sweep to every solid of the archive, computing one-piece inclusions on demand), and available multiplicities, construct
 improving candidates and re-legalize them. Improvements can therefore
 propagate to other problems without a fresh numerical search.</p>
 <p>The automated higher-dimensional sweep generalizes the whole-body inclusion construction in
