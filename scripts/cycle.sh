@@ -23,10 +23,13 @@ fi
 echo "$a $i $now" > state/.cycle
 w=$(pgrep -c -f "^python3 scripts/engine(_nd)?.py work")
 act=$(scripts/harvest_actions.sh 2>&1 | tail -1)
+# nested packings (15 Oct 16:40): a P-packing inside each piece of a Q-packing, whenever the product of the two
+# scales beats the archive (scripts/compose_nd.py; one-piece fits in state/nd/one_piece.json)
+act="$act; $(timeout 600 python3 scripts/compose_nd.py state/nd/one_piece.json --apply 2>&1 | tail -1)"
 chk=$(python3 scripts/engine.py check 2>&1 | tail -1); chk="$chk; $(python3 scripts/engine_nd.py check 2>&1 | tail -1)"
 python3 -c "import sys; sys.path.insert(0, 'scripts'); import publish; publish.progress()" 2>/dev/null
 exec 9> state/.gitlock; flock 9
-git add state/best state/nd/best state/nd/attempts.jsonl state/attempts.jsonl state/policy.json state/snapshot_*.json state/experiment_*.json state/actions_log.jsonl PROGRESS.md STATUS.md EXPERIMENT_LOG.md README.md docs scripts src test .gitignore 2>/dev/null
+git add state/best state/nd/best state/nd/attempts.jsonl state/nd/one_piece.json state/attempts.jsonl state/policy.json state/snapshot_*.json state/experiment_*.json state/actions_log.jsonl PROGRESS.md STATUS.md EXPERIMENT_LOG.md README.md docs scripts src test .gitignore 2>/dev/null
 git diff --cached --quiet || git commit -q -m "Checkpoint: search archive $(date '+%Y-%m-%d %H:%M') ($a attempts)
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

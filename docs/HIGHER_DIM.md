@@ -75,3 +75,22 @@ Reading it:
 2. More constructions: lattice and honeycomb cuts (the tesseract, 16-cell and 24-cell tile 4-space), as the crystal
    cuts did for 3D at large n.
 3. Symmetric seeds (as `symfresh` in 3D).
+
+## Nested packings (15 Oct 2026, 16:40)
+
+Scales are container edge / piece edge, so they multiply: if n copies of Q fit in C at s(Q in C, n) and m copies of P
+fit in Q at s(P in Q, m), then a copy of the P-packing inside each Q gives n·m copies of P in C at
+
+    s(P in C, N) <= s(P in Q, m) * s(Q in C, n)    for N <= m·n.
+
+This generalizes the whole-body inclusion of PingYou Ltd's contribution #79 (a 120-cell inside every 24-cell of a
+24-cell packing). `scripts/compose_nd.py` checks every case against every third polytope Q and every split m·n >= N,
+builds the composite (inner packing shifted into its container, mapped into each outer piece by that piece's rotation
+and position), re-legalizes it and stores it if it beats the archive; `scripts/cycle.sh` runs it after every harvest,
+so an improved Q-packing immediately improves the nested P-packings. The one-piece fits s(P in Q, 1) (best rotation of
+a single piece, random starts + the SLP) are in `state/nd/one_piece.json`.
+
+First pass: with m, n >= 2 nothing beat the archive; with one-piece slots 33 cases improved, by up to 9.4%, e.g.
+16 tesseracts in a 24-cell 2.2071 -> 2 (the 2×2×2×2 grid inside a 24-cell with s(c8 in c24, 1) = 1), 16 tesseracts in a
+16-cell 4.2297 -> 4, 6-8 24-cells in a 600-cell -> 1.2361 = sqrt5 - 1, 22-25 120-cells in a 120-cell -> 2.9316 (via the
+600-cell), 22-24 24-cells in a 24-cell -> 2*sqrt2 (via the 16-cell).

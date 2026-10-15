@@ -34,6 +34,8 @@ def credit_of(src):
     if src.get('contributor'):
         extra = f"; its {src['from_n']}-piece packing minus one piece" if src.get('move') == 'monotone' and src.get('from_n') else ''
         return f"{src['contributor']} (contribution" + (f", issue #{src['issue']}" if src.get('issue') else '') + extra + ')'
+    if src.get('lineage') and src.get('move') == 'compose':
+        return f"Alejandro Zarzuelo (nested construction using the packing of {src['lineage']})"
     if src.get('lineage') and src.get('move') == 'tighten':
         return f"{src['lineage']} (re-tightened by the search)"
     if src.get('lineage'):
