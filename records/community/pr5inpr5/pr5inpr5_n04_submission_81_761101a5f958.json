@@ -1,0 +1,571 @@
+{
+ "problem": "min/prism5_in_prism5",
+ "piece": "prism5",
+ "container": "prism5",
+ "n": 4,
+ "s_full": 2.0000001002000007,
+ "pieces": [
+  [
+   -0.6881910291235014,
+   0.5000000224106806,
+   -0.50000005005,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   0.4253254467510935,
+   -0.30901705294686793,
+   -0.50000005005,
+   0,
+   0,
+   0,
+   1
+  ],
+  [
+   -0.6881910291235014,
+   0.5000000224106806,
+   0.50000005005,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   0.4253254467510935,
+   -0.30901705294686793,
+   0.50000005005,
+   0,
+   0,
+   0,
+   1
+  ]
+ ],
+ "s": 2.0,
+ "s_plus": "2.00000+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 1.001e-07,
+  "min_wall_gap": 5.000023e-11
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "One complete-source affine height transfer and one common self-host enclosure.",
+ "date": "2026-10-15",
+ "record_id": "pr5inpr5_n04_submission_81_761101a5f958",
+ "title": "4 pentagonal prisms in a pentagonal prism",
+ "family": "prisms",
+ "source": {
+  "author": "PingYou Ltd",
+  "kind": "complete source transfer with certified host enclosure",
+  "attribution_note": "Inherited source attribution applies to the complete parent: Classical marked edge gluing and Cartesian composition. No finite published donor packing. PingYou Ltd supplies the finite whole-dimer assembly and native certificate.. PingYou Ltd supplies this named affine and host-enclosure transfer and native certificate.",
+  "construction": {
+   "name": "complete_prism_source_affine_self_enclosure",
+   "proof": "COMMON-AXIS PRISM TRANSFER INTO THE SUPPORTED SELF HOST\n\nThe live catalog supports self hosts only at canonical prism height 1.\nConsequently simply transferring a height-h self-host row to a new host\nheight is not a supported-record operation. Instead retain a complete\nnative source from any current host and apply the already reviewed common\naxis map to its owners, then enclose all actual vertices in the supported\nheight-one prism. This is a new finite enclosure of a complete source,\nnot an assertion that the old host maps to the desired new host.\n\nFor source axes R_i e3=+/-d, source height h, and target height H=1, use\nA=I+(1/h-1)dd^T/(d.d). Then A R_i=R_i diag(1,1,1/h), so every complete\nsource owner becomes exactly one target owner, with the same frame. The\nsame invertible A applies to all centers and preserves pair disjointness.\nWhen h=1 the identity map is retained as an actual re-enclosure control.\nIn this identity case no axis hypothesis is needed, so every complete\nheight-one source is eligible, including its arbitrary inherited frames.\n\nLet a_f.x<=beta_f be every canonical target-host wall. With transformed\ncenters p_i=A c_i, compute b_f=max_(i,v) a_f.(p_i+R_i v), over ALL target\nowner vertices. The common enclosure is the four-variable system\n  a_f.t - beta_f*S <= -b_f for every f,\nminimizing S with one shared t. This charges every physical host wall and\nowner, without choosing an independent scale or translation per wall.\nThe metric solve only realizes this derived finite enclosure operation.\n\nBefore promotion, check source native geometry, actual rational axes and\ncanonical height identity, and all target native vertices and pair gaps.\nOne common center dilation and outward host padding handles final rounding.\nRetain source path/hash/attribution, A, its inverse, the common translation,\nall attaining wall owners/vertices, every unchanged frame, and the inverse\nowner map. A failed fixed-source enclosure is not a global obstruction.\n\nBaseline: batches/common_axis11/baseline (main36591380, site11:43), joined\nwith the current reviewed ledger and all complete private native sources\nin common_axis_prism_transfer/INPUTS.json. Final publication requires a\nfresh current/private/pending comparison, not this initial gate alone.\n",
+   "parent_path": "selfdual/constructive/prism_returns/pentagon_dimers/records/pr5incub_n04_pingyou_edge_dimer_93f3a7ef1a01_20261015.json",
+   "parent_sha256": "55305ddbbe48d7e9e28907785c80f4df55926fcaca61f6de4b4dc10dcda33eaf",
+   "complete_parent": {
+    "record_id": "pr5incub_n04_pingyou_edge_dimer_93f3a7ef1a01_20261015",
+    "case_id": "pr5incub_n4",
+    "problem": "min/prism5_in_cube",
+    "piece": "prism5",
+    "container": "cube",
+    "n": 4,
+    "s_full": 2.4898986338726092,
+    "s_tight": 2.48989828488278,
+    "s": 2.48989,
+    "s_plus": "2.48989+",
+    "pieces": [
+     [
+      -0.5567582378816216,
+      0.40450853763832345,
+      -0.50000005,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      0.5567582378816216,
+      -0.40450853763832345,
+      -0.50000005,
+      0,
+      0,
+      0,
+      1
+     ],
+     [
+      -0.5567582378816216,
+      0.40450853763832345,
+      0.50000005,
+      1,
+      0,
+      0,
+      0
+     ],
+     [
+      0.5567582378816216,
+      -0.40450853763832345,
+      0.50000005,
+      0,
+      0,
+      0,
+      1
+     ]
+    ],
+    "found_by": "PingYou Ltd",
+    "credit": "PingYou Ltd",
+    "contribution": {
+     "submitted_by": "BuddenPing",
+     "credit": "PingYou Ltd",
+     "kind": "construction"
+    },
+    "date": "2026-10-15",
+    "family": "prisms",
+    "method": "Complete pentagonal-prism dimers glued at a marked side face, then stacked as whole modules.",
+    "measure": "Cube edge length in canonical prism base-edge-one units.",
+    "source": {
+     "author": "PingYou Ltd",
+     "kind": "new finite construction",
+     "attribution_note": "Classical marked edge gluing and Cartesian composition. No finite published donor packing. PingYou Ltd supplies the finite whole-dimer assembly and native certificate.",
+     "construction": {
+      "name": "marked_pentagonal_prism_edge_dimer_return",
+      "proof": "MARKED PENTAGON EDGE-DIMER RETURN\n\nLet P be the canonical regular pentagonal prism and choose one actual\nvertical side face. Its centroid m=(mx,my,0) is the radial midpoint of the\nmarked base edge. Put a complete copy of P at -m and its half-turn about\nthe prism axis at +m. Because the prism is symmetric in z, the second\ncopy is the central image -P. The marked edge face of the first and the\nopposite marked edge face of the second now both lie in the plane\nm dot x=0, with their interiors on opposite sides. This is one complete\ntwo-owner module, with a retained common separator and marked source face.\n\nThe module is centrally symmetric and its rectangular bounding box is\ncomputed from ALL vertices of BOTH owners. Treat that box as a whole cell\nin the complete grid/row/layer constructions. The two owners and their\nshared face are never independently repositioned. Deletion, if used for\nan odd final count, removes a named whole owner and preserves its complete\nparent module and cell.\n\nThe five actual side faces give five marked host registrations of this\nsame source operation. They form a finite exact list, not an angle sweep.\nThe source is classical edge gluing; no new infinite pentagon packing is\nclaimed. Every resulting finite witness must improve a pinned baseline\nand pass native and independent complete geometry/decoder checks.\n",
+      "source_face_index": 1,
+      "source_face_vertex_indices": [
+       9,
+       1,
+       0,
+       8
+      ],
+      "source_face_midpoint": [
+       0.5567581822058033,
+       -0.4045084971874737,
+       0.0
+      ],
+      "two_quaternions": [
+       [
+        1,
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        0,
+        1
+       ]
+      ],
+      "module_dimensions": [
+       2.48989828488278,
+       2.4270509831248424,
+       1.0
+      ],
+      "grid_counts": [
+       1,
+       1,
+       2
+      ],
+      "parent_owner_count": 4,
+      "retained_owner_words": [
+       [
+        0,
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        0,
+        1
+       ],
+       [
+        0,
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1,
+        1
+       ]
+      ],
+      "deleted_owner_words": [],
+      "undilated_centers": [
+       [
+        -0.5567581822058033,
+        0.4045084971874737,
+        -0.5
+       ],
+       [
+        0.5567581822058033,
+        -0.4045084971874737,
+        -0.5
+       ],
+       [
+        -0.5567581822058033,
+        0.4045084971874737,
+        0.5
+       ],
+       [
+        0.5567581822058033,
+        -0.4045084971874737,
+        0.5
+       ]
+      ],
+      "common_native_dilation": 1.0000001,
+      "native_decoder": "Compute the exact centroid m of the marked canonical side face. In each centered module-grid cell place the canonical owner at -m and the z-half-turn owner at +m. Retain the listed whole-owner words; multiply every resulting center by1.0000001 and use nominal_s*1.0000001+1e-7, rounded upward.",
+      "baseline": {
+       "problem": "pr5incub",
+       "piece": "prism5",
+       "container": "cube",
+       "n": 4,
+       "target": 2.491499256819,
+       "native_files": [
+        {
+         "path": "records/pr5incub/pr5incub_n04.json",
+         "sha256": "f61f771f1a10e5f4c814fd70af0a15e18aba2c1344831e5447b2e6be8b4701c9"
+        }
+       ],
+       "nominal_s": 2.48989828488278,
+       "dimer_decoder": {
+        "source_face_index": 1,
+        "source_face_vertex_indices": [
+         9,
+         1,
+         0,
+         8
+        ],
+        "source_midpoint": [
+         0.5567581822058033,
+         -0.4045084971874737,
+         0.0
+        ],
+        "module_dimensions": [
+         2.48989828488278,
+         2.4270509831248424,
+         1.0
+        ],
+        "grid_counts": [
+         1,
+         1,
+         2
+        ],
+        "parent_owner_count": 4
+       }
+      },
+      "source_attribution": "Classical marked edge gluing and Cartesian composition. No finite published donor packing. PingYou Ltd supplies the finite whole-dimer assembly and native certificate."
+     }
+    }
+   },
+   "source_provenance": {
+    "kind": "reviewed_private",
+    "sha256": "55305ddbbe48d7e9e28907785c80f4df55926fcaca61f6de4b4dc10dcda33eaf"
+   },
+   "inherited_author_fields": {
+    "found_by": "PingYou Ltd",
+    "credit": "PingYou Ltd",
+    "source_author": null
+   },
+   "affine_matrix": [
+    [
+     "1",
+     "0",
+     "0"
+    ],
+    [
+     "0",
+     "1",
+     "0"
+    ],
+    [
+     "0",
+     "0",
+     "1"
+    ]
+   ],
+   "inverse_affine_matrix": [
+    [
+     "1",
+     "0",
+     "0"
+    ],
+    [
+     "0",
+     "1",
+     "0"
+    ],
+    [
+     "0",
+     "0",
+     "1"
+    ]
+   ],
+   "axis": [
+    "0",
+    "0",
+    "1"
+   ],
+   "ratio": "1",
+   "translation": [
+    "-4735365354810081/36028797018963968",
+    "3440443320101307/36028797018963968",
+    "0"
+   ],
+   "rho": "10000000001/10000000000",
+   "full_owner_decoder": [
+    {
+     "source_owner": 0,
+     "transformed_center": [
+      "-2507416192659125/4503599627370496",
+      "7286977997504551/18014398509481984",
+      "-4503600077730459/9007199254740992"
+     ],
+     "ideal_recentered_center": [
+      "-24794694896083081/36028797018963968",
+      "18014399315110409/36028797018963968",
+      "-4503600077730459/9007199254740992"
+     ],
+     "rounding_error": [
+      "-15103916919/360287970189639680000000000",
+      "-9315110409/360287970189639680000000000",
+      "77730459/90071992547409920000000000"
+     ]
+    },
+    {
+     "source_owner": 1,
+     "transformed_center": [
+      "2507416192659125/4503599627370496",
+      "-7286977997504551/18014398509481984",
+      "-4503600077730459/9007199254740992"
+     ],
+     "ideal_recentered_center": [
+      "15323964186462919/36028797018963968",
+      "-11133512674907795/36028797018963968",
+      "-4503600077730459/9007199254740992"
+     ],
+     "rounding_error": [
+      "5813537081/360287970189639680000000000",
+      "534981559/72057594037927936000000000",
+      "77730459/90071992547409920000000000"
+     ]
+    },
+    {
+     "source_owner": 2,
+     "transformed_center": [
+      "-2507416192659125/4503599627370496",
+      "7286977997504551/18014398509481984",
+      "4503600077730459/9007199254740992"
+     ],
+     "ideal_recentered_center": [
+      "-24794694896083081/36028797018963968",
+      "18014399315110409/36028797018963968",
+      "4503600077730459/9007199254740992"
+     ],
+     "rounding_error": [
+      "-15103916919/360287970189639680000000000",
+      "-9315110409/360287970189639680000000000",
+      "-77730459/90071992547409920000000000"
+     ]
+    },
+    {
+     "source_owner": 3,
+     "transformed_center": [
+      "2507416192659125/4503599627370496",
+      "-7286977997504551/18014398509481984",
+      "4503600077730459/9007199254740992"
+     ],
+     "ideal_recentered_center": [
+      "15323964186462919/36028797018963968",
+      "-11133512674907795/36028797018963968",
+      "4503600077730459/9007199254740992"
+     ],
+     "rounding_error": [
+      "5813537081/360287970189639680000000000",
+      "534981559/72057594037927936000000000",
+      "-77730459/90071992547409920000000000"
+     ]
+    }
+   ],
+   "source_check": {
+    "record_id": "pr5incub_n04_pingyou_edge_dimer_93f3a7ef1a01_20261015",
+    "status": "PASS",
+    "candidate_sha256": "55305ddbbe48d7e9e28907785c80f4df55926fcaca61f6de4b4dc10dcda33eaf",
+    "piece": "prism5",
+    "container": "cube",
+    "n": 4,
+    "scale_exact": "5606753279849495/2251799813685248",
+    "native_numeric_schema": true,
+    "rational_rotation_congruence": true,
+    "rotation_matrix_sha256": [
+     "c24ecf7d64263f883c5052ed2a56466190eee43399095d818cd0f63eeca7d972",
+     "afb047d465c5b0ebaf674394796b857d3958badd602abba93ff16c37306a5322",
+     "c24ecf7d64263f883c5052ed2a56466190eee43399095d818cd0f63eeca7d972",
+     "afb047d465c5b0ebaf674394796b857d3958badd602abba93ff16c37306a5322"
+    ],
+    "wall_tests": 240,
+    "pair_tests": 6,
+    "far_pairs": 0,
+    "min_wall_lower_dyadic": "177822007004904647928753758246849094069422267",
+    "active_wall": [
+     0,
+     4,
+     5
+    ],
+    "min_pair_lower_dyadic": "149657767750064717119767812556748688218652672",
+    "fixed_point_bits": 170,
+    "planes_file": "pr5incub_n04_pingyou_edge_dimer_93f3a7ef1a01_20261015.planes.json",
+    "planes_sha256": "87e88d9bfb4f2f6dfdfc8458da585bb01f726aa8c6822cfc970ba37fc395f7e3",
+    "construction_decoder_review": "SEPARATE_OBLIGATION",
+    "seconds": 0.009676832996774465,
+    "comparison_status": "NOT_PROVIDED"
+   },
+   "metric_proposal": {
+    "source": {
+     "path": "selfdual/constructive/prism_returns/pentagon_dimers/records/pr5incub_n04_pingyou_edge_dimer_93f3a7ef1a01_20261015.json",
+     "sha256": "55305ddbbe48d7e9e28907785c80f4df55926fcaca61f6de4b4dc10dcda33eaf",
+     "piece": "prism5",
+     "n": 4,
+     "provenance": {
+      "kind": "reviewed_private",
+      "sha256": "55305ddbbe48d7e9e28907785c80f4df55926fcaca61f6de4b4dc10dcda33eaf"
+     },
+     "lower": [
+      "-1863163178436704941450820720311889800503584935475013/1496577676626844588240573268701473812127674924007424",
+      "-227016902653472054982093389882693615782670644140797/187072209578355573530071658587684226515959365500928",
+      "-9007199705100955/9007199254740992"
+     ],
+     "upper": [
+      "1863163178436704941450820720311889800503584935475013/1496577676626844588240573268701473812127674924007424",
+      "227016902653472054982093389882693615782670644140797/187072209578355573530071658587684226515959365500928",
+      "9007199705100955/9007199254740992"
+     ],
+     "widths": [
+      "1863163178436704941450820720311889800503584935475013/748288838313422294120286634350736906063837462003712",
+      "227016902653472054982093389882693615782670644140797/93536104789177786765035829293842113257979682750464",
+      "9007199705100955/4503599627370496"
+     ]
+    },
+    "source_piece": "prism5",
+    "target_piece": "prism5",
+    "target_problem": "pr5inpr5",
+    "n": 4,
+    "source_height": "1",
+    "ratio": "1",
+    "axis": [
+     "0",
+     "0",
+     "1"
+    ],
+    "affine_matrix": [
+     [
+      "1",
+      "0",
+      "0"
+     ],
+     [
+      "0",
+      "1",
+      "0"
+     ],
+     [
+      "0",
+      "0",
+      "1"
+     ]
+    ],
+    "transformed_centers": [
+     [
+      "-2507416192659125/4503599627370496",
+      "7286977997504551/18014398509481984",
+      "-4503600077730459/9007199254740992"
+     ],
+     [
+      "2507416192659125/4503599627370496",
+      "-7286977997504551/18014398509481984",
+      "-4503600077730459/9007199254740992"
+     ],
+     [
+      "-2507416192659125/4503599627370496",
+      "7286977997504551/18014398509481984",
+      "4503600077730459/9007199254740992"
+     ],
+     [
+      "2507416192659125/4503599627370496",
+      "-7286977997504551/18014398509481984",
+      "4503600077730459/9007199254740992"
+     ]
+    ],
+    "translation": [
+     -0.13143279117306064,
+     0.09549148472235722,
+     -0.0
+    ],
+    "scale_proposal": 2.0000001000000003,
+    "nominal_gate": 2.000000100002,
+    "native_gate": 2.0000003000020006,
+    "wall_controllers": [
+     [
+      2,
+      0
+     ],
+     [
+      1,
+      4
+     ],
+     [
+      1,
+      2
+     ],
+     [
+      0,
+      4
+     ],
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      6
+     ],
+     [
+      0,
+      2
+     ]
+    ],
+    "nominal_crossing": false,
+    "native_crossing": true
+   },
+   "classification": "certified improvement above the retained nominal gate"
+  }
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.5874010519681994,
+ "density": 0.499999924850007,
+ "found_by": "PingYou Ltd",
+ "credit": "PingYou Ltd",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/81",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "construction",
+  "replayed_on": "2026-10-15",
+  "witness_sha256": "272cd2d6d8bb31e7c1dbfd49e439108952a6c39f1392a9981948b565d6d7ed01",
+  "method": "This is an explicit replacement archive for 23 previously submitted cases, adding zero new distinct campaign cases. SUPERSESSIONS.json identifies the prior issue, archive, native hash and certified scale for each case. Ten replacements improve the pinned current nominal/reference bound; thirteen improve the complete native certificate without claiming a new ideal nominal value.\n\nThese complete constructions combine forced-phase prism-to-antiprism ring/slot inclusion, literal whole-owner prefixes, prism column and height/collar transfers, and retained whole-row returns. Every source has a full physical decoder with actual owner centers and frames. Certificate improvements arise from these physical operations; their narrower numerical scope is retained explicitly.\n\nAll active witnesses passed independent source, full geometry and current-public/private comparison review, followed by both official checks on the packaged native files. The archive preserves the complete source chain, original donor attribution, reviewed intermediate packings and explicit supersession identities. Some provenance audit scripts require the authenticated upstream Git snapshot or reviewed-source registry; the bundled official native validators are directly replayable.\n\nCredit the new finite constructions exactly to PingYou Ltd. Original donors and their authors remain credited. These contributions may be published under the repository\u2019s MIT license. No global optimum is claimed. Please treat these as stronger replacements, not as 23 additional distinct cases.",
+  "archive": "https://github.com/user-attachments/files/33494773/pingyou_new_constructions_replacement013_20261015.zip",
+  "archive_sha256": "59e0fb2920ef5bc4db4a543591ea53ae2b0399f424243a65858881d1084f305d"
+ },
+ "previous_record": {
+  "s_full": 2.0000003000020006,
+  "found_by": "PingYou Ltd",
+  "date": "2026-10-15"
+ },
+ "case_id": "pr5inpr5_n04"
+}
