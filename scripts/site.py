@@ -212,7 +212,7 @@ def load_nd():
             for q in r['pieces']:
                 R = nd_rotation([float(x) for x in q[d:d + m]], [int(x) for x in q[d + m:d + m + d]])
                 pcs.append([round(float(x), 7) for x in q[:d]] + [round(float(x), 7) for x in R.ravel()])
-            rows.append({'n': r['n'], 'id': r['record_id'], 's': r['s_plus'], 'sf': r['s_full'], 'st': r.get('s_tight'), 'cf': None,
+            rows.append({'n': r['n'], 'id': r['record_id'], 's': r['s_plus'], 'sf': r['s_full'], 'st': r.get('s_tight'), 'cf': r.get('closed_form_conjecture'),
                          'den': round(r['density'], 4), 'vlb': round(r['volume_lower_bound'], 5), 'ref': None, 'cmp': None,
                          'move': (r.get('search') or {}).get('move'), 'derived': r.get('derived_from'), 'who': r.get('found_by'),
                          'file': 'records/' + os.path.relpath(f, ND_RECORDS).replace(os.sep, '/'), 'ok': ok, 'ver': ok,

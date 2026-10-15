@@ -66,11 +66,24 @@ def build(p, deadline):
         old = E._read(fn)
         if old and old.get('source') == src and cert_ok(fn):          # (a failed certificate is rebuilt)
             rec = old; ok = cert_ok(fn)
+            if 'closed_form_conjecture' not in rec:                    # records built before 15 Oct 10:20
+                try:
+                    from records import closed_form
+                    rec['closed_form_conjecture'] = closed_form(b['s'])
+                except Exception:
+                    rec['closed_form_conjecture'] = None
+                json.dump(rec, open(fn, 'w'), indent=1)
         elif time.time() > deadline:
             if old: rec = old; ok = cert_ok(fn)
             else: prev = None; continue
         else:
+            try:
+                from records import closed_form
+                cf = closed_form(b['s'])
+            except Exception:
+                cf = None
             meta = {'record_id': f'{p}_n{n:02d}', 'title': title(n, piece, container), 'family': f'{d}d',
+                    'closed_form_conjecture': cf,
                     'kind': E.KIND[p], 'source': src, 's_tight': round(b['s'], 12),
                     'volume_lower_bound': (n * vP / vC) ** (1 / d) / mu,
                     'found_by': 'Alejandro Zarzuelo',
