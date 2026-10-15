@@ -3,104 +3,104 @@
  "piece": "rhombic_dodecahedron",
  "container": "rhombic_dodecahedron",
  "n": 7,
- "s": 2.42941,
- "s_plus": "2.42941+",
- "s_full": 2.429415441993,
+ "s": 2.33333,
+ "s_plus": "2.33333+",
+ "s_full": 2.3333335555564,
  "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020153611011e-07,
-  "min_wall_gap": 1.0000000427723421e-07
+  "min_pair_gap": 1.000001862982991e-07,
+  "min_wall_gap": 1.000000080519925e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
- "date": "2026-10-13",
+ "date": "2026-10-15",
  "pieces": [
   [
-   0.043408848734013725,
-   -0.04466129040276406,
-   -1.471462586233855,
-   0.7075244964299197,
-   0.00041796229589045886,
-   -0.7066885718381379,
-   0.00041796229589068676
-  ],
-  [
-   0.45546362905045507,
-   -0.4554636290504536,
-   1.060660237395121,
+   -1.0606602424908969,
+   -0.3535534141634552,
+   -0.3535534141639862,
    1.0,
-   -4.820818578810208e-16,
-   -2.8076703518180223e-16,
-   5.23603024819644e-16
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   0.45546362905045346,
-   1.0606602475861644,
-   -0.455463639241497,
-   0.7071067811865475,
-   -0.7071067811865476,
-   -4.824463362529809e-16,
-   5.275928525161787e-16
+   0.3535534141634548,
+   1.0606602424908964,
+   -0.3535534141639862,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   -1.0626998043057359,
-   -0.4534240723308842,
-   -0.4534099087233843,
-   0.7071115056594832,
-   -4.724504502299209e-06,
-   0.7071020566504786,
-   -4.724504502330212e-06
+   0.3535534141634548,
+   -0.3535534141634552,
+   1.0606602424903655,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   1.410666916098327,
-   -0.10545695034724911,
-   -0.10545696053829111,
-   0.5000000000000003,
-   0.5000000000000001,
-   -0.4999999999999998,
-   -0.4999999999999998
+   -0.7071068283271763,
+   0.707106828327176,
+   0.707106828326645,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   0.0007800240552461996,
-   -1.5151460884706658,
-   -0.000977788165953501,
-   9.322208524871451e-05,
-   9.3222085248761e-05,
-   -0.9999999913096428,
-   -3.0744589634830247e-16
+   -2.656596483024256e-13,
+   2.653062785599544e-13,
+   -1.4142136566546175,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   -0.6999155141708713,
-   0.6633430426831476,
-   0.663343032492108,
-   0.703750355753989,
-   0.06881450992442574,
-   0.5462858554276736,
-   0.44896744220449863
+   -2.656596483024256e-13,
+   -1.4142136566540866,
+   -2.656989909665364e-13,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   1.0606602424903657,
+   -0.3535534141634552,
+   -0.3535534141639862,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ]
  ],
  "record_id": "rdoinrdo_n07",
  "title": "7 rhombic dodecahedra in a rhombic dodecahedron",
  "family": "catalan",
  "source": {
-  "hash": "95199c87c0e3da23",
+  "hash": "76f7f19ef646f8d7",
   "clear": 1e-07,
-  "cap": 2.5241487266642
+  "cap": 2.5000002333336
  },
- "s_tight": 2.429415203757,
- "closed_form_conjecture": "(10 + \u221a2 + \u221a10)/6",
+ "s_tight": 2.333333346694,
+ "closed_form_conjecture": null,
  "volume_lower_bound": 1.912931182772389,
- "found_by": "Alejandro Zarzuelo",
+ "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/25)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "ascend",
-  "seed": 853386092,
-  "var": "base",
-  "raw": 2.433097336810635,
-  "host": "actions"
+  "move": "community",
+  "lineage": "PingYou Ltd",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/25",
+  "submitted_by": "BuddenPing",
+  "record_file": "records/community/rdoinrdo/rdoinrdo_n07_submission_25_41de715861fc.json"
  },
- "density": 0.4881942692441532
+ "density": 0.5510202507282945
 }

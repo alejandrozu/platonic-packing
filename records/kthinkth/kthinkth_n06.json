@@ -3,99 +3,95 @@
  "piece": "tetrakis_hexahedron",
  "container": "tetrakis_hexahedron",
  "n": 6,
- "s": 2.31947,
- "s_plus": "2.31947+",
- "s_full": 2.319470949652,
+ "s": 2.3125,
+ "s_plus": "2.31250+",
+ "s_full": 2.3125001163895,
  "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020292107424e-07,
-  "min_wall_gap": 1.000000353634789e-07
+  "min_pair_gap": 1.0000017448332315e-07,
+  "min_wall_gap": 1.0000004602161994e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
- "date": "2026-10-13",
+ "date": "2026-10-15",
  "pieces": [
   [
-   1.4017234809120178,
-   -0.1187194773477467,
-   -1.3950836648523075,
-   0.5767655788271207,
-   0.5776420599562702,
-   -0.5776420599562705,
-   -0.0008764811291495255
+   -4.534018840686419e-16,
+   -1.3921165243750884,
+   1.3921165243750881,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   -1.3954712690821345,
-   -0.12226434296448424,
-   1.4015296798300554,
-   0.0003706366412576076,
-   0.7078475687872301,
-   -0.7063650222221992,
-   0.00037063664125766836
+   -4.534018840686419e-16,
+   1.3921165243750881,
+   -1.3921165243750881,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   1.0889168724137925,
-   1.4795280938359283,
-   1.0722017330614393,
-   0.036353836533580534,
-   0.5309979722018126,
-   0.2592442499933946,
-   -0.805923055218186
+   1.458407787440568,
+   -1.060660209047686,
+   -1.2595339982441274,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   -1.102107448406344,
-   1.4665902496558767,
-   -1.1217077653036225,
-   0.44864646883232884,
-   -0.6456497721128606,
-   -0.4117050296451822,
-   -0.4608163260343029
+   1.5909903135715284,
+   0.9943689459822057,
+   0.9943689459822057,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   -1.0547789370563063,
-   -1.5713189188098762,
-   -1.0558927867173422,
-   0.7076019560708607,
-   0.00024769590043718383,
-   0.7066111724691123,
-   -0.00024769590043701004
+   -1.3921165243750886,
+   1.3921165243750881,
+   1.3921165243750881,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   1.066176762192758,
-   -1.5661769311429599,
-   1.0632075798598237,
-   0.0006601269198223779,
-   0.0006601269198229968,
-   0.7074364594786166,
-   -0.7067763325587941
+   -1.590990313571529,
+   -0.9943689459822058,
+   -0.9943689459822058,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ]
  ],
  "record_id": "kthinkth_n06",
  "title": "6 tetrakis hexahedra in a tetrakis hexahedron",
  "family": "catalan",
  "source": {
-  "hash": "ab54c81a2fa4e36b",
+  "hash": "2d6900e971b7174f",
   "clear": 1e-07,
   "cap": 2.4166566786323
  },
- "s_tight": 2.319470832674,
+ "s_tight": 2.312500013151,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.8171205928321397,
- "found_by": "Alejandro Zarzuelo",
+ "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/25)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "hop",
-  "seed": 1699900042,
-  "var": "gentle",
-  "minDiff": 0.02754651322336459,
-  "expand": 0.022108205472212844,
-  "rh": 0.09369730087414972,
-  "focus": 0,
-  "from": "best",
-  "raw": 2.3197639649549586
+  "move": "community",
+  "lineage": "PingYou Ltd",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/25",
+  "submitted_by": "BuddenPing",
+  "record_file": "records/community/kthinkth/kthinkth_n06_submission_25_ea75c36db8f0.json"
  },
- "density": 0.480822118654202
+ "density": 0.485183430186293
 }
