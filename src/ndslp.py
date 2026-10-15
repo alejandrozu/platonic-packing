@@ -38,7 +38,7 @@ def cayley(Om):
 
 
 def solve(pb, C, R, L, pairs, U, outer=600, trust=0.03, tlimit=None, slp_floor=1e-6, abort=None, verbose=False,
-          stall=50, stall_rel=1e-7, reg=0.0, lp_limit=None, lp_method='highs'):
+          stall=50, stall_rel=1e-7, reg=0.0, lp_limit=None, lp_method='highs', rot=3.0):
     d = pb.d; n = len(C); SK = skew_index(d); m = len(SK)
     C = np.array(C, float); R = np.array(R, float)
     hint = {tuple(p): u for p, u in zip(pairs.tolist(), U)} if len(pairs) else {}
@@ -56,7 +56,7 @@ def solve(pb, C, R, L, pairs, U, outer=600, trust=0.03, tlimit=None, slp_floor=1
             M0 = (C[pairs[:, 0]] + C[pairs[:, 1]]) / 2
             c0 = mid - np.einsum('pd,pd->p', U0, M0)
             E = tangent_basis(U0)                                    # P x (d-1) x d
-        dmax = trust * (math.sqrt(d) + 3 * math.sqrt(2 * m) * pb.circ)
+        dmax = trust * (math.sqrt(d) + rot * math.sqrt(2 * m) * pb.circ)
         reach = dmax + 2 * trust + 1e-3
         slack = (L / 2) * off[None, None, :] - Xc @ CN.T             # n x nv x F
         ci, cv, cf = np.nonzero(slack < reach); nc = len(ci)
@@ -101,7 +101,7 @@ def solve(pb, C, R, L, pairs, U, outer=600, trust=0.03, tlimit=None, slp_floor=1
         else:
             g0 = g_c
         J = csr_matrix((np.concatenate(vals), (np.concatenate(rows), np.concatenate(cols))), shape=(nc + npr, nvar))
-        per = np.concatenate([np.full(d, trust), np.full(m, 3 * trust)])
+        per = np.concatenate([np.full(d, trust), np.full(m, rot * trust)])
         lb = np.concatenate([-np.tile(per, n), [-2 * trust], np.full((d - 1) * P, -3 * trust), np.full(P, -cb)])
         ub = np.concatenate([np.tile(per, n), [0.01], np.full((d - 1) * P, 3 * trust), np.full(P, cb)])
         cvec = np.zeros(nvar); cvec[iL] = 1.0
