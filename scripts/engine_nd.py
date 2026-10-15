@@ -294,7 +294,8 @@ def attempt(p, n, move, rng, log):
         (f"  monotone-fixed {fixed}" if fixed else ''))
     with open(os.path.join(STATE, 'attempts.jsonl'), 'a') as f:
         f.write(json.dumps({'t': round(time.time()), 'p': p, 'n': n, 'move': move, 'raw': s_raw, 's': s_new if out else None,
-                            'best_before': best_s, 'improved': improved, 'secs': round(secs, 1), 'raw_secs': round(t_raw, 1)}) + '\n')
+                            'best_before': best_s, 'improved': improved, 'secs': round(secs, 1), 'raw_secs': round(t_raw, 1),
+                            **{k: info[k] for k in ('expand', 'sym', 'turn') if k in info}}) + '\n')
     return improved
 
 
@@ -538,7 +539,10 @@ def export(state, ref):
         try: a = json.loads(l)
         except json.JSONDecodeError: continue
         if a.get('move') == 'harvest' or a.get('p') not in DIM: continue
-        k = f"{DIM[a['p']]}:{a['move']}"; r = mv.setdefault(k, [0, 0, 0.0]); r[0] += 1; r[1] += bool(a.get('improved')); r[2] += a.get('secs', 0)
+        m = a['move']
+        if m == 'perturb' and 'expand' in a: m = 'perturb>5%' if a['expand'] > 0.05 else 'perturb<=5%'
+        if m == 'symfresh' and a.get('sym'): m = 'symfresh/' + a['sym']
+        k = f"{DIM[a['p']]}:{m}"; r = mv.setdefault(k, [0, 0, 0.0]); r[0] += 1; r[1] += bool(a.get('improved')); r[2] += a.get('secs', 0)
     out['_moves'] = mv
     blob = base64.b64encode(gzip.compress(json.dumps(out, separators=(',', ':')).encode())).decode()
     print(f'EXPORT {sum(len(v) for k, v in out.items() if not k.startswith("_"))} {blob}')
