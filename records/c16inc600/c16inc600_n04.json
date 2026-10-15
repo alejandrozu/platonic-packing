@@ -1,0 +1,170 @@
+{
+ "problem": "c16inc600",
+ "piece": "c16",
+ "container": "c600",
+ "dim": 4,
+ "n": 4,
+ "s": 0.67942,
+ "s_plus": "0.67942+",
+ "s_full": 0.6794211135398,
+ "mu": "1/2*sqrt2+1/2*sqrt10",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020075554234e-07,
+  "min_wall_gap": 1.0000013169110032e-07
+ },
+ "density": 0.1181706563504357,
+ "format": "per piece [c_1..c_4, S_12, S_13, ..., S_34, D_1..D_4]: the piece polytope of src/polytopes_nd.json (exact vertex coordinates V) placed as c + R V with R = diag(D) (I - S)^-1 (I + S), S skew-symmetric (upper triangle row by row, exact rationals), D = +-1 with determinant 1; container = s_full x mu x the container polytope of src/polytopes_nd.json, centred at the origin; planes [i, j, u_1..u_4, t]: u.x < t on piece i, u.x > t on piece j",
+ "method": "d-dimensional soft-to-rigid homotopy (inscribed balls hardened into the polytope under inward pressure), basin hopping, sequential-LP tightening with per-pair separating hyperplanes (src/ndsim.py, src/ndslp.py)",
+ "date": "2026-10-15",
+ "container_center": [
+  0,
+  0,
+  0,
+  0
+ ],
+ "pieces": [
+  [
+   0.2100069275238346,
+   -0.29334110044700246,
+   -0.5404800292930796,
+   0.35865795824297597,
+   0.10251694329480188,
+   0.4245183515922122,
+   0.3038729022977691,
+   -0.02044380189244066,
+   0.11450424801472536,
+   0.1341040905833779,
+   -1,
+   -1,
+   -1,
+   -1
+  ],
+  [
+   -0.14169596568059717,
+   -0.4763582444830317,
+   0.3889382513459387,
+   -0.17832340891838805,
+   -0.30474637706731755,
+   0.5870300548200476,
+   -0.5835379766494952,
+   -0.16306322763637127,
+   -0.44188175233773563,
+   0.09860402111559097,
+   1,
+   1,
+   -1,
+   -1
+  ],
+  [
+   0.35453767796297503,
+   0.41707081166617016,
+   -0.03526581708703375,
+   -0.37369036032744707,
+   0.2060548759187668,
+   -0.38944701014014527,
+   -0.4263519228988457,
+   -0.0399647396797036,
+   0.0435168890524551,
+   0.9384736098372741,
+   -1,
+   1,
+   -1,
+   1
+  ],
+  [
+   -0.5659656884039251,
+   0.3533200476859793,
+   0.03445092482230899,
+   0.2766323736649285,
+   0.9795012602493784,
+   0.71881117565772,
+   0.06586129838609622,
+   0.1780160408318352,
+   -0.058110663454158384,
+   -0.22895318570448353,
+   1,
+   1,
+   1,
+   1
+  ]
+ ],
+ "planes": [
+  [
+   0,
+   1,
+   -0.3565069111473349,
+   -0.5357241797017309,
+   0.710410666689711,
+   -0.28498966690131056,
+   0.10549119714038979
+  ],
+  [
+   0,
+   2,
+   -0.17277966157325864,
+   0.43092358567002975,
+   0.6436732741428841,
+   -0.6083886652577348,
+   -0.20540143534978045
+  ],
+  [
+   0,
+   3,
+   -0.5374102257671893,
+   0.5618104184538879,
+   0.4498169446342217,
+   -0.43957254154167913,
+   -0.10344882924193546
+  ],
+  [
+   1,
+   2,
+   0.48268774932171254,
+   0.6829546365167971,
+   -0.1194879586037132,
+   -0.5350776848866303,
+   0.15521753136476268
+  ],
+  [
+   1,
+   3,
+   -0.4741519298647745,
+   0.7012429198006771,
+   -0.16864053645730337,
+   0.5049739441776069,
+   0.07750321431836728
+  ],
+  [
+   2,
+   3,
+   -0.8435536305952382,
+   0.24089721046107115,
+   -0.03300327409704096,
+   0.47884923535548296,
+   0.12362226909883045
+  ]
+ ],
+ "record_id": "c16inc600_n04",
+ "title": "4 16-cells in a 600-cell",
+ "family": "4d",
+ "kind": "mixed",
+ "source": {
+  "hash": "e08933a28c58b03b",
+  "clear": 1e-07,
+  "cap": 0.6910672547764
+ },
+ "s_tight": 0.679420994379,
+ "volume_lower_bound": 0.398351494371774,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to regular polytopes of dimensions 4-6, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_nd.py (src/polytopes_nd.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 1052891260,
+  "raw": 0.6853481746719802,
+  "host": "actions"
+ }
+}

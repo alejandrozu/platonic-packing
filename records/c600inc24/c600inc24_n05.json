@@ -1,0 +1,204 @@
+{
+ "problem": "c600inc24",
+ "piece": "c600",
+ "container": "c24",
+ "dim": 4,
+ "n": 5,
+ "s": 4.23606,
+ "s_plus": "4.23606+",
+ "s_full": 4.2360681896321,
+ "mu": "-1/4*sqrt2+1/4*sqrt10",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000021569752703e-07,
+  "min_wall_gap": 1.0000002581624793e-07
+ },
+ "density": 0.20555648220649744,
+ "format": "per piece [c_1..c_4, S_12, S_13, ..., S_34, D_1..D_4]: the piece polytope of src/polytopes_nd.json (exact vertex coordinates V) placed as c + R V with R = diag(D) (I - S)^-1 (I + S), S skew-symmetric (upper triangle row by row, exact rationals), D = +-1 with determinant 1; container = s_full x mu x the container polytope of src/polytopes_nd.json, centred at the origin; planes [i, j, u_1..u_4, t]: u.x < t on piece i, u.x > t on piece j",
+ "method": "d-dimensional soft-to-rigid homotopy (inscribed balls hardened into the polytope under inward pressure), basin hopping, sequential-LP tightening with per-pair separating hyperplanes (src/ndsim.py, src/ndslp.py)",
+ "date": "2026-10-15",
+ "container_center": [
+  0,
+  0,
+  0,
+  0
+ ],
+ "pieces": [
+  [
+   2.2443376987885843e-15,
+   0.9256148243127348,
+   -1.2410606226263482e-14,
+   0.9256148243127348,
+   0.796179573623192,
+   0.49206603764753254,
+   0.6958864640243405,
+   -0.6958864640243405,
+   -0.49206603764753254,
+   0.796179573623192,
+   -1,
+   -1,
+   -1,
+   -1
+  ],
+  [
+   0.925614824312737,
+   0.0,
+   0.9256148243127224,
+   -1.8512296362746387e-15,
+   -0.09778255792241453,
+   -0.7762494909752604,
+   0.19046305334831004,
+   -0.637964071397846,
+   -0.052177633770952525,
+   0.09778255792241453,
+   1,
+   -1,
+   -1,
+   1
+  ],
+  [
+   -0.9256148243127325,
+   0.0,
+   0.9256148243127205,
+   1.2350830987384902e-23,
+   -0.8928948240411501,
+   -0.04263747666385598,
+   -0.04263747666385598,
+   -0.6343200556409556,
+   0.6343200556409556,
+   -0.3012122450640504,
+   -1,
+   1,
+   -1,
+   1
+  ],
+  [
+   0.925614824312737,
+   0.0,
+   -0.9256148243127471,
+   1.2350830987384902e-23,
+   -0.15224190340683208,
+   -0.44721359549993167,
+   -0.26491106406734843,
+   0.15224190340683208,
+   0.030060628025751157,
+   0.26491106406734843,
+   1,
+   -1,
+   1,
+   -1
+  ],
+  [
+   2.2443376987885843e-15,
+   -0.9256148243127348,
+   -1.2410606226263482e-14,
+   -0.9256148243127348,
+   -0.04811547582789899,
+   0.5401815134754315,
+   -1.0199300826479316,
+   -0.7281340151473046,
+   -0.5401815134754315,
+   0.7158165466722721,
+   1,
+   1,
+   -1,
+   -1
+  ]
+ ],
+ "planes": [
+  [
+   0,
+   1,
+   0.5,
+   -0.5,
+   0.5,
+   -0.5,
+   -7.494005416219807e-15
+  ],
+  [
+   0,
+   2,
+   -0.5,
+   -0.5,
+   0.5,
+   -0.5,
+   -9.43689570931383e-15
+  ],
+  [
+   0,
+   3,
+   0.5,
+   -0.5,
+   -0.5,
+   -0.5,
+   6.855627177060342e-15
+  ],
+  [
+   1,
+   2,
+   -1.0,
+   -0.0,
+   5.684341886080802e-14,
+   -0.0,
+   5.217102195079694e-14
+  ],
+  [
+   1,
+   3,
+   -5.684341886080802e-14,
+   -5.684341886080802e-14,
+   -1.0,
+   -0.0,
+   -3.8593569741833156e-14
+  ],
+  [
+   1,
+   4,
+   -0.5,
+   -0.5,
+   -0.5,
+   -0.5,
+   5.578870698741412e-15
+  ],
+  [
+   2,
+   4,
+   0.5,
+   -0.5,
+   -0.5,
+   -0.5,
+   8.493206138382448e-15
+  ],
+  [
+   3,
+   4,
+   -0.5,
+   -0.5,
+   0.5,
+   -0.5,
+   -3.1086244689504383e-15
+  ]
+ ],
+ "record_id": "c600inc24_n05",
+ "title": "5 600-cells in a 24-cell",
+ "family": "4d",
+ "kind": "mixed",
+ "source": {
+  "hash": "8a1c8dc76f7b84f6",
+  "clear": 1e-07,
+  "cap": 4.2360681896321
+ },
+ "s_tight": 4.2360679775,
+ "volume_lower_bound": 2.8523035121517264,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to regular polytopes of dimensions 4-6, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_nd.py (src/polytopes_nd.json)",
+ "search": {
+  "move": "monotone",
+  "from_n": 6,
+  "removed": 0,
+  "host": "actions"
+ }
+}

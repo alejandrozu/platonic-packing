@@ -1,0 +1,213 @@
+{
+ "problem": "c24inc8",
+ "piece": "c24",
+ "container": "c8",
+ "dim": 4,
+ "n": 5,
+ "s": 2.7429,
+ "s_plus": "2.74290+",
+ "s_full": 2.7429068551448,
+ "mu": "sqrt2",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020128544854e-07,
+  "min_wall_gap": 1.0000004659208906e-07
+ },
+ "density": 0.17666713267070655,
+ "format": "per piece [c_1..c_4, S_12, S_13, ..., S_34, D_1..D_4]: the piece polytope of src/polytopes_nd.json (exact vertex coordinates V) placed as c + R V with R = diag(D) (I - S)^-1 (I + S), S skew-symmetric (upper triangle row by row, exact rationals), D = +-1 with determinant 1; container = s_full x mu x the container polytope of src/polytopes_nd.json, centred at the origin; planes [i, j, u_1..u_4, t]: u.x < t on piece i, u.x > t on piece j",
+ "method": "d-dimensional soft-to-rigid homotopy (inscribed balls hardened into the polytope under inward pressure), basin hopping, sequential-LP tightening with per-pair separating hyperplanes (src/ndsim.py, src/ndslp.py)",
+ "date": "2026-10-15",
+ "container_center": [
+  0,
+  0,
+  0,
+  0
+ ],
+ "pieces": [
+  [
+   0.9395278960145331,
+   0.939527896014505,
+   -0.9395278960145332,
+   0.392834190121921,
+   1.0,
+   0.0,
+   0.0,
+   1.0,
+   -1.0,
+   0.0,
+   1,
+   1,
+   -1,
+   -1
+  ],
+  [
+   -0.939527896014533,
+   -0.09094321809894616,
+   -0.9395278960145332,
+   -0.9395278853643723,
+   1.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   -1.0,
+   -1,
+   1,
+   -1,
+   1
+  ],
+  [
+   0.9395278960145331,
+   -0.9395278960144811,
+   0.9395278960145329,
+   -0.9395278853644243,
+   -1.0,
+   1.0,
+   0.0,
+   -1.0,
+   0.0,
+   0.0,
+   1,
+   1,
+   1,
+   1
+  ],
+  [
+   -0.8175341472007374,
+   0.939527896014533,
+   0.9395278960144808,
+   0.028951742522734247,
+   0.0,
+   -0.9999999999999432,
+   0.9999999999999432,
+   0.0,
+   0.0,
+   1.0,
+   -1,
+   -1,
+   1,
+   1
+  ],
+  [
+   -0.06696280735559484,
+   -0.7889123425227694,
+   -0.12273130477969293,
+   0.7889123531729302,
+   -0.5307066105953595,
+   -0.18104617836331727,
+   0.18104617836331727,
+   0.5307066105954164,
+   0.5307066105954164,
+   -0.18104617836331727,
+   -1,
+   -1,
+   1,
+   1
+  ]
+ ],
+ "planes": [
+  [
+   0,
+   1,
+   -0.57653987755765,
+   -0.57653987755765,
+   0.052965165510102,
+   -0.57653987755765,
+   -0.13678834560682376
+  ],
+  [
+   0,
+   3,
+   -0.5174236981625313,
+   -0.4436419161210665,
+   0.5174236981624745,
+   -0.5174236981624745,
+   -0.5574962029200143
+  ],
+  [
+   0,
+   4,
+   -0.32967442958050697,
+   -0.8209411132610285,
+   0.32967442958050697,
+   0.32967442958050697,
+   -0.11065071685545308
+  ],
+  [
+   1,
+   2,
+   0.577350269447777,
+   -0.5773502686732854,
+   0.577350269447777,
+   -5.684341886080802e-14,
+   0.29747138729677686
+  ],
+  [
+   1,
+   3,
+   0.5,
+   0.5,
+   0.5,
+   0.5,
+   -0.4547633770353577
+  ],
+  [
+   1,
+   4,
+   0.24563334184028918,
+   -0.24563334184023233,
+   0.24563334184023233,
+   0.9049822010013031,
+   -0.13886046184272197
+  ],
+  [
+   2,
+   3,
+   -0.5621106650588104,
+   0.6066821243762206,
+   -5.684341886080802e-14,
+   0.5621106654294294,
+   -0.2902092744278446
+  ],
+  [
+   2,
+   4,
+   -0.3296744295805638,
+   0.32967442958050697,
+   -0.3296744295805638,
+   0.8209411132610285,
+   -0.549896418854078
+  ],
+  [
+   3,
+   4,
+   0.5,
+   -0.5,
+   -0.5000000000000568,
+   0.49999999999994316,
+   -0.3338190223176049
+  ]
+ ],
+ "record_id": "c24inc8_n05",
+ "title": "5 24-cells in a tesseract",
+ "family": "4d",
+ "kind": "mixed",
+ "source": {
+  "hash": "fec58575a4c816ad",
+  "clear": 1e-07,
+  "cap": 2.8284274247464
+ },
+ "s_tight": 2.742906561192,
+ "volume_lower_bound": 1.778279410038922,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to regular polytopes of dimensions 4-6, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_nd.py (src/polytopes_nd.json)",
+ "search": {
+  "move": "ascend",
+  "seed": 170203392,
+  "raw": 2.7878671588302546,
+  "host": "actions"
+ }
+}
