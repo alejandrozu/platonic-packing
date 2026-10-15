@@ -17,6 +17,13 @@ arithmetic). Their tables are in [records/families.md](records/families.md); the
 [website](https://alejandrozu.github.io/platonic-packing/method/). The rest of this README describes the original nine Platonic
 problems.
 
+**Since 15 Oct 2026: higher polytopes.** Every pair of regular polytopes of the same dimension, piece in container:
+5-cell, tesseract, 16-cell, 24-cell, 120-cell and 600-cell in 4D (36 problems, n ≤ 40), simplex, hypercube and
+orthoplex in 5D and 6D (9 problems each, n ≤ 32 and n ≤ 24): 54 problems, 1,890 cases. The d-dimensional method
+(simulator `src/ndsim.py`, tightening `src/ndslp.py`, engine `scripts/engine_nd.py`), the exact certificate
+(`certify_nd.py`), the cost study against 3D and the chosen n ranges are in [docs/HIGHER_DIM.md](docs/HIGHER_DIM.md);
+tables in [records/higher.md](records/higher.md); the website draws each packing as 3D slices.
+
 It generalizes [`yoheinakajima/soft-to-rigid-packing`](https://github.com/yoheinakajima/soft-to-rigid-packing)
 (unit cubes in a cube; his 12-cube record 2.9315185094797) from cubes to all five Platonic solids, as pieces and as
 containers.
