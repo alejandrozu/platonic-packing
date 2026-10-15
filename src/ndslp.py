@@ -19,6 +19,9 @@ def skew_index(d):
     return [(a, b) for a in range(d) for b in range(a + 1, d)]
 
 
+THR = None
+
+
 def tangent_basis(U):
     """orthonormal bases (P x (d-1) x d) of the complements of the unit vectors U (Householder)"""
     P, d = U.shape
@@ -108,19 +111,30 @@ def solve(pb, C, R, L, pairs, U, outer=600, trust=0.03, tlimit=None, slp_floor=1
         # one LP gets at most 5 + n/4 s: degenerate LPs at perfect lattice packings (hypercubes at s = 2) can stall
         # HiGHS for its whole budget (as in 3D, fastslp)
         tl = lp_limit or min(5.0 + n / 4, max(2.0, (tlimit - (time.time() - t_start)) if tlimit else 120.0))
-        if reg > 0:
-            mm = nd_ * n
-            Sel = csr_matrix((np.ones(mm), (np.arange(mm), np.arange(mm))), shape=(mm, nvar))
-            I6 = identity(mm, format='csr')
-            A = vstack([hstack([-J, csr_matrix((nc + npr, mm))]), hstack([Sel, -I6]), hstack([-Sel, -I6])]).tocsr()
-            b = np.concatenate([g0, np.zeros(2 * mm)])
-            cv2 = np.concatenate([cvec, np.full(mm, reg)])
-            bnd = np.concatenate([np.stack([lb, ub], 1), np.stack([np.zeros(mm), np.tile(per, n)], 1)])
-            res = linprog(cv2, A_ub=A, b_ub=b, bounds=bnd, method=lp_method, options={'time_limit': tl})
-            dz = res.x[:nvar] if res.status == 0 else np.zeros(nvar)
-        else:
-            res = linprog(cvec, A_ub=-J, b_ub=g0, bounds=np.stack([lb, ub], 1), method=lp_method, options={'time_limit': tl})
-            dz = res.x if res.status == 0 else np.zeros(nvar)
+        # constraint generation (15 Oct): the trust-region margins above are conservative (for the round 120-cell they
+        # take every vertex of both pieces: ~10^5 rows); solve with the rows already near-active, then add every row
+        # the step violates and solve again -- the same optimum as the LP with all rows, at a fraction of its size
+        thr = THR if THR is not None else max(0.02, dmax / 3)
+        act = g0 < thr
+        for rnd_ in range(8):
+            Ja = J[act]; ga = g0[act]
+            if reg > 0:
+                mm = nd_ * n
+                Sel = csr_matrix((np.ones(mm), (np.arange(mm), np.arange(mm))), shape=(mm, nvar))
+                I6 = identity(mm, format='csr')
+                A = vstack([hstack([-Ja, csr_matrix((Ja.shape[0], mm))]), hstack([Sel, -I6]), hstack([-Sel, -I6])]).tocsr()
+                b = np.concatenate([ga, np.zeros(2 * mm)])
+                cv2 = np.concatenate([cvec, np.full(mm, reg)])
+                bnd = np.concatenate([np.stack([lb, ub], 1), np.stack([np.zeros(mm), np.tile(per, n)], 1)])
+                res = linprog(cv2, A_ub=A, b_ub=b, bounds=bnd, method=lp_method, options={'time_limit': tl})
+                dz = res.x[:nvar] if res.status == 0 else np.zeros(nvar)
+            else:
+                res = linprog(cvec, A_ub=-Ja, b_ub=ga, bounds=np.stack([lb, ub], 1), method=lp_method, options={'time_limit': tl})
+                dz = res.x if res.status == 0 else np.zeros(nvar)
+            if res.status != 0: break
+            viol = (~act) & (g0 + J @ dz < -1e-10)
+            if not viol.any(): break
+            act |= viol | ((~act) & (g0 + J @ dz < thr / 4))
         Z = dz[:nd_ * n].reshape(n, nd_)
         Cn = C + Z[:, :d]
         Rn = np.empty_like(R)

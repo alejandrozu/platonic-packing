@@ -306,6 +306,41 @@ def active_problems():
     return [p for p in PID if not only or p in only.split(',')]
 
 
+_LEARN = {'t': 0, 'mult': {}}
+
+
+def learned_multipliers():
+    """engine.py's bandit: per dimension, the recent gain per CPU-second of each move (last ~3000 logged attempts of this
+    archive, prior 1800 s at the dimension's average rate), as a multiplier in [0.4, 3] relative to the median move;
+    refreshed every 5 minutes"""
+    if time.time() - _LEARN['t'] < 300: return _LEARN['mult']
+    _LEARN['t'] = time.time()
+    try:
+        with open(os.path.join(STATE, 'attempts.jsonl'), 'rb') as f:
+            f.seek(0, 2); size = f.tell(); f.seek(max(0, size - 1_000_000)); lines = f.read().decode(errors='ignore').splitlines()[1:]
+    except OSError:
+        return _LEARN['mult']
+    G, T = {}, {}
+    for l in lines[-3000:]:
+        try: r = json.loads(l)
+        except ValueError: continue
+        m = r.get('move'); p = r.get('p')
+        if p not in DIM or m in ('harvest', 'tighten', None) or not r.get('best_before') or not r.get('secs'): continue
+        k = (DIM[p], m)
+        G[k] = G.get(k, 0.0) + (math.log(r['best_before'] / r['s']) if r.get('improved') and r.get('s') else 0.0)
+        T[k] = T.get(k, 0.0) + r['secs']
+    mult = {}
+    for d in set(x for x, _ in T):
+        ms = [m for x, m in T if x == d]
+        tg = sum(G[(d, m)] for m in ms); tt = sum(T[(d, m)] for m in ms)
+        base = tg / tt if tt else 0.0
+        rate = {m: (G[(d, m)] + base * 1800) / (T[(d, m)] + 1800) for m in ms}
+        med = sorted(rate.values())[len(rate) // 2]
+        if med > 0: mult[d] = {m: min(3.0, max(0.4, v / med)) for m, v in rate.items()}
+    _LEARN['mult'] = mult
+    return mult
+
+
 def choose(rng):
     """fill missing cases in ascending n (ascend from n-1), re-tighten flagged ones, then the case with the least
     effort per piece (favouring recently improved cases), and a move by the weights x case signals"""
@@ -337,6 +372,8 @@ def choose(rng):
     if c['best']['src'].get('move') == 'monotone':
         return p, n, 'ascend' if (n > NMIN and rng.random() < 0.5) else 'fresh'
     W = dict(WEIGHTS)
+    for m, k in (learned_multipliers().get(DIM[p]) or {}).items():
+        if m in W: W[m] *= k
     lo = idx.get((p, n - 1)); hi = idx.get((p, n + 1))
     t_self = st.get('last_improve') or 0
     if lo and lo.get('best') and (lo['stats'].get('last_improve') or 0) > t_self: W['ascend'] *= 2.0
