@@ -197,8 +197,10 @@ def attempt(p, n, move, rng, log):
     seed = rng.randrange(1, 2 ** 31 - 1)
     t0 = time.time(); info = {'move': move, 'seed': seed}
     hopkw = dict(morph=4000 + 150 * n, settle=1000 + 25 * n)
-    if move == 'symfresh':
-        raw = ndsim.symfresh(pb, n, seed, B=1.0 if n <= 16 else 0.7)
+    if move == 'symfresh':          # central symmetry (pairs x, -x) or a mirror symmetry of the container
+        kind = 'central' if (central_ok(p, n) and rng.random() < 0.5) else 'mirror'
+        raw = ndsim.symfresh(pb, n, seed, B=1.0 if n <= 16 else 0.7, kind=kind)
+        info['sym'] = kind
         if raw is None: move = info['move'] = 'fresh'
     if move == 'fresh':
         raw = ndsim.fresh(pb, n, seed, B=1.0 if n <= 16 else 0.7)
@@ -303,10 +305,14 @@ def claim(p, n):
         with contextlib.suppress(Exception): os.remove(f)
 
 
-def sym_ok(p, n):
+def central_ok(p, n):
     """central-symmetry seeds apply: centrally symmetric container; odd n needs a centrally symmetric piece"""
     pc, cc = PID[p]; simplex = ('c5', 'sx5', 'sx6')
     return cc not in simplex and (n % 2 == 0 or pc not in simplex)
+
+
+def sym_ok(p, n):
+    return True                      # a mirror symmetry exists for every container (central symmetry: central_ok)
 
 
 def known_optimal(p, n):
