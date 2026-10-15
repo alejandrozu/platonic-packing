@@ -35,9 +35,9 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 30 | [1.95356+](tetincub_n30.json) | 1.953567907245 |  | 1.52342 | 0.4742 | ![](tetincub_n30.png) |
 | 31 | [2.17295+](tetincub_n31.json) | 2.172955089210 |  | 1.54016 | 0.3561 | ![](tetincub_n31.png) |
 | 32 | [2.17295+](tetincub_n32.json) | 2.172955089210 |  | 1.55654 | 0.3676 | ![](tetincub_n32.png) |
-| 33 | [2.35521+](tetincub_n33.json) | 2.355212655438 |  | 1.57259 | 0.2977 | ![](tetincub_n33.png) |
-| 34 | [2.35521+](tetincub_n34.json) | 2.355212655438 |  | 1.58832 | 0.3067 | ![](tetincub_n34.png) |
-| 35 | [2.35521+](tetincub_n35.json) | 2.355212655438 |  | 1.60374 | 0.3157 | ![](tetincub_n35.png) |
+| 33 | [2.25995+](tetincub_n33.json) | 2.259950328719 |  | 1.57259 | 0.3369 | ![](tetincub_n33.png) |
+| 34 | [2.28293+](tetincub_n34.json) | 2.282933421105 |  | 1.58832 | 0.3368 | ![](tetincub_n34.png) |
+| 35 | [2.31765+](tetincub_n35.json) | 2.317654297924 |  | 1.60374 | 0.3313 | ![](tetincub_n35.png) |
 | 36 | [2.35521+](tetincub_n36.json) | 2.355212655438 |  | 1.61887 | 0.3247 | ![](tetincub_n36.png) |
 | 37 | [2.35521+](tetincub_n37.json) | 2.355212655438 |  | 1.63372 | 0.3338 | ![](tetincub_n37.png) |
 | 38 | [2.35521+](tetincub_n38.json) | 2.355212655438 |  | 1.64831 | 0.3428 | ![](tetincub_n38.png) |

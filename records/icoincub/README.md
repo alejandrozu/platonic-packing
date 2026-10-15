@@ -35,10 +35,10 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 30 | [5.19291+](icoincub_n30.json) | 5.192918267659 |  | 4.03000 | 0.4674 | ![](icoincub_n30.png) |
 | 31 | [5.51267+](icoincub_n31.json) | 5.512679004861 |  | 4.07429 | 0.4037 | ![](icoincub_n31.png) |
 | 32 | [5.51267+](icoincub_n32.json) | 5.512679004861 |  | 4.11764 | 0.4167 | ![](icoincub_n32.png) |
-| 33 | [6.07335+](icoincub_n33.json) | 6.073353169465 |  | 4.16009 | 0.3214 | ![](icoincub_n33.png) |
-| 34 | [6.07335+](icoincub_n34.json) | 6.073353171704 |  | 4.20169 | 0.3311 | ![](icoincub_n34.png) |
-| 35 | [6.07335+](icoincub_n35.json) | 6.073353171704 |  | 4.24249 | 0.3409 | ![](icoincub_n35.png) |
-| 36 | [6.07335+](icoincub_n36.json) | 6.073353171704 |  | 4.28251 | 0.3506 | ![](icoincub_n36.png) |
+| 33 | [5.79301+](icoincub_n33.json) | 5.793015437208 |  | 4.16009 | 0.3703 | ![](icoincub_n33.png) |
+| 34 | [5.85964+](icoincub_n34.json) | 5.859640236791 |  | 4.20169 | 0.3687 | ![](icoincub_n34.png) |
+| 35 | [5.91740+](icoincub_n35.json) | 5.917402104753 |  | 4.24249 | 0.3685 | ![](icoincub_n35.png) |
+| 36 | [5.99240+](icoincub_n36.json) | 5.992407435273 |  | 4.28251 | 0.3650 | ![](icoincub_n36.png) |
 | 37 | [6.07335+](icoincub_n37.json) | 6.073353171704 |  | 4.32181 | 0.3603 | ![](icoincub_n37.png) |
 | 38 | [6.07335+](icoincub_n38.json) | 6.073353171704 |  | 4.36040 | 0.3701 | ![](icoincub_n38.png) |
 | 39 | [6.07335+](icoincub_n39.json) | 6.073353171704 |  | 4.39831 | 0.3798 | ![](icoincub_n39.png) |
