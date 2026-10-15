@@ -1,0 +1,425 @@
+{
+ "problem": "min/cube_in_octahedron",
+ "piece": "cube",
+ "container": "octahedron",
+ "n": 26,
+ "s_full": 4.707106828258617,
+ "pieces": [
+  [
+   0.0,
+   -2.1213203647728456,
+   0.0,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   -0.7071067882576152,
+   -1.4142135765152304,
+   0.0,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   -1.4142135765152304,
+   -0.7071067882576152,
+   0.0,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   -2.1213203647728456,
+   0.0,
+   0.0,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   0.7071067882576152,
+   -1.4142135765152304,
+   0.0,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   0.0,
+   -0.7071067882576152,
+   0.0,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   -0.7071067882576152,
+   0.0,
+   0.0,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   -1.4142135765152304,
+   0.7071067882576152,
+   0.0,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   1.4142135765152304,
+   -0.7071067882576152,
+   0.0,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   0.7071067882576152,
+   0.0,
+   0.0,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   0.0,
+   0.7071067882576152,
+   0.0,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   -0.7071067882576152,
+   1.4142135765152304,
+   0.0,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   2.1213203647728456,
+   0.0,
+   0.0,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   1.4142135765152304,
+   0.7071067882576152,
+   0.0,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   0.7071067882576152,
+   1.4142135765152304,
+   0.0,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   0.0,
+   2.1213203647728456,
+   0.0,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   0.0,
+   -0.7071067882576152,
+   -1.00000001,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   -0.7071067882576152,
+   0.0,
+   -1.00000001,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   0.7071067882576152,
+   0.0,
+   -1.00000001,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   0.0,
+   0.7071067882576152,
+   -1.00000001,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   0.0,
+   -0.7071067882576152,
+   1.00000001,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   -0.7071067882576152,
+   0.0,
+   1.00000001,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   0.7071067882576152,
+   0.0,
+   1.00000001,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   0.0,
+   0.7071067882576152,
+   1.00000001,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   0.0,
+   0.0,
+   -2.00000002,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ],
+  [
+   0.0,
+   0.0,
+   2.00000002,
+   2.414213562373095,
+   0,
+   0,
+   1
+  ]
+ ],
+ "s": 4.7071,
+ "s_plus": "4.70710+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 1e-08,
+  "min_wall_gap": 6.969643e-09
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "One common forced45-degree z-frame. Central4x4layer, two2x2layers atz=\u00b11, and axial caps atz=\u00b12. Full octahedral support and shared unit layer separations are retained; no angle search.",
+ "date": "2026-10-15",
+ "record_id": "cubinoct_n26_submission_13_5a4b6e8646f8",
+ "title": "26 cubes in an octahedron",
+ "family": "platonic",
+ "source": {
+  "author": "PingYou Ltd",
+  "attribution_note": "Explicit finite whole-cube layer return; classical cubic grids and45-degree frame acknowledged.",
+  "derivation": {
+   "type": "whole-owner layer and axial-cap return",
+   "word": "16+4+4+1+1",
+   "local_centers": [
+    [
+     -1.5,
+     -1.5,
+     0
+    ],
+    [
+     -1.5,
+     -0.5,
+     0
+    ],
+    [
+     -1.5,
+     0.5,
+     0
+    ],
+    [
+     -1.5,
+     1.5,
+     0
+    ],
+    [
+     -0.5,
+     -1.5,
+     0
+    ],
+    [
+     -0.5,
+     -0.5,
+     0
+    ],
+    [
+     -0.5,
+     0.5,
+     0
+    ],
+    [
+     -0.5,
+     1.5,
+     0
+    ],
+    [
+     0.5,
+     -1.5,
+     0
+    ],
+    [
+     0.5,
+     -0.5,
+     0
+    ],
+    [
+     0.5,
+     0.5,
+     0
+    ],
+    [
+     0.5,
+     1.5,
+     0
+    ],
+    [
+     1.5,
+     -1.5,
+     0
+    ],
+    [
+     1.5,
+     -0.5,
+     0
+    ],
+    [
+     1.5,
+     0.5,
+     0
+    ],
+    [
+     1.5,
+     1.5,
+     0
+    ],
+    [
+     -0.5,
+     -0.5,
+     -1
+    ],
+    [
+     -0.5,
+     0.5,
+     -1
+    ],
+    [
+     0.5,
+     -0.5,
+     -1
+    ],
+    [
+     0.5,
+     0.5,
+     -1
+    ],
+    [
+     -0.5,
+     -0.5,
+     1
+    ],
+    [
+     -0.5,
+     0.5,
+     1
+    ],
+    [
+     0.5,
+     -0.5,
+     1
+    ],
+    [
+     0.5,
+     0.5,
+     1
+    ],
+    [
+     0,
+     0,
+     -2
+    ],
+    [
+     0,
+     0,
+     2
+    ]
+   ],
+   "frame": "Rz(pi/4): (x,y,z)->((x-y)/sqrt2,(x+y)/sqrt2,z)",
+   "exact_quaternion": "[1+sqrt2,0,0,1]",
+   "center_dilation_exact": "100000001/100000000",
+   "nominal_host_expression": "4+sqrt2/2",
+   "geometric_source": "Direct square-bipyramid host-support calculation; see OCTA_LAYER26_PROOF.txt"
+  }
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 3.8065061425758655,
+ "density": 0.5288316514915787,
+ "found_by": "PingYou Ltd",
+ "credit": "PingYou Ltd",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/13",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "construction",
+  "replayed_on": "2026-10-15",
+  "witness_sha256": "6baeaca70bcfb67f62f28aa2b70ca06f26b96afa8954a57291bca3ff4daf8193",
+  "method": "New finite physical constructions by PingYou Ltd: whole-cube staircases in a tetrahedron, golden shells in an icosahedron, and coupled layers in an octahedron. Complete owner placements and their common boundary equations are retained. The archive includes native coordinates, explicit construction decoders, original source and donor credits, independent geometry and decoder reviews, and SHA256 manifests. All 32 witnesses pass the unmodified upstream floating checker and exact certifier.",
+  "archive": "https://github.com/user-attachments/files/33483467/pingyou_new_constructions_batch002_20261015.zip",
+  "archive_sha256": "635b14fa4bc20d8e2da3cb7aa9f295a22ae1ac264036d511f6d493c0c5f48232"
+ },
+ "previous_record": {
+  "s_full": 4.745300048548814,
+  "found_by": "Alejandro Zarzuelo",
+  "date": "2026-10-13"
+ },
+ "case_id": "cubinoct_n26"
+}

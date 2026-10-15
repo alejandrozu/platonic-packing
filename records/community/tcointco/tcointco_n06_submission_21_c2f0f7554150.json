@@ -1,0 +1,672 @@
+{
+ "problem": "min/truncated_cuboctahedron_in_truncated_cuboctahedron",
+ "piece": "truncated_cuboctahedron",
+ "container": "truncated_cuboctahedron",
+ "n": 6,
+ "s_full": 2.339012105055,
+ "pieces": [
+  [
+   2.212096595184829,
+   1.2652720697516788,
+   -1.371623038945379,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   -2.212096595184829,
+   -1.2652720697516788,
+   1.2652720697516788,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   -1.6163305679607953,
+   2.5631550933934455,
+   0.4468245204181499,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   1.6163305679607953,
+   -2.5631550933934455,
+   -0.4468245204181499,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   -1.6163305679607953,
+   -0.6695060425276456,
+   -2.5631550933934455,
+   1,
+   0,
+   0,
+   0
+  ],
+  [
+   1.6163305679607953,
+   0.6695060425276456,
+   2.5631550933934455,
+   1,
+   0,
+   0,
+   0
+  ]
+ ],
+ "s": 2.33901,
+ "s_plus": "2.33901+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 3.839893e-08,
+  "min_wall_gap": 3.828458e-08
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "Finite complete-owner marked contact return with joint host walls; exact rational-center/Q(sqrt2) reconstruction.",
+ "date": "2026-10-15",
+ "record_id": "tcointco_n06_submission_21_c2f0f7554150",
+ "title": "6 truncated cuboctahedra in a truncated cuboctahedron",
+ "family": "archimedean",
+ "source": {
+  "author": "PingYou Ltd",
+  "kind": "new finite construction",
+  "references": [
+   {
+    "authors": "Ulrich Betke and Martin Henk",
+    "title": "Densest Lattice Packings of 3-Polytopes",
+    "section": "5, truncated cubeoctahedron entry",
+    "url": "https://arxiv.org/abs/math/9909172"
+   }
+  ],
+  "attribution_note": "The infinite Betke-Henk packing lattice is classical. PingYou Ltd supplies the new finite complete-owner boundary return and exact native witness. No claim of inventing the source infinite lattice.",
+  "construction": {
+   "name": "finite_truncated_cuboctahedron_face_return",
+   "whole_owner_deletion": null,
+   "coordinate_convention": "All ideal coordinates are twice native unit-edge coordinates. Canonical vertices are signed permutations of(1,1+sqrt2,1+2sqrt2). Supports on a signed 0/1 normal with k nonzero entries are (p,q)=(1,2),(2,3),(3,3), meaning p+q*sqrt2.",
+   "starting_lattice": "Betke-Henk",
+   "lattice_basis_rows_times_2": [
+    [
+     7.656854249492381,
+     1.5185402897155456,
+     6.138313959776836
+    ],
+    [
+     -2.0339872324343844,
+     0.6901131649693553,
+     5.622867017057996
+    ],
+    [
+     2.0339872324343844,
+     7.656854249492381,
+     2.7241003974037397
+    ]
+   ],
+   "classical_basis_rows_exact": [
+    [
+     "2*(2*sqrt2+1)",
+     "2*(sqrt2/4-3/4+alpha/2)",
+     "2*(7/4+7*sqrt2/4-alpha/2)"
+    ],
+    [
+     "2*(-2*sqrt2-1/2+alpha)",
+     "2*(-3*sqrt2/4+1/4+alpha/2)",
+     "2*(1/2+alpha)"
+    ],
+    [
+     "2*(2*sqrt2+1/2-alpha)",
+     "2*(2*sqrt2+1)",
+     "2*(5*sqrt2/4+3/4-alpha/2)"
+    ]
+   ],
+   "alpha": "sqrt33*(sqrt2+1)/6",
+   "start_lattice_words": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     0
+    ],
+    [
+     -1,
+     1,
+     1
+    ],
+    [
+     1,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     1,
+     1
+    ]
+   ],
+   "start_phase_word": [
+    0,
+    1,
+    1
+   ],
+   "start_phase": [
+    3.8284271247461907,
+    3.1564900910136755,
+    5.19047732344806
+   ],
+   "phase_decoder": "Half the sum of the basis columns selected by the0/1 phase word.",
+   "rational_centers_times_2": [
+    [
+     "88483862922554515887597/20000000000000000000000",
+     "126527205709895816171183/50000000000000000000000",
+     "-34290575630728717268891/12500000000000000000000"
+    ],
+    [
+     "-88483862922554515887597/20000000000000000000000",
+     "-126527205709895816171183/50000000000000000000000",
+     "126527205709895816171183/50000000000000000000000"
+    ],
+    [
+     "-161633055179748991655247/50000000000000000000000",
+     "51263101355237893040611/10000000000000000000000",
+     "89364903189980947095619/100000000000000000000000"
+    ],
+    [
+     "161633055179748991655247/50000000000000000000000",
+     "-51263101355237893040611/10000000000000000000000",
+     "-89364903189980947095619/100000000000000000000000"
+    ],
+    [
+     "-161633055179748991655247/50000000000000000000000",
+     "-1071209657332136289719/800000000000000000000",
+     "-51263101355237893040611/10000000000000000000000"
+    ],
+    [
+     "161633055179748991655247/50000000000000000000000",
+     "1071209657332136289719/800000000000000000000",
+     "51263101355237893040611/10000000000000000000000"
+    ]
+   ],
+   "separating_face_axes": [
+    [
+     -1,
+     -1,
+     -1
+    ],
+    [
+     -1,
+     -1,
+     0
+    ],
+    [
+     -1,
+     -1,
+     1
+    ],
+    [
+     -1,
+     0,
+     -1
+    ],
+    [
+     -1,
+     0,
+     0
+    ],
+    [
+     -1,
+     0,
+     1
+    ],
+    [
+     -1,
+     1,
+     -1
+    ],
+    [
+     -1,
+     1,
+     0
+    ],
+    [
+     -1,
+     1,
+     1
+    ],
+    [
+     0,
+     -1,
+     -1
+    ],
+    [
+     0,
+     -1,
+     0
+    ],
+    [
+     0,
+     -1,
+     1
+    ],
+    [
+     0,
+     0,
+     -1
+    ],
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     0
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     0,
+     -1
+    ],
+    [
+     1,
+     0,
+     0
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     -1
+    ],
+    [
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     1,
+     1
+    ]
+   ],
+   "support_offsets_Qsqrt2": [
+    [
+     "3",
+     "3"
+    ],
+    [
+     "2",
+     "3"
+    ],
+    [
+     "3",
+     "3"
+    ],
+    [
+     "2",
+     "3"
+    ],
+    [
+     "1",
+     "2"
+    ],
+    [
+     "2",
+     "3"
+    ],
+    [
+     "3",
+     "3"
+    ],
+    [
+     "2",
+     "3"
+    ],
+    [
+     "3",
+     "3"
+    ],
+    [
+     "2",
+     "3"
+    ],
+    [
+     "1",
+     "2"
+    ],
+    [
+     "2",
+     "3"
+    ],
+    [
+     "1",
+     "2"
+    ],
+    [
+     "1",
+     "2"
+    ],
+    [
+     "2",
+     "3"
+    ],
+    [
+     "1",
+     "2"
+    ],
+    [
+     "2",
+     "3"
+    ],
+    [
+     "3",
+     "3"
+    ],
+    [
+     "2",
+     "3"
+    ],
+    [
+     "3",
+     "3"
+    ],
+    [
+     "2",
+     "3"
+    ],
+    [
+     "1",
+     "2"
+    ],
+    [
+     "2",
+     "3"
+    ],
+    [
+     "3",
+     "3"
+    ],
+    [
+     "2",
+     "3"
+    ],
+    [
+     "3",
+     "3"
+    ]
+   ],
+   "all_pair_face_indices": [
+    [
+     0,
+     1,
+     2
+    ],
+    [
+     0,
+     2,
+     4
+    ],
+    [
+     0,
+     3,
+     10
+    ],
+    [
+     0,
+     4,
+     4
+    ],
+    [
+     0,
+     5,
+     13
+    ],
+    [
+     1,
+     2,
+     15
+    ],
+    [
+     1,
+     3,
+     21
+    ],
+    [
+     1,
+     4,
+     12
+    ],
+    [
+     1,
+     5,
+     21
+    ],
+    [
+     2,
+     3,
+     18
+    ],
+    [
+     2,
+     4,
+     9
+    ],
+    [
+     2,
+     5,
+     19
+    ],
+    [
+     3,
+     4,
+     6
+    ],
+    [
+     3,
+     5,
+     16
+    ],
+    [
+     4,
+     5,
+     22
+    ]
+   ],
+   "exact_nominal_scale_Qsqrt2": [
+    "-669798331078393949931479/300000000000000000000000",
+    "969798331078393949931479/300000000000000000000000"
+   ],
+   "scale_controller_owner_and_face": [
+    5,
+    25
+   ],
+   "rational_reconstruction_dilation": "100000000003/100000000000",
+   "all_pair_inequalities_checked": 15,
+   "all_wall_inequalities_checked": 156,
+   "continued_contact_history": [
+    {
+     "before": 2.390524291751271,
+     "after": 2.339012071624675,
+     "previous_centers_times_2": [
+      [
+       4.414213562373105,
+       2.82842712474619,
+       -2.8284271247461845
+      ],
+      [
+       -4.461592103616772,
+       -2.8284271247462005,
+       2.781048583502507
+      ],
+      [
+       -3.8521163953680215,
+       4.828427124746192,
+       1.390524291751266
+      ],
+      [
+       3.8521163953680277,
+       -4.82842712474618,
+       -1.3905242917512686
+      ],
+      [
+       -3.8047378541243426,
+       -1.3905242917512401,
+       -4.875805665989868
+      ],
+      [
+       3.804737854124368,
+       1.3905242917512606,
+       4.875805665989861
+      ]
+     ],
+     "previous_pair_face_indices": [
+      [
+       0,
+       1,
+       2
+      ],
+      [
+       0,
+       2,
+       8
+      ],
+      [
+       0,
+       3,
+       10
+      ],
+      [
+       0,
+       4,
+       0
+      ],
+      [
+       0,
+       5,
+       13
+      ],
+      [
+       1,
+       2,
+       15
+      ],
+      [
+       1,
+       3,
+       17
+      ],
+      [
+       1,
+       4,
+       12
+      ],
+      [
+       1,
+       5,
+       25
+      ],
+      [
+       2,
+       3,
+       17
+      ],
+      [
+       2,
+       4,
+       9
+      ],
+      [
+       2,
+       5,
+       21
+      ],
+      [
+       3,
+       4,
+       4
+      ],
+      [
+       3,
+       5,
+       16
+      ],
+      [
+       4,
+       5,
+       25
+      ]
+     ]
+    }
+   ],
+   "physical_operation": "Select complete lattice owners at a marked cell midpoint. Keep one realized directed face separator for each owner pair and all26 host walls. Close the complete common boundary. Continued face changes use the actual complete predecessor. All owners retain their canonical frames.",
+   "native_decoder": "Multiply the exact rational doubled centers by100000001/100000000 and divide by2. Use identity quaternion. Take the outward-rounded host scale equal to idealS*(1+1e-8)+1e-8."
+  }
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.8171205928321397,
+ "density": 0.46887150741278333,
+ "found_by": "PingYou Ltd",
+ "credit": "PingYou Ltd",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/21",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "construction",
+  "replayed_on": "2026-10-15",
+  "witness_sha256": "8d61c7e961ddfb14b5bb027ed43f719419031b0113592cc611d4c5f0cc614f10",
+  "method": "New finite constructions by PingYou Ltd from complete golden and cubic lattice boundary returns, whole-owner shape replacement, and deletion of boundary-controlling owners followed by common reclosure. Every reconstruction keeps the full host-wall and pair-separation constraints, with original lattice and donor sources credited. The archive retains complete native coordinates, explicit physical construction decoders, original source and donor credits, independent geometry and construction reviews, and SHA256 manifests. All 32 witnesses pass the unmodified upstream floating checker and exact certifier.",
+  "archive": "https://github.com/user-attachments/files/33484348/pingyou_new_constructions_batch010_20261015.zip",
+  "archive_sha256": "0cd69a02234aeb579d7b5375cecc1af1253f567f055e524a3f5af1e0d3767501"
+ },
+ "previous_record": {
+  "s_full": 2.3659015446666,
+  "found_by": "Alejandro Zarzuelo",
+  "date": "2026-10-13"
+ },
+ "case_id": "tcointco_n06"
+}

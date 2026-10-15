@@ -1,0 +1,370 @@
+{
+ "problem": "min/truncated_icosahedron_in_truncated_icosahedron",
+ "piece": "truncated_icosahedron",
+ "container": "truncated_icosahedron",
+ "n": 4,
+ "s_full": 2.2004491340546837,
+ "pieces": [
+  [
+   1.6758584857493717,
+   2.2464314595186323,
+   0.7919345748368504,
+   0.49941127194663504,
+   -0.0019018109607458397,
+   -0.8092397961883901,
+   0.30937956757466484
+  ],
+  [
+   -2.503213219421163,
+   0.47159420189103857,
+   1.2641649620197848,
+   0.5000000000000119,
+   0.5000000000000001,
+   0.5000000000000194,
+   0.4999999999999688
+  ],
+  [
+   -0.36620517908588474,
+   -0.0,
+   -2.773673052468608,
+   0.30901699437496727,
+   0.8090169943749594,
+   1.027174879773639e-13,
+   -0.4999999999999683
+  ],
+  [
+   1.201158586498331,
+   -2.5412768916232853,
+   0.9717890419845691,
+   0.8086617044850042,
+   0.30959139801841457,
+   -0.5002192923128256,
+   0.00027123876489688333
+  ]
+ ],
+ "s": 2.20044,
+ "s_plus": "2.20044+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 4.534564e-07,
+  "min_wall_gap": 2.494007e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "Truncate complete credited I owners in unchanged frames, continue their contact separators using the new supports, and close a common host for the full finite packing.",
+ "date": "2026-10-15",
+ "record_id": "ticintic_n04_submission_20_5b453412e9ad",
+ "title": "4 truncated icosahedra in a truncated icosahedron",
+ "family": "archimedean",
+ "source": {
+  "author": "PingYou Ltd",
+  "kind": "new finite contact return of truncated complete source owners",
+  "donor": {
+   "record_id": "icoinico_n04_pingyou_20261013",
+   "found_by": "Alejandro Zarzuelo",
+   "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+   "source": {
+    "hash": "b1e2f121ea891bde",
+    "clear": 1e-07,
+    "cap": 2.2360681915931
+   },
+   "public_path": "records/community/icoinico/icoinico_n04_pingyou_20261013.json",
+   "public_url": "https://github.com/alejandrozu/platonic-packing/blob/main/records/community/icoinico/icoinico_n04_pingyou_20261013.json",
+   "sha256": "79f38154ea85b2a67c16948027aafc1346a1789eedb07182c6c6d254a2a2b545",
+   "piece": "icosahedron",
+   "container": "icosahedron",
+   "n": 4,
+   "s_full": 2.145898109690442,
+   "pieces": [
+    [
+     0.5977593676163752,
+     0.8582930244259039,
+     0.0439477071954903,
+     0.49941127194663504,
+     -0.0019018109607458397,
+     -0.8092397961883901,
+     0.30937956757466484
+    ],
+    [
+     -0.9256328516079884,
+     -0.0008764913832022448,
+     0.5734907562463685,
+     0.5000000000000119,
+     0.5000000000000001,
+     0.5000000000000194,
+     0.4999999999999688
+    ],
+    [
+     -0.3090170148190499,
+     -7.103232275026915e-16,
+     -0.8090170478983095,
+     0.30901699437496727,
+     0.8090169943749594,
+     1.027174879773639e-13,
+     -0.4999999999999683
+    ],
+    [
+     0.43652452920814505,
+     -0.8418583023407821,
+     0.22161726768884268,
+     0.8086617044850042,
+     0.30959139801841457,
+     -0.5002192923128256,
+     0.00027123876489688333
+    ]
+   ]
+  },
+  "derivation": {
+   "initial_whole_owner_lift": "Scale the complete donor I packing by 3 and replace each scaled I owner by the canonical inscribed truncated I in the same frame.",
+   "initial_common_host_translation": [
+    0,
+    0,
+    0
+   ],
+   "source_frames": "Every stored donor quaternion is retained exactly; no orientations are varied.",
+   "exposed_contact_history": [
+    {
+     "scale": 2.200448904009793,
+     "transitions": [
+      {
+       "i": 0,
+       "j": 1,
+       "prior_normal": [
+        -0.93445203091,
+        -0.35608642728,
+        0.00136317368
+       ],
+       "new_normal": [
+        -0.93417235896,
+        -0.35682208977,
+        0.0
+       ],
+       "gap_at_previous_packing": 0.0008564135307755905
+      }
+     ],
+     "centers": [
+      [
+       1.6758583181635398,
+       2.2464312348755087,
+       0.7919344956434008
+      ],
+      [
+       -2.503212969099866,
+       0.4715941547316231,
+       1.264164835603301
+      ],
+      [
+       -0.36620514246537045,
+       -0.0,
+       -2.7736727751013306
+      ],
+      [
+       1.2011584663824844,
+       -2.5412766374956215,
+       0.9717889448056746
+      ]
+     ]
+    }
+   ],
+   "initial_contact_scale": 2.2004756324691197,
+   "continuation_operation": "At the current complete proposed packing, switch a pair to a fixed-frame face or edge-cross separator only if that separator has strictly more slack. Restore all pairs and all host walls together with unchanged owner orientations. Intermediate decimal LP states are proposals; the final native arrangement is independently certified.",
+   "physical_return": "Continue all retained contact separators after removing the source vertices, and solve one common set of32 host walls for all whole owners.",
+   "returned_centers_before_margin": [
+    [
+     1.6758583181635398,
+     2.2464312348755087,
+     0.7919344956434008
+    ],
+    [
+     -2.503212969099866,
+     0.4715941547316231,
+     1.264164835603301
+    ],
+    [
+     -0.36620514246537045,
+     -0.0,
+     -2.7736727751013306
+    ],
+    [
+     1.2011584663824844,
+     -2.5412766374956215,
+     0.9717889448056746
+    ]
+   ],
+   "retained_separator_rows": [
+    {
+     "i": 0,
+     "j": 1,
+     "normal": [
+      -0.93417235896,
+      -0.35682208977,
+      0.0
+     ],
+     "offset_sum": 4.537273958622948
+    },
+    {
+     "i": 0,
+     "j": 2,
+     "normal": [
+      -0.57735026919,
+      -0.57735026919,
+      -0.57735026919
+     ],
+     "offset_sum": 4.534567884460111
+    },
+    {
+     "i": 0,
+     "j": 3,
+     "normal": [
+      -0.00302923654,
+      -0.93520763838,
+      0.35408684929
+     ],
+     "offset_sum": 4.542623045944745
+    },
+    {
+     "i": 1,
+     "j": 2,
+     "normal": [
+      0.35682208977,
+      0.0,
+      -0.93417235896
+     ],
+     "offset_sum": 4.534567884443915
+    },
+    {
+     "i": 1,
+     "j": 3,
+     "normal": [
+      0.93417235896,
+      -0.35682208977,
+      -0.0
+     ],
+     "offset_sum": 4.535580254637706
+    },
+    {
+     "i": 2,
+     "j": 3,
+     "normal": [
+      0.57735026919,
+      -0.57735026919,
+      0.57735026919
+     ],
+     "offset_sum": 4.534567884460111
+    }
+   ],
+   "restoration_rounds": 1,
+   "center_dilation_exact": "10000001/10000000",
+   "decoder": "For each source quaternion q_i and listed returned center c_i, output[c_i*(10000001/10000000),q_i]. All listed decimals are finite binary64 inputs checked as exact rationals.",
+   "actual_host": "All32 truncated-icosahedron faces, including12 new pentagonal cuts.",
+   "initial_contact_centers": [
+    [
+     1.676125857910197,
+     2.2463390171000337,
+     0.7918641376950508
+    ],
+    [
+     -2.5035310160346387,
+     0.4706349092469878,
+     1.2637685531067322
+    ],
+    [
+     -0.3659303430876473,
+     -0.0,
+     -2.7738426104570233
+    ],
+    [
+     1.201185194840989,
+     -2.541333249281032,
+     0.9718105685832553
+    ]
+   ],
+   "initial_contact_separator_rows": [
+    {
+     "i": 0,
+     "j": 1,
+     "normal": [
+      -0.93445203091,
+      -0.35608642728,
+      0.00136317368
+     ],
+     "offset_sum": 4.538636273715069
+    },
+    {
+     "i": 0,
+     "j": 2,
+     "normal": [
+      -0.57735026919,
+      -0.57735026919,
+      -0.57735026919
+     ],
+     "offset_sum": 4.534567884460111
+    },
+    {
+     "i": 0,
+     "j": 3,
+     "normal": [
+      -0.00302923654,
+      -0.93520763838,
+      0.35408684929
+     ],
+     "offset_sum": 4.542623045944745
+    },
+    {
+     "i": 1,
+     "j": 2,
+     "normal": [
+      0.35682208977,
+      0.0,
+      -0.93417235896
+     ],
+     "offset_sum": 4.534567884443915
+    },
+    {
+     "i": 1,
+     "j": 3,
+     "normal": [
+      0.93417235896,
+      -0.35682208977,
+      -0.0
+     ],
+     "offset_sum": 4.535580254637706
+    },
+    {
+     "i": 2,
+     "j": 3,
+     "normal": [
+      0.57735026919,
+      -0.57735026919,
+      0.57735026919
+     ],
+     "offset_sum": 4.534567884460111
+    }
+   ]
+  },
+  "attribution_note": "The credited donor packing supplies the starting whole owners and fixed frames. PingYou Ltd supplies the new truncated-icosahedron contact return, complete returned translations and certified witness."
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.5874010519681994,
+ "density": 0.37542742090671516,
+ "found_by": "PingYou Ltd",
+ "credit": "PingYou Ltd",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/20",
+  "submitted_by": "BuddenPing",
+  "credit": "PingYou Ltd",
+  "kind": "construction",
+  "replayed_on": "2026-10-15",
+  "witness_sha256": "2f849ec1e60e147fe87ea471519a32cfb6a7b29ff4743f02275b1f45bdd5ce97",
+  "method": "New finite constructions by PingYou Ltd. Truncated-cube and rhombicuboctahedron boundary returns retain complete shells and their shared closure equations. Truncated-dodecahedron and truncated-icosahedron constructions replace complete credited donor cells, then jointly move the resulting pieces using the newly exposed contacts and all host walls. Controller-owner deletion gives further complete arrangements. Source frames, directed separators and every reconstruction step are retained. The archive retains complete native coordinates, explicit physical construction decoders, original source and donor credits, independent geometry and construction reviews, and SHA256 manifests. All 32 witnesses pass the unmodified upstream floating checker and exact certifier.",
+  "archive": "https://github.com/user-attachments/files/33484069/pingyou_new_constructions_batch009_20261015.zip",
+  "archive_sha256": "c8f0a5e65f5f64bddb0d020537fe542012770f2d5d7957a2791aa7022e1535b9"
+ },
+ "previous_record": {
+  "s_full": 2.2013626643216,
+  "found_by": "Alejandro Zarzuelo",
+  "date": "2026-10-13"
+ },
+ "case_id": "ticintic_n04"
+}
