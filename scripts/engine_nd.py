@@ -179,7 +179,7 @@ def enforce_monotone(p, log=None):
 
 
 # ------------------------------------------------------------------ one attempt
-def tighten(pb, C, R, best_s, n, explore=False):
+def tighten(pb, C, R, best_s, n, explore=False, budget=1.0):
     import ndslp
     hist = []
 
@@ -188,7 +188,7 @@ def tighten(pb, C, R, best_s, n, explore=False):
         if best_s is None or it < 15: return False
         rate = max(0.0, (hist[-6] - s) / 5) if len(hist) >= 6 else 0.0
         return s - 150 * rate > best_s
-    return ndslp.tighten(pb, C, R, tlimit=30 + 4 * n, reg=0.0 if explore else 1e-4, abort=abort)
+    return ndslp.tighten(pb, C, R, tlimit=budget * (30 + 4 * n), reg=0.0 if explore else 1e-4, abort=abort)
 
 
 def attempt(p, n, move, rng, log):
@@ -253,7 +253,8 @@ def attempt(p, n, move, rng, log):
     if move in ('fresh', 'symfresh'): gate = max(gate, 0.04)
     out = None
     if best is None or move in ('descend', 'tighten', 'perturb') or s_raw <= best_s * (1 + gate):
-        out = tighten(pb, raw['C'], raw['R'], best_s, n, explore=(move == 'perturb'))
+        # a 'tighten' continues an interrupted tightening (86% of them improve, 15 Oct 10:00): twice the time budget
+        out = tighten(pb, raw['C'], raw['R'], best_s, n, explore=(move == 'perturb'), budget=2.0 if move == 'tighten' else 1.0)
     secs = time.time() - t0; s_new = out['s'] if out else s_raw
     improved = False
     with locked():
