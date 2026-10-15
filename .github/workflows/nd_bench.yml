@@ -1,0 +1,37 @@
+# One-off cost study for the higher-dimensional search (15 Oct 2026, docs/HIGHER_DIM.md): one job (4 cores) runs
+# scripts/nd_bench.py on four case lists in parallel and uploads the timings as an artifact. Started by hand
+# (workflow_dispatch); it uses one of the two job slots the search leaves free.
+name: nd-bench
+on:
+  workflow_dispatch:
+    inputs:
+      lists: {description: 'four case lists separated by |', default: ''}
+permissions:
+  contents: read
+jobs:
+  bench:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, fetch-depth: 1}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install
+        run: pip install --quiet numpy scipy highspy mpmath numba
+      - name: Bench
+        env:
+          LISTS: ${{ inputs.lists }}
+        run: |
+          mkdir -p out logs
+          python3 -c "import sys; sys.path.insert(0, 'src'); import ndsim, numpy as np; pb = ndsim.Problem('c8', 'c8'); ndsim.fresh(pb, 2, 1, B=0.05)"
+          i=0
+          IFS='|' read -ra L <<< "$LISTS"
+          for l in "${L[@]}"; do
+            python3 scripts/nd_bench.py out/bench_$i.jsonl $l > out/log_$i.txt 2>&1 &
+            i=$((i + 1))
+          done
+          wait
+          cat out/*.jsonl
+      - uses: actions/upload-artifact@v4
+        with: {name: nd-bench, path: out/}

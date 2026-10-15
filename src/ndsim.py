@@ -22,8 +22,11 @@ What changes with the dimension:
   * support points by hill climbing on the polytope's edge graph from the previous support vertex (a linear function
     has no local maxima on a convex polytope's vertices), so a query costs O(degree) instead of O(vertices).
 Energy, schedule and integrator (heavy ball, velocity cap, annealed noise, pressure on L) are those of sim.js."""
-import math, os, sys
+import math, os, sys, importlib.util
 import numpy as np
+_cov = importlib.util.find_spec('coverage')
+if _cov and _cov.origin and _cov.origin.replace(os.sep, '/').endswith('scripts/coverage.py'):
+    sys.modules['coverage'] = None     # the project's scripts/coverage.py is not coverage.py: numba must not import it
 from numba import njit
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)

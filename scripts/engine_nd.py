@@ -22,7 +22,8 @@ except ImportError:
     fcntl = None
 import numpy as np
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(ROOT, 'src')); sys.path.insert(0, os.path.join(ROOT, 'scripts'))
+sys.path.insert(0, os.path.join(ROOT, 'src'))
+sys.path.append(os.path.join(ROOT, 'scripts'))      # appended: scripts/coverage.py must not shadow the package numba imports
 
 STATE = os.environ.get('PP_STATE_ND') or os.path.join(ROOT, 'state', 'nd')
 PROBLEMS = [('c5', 'c5'), ('c8', 'c8'), ('c16', 'c16'), ('c24', 'c24'), ('c120', 'c120'), ('c600', 'c600'),
