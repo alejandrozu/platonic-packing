@@ -15,17 +15,13 @@ jobs:
     timeout-minutes: 350
     strategy:
       fail-fast: false
-      max-parallel: 4
+      max-parallel: 2
       matrix:
         include:
           - cohort: nd45
-            shard: 0
+            shard: 4
           - cohort: nd45
-            shard: 1
-          - cohort: nd45
-            shard: 2
-          - cohort: nd45
-            shard: 3
+            shard: 5
     defaults:
       run:
         working-directory: docs/research-2026-10-16-generalization/formal
