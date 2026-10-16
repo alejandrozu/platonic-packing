@@ -438,6 +438,88 @@ class RawGitHubMetadata(unittest.TestCase):
                     {name:(directory,read_json(directory/'verified-catalogue.json'))for name,directory in dirs.items()})
 
 
+class AnalyticReceiptIntegrity(unittest.TestCase):
+    def fixture(self,root):
+        """Structural test data only; these fixtures are not kernel proof claims."""
+        modules=['PackingCertificates/Extensions/Clearance.lean',
+                 'PackingCertificates/Extensions/SupportIdentity.lean']
+        core=root/'PackingCertificates/Core.lean';core.parent.mkdir(parents=True)
+        core.write_text('-- structural fixture dependency\n',encoding='utf8')
+        for name in ('verify_core.py','verify_extensions.py'):
+            (root/name).write_text('# structural fixture\n',encoding='utf8')
+        rows=[]
+        for path in modules:
+            source=root/path;source.parent.mkdir(parents=True,exist_ok=True)
+            names=['PackingCertificates.Extensions.'+source.stem+'.'+name
+                for name in package_validator.ANALYTIC_AUDITS[source.stem]]
+            source.write_text('import PackingCertificates.Core\n'+''.join('#print axioms '+name+'\n'for name in names),encoding='utf8')
+            log=root/(source.stem+'.log')
+            log.write_text(''.join("'"+name+"' does not depend on any axioms\n"for name in names),encoding='utf8')
+            rows.append(dict(path=path,passed=True,exit_code=0,source_unchanged_during_build=True,
+                source_sha256=evidence.sha(source),log=log.name,log_sha256=evidence.sha(log),
+                olean_path=path[:-5]+'.olean',olean_sha256='1'*64,
+                errors=[],unexpected_axioms=[],missing_audit_theorems=[],
+                changed_imported_dependencies=[],changed_imported_dependencies_at_receipt=[],
+                audited_theorems={name:[]for name in names},imported_dependencies=[dict(path='PackingCertificates/Core.lean',
+                    source_sha256=evidence.sha(core),olean_path='PackingCertificates/Core.olean',olean_sha256='2'*64)]))
+        return dict(schema='packing-extension-verification-v2',passed=True,requested_modules=modules,
+            changed_core_dependencies=[],core_dependencies=[],results=rows,
+            verifier=dict(path='verify_extensions.py',sha256=evidence.sha(root/'verify_extensions.py')),
+            core_verifier_sha256=evidence.sha(root/'verify_core.py'),preflight=dict(
+                expected_lean_version='4.31.0',expected_mathlib_revision='fabf563a7c95a166b8d7b6efca11c8b4dc9d911f',
+                actual_mathlib_revision='fabf563a7c95a166b8d7b6efca11c8b4dc9d911f'))
+
+    def test_complete_analytic_receipt_roundtrip(self):
+        with tempfile.TemporaryDirectory()as folder:
+            root=Path(folder);receipt=self.fixture(root)
+            result=package_validator.validate_clearance_support(root,evidence,receipt)
+            self.assertEqual(result['catalogue_records_added'],0)
+            self.assertEqual(len(result['audited_theorems']),2)
+
+    def test_rejects_failed_partial_or_changed_analytic_evidence(self):
+        with tempfile.TemporaryDirectory()as folder:
+            root=Path(folder);receipt=self.fixture(root)
+            bads=[]
+            bad=copy.deepcopy(receipt);bad['results'].pop();bads.append(bad)
+            bad=copy.deepcopy(receipt);bad['changed_core_dependencies']=['Core'];bads.append(bad)
+            bad=copy.deepcopy(receipt);bad['preflight']['actual_mathlib_revision']='0'*40;bads.append(bad)
+            bad=copy.deepcopy(receipt);bad['results'][0]['exit_code']=1;bads.append(bad)
+            bad=copy.deepcopy(receipt);bad['results'][0]['errors']=['compiler_timeout'];bads.append(bad)
+            bad=copy.deepcopy(receipt);bad['results'][0]['source_sha256']='0'*64;bads.append(bad)
+            bad=copy.deepcopy(receipt);bad['results'][0]['changed_imported_dependencies']=['Core'];bads.append(bad)
+            for bad in bads:
+                with self.assertRaises(ValueError):package_validator.validate_clearance_support(root,evidence,bad)
+
+    def test_rejects_missing_semantic_audits_or_import_closure(self):
+        with tempfile.TemporaryDirectory()as folder:
+            root=Path(folder);receipt=self.fixture(root)
+            bad=copy.deepcopy(receipt);bad['results'][0]['imported_dependencies']=[]
+            with self.assertRaisesRegex(ValueError,'exact local import closure'):
+                package_validator.validate_clearance_support(root,evidence,bad)
+            bad=copy.deepcopy(receipt);bad['results'][0]['audited_theorems']={}
+            with self.assertRaisesRegex(ValueError,'semantic audits'):
+                package_validator.validate_clearance_support(root,evidence,bad)
+
+    def test_rejects_missing_object_identities_and_intended_semantics(self):
+        with tempfile.TemporaryDirectory()as folder:
+            root=Path(folder);receipt=self.fixture(root)
+            for stage in (True,False):
+                bad=copy.deepcopy(receipt)
+                row=bad['results'][0]if stage else bad['results'][0]['imported_dependencies'][0]
+                row.pop('olean_sha256')
+                with self.assertRaisesRegex(ValueError,'proof object identity'):
+                    package_validator.validate_clearance_support(root,evidence,bad)
+            bad=copy.deepcopy(receipt);row=bad['results'][1]
+            name='PackingCertificates.Extensions.SupportIdentity.support_ballBlend'
+            source=root/row['path'];log=root/row['log']
+            source.write_text(source.read_text().replace('#print axioms '+name+'\n',''),encoding='utf8')
+            log.write_text(log.read_text().replace("'"+name+"' does not depend on any axioms\n",''),encoding='utf8')
+            row['source_sha256']=evidence.sha(source);row['log_sha256']=evidence.sha(log)
+            row['audited_theorems'].pop(name)
+            with self.assertRaisesRegex(ValueError,'semantic declaration audit'):
+                package_validator.validate_clearance_support(root,evidence,bad)
+
+
 def read_json(path):return json.loads(Path(path).read_text(encoding='utf8'))
 
 

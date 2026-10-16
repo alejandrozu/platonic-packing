@@ -43,6 +43,16 @@ jobs:
           PYDEPS
       - name: Verify all core stages and negative cases
         run: python3 verify_core.py --mathlib-project .
+      - name: Build dimension-independent continuation prerequisite
+        run: >-
+          python3 verify_extensions.py --mathlib-project .
+          --modules PackingCertificates/Extensions/GenericDimension.lean
+          --output analytic-continuation-prerequisite-verification.json
+      - name: Verify quantitative clearance and exact support identities
+        run: >-
+          python3 verify_extensions.py --mathlib-project .
+          --modules PackingCertificates/Extensions/Clearance.lean PackingCertificates/Extensions/SupportIdentity.lean
+          --output extension-clearance-support-verification.json
       - name: Archive complete source, object and log closure
         run: python3 catalogue/package_core_evidence.py
       - name: Retain complete core evidence
@@ -53,3 +63,30 @@ jobs:
           if-no-files-found: error
           retention-days: 1
           compression-level: 9
+      - name: Retain analytic theorem sources objects receipts and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-clearance-support-evidence
+          path: |
+            docs/research-2026-10-16-generalization/formal/PackingCertificates/Core.lean
+            docs/research-2026-10-16-generalization/formal/PackingCertificates/Core.olean
+            docs/research-2026-10-16-generalization/formal/PackingCertificates/Extensions/GenericDimension.lean
+            docs/research-2026-10-16-generalization/formal/PackingCertificates/Extensions/GenericDimension.olean
+            docs/research-2026-10-16-generalization/formal/PackingCertificates/Extensions/Clearance.lean
+            docs/research-2026-10-16-generalization/formal/PackingCertificates/Extensions/Clearance.olean
+            docs/research-2026-10-16-generalization/formal/PackingCertificates/Extensions/SupportIdentity.lean
+            docs/research-2026-10-16-generalization/formal/PackingCertificates/Extensions/SupportIdentity.olean
+            docs/research-2026-10-16-generalization/formal/core-build-logs/PackingCertificates_Core.lean.log
+            docs/research-2026-10-16-generalization/formal/core-build-logs/PackingCertificates_Extensions_GenericDimension.lean.log
+            docs/research-2026-10-16-generalization/formal/core-build-logs/PackingCertificates_Extensions_Clearance.lean.log
+            docs/research-2026-10-16-generalization/formal/core-build-logs/PackingCertificates_Extensions_SupportIdentity.lean.log
+            docs/research-2026-10-16-generalization/formal/extension-clearance-support-verification.json
+            docs/research-2026-10-16-generalization/formal/analytic-continuation-prerequisite-verification.json
+            docs/research-2026-10-16-generalization/formal/verify_core.py
+            docs/research-2026-10-16-generalization/formal/verify_extensions.py
+            docs/research-2026-10-16-generalization/formal/lean-toolchain
+            docs/research-2026-10-16-generalization/formal/lake-manifest.json
+          if-no-files-found: error
+          retention-days: 90
+          compression-level: 6

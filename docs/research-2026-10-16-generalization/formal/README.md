@@ -127,6 +127,42 @@ verification. It does not claim a formal execution-time proof of the Python
 simulator. A dimension-general geometric theorem does not imply polynomial time
 in dimension: the explicit vertex or facet counts can grow exponentially.
 
+### Quantitative clearance and exact support
+
+`Extensions/Clearance.lean` proves a projection error bound
+`epsilon * sum(abs(normal))` for coordinate errors at most `epsilon >= 0`.
+Wall slack at least this amount preserves containment. A pair gap strictly
+greater than twice this amount preserves disjointness of the complete convex
+hulls. The finite-packing theorem constructs a new certificate through the
+existing core. Its affine-placement bridge bounds vertex errors by
+`alpha + beta * L`, given translation-coordinate error `alpha`, matrix-entry
+error `beta`, and canonical vertex L1 norm at most `L`. Proper rigidity of both
+placements remains a separate premise; independent vertex perturbations alone
+do not preserve congruence.
+
+`Extensions/SupportIdentity.lean` defines the genuine real support supremum,
+proves maximum attainment, and establishes
+`h((1-tau)P + tau*ball(rho), u) = (1-tau)*h(P,u) + tau*rho*norm(u)`
+for nonempty compact `P`, `0 <= tau <= 1` and `rho >= 0` in a real
+inner-product space. It proves the inverse-isometry pullback and the exact
+signed and absolute `1-tau` attenuation between orientations of the actual
+blended bodies. The identity does not require convexity or inscribedness;
+containment in the target uses the separate continuation assumptions. An
+explicit specialization quantifies over every finite Euclidean dimension.
+
+The successful combined receipt is
+[`extension-clearance-support-verification.json`](extension-clearance-support-verification.json):
+two stages and **36 audited declarations**, using only the standard permitted
+axioms. Fourteen named endpoint/counterexample regression groups cover zero
+parameters, wall equality, insufficient wall slack, strict pair budgets,
+collision at pair-budget equality, signed normals, the Euclidean `(3,4)`
+direction and invalid blend parameters. They are analytic propositions, not
+additional Boolean-checker rejection counts. These proofs add no catalogue
+records and compute no catalogue-wide numerical tolerance radii. A positive
+uniform error budget requires positive wall slack as well as pair gaps.
+Support attenuation concerns geometric extent; it is not a claim about the
+whole penalty energy, its gradients or optimizer success.
+
 `Extensions/CayleyGeometry.lean` derives row orthogonality from the checked raw
 Cayley formula and inverse witness in every finite dimension. This avoids
 recomputing the same numerical Gram identities when a certificate selects that
@@ -233,6 +269,8 @@ working copy, first install the pinned dependencies and build the core:
 lake exe cache get
 lake build
 python verify_core.py --mathlib-project .
+python verify_extensions.py --mathlib-project . --modules PackingCertificates/Extensions/GenericDimension.lean --output analytic-continuation-prerequisite-verification.json
+python verify_extensions.py --mathlib-project . --modules PackingCertificates/Extensions/Clearance.lean PackingCertificates/Extensions/SupportIdentity.lean --output extension-clearance-support-verification.json
 python evidence_bundle.py --input-manifest catalogue/rational-witnesses-manifest.json --input-archive rational-witnesses.zip --embedded-manifest witness-manifest.json --extract catalogue
 python catalogue/audit_source_bindings.py
 python verify_extensions.py --mathlib-project . --modules PackingCertificates/Extensions/NDGeometry.lean PackingCertificates/Extensions/NDSupport.lean PackingCertificates/Extensions/NDModels.lean PackingCertificates/Extensions/BoxSupport.lean PackingCertificates/Extensions/CayleyGeometry.lean PackingCertificates/Extensions/NDSupportRegression.lean --output support225-generic-verification.json
