@@ -1,9 +1,7 @@
 name: Lean algebraic family certificates
 
+# Manual-only reproduction after the compact publication package is merged.
 on:
-  push:
-    branches: [lean/full-catalogue-and-dimension-proofs-20261016]
-    paths: [.github/workflows/lean-algebraic-families.yml]
   workflow_dispatch:
 
 permissions:
@@ -15,9 +13,33 @@ jobs:
     timeout-minutes: 350
     strategy:
       fail-fast: false
-      max-parallel: 4
+      max-parallel: 10
       matrix:
         include:
+          - cohort: 3d85
+            shard: 0
+          - cohort: 3d85
+            shard: 1
+          - cohort: 3d85
+            shard: 2
+          - cohort: 3d85
+            shard: 3
+          - cohort: 3d85
+            shard: 4
+          - cohort: 3d85
+            shard: 5
+          - cohort: 3d85
+            shard: 6
+          - cohort: 3d85
+            shard: 7
+          - cohort: nd45
+            shard: 0
+          - cohort: nd45
+            shard: 1
+          - cohort: nd45
+            shard: 2
+          - cohort: nd45
+            shard: 3
           - cohort: nd45
             shard: 4
           - cohort: nd45
@@ -26,6 +48,14 @@ jobs:
             shard: 6
           - cohort: nd45
             shard: 7
+          - cohort: nd45
+            shard: 8
+          - cohort: nd45
+            shard: 9
+          - cohort: nd45
+            shard: 10
+          - cohort: nd45
+            shard: 11
     defaults:
       run:
         working-directory: docs/research-2026-10-16-generalization/formal
@@ -57,6 +87,17 @@ jobs:
                   raise SystemExit('Dependency revision differs from frozen manifest: ' + item['name'])
           print('All dependency checkouts match the frozen manifest')
           PYDEPS
+      - name: Restore and regenerate compact publication inputs
+        run: |
+          python3 evidence_bundle.py --input-manifest catalogue/algebraic/pilot-inputs-and-proposals-manifest.json --extract .
+          python3 catalogue/algebraic/geometry_intervals.py --lean
+          python3 catalogue/algebraic/nd_geometry.py
+          python3 catalogue/algebraic/generate_3d.py
+          python3 catalogue/algebraic/generate_nd_pilots.py
+          python3 catalogue/algebraic/generate_fragmented_3d_pilots.py --basis-width 1 --vertex-width 8
+          python3 catalogue/algebraic/generate_fragmented_nd_pilots.py --basis-width 8 --vertex-width 32
+          python3 catalogue/algebraic/run_ci_pilots.py --write-assets
+          python3 catalogue/algebraic/run_ci_nd45.py --write-assets
       - name: Verify complete generic core and negative cases
         run: python3 verify_core.py --mathlib-project .
       - name: Kernel-check source-bound family shard

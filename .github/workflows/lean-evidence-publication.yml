@@ -1,0 +1,74 @@
+name: Strict Lean evidence aggregation
+
+on:
+  push:
+    branches: [lean/full-catalogue-and-dimension-proofs-20261016]
+    paths: [.github/workflows/lean-evidence-publication.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lean-frozen-532-evidence-publication
+  cancel-in-progress: false
+
+jobs:
+  aggregate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - name: Checkout reviewed aggregation operators
+        uses: actions/checkout@v4
+        with:
+          path: operator
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            docs/research-2026-10-16-generalization/ci-evidence/*.py
+            docs/research-2026-10-16-generalization/formal/evidence_bundle.py
+          fetch-depth: 1
+      - name: Checkout exact approved v2 proof helpers and frozen inputs
+        uses: actions/checkout@v4
+        with:
+          ref: 99bd4eb766cc3ae2e8ee5809aeba810a993f27b3
+          path: proof-base
+          sparse-checkout: docs/research-2026-10-16-generalization/formal
+          fetch-depth: 1
+      - name: Strictly replay and publish all532 source-bound certificates
+        run: >-
+          python3 operator/docs/research-2026-10-16-generalization/ci-evidence/aggregate_publication.py
+          --base-checkout proof-base
+          --base-formal proof-base/docs/research-2026-10-16-generalization/formal
+          --bundle-validator operator/docs/research-2026-10-16-generalization/formal/evidence_bundle.py
+          --min-free-mb 1024
+      - name: Preserve compact portable sources logs reports and raw indices
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-532-portable-publication
+          path: proof-base/docs/research-2026-10-16-generalization/ci-evidence/portable-export/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 6
+      - name: Preserve original raw ZIPs remotely until permanent release
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-532-original-raw-evidence
+          path: proof-base/docs/research-2026-10-16-generalization/ci-evidence/raw-preservation/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
+      - name: Retain diagnostics without claiming completion on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-532-aggregation-failure-diagnostics
+          path: |
+            proof-base/docs/research-2026-10-16-generalization/ci-evidence/**/cohort-validation*.json
+            proof-base/docs/research-2026-10-16-generalization/ci-evidence/**/independent-validation.json
+            proof-base/docs/research-2026-10-16-generalization/ci-evidence/**/validation-provenance.json
+          if-no-files-found: warn
+          retention-days: 14

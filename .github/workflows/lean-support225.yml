@@ -1,9 +1,6 @@
 name: Lean support-first catalogue certificates
 
 on:
-  push:
-    branches: [lean/full-catalogue-and-dimension-proofs-20261016]
-    paths: [.github/workflows/lean-support225.yml]
   workflow_dispatch:
     inputs:
       scope:
@@ -45,8 +42,21 @@ jobs:
           "$HOME/.elan/bin/elan" toolchain install "$(tr -d '\r\n' < lean-toolchain)"
       - name: Restore pinned mathlib
         run: |
-          lake update
           lake exe cache get
+          git diff --exit-code -- lake-manifest.json
+          python3 - <<'PYDEPS'
+          import json, subprocess
+          from pathlib import Path
+          manifest = json.loads(Path('lake-manifest.json').read_text())
+          for item in manifest['packages']:
+              if item['type'] != 'git':
+                  raise SystemExit('Only pinned git dependencies are allowed')
+              directory = Path(manifest['packagesDir']) / item['name']
+              actual = subprocess.check_output(['git', '-C', str(directory), 'rev-parse', 'HEAD'], text=True).strip()
+              if actual != item['rev']:
+                  raise SystemExit('Dependency revision differs from frozen manifest: ' + item['name'])
+          print('All dependency checkouts match the frozen manifest')
+          PYDEPS
       - name: Verify frozen generic core
         run: python3 verify_core.py --mathlib-project .
       - name: Verify support geometry and corruption regressions
