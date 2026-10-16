@@ -1,6 +1,6 @@
 # Records: Archimedean, Catalan, prism and antiprism families
 
-_Generated 2026-10-16 05:05 CEST from the running search._ s = container size ÷ piece size (edge ratio; for Catalan solids the ratio of the same canonical solid). Each entry: the record's container, with 10⁻⁷ clearance, truncated to 5 decimals, linking to the record file. Every record is proven by `certify_general.py` (exact number fields for the solids, rigorous interval arithmetic for the packing) and checked by `verify_general.py` (floating point). "≈ x" = conjectured closed form. The square prism is the cube and the triangular antiprism the octahedron: see the Platonic tables (cubes in a cube, octahedra in an octahedron, octahedra in a cube).
+_Generated 2026-10-16 05:12 CEST from the running search._ s = container size ÷ piece size (edge ratio; for Catalan solids the ratio of the same canonical solid). Each entry: the record's container, with 10⁻⁷ clearance, truncated to 5 decimals, linking to the record file. Every record is proven by `certify_general.py` (exact number fields for the solids, rigorous interval arithmetic for the packing) and checked by `verify_general.py` (floating point). "≈ x" = conjectured closed form. The square prism is the cube and the triangular antiprism the octahedron: see the Platonic tables (cubes in a cube, octahedra in an octahedron, octahedra in a cube).
 
 ## Archimedean solids
 
