@@ -1,3 +1,5 @@
+# Temporary 16 Oct: 10 search jobs while the frozen Lean catalogue proof batch runs.
+# Restore the 18-job matrix and all three /18 shard denominators after proof verification.
 # Extra search capacity. Since 14 Oct 16:49 (Alejandro: "mass production ... on 20 jobs instead of 4"): 18 jobs
 # (4 cores each; GitHub runs at most 20 jobs at once for a public repository, and 2 slots stay free so that the
 # tests, the site deploy and contributors' submission checks are never queued behind the search) run the same engine as the main machine
@@ -23,7 +25,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        job: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+        job: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     env:
       MINUTES: ${{ inputs.minutes || '300' }}
     steps:
@@ -56,17 +58,17 @@ jobs:
           rm -f "$PP_STATE/attempts.jsonl" "$PP_STATE_ND/attempts.jsonl"      # this job's own attempts only (export totals)
           pids=""
           for w in 0 1; do
-            PP_SHARD="${{ matrix.job }}/18" timeout $(( MINUTES * 60 + 600 )) python3 scripts/engine_nd.py work "N${{ matrix.job }}$w" > /dev/null 2>&1 &
+            PP_SHARD="${{ matrix.job }}/10" timeout $(( MINUTES * 60 + 600 )) python3 scripts/engine_nd.py work "N${{ matrix.job }}$w" > /dev/null 2>&1 &
             pids="$pids $!"
           done
           # 16 Oct 01:18 (Alejandro: "bests that are resilient from further updates ... keep all cores working"): the
           # 3D families that contributors improve most (prisms, antiprisms, Archimedean, Catalan: 1,700 contributed
           # improvements on 15 Oct while no search ran there) get a worker of their own again
-          PP_FAMILIES=archimedean,catalan,prisms PP_SHARD="${{ matrix.job }}/18" timeout $(( MINUTES * 60 + 600 )) python3 scripts/engine.py work "F${{ matrix.job }}" > /dev/null 2>&1 &
+          PP_FAMILIES=archimedean,catalan,prisms PP_SHARD="${{ matrix.job }}/10" timeout $(( MINUTES * 60 + 600 )) python3 scripts/engine.py work "F${{ matrix.job }}" > /dev/null 2>&1 &
           pids="$pids $!"
           # 15 Oct 18:14 (Alejandro: the Platonic problems up to n = 99): the 4th worker searches the 25 Platonic problems,
           # now n = 2-100 (n = 41-100 seeded by nested packings, scripts/compose3d.py)
-          PP_FAMILIES=platonic PP_SHARD="${{ matrix.job }}/18" timeout $(( MINUTES * 60 + 600 )) python3 scripts/engine.py work "P${{ matrix.job }}" > /dev/null 2>&1 &
+          PP_FAMILIES=platonic PP_SHARD="${{ matrix.job }}/10" timeout $(( MINUTES * 60 + 600 )) python3 scripts/engine.py work "P${{ matrix.job }}" > /dev/null 2>&1 &
           pids="$pids $!"
           # partial results every 20 minutes (the main machine harvests each branch commit once)
           ( while sleep 1200; do
