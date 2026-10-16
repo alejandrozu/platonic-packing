@@ -17,9 +17,10 @@ source-only bounds without a selected coordinate witness are excluded.
 
 The 3D exporter operates on the actual selected JSON's `s_full`, centres and
 scalar-first quaternions. It never attaches those coordinates to a different,
-historically smaller scale from the index. Every unquoted JSON number first has
-its native Python binary64 value and then becomes exactly `Fraction(value)`;
-quoted rational strings retain their exact rational meaning. All 8,409 frozen
+historically smaller scale from the index. JSON integers remain exact integers;
+decimal or exponent tokens first take their native Python binary64 value and
+then become exactly `Fraction(value)`. Quoted rational strings retain their exact
+rational meaning. All 8,409 frozen
 3D source poses and scales are rational under those semantics.
 
 The initial pilot is the minimum available coordinate-backed selected record in
@@ -33,6 +34,12 @@ A separate native higher-dimensional route selects one record from each of the
 pairs. These preparation totals describe the selected inputs, not successful
 builds. The two pilot cohorts together cover every family outside the ten-family
 rational cohort; they do not cover every population in those families.
+
+## Completed kernel evidence
+
+The completed portable cohorts contain **85/85 selected 3D witnesses and 45/45 selected higher-dimensional witnesses**, one two-piece record per remaining frozen family. All 130 have successful source-bound, axiom-audited Lean evidence. Together with the 402 rational records, the verified set covers all 140 frozen families. The 9,866 coordinate-backed records outside this combined 532-record set remain outside this formal claim. Proposal/export reports below describe preparation; the authoritative proof reports are `../../ci-evidence/published-85/verified-catalogue.json` and `../../ci-evidence/published-45/verified-catalogue.json`.
+
+The publication includes the bounded 130-witness input/proposal archive, not the full local `input-manifest.json` or background witness tree. Use the parent [`formal/README.md`](../../README.md#reproduce) for reconstruction from the packaged ZIPs; the full-inventory commands below describe the separate research workspace.
 
 ## Formal meaning
 
@@ -126,7 +133,8 @@ python catalogue/algebraic/generate_3d.py --all
 python catalogue/algebraic/run_verified.py --registry catalogue/algebraic/generated3d-all-registry.json --mathlib-project PATH_TO_PINNED_MATHLIB_PROJECT --receipt catalogue/algebraic/full3d-verification.json --resume
 ```
 
-The 1,587 remaining ND records are frozen for the native ND extension; the 3D
-exporter does not claim to certify them. A long preparation or proof run may be
+Of the 1,587 ND records outside the rational cohort, the 45 selected witnesses
+are included in the completed formal set; the other 1,542 remain outside it.
+The 3D exporter does not certify ND records. A long preparation or proof run may be
 partial; inspect the receipt's exact verified/unverified record lists rather
 than inferring coverage from a directory size or a target count.

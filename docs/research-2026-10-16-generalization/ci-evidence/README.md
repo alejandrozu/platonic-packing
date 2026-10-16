@@ -30,13 +30,15 @@ The canceled original run retained two useful checkpoints, with 14 and 15 succes
 
 The frozen catalogue is `1abc63218db34cea95802aeb3b6d4a6b6fe1c61b`. Current verified totals come from the generated reports, not from a workflow's status alone.
 
-When the unchanged strict replay and publication run on a remote aggregation runner, retain its three portable cohort directories and the accompanying `remote-aggregation-provenance.json`, `operator-source-hashes.json` and `raw-preservation-index.json` under this directory. After downloading those small publication outputs, independently check their original artifact identities from the local computer:
+When the unchanged strict replay and publication run on a remote aggregation runner, retain the three portable cohort directories under `formal/ci-evidence/published-402`, `formal/ci-evidence/published-85` and `formal/ci-evidence/published-45`. Retain the accompanying `remote-aggregation-provenance.json`, `operator-source-hashes.json` and `raw-preservation-index.json` under the paper's root `ci-evidence/` directory. After downloading those publication outputs, independently check their original artifact identities from the local computer:
 
 ```text
 python ci-evidence/verify_raw_github_metadata.py --paper .
 ```
 
 The resulting `raw-github-metadata-verification.json` binds all three current raw indices to exact GitHub artifact/run IDs, commits, byte sizes and published SHA256 values. A missing published digest is a failure. Raw ZIPs present locally are also hashed; absent ZIPs are explicitly recorded as not locally hashed. This receipt checks the completed aggregation run against GitHub too. The publication package requires these four provenance/receipt files whenever a cohort carries the remote aggregation marker, and checks the exact operator versions and portable output hashes. Remote aggregation replays source-bound evidence; it does not rerun the Lean kernel. Permanent raw-archive preservation is a separate release operation after the final main commit.
+
+The manual `lean-evidence-release.yml` workflow performs that final preservation operation on a fresh runner. Supply the exact reviewed current main commit and the aggregation raw-preservation artifact's ID and GitHub-published SHA256. The reviewed `release_from_preservation.py` authenticates the successful aggregation, restores and freshly hashes all 33 original worker ZIPs, checks the three committed portable cohorts, and invokes `archive_release.py`. It rejects changed main heads, conflicting assets and incomplete evidence. The permanent release is `lean-frozen-catalogue-2026-10-16`; its upload receipt checks server sizes and digests. This operation publishes proof evidence on GitHub only.
 
 Top-level cohort rows may be compact: `full_evidence_ref` points to the complete per-artifact independent report and its SHA256. All source/object/log/receipt/plan hashes are preserved; the large proof-step and import arrays stay in those full reports. `compact_cohort.py` migrates an older top report only after checking every record against its pinned full report, preserving the original top report in history. Publication always replays the full reports and receipts afresh.
 

@@ -6,8 +6,8 @@ original two-cube regression example. Catalogue instances concern actual
 recorded placements at their stored scales. They establish feasibility, not
 optimizer correctness or global optimality.
 
-**Final number of distinct catalogue records verified by Lean:
-57.** This count must come from successful, axiom-audited build
+**Final number of distinct catalogue records verified by Lean: 532 across all 140 frozen families.**
+This comprises all 402 rational targets and 130 additional two-piece witnesses: 85 other 3D families and 45 other 4D–6D families. This count must come from successful, axiom-audited build
 receipts. Exporting JSON, generating a Lean file, or passing a Python audit does
 not establish Lean verification. Ordinary and fragmented proofs of the same
 original record count once.
@@ -35,8 +35,9 @@ The frozen catalogue contains 10,398 coordinate-backed records and six
 source-only bounds. The 402 targets are a rational subset. Other unit-edge 3D
 templates require algebraic coordinates. Other higher-dimensional cases may
 need algebraic templates or irrational edge normalization, even when their
-unscaled vertices are rational. Those cases and source-only bounds without
-witnesses remain outside this importer.
+unscaled vertices are rational. They remain outside the rational importer;
+the separate algebraic route below handles selected exact-coordinate witnesses.
+Source-only bounds without witnesses have no catalogue packing proof here.
 
 ## What the kernel proves
 
@@ -78,8 +79,12 @@ container vertices: all weights are nonnegative, sum to one, and give exact
 equality in every coordinate. Sparse width is `d + 2`; repeated indices and
 zero-weight padding are valid. This avoids assuming that an external halfspace
 list is complete or equals the vertex hull. For c16, c24, op5, and op6, the
-conclusion concerns the supplied canonical coordinate models; this extension
-does not separately classify those models as regular polytopes.
+conclusion concerns the supplied canonical coordinate models.
+`Extensions/NDIdentity.lean` additionally identifies the c16/op5/op6 arrays with
+the standard convex hull of the positive and negative coordinate basis, and
+c24 with the hull of all vectors with exactly two coordinates equal to +1 or
+-1 and the other coordinates zero. These finite coordinate-model identities
+do not separately prove all face, edge-length and regularity properties.
 
 `Cayley.lean` connects higher-dimensional matrices with their original skew
 parameters and diagonal signs. Its finite checker verifies:
@@ -99,6 +104,69 @@ certificates, affine transport, outer approximation, Minkowski opening
 containment and inclusion monotonicity, convex blends, subpackings, and nested
 packings. `Example.lean` retains the exact two-unit-cubes example in a side-5/2
 cube. It is a regression witness and is not counted as a catalogue record.
+
+## Arbitrary dimension and computational cost
+
+`Extensions/GenericDimension.lean` proves radius nesting and the exact zero-radius
+endpoint for Euclidean-ball openings, nesting for convex blends with an inscribed
+body, and preservation of feasible packings when pieces are replaced by the
+corresponding contained bodies. The explicit corollaries quantify over every
+`d : Nat` and use `EuclideanSpace R (Fin d)`, whose norm is Euclidean, rather than
+the supremum norm on the default finite function space. The opening statements
+also hold in arbitrary real normed vector spaces. They do not assume that every
+facet is tangent to an inscribed sphere. Hardening an arbitrary soft packing need
+not preserve feasibility, and optimizer convergence is not asserted.
+
+`Extensions/Complexity.lean` proves that a strictly improving finite support-walk
+trace has no repetitions, visits at most V vertices, and scans at most 2E graph
+adjacency entries. With d coordinate products per dot product, this bounds one
+support query by O(d(E+1)) arithmetic work. The manuscript derives conditional
+per-step and per-simulation costs from the actual search loops, distinguishing
+piece-pair enumeration, support queries, matrix work, solver sizes and exact
+verification. It does not claim a formal execution-time proof of the Python
+simulator. A dimension-general geometric theorem does not imply polynomial time
+in dimension: the explicit vertex or facet counts can grow exponentially.
+
+`Extensions/CayleyGeometry.lean` derives row orthogonality from the checked raw
+Cayley formula and inverse witness in every finite dimension. This avoids
+recomputing the same numerical Gram identities when a certificate selects that
+proof route. `Extensions/NDGeometry.lean`, `NDModels.lean`, `NDSupport.lean` and
+`BoxSupport.lean` provide exact support formulas and geometric containment routes
+for the supplied box and orthoplex coordinate hulls. These routes establish the
+same whole-body conclusion as the explicit-vertex or barycentric tests; a faster
+proof route does not change the native packing.
+
+## Algebraic-coordinate extension
+
+[`catalogue/algebraic/README.md`](catalogue/algebraic/README.md) documents a separate
+proof-producing route for exact algebraic canonical coordinates. Its Lean
+interval/root modules define unique exact real roots and bound polynomial and
+positive square-root expressions without replacing vertices by rational points.
+The dimension-independent affine-basis theorem proves membership in the actual
+container vertex hull using checked Cramer identities, a centred template and
+nonnegative corrected barycentric weights. The record-level checker also proves
+source-bound proper placements and strict separation of every unordered pair.
+
+The algebraic manifest separates proposed witnesses from successfully compiled,
+source-bound instances. Its completed records are additional to the rational
+cohort reported above. The frozen parser, geometry naming and transcription are
+audited external boundaries. Formal identification of every canonical hull with
+its conventional named solid, including all unit-edge facts, is not claimed.
+Root/normalizer semantics are proved. The separate `NDReferenceEdges` leaf
+checks selected exact squared endpoint distances for twelve ND templates and
+45 positive native conversion identities `mu² * edge_C² = edge_P²`.
+Its binding report records the source indices and literal hashes. A separate
+exact Python audit checks all 2,490 listed edges; adjacency and full regularity
+classification remain outside these finite arithmetic proofs.
+The current determinant-interval checker explicitly uses the Leibniz permutation
+sum; its factorial dimension cost is stated separately from simulation runtime.
+The higher-dimensional quadratic-coordinate route instead checks an explicitly
+supplied inverse matrix over rational coefficient pairs. Its exact real
+embedding, source edge-normalization factor and diagonal scaling are proved in
+`Algebraic/QuadraticInverse.lean`, `QuadraticScale.lean` and `PackingND.lean`.
+Inverse checking takes cubic arithmetic work in the affine-basis dimension;
+proposing an inverse remains outside the kernel. Record counts still require
+successful, source-bound individual build receipts.
 
 ## Exact numbers and source boundary
 
@@ -128,88 +196,114 @@ general certifier implementation, or every entry of the live evolving website.
 
 ## Reproduce
 
-The project pins Lean **4.31.0** and mathlib commit
-`fabf563a7c95a166b8d7b6efca11c8b4dc9d911f`. Python 3 is required for import and
-generation. The ND exporter additionally uses NumPy/SciPy for untrusted simplex
-or plane proposals, followed by exact rational checks. The cube exporter and
-independent source audit use Python's standard library.
+Use Lean 4.31.0 and the mathlib revision pinned by `lake-manifest.json`.
+Keep the supplied publication files unchanged. Perform new builds in a separate
+working copy of this `formal` directory; rebuilding creates local proof objects
+and fresh receipts, which are not part of the published source tree.
 
-From this `formal` directory, with elan/lake and Python available:
+The completed evidence lives in `ci-evidence/published-402/`,
+`ci-evidence/published-85/` and `ci-evidence/published-45/`. Each has a portable
+summary, a source/log ZIP and its byte-hash manifest. Every build environment
+retains its own `environments/ENVIRONMENT_ID/formal/` namespace, core receipt,
+numeric sources, logs and original plans. The environment-scoped
+`catalogue/verified-module-manifest.json` is an index, not a flat runner manifest.
 
-```sh
-lake update
+From this directory, validate and inspect a published environment:
+
+```text
+python evidence_bundle.py --cohort ci-evidence/published-402
+python evidence_bundle.py --cohort ci-evidence/published-402 --extract ../proof-inspection --environment ENVIRONMENT_ID
+```
+
+Replace `ENVIRONMENT_ID` with an identifier from that cohort's
+`verified-catalogue.json`. The same commands apply to the other two cohorts.
+On Windows, choose a short writable work/extraction directory, for example
+`C:/p`, because deeply named proof fragments can exceed legacy path limits.
+The helper checks archive hashes, every member, semantic axiom audits and the
+complete source/log/receipt closure. It rejects unsafe paths and differing
+existing output bytes. It never merges environment roots or restores compiled
+objects. Original object hashes remain provenance; objects from different
+operating systems must not be substituted into an archived receipt.
+
+Fresh rational-cohort verification regenerates local plans from the same
+frozen JSON, avoiding reuse of platform-dependent object pins. In the separate
+working copy, first install the pinned dependencies and build the core:
+
+```text
 lake exe cache get
 lake build
-lake env lean Audit.lean
 python verify_core.py --mathlib-project .
-python catalogue/unpack_witnesses.py
+python evidence_bundle.py --input-manifest catalogue/rational-witnesses-manifest.json --input-archive rational-witnesses.zip --embedded-manifest witness-manifest.json --extract catalogue
 python catalogue/audit_source_bindings.py
-python catalogue/run_chunked.py --mathlib-project . --timeout 1800 --manifest verified-module-manifest.json --receipt rebuilt-catalogue-verification.json
+python verify_extensions.py --mathlib-project . --modules PackingCertificates/Extensions/NDGeometry.lean PackingCertificates/Extensions/NDSupport.lean PackingCertificates/Extensions/NDModels.lean PackingCertificates/Extensions/BoxSupport.lean PackingCertificates/Extensions/CayleyGeometry.lean PackingCertificates/Extensions/NDSupportRegression.lean --output support225-generic-verification.json
+python catalogue/run_support_ci_shard.py --mathlib-project . --scope all402 --block-size 8 --shard-count 12 --shard-index 0
 ```
 
-The supplied verified-module manifest rebuilds exactly the completed cohort.
-The sequential runner supports both ordinary instances and instances split
-across shared-data, arithmetic-block and aggregate modules. Every required
-module must compile; its source and dependency hashes are recorded.
-The default library build checks the generic library without automatically
-building every catalogue instance. The separate core runner also checks the
-negative regression certificates and writes a fresh build receipt.
+Repeat the final command with shard indices 1 through 11 to cover all 402
+targets; run one shard at a time unless sufficient memory is available.
+`--only RECORD_ID` selects a smaller explicit test. The driver writes its fresh
+plans, status and receipts under `catalogue/ci-support/shard-XX/`, including
+ordinary, support-based and fragmented proof routes as needed. It checks every
+required source, arithmetic block and aggregate. It does not rewrite the
+immutable `ci-evidence/published-*` archives. `--memory-mb` and `--timeout`
+control resources, not the mathematical checks.
 
-To regenerate proposed witnesses after the unpacking and source audit above:
+The extra algebraic targets have a bounded shared input archive: 130 selected
+native witnesses, 130 proposed certificates, exact geometry data, target
+registries and public target-selection metadata. The full background native
+and exported-witness collections are not included. Restore these inputs and
+regenerate their reference transcriptions in the separate working copy:
 
-```sh
-# Optional full regeneration; NumPy/SciPy are needed by the ND exporter.
-python catalogue/export_cubes.py
-python catalogue/export_nd.py
-python catalogue/audit_source_bindings.py
-python catalogue/generate_lean.py
-python catalogue/generate_nd_lean.py
-python catalogue/generate_fragmented_cubes.py
-python catalogue/generate_axis_cubes.py
-python catalogue/generate_fragmented_nd.py
+```text
+python evidence_bundle.py --input-manifest catalogue/algebraic/pilot-inputs-and-proposals-manifest.json --extract .
+python catalogue/algebraic/geometry_intervals.py --lean
+python catalogue/algebraic/nd_geometry.py
+python catalogue/algebraic/generate_3d.py
+python catalogue/algebraic/generate_nd_pilots.py
+python catalogue/algebraic/generate_fragmented_nd_pilots.py
+python catalogue/algebraic/run_ci_pilots.py --write-assets
+python catalogue/algebraic/run_ci_nd45.py --write-assets
+python catalogue/algebraic/run_ci_pilots.py --mathlib-project . --shard-count 8 --shard-index 0
+python catalogue/algebraic/run_ci_nd45.py --mathlib-project . --shard-count 12 --shard-index 0
 ```
 
-Use the frozen inputs supplied here; an evolving website fetch is unnecessary.
-Exporters write `witnesses/` and `witnesses_nd/`; their reports describe export
-status only. The ordinary ND generator also writes canonical template
-declarations. Fragmented generators preserve the data and separate source,
-Gram, containment, and pair checks into smaller proofs. The final geometric
-result is assembled from these checked proofs.
+Repeat the 3D driver for indices 1 through 7, and the ND driver for indices 1
+through 11. Their source-bound runners generate bounded numerical proof modules
+and require complete imported-source/object receipts and the actual final
+semantic declarations. New receipts are written under their local `ci/` and
+`ci-nd45/` directories. The reference monolithic files are transcriptions;
+their generation alone does not establish verification. The archived source
+snapshots preserve the exact original proof route and plan even when a fresh
+rerun chooses a different checked fragmentation.
 
-Build the support modules before the generated record modules:
+After restoring the shared ND inputs above, reproduce the separate reference-edge
+audit and the source-bound Lean leaf in the working copy:
 
-```sh
-lake build PackingCertificates.Core PackingCertificates.Rational PackingCertificates.Cube PackingCertificates.Catalogue PackingCertificates.Barycentric PackingCertificates.Cayley PackingCertificates.TemplateData PackingCertificates.BoxGeometry PackingCertificates.CubeFast PackingCertificates.Example
-lake build PackingCertificates
-lake env lean Audit.lean
+```text
+python catalogue/nd-edge-scale-audit.py --output catalogue/rebuilt-nd-edge-scale-audit.json
+python catalogue/generate_nd_reference_edges.py --check
+python verify_extensions.py --mathlib-project . --modules PackingCertificates/Algebraic/Interval.lean PackingCertificates/Algebraic/Root.lean PackingCertificates/Algebraic/Template.lean PackingCertificates/Algebraic/Simplex.lean PackingCertificates/Algebraic/Placement.lean PackingCertificates/Algebraic/QuadraticScale.lean PackingCertificates/Algebraic/QuadraticInverse.lean PackingCertificates/Algebraic/NDReferenceEdges.lean --output catalogue/rebuilt-nd-reference-edge-lean-verification.json
 ```
 
-Then compile generated modules and save separate receipts:
+The first command is an exact Python audit. The final command checks the Lean
+leaf and its generic dependencies and writes a new build receipt; keep the two
+reports distinct. `--check` checks the leaf's frozen literal rendering and
+refreshes its source-binding metadata only in this separate working copy.
 
-```sh
-python catalogue/run_lean.py --mathlib-project . --workers 1 --timeout 1800 --manifest generated-fragmented-cube-modules.json --receipt lean-cube-verification.json
-python catalogue/run_lean.py --mathlib-project . --workers 1 --timeout 1800 --manifest generated-fragmented-nd-modules.json --receipt lean-nd-verification.json
+The generic dimension and complexity statements can also be rebuilt after
+their support dependencies above:
+
+```text
+python verify_extensions.py --mathlib-project . --modules PackingCertificates/Extensions/GenericDimension.lean PackingCertificates/Extensions/Complexity.lean PackingCertificates/Extensions/NDIdentity.lean --output rebuilt-method-verification.json
 ```
 
-The runner includes this project's `.lake/build/lib/lean` and its cached
-dependency build paths. `--mathlib-project` may instead name an existing project
-with the same pinned compiled dependency tree. The runner prefers `lean` on
-`PATH`; `--lean` can select its local path explicitly, for example
-`--lean /path/to/lean`. The executable must match the pinned version.
-
-For a smaller reproduction, generators accept `--max-n`; fragmented generators
-also accept `--only` with original record IDs. Runner `--only` uses manifest IDs,
-which carry the `fragmented_` prefix for fragmented modules. Fragmentation bounds
-individual reductions, but large exact computations can still require
-substantial memory and time.
-The ND generator provides `--per-vertex` and `--per-pair` fallbacks when a row
-or whole piece is too large for the available memory. The axis-cached cube
-generator writes its own `generated-axis-cube-modules.json` manifest.
-
-Failed, interrupted, pending, or timed-out modules are not verified records.
-Only a successful compiler exit, produced `.olean`, and acceptable printed
-axiom audit count toward the total. Manifests and receipts identify the exact
-module, command, source hash, log hash, and outcome.
+A compatible, already compiled mathlib project may replace `.` in
+`--mathlib-project`; `--lean` selects an explicit executable of the pinned
+version. NumPy/SciPy are required by numerical export and some source-binding
+helpers; archive validation and unpacking use only Python's standard library. No evolving
+website fetch is required. Failed, pending or timed-out builds never count as
+verified records; only complete successful kernel builds with the required
+source and axiom audits qualify.
 
 ## Axioms and mathematical limits
 
@@ -224,4 +318,5 @@ separation gaps prove disjoint closed bodies, stronger than disjoint interiors;
 wall containment may be weak. Touching packings require a corresponding
 weak-separation/interior argument or a separately justified perturbation. No
 theorem proves heuristic convergence, search completeness, global optimality,
-or the full catalogue. Algebraic-coordinate extensions remain future work.
+or the full catalogue. Algebraic-coordinate instances require their own
+completed source-bound build receipts, separately from the rational cohort.

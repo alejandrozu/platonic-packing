@@ -42,6 +42,10 @@ containers.
 * **State of the work and next steps:** [STATUS.md](STATUS.md); chronological log: [EXPERIMENT_LOG.md](EXPERIMENT_LOG.md).
 * **Interactive viewer:** [the website](https://alejandrozu.github.io/platonic-packing/) (built from `web/` by `scripts/site.py`).
 
+## Generalization paper and Lean evidence
+
+[The manuscript](docs/research-2026-10-16-generalization/manuscript.pdf) and [source/evidence guide](docs/research-2026-10-16-generalization/README.md) describe the arbitrary-dimensional geometric generalization and computational cost bounds. Lean verifies **532 source-bound witnesses across all 140 families of the frozen catalogue**: all 402 selected rational certificates, plus one two-piece witness from each of the other 130 families. The package retains immutable input hashes, numerical proof sources, logs and separate construction/refinement attribution. These are feasibility proofs for the selected frozen witnesses; global optimality and the entire changing live archive remain outside that claim.
+
 ## Results: s = container edge ÷ piece edge, n = 2…40
 
 Nine problems: each Platonic solid in a copy of itself, and the dual pairs (cubes in an octahedron, octahedra in a cube,

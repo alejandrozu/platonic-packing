@@ -24,14 +24,16 @@
 \newcommand{\frozen}{https://github.com/alejandrozu/platonic-packing/tree/1abc63218db34cea95802aeb3b6d4a6b6fe1c61b}
 \newcommand{\blob}{https://github.com/alejandrozu/platonic-packing/blob/1abc63218db34cea95802aeb3b6d4a6b6fe1c61b}
 % Filled only from successful, source-hashed, axiom-audited Lean build receipts.
-\newcommand{\leanRecords}{57}
-\newcommand{\leanCubeRecords}{30}
-\newcommand{\leanNDRecords}{27}
-\newcommand{\leanFourDRecords}{15}
-\newcommand{\leanFiveDRecords}{6}
-\newcommand{\leanSixDRecords}{6}
-\newcommand{\leanPieces}{653}
-\newcommand{\leanPairs}{9,783}
+\newcommand{\leanRecords}{402}
+\newcommand{\leanCubeRecords}{99}
+\newcommand{\leanNDRecords}{303}
+\newcommand{\leanFourDRecords}{195}
+\newcommand{\leanFiveDRecords}{62}
+\newcommand{\leanSixDRecords}{46}
+\newcommand{\leanPieces}{10,796}
+\newcommand{\leanPairs}{235,462}
+\newcommand{\leanAlgebraicRecords}{130}
+\newcommand{\leanAlgebraicFamilies}{130}
 \newtheorem{proposition}{Proposition}
 \newtheorem{theorem}{Theorem}
 \title{Shape Continuation for Convex-Polytope Packing:\\Generalization and Lean-Verified Catalogue Certificates}
@@ -40,7 +42,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-We generalize soft-to-rigid finite-container packing from polygons and cubes to convex polyhedra and regular polytopes in dimensions four through six. Two paths are distinguished: blending with an inscribed ball, and erosion followed by dilation, which retains an actual eroded core for non-tangential solids. Continuation becomes one move in an archive search alongside symmetry-released starts, insertion, deletion, rigid perturbation, crystal cuts and nested substitution. A new Lean development proves dimension-independent certificate soundness and instantiates it on \leanRecords{} actual frozen catalogue records across ten families in dimensions 3--6. The kernel checks exported raw rotation parameters, proper rotations, congruence, whole-body containment and every pairwise separation. A separate source audit binds these exact literals to the original records without changing scales or placements; parsing remains outside the kernel. The checked cohort is a subset of 402 rational exports, rather than a verification of the entire 10,398-witness archive. Independent exact-arithmetic checkers and five separately rechecked examples complement this formal layer. A historical comparison of 1,824 attempts on 40 prism-family cases illustrates why improvement frequency and magnitude lead to different search policies. The results establish constructive feasibility and an auditable method; they do not prove global optimality or universal superiority of continuation.
+We generalize soft-to-rigid finite-container packing from polygons and cubes to convex polyhedra and regular polytopes in dimensions four through six. Two paths are distinguished: blending with an inscribed ball, and erosion followed by dilation, which retains an actual eroded core for non-tangential solids. Continuation becomes one move in an archive search alongside symmetry-released starts, insertion, deletion, rigid perturbation, crystal cuts and nested substitution. A new Lean development proves dimension-independent certificate soundness and verifies all \leanRecords{} selected rational certificates plus \leanAlgebraicRecords{} additional algebraic-coordinate witnesses, covering all 140 frozen problem families in dimensions 3--6. The kernel checks exported raw rotation parameters, proper rotations, congruence, whole-body containment and every pairwise separation. A separate source audit binds these exact literals to the original records without changing scales or placements; parsing remains outside the kernel. The additional cohort selects one two-piece witness per remaining family; this is family coverage, rather than verification of every population in the 10,398-witness archive. Independent exact-arithmetic checkers and five separately rechecked examples complement this formal layer. A historical comparison of 1,824 attempts on 40 prism-family cases illustrates why improvement frequency and magnitude lead to different search policies. The results establish constructive feasibility and an auditable method; they do not prove global optimality or universal superiority of continuation.
 \end{abstract}
 
 \section{Purpose and relation to earlier work}
@@ -55,7 +57,7 @@ General polyhedron packing and continuous rotations predate this work~\cite{roma
 The repository is an open, versioned research archive connecting independent contributions with geometry definitions, coordinate witnesses, certificates, source lineage and search code. Its literature review and historical-source audit~\cite{repoRelated,repoAudit} connect the catalogue to prior research; its search-method study, large-population analysis and higher-dimensional notes~\cite{repoSearch,repoLarge,repoHigher} record the implementation's empirical development. These project research materials complement, rather than replace, citations to the original papers.
 
 \section{Packing problem and normalization}
-Let $P,C\subset\R^d$ be compact, full-dimensional convex polytopes, with fixed reference scales and the origin in their interiors. Write
+Fix an integer $d\geq1$. Let $P,C\subset\R^d$ be compact, full-dimensional convex polytopes, with fixed reference scales and the origin in their interiors. Write
 \begin{equation}
 \begin{split}
 s^*_{P\to C}(n)=\inf\{s>0:\;&p_i+R_iP\subseteq sC,\quad R_i\in\SO(d),\\
@@ -100,7 +102,7 @@ h_{H_\tau}(u)=(1-\tau)h_P(u)+\tau\rho.
 Since $h_P(u)\geq\rho$, this expression decreases with $\tau$. Support-function comparison gives the claimed inclusion.
 \end{proof}
 
-Containment by convex blending is formalized in Lean as \code{convex_blend_subset}. The support-function nesting argument above is a mathematical proof in the manuscript, not a claim that the entire proposition's support-function formulation has been formalized.
+Containment is formalized in Lean as \code{convex_blend_subset}. The new theorem \code{convexBlend_antitone} also proves the nesting inclusion, directly by convex combinations rather than by formalizing support functions. It applies to every convex target and every inscribed body; tangency and regularity are unnecessary.
 
 \subsection{Actual eroded cores for non-tangential solids}
 For a radius $r\geq0$, define the erosion and opening
@@ -123,12 +125,17 @@ $x=[y+(R-r)u]+ru$. For $\|v\|\leq1$, the point
 $y+(R-r)u+rv$ belongs to $y+R\B_d\subseteq P$ by the triangle inequality. Thus $y+(R-r)u\in E_r$ and $x\in O_r$. The case $R=0$ and the endpoint follow directly.
 \end{proof}
 
-Lean's \code{minkowskiOpening_subset} proves opening containment for any structuring body; \code{minkowskiOpening_mono} concerns inclusion of the original bodies. The latter is not a formal proof of monotonicity in the radius in Proposition~\ref{prop:opening}.
+Lean's \code{minkowskiOpening_subset} proves opening containment for any structuring body. The new \code{ballOpening_antitone} and \code{ballOpening_zero} prove the radius nesting and rigid endpoint in Proposition~\ref{prop:opening}. These statements hold in arbitrary real normed vector spaces, including every finite-dimensional Euclidean space, and do not require convexity of $P$.
 
 For a tangential polytope with every unit-normal offset equal to $\rho$, equation~\eqref{eq:erosionfacets} gives
 $E_r=(1-r/\rho)P$ for $0\leq r<\rho$. Hence $O_r=H_{r/\rho}$ on that interval. The distinction matters for prisms with unequal facet distances and for many Archimedean solids: uniform core scaling and true erosion are different paths even though both can stay inside $P$.
 
 The generalized 3D implementation precomputes the eroded core numerically, tracking its changing combinatorics. Sampling and bisection locate transitions; this preprocessing is not an exact proof of every intermediate body. Internal search units set the inradius to $1/2$ and cap the non-tangential erosion radius at $0.49$, before a possibly degenerate core. The initial body is therefore rounded but need not be a sphere. The supported regular 4D--6D polytopes are tangential and use the homothetic-core formula; the implementation is not an arbitrary-dimensional erosion engine. Final rigid certificates are independent of these intermediate approximations.
+
+\subsection{A geometric generalization to every finite dimension}
+For each $d\in\mathbb N$, instantiate the formal statements in \code{EuclideanSpace} $\R\,(\operatorname{Fin}d)$, whose norm is Euclidean. The named theorem \code{euclidean_ball_continuation} proves the nested family and exact rigid endpoint for every $d$, rather than checking a list of dimensions. The distinction of norm is essential: the default norm on an unwrapped coordinate function space is a supremum norm, whose balls are boxes.
+
+The theorem \code{euclidean_opening_preserves_packing} transports these inclusions through each piece's individual placement. A feasible rigid packing therefore gives feasible softened packings, in every finite dimension. Hardening an arbitrary soft configuration can create overlaps; neither this theorem nor the search algorithm guarantees that those overlaps can always be removed. Proper rotations of the actual certificate placements are proved separately. Thus the formal dimension generalization establishes the geometry and certificate interface, while convergence and intermediate numerical erosion remain distinct questions.
 
 \section{From one continuation to an archive search}
 \subsection{Candidate generation and tightening}
@@ -213,10 +220,13 @@ Lean declaration & Kernel-checked meaning\\
 \code{affine_placement_of_vertex_body} & Affine placement commutes with taking the vertex hull.\\
 \code{transported_packing}, \code{subpacking_sound}, \code{nested_packing_sound} & Injective transport, subset replacement and disjoint child packings inside disjoint parents preserve a packing.\\
 \code{minkowskiOpening_subset}, \code{convex_blend_subset} & The two continuation constructions remain inside the target body under the stated hypotheses.\\
+\code{ballOpening_antitone}, \code{convexBlend_antitone} & The softened bodies are nested, in arbitrary real normed spaces, with the rigid endpoint recovered.\\
+\code{euclidean_opening_preserves_packing} & The geometric continuation applies in every finite Euclidean dimension.\\
 \code{Rational.checkPlaced_sound} & Exact rational tests imply rigidly placed whole-body containment and separation.\\
 \code{Cayley.check_sound} & Checked raw skew/sign parameters give the stated Cayley rotation with determinant one.\\
 \code{Barycentric.check_sound} & Rational convex combinations prove containment in the actual container vertex hull.\\
-\code{Catalogue.*.packing} & Per-record feasibility theorems for the completed catalogue cohort.\\
+\code{interval_cramer_centered_hull_membership} & Checked algebraic intervals and an affine basis establish membership in the actual canonical vertex hull.\\
+\code{packing} in each verified record module & Per-record feasibility theorems for the completed catalogue cohort.\\
 \bottomrule
 \end{tabular}
 \caption{Formal principles and their catalogue instantiations. The full website archive remains outside the completed verification cohort.}
@@ -226,13 +236,13 @@ Lean declaration & Kernel-checked meaning\\
 The original two-cube interface test remains as a regression example. The catalogue extension below instead uses archived placements and their recorded full scales.
 
 \subsection{Instantiated catalogue certificates}
-A proof-producing exporter targets 402 rational records from the same frozen snapshot: 99 cube-in-cube records with $2\leq n\leq100$, and 303 records in nine 4D--6D families. The completed, axiom-audited cohort contains \leanCubeRecords{} cube records and \leanNDRecords{} higher-dimensional records, comprising \leanPieces{} rigid pieces and \leanPairs{} unordered piece pairs. The supplement lists every completed record, source path, construction credit, immutable JSON hash, generated Lean source hash, compiler result and theorem axioms. Exported, pending, failed or timed-out records are not counted as completed proofs.
+All 402 rational export targets from the same frozen snapshot have completed source-bound kernel proofs: 99 cube-in-cube records with $2\leq n\leq100$, and 303 records in nine 4D--6D families. The completed, axiom-audited cohort contains \leanCubeRecords{} cube records and \leanNDRecords{} higher-dimensional records, comprising \leanPieces{} rigid pieces and \leanPairs{} unordered piece pairs. The supplement lists every completed record, source path, construction credit, immutable JSON hash, generated Lean source hash, compiler result and theorem axioms. Exported, pending, failed or timed-out records are not counted as completed proofs.
 
 \begin{table}[htbp]
 \centering\small
 \begin{tabular}{c>{\raggedright\arraybackslash}p{0.52\linewidth}rr}
 \toprule
-Dimension & Families & Completed & Export targets\\
+Dimension & Families & Verified & Selected\\
 \midrule
 3 & Cube in cube & \leanCubeRecords & 99\\
 4 & Tesseract, 16-cell, 24-cell in themselves; 16-cell/24-cell both ways & \leanFourDRecords & 195\\
@@ -242,19 +252,37 @@ Dimension & Families & Completed & Export targets\\
  & Total & \leanRecords & 402\\
 \bottomrule
 \end{tabular}
-\caption{Completed catalogue feasibility proofs, distinct from all successfully exported proposed certificates. Per-record details and piece counts are in the hash-matched coverage manifest.}
+\caption{Complete rational-cohort feasibility proofs. Every selected export target has successful kernel evidence. Per-record details and piece counts are in the hash-matched coverage manifest.}
 \label{tab:lean-coverage}
 \end{table}
 
-For each cube placement, the generated data retain the exact raw quaternion $q$, prove $\lVert q\rVert^2>0$, and check equality of the supplied rational matrix with the normalized quaternion formula. Orthogonality and determinant one are checked exactly. For higher-dimensional placements, an explicit inverse of $I-S$ is checked against the raw skew matrix and diagonal signs; a generic theorem identifies the resulting matrix with $D(I-S)^{-1}(I+S)$ and proves determinant one. Orthogonality implies preservation of squared Euclidean distance, so the theorem concerns congruent pieces rather than independently displaced vertex clouds.
+For each cube placement, the generated data retain the exact raw quaternion $q$, prove $\lVert q\rVert^2>0$, and check equality of the supplied rational matrix with the normalized quaternion formula. Orthogonality and determinant one are checked exactly. For higher-dimensional placements, an explicit inverse of $I-S$ is checked against the raw skew matrix and diagonal signs; a generic theorem identifies the resulting matrix with $D(I-S)^{-1}(I+S)$ and proves determinant one. The new arbitrary-dimensional theorem \code{CayleyGeometry.check_row_gram} derives orthogonality directly from these checked Cayley identities, avoiding a second large numerical Gram calculation when that proof route is selected. Orthogonality implies preservation of squared Euclidean distance, so the theorem concerns congruent pieces rather than independently displaced vertex clouds.
 
-Cube containment is linked to the ordinary unit cube and the side-\code{s_full} container. In higher dimensions each placed vertex carries nonnegative rational barycentric weights summing to one in the scaled canonical container vertices. Lean checks all coordinate equalities, then convexity extends containment to the entire piece. The actual 4D, 5D and 6D hypercube templates are additionally identified with coordinate unit boxes. For the orthoplex and 24-cell families, the formal conclusion concerns their supplied canonical coordinate hulls; a separate regular-polytope classification theorem is not claimed.
+Cube containment is linked to the ordinary unit cube and the side-\code{s_full} container. Rational higher-dimensional certificates use two routes. One checks nonnegative rational barycentric weights, total mass one and exact coordinate reconstruction in the scaled container vertices. The other uses proved canonical box or orthoplex membership and exact support bounds; box walls can be checked directly from coordinate support, avoiding repeated placed-corner calculations. Both routes imply containment of the actual whole piece hull. The actual 4D, 5D and 6D hypercube templates are identified with coordinate unit boxes. The new \code{NDIdentity} module also identifies the frozen orthoplex arrays with $\conv\{\pm e_a\}$ and the 24-cell array with $\conv\{\pm e_a\pm e_b:a\ne b\}$ in $\R^4$. These checked coordinate-model identities do not additionally derive every face, edge-length or regularity property.
 
 Every unordered pair receives an explicit rational separating plane, including pairs for which the production checker used a distant-pair shortcut. Strict projection gaps prove disjoint closed bodies. Cube support formulas reduce repeated corner enumeration, and bounded computations are assembled from separate source, Gram, wall, pair and barycentric proofs. All numerical decisions use \code{decide +kernel}; no compiled decision oracle is trusted.
 
 The exporter preserves production numeric semantics: JSON integer literals remain exact integers, decimal or exponent literals are decoded to binary64 and then converted to their exact rational values, and quoted rational strings retain their exact values. No scale, centre or orientation is perturbed to make a proof pass. All 402 source bindings have a separate exact Python audit, which is not counted as Lean verification. Parsing, source selection and transcription remain outside the kernel, with immutable inputs and byte hashes making that boundary inspectable.
 
-The formal source uses no \code{sorry}, \code{admit}, \code{native_decide} or custom axioms. Build receipts report the standard logical dependencies \code{propext}, \code{Classical.choice} and \code{Quot.sound}. The optimizer, intermediate core preprocessing, production interval implementation, remaining algebraic-coordinate geometry and uninstantiated compositions are not verified. The 10,398 archive certification flags below therefore remain distinct from the \leanRecords{} completed catalogue proofs.
+The formal source uses no \code{sorry}, \code{admit}, \code{native_decide} or custom axioms. Build receipts report the standard logical dependencies \code{propext}, \code{Classical.choice} and \code{Quot.sound}. The optimizer, intermediate core preprocessing, production interval implementation and uninstantiated compositions are not verified. The 10,398 archive certification flags below therefore remain distinct from completed catalogue proofs.
+
+\subsection{Exact algebraic coordinates beyond the rational cohort}
+Rounding an algebraic solid's vertices to rational points would certify a different body. A separate Lean development instead defines each canonical coordinate as a rational polynomial at an exact isolated real root, optionally divided by the positive square root of another such polynomial. Opposite polynomial signs at rational endpoints establish root existence; a checked divided-difference enclosure excluding zero establishes uniqueness. Checked interval operations enclose this exact real value. An interval is evidence about the coordinate, not its replacement.
+
+Containment is proved in the actual container vertex hull, rather than merely in an enclosing set of planes. Let its $m$ canonical vertices be $v_j\in\R^d$, with checked centroid identity $\sum_jv_j=0$. Choose injective affine-basis indices $\iota(0),\ldots,\iota(d)$ and form
+\[
+A=\begin{pmatrix}1&\cdots&1\\v_{\iota(0)}&\cdots&v_{\iota(d)}\end{pmatrix},
+\qquad t=A^{-1}\binom{1-m\varepsilon}{x},\quad \varepsilon\geq0.
+\]
+Assign weight $\varepsilon+t_i$ to each selected vertex and $\varepsilon$ to each unselected vertex. Cramer's rule, the nonzero determinant and the centroid identity give total mass one and weighted sum $x$. Nonnegative corrected weights therefore imply $x\in\conv\{v_j\}$. Lean proves this argument for every finite dimension. Checked determinant and adjugate enclosures can be reused for many points in the same basis, while each point receives its own sign checks. The row containing the mass constraint is explicitly included in the matrix; the adjugate uses transposed cofactors.
+
+The record-level theorem combines these checks with exact source rotations, positive container scale and strict separating planes for every unordered pair. In 3D, the original rational quaternion determines a proper rotation preserving distances for all real points. Interval containment of each normalized placed vertex extends by convexity to the whole exact piece. Numerical linear programming can propose an affine basis or plane, but every accepted sign and reconstruction is checked by Lean's kernel.
+
+The remaining regular 4D--6D families admit a more economical basis certificate. Their raw canonical coordinates lie in a quadratic extension $\Q(\sqrt r)$. An inverse of the augmented raw basis is supplied as pairs of rational coefficients and checked by exact matrix multiplication. Lean embeds the checked identities into the reals using the defining root equation. Positive algebraic container normalization is handled by diagonal scaling: if $A_\mu=\operatorname{diag}(1,\mu,\ldots,\mu)A$, then the checked inverse is $A^{-1}\operatorname{diag}(1,1/\mu,\ldots,1/\mu)$. The source edge factor $\mu$ is separately bound to its exact positive value. Thus irrational edge conversion is retained, and no determinant-permutation computation is needed in this route. An inverse proposed by numerical or symbolic software has no authority until the exact identity passes.
+
+A further Lean leaf checks exact squared reference-edge distances from selected endpoint literals for twelve higher-dimensional templates, and the positive conversion identities $\mu^2 e_C^2=e_P^2$ for all 45 additional higher-dimensional witnesses. The supplement binds the endpoint indices and literals to the frozen geometry and native-record hashes. A separate exact Python audit checks all 2,490 listed edges. These results verify the imported reference-length arithmetic; adjacency, regularity and complete named-solid identification are separate obligations.
+
+The completed algebraic-coordinate cohort contains \leanAlgebraicRecords{} additional source-bound records across \leanAlgebraicFamilies{} problem families: one two-piece witness from each of 85 remaining 3D families and 45 remaining 4D--6D families. Together with the rational cohort, these are 532 distinct records across all 140 frozen families, comprising 11,056 pieces, 163,900 placed vertices and 235,592 unordered pairs. These are selected witnesses, not all populations in each family. The tetrahedron-in-tetrahedron witness retains construction credit to Alejandro Zarzuelo and certificate-refinement credit to PingYou Ltd. Verifying or refining an inherited construction does not transfer its authorship. The canonical 3D geometry uses 56 templates and 13 root specifications. The root and normalizer semantics are proved, but identifying every named hull with its intended solid and proving the source's asserted reference edge lengths are separate obligations. These theorems certify the exact frozen coordinate hulls and native scale parameters; the interpretation as a unit-edge ratio additionally uses the stated input-geometry conventions.
 
 \section{Frozen computational evidence}
 \subsection{Coverage and five inspectable witnesses}
@@ -339,6 +367,61 @@ Symmetric fresh & 609 & 86 & 14.12\% & 25.04 & 0.5446\\
 
 Symmetric fresh starts give 3.30 times hop's and 1.86 times fresh's measured $G$, whereas hops improve the reference more often. Among 31 cases improved by more than 0.1\%, the lowest result comes from symmetric fresh in 21, fresh in five and hop in five. The evidence supports keeping distinct search mechanisms available; it does not estimate a causal benefit of temporary softening, demonstrate a fixed-budget portfolio advantage, or establish a universal speedup. There are no independent reruns or uncertainty intervals here, and Elapsed-time observations may depend on implementation, machine load and the selected historical cases.
 
+\section{Dimension, combinatorics and computational cost}\label{sec:cost}
+\subsection{One dynamics step}
+Let $n$ be the piece count and $d$ the dimension. Write $V,E,F_P$ for the vertex, edge and facet counts of the active piece or eroded core, and $V_C,F_C$ for the container vertex and facet counts. Let $P_t\leq\binom n2$ be the pairs surviving the bounding-sphere test at step $t$, and $K$ the configured axis-improvement budget. The following bounds count scalar arithmetic, comparisons and elementary functions at unit cost. They concern the frozen source loops, not measured wall time or a formal execution of JavaScript, Python or numerical libraries.
+
+A fixed-direction support query in \code{ndsim.py} walks the edge graph, accepting a vertex only when its computed value strictly increases. With finite fixed values it cannot revisit a vertex. Its trace has length at most $V$ and scans at most $2E$ adjacency entries, the graph's total degree. The Lean theorems \code{support_trace_length_le_vertices} and \code{support_neighbor_scans_le_twice_edges} prove these combinatorial statements. Including the initial value, at most $1+2E$ dot products are evaluated, giving $O(d(E+1))$ arithmetic work. A warm start can be much cheaper; a bound of merely $O(\mathrm{degree})$ for a complete query would omit the possible multiple graph hops. The positive comparison tolerance can stop short of an exact mathematical support maximum; final all-vertex certificates do not rely on that approximation.
+
+Transforming a direction through a dense rotation costs $O(d^2)$. A new near pair receives six extra axis iterations, besides an initial gap evaluation. One higher-dimensional dynamics step, excluding optional symmetry projection, therefore has the conservative bound
+\begin{equation}\label{eq:ndcost}
+\begin{aligned}
+O\!\bigl(&n^2d+P_t(K+7)[d^2+d(E+1)]\\
+ &+nF_C[d^2+d(E+1)]+nd^3\bigr).
+\end{aligned}
+\end{equation}
+The first term remains because the code visits every pair of centres. The wall term allows a support query at every wall, although a cheap sphere test often avoids it. Dense Cayley updates and periodic Gram--Schmidt require the cubic pose term. Optional symmetry projection adds its actual dense conjugations, currently $O(n_od^4)$ for $n_o$ orbit members, numerical SVD costs, and $O(n_fd^2g)$ for $n_f$ fixed pieces and group size $g$; these costs are not hidden in the cubic term.
+
+The 3D engine uses separating-axis tests and closest-feature enumeration. With identical piece combinatorics there are at most $A=2F_P+E^2$ candidate axes before pruning, each requiring vertex projections. Distances between disjoint near cores can additionally inspect vertex--face and edge--edge features. For a closed convex polyhedral boundary the face--edge incidence count is $2E$. A conservative step bound is consequently
+\begin{equation}\label{eq:3dcost}
+\begin{aligned}
+O\!\bigl(&n(V+F_P+E)+n^2+nF_CV\\
+ &+P_t\{V(2F_P+E^2)+V(F_P+E)+E^2\}\bigr).
+\end{aligned}
+\end{equation}
+Use the active core's counts for non-tangential shapes. Choosing and rebuilding a core from $H$ precomputed intervals adds $O(H+V+F_P+E)$ per step in the present implementation. Precomputing the erosion events is a separate cost.
+
+For fixed dimension, shape and $K$, both engines retain a quadratic worst-case dependence on $n$. Increasing the piece's edge count can enlarge the 3D axis set quadratically, whereas ND queries scan an edge graph. More container facets increase wall work linearly before any solver costs. These are bounds rather than fixed multipliers for actual timings: near-pair counts, symmetry, cached directions and pruning change the observed cost.
+
+\subsection{Dimension alone is insufficient to predict runtime}
+The geometric theorem applies in every finite dimension. Explicit polytope descriptions can nevertheless grow exponentially with $d$. For $d\geq2$,
+\begin{center}\small
+\begin{tabular}{lccc}
+\toprule
+Polytope & Vertices & Edges & Facets\\
+\midrule
+$d$-simplex & $d+1$ & $d(d+1)/2$ & $d+1$\\
+$d$-hypercube & $2^d$ & $d2^{d-1}$ & $2d$\\
+$d$-orthoplex & $2d$ & $2d(d-1)$ & $2^d$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Thus polynomial dependence on the explicit counts $V,E,F_C$ does not give a polynomial bound in dimension alone. Persistent ND dynamics arrays and the active problem geometry use
+$O(n^2d+nF_C+nd^2+(V+V_C)d+E+F_Cd)$ scalars and indices, including the stored piece and container vertices. Optional group and orbit arrays add $O(gd^2+n)$; materializing all placed vertices adds $O(nVd)$.
+
+\subsection{One simulation, tightening and exact verification}
+For a chosen schedule of $T$ dynamics steps, the total dynamics cost is the sum of the step bounds, hence at most $T$ times a uniform step bound. The frozen fresh ND schedule specifies $\lfloor5000B\rfloor+\lfloor45000B\rfloor+\lfloor3000B\rfloor$ steps for budget multiplier $B$, before legalization. Multiple starts, retries and hops add their individual budgets. This is a finite-budget bound, without a convergence or optimality guarantee.
+
+Tightening is separate. A container LP has $d+1$ variables and $F_C$ inequalities after support extraction; write its numerical solve cost as $T_{\rm LP}(d+1,F_C,L)$, where $L$ describes the coefficient encoding. One ND SLP round with $P$ near pairs has
+\[
+q=n\left(d+\frac{d(d-1)}2\right)+1+dP
+\]
+variables before optional regularization and at most $nVF_C+2PV$ geometric rows. Sparse row construction costs $O((nVF_C+PV)d^2+nVd^2)$, in addition to the separator, solver and legalization costs. We do not assign HiGHS a constant cost or claim a polynomial bound for the whole nonconvex search. In 3D the small-facet translation branch enumerates four active walls and checks the remaining walls, bounded by $O(F_C^5)$; the branch is used only for $F_C\leq14$. Larger containers use a capped tableau routine.
+
+For already-expanded rational placements, direct vertex--wall and pair-projection checking uses $O(nVF_Cd+n^2Vd)$ rational arithmetic operations, in addition to source-matrix and congruence checks, with dense matrix checks bounded by $O(nd^3)$. Sparse barycentric containment of width $w$ adds $O(nVwd)$ operations and $O(nVw)$ rational coefficients. Support formulas can remove vertex enumeration from some of these tests. These operation counts are distinct from bit complexity: rational normalization and GCD costs depend on intermediate numerator and denominator sizes. They also do not bound Lean elaboration, kernel reduction or proof storage by a constant per rational operation. The recorded build receipts expose those practical costs.
+
+The algebraic affine-basis routes have different preprocessing costs. The general 3D route's determinant enclosure explicitly sums the Leibniz formula over permutations; it is not a cubic-time elimination algorithm. With $k=d+1$ and $b$ cached bases, checking one determinant and $k^2$ adjugate entries per basis has upper bound $O(b\,k!\,k^3)$ interval operations. In contrast, the quadratic-coordinate route checks a supplied inverse by $O(bk^3)$ arithmetic operations on rational coefficient pairs, then checks its real interval enclosure. Both routes reuse caches and require $O(k^2)$ interval work for each point's weights. These are certificate-checking costs, separate from one dynamics step, inverse proposal generation, rational bit costs and kernel overhead. The arbitrary-dimensional geometric theorem does not depend on either computational representation.
+
 \section{Limitations and testable next steps}
 The generalized method changes the set of configurations that can be explored and certified, but its numerical search remains local and stochastic. Catalogue completeness over a displayed range is not exhaustive optimization. Source-only bounds and certified coordinate witnesses are distinct evidence classes. A rigorous upper bound can be worse than an uncertified contact estimate while still being the scientifically stronger feasibility statement.
 
@@ -346,12 +429,14 @@ A direct continuation ablation should start from the same archived hard packings
 
 Several structural hypotheses are now testable. A plateau may arise from a removable, weakly constrained piece; a sharp gain may mark a change in boundary-compatible layers or orientation domains. Symmetric starts may help when good solutions retain approximate orbits but require a small final symmetry break. Non-tangential opening may preserve useful face contacts better than uniform core scaling. Nested substitution may be especially effective when one-piece inclusions are efficient and the intermediate solid packs well. Each prediction requires comparisons against alternative constructions and compatible normalizations; none follows from visualization alone.
 
-The Lean layer now certifies selected actual catalogue witnesses, including their exact rigid-map representations. Extending completed coverage requires additional kernel builds, algebraic-coordinate support, regular-polytope identification beyond boxes, and a verified parser if source decoding is to enter the formal trust boundary. The present evidence is \leanRecords{} kernel-checked frozen catalogue instances, generic soundness theorems, and separately audited computational components; it is not a proof of the entire live archive or its search software.
+The Lean layer certifies actual catalogue witnesses, including their exact rigid-map representations. Extending it to every population in the archive requires further kernel builds; complete named-solid and edge-adjacency identification, and a verified parser, would also reduce the remaining external trust boundary. The present formal record comprises \leanRecords{} rational instances and \leanAlgebraicRecords{} additional algebraic-coordinate instances, alongside generic soundness theorems and separately audited computational components. It is not a proof of the entire live archive or its search software.
 
 \section{Reproducibility and methodological tools}
 The supplement contains the LaTeX source, figure-generation code, the Lean library and per-record proof sources, immutable rational-cohort inputs, proof-producing exporters, per-record build and axiom receipts, five independent production-checker rerun logs, a compressed complete catalogue snapshot, a per-case provenance CSV, the historical benchmark shards and aggregation code, and source/hash manifests. The implementation is available at \url{https://github.com/alejandrozu/platonic-packing}; the interactive catalogue is \url{https://polyhedrainpolyhedra.wiki/}. The repository commit named above freezes the computational implementation and data used here; the accompanying manuscript commit separately timestamps this document and its formal development.
 
 The earlier DOI releases~\cite{zarzueloMethods,zarzueloPatterns,zarzueloData} remain citations to their original scope and freeze. They are not retroactive identifiers for the current 140-problem archive. Record links, \code{s_full}, geometry normalization and construction lineage should be retained when reproducing or extending an example.
+
+Per-environment source/log archives retain the exact numerical proof sources and their build receipts without flattening independent namespaces. Original Linux build objects and raw CI artifact ZIPs are preserved separately in the repository's \href{https://github.com/alejandrozu/platonic-packing/releases/tag/lean-frozen-catalogue-2026-10-16}{proof-evidence release}, with SHA-256 indices. Preserved failed or superseded checkpoints do not contribute to verified counts. Fresh reproduction generates new local objects and receipts with the pinned toolchain.
 
 Software tools include Python, NumPy/SciPy and numerical optimizers, JavaScript dynamics and visualization, Lean/mathlib, and LaTeX. AI coding and drafting tools, including Claude and Codex, assisted implementation, analysis and manuscript preparation under human direction. Generated suggestions are not evidence of correctness; the mathematical arguments, exact checker outputs and Lean build artifacts identify the independently inspectable support for each claim. The recorded construction credit remains distinct from software assistance.
 

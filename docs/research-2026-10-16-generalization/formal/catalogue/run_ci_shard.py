@@ -181,6 +181,33 @@ def strategies(c):
 
 def evidence_files(status, outdir):
     paths = set()
+    def add_receipt_artifacts(receipt_path):
+        """Archive actual receipt paths, including root-level audit probes."""
+        if not receipt_path.is_file():
+            return
+        paths.add(receipt_path)
+        receipt = json.loads(receipt_path.read_text(encoding='utf8'))
+        def add(value, required=False):
+            if not value:
+                return
+            target = (FORMAL/value).resolve()
+            if not target.is_relative_to(FORMAL.resolve()):
+                raise ValueError('Receipt artifact escapes formal project: '+str(value))
+            if required and not target.is_file():
+                raise ValueError('Successful receipt artifact missing before packaging: '+str(value))
+            if target.is_file():
+                paths.add(target)
+        for row in receipt.get('results', []):
+            successful = row.get('passed') is True
+            for key in ('path', 'olean_path', 'log'):
+                add(row.get(key), successful)
+            for dependency in row.get('imported_dependencies', []):
+                add(dependency['path'], successful)
+                add(dependency.get('olean_path') or dependency.get('olean'), successful)
+        for dependency in receipt.get('core_dependencies', []):
+            add(dependency['path'], True)
+            add(dependency.get('olean_path') or dependency.get('olean'), dependency.get('olean_sha256') is not None)
+    add_receipt_artifacts(FORMAL/'core-verification.json')
     for root in (FORMAL / 'PackingCertificates',):
         # Direct proof core plus extensions, excluding unrelated catalogue instances.
         for path in root.rglob('*'):
@@ -229,7 +256,7 @@ def evidence_files(status, outdir):
         receipt=(FORMAL/generic['path']).resolve()
         if not receipt.is_relative_to(FORMAL.resolve()):
             raise ValueError('Generic receipt path escapes formal project')
-        paths.add(receipt)
+        add_receipt_artifacts(receipt)
     return sorted((p for p in paths if p.is_file()), key=lambda p: str(p.relative_to(FORMAL)))
 
 

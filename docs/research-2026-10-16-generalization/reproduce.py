@@ -76,7 +76,7 @@ def main():
     for example in json.loads((DATA / 'illustrative-cases.json').read_text()):
         checker = DATA / 'sources' / ('certify_nd.py' if example['dimension'] > 3 else 'certify_general.py')
         witness = DATA / 'sources' / example['file']
-        result = subprocess.run([sys.executable, str(checker), str(witness)],
+        result = subprocess.run([sys.executable, '-B', str(checker), str(witness)],
                                 capture_output=True, text=True, check=True)
         assert 'CERTIFIED:' in result.stdout, example['id']
         rechecks.append(dict(case=example['id'], exit_code=result.returncode, output=result.stdout))
