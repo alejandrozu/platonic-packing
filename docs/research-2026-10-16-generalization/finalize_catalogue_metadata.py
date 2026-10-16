@@ -114,6 +114,7 @@ def main():
             audited_declarations=sum(len(r['audited_theorems'])for r in read(FORMAL/name)['results']))
             for name in ('extension-verification-v2.json','extension-identity-verification.json',
                          'extension-clearance-support-verification.json',
+                         'extension-materials-verification.json',
                          'catalogue/nd-reference-edge-lean-verification.json')])
     compatibility=dict(schema='portable-catalogue-compatibility-summary-v1',complete_402=True,
         source_report='ci-evidence/published-402/verified-catalogue.json',source_report_sha256=checked['summary_sha256'],

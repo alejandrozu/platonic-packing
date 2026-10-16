@@ -439,10 +439,10 @@ class RawGitHubMetadata(unittest.TestCase):
 
 
 class AnalyticReceiptIntegrity(unittest.TestCase):
-    def fixture(self,root):
+    def fixture(self,root,audit_names=None):
         """Structural test data only; these fixtures are not kernel proof claims."""
-        modules=['PackingCertificates/Extensions/Clearance.lean',
-                 'PackingCertificates/Extensions/SupportIdentity.lean']
+        audit_names=package_validator.ANALYTIC_AUDITS if audit_names is None else audit_names
+        modules=['PackingCertificates/Extensions/'+name+'.lean'for name in audit_names]
         core=root/'PackingCertificates/Core.lean';core.parent.mkdir(parents=True)
         core.write_text('-- structural fixture dependency\n',encoding='utf8')
         for name in ('verify_core.py','verify_extensions.py'):
@@ -451,7 +451,7 @@ class AnalyticReceiptIntegrity(unittest.TestCase):
         for path in modules:
             source=root/path;source.parent.mkdir(parents=True,exist_ok=True)
             names=['PackingCertificates.Extensions.'+source.stem+'.'+name
-                for name in package_validator.ANALYTIC_AUDITS[source.stem]]
+                for name in audit_names[source.stem]]
             source.write_text('import PackingCertificates.Core\n'+''.join('#print axioms '+name+'\n'for name in names),encoding='utf8')
             log=root/(source.stem+'.log')
             log.write_text(''.join("'"+name+"' does not depend on any axioms\n"for name in names),encoding='utf8')
@@ -518,6 +518,55 @@ class AnalyticReceiptIntegrity(unittest.TestCase):
             row['audited_theorems'].pop(name)
             with self.assertRaisesRegex(ValueError,'semantic declaration audit'):
                 package_validator.validate_clearance_support(root,evidence,bad)
+
+    def test_materials_receipt_preserves_physical_scope_and_catalogue_counts(self):
+        with tempfile.TemporaryDirectory()as folder:
+            root=Path(folder);receipt=self.fixture(root,package_validator.MATERIALS_AUDITS)
+            result=package_validator.validate_materials(root,evidence,receipt)
+            self.assertEqual(sum(map(len,result['audited_theorems'].values())),37)
+            self.assertEqual(result['catalogue_records_added'],0)
+            self.assertTrue(result['measurable_certified_region'])
+            self.assertTrue(result['periodic_whole_body_packing'])
+            self.assertFalse(result['full_rotational_partition_function_proved'])
+            self.assertFalse(result['per_record_free_volumes_computed'])
+
+    def test_materials_receipt_rejects_partial_failed_or_reordered_builds(self):
+        with tempfile.TemporaryDirectory()as folder:
+            root=Path(folder);receipt=self.fixture(root,package_validator.MATERIALS_AUDITS)
+            bads=[]
+            bad=copy.deepcopy(receipt);bad['results'].pop();bads.append(bad)
+            bad=copy.deepcopy(receipt);bad['passed']=False;bads.append(bad)
+            bad=copy.deepcopy(receipt);bad['results'][1]['exit_code']=1;bads.append(bad)
+            bad=copy.deepcopy(receipt);bad['changed_core_dependencies']=['Core'];bads.append(bad)
+            bad=copy.deepcopy(receipt);bad['requested_modules'].reverse();bad['results'].reverse();bads.append(bad)
+            for bad in bads:
+                with self.assertRaises(ValueError):package_validator.validate_materials(root,evidence,bad)
+
+    def test_materials_receipt_requires_semantic_volume_and_periodic_theorems(self):
+        cases={0:'exists_positive_measurable_feasible_region',1:'vertex_certificate_periodic_packing'}
+        for index,short in cases.items():
+            with self.subTest(theorem=short),tempfile.TemporaryDirectory()as folder:
+                root=Path(folder);receipt=self.fixture(root,package_validator.MATERIALS_AUDITS)
+                row=receipt['results'][index];source=root/row['path'];log=root/row['log']
+                name='PackingCertificates.Extensions.'+source.stem+'.'+short
+                source.write_text(source.read_text().replace('#print axioms '+name+'\n',''),encoding='utf8')
+                log.write_text(log.read_text().replace("'"+name+"' does not depend on any axioms\n",''),encoding='utf8')
+                row['source_sha256']=evidence.sha(source);row['log_sha256']=evidence.sha(log)
+                row['audited_theorems'].pop(name)
+                with self.assertRaisesRegex(ValueError,'semantic declaration audit'):
+                    package_validator.validate_materials(root,evidence,receipt)
+
+    def test_materials_receipt_rejects_missing_imports_objects_and_custom_axioms(self):
+        for case in ('imports','stage-object','import-object','custom-axiom'):
+            with self.subTest(case=case),tempfile.TemporaryDirectory()as folder:
+                root=Path(folder);receipt=self.fixture(root,package_validator.MATERIALS_AUDITS)
+                row=receipt['results'][0]
+                if case=='imports':row['imported_dependencies']=[]
+                elif case=='stage-object':row['olean_sha256']=None
+                elif case=='import-object':row['imported_dependencies'][0]['olean_sha256']=None
+                else:
+                    row['unexpected_axioms']=['Materials.unprovedPhysics']
+                with self.assertRaises(ValueError):package_validator.validate_materials(root,evidence,receipt)
 
 
 def read_json(path):return json.loads(Path(path).read_text(encoding='utf8'))

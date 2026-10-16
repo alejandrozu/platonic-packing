@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-10-16T12:56:02.382981+00:00",
+  "checked_at_utc": "2026-10-16T20:00:34.839938+00:00",
   "status": "passed",
   "distinct_verified_rational_records": 402,
   "additional_verified_algebraic_records": 130,
@@ -24,6 +24,11 @@
       "receipt": "extension-clearance-support-verification.json",
       "stages": 2,
       "audited_declarations": 36
+    },
+    {
+      "receipt": "extension-materials-verification.json",
+      "stages": 2,
+      "audited_declarations": 37
     },
     {
       "receipt": "catalogue/nd-reference-edge-lean-verification.json",
@@ -117,6 +122,64 @@
     "per_record_tolerance_radii_computed": false,
     "boundary": "Conditional analytic theorems; no optimizer convergence, universal positive slack or new catalogue count."
   },
+  "materials_model_evidence": {
+    "modules": [
+      "PackingCertificates/Extensions/FreeVolume.lean",
+      "PackingCertificates/Extensions/PeriodicMotif.lean"
+    ],
+    "audited_theorems": {
+      "PackingCertificates/Extensions/FreeVolume.lean": [
+        "PackingCertificates.Extensions.FreeVolume.certified_region_feasible",
+        "PackingCertificates.Extensions.FreeVolume.certified_region_isClosed",
+        "PackingCertificates.Extensions.FreeVolume.certified_region_measurable",
+        "PackingCertificates.Extensions.FreeVolume.certified_region_positive_volume",
+        "PackingCertificates.Extensions.FreeVolume.certified_region_volume_lower_bound",
+        "PackingCertificates.Extensions.FreeVolume.continuous_translated_projection",
+        "PackingCertificates.Extensions.FreeVolume.cube_coordinate_bound",
+        "PackingCertificates.Extensions.FreeVolume.displacement_cube_feasible",
+        "PackingCertificates.Extensions.FreeVolume.displacement_cube_in_certified_region",
+        "PackingCertificates.Extensions.FreeVolume.displacement_cube_volume",
+        "PackingCertificates.Extensions.FreeVolume.exact_fit_witness_has_zero_free_volume",
+        "PackingCertificates.Extensions.FreeVolume.exists_positive_measurable_feasible_region",
+        "PackingCertificates.Extensions.FreeVolume.feasible_translation_outer_volume_lower_bound",
+        "PackingCertificates.Extensions.FreeVolume.negative_radius_has_zero_volume",
+        "PackingCertificates.Extensions.FreeVolume.signed_translation_bound",
+        "PackingCertificates.Extensions.FreeVolume.translated_hull_is_affine_translate",
+        "PackingCertificates.Extensions.FreeVolume.translation_preserves_squared_distance",
+        "PackingCertificates.Extensions.FreeVolume.two_interval_positive_free_volume",
+        "PackingCertificates.Extensions.FreeVolume.zero_radius_has_zero_volume"
+      ],
+      "PackingCertificates/Extensions/PeriodicMotif.lean": [
+        "PackingCertificates.Extensions.PeriodicMotif.basis_periodic_packing",
+        "PackingCertificates.Extensions.PeriodicMotif.certificate_periodic_packing",
+        "PackingCertificates.Extensions.PeriodicMotif.euclidean_periodic_packing",
+        "PackingCertificates.Extensions.PeriodicMotif.interval_motif_periodic_regression",
+        "PackingCertificates.Extensions.PeriodicMotif.latticeVector_injective",
+        "PackingCertificates.Extensions.PeriodicMotif.linear_image_piece",
+        "PackingCertificates.Extensions.PeriodicMotif.linear_periodic_packing",
+        "PackingCertificates.Extensions.PeriodicMotif.missing_containment_overlap_regression",
+        "PackingCertificates.Extensions.PeriodicMotif.nonpositive_width_empty_regression",
+        "PackingCertificates.Extensions.PeriodicMotif.one_dimensional_positive_regression",
+        "PackingCertificates.Extensions.PeriodicMotif.openCell_nonempty_iff",
+        "PackingCertificates.Extensions.PeriodicMotif.periodic_packing",
+        "PackingCertificates.Extensions.PeriodicMotif.periodic_piece_shift",
+        "PackingCertificates.Extensions.PeriodicMotif.shift_add",
+        "PackingCertificates.Extensions.PeriodicMotif.shift_injective",
+        "PackingCertificates.Extensions.PeriodicMotif.translated_cells_disjoint",
+        "PackingCertificates.Extensions.PeriodicMotif.vertex_body_inside_openCell",
+        "PackingCertificates.Extensions.PeriodicMotif.vertex_certificate_periodic_packing"
+      ]
+    },
+    "catalogue_records_added": 0,
+    "per_record_tolerance_radii_computed": false,
+    "boundary": "Conditional geometric and measure-theoretic models; no crystallization, alloy energetics, material performance or new catalogue records.",
+    "fixed_orientation_translational_volume": true,
+    "measurable_certified_region": true,
+    "periodic_whole_body_packing": true,
+    "per_record_free_volumes_computed": false,
+    "per_record_periodic_motifs_constructed": false,
+    "full_rotational_partition_function_proved": false
+  },
   "remote_publication": {
     "mode": "remote-strict-aggregation",
     "aggregation_run_id": 38863167208,
@@ -136,7 +199,7 @@
     "python_audit_is_lean_proof": false,
     "transitive_generic_sources": 9
   },
-  "checked_plaintext_generic_sources": 39,
+  "checked_plaintext_generic_sources": 41,
   "native_rational_records": 402,
   "compressed_rational_witnesses": 402,
   "checks": [

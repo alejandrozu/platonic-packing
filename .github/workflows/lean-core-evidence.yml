@@ -53,6 +53,11 @@ jobs:
           python3 verify_extensions.py --mathlib-project .
           --modules PackingCertificates/Extensions/Clearance.lean PackingCertificates/Extensions/SupportIdentity.lean
           --output extension-clearance-support-verification.json
+      - name: Verify materials-model configuration volume and periodic motifs
+        run: >-
+          python3 verify_extensions.py --mathlib-project .
+          --modules PackingCertificates/Extensions/FreeVolume.lean PackingCertificates/Extensions/PeriodicMotif.lean
+          --output extension-materials-verification.json
       - name: Archive complete source, object and log closure
         run: python3 catalogue/package_core_evidence.py
       - name: Retain complete core evidence
@@ -83,6 +88,32 @@ jobs:
             docs/research-2026-10-16-generalization/formal/core-build-logs/PackingCertificates_Extensions_SupportIdentity.lean.log
             docs/research-2026-10-16-generalization/formal/extension-clearance-support-verification.json
             docs/research-2026-10-16-generalization/formal/analytic-continuation-prerequisite-verification.json
+            docs/research-2026-10-16-generalization/formal/verify_core.py
+            docs/research-2026-10-16-generalization/formal/verify_extensions.py
+            docs/research-2026-10-16-generalization/formal/lean-toolchain
+            docs/research-2026-10-16-generalization/formal/lake-manifest.json
+          if-no-files-found: error
+          retention-days: 90
+          compression-level: 6
+      - name: Retain materials-model sources objects receipts and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-materials-model-evidence
+          path: |
+            docs/research-2026-10-16-generalization/formal/PackingCertificates/Core.lean
+            docs/research-2026-10-16-generalization/formal/PackingCertificates/Core.olean
+            docs/research-2026-10-16-generalization/formal/PackingCertificates/Extensions/Clearance.lean
+            docs/research-2026-10-16-generalization/formal/PackingCertificates/Extensions/Clearance.olean
+            docs/research-2026-10-16-generalization/formal/PackingCertificates/Extensions/FreeVolume.lean
+            docs/research-2026-10-16-generalization/formal/PackingCertificates/Extensions/FreeVolume.olean
+            docs/research-2026-10-16-generalization/formal/PackingCertificates/Extensions/PeriodicMotif.lean
+            docs/research-2026-10-16-generalization/formal/PackingCertificates/Extensions/PeriodicMotif.olean
+            docs/research-2026-10-16-generalization/formal/core-build-logs/PackingCertificates_Core.lean.log
+            docs/research-2026-10-16-generalization/formal/core-build-logs/PackingCertificates_Extensions_Clearance.lean.log
+            docs/research-2026-10-16-generalization/formal/core-build-logs/PackingCertificates_Extensions_FreeVolume.lean.log
+            docs/research-2026-10-16-generalization/formal/core-build-logs/PackingCertificates_Extensions_PeriodicMotif.lean.log
+            docs/research-2026-10-16-generalization/formal/extension-materials-verification.json
             docs/research-2026-10-16-generalization/formal/verify_core.py
             docs/research-2026-10-16-generalization/formal/verify_extensions.py
             docs/research-2026-10-16-generalization/formal/lean-toolchain
