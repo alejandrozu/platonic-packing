@@ -1,6 +1,6 @@
 # Records: regular polytopes in 4, 5 and 6 dimensions
 
-_Generated 2026-10-16 06:19 CEST from the running search._ s = container edge ÷ piece edge. Each entry: the record's container with 10⁻⁷ clearance, truncated to 5 decimals, linking to the record file; ✓ = proven by `certify_nd.py` (exact coordinates in Q(√2, √3, √5, √7), rational rotations, explicit separating hyperplanes, rigorous interval arithmetic).
+_Generated 2026-10-16 06:25 CEST from the running search._ s = container edge ÷ piece edge. Each entry: the record's container with 10⁻⁷ clearance, truncated to 5 decimals, linking to the record file; ✓ = proven by `certify_nd.py` (exact coordinates in Q(√2, √3, √5, √7), rational rotations, explicit separating hyperplanes, rigorous interval arithmetic).
 
 ## 4 dimensions
 
