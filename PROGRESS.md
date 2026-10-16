@@ -1,14 +1,14 @@
 # Search progress
 
-Updated 2026-10-16 02:04 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
+Updated 2026-10-16 02:10 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
 
-* attempts: 98219 total, 6970 in the last 24 h, 1691 in the last hour
-* improvements: 34112 total, 6901 in the last 24 h
-* by move (attempts / improvements): ascend 11229/1738, community 1935/1935, compose 1600/1600, descend 6200/141, fresh 7162/129, harvest 20230/20230, hop 36025/3130, latcut 3830/3830, literature 475/475, reinsert 7172/456, symfresh 1492/39, tighten 869/409
+* attempts: 98224 total, 6971 in the last 24 h, 1696 in the last hour
+* improvements: 34112 total, 6900 in the last 24 h
+* by move (attempts / improvements): ascend 11234/1738, community 1935/1935, compose 1600/1600, descend 6200/141, fresh 7162/129, harvest 20230/20230, hop 36025/3130, latcut 3830/3830, literature 475/475, reinsert 7172/456, symfresh 1492/39, tighten 869/409
 
 | problem | n with a packing | attempts | CPU hours | improvements (24 h) | last improvement |
 |---|---|---|---|---|---|
-| Tetrahedra in a tetrahedron (tetintet) | 99/99 | 8642 | 9.7 | 145 | 10-16 01:56 |
+| Tetrahedra in a tetrahedron (tetintet) | 99/99 | 8643 | 9.8 | 145 | 10-16 01:56 |
 | Octahedra in an octahedron (octinoct) | 99/99 | 6279 | 7.7 | 202 | 10-16 01:56 |
 | Icosahedra in an icosahedron (icoinico) | 99/99 | 3917 | 13.0 | 191 | 10-16 01:56 |
 | Dodecahedra in a dodecahedron (dodindod) | 99/99 | 3589 | 12.2 | 149 | 10-16 01:57 |
@@ -18,9 +18,9 @@ Updated 2026-10-16 02:04 CEST. The engine runs unattended (scripts/run_forever.s
 | Dodecahedra in an icosahedron (dodinico) | 99/99 | 3644 | 13.9 | 255 | 10-16 01:57 |
 | Icosahedra in a dodecahedron (icoindod) | 99/99 | 4655 | 13.6 | 132 | 10-16 01:25 |
 | Tetrahedra in a cube (tetincub) | 99/99 | 0 | 0.0 | 80 | 10-15 18:54 |
-| Tetrahedra in an octahedron (tetinoct) | 99/99 | 0 | 0.0 | 242 | 10-16 01:56 |
+| Tetrahedra in an octahedron (tetinoct) | 99/99 | 1 | 0.0 | 242 | 10-16 01:56 |
 | Tetrahedra in a dodecahedron (tetindod) | 99/99 | 0 | 0.0 | 277 | 10-16 01:57 |
-| Tetrahedra in an icosahedron (tetinico) | 99/99 | 0 | 0.0 | 170 | 10-16 01:56 |
+| Tetrahedra in an icosahedron (tetinico) | 99/99 | 1 | 0.0 | 170 | 10-16 01:56 |
 | Cubes in a tetrahedron (cubintet) | 99/99 | 0 | 0.0 | 80 | 10-15 18:54 |
 | Cubes in a dodecahedron (cubindod) | 99/99 | 0 | 0.0 | 82 | 10-15 18:54 |
 | Cubes in an icosahedron (cubinico) | 99/99 | 0 | 0.0 | 233 | 10-16 01:56 |
@@ -30,7 +30,7 @@ Updated 2026-10-16 02:04 CEST. The engine runs unattended (scripts/run_forever.s
 | Dodecahedra in a tetrahedron (dodintet) | 99/99 | 0 | 0.0 | 80 | 10-15 18:55 |
 | Dodecahedra in a cube (dodincub) | 99/99 | 0 | 0.0 | 74 | 10-15 18:55 |
 | Dodecahedra in an octahedron (dodinoct) | 99/99 | 0 | 0.0 | 306 | 10-16 01:57 |
-| Icosahedra in a tetrahedron (icointet) | 99/99 | 0 | 0.0 | 301 | 10-16 01:56 |
+| Icosahedra in a tetrahedron (icointet) | 99/99 | 2 | 0.3 | 301 | 10-16 01:56 |
 | Icosahedra in a cube (icoincub) | 99/99 | 0 | 0.0 | 88 | 10-15 18:55 |
 | Icosahedra in an octahedron (icoinoct) | 99/99 | 0 | 0.0 | 82 | 10-15 18:55 |
 
