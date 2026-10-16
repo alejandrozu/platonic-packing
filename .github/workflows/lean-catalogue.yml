@@ -1,0 +1,57 @@
+name: Lean frozen catalogue certificates
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [lean/full-catalogue-and-dimension-proofs-20261016]
+    paths:
+      - .github/workflows/lean-catalogue.yml
+      - docs/research-2026-10-16-generalization/formal/catalogue/run_ci_shard.py
+
+permissions:
+  contents: read
+
+jobs:
+  certificates:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+    defaults:
+      run:
+        working-directory: docs/research-2026-10-16-generalization/formal
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: docs/research-2026-10-16-generalization/formal
+          fetch-depth: 1
+      - name: Install the pinned Lean toolchain
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o /tmp/packing-elan-init.sh
+          sh /tmp/packing-elan-init.sh -y --no-modify-path --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          "$HOME/.elan/bin/elan" toolchain install "$(tr -d '\r\n' < lean-toolchain)"
+      - name: Restore pinned mathlib dependencies
+        run: |
+          lake update
+          lake exe cache get
+      - name: Verify the generic core and negative cases
+        run: python3 verify_core.py --mathlib-project .
+      - name: Restore frozen exact proposed witnesses
+        run: |
+          python3 catalogue/unpack_witnesses.py
+          python3 catalogue/audit_source_bindings.py
+      - name: Kernel-check this deterministic certificate shard
+        run: python3 catalogue/run_ci_shard.py --shard-index ${{ matrix.shard }} --shard-count 24 --mathlib-project . --memory-mb 8192 --timeout 1800
+      - name: Retain proof evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-catalogue-shard-${{ matrix.shard }}
+          path: docs/research-2026-10-16-generalization/formal/catalogue/ci/shard-*/evidence.zip
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 9
