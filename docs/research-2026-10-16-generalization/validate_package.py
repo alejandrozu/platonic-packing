@@ -313,6 +313,92 @@ def validate_reference_edges(formal,evidence,inputs=None):
         transitive_generic_sources=len(reached),required_files=sorted(required))
 
 
+ANALYTIC_AUDITS={
+    'Clearance':('normalL1_nonneg','projection_perturbation_bound','affine_placement_coordinate_error',
+        'wall_margin_preserved','separating_hulls_preserved','perturbation_finite_certificate',
+        'finite_packing_perturbation_sound','signed_normal_cancellation_is_unsafe','exact_wall_budget_safe',
+        'insufficient_wall_budget_is_unsafe','strict_pair_budget_safe','equality_pair_budget_is_unsafe',
+        'zero_error_recovers_packing'),
+    'SupportIdentity':('HasSupportAt.value_eq','compact_hasSupportAt','singleton_hasSupportAt',
+        'support_singleton','closedBall_hasSupportAt','support_closedBall','HasSupportAt.blend',
+        'support_ballBlend','support_ballBlend_unit','support_isometry_image','orientation_support_difference',
+        'orientation_support_abs_difference','ballBlend_one_orientation_independent','euclidean_support_ballBlend',
+        'support_rotated_ballBlend','zero_direction_regression','zero_radius_regression','zero_blend_regression',
+        'one_blend_regression','nonaxis_direction_norm_regression','nonaxis_ball_support_regression',
+        'negative_radius_counterexample','outside_blend_interval_counterexample')}
+
+
+def validate_clearance_support(formal,evidence,receipt):
+    """Bind the two new analytic proofs to complete, unchanged import closures."""
+    modules=['PackingCertificates/Extensions/Clearance.lean',
+             'PackingCertificates/Extensions/SupportIdentity.lean']
+    if (receipt.get('schema')!='packing-extension-verification-v2'or receipt.get('passed')is not True or
+            receipt.get('requested_modules')!=modules or
+            [r.get('path')for r in receipt.get('results',[])]!=modules or
+            receipt.get('changed_core_dependencies')):
+        raise ValueError('Incomplete clearance/support proof receipt')
+    preflight=receipt.get('preflight',{})
+    if (preflight.get('expected_lean_version')!='4.31.0'or
+            preflight.get('expected_mathlib_revision')!='fabf563a7c95a166b8d7b6efca11c8b4dc9d911f'or
+            preflight.get('actual_mathlib_revision')!=preflight.get('expected_mathlib_revision')):
+        raise ValueError('Clearance/support proof dependencies differ from the pinned toolchain')
+    if receipt.get('verifier',{}).get('path')!='verify_extensions.py':
+        raise ValueError('Unexpected clearance/support verifier source')
+    evidence.checked_file(formal,receipt['verifier']['path'],receipt['verifier']['sha256'])
+    evidence.checked_file(formal,'verify_core.py',receipt['core_verifier_sha256'])
+    def object_identity(row,key='olean_path',optional=False):
+        expected=row['path'][:-5]+'.olean'
+        if evidence.safe_name(row.get(key),allow_compiled=True)!=expected:
+            raise ValueError('Clearance/support proof object path differs from its source')
+        digest=row.get('olean_sha256')
+        if not (optional and digest is None)and not re.fullmatch('[0-9a-f]{64}',digest or ''):
+            raise ValueError('Missing clearance/support proof object identity')
+    def closure(path):
+        found=set();visiting=set()
+        def visit(name):
+            if name in visiting:raise ValueError('Cyclic analytic proof import')
+            visiting.add(name)
+            text=evidence.checked_file(formal,name).read_text(encoding='utf8')
+            for header in re.findall(r'^\s*(?:public\s+)?import\s+([^\n]+)',text,re.M):
+                for module in header.split('--',1)[0].split():
+                    relative=module.replace('.','/')+'.lean'
+                    if module.startswith('PackingCertificates.'):
+                        evidence.checked_file(formal,relative)
+                        if relative not in found:
+                            found.add(relative);visit(relative)
+            visiting.remove(name)
+        visit(path)
+        return found
+    audits={}
+    for row in receipt['results']:
+        if (row.get('passed')is not True or row.get('exit_code')!=0 or
+                row.get('source_unchanged_during_build')is not True or
+                any(row.get(k)for k in ('errors','unexpected_axioms','missing_audit_theorems',
+                    'changed_imported_dependencies','changed_imported_dependencies_at_receipt'))):
+            raise ValueError('Unsuccessful clearance/support proof stage')
+        source=evidence.checked_file(formal,row['path'],row['source_sha256'])
+        object_identity(row)
+        log=evidence.checked_file(formal,row['log'],row['log_sha256'])
+        parsed=evidence.axiom_audit(log.read_text(encoding='utf8'))
+        printed=set(re.findall(r'^\s*#print\s+axioms\s+([\w.]+)',source.read_text(encoding='utf8'),re.M))
+        required={'PackingCertificates.Extensions.'+source.stem+'.'+name for name in ANALYTIC_AUDITS[source.stem]}
+        if printed!=required:
+            raise ValueError('Required clearance/support semantic declaration audit is missing or changed')
+        if not printed or set(parsed)!=printed or parsed!=row.get('audited_theorems'):
+            raise ValueError('Clearance/support semantic audits differ from the actual source and log')
+        imports=row.get('imported_dependencies',[])
+        if len(imports)!=len({r['path']for r in imports})or {r['path']for r in imports}!=closure(row['path']):
+            raise ValueError('Clearance/support receipt lacks its exact local import closure')
+        for dep in imports:
+            evidence.checked_file(formal,dep['path'],dep['source_sha256']);object_identity(dep)
+        audits[row['path']]=sorted(parsed)
+    for dep in receipt.get('core_dependencies',[]):
+        evidence.checked_file(formal,dep['path'],dep['source_sha256']);object_identity(dep,key='olean',optional=True)
+    return dict(modules=modules,audited_theorems=audits,
+        catalogue_records_added=0,per_record_tolerance_radii_computed=False,
+        boundary='Conditional analytic theorems; no optimizer convergence, universal positive slack or new catalogue count.')
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--package',type=Path,default=DEFAULT)
@@ -343,15 +429,19 @@ def main():
     library_folders={formal/'PackingCertificates',formal/'PackingCertificates/Algebraic',formal/'PackingCertificates/Extensions'}
     if any(p.parent not in library_folders for p in(formal/'PackingCertificates').rglob('*.lean')):
         raise ValueError('Generated/trial numerical Lean sources must remain in their environment-scoped archives')
-    for name in ('GenericDimension','Complexity','NDIdentity'):
+    for name in ('GenericDimension','Complexity','NDIdentity','Clearance','SupportIdentity'):
         if not (formal/'PackingCertificates/Extensions'/(name+'.lean')).is_file():
             raise ValueError('Required generic method theorem source missing '+name)
     method_proofs=[];checked_sources=set()
+    clearance_support=None
     for name,stages,audits in [('core-verification.json',None,None),
                               ('extension-verification-v2.json',10,61),
                               ('extension-identity-verification.json',1,10),
+                              ('extension-clearance-support-verification.json',2,36),
                               ('catalogue/nd-reference-edge-lean-verification.json',1,159)]:
         receipt=read(formal/name)
+        if name=='extension-clearance-support-verification.json':
+            clearance_support=validate_clearance_support(formal,evidence,receipt)
         if name=='core-verification.json':
             if receipt.get('status')!='passed':raise ValueError('Plaintext generic core receipt did not pass')
         elif receipt.get('passed')is not True:raise ValueError('Generic method receipt did not pass '+name)
@@ -448,6 +538,7 @@ def main():
     result=dict(checked_at_utc=datetime.now(timezone.utc).isoformat(),status='passed',
         distinct_verified_rational_records=402,additional_verified_algebraic_records=len(additional),
         additional_verified_algebraic_families=len(families),method_proofs=method_proofs,cohorts=cohorts,
+        clearance_support_evidence=clearance_support,
         remote_publication={k:v for k,v in remote.items()if k!='required_files'},
         nd_reference_edge_evidence={k:v for k,v in reference_edges.items()if k!='required_files'},
         checked_plaintext_generic_sources=len(checked_sources),native_rational_records=len(inputs['records']),

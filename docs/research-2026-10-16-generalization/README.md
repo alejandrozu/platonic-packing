@@ -11,6 +11,9 @@ Proposed authors: **Yohei Nakajima and Alejandro Zarzuelo Urdiales**. The author
 - [Lean sources, exact scope and reproduction](formal/README.md)
 - [Actual Lean build and axiom audit](formal/verification.json)
 - [Geometric continuation in every finite dimension](formal/PackingCertificates/Extensions/GenericDimension.lean)
+- [Quantitative wall, pair and rigid-pose error budgets](formal/PackingCertificates/Extensions/Clearance.lean)
+- [Exact support identity and orientation attenuation](formal/PackingCertificates/Extensions/SupportIdentity.lean)
+- [Combined analytic proof build and 36 axiom audits](formal/extension-clearance-support-verification.json)
 - [Formal support-query complexity bounds](formal/PackingCertificates/Extensions/Complexity.lean)
 - [Orthoplex and 24-cell coordinate-hull identities](formal/PackingCertificates/Extensions/NDIdentity.lean)
 - [Algebraic-coordinate certificate method and completed coverage](formal/catalogue/algebraic/README.md)
@@ -30,6 +33,8 @@ Proposed authors: **Yohei Nakajima and Alejandro Zarzuelo Urdiales**. The author
 The paper explains the 3D non-tangential erosion/dilation path, the supported regular 4D–6D implementation, archive search moves, structured seeds, composition, exact witness checking, and community provenance. It cites Nakajima's arXiv paper, the three earlier DOI publications, primary packing literature, the repository's research notes and independent contributors.
 
 The new geometric theorems apply in every finite Euclidean dimension, without regularity or facet tangency assumptions. The paper separates that result from the dimensions supported by the numerical search and from optimizer convergence. It derives per-step and finite-budget simulation bounds in piece count, dimension, vertices, edges and facets. Lean proves the finite support-walk bounds used in that analysis; the whole simulator's execution time is not formally verified.
+
+Two further Lean modules establish quantitative perturbation guarantees and the exact support-function identity behind the blend. Coordinate error at most `epsilon` changes a projection by at most `epsilon * sum(abs(normal))`; sufficient wall slack and a strict pair-gap budget preserve the complete hull packing. An affine-pose lemma supplies `epsilon = alpha + beta * L` from translation and matrix-entry errors and a canonical-vertex L1 bound. Rigid congruence still requires proper pose matrices. The support identity and its exact `1 - tau` orientation factor apply to every nonempty compact template in a real inner-product space, including every finite Euclidean dimension. The combined receipt contains 36 audited declarations, including 14 named endpoint and counterexample regression groups. These are generic conditional theorems; no numerical tolerance radius is asserted for every catalogue record, and no energy-gradient or optimization-performance result is inferred.
 
 The Lean extension verifies **532 actual frozen catalogue records across all 140 problem families in dimensions 3–6**: all 402 selected rational certificates (99 cube-in-cube and 303 higher-dimensional records), plus one two-piece witness from each of the other 130 families (85 in 3D and 45 in 4D–6D). The proofs cover 11,056 rigid pieces, 163,900 placed vertices and every one of 235,592 unordered pairs. They establish source-bound proper rotations, preservation of squared Euclidean distances, whole-body containment and pairwise separation. The original two-cube example remains a regression test. This verifies selected witnesses in every frozen family, not all 10,398 coordinate records or the changing live bests. Original construction credits remain in the portable manifests. See `formal/README.md` for the trust boundary and reproduction commands.
 

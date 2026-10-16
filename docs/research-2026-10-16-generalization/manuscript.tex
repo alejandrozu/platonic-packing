@@ -42,7 +42,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-We generalize soft-to-rigid finite-container packing from polygons and cubes to convex polyhedra and regular polytopes in dimensions four through six. Two paths are distinguished: blending with an inscribed ball, and erosion followed by dilation, which retains an actual eroded core for non-tangential solids. Continuation becomes one move in an archive search alongside symmetry-released starts, insertion, deletion, rigid perturbation, crystal cuts and nested substitution. A new Lean development proves dimension-independent certificate soundness and verifies all \leanRecords{} selected rational certificates plus \leanAlgebraicRecords{} additional algebraic-coordinate witnesses, covering all 140 frozen problem families in dimensions 3--6. The kernel checks exported raw rotation parameters, proper rotations, congruence, whole-body containment and every pairwise separation. A separate source audit binds these exact literals to the original records without changing scales or placements; parsing remains outside the kernel. The additional cohort selects one two-piece witness per remaining family; this is family coverage, rather than verification of every population in the 10,398-witness archive. Independent exact-arithmetic checkers and five separately rechecked examples complement this formal layer. A historical comparison of 1,824 attempts on 40 prism-family cases illustrates why improvement frequency and magnitude lead to different search policies. The results establish constructive feasibility and an auditable method; they do not prove global optimality or universal superiority of continuation.
+We generalize soft-to-rigid finite-container packing from polygons and cubes to convex polyhedra and regular polytopes in dimensions four through six. Two paths are distinguished: blending with an inscribed ball, and erosion followed by dilation, which retains an actual eroded core for non-tangential solids. Continuation becomes one move in an archive search alongside symmetry-released starts, insertion, deletion, rigid perturbation, crystal cuts and nested substitution. A new Lean development proves dimension-independent certificate soundness and verifies all \leanRecords{} selected rational certificates plus \leanAlgebraicRecords{} additional algebraic-coordinate witnesses, covering all 140 frozen problem families in dimensions 3--6. The kernel checks exported raw rotation parameters, proper rotations, congruence, whole-body containment and every pairwise separation. Further theorems establish an exact support-function identity, orientation attenuation and quantitative clearance guarantees under perturbation. A separate source audit binds these exact literals to the original records without changing scales or placements; parsing remains outside the kernel. The additional cohort selects one two-piece witness per remaining family; this is family coverage, rather than verification of every population in the 10,398-witness archive. Independent exact-arithmetic checkers and five separately rechecked examples complement this formal layer. A historical comparison of 1,824 attempts on 40 prism-family cases illustrates why improvement frequency and magnitude lead to different search policies. The results establish constructive feasibility and an auditable method; they do not prove global optimality or universal superiority of continuation.
 \end{abstract}
 
 \section{Purpose and relation to earlier work}
@@ -102,7 +102,45 @@ h_{H_\tau}(u)=(1-\tau)h_P(u)+\tau\rho.
 Since $h_P(u)\geq\rho$, this expression decreases with $\tau$. Support-function comparison gives the claimed inclusion.
 \end{proof}
 
-Containment is formalized in Lean as \code{convex_blend_subset}. The new theorem \code{convexBlend_antitone} also proves the nesting inclusion, directly by convex combinations rather than by formalizing support functions. It applies to every convex target and every inscribed body; tangency and regularity are unnecessary.
+Containment is formalized in Lean as \code{convex_blend_subset}. The theorem \code{convexBlend_antitone} proves the nesting inclusion directly by convex combinations. It applies to every convex target and every inscribed body; tangency and regularity are unnecessary. A separate support-function development now proves the extent identity used above.
+
+\subsection{Exact support identity and orientation attenuation}\label{sec:supportidentity}
+For nonempty compact $P\subseteq\R^d$, write
+$h_P(u)=\sup_{x\in P}\langle u,x\rangle$.
+The ball-blend identity used in Nakajima's method~\cite[Section 3]{nakajima2026}
+holds in every finite dimension and for every direction:
+\begin{theorem}\label{thm:supportblend}
+If $0\leq\tau\leq1$ and $\rho\geq0$, then
+\begin{equation}\label{eq:supportblend}
+h_{H_\tau}(u)=(1-\tau)h_P(u)+\tau\rho\|u\|.
+\end{equation}
+For proper rotations $R,S\in\SO(d)$,
+\begin{equation}\label{eq:orientationattenuation}
+\big|h_{R H_\tau}(u)-h_{S H_\tau}(u)\big|
+=(1-\tau)\big|h_{RP}(u)-h_{SP}(u)\big|.
+\end{equation}
+\end{theorem}
+\begin{proof}
+A linear functional attains its maximum on nonempty compact $P$. Its maximum
+on the radius-$\rho$ ball is $\rho\|u\|$, including $u=0$. Nonnegative linear
+combinations of these maximizers both attain and bound the support of their
+Minkowski blend, proving~\eqref{eq:supportblend}. Orthogonal transformations
+preserve the ball and send a direction to its inverse image. The ball terms
+therefore cancel between $R$ and $S$; $1-\tau\geq0$ gives the absolute-value identity.
+\end{proof}
+
+\code{SupportIdentity.lean} defines the genuine real support supremum and
+proves maximum attainment before using it. Its theorems
+\code{support_ballBlend}, \code{support_rotated_ballBlend} and
+\code{orientation_support_abs_difference} establish these statements in real
+inner-product spaces, with an explicit \code{euclidean_support_ballBlend}
+specialization for every $d$. The algebraic identity itself needs neither
+convexity nor an inscribed-ball assumption; those are separate hypotheses for
+$H_\tau\subseteq P$. The proof applies to orthogonal isometries, hence in
+particular to the proper rotations permitted by a packing. At $\tau=1$ the
+support is orientation-independent. This is an exact statement about geometric
+extent, not a scaling law for the full search energy or its gradients, and does
+not prove that deferred orientation improves optimization.
 
 \subsection{Actual eroded cores for non-tangential solids}
 For a radius $r\geq0$, define the erosion and opening
@@ -194,6 +232,58 @@ A linear inequality valid at all vertices is valid on every convex combination. 
 \end{proof}
 This is a dimension-independent statement. To conclude that these hulls represent congruent copies of the intended solid, one must additionally validate the canonical geometry and the rigid placements. The certificate theorem does not infer these facts from arbitrary coordinate lists.
 
+\subsection{Quantitative clearance guarantees}\label{sec:clearance}
+The certificate also gives a conditional perturbation budget. Let every original
+placed vertex $v$ have a corresponding vertex $w$ with
+$|w_q-v_q|\leq\varepsilon$ for every coordinate, where $\varepsilon\geq0$.
+Write $\|a\|_1=\sum_{q=1}^d|a_q|$ for a normal's coordinate $L^1$ norm.
+\begin{theorem}\label{thm:clearance}
+Every directional projection satisfies
+\begin{equation}\label{eq:projectionbudget}
+|a\cdot w-a\cdot v|\leq\varepsilon\|a\|_1.
+\end{equation}
+If the original wall tests have slacks $\delta_f$ and
+\begin{equation}\label{eq:wallbudget}
+a_f\cdot v\leq b_f-\delta_f,\qquad
+\varepsilon\|a_f\|_1\leq\delta_f,
+\end{equation}
+the perturbed hulls remain in the same container. For every pair in
+\eqref{eq:pairs}, the condition
+\begin{equation}\label{eq:pairbudget}
+2\varepsilon\|u_{ij}\|_1<r_{ij}-\ell_{ij}
+\end{equation}
+preserves strict separation of the complete perturbed hulls.
+\end{theorem}
+\begin{proof}
+Expand the projection difference and apply the triangle inequality term by term:
+$|\sum_q a_q(w_q-v_q)|\leq\sum_q|a_q|\varepsilon$.
+Adding this error to each wall bound proves containment. The perturbed pair
+bounds become $\ell_{ij}+\varepsilon\|u_{ij}\|_1$ and
+$r_{ij}-\varepsilon\|u_{ij}\|_1$; \eqref{eq:pairbudget} keeps them strictly
+ordered. Theorem~\ref{thm:certificate} then applies to the entire hulls.
+\end{proof}
+
+The module \code{Clearance.lean} proves the projection inequality, wall and
+pair consequences, constructs a new \code{FinitePackingCertificate}, and
+derives \code{finite_packing_perturbation_sound}. Its affine-placement bridge
+\code{affine_placement_coordinate_error} bounds the coordinate error by
+$\varepsilon=\alpha+\beta L$ when translation coordinates change by at most
+$\alpha\geq0$, matrix entries by at most $\beta\geq0$, and each canonical
+vertex has $L^1$ norm at most $L$. This converts a checked pose-error envelope
+into the same clearance tests. Both pose matrices must separately satisfy the
+proper-rigidity conditions if congruent solids, rather than perturbed vertex
+hulls, are claimed.
+
+Wall-budget equality is permitted; equality in the pair budget can permit
+contact and is insufficient for disjoint closed hulls. Audited examples show
+that points initially at $0$ and $3$ remain disjoint under independent errors
+of at most $1$, whereas points at $0$ and $2$ can both move to $1$.
+Further regressions cover signed-normal cancellation, insufficient wall slack,
+and zero-error recovery of any original certificate. These theorems do not
+compute tolerance radii for all 532 records. A positive uniform perturbation
+radius needs positive wall slack as well as positive pair gaps; existing wall
+containment alone does not supply it.
+
 \subsection{Production exact-arithmetic checks}
 The 3D exporter records full coordinates, scale and scalar-first rational quaternions. The certifier generates or receives rational separator proposals; not every native JSON stores its separating planes. A nonzero rational quaternion $q$ denotes the exactly proper orthogonal rotation $H(q)/\|q\|^2$. Exact canonical geometry is represented in algebraic number fields or multiquadratic extensions, with positive normalization factors where needed. The certifier checks facets and geometry and decides the final inequalities using integer-based outward-rounded enclosures of exact quantities. Floating-point routines may propose a separator but cannot turn a failing exact inequality into a successful one.
 
@@ -222,6 +312,8 @@ Lean declaration & Kernel-checked meaning\\
 \code{minkowskiOpening_subset}, \code{convex_blend_subset} & The two continuation constructions remain inside the target body under the stated hypotheses.\\
 \code{ballOpening_antitone}, \code{convexBlend_antitone} & The softened bodies are nested, in arbitrary real normed spaces, with the rigid endpoint recovered.\\
 \code{euclidean_opening_preserves_packing} & The geometric continuation applies in every finite Euclidean dimension.\\
+\code{SupportIdentity.support_ballBlend}, \code{orientation_support_abs_difference} & Exact support supremum of the blend and orientation attenuation in every finite Euclidean dimension.\\
+\code{Clearance.finite_packing_perturbation_sound}, \code{affine_placement_coordinate_error} & Explicit vertex and pose error budgets preserve whole-hull containment and strict separation.\\
 \code{Rational.checkPlaced_sound} & Exact rational tests imply rigidly placed whole-body containment and separation.\\
 \code{Cayley.check_sound} & Checked raw skew/sign parameters give the stated Cayley rotation with determinant one.\\
 \code{Barycentric.check_sound} & Rational convex combinations prove containment in the actual container vertex hull.\\

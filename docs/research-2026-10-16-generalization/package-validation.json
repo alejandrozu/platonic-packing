@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-10-16T07:20:07.062367+00:00",
+  "checked_at_utc": "2026-10-16T12:56:02.382981+00:00",
   "status": "passed",
   "distinct_verified_rational_records": 402,
   "additional_verified_algebraic_records": 130,
@@ -19,6 +19,11 @@
       "receipt": "extension-identity-verification.json",
       "stages": 1,
       "audited_declarations": 10
+    },
+    {
+      "receipt": "extension-clearance-support-verification.json",
+      "stages": 2,
+      "audited_declarations": 36
     },
     {
       "receipt": "catalogue/nd-reference-edge-lean-verification.json",
@@ -61,6 +66,57 @@
       "summary_sha256": "2dbf374ad93f4dde82f296c9be7a6b69260023432a0d69ed3b38d329e25e02be"
     }
   ],
+  "clearance_support_evidence": {
+    "modules": [
+      "PackingCertificates/Extensions/Clearance.lean",
+      "PackingCertificates/Extensions/SupportIdentity.lean"
+    ],
+    "audited_theorems": {
+      "PackingCertificates/Extensions/Clearance.lean": [
+        "PackingCertificates.Extensions.Clearance.affine_placement_coordinate_error",
+        "PackingCertificates.Extensions.Clearance.equality_pair_budget_is_unsafe",
+        "PackingCertificates.Extensions.Clearance.exact_wall_budget_safe",
+        "PackingCertificates.Extensions.Clearance.finite_packing_perturbation_sound",
+        "PackingCertificates.Extensions.Clearance.insufficient_wall_budget_is_unsafe",
+        "PackingCertificates.Extensions.Clearance.normalL1_nonneg",
+        "PackingCertificates.Extensions.Clearance.perturbation_finite_certificate",
+        "PackingCertificates.Extensions.Clearance.projection_perturbation_bound",
+        "PackingCertificates.Extensions.Clearance.separating_hulls_preserved",
+        "PackingCertificates.Extensions.Clearance.signed_normal_cancellation_is_unsafe",
+        "PackingCertificates.Extensions.Clearance.strict_pair_budget_safe",
+        "PackingCertificates.Extensions.Clearance.wall_margin_preserved",
+        "PackingCertificates.Extensions.Clearance.zero_error_recovers_packing"
+      ],
+      "PackingCertificates/Extensions/SupportIdentity.lean": [
+        "PackingCertificates.Extensions.SupportIdentity.HasSupportAt.blend",
+        "PackingCertificates.Extensions.SupportIdentity.HasSupportAt.value_eq",
+        "PackingCertificates.Extensions.SupportIdentity.ballBlend_one_orientation_independent",
+        "PackingCertificates.Extensions.SupportIdentity.closedBall_hasSupportAt",
+        "PackingCertificates.Extensions.SupportIdentity.compact_hasSupportAt",
+        "PackingCertificates.Extensions.SupportIdentity.euclidean_support_ballBlend",
+        "PackingCertificates.Extensions.SupportIdentity.negative_radius_counterexample",
+        "PackingCertificates.Extensions.SupportIdentity.nonaxis_ball_support_regression",
+        "PackingCertificates.Extensions.SupportIdentity.nonaxis_direction_norm_regression",
+        "PackingCertificates.Extensions.SupportIdentity.one_blend_regression",
+        "PackingCertificates.Extensions.SupportIdentity.orientation_support_abs_difference",
+        "PackingCertificates.Extensions.SupportIdentity.orientation_support_difference",
+        "PackingCertificates.Extensions.SupportIdentity.outside_blend_interval_counterexample",
+        "PackingCertificates.Extensions.SupportIdentity.singleton_hasSupportAt",
+        "PackingCertificates.Extensions.SupportIdentity.support_ballBlend",
+        "PackingCertificates.Extensions.SupportIdentity.support_ballBlend_unit",
+        "PackingCertificates.Extensions.SupportIdentity.support_closedBall",
+        "PackingCertificates.Extensions.SupportIdentity.support_isometry_image",
+        "PackingCertificates.Extensions.SupportIdentity.support_rotated_ballBlend",
+        "PackingCertificates.Extensions.SupportIdentity.support_singleton",
+        "PackingCertificates.Extensions.SupportIdentity.zero_blend_regression",
+        "PackingCertificates.Extensions.SupportIdentity.zero_direction_regression",
+        "PackingCertificates.Extensions.SupportIdentity.zero_radius_regression"
+      ]
+    },
+    "catalogue_records_added": 0,
+    "per_record_tolerance_radii_computed": false,
+    "boundary": "Conditional analytic theorems; no optimizer convergence, universal positive slack or new catalogue count."
+  },
   "remote_publication": {
     "mode": "remote-strict-aggregation",
     "aggregation_run_id": 38863167208,
@@ -80,7 +136,7 @@
     "python_audit_is_lean_proof": false,
     "transitive_generic_sources": 9
   },
-  "checked_plaintext_generic_sources": 37,
+  "checked_plaintext_generic_sources": 39,
   "native_rational_records": 402,
   "compressed_rational_witnesses": 402,
   "checks": [
