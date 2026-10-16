@@ -48,6 +48,8 @@ containers.
 
 The formal library also proves exact support and orientation identities for the softened bodies, and quantitative coordinate/pose error budgets that preserve a packing under sufficient wall and pair clearances. These are conditional analytic guarantees; they do not assert numerical tolerance radii for every record or optimizer convergence. See the [formal scope and reproduction guide](docs/research-2026-10-16-generalization/formal/README.md#quantitative-clearance-and-exact-support).
 
+The [materials-science guide](https://polyhedrainpolyhedra.wiki/materials/) connects packing geometry to crystallization, confinement, grains, optical response, porous structures and granular mechanics through 22 primary studies. The [source audit](docs/MATERIALS_SCIENCE.md) distinguishes established physical results from proposed uses of this catalogue.
+
 ## Results: s = container edge ÷ piece edge, n = 2…40
 
 Nine problems: each Platonic solid in a copy of itself, and the dual pairs (cubes in an octahedron, octahedra in a cube,

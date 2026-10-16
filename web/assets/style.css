@@ -156,3 +156,21 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); ou
 .doc details summary .mut { font: 13px var(--f-body); margin-left: 6px }
 .doc details .tablewrap { margin-top: 10px }
 .doc details td { white-space: nowrap }
+
+/* ---------- materials-science guide ---------- */
+.materials-summary-body { padding: 4px 18px 16px; max-width: 92ch }
+.materials-summary-body p { margin: 12px 0 0 }
+.material-flow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 24px 0 }
+.material-flow > div { padding: 14px; border: 1px solid var(--rule); border-radius: 8px; background: var(--sheet); min-width: 0 }
+.material-flow b { display: block; font: 600 17px/1.3 var(--f-display); color: var(--accent) }
+.material-flow p { margin: 7px 0 0; font: 13px/1.5 var(--f-body); color: var(--muted) }
+.doc article .cite { font: 11px/1 var(--f-body); white-space: nowrap; scroll-margin-top: 20px }
+.doc article .cite a { text-decoration: none }
+.evidence-tag { display: inline-block; font: 500 11px/1.3 var(--f-body); letter-spacing: .04em; text-transform: uppercase; color: var(--accent); margin-right: 5px }
+.doc article .materials-table caption { text-align: left; padding: 12px 10px; font: 500 14px/1.4 var(--f-body); color: var(--ink) }
+.doc article .materials-table th { position: static; white-space: normal; vertical-align: top }
+.materials-refs { font-size: 15px; line-height: 1.5 }
+.doc article .materials-refs li { padding-left: 4px; scroll-margin-top: 20px }
+.doc article .materials-refs li + li { margin-top: 13px }
+.materials-date { font: 13px/1.5 var(--f-body); color: var(--muted) }
+@media (max-width: 640px) { .material-flow { grid-template-columns: minmax(0, 1fr) } }
