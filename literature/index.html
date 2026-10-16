@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-root="../" data-repo="https://github.com/alejandrozu/platonic-packing" data-records-version="cd790663e59159f9">
+<html lang="en" data-root="../" data-repo="https://github.com/alejandrozu/platonic-packing" data-records-version="954b7b8895ffbdcb">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -17,13 +17,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="../assets/style.css?v=ce4dfd6f1d546634">
+<link rel="stylesheet" href="../assets/style.css?v=11fedc81700f3d49">
 
 </head>
 <body>
 <header class="top"><div class="in">
   <a class="mark" href="../"><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke-width="1.3" stroke-linecap="round"><path class="c" d="M2.53 25.17L14.30 17.64 M2.53 25.17L2.53 8.51 M2.53 25.17L17.70 31.02 M14.30 17.64L14.30 0.98 M14.30 17.64L29.47 23.49 M2.53 8.51L14.30 0.98 M2.53 8.51L17.70 14.36 M14.30 0.98L29.47 6.83 M17.70 31.02L29.47 23.49 M17.70 31.02L17.70 14.36 M29.47 23.49L29.47 6.83 M17.70 14.36L29.47 6.83"/><path class="p" d="M22.98 18.69L16.00 8.34 M22.98 18.69L16.00 23.66 M22.98 18.69L21.42 12.53 M22.98 18.69L10.58 19.47 M9.02 13.31L16.00 8.34 M9.02 13.31L16.00 23.66 M9.02 13.31L21.42 12.53 M9.02 13.31L10.58 19.47 M16.00 8.34L21.42 12.53 M16.00 8.34L10.58 19.47 M16.00 23.66L21.42 12.53 M16.00 23.66L10.58 19.47"/></svg>Polyhedra in Polyhedra</a>
-  <nav class="nav" aria-label="Site"><a href="../">Records</a><a href="../constructions/">All constructions</a><a href="../method/">Method</a><a href="../certification/">Certification</a><a href="../contribute/">Contribute</a><a href="../literature/" aria-current="page">Literature</a><a href="../about/">About</a><a href="https://github.com/alejandrozu/platonic-packing" rel="noopener">GitHub</a></nav>
+  <nav class="nav" aria-label="Site"><a href="../">Records</a><a href="../constructions/">All constructions</a><a href="../method/">Method</a><a href="../materials/">Materials</a><a href="../certification/">Certification</a><a href="../contribute/">Contribute</a><a href="../literature/" aria-current="page">Literature</a><a href="../about/">About</a><a href="https://github.com/alejandrozu/platonic-packing" rel="noopener">GitHub</a></nav>
   <div class="theme-switch seg" role="group" aria-label="Colour theme"><button type="button" data-theme="light" aria-pressed="false">Light</button><button type="button" data-theme="dark" aria-pressed="false">Dark</button></div>
 </div></header>
 <main class="wrap">
@@ -33,6 +33,7 @@
 <p class="lede">The papers and sources behind this site: the project's own write-ups, the work it starts from and
 compares against, and the research literature on packing as an optimization problem, on dense packings of polyhedra
 and on proving packings correct. Each entry says in one line how it relates to the method used here.</p>
+<p>For the physical motivation, see <a href="../materials/">packing and materials science</a>: a separate, cited guide to particle self-assembly, confinement, grain boundaries, optical response, porous structures and granular mechanics.</p>
 <p>In short: the project's local optimizer solves the same model as the <b>quasi-phi-function</b> literature (a
 separating plane between every pair of pieces), with linear-programming steps in place of a full nonlinear solve, plus
 exact certification, soft-to-rigid starting points and regular polytopes in dimensions 4–6. The closest work on the
@@ -121,7 +122,7 @@ constraints stay smooth. This is exactly the per-pair constraint of this project
   <li><b>S. Gravel, V. Elser (2008).</b> <a href="https://doi.org/10.1103/PhysRevE.78.036706">Divide and concur: a general approach to constraint satisfaction</a>. Physical Review E 78, 036706; and <b>Y. Kallus, V. Elser, S. Gravel (2010)</b>, <a href="https://doi.org/10.1103/PhysRevE.82.056707">Method for dense packing discovery</a>, Physical Review E 82, 056707. <i>A projection-based global search; a 4-simplex packing of density 128/219, the reference for the 5-cell problems here.</i></li>
   <li><b>E. R. Chen, D. Klotsa, M. Engel, P. F. Damasceno, S. C. Glotzer (2014).</b> <a href="https://doi.org/10.1103/PhysRevX.4.011024">Complexity in surfaces of densest packings for families of polyhedra</a>. Physical Review X 4, 011024. <i>Densest packings across families between Platonic, Archimedean and Catalan solids.</i></li>
   <li><b>J. C. Lagarias, C. Zong (2012).</b> <a href="https://www.ams.org/notices/201211/rtx121101540p.pdf">Mysteries in packing regular tetrahedra</a>. Notices of the AMS 59(11).</li>
-  <li><b>E. G. Teich, G. van Anders, D. Klotsa, J. Dshemuchadse, S. C. Glotzer (2016).</b> <a href="https://proceedings.aiche.org/conferences/aiche-annual-meeting/2016/proceeding/paper/678h-clusters-polyhedra-spherical-confinement">Clusters of polyhedra in spherical confinement</a>. <i>Up to about 60 Platonic solids in a sphere: a possible new container class with published values.</i></li>
+  <li><b>E. G. Teich, G. van Anders, D. Klotsa, J. Dshemuchadse, S. C. Glotzer (2016).</b> <a href="https://doi.org/10.1073/pnas.1524875113">Clusters of polyhedra in spherical confinement</a>. PNAS 113, E669–E678. <i>Dense clusters of 4–60 Platonic solids in a sphere: layers, preferred particle counts and structures that differ from bulk packing. See the <a href="../materials/#confinement">materials guide</a> for the connection to finite containers.</i></li>
 </ul>
 
 <h2 id="proofs">Proofs, certification and complexity</h2>
@@ -144,7 +145,7 @@ constraints stay smooth. This is exactly the per-pair constraint of this project
 <footer class="foot"><div class="in">
   <p>Certified coordinate constructions and attributed published values, not optimality claims. Generalized packing method by Alejandro Zarzuelo Urdiales, building on Yohei Nakajima's soft-to-rigid cube-packing method. Code, records and certificates: <a href="https://github.com/alejandrozu/platonic-packing">github.com/alejandrozu/platonic-packing</a>. Project code: MIT license; external constructions retain their source attribution.</p>
   <p>This site is updated and maintained by Alejandro Zarzuelo Urdiales.</p>
-  <p>Built 2026-10-16 05:04 UTC+00</p>
+  <p>Built 2026-10-16 19:07 UTC+00</p>
 </div></footer>
 
 </body>
