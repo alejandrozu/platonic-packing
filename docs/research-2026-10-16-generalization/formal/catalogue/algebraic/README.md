@@ -28,6 +28,12 @@ unordered pairs. Its proposal report is `export3d-report.json`; this is a
 preparation report, not a Lean success report. Full exports use a separate
 `export3d-all-report.json` so that the pilot registry remains stable.
 
+A separate native higher-dimensional route selects one record from each of the
+45 remaining 4D–6D families, comprising 9,666 placed vertices and 45 unordered
+pairs. These preparation totals describe the selected inputs, not successful
+builds. The two pilot cohorts together cover every family outside the ten-family
+rational cohort; they do not cover every population in those families.
+
 ## Formal meaning
 
 The new Lean modules live in `PackingCertificates/Algebraic/`:
@@ -57,6 +63,21 @@ The new Lean modules live in `PackingCertificates/Algebraic/`:
   placed vertex has a checked container-hull membership witness, and every
   unordered pair has a strict rational separating plane. Therefore the actual
   closed placed bodies are contained and pairwise disjoint.
+- `QuadraticScale.lean`, `QuadraticInverse.lean` and `PackingND.lean` handle
+  native higher-dimensional templates in quadratic number fields. A supplied
+  affine-basis inverse is checked exactly as rational coefficient pairs and
+  transported to the real coordinates. Diagonal scaling retains the original
+  positive algebraic edge factor; the source's exact expression for that factor
+  is audited separately. Checked raw Cayley data define proper rotations, and
+  the final theorem proves actual container-hull containment and all pairwise
+  separations.
+
+Bounded proof fragments split basis caches, placed vertices and separating-plane
+checks into separate kernel computations. A final theorem assembles complete
+coverage of the original certificate. The independent source audit rejects
+missing or repeated fragment indices and re-renders every generated source from
+the immutable original data. Fragmenting a proof does not modify a placement,
+scale, canonical coordinate or mathematical conclusion.
 
 The geometric conclusions concern the exact frozen canonical coordinate hulls.
 They do not additionally prove the conventional named-solid classification or
@@ -88,8 +109,14 @@ python catalogue/algebraic/run_verified.py --mathlib-project PATH_TO_PINNED_MATH
 the successful pinned direct-core receipt, snapshots imported source/object
 hashes, validates original native scale/poses against the proposals, requires the
 prescribed semantic `.valid` declaration, and records its axiom audit and log.
-For the whole pilot omit `--only`. Use `--resume` with the same receipt to reuse
-only matching successful stages and unchanged imported dependencies.
+Use `--resume` with the same receipt to reuse only matching successful stages and
+unchanged imported dependencies. Large instances use the bounded fragment
+generators and corresponding `run_verified_fragmented_3d.py` or
+`run_verified_fragmented_nd.py` runners. The CI entry points are
+`run_ci_pilots.py` for the eight 3D shards and `run_ci_nd45.py` for the twelve ND
+shards. Each worker retains complete source, object, log and dependency receipts;
+the portable publication keeps source/log archives with separate environment
+namespaces, while the raw build ZIPs preserve the original objects.
 
 The full 8,409-record 3D preparation can be resumed independently:
 
@@ -99,7 +126,7 @@ python catalogue/algebraic/generate_3d.py --all
 python catalogue/algebraic/run_verified.py --registry catalogue/algebraic/generated3d-all-registry.json --mathlib-project PATH_TO_PINNED_MATHLIB_PROJECT --receipt catalogue/algebraic/full3d-verification.json --resume
 ```
 
-The 1,587 remaining ND records are frozen for the parallel ND extension; the 3D
+The 1,587 remaining ND records are frozen for the native ND extension; the 3D
 exporter does not claim to certify them. A long preparation or proof run may be
 partial; inspect the receipt's exact verified/unverified record lists rather
 than inferring coverage from a directory size or a target count.

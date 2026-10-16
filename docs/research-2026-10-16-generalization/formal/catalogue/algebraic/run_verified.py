@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 from datetime import datetime, timezone
 from fractions import Fraction
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -283,6 +284,7 @@ def main():
         stages=[],verified_records=[],unverified_records=[],source_transcription_boundary='Python source parsing/generation is audited but not formalized.')
     save(args.receipt,receipt)
     failed=False
+    log_origins={}
     for source in stages:
         snapshot=closure.dependency_snapshot(source,FORMAL)
         if reusable(old.get(rel(source)),source,snapshot):row=dict(old[rel(source)],reused=True)
@@ -292,11 +294,20 @@ def main():
         else:
             row=dict(core.build_one(source,args,env,set()),reused=False)
             original_log=path(row['log'])
-            immutable_log=HERE/'build-logs'/invocation/(rel(source).replace('/','_')+'.log')
+            # Keep Windows paths below MAX_PATH even for deeply namespaced
+            # proof fragments. The full source path remains in each stage.
+            identity=hashlib.sha256(rel(source).encode('utf8')).hexdigest()
+            log_name=source.stem[:24]+'-'+identity[:16]+'.log'
+            if log_name in log_origins and log_origins[log_name]!=rel(source):
+                raise ValueError('Immutable log identity collision')
+            log_origins[log_name]=rel(source)
+            immutable_log=HERE/'build-logs'/invocation/log_name
             immutable_log.parent.mkdir(parents=True,exist_ok=True)
             shutil.copy2(original_log,immutable_log)
             row['log']=rel(immutable_log)
             row['log_sha256']=core.digest(immutable_log)
+            row['immutable_log_source_path']=rel(source)
+            row['immutable_log_identity_sha256']=identity
         row['imported_dependencies']=snapshot
         row['changed_imported_dependencies']=closure.changed_dependencies(snapshot,FORMAL)
         if row['changed_imported_dependencies']or core.digest(args.registry)!=registry_hash:

@@ -3,14 +3,15 @@ from the full 8,409-record 3D proposal export. Generated proposals do not count
 as Lean-verified records.
 
 Publication assets are explicitly listed, with byte sizes and SHA-256 hashes,
-in `ci-pilot-assets.json`. Copy these 353 files relative to the formal directory,
+in `ci-pilot-assets.json`. Copy these 356 files relative to the formal directory,
 preserving their bytes, and also copy the manifest itself. The list includes
 the 85 source JSON files, their 85 proposals and 85 Lean modules, all 56 exact
 canonical templates, root data, generic proofs, regression tests, and builders.
 It does not include the full proposal/input directories. The nested paper
 `.gitattributes` must continue to disable text conversion.
 
-For CI, use eight shard indices 0–7 with workflow `max-parallel: 6`. Each Linux
+For CI, use eight shard indices 0–7 in the combined algebraic workflow. Its
+global parallelism includes the ND pilot workers. Each Linux
 worker needs Lean 4.31.0 and the already-built mathlib revision pinned by
 `lake-manifest.json`. Compile the direct core first:
 
@@ -26,6 +27,9 @@ The deterministic scheduling plan has shard sizes 9, 10, 11, 11, 11, 11, 11,
 theorem. Every worker compiles shared generic proofs and the needed canonical
 templates once. Later records can reuse those modules only when the recorded
 source, object, log, axiom audit, and every transitive local import still match.
+Each unchanged reference certificate is transcribed into a noncomputable data
+module and bounded basis/vertex/pair arithmetic modules. The final theorem
+assembles those kernel-checked premises without rerunning a monolithic check.
 The malformed-certificate regression is included in every record's build order
 and its successful stage is reused on the same conditions.
 

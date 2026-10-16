@@ -22,6 +22,7 @@ import time
 import zipfile
 
 import run_verified as verifier
+import generate_fragmented_3d_pilots as fragments
 
 HERE=Path(__file__).resolve().parent
 FORMAL=HERE.parents[1]
@@ -41,7 +42,9 @@ def assets(registry):
     paths={FORMAL/'lean-toolchain',FORMAL/'lakefile.toml',FORMAL/'lake-manifest.json',
         FORMAL/'verify_core.py',FORMAL/'verify_extensions.py',REGISTRY,
         HERE/'run_verified.py',HERE/'run_ci_pilots.py',HERE/'export_3d.py',
-        HERE/'generate_3d.py',HERE/'geometry_intervals.py',HERE/'README.md',HERE/'CI-PILOTS.md'}
+        HERE/'generate_3d.py',HERE/'geometry_intervals.py',HERE/'README.md',HERE/'CI-PILOTS.md',
+        HERE/'generate_fragmented_3d_pilots.py',HERE/'run_verified_fragmented_3d.py',
+        FORMAL/'PackingCertificates/Algebraic/Fragment3D.lean'}
     paths.update(FORMAL.glob('*.lean'))
     paths.update((FORMAL/'PackingCertificates').glob('*.lean'))
     paths.update(FORMAL/'PackingCertificates/Algebraic'/name for name in
@@ -112,8 +115,11 @@ def package(status,outdir):
     for row in core['results']:
         paths.update(FORMAL/row[k]for k in ['path','olean_path','log'])
     for rec in status['records']:
-        for key in ['receipt','driver_log']:
+        for key in ['registry','receipt','driver_log']:
             if rec.get(key)and (FORMAL/rec[key]).is_file():paths.add(FORMAL/rec[key])
+        if rec.get('registry')and(FORMAL/rec['registry']).is_file():
+            for row in read(FORMAL/rec['registry'])['records']:
+                paths.update(FORMAL/item['path']for item in row['fragmentation']['files'])
         if rec.get('receipt')and(FORMAL/rec['receipt']).is_file():paths.update(receipt_files(FORMAL/rec['receipt']))
     paths=sorted((p for p in paths if p.is_file()),key=rel)
     inventory=dict(schema='algebraic-pilot-evidence-v1',files=[dict(path=rel(p),bytes=p.stat().st_size,sha256=sha(p))for p in paths])
@@ -125,9 +131,15 @@ def package(status,outdir):
     temporary.replace(outdir/'evidence.zip')
 
 
-def run_record(rec,args,outdir,caches,deadline):
+def run_record(rec,args,outdir,caches,deadline,registry):
     stem=rec['record_id'];receipt=outdir/(stem+'-receipt.json');log=outdir/(stem+'-driver.log')
-    command=[sys.executable,'-u',str(HERE/'run_verified.py'),'--registry',str(REGISTRY),
+    original=next(r for r in registry['records']if r['record_id']==stem)
+    fragment=fragments.generate(original,args.basis_width,args.vertex_width)
+    plan=outdir/(stem+'-registry.json')
+    write(plan,dict(schema='3d-fragmented-packing-registry-v1',original_registry_path=rel(REGISTRY),
+        original_registry_sha256=sha(REGISTRY),canonical_data_modules=registry['canonical_data_modules'],records=[fragment]))
+    rec.update(registry=rel(plan),fragment_count=len(fragment['fragmentation']['files']))
+    command=[sys.executable,'-u',str(HERE/'run_verified_fragmented_3d.py'),'--registry',str(plan),
         '--only',stem,'--mathlib-project',str(args.mathlib_project),'--lean',str(args.lean),
         '--memory-mb',str(args.memory_mb),'--timeout',str(args.timeout),'--receipt',str(receipt),
         '--extra-modules',REGRESSION]
@@ -153,7 +165,7 @@ def run_record(rec,args,outdir,caches,deadline):
     rec.update(exit_code=code,complete=True,global_budget_timeout=bool(timed_out))
     if receipt.is_file():
         built=read(receipt);accepted=built.get('verified_records',[])
-        rec.update(receipt_sha256=sha(receipt),passed=code==0 and built.get('status')=='passed'and
+        rec.update(receipt_sha256=sha(receipt),passed=code==0 and built.get('status')=='passed'and built.get('fragment_semantic_audits_passed')is True and
             len(accepted)==1 and accepted[0]['record_id']==stem)
         # Failed record stages may still be reused only after individual exact
         # source/object/log/import validation by run_verified.reusable.
@@ -166,6 +178,7 @@ def main():
     p.add_argument('--lean',type=Path,default=verifier.core.default_lean())
     p.add_argument('--shard-index',type=int,default=0);p.add_argument('--shard-count',type=int,default=8)
     p.add_argument('--memory-mb',type=int,default=8192);p.add_argument('--timeout',type=int,default=1800)
+    p.add_argument('--basis-width',type=int,default=1);p.add_argument('--vertex-width',type=int,default=8)
     p.add_argument('--job-budget-seconds',type=int,default=19800)
     p.add_argument('--only',nargs='*');p.add_argument('--resume',action='store_true');p.add_argument('--plan-only',action='store_true')
     p.add_argument('--cache-receipts',nargs='*',type=Path,default=[],help='Existing complete stage receipts, still checked against current source/object/log/import hashes')
@@ -201,7 +214,7 @@ def main():
             rec=dict(row,passed=False,complete=False);status['records'].append(rec)
             if deadline-time.monotonic()<600:rec.update(failure='Job budget exhausted; no verification claimed',complete=True)
             else:
-                try:run_record(rec,args,outdir,caches,deadline)
+                try:run_record(rec,args,outdir,caches,deadline,registry)
                 except Exception as exc:rec.update(driver_error=repr(exc),complete=True)
             status.update(passed_records=sum(r['passed']for r in status['records']),elapsed_seconds=round(time.monotonic()-started,3))
             write(outdir/'status.json',status)

@@ -1,0 +1,72 @@
+name: Lean algebraic family certificates
+
+on:
+  push:
+    branches: [lean/full-catalogue-and-dimension-proofs-20261016]
+    paths: [.github/workflows/lean-algebraic-families.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  certificates:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        include:
+          - cohort: 3d85
+            shard: 0
+          - cohort: 3d85
+            shard: 1
+          - cohort: 3d85
+            shard: 2
+          - cohort: 3d85
+            shard: 3
+          - cohort: 3d85
+            shard: 4
+          - cohort: 3d85
+            shard: 5
+          - cohort: 3d85
+            shard: 6
+          - cohort: 3d85
+            shard: 7
+    defaults:
+      run:
+        working-directory: docs/research-2026-10-16-generalization/formal
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: docs/research-2026-10-16-generalization/formal
+          fetch-depth: 1
+      - name: Install pinned Lean
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o /tmp/packing-elan-init.sh
+          sh /tmp/packing-elan-init.sh -y --no-modify-path --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          "$HOME/.elan/bin/elan" toolchain install "$(tr -d '\r\n' < lean-toolchain)"
+      - name: Restore pinned mathlib
+        run: |
+          lake update
+          lake exe cache get
+      - name: Verify complete generic core and negative cases
+        run: python3 verify_core.py --mathlib-project .
+      - name: Kernel-check source-bound family shard
+        run: |
+          if [ "${{ matrix.cohort }}" = "3d85" ]; then
+            python3 catalogue/algebraic/run_ci_pilots.py --shard-index ${{ matrix.shard }} --shard-count 8 --basis-width 1 --vertex-width 8 --mathlib-project . --memory-mb 8192 --timeout 1800 --job-budget-seconds 19800
+          else
+            python3 catalogue/algebraic/run_ci_nd45.py --shard-index ${{ matrix.shard }} --shard-count 12 --basis-width 8 --vertex-width 32 --mathlib-project . --memory-mb 8192 --timeout 1800 --job-budget-seconds 19800
+          fi
+      - name: Retain completed and failed proof evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-algebraic-${{ matrix.cohort }}-shard-${{ matrix.shard }}
+          path: docs/research-2026-10-16-generalization/formal/catalogue/algebraic/${{ matrix.cohort == '3d85' && 'ci' || 'ci-nd45' }}/shard-*/evidence.zip
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 9
