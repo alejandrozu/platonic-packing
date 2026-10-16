@@ -1,10 +1,10 @@
 # Search progress
 
-Updated 2026-10-16 02:18 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
+Updated 2026-10-16 02:24 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
 
-* attempts: 98432 total, 7178 in the last 24 h, 1904 in the last hour
+* attempts: 98433 total, 7178 in the last 24 h, 872 in the last hour
 * improvements: 34318 total, 7105 in the last 24 h
-* by move (attempts / improvements): ascend 11236/1738, community 1935/1935, compose 1600/1600, descend 6200/141, fresh 7162/129, harvest 20436/20436, hop 36025/3130, latcut 3830/3830, literature 475/475, reinsert 7172/456, symfresh 1492/39, tighten 869/409
+* by move (attempts / improvements): ascend 11237/1738, community 1935/1935, compose 1600/1600, descend 6200/141, fresh 7162/129, harvest 20436/20436, hop 36025/3130, latcut 3830/3830, literature 475/475, reinsert 7172/456, symfresh 1492/39, tighten 869/409
 
 | problem | n with a packing | attempts | CPU hours | improvements (24 h) | last improvement |
 |---|---|---|---|---|---|
@@ -18,7 +18,7 @@ Updated 2026-10-16 02:18 CEST. The engine runs unattended (scripts/run_forever.s
 | Dodecahedra in an icosahedron (dodinico) | 99/99 | 3644 | 13.9 | 264 | 10-16 02:17 |
 | Icosahedra in a dodecahedron (icoindod) | 99/99 | 4655 | 13.6 | 132 | 10-16 01:25 |
 | Tetrahedra in a cube (tetincub) | 99/99 | 0 | 0.0 | 80 | 10-15 18:54 |
-| Tetrahedra in an octahedron (tetinoct) | 99/99 | 2 | 0.1 | 253 | 10-16 02:17 |
+| Tetrahedra in an octahedron (tetinoct) | 99/99 | 3 | 0.1 | 253 | 10-16 02:17 |
 | Tetrahedra in a dodecahedron (tetindod) | 99/99 | 0 | 0.0 | 279 | 10-16 02:17 |
 | Tetrahedra in an icosahedron (tetinico) | 99/99 | 1 | 0.0 | 197 | 10-16 02:18 |
 | Cubes in a tetrahedron (cubintet) | 99/99 | 0 | 0.0 | 80 | 10-15 18:54 |
