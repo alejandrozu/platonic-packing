@@ -81,9 +81,9 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 76 | [3.94339+](cubinico_n76.json) | 3.943399166730 |  | 3.26593 | 0.5681 | ![](cubinico_n76.png) |
 | 77 | [3.94339+](cubinico_n77.json) | 3.943399166746 |  | 3.28019 | 0.5756 | ![](cubinico_n77.png) |
 | 78 | [3.96078+](cubinico_n78.json) | 3.960784202593 |  | 3.29433 | 0.5754 | ![](cubinico_n78.png) |
-| 79 | [4.00824+](cubinico_n79.json) | 4.008240085797 |  | 3.30835 | 0.5623 | ![](cubinico_n79.png) |
-| 80 | [4.01072+](cubinico_n80.json) | 4.010722091147 |  | 3.32225 | 0.5684 | ![](cubinico_n80.png) |
-| 81 | [4.01072+](cubinico_n81.json) | 4.010722091147 |  | 3.33603 | 0.5755 | ![](cubinico_n81.png) |
+| 79 | [4.00443+](cubinico_n79.json) | 4.004438604266 |  | 3.30835 | 0.5639 | ![](cubinico_n79.png) |
+| 80 | [4.00443+](cubinico_n80.json) | 4.004438609473 |  | 3.32225 | 0.5710 | ![](cubinico_n80.png) |
+| 81 | [4.00443+](cubinico_n81.json) | 4.004438622390 |  | 3.33603 | 0.5782 | ![](cubinico_n81.png) |
 | 82 | [4.01072+](cubinico_n82.json) | 4.010722091147 |  | 3.34971 | 0.5826 | ![](cubinico_n82.png) |
 | 83 | [4.07269+](cubinico_n83.json) | 4.072698531454 |  | 3.36327 | 0.5632 | ![](cubinico_n83.png) |
 | 84 | [4.38266+](cubinico_n84.json) | 4.382661339211 |  | 3.37672 | 0.4574 | ![](cubinico_n84.png) |

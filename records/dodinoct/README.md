@@ -73,7 +73,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 68 | [12.64524+](dodinoct_n68.json) | 12.645241008950 |  | 10.33968 | 0.5467 | ![](dodinoct_n68.png) |
 | 69 | [12.75490+](dodinoct_n69.json) | 12.754903296656 |  | 10.39011 | 0.5405 | ![](dodinoct_n69.png) |
 | 70 | [12.80660+](dodinoct_n70.json) | 12.806605675330 |  | 10.44007 | 0.5418 | ![](dodinoct_n70.png) |
-| 71 | [12.85568+](dodinoct_n71.json) | 12.855685403248 |  | 10.48955 | 0.5432 | ![](dodinoct_n71.png) |
+| 71 | [12.82289+](dodinoct_n71.json) | 12.822891146734 |  | 10.48955 | 0.5474 | ![](dodinoct_n71.png) |
 | 72 | [12.85568+](dodinoct_n72.json) | 12.855685403248 |  | 10.53856 | 0.5509 | ![](dodinoct_n72.png) |
 | 73 | [12.88952+](dodinoct_n73.json) | 12.889519793586 |  | 10.58713 | 0.5541 | ![](dodinoct_n73.png) |
 | 74 | [12.89083+](dodinoct_n74.json) | 12.890833751733 |  | 10.63525 | 0.5616 | ![](dodinoct_n74.png) |

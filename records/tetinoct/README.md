@@ -73,8 +73,8 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 68 | [3.11393+](tetinoct_n68.json) | 3.113930051920 |  | 2.57128 | 0.5630 | ![](tetinoct_n68.png) |
 | 69 | [3.11393+](tetinoct_n69.json) | 3.113930178197 |  | 2.58382 | 0.5713 | ![](tetinoct_n69.png) |
 | 70 | [3.21537+](tetinoct_n70.json) | 3.215378542045 |  | 2.59625 | 0.5264 | ![](tetinoct_n70.png) |
-| 71 | [3.24238+](tetinoct_n71.json) | 3.242386872930 |  | 2.60855 | 0.5207 | ![](tetinoct_n71.png) |
-| 72 | [3.24779+](tetinoct_n72.json) | 3.247791572867 |  | 2.62074 | 0.5254 | ![](tetinoct_n72.png) |
+| 71 | [3.21647+](tetinoct_n71.json) | 3.216477345109 |  | 2.60855 | 0.5334 | ![](tetinoct_n71.png) |
+| 72 | [3.23254+](tetinoct_n72.json) | 3.232540612705 |  | 2.62074 | 0.5329 | ![](tetinoct_n72.png) |
 | 73 | [3.24779+](tetinoct_n73.json) | 3.247791572867 |  | 2.63282 | 0.5327 | ![](tetinoct_n73.png) |
 | 74 | [3.28944+](tetinoct_n74.json) | 3.289440102284 |  | 2.64479 | 0.5198 | ![](tetinoct_n74.png) |
 | 75 | [3.29096+](tetinoct_n75.json) | 3.290964840091 |  | 2.65665 | 0.5261 | ![](tetinoct_n75.png) |

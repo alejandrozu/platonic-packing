@@ -64,12 +64,12 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 59 | [7.15332+](octintet_n59.json) | 7.153325688815 |  | 6.17975 | 0.6447 | ![](octintet_n59.png) |
 | 60 | [7.20140+](octintet_n60.json) | 7.201407051658 |  | 6.21447 | 0.6426 | ![](octintet_n60.png) |
 | 61 | [7.22893+](octintet_n61.json) | 7.228932890655 |  | 6.24880 | 0.6459 | ![](octintet_n61.png) |
-| 62 | [7.30409+](octintet_n62.json) | 7.304093954361 |  | 6.28276 | 0.6364 | ![](octintet_n62.png) |
+| 62 | [7.27769+](octintet_n62.json) | 7.277696388649 |  | 6.28276 | 0.6434 | ![](octintet_n62.png) |
 | 63 | [7.38623+](octintet_n63.json) | 7.386236629435 |  | 6.31636 | 0.6254 | ![](octintet_n63.png) |
 | 64 | [7.39186+](octintet_n64.json) | 7.391867654407 |  | 6.34960 | 0.6338 | ![](octintet_n64.png) |
 | 65 | [7.45363+](octintet_n65.json) | 7.453636968421 |  | 6.38250 | 0.6279 | ![](octintet_n65.png) |
 | 66 | [7.45363+](octintet_n66.json) | 7.453636968422 |  | 6.41507 | 0.6375 | ![](octintet_n66.png) |
-| 67 | [7.52343+](octintet_n67.json) | 7.523435840274 |  | 6.44731 | 0.6293 | ![](octintet_n67.png) |
+| 67 | [7.49537+](octintet_n67.json) | 7.495374651591 |  | 6.44731 | 0.6364 | ![](octintet_n67.png) |
 | 68 | [7.52343+](octintet_n68.json) | 7.523435840913 |  | 6.47922 | 0.6387 | ![](octintet_n68.png) |
 | 69 | [7.56601+](octintet_n69.json) | 7.566009435773 |  | 6.51083 | 0.6372 | ![](octintet_n69.png) |
 | 70 | [7.68012+](octintet_n70.json) | 7.680123110205 |  | 6.54213 | 0.6181 | ![](octintet_n70.png) |
