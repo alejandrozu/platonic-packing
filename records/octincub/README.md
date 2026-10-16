@@ -55,8 +55,8 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 50 | [3.43064+](octincub_n50.json) | 3.430646779926 |  | | | 2.86718 | 0.5838 | ![](octincub_n50.png) |
 | 51 | [3.44004+](octincub_n51.json) | 3.440047848172 |  | | | 2.88617 | 0.5906 | ![](octincub_n51.png) |
 | 52 | [3.45000+](octincub_n52.json) | 3.449999723622 |  | | | 2.90491 | 0.5970 | ![](octincub_n52.png) |
-| 53 | [3.52576+](octincub_n53.json) | 3.525761638718 |  | | | 2.92341 | 0.5700 | ![](octincub_n53.png) |
-| 54 | [3.52576+](octincub_n54.json) | 3.525761638727 |  | | | 2.94168 | 0.5808 | ![](octincub_n54.png) |
+| 53 | [3.49367+](octincub_n53.json) | 3.493671211328 |  | | | 2.92341 | 0.5859 | ![](octincub_n53.png) |
+| 54 | [3.51134+](octincub_n54.json) | 3.511346985213 |  | | | 2.94168 | 0.5880 | ![](octincub_n54.png) |
 | 55 | [3.52576+](octincub_n55.json) | 3.525761638788 |  | | | 2.95973 | 0.5916 | ![](octincub_n55.png) |
 | 56 | [3.58267+](octincub_n56.json) | 3.582674358012 |  | | | 2.97756 | 0.5741 | ![](octincub_n56.png) |
 | 57 | [3.58267+](octincub_n57.json) | 3.582674358012 |  | | | 2.99518 | 0.5843 | ![](octincub_n57.png) |

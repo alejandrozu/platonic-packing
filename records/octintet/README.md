@@ -68,7 +68,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 63 | [7.38623+](octintet_n63.json) | 7.386236629435 |  | 6.31636 | 0.6254 | ![](octintet_n63.png) |
 | 64 | [7.39186+](octintet_n64.json) | 7.391867654407 |  | 6.34960 | 0.6338 | ![](octintet_n64.png) |
 | 65 | [7.42528+](octintet_n65.json) | 7.425287935108 |  | 6.38250 | 0.6351 | ![](octintet_n65.png) |
-| 66 | [7.44927+](octintet_n66.json) | 7.449277476471 |  | 6.41507 | 0.6386 | ![](octintet_n66.png) |
+| 66 | [7.44174+](octintet_n66.json) | 7.441746998967 |  | 6.41507 | 0.6406 | ![](octintet_n66.png) |
 | 67 | [7.49537+](octintet_n67.json) | 7.495374651591 |  | 6.44731 | 0.6364 | ![](octintet_n67.png) |
 | 68 | [7.49985+](octintet_n68.json) | 7.499853260585 |  | 6.47922 | 0.6448 | ![](octintet_n68.png) |
 | 69 | [7.55555+](octintet_n69.json) | 7.555555555556 |  | 6.51083 | 0.6399 | ![](octintet_n69.png) |
