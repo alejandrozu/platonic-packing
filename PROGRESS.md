@@ -1,10 +1,10 @@
 # Search progress
 
-Updated 2026-10-16 03:00 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
+Updated 2026-10-16 03:05 CEST. The engine runs unattended (scripts/run_forever.sh); this file is regenerated with every publish.
 
-* attempts: 98648 total, 7196 in the last 24 h, 429 in the last hour
-* improvements: 34528 total, 7123 in the last 24 h
-* by move (attempts / improvements): ascend 11242/1739, community 1935/1935, compose 1600/1600, descend 6200/141, fresh 7162/129, harvest 20644/20644, hop 36025/3130, latcut 3830/3830, literature 475/475, perturb 2/1, reinsert 7172/456, symfresh 1492/39, tighten 869/409
+* attempts: 98649 total, 7175 in the last 24 h, 427 in the last hour
+* improvements: 34528 total, 7101 in the last 24 h
+* by move (attempts / improvements): ascend 11243/1739, community 1935/1935, compose 1600/1600, descend 6200/141, fresh 7162/129, harvest 20644/20644, hop 36025/3130, latcut 3830/3830, literature 475/475, perturb 2/1, reinsert 7172/456, symfresh 1492/39, tighten 869/409
 
 | problem | n with a packing | attempts | CPU hours | improvements (24 h) | last improvement |
 |---|---|---|---|---|---|
@@ -20,7 +20,7 @@ Updated 2026-10-16 03:00 CEST. The engine runs unattended (scripts/run_forever.s
 | Tetrahedra in a cube (tetincub) | 99/99 | 0 | 0.0 | 80 | 10-15 18:54 |
 | Tetrahedra in an octahedron (tetinoct) | 99/99 | 4 | 0.3 | 267 | 10-16 02:58 |
 | Tetrahedra in a dodecahedron (tetindod) | 99/99 | 0 | 0.0 | 281 | 10-16 02:37 |
-| Tetrahedra in an icosahedron (tetinico) | 99/99 | 1 | 0.0 | 211 | 10-16 02:58 |
+| Tetrahedra in an icosahedron (tetinico) | 99/99 | 2 | 0.1 | 211 | 10-16 02:58 |
 | Cubes in a tetrahedron (cubintet) | 99/99 | 0 | 0.0 | 80 | 10-15 18:54 |
 | Cubes in a dodecahedron (cubindod) | 99/99 | 0 | 0.0 | 82 | 10-15 18:54 |
 | Cubes in an icosahedron (cubinico) | 99/99 | 2 | 0.1 | 260 | 10-16 02:58 |
