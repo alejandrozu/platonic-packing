@@ -94,8 +94,8 @@ Smallest container found for n unit-edge pieces; entry = s = container edge / pi
 | 87 | [6.22933+](tetintet/tetintet_n87.json) | [5.06739+](octinoct/octinoct_n87.json) | [5.38064+](icoinico/icoinico_n87.json) | [6.78299+](dodindod/dodindod_n87.json) | [5.76342+](cubincub/cubincub_n87.json) |  |
 | 88 | [6.22933+](tetintet/tetintet_n88.json) | [5.10396+](octinoct/octinoct_n88.json) | [5.39481+](icoinico/icoinico_n88.json) | [6.78299+](dodindod/dodindod_n88.json) | [5.76342+](cubincub/cubincub_n88.json) |  |
 | 89 | [6.22933+](tetintet/tetintet_n89.json) | [5.13076+](octinoct/octinoct_n89.json) | [5.43479+](icoinico/icoinico_n89.json) | [6.78299+](dodindod/dodindod_n89.json) | [5.86302+](cubincub/cubincub_n89.json) |  |
-| 90 | [6.22933+](tetintet/tetintet_n90.json) | [5.18505+](octinoct/octinoct_n90.json) | [5.45167+](icoinico/icoinico_n90.json) | [6.78299+](dodindod/dodindod_n90.json) | [5.86302+](cubincub/cubincub_n90.json) |  |
-| 91 | [6.37453+](tetintet/tetintet_n91.json) | [5.18830+](octinoct/octinoct_n91.json) | [5.46123+](icoinico/icoinico_n91.json) | [6.78299+](dodindod/dodindod_n91.json) | [5.86302+](cubincub/cubincub_n91.json) |  |
+| 90 | [6.22933+](tetintet/tetintet_n90.json) | [5.17694+](octinoct/octinoct_n90.json) | [5.45167+](icoinico/icoinico_n90.json) | [6.78299+](dodindod/dodindod_n90.json) | [5.86302+](cubincub/cubincub_n90.json) |  |
+| 91 | [6.37453+](tetintet/tetintet_n91.json) | [5.17694+](octinoct/octinoct_n91.json) | [5.46123+](icoinico/icoinico_n91.json) | [6.78299+](dodindod/dodindod_n91.json) | [5.86302+](cubincub/cubincub_n91.json) |  |
 | 92 | [6.37453+](tetintet/tetintet_n92.json) | [5.21059+](octinoct/octinoct_n92.json) | [5.47968+](icoinico/icoinico_n92.json) | [6.90193+](dodindod/dodindod_n92.json) | [5.86302+](cubincub/cubincub_n92.json) |  |
 | 93 | [6.37453+](tetintet/tetintet_n93.json) | [5.26598+](octinoct/octinoct_n93.json) | [5.49326+](icoinico/icoinico_n93.json) | [6.90193+](dodindod/dodindod_n93.json) | [5.86302+](cubincub/cubincub_n93.json) |  |
 | 94 | [6.37453+](tetintet/tetintet_n94.json) | [5.27414+](octinoct/octinoct_n94.json) | [5.50028+](icoinico/icoinico_n94.json) | [6.90193+](dodindod/dodindod_n94.json) | [5.86302+](cubincub/cubincub_n94.json) |  |
@@ -202,8 +202,8 @@ Smallest container found for n unit-edge pieces; entry = s = container edge / pi
 | 91 | [7.41421+](cubinoct/cubinoct_n91.json) ≈ 6 + √2 | [4.58205+](octincub/octincub_n91.json) |  | [8.21711+](dodinico/dodinico_n91.json) | [4.33161+](icoindod/icoindod_n91.json) |
 | 92 | [7.41421+](cubinoct/cubinoct_n92.json) ≈ 6 + √2 | [4.58205+](octincub/octincub_n92.json) |  | [8.21711+](dodinico/dodinico_n92.json) | [4.33161+](icoindod/icoindod_n92.json) |
 | 93 | [7.41421+](cubinoct/cubinoct_n93.json) ≈ 6 + √2 | [4.58205+](octincub/octincub_n93.json) |  | [8.24008+](dodinico/dodinico_n93.json) | [4.33161+](icoindod/icoindod_n93.json) |
-| 94 | [7.41421+](cubinoct/cubinoct_n94.json) ≈ 6 + √2 | [4.58205+](octincub/octincub_n94.json) |  | [8.33043+](dodinico/dodinico_n94.json) | [4.33161+](icoindod/icoindod_n94.json) |
-| 95 | [7.41421+](cubinoct/cubinoct_n95.json) ≈ 6 + √2 | [4.58205+](octincub/octincub_n95.json) |  | [8.33161+](dodinico/dodinico_n95.json) | [4.33161+](icoindod/icoindod_n95.json) |
+| 94 | [7.41421+](cubinoct/cubinoct_n94.json) ≈ 6 + √2 | [4.58205+](octincub/octincub_n94.json) |  | [8.33027+](dodinico/dodinico_n94.json) | [4.33161+](icoindod/icoindod_n94.json) |
+| 95 | [7.41421+](cubinoct/cubinoct_n95.json) ≈ 6 + √2 | [4.58205+](octincub/octincub_n95.json) |  | [8.33027+](dodinico/dodinico_n95.json) | [4.33161+](icoindod/icoindod_n95.json) |
 | 96 | [7.41421+](cubinoct/cubinoct_n96.json) ≈ 6 + √2 | [4.58205+](octincub/octincub_n96.json) |  | [8.33970+](dodinico/dodinico_n96.json) | [4.33161+](icoindod/icoindod_n96.json) |
 | 97 | [7.59474+](cubinoct/cubinoct_n97.json) | [4.67326+](octincub/octincub_n97.json) |  | [8.36617+](dodinico/dodinico_n97.json) | [4.35826+](icoindod/icoindod_n97.json) |
 | 98 | [7.59474+](cubinoct/cubinoct_n98.json) | [4.67326+](octincub/octincub_n98.json) |  | [8.37112+](dodinico/dodinico_n98.json) | [4.35826+](icoindod/icoindod_n98.json) |
