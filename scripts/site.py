@@ -3,7 +3,7 @@
 
   site/index.html                 record explorer (families, atlas of problems, 3D viewer, tables, charts)
   site/constructions/index.html   every record with links to its JSON, exact certificate and float check on GitHub
-  site/method/  certification/  contribute/  about/   article pages
+  site/method/  materials/  certification/  contribute/  literature/  about/   article pages
   site/data/records.json          all records (7-decimal coordinates for the viewer) + the solid library
   site/assets/                    styles, scripts, icon;  CNAME, robots.txt, sitemap.xml, 404.html, .nojekyll
 
@@ -363,7 +363,7 @@ def constructions(data):
 
 
 # ------------------------------------------------------------------ page shell
-NAV = [('', 'Records'), ('constructions/', 'All constructions'), ('method/', 'Method'), ('certification/', 'Certification'),
+NAV = [('', 'Records'), ('constructions/', 'All constructions'), ('method/', 'Method'), ('materials/', 'Materials'), ('certification/', 'Certification'),
        ('contribute/', 'Contribute'), ('literature/', 'Literature'), ('about/', 'About')]
 
 
@@ -524,6 +524,7 @@ def build(fragment=None):
     home = fill(open(os.path.join(WEB, 'pages', 'home.html')).read(), vals, './')
     write('index.html', page('', 'Polyhedra in Polyhedra: record packings with proofs', desc, home, '', scripts=(T3, 'explorer.js'), styles=('explorer.css',), depth=0))
     arts = [('method', 'Method', 'Packing in 3D–6D: dimension-correct bounds, soft-to-rigid search, adaptive moves, symmetric and crystal seeds, nested constructions and exact certification.'),
+            ('materials', 'Packing and materials science', 'How polyhedral shape, confinement, orientation and void geometry connect to crystallization, grains, photonics, porous materials and granular mechanics, with primary research sources.'),
             ('certification', 'Certification', 'How every record is proved valid: exact solids in number fields, rational rotations, interval arithmetic and separating planes.'),
             ('contribute', 'Contribute', 'Check a 3D packing locally, submit 3D or higher-dimensional witnesses for exact certification, propose a category or share another construction with source credit.'),
             ('literature', 'Literature', 'The project write-ups, the sources it compares against, and the research on packing as optimization, dense packings of polyhedra and certification.'),
@@ -554,7 +555,7 @@ def build(fragment=None):
         write('CNAME', open(os.path.join(WEB, 'CNAME')).read().strip() + '\n')
     write('.nojekyll', '')
     write('robots.txt', f'User-agent: *\nAllow: /\nSitemap: {SITE_URL}sitemap.xml\n')
-    urls = ['', 'constructions/', 'method/', 'certification/', 'contribute/', 'literature/', 'about/']
+    urls = ['', 'constructions/', 'method/', 'materials/', 'certification/', 'contribute/', 'literature/', 'about/']
     write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
           + ''.join(f'  <url><loc>{SITE_URL}{u}</loc></url>\n' for u in urls) + '</urlset>\n')
     if fragment:                                       # one-file explorer for the Claude artifact
