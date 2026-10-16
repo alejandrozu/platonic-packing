@@ -75,7 +75,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 70 | [13.49059+](icointet_n70.json) | 13.490595830597 |  | 10.90233 | 0.5278 | ![](icointet_n70.png) |
 | 71 | [13.49509+](icointet_n71.json) | 13.495098779770 |  | 10.95400 | 0.5348 | ![](icointet_n71.png) |
 | 72 | [13.49509+](icointet_n72.json) | 13.495098779770 |  | 11.00519 | 0.5423 | ![](icointet_n72.png) |
-| 73 | [13.52084+](icointet_n73.json) | 13.520845577979 |  | 11.05591 | 0.5467 | ![](icointet_n73.png) |
+| 73 | [13.51200+](icointet_n73.json) | 13.512005854854 |  | 11.05591 | 0.5478 | ![](icointet_n73.png) |
 | 74 | [13.54178+](icointet_n74.json) | 13.541782481389 |  | 11.10616 | 0.5517 | ![](icointet_n74.png) |
 | 75 | [13.55246+](icointet_n75.json) | 13.552467018141 |  | 11.15597 | 0.5578 | ![](icointet_n75.png) |
 | 76 | [13.55246+](icointet_n76.json) | 13.552467018408 |  | 11.20533 | 0.5652 | ![](icointet_n76.png) |
