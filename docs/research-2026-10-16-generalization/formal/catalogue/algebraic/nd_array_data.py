@@ -60,8 +60,8 @@ def rewrite(prefix,c,canonical_plans,basis_width=8,point_width=32,fast_rationals
         checks.append(f'{data}.size = {len(chunks)}')
         shape_proofs.append('by rfl')
         # Bound each source chunk's item count without reducing its numbers.
-        checks.append(f'allFin {len(chunks)} (fun q => decide ({size_getter}.size = min {width} ({total}-q.val*{width}))) = true')
-        shape_proofs.append('by apply allFin_eq_true.mpr; intro q; fin_cases q <;> rfl')
+        checks.append(f'PackingCertificates.Rational.allFin {len(chunks)} (fun q => decide ({size_getter}.size = min {width} ({total}-q.val*{width}))) = true')
+        shape_proofs.append('by apply PackingCertificates.Rational.allFin_eq_true.mpr; intro q; fin_cases q <;> rfl')
 
     flattened=lambda rows:[v for row in rows for v in row]
     field('placedIntervals',flattened(c['placed_vertex_intervals']),1,'Interval',render_interval,point_width,
