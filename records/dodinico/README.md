@@ -55,7 +55,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 50 | [6.64475+](dodinico_n50.json) | 6.644753327295 |  | 5.60008 | 0.5986 | ![](dodinico_n50.png) |
 | 51 | [6.64776+](dodinico_n51.json) | 6.647764482734 |  | 5.63716 | 0.6098 | ![](dodinico_n51.png) |
 | 52 | [6.66387+](dodinico_n52.json) | 6.663873144759 |  | 5.67377 | 0.6172 | ![](dodinico_n52.png) |
-| 53 | [6.67530+](dodinico_n53.json) | 6.675308865075 |  | 5.70991 | 0.6259 | ![](dodinico_n53.png) |
+| 53 | [6.66813+](dodinico_n53.json) | 6.668131058539 |  | 5.70991 | 0.6279 | ![](dodinico_n53.png) |
 | 54 | [6.68416+](dodinico_n54.json) | 6.684162824520 |  | 5.74560 | 0.6351 | ![](dodinico_n54.png) |
 | 55 | [6.72810+](dodinico_n55.json) | 6.728108655017 |  | 5.78085 | 0.6343 | ![](dodinico_n55.png) |
 | 56 | [6.86955+](dodinico_n56.json) | 6.869550950284 |  | 5.81567 | 0.6068 | ![](dodinico_n56.png) |
@@ -76,7 +76,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 71 | [7.59897+](dodinico_n71.json) | 7.598969914681 |  | 6.29443 | 0.5683 | ![](dodinico_n71.png) |
 | 72 | [7.64869+](dodinico_n72.json) | 7.648698684949 |  | 6.32385 | 0.5652 | ![](dodinico_n72.png) |
 | 73 | [7.67592+](dodinico_n73.json) | 7.675924345488 |  | 6.35299 | 0.5669 | ![](dodinico_n73.png) |
-| 74 | [7.70688+](dodinico_n74.json) | 7.706879700852 |  | 6.38187 | 0.5678 | ![](dodinico_n74.png) |
+| 74 | [7.68798+](dodinico_n74.json) | 7.687981175324 |  | 6.38187 | 0.5720 | ![](dodinico_n74.png) |
 | 75 | [7.74882+](dodinico_n75.json) | 7.748819687399 |  | 6.41049 | 0.5662 | ![](dodinico_n75.png) |
 | 76 | [7.78880+](dodinico_n76.json) | 7.788807083369 |  | 6.43885 | 0.5650 | ![](dodinico_n76.png) |
 | 77 | [7.86527+](dodinico_n77.json) | 7.865274507096 |  | 6.46697 | 0.5559 | ![](dodinico_n77.png) |
@@ -84,8 +84,8 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 79 | [7.91415+](dodinico_n79.json) | 7.914156443548 |  | 6.52248 | 0.5598 | ![](dodinico_n79.png) |
 | 80 | [7.93808+](dodinico_n80.json) | 7.938088541359 |  | 6.54989 | 0.5618 | ![](dodinico_n80.png) |
 | 81 | [7.95960+](dodinico_n81.json) | 7.959602886533 |  | 6.57707 | 0.5642 | ![](dodinico_n81.png) |
-| 82 | [8.01059+](dodinico_n82.json) | 8.010589573655 |  | 6.60402 | 0.5603 | ![](dodinico_n82.png) |
-| 83 | [8.03630+](dodinico_n83.json) | 8.036302893676 |  | 6.63076 | 0.5617 | ![](dodinico_n83.png) |
+| 82 | [8.00704+](dodinico_n82.json) | 8.007047869543 |  | 6.60402 | 0.5611 | ![](dodinico_n82.png) |
+| 83 | [8.00704+](dodinico_n83.json) | 8.007047869543 |  | 6.63076 | 0.5679 | ![](dodinico_n83.png) |
 | 84 | [8.03630+](dodinico_n84.json) | 8.036302895454 |  | 6.65728 | 0.5685 | ![](dodinico_n84.png) |
 | 85 | [8.06640+](dodinico_n85.json) | 8.066401505619 |  | 6.68360 | 0.5688 | ![](dodinico_n85.png) |
 | 86 | [8.10187+](dodinico_n86.json) | 8.101874335888 |  | 6.70970 | 0.5680 | ![](dodinico_n86.png) |
@@ -93,11 +93,11 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 88 | [8.13946+](dodinico_n88.json) | 8.139468780465 |  | 6.76132 | 0.5732 | ![](dodinico_n88.png) |
 | 89 | [8.15083+](dodinico_n89.json) | 8.150835542448 |  | 6.78683 | 0.5773 | ![](dodinico_n89.png) |
 | 90 | [8.18629+](dodinico_n90.json) | 8.186298730516 |  | 6.81216 | 0.5762 | ![](dodinico_n90.png) |
-| 91 | [8.22621+](dodinico_n91.json) | 8.226213583299 |  | 6.83729 | 0.5742 | ![](dodinico_n91.png) |
-| 92 | [8.23350+](dodinico_n92.json) | 8.233500198131 |  | 6.86225 | 0.5790 | ![](dodinico_n92.png) |
+| 91 | [8.21711+](dodinico_n91.json) | 8.217118539844 |  | 6.83729 | 0.5761 | ![](dodinico_n91.png) |
+| 92 | [8.21711+](dodinico_n92.json) | 8.217118539844 |  | 6.86225 | 0.5824 | ![](dodinico_n92.png) |
 | 93 | [8.28099+](dodinico_n93.json) | 8.280990868830 |  | 6.88702 | 0.5752 | ![](dodinico_n93.png) |
 | 94 | [8.33043+](dodinico_n94.json) | 8.330432405984 |  | 6.91162 | 0.5711 | ![](dodinico_n94.png) |
-| 95 | [8.34099+](dodinico_n95.json) | 8.340998558940 |  | 6.93604 | 0.5750 | ![](dodinico_n95.png) |
+| 95 | [8.33358+](dodinico_n95.json) | 8.333587977647 |  | 6.93604 | 0.5766 | ![](dodinico_n95.png) |
 | 96 | [8.34843+](dodinico_n96.json) | 8.348438540917 |  | 6.96029 | 0.5795 | ![](dodinico_n96.png) |
 | 97 | [8.36617+](dodinico_n97.json) | 8.366170732425 |  | 6.98438 | 0.5818 | ![](dodinico_n97.png) |
 | 98 | [8.37112+](dodinico_n98.json) | 8.371127318728 |  | 7.00830 | 0.5868 | ![](dodinico_n98.png) |

@@ -57,7 +57,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 52 | [1.13454+](tetindod_n52.json) | 1.134544148633 |  | 0.92820 | 0.5476 | ![](tetindod_n52.png) |
 | 53 | [1.14311+](tetindod_n53.json) | 1.143116928833 |  | 0.93412 | 0.5457 | ![](tetindod_n53.png) |
 | 54 | [1.14926+](tetindod_n54.json) | 1.149267399156 |  | 0.93996 | 0.5471 | ![](tetindod_n54.png) |
-| 55 | [1.15577+](tetindod_n55.json) | 1.155776779466 |  | 0.94572 | 0.5479 | ![](tetindod_n55.png) |
+| 55 | [1.15393+](tetindod_n55.json) | 1.153935670214 |  | 0.94572 | 0.5505 | ![](tetindod_n55.png) |
 | 56 | [1.15577+](tetindod_n56.json) | 1.155776779468 |  | 0.95142 | 0.5578 | ![](tetindod_n56.png) |
 | 57 | [1.16990+](tetindod_n57.json) | 1.169903947047 |  | 0.95705 | 0.5475 | ![](tetindod_n57.png) |
 | 58 | [1.17713+](tetindod_n58.json) | 1.177139368220 |  | 0.96261 | 0.5469 | ![](tetindod_n58.png) |
