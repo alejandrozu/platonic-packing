@@ -1,62 +1,120 @@
 {
-  "checked_at_utc": "2026-10-15T23:33:23.1228014Z",
+  "checked_at_utc": "2026-10-16T02:58:07.807171+00:00",
   "compiler": "Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)",
   "mathlib_commit": "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f",
-  "method": "Local Lean compiler, standard kernel checking of the project proofs, using existing read-only compiled mathlib dependencies",
-  "commands": [
-    "lean -j 2 -o PackingCertificates/Core.olean PackingCertificates/Core.lean",
-    "lean -j 2 -o PackingCertificates/Example.olean PackingCertificates/Example.lean",
-    "lean -j 2 -o PackingCertificates.olean PackingCertificates.lean",
-    "lean -j 2 Audit.lean"
-  ],
-  "exit_codes": [
-    0,
-    0,
-    0,
-    0
-  ],
-  "audited_theorems": 15,
-  "axioms_found": [
-    "propext",
+  "core_receipt": "core-verification.json",
+  "catalogue_receipt": "catalogue/verified-catalogue.json",
+  "core_status": "passed",
+  "core_audited_theorems": 51,
+  "negative_kernel_checks": 16,
+  "archive_records_formally_imported": 57,
+  "rational_export_targets": 402,
+  "verified_totals": {
+    "records": 57,
+    "pieces": 653,
+    "piece_vertices": 6358,
+    "container_vertices": 834,
+    "unordered_pairs": 9783,
+    "vertex_wall_tests": 27456,
+    "vertex_membership_tests": 1782
+  },
+  "verified_by_dimension": {
+    "3": {
+      "records": 30,
+      "pieces": 572,
+      "piece_vertices": 4576,
+      "container_vertices": 240,
+      "unordered_pairs": 9693,
+      "vertex_wall_tests": 27456,
+      "vertex_membership_tests": 0,
+      "n_values": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        33,
+        34,
+        100
+      ]
+    },
+    "4": {
+      "records": 15,
+      "pieces": 45,
+      "piece_vertices": 720,
+      "container_vertices": 240,
+      "unordered_pairs": 50,
+      "vertex_wall_tests": 0,
+      "vertex_membership_tests": 720,
+      "n_values": [
+        2,
+        3,
+        4
+      ]
+    },
+    "5": {
+      "records": 6,
+      "pieces": 18,
+      "piece_vertices": 378,
+      "container_vertices": 126,
+      "unordered_pairs": 20,
+      "vertex_wall_tests": 0,
+      "vertex_membership_tests": 378,
+      "n_values": [
+        2,
+        3,
+        4
+      ]
+    },
+    "6": {
+      "records": 6,
+      "pieces": 18,
+      "piece_vertices": 684,
+      "container_vertices": 228,
+      "unordered_pairs": 20,
+      "vertex_wall_tests": 0,
+      "vertex_membership_tests": 684,
+      "n_values": [
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "axioms_allowed": [
     "Classical.choice",
-    "Quot.sound"
+    "Quot.sound",
+    "propext"
   ],
   "additional_axioms_found": [],
-  "axiom_free_theorems": [
-    "PackingCertificates.minkowskiOpening_subset",
-    "PackingCertificates.minkowskiOpening_mono"
-  ],
-  "concrete_example": "Two unit cubes, 16 placed vertices, 96 vertex/face inequalities, two ordered separating-hyperplane checks, exact arithmetic in the real semantic model",
-  "archive_records_formally_imported": 0,
-  "source_hashes": [
-    {
-      "path": "PackingCertificates.lean",
-      "sha256": "907e1b2aa9a2a011edaa478f1422b74ea3c4f092e834cd60e885a9f001ee0e3d"
-    },
-    {
-      "path": "PackingCertificates/Core.lean",
-      "sha256": "2eceee92843f252eef4ce7e4b642cc68c9a398057634a4ce6de9f56f75d5a96d"
-    },
-    {
-      "path": "PackingCertificates/Example.lean",
-      "sha256": "e237e1a95f0071ebaf30b825c360540976b297cb561f292ead9f4539eee6f2e6"
-    },
-    {
-      "path": "Audit.lean",
-      "sha256": "954b1156b1e9a3791d3bde970821aa4e2166a3128d54904c368ad9f6c14f3909"
-    },
-    {
-      "path": "lean-toolchain",
-      "sha256": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee"
-    },
-    {
-      "path": "lakefile.toml",
-      "sha256": "6e11d1bec16836e4cdc9cdddb69fcbe8547575deb1ff55fd82e7ac7442e73b82"
-    },
-    {
-      "path": "lake-manifest.json",
-      "sha256": "553a06228c92da2b84537fd7862e0207a428d1905c7be13de60f38ae39fa8187"
-    }
-  ],
-  "audit_sha256": "ed75c9654c236381e5949038c586123e1c8330c34d5976b0724d9355220a08ef"
+  "semantics": "Real convex hulls under exact proper rigid placements; full containment and every unordered pair strictly separated.",
+  "trust_boundary": "Successful kernel builds of explicit coordinate models; JSON parsing, source transcription and regular-polytope classification beyond the proved box models remain outside the kernel.",
+  "optimality_proved": false,
+  "entire_live_catalogue_proved": false,
+  "source_receipt_sha256": {
+    "core-verification.json": "33ed62cf7f31c74f40a375baf36d6be2d852cf0f9f666f4b5e8c88384ba417e7",
+    "catalogue/verified-catalogue.json": "b581fbecd569a3578e5232ee37b8b587530b6758afe0206e1655b72650f883da"
+  }
 }

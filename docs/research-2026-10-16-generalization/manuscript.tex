@@ -23,15 +23,24 @@
 \newcommand{\repo}{https://github.com/alejandrozu/platonic-packing}
 \newcommand{\frozen}{https://github.com/alejandrozu/platonic-packing/tree/1abc63218db34cea95802aeb3b6d4a6b6fe1c61b}
 \newcommand{\blob}{https://github.com/alejandrozu/platonic-packing/blob/1abc63218db34cea95802aeb3b6d4a6b6fe1c61b}
+% Filled only from successful, source-hashed, axiom-audited Lean build receipts.
+\newcommand{\leanRecords}{57}
+\newcommand{\leanCubeRecords}{30}
+\newcommand{\leanNDRecords}{27}
+\newcommand{\leanFourDRecords}{15}
+\newcommand{\leanFiveDRecords}{6}
+\newcommand{\leanSixDRecords}{6}
+\newcommand{\leanPieces}{653}
+\newcommand{\leanPairs}{9,783}
 \newtheorem{proposition}{Proposition}
 \newtheorem{theorem}{Theorem}
-\title{Shape Continuation for Convex-Polytope Packing:\\Generalization and Lean-Verified Certificate Principles}
+\title{Shape Continuation for Convex-Polytope Packing:\\Generalization and Lean-Verified Catalogue Certificates}
 \author{Yohei Nakajima \and Alejandro Zarzuelo Urdiales}
 \date{16 October 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
-We describe a generalization of soft-to-rigid finite-container packing from polygons and cubes to a canonical library of convex polyhedra and regular polytopes in dimensions four through six. Two geometric paths are distinguished: blending with an inscribed ball, and erosion followed by dilation, which retains an actual eroded core for non-tangential solids. Continuation becomes one move in an archive search alongside symmetry-released starts, insertion, deletion, rigid perturbation, crystal cuts and nested substitution. Independent exact-arithmetic checkers validate exported hard configurations. A new Lean development proves dimension-independent soundness of finite vertex/halfspace certificates, strict separation, affine transport, subset replacement and basic continuation containment, with a fully instantiated rational two-cube example. These formal results do not constitute a Lean check of the numerical archive. A frozen snapshot contains 140 problems and 10,404 populated cases, including 10,398 coordinate witnesses marked exact-certified and six source-only bounds. Five witnesses are independently rechecked for this paper. A reproducible historical comparison of 1,824 attempts on 40 prism-family cases illustrates why improvement frequency and improvement magnitude lead to different search policies. The results establish constructive feasibility and an auditable method; they do not prove global optimality or universal superiority of continuation.
+We generalize soft-to-rigid finite-container packing from polygons and cubes to convex polyhedra and regular polytopes in dimensions four through six. Two paths are distinguished: blending with an inscribed ball, and erosion followed by dilation, which retains an actual eroded core for non-tangential solids. Continuation becomes one move in an archive search alongside symmetry-released starts, insertion, deletion, rigid perturbation, crystal cuts and nested substitution. A new Lean development proves dimension-independent certificate soundness and instantiates it on \leanRecords{} actual frozen catalogue records across ten families in dimensions 3--6. The kernel checks exported raw rotation parameters, proper rotations, congruence, whole-body containment and every pairwise separation. A separate source audit binds these exact literals to the original records without changing scales or placements; parsing remains outside the kernel. The checked cohort is a subset of 402 rational exports, rather than a verification of the entire 10,398-witness archive. Independent exact-arithmetic checkers and five separately rechecked examples complement this formal layer. A historical comparison of 1,824 attempts on 40 prism-family cases illustrates why improvement frequency and magnitude lead to different search policies. The results establish constructive feasibility and an auditable method; they do not prove global optimality or universal superiority of continuation.
 \end{abstract}
 
 \section{Purpose and relation to earlier work}
@@ -190,7 +199,7 @@ Over the reals, $I-S$ is invertible and the Cayley factor is proper orthogonal; 
 The certified scale is the full \code{s_full} value, not the truncated table display and not the fitted zero-clearance contact estimate. Closed-form expressions stored as conjectures remain conjectures. Exact feasibility yields an upper bound on $s^*$, not a matching lower bound or a global optimality proof.
 
 \subsection{New Lean development}
-The supplementary \code{formal/} project uses Lean 4.31.0 with a pinned mathlib revision. It defines a vertex body as the real convex hull of a finite vertex list and a container as a finite intersection of linear halfspaces. The proof interface permits heterogeneous vertex counts and any real vector space, including $\R^d$ for every finite $d$.
+Formal verification has a substantial packing precedent: Flyspeck verified the Kepler conjecture for dense sphere packings using HOL Light and Isabelle~\cite{hales2017}. The present development addresses feasibility of explicit finite convex-polytope configurations. It uses Lean~\cite{lean4} 4.31.0 and a pinned mathlib revision~\cite{mathlib2020}. It defines a vertex body as the real convex hull of a finite vertex list and a container as a finite intersection of linear halfspaces. The proof interface permits heterogeneous vertex counts and any real vector space, including $\R^d$ for every finite $d$.
 
 \begin{table}[htbp]
 \centering\small
@@ -204,16 +213,48 @@ Lean declaration & Kernel-checked meaning\\
 \code{affine_placement_of_vertex_body} & Affine placement commutes with taking the vertex hull.\\
 \code{transported_packing}, \code{subpacking_sound}, \code{nested_packing_sound} & Injective transport, subset replacement and disjoint child packings inside disjoint parents preserve a packing.\\
 \code{minkowskiOpening_subset}, \code{convex_blend_subset} & The two continuation constructions remain inside the target body under the stated hypotheses.\\
-\code{two_cube_packing} & A fully instantiated rational two-cube witness, including all finite tests.\\
+\code{Rational.checkPlaced_sound} & Exact rational tests imply rigidly placed whole-body containment and separation.\\
+\code{Cayley.check_sound} & Checked raw skew/sign parameters give the stated Cayley rotation with determinant one.\\
+\code{Barycentric.check_sound} & Rational convex combinations prove containment in the actual container vertex hull.\\
+\code{Catalogue.*.packing} & Per-record feasibility theorems for the completed catalogue cohort.\\
 \bottomrule
 \end{tabular}
-\caption{Scope of the new formal development. The declarations prove the stated abstract or concrete results; they do not import or certify the full website archive.}
+\caption{Formal principles and their catalogue instantiations. The full website archive remains outside the completed verification cohort.}
 \label{tab:formal}
 \end{table}
 
-The concrete test places unit cubes at $(-3/4,0,0)$ and $(3/4,0,0)$ inside $[-5/4,5/4]^3$. All 96 vertex/wall tests and both ordered pair certificates are discharged by exact arithmetic, then Theorem~\ref{thm:certificate}'s formal counterpart establishes whole-body containment and disjointness. Its scale $5/2$ and separating gap $1/2$ make it a deliberately simple integration example, without a record or optimality claim.
+The original two-cube interface test remains as a regression example. The catalogue extension below instead uses archived placements and their recorded full scales.
 
-The formal source uses no \code{sorry}, \code{admit} or custom axioms. Its build and axiom reports accompany the manuscript. The important boundary is explicit: the Lean kernel checks these proofs and this rational example. It does not check the optimizer, intermediate core preprocessing, JSON parser, production interval implementation, algebraic canonical-shape identification, quaternion/Cayley implementation, every composition, or all archived numerical witnesses. Those remain separately audited computational components. In particular, the 10,398 archive certification flags below are not 10,398 Lean theorems.
+\subsection{Instantiated catalogue certificates}
+A proof-producing exporter targets 402 rational records from the same frozen snapshot: 99 cube-in-cube records with $2\leq n\leq100$, and 303 records in nine 4D--6D families. The completed, axiom-audited cohort contains \leanCubeRecords{} cube records and \leanNDRecords{} higher-dimensional records, comprising \leanPieces{} rigid pieces and \leanPairs{} unordered piece pairs. The supplement lists every completed record, source path, construction credit, immutable JSON hash, generated Lean source hash, compiler result and theorem axioms. Exported, pending, failed or timed-out records are not counted as completed proofs.
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{c>{\raggedright\arraybackslash}p{0.52\linewidth}rr}
+\toprule
+Dimension & Families & Completed & Export targets\\
+\midrule
+3 & Cube in cube & \leanCubeRecords & 99\\
+4 & Tesseract, 16-cell, 24-cell in themselves; 16-cell/24-cell both ways & \leanFourDRecords & 195\\
+5 & Hypercube and orthoplex in themselves & \leanFiveDRecords & 62\\
+6 & Hypercube and orthoplex in themselves & \leanSixDRecords & 46\\
+\midrule
+ & Total & \leanRecords & 402\\
+\bottomrule
+\end{tabular}
+\caption{Completed catalogue feasibility proofs, distinct from all successfully exported proposed certificates. Per-record details and piece counts are in the hash-matched coverage manifest.}
+\label{tab:lean-coverage}
+\end{table}
+
+For each cube placement, the generated data retain the exact raw quaternion $q$, prove $\lVert q\rVert^2>0$, and check equality of the supplied rational matrix with the normalized quaternion formula. Orthogonality and determinant one are checked exactly. For higher-dimensional placements, an explicit inverse of $I-S$ is checked against the raw skew matrix and diagonal signs; a generic theorem identifies the resulting matrix with $D(I-S)^{-1}(I+S)$ and proves determinant one. Orthogonality implies preservation of squared Euclidean distance, so the theorem concerns congruent pieces rather than independently displaced vertex clouds.
+
+Cube containment is linked to the ordinary unit cube and the side-\code{s_full} container. In higher dimensions each placed vertex carries nonnegative rational barycentric weights summing to one in the scaled canonical container vertices. Lean checks all coordinate equalities, then convexity extends containment to the entire piece. The actual 4D, 5D and 6D hypercube templates are additionally identified with coordinate unit boxes. For the orthoplex and 24-cell families, the formal conclusion concerns their supplied canonical coordinate hulls; a separate regular-polytope classification theorem is not claimed.
+
+Every unordered pair receives an explicit rational separating plane, including pairs for which the production checker used a distant-pair shortcut. Strict projection gaps prove disjoint closed bodies. Cube support formulas reduce repeated corner enumeration, and bounded computations are assembled from separate source, Gram, wall, pair and barycentric proofs. All numerical decisions use \code{decide +kernel}; no compiled decision oracle is trusted.
+
+The exporter preserves production numeric semantics: JSON integer literals remain exact integers, decimal or exponent literals are decoded to binary64 and then converted to their exact rational values, and quoted rational strings retain their exact values. No scale, centre or orientation is perturbed to make a proof pass. All 402 source bindings have a separate exact Python audit, which is not counted as Lean verification. Parsing, source selection and transcription remain outside the kernel, with immutable inputs and byte hashes making that boundary inspectable.
+
+The formal source uses no \code{sorry}, \code{admit}, \code{native_decide} or custom axioms. Build receipts report the standard logical dependencies \code{propext}, \code{Classical.choice} and \code{Quot.sound}. The optimizer, intermediate core preprocessing, production interval implementation, remaining algebraic-coordinate geometry and uninstantiated compositions are not verified. The 10,398 archive certification flags below therefore remain distinct from the \leanRecords{} completed catalogue proofs.
 
 \section{Frozen computational evidence}
 \subsection{Coverage and five inspectable witnesses}
@@ -305,10 +346,10 @@ A direct continuation ablation should start from the same archived hard packings
 
 Several structural hypotheses are now testable. A plateau may arise from a removable, weakly constrained piece; a sharp gain may mark a change in boundary-compatible layers or orientation domains. Symmetric starts may help when good solutions retain approximate orbits but require a small final symmetry break. Non-tangential opening may preserve useful face contacts better than uniform core scaling. Nested substitution may be especially effective when one-piece inclusions are efficient and the intermediate solid packs well. Each prediction requires comparisons against alternative constructions and compatible normalizations; none follows from visualization alone.
 
-The Lean project removes ambiguity from core certificate implications, but extending it to production requires more work: formal canonical algebraic geometry, exact rigid-map representations, a verified parser or proof-producing exporter, and instantiated proofs for selected archive witnesses. Until then, the correct description is exact-arithmetic numerical witnesses together with Lean-verified certificate principles and one concrete rational example.
+The Lean layer now certifies selected actual catalogue witnesses, including their exact rigid-map representations. Extending completed coverage requires additional kernel builds, algebraic-coordinate support, regular-polytope identification beyond boxes, and a verified parser if source decoding is to enter the formal trust boundary. The present evidence is \leanRecords{} kernel-checked frozen catalogue instances, generic soundness theorems, and separately audited computational components; it is not a proof of the entire live archive or its search software.
 
 \section{Reproducibility and methodological tools}
-The supplement contains the LaTeX source, figure-generation code, the Lean project and build report, five native witnesses and rerun logs, a compressed complete catalogue snapshot, a per-case provenance CSV, the historical benchmark shards and aggregation code, and a source/hash manifest. The implementation is available at \url{https://github.com/alejandrozu/platonic-packing}; the interactive catalogue is \url{https://polyhedrainpolyhedra.wiki/}. The repository commit named above freezes the computational implementation and data used here; the accompanying manuscript commit separately timestamps this document and its new formal development.
+The supplement contains the LaTeX source, figure-generation code, the Lean library and per-record proof sources, immutable rational-cohort inputs, proof-producing exporters, per-record build and axiom receipts, five independent production-checker rerun logs, a compressed complete catalogue snapshot, a per-case provenance CSV, the historical benchmark shards and aggregation code, and source/hash manifests. The implementation is available at \url{https://github.com/alejandrozu/platonic-packing}; the interactive catalogue is \url{https://polyhedrainpolyhedra.wiki/}. The repository commit named above freezes the computational implementation and data used here; the accompanying manuscript commit separately timestamps this document and its formal development.
 
 The earlier DOI releases~\cite{zarzueloMethods,zarzueloPatterns,zarzueloData} remain citations to their original scope and freeze. They are not retroactive identifiers for the current 140-problem archive. Record links, \code{s_full}, geometry normalization and construction lineage should be retained when reproducing or extending an example.
 
@@ -340,5 +381,8 @@ Software tools include Python, NumPy/SciPy and numerical optimizers, JavaScript 
 \bibitem{ryan} R. Xu. Cube packing coordinate records, 2026. \href{https://github.com/ry-xu/square_packing/blob/9535d65d84cc33f20f4e26329f8da12bdcef216e/cube_packing_records.json}{\code{ry-xu/square_packing}, frozen coordinate file for $n=34,35,36$}.
 \bibitem{scott} S. Scott. Hyra packing audit: coordinate tightening and source comparison, 2026. \href{https://github.com/shepard5/hyra-packing-audit/tree/c107fda33c2f02df83e9d549fb839b4fd5a7bfbc}{\code{shepard5/hyra-packing-audit}, frozen audit}. Original arrangements by Haowei Lin retain their authorship.
 \bibitem{builderRecon} \code{@BuilderOfAgents}/tronford. Coordinate reconstructions for 13 and 14 cubes, 2026. \href{https://github.com/tronford/cubes-in-cube-n13/tree/1f0c75401b2da4850b7e9f14de7d7b9cbe5e461a}{\code{tronford/cubes-in-cube-n13}, frozen reconstruction}. Matching historical bounds attributed to Erich Friedman.
+\bibitem{hales2017} T. Hales et al. A formal proof of the Kepler conjecture. \emph{Forum of Mathematics, Pi} 5, e2, 2017. \url{https://doi.org/10.1017/fmp.2017.1}.
+\bibitem{lean4} L. de Moura and S. Ullrich. The Lean 4 theorem prover and programming language. In \emph{Automated Deduction--CADE 28}, pp. 625--635, 2021. \url{https://doi.org/10.1007/978-3-030-79876-5_37}.
+\bibitem{mathlib2020} The mathlib Community. The Lean mathematical library. In \emph{Certified Programs and Proofs (CPP 2020)}, pp. 367--381, 2020. \url{https://doi.org/10.1145/3372885.3373824}.
 \end{thebibliography}
 \end{document}

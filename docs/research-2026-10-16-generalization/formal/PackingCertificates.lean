@@ -1,2 +1,11 @@
 import PackingCertificates.Core
 import PackingCertificates.Example
+import PackingCertificates.Rational
+import PackingCertificates.Cube
+import PackingCertificates.Catalogue
+import PackingCertificates.Barycentric
+import PackingCertificates.Cayley
+import PackingCertificates.TemplateData
+import PackingCertificates.BoxGeometry
+import PackingCertificates.CubeFast
+import PackingCertificates.AxisFast
