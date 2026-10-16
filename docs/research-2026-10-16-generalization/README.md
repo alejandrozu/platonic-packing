@@ -10,6 +10,10 @@ Proposed authors: **Yohei Nakajima and Alejandro Zarzuelo Urdiales**. The author
 - [Editable LaTeX](manuscript.tex)
 - [Lean sources, exact scope and reproduction](formal/README.md)
 - [Actual Lean build and axiom audit](formal/verification.json)
+- [Geometric continuation in every finite dimension](formal/PackingCertificates/Extensions/GenericDimension.lean)
+- [Formal support-query complexity bounds](formal/PackingCertificates/Extensions/Complexity.lean)
+- [Orthoplex and 24-cell coordinate-hull identities](formal/PackingCertificates/Extensions/NDIdentity.lean)
+- [Algebraic-coordinate certificate method and completed coverage](formal/catalogue/algebraic/README.md)
 - [Per-record Lean coverage and precise limits](formal/catalogue/coverage.md)
 - [Hash-matched verified catalogue manifest](formal/catalogue/verified-catalogue.json)
 - [Frozen rational-cohort input manifest](formal/catalogue/inputs/source-manifest.json)
@@ -25,9 +29,13 @@ Proposed authors: **Yohei Nakajima and Alejandro Zarzuelo Urdiales**. The author
 
 The paper explains the 3D non-tangential erosion/dilation path, the supported regular 4D–6D implementation, archive search moves, structured seeds, composition, exact witness checking, and community provenance. It cites Nakajima's arXiv paper, the three earlier DOI publications, primary packing literature, the repository's research notes and independent contributors.
 
-The Lean extension verifies **57 actual frozen catalogue records across ten families in dimensions 3–6**, including their source-bound proper rotations, preservation of squared Euclidean distances, whole-body containment and separation of every unordered pair. It retains the original two-cube example as a regression test. The rational importer exports 402 candidate certificates, but only successful, hash-matched, axiom-audited kernel builds count as verified. The completed cohort and every source record's construction credit appear in the coverage manifest. See `formal/README.md` for the precise trust boundary and reproduction commands.
+The new geometric theorems apply in every finite Euclidean dimension, without regularity or facet tangency assumptions. The paper separates that result from the dimensions supported by the numerical search and from optimizer convergence. It derives per-step and finite-budget simulation bounds in piece count, dimension, vertices, edges and facets. Lean proves the finite support-walk bounds used in that analysis; the whole simulator's execution time is not formally verified.
 
-The kernel checks the supplied exact literals and their geometric consequences. JSON parsing and source transcription have a separate audit; the optimizer, general interval implementation, remaining algebraic-coordinate templates and global optimality are outside this verification. Hypercube templates are identified with coordinate boxes in Lean; the other higher-dimensional conclusions concern the supplied canonical coordinate hulls.
+The Lean extension verifies **532 actual frozen catalogue records across all 140 problem families in dimensions 3–6**: all 402 selected rational certificates (99 cube-in-cube and 303 higher-dimensional records), plus one two-piece witness from each of the other 130 families (85 in 3D and 45 in 4D–6D). The proofs cover 11,056 rigid pieces, 163,900 placed vertices and every one of 235,592 unordered pairs. They establish source-bound proper rotations, preservation of squared Euclidean distances, whole-body containment and pairwise separation. The original two-cube example remains a regression test. This verifies selected witnesses in every frozen family, not all 10,398 coordinate records or the changing live bests. Original construction credits remain in the portable manifests. See `formal/README.md` for the trust boundary and reproduction commands.
+
+An additional algebraic-coordinate route defines exact real vertices using isolated roots and checked interval enclosures. It proves actual container-hull membership through affine-basis certificates and retains irrational edge normalization. The higher-dimensional quadratic-coordinate route checks supplied exact inverse matrices in cubic arithmetic work per basis, avoiding a factorial determinant expansion. Its manifests distinguish prepared witnesses from successful source-bound kernel builds.
+
+The kernel checks the supplied exact literals and their geometric consequences. JSON parsing and source transcription have a separate audit; the optimizer, production interval implementation and global optimality are outside this verification. Lean identifies the hypercube templates with coordinate boxes, the orthoplex arrays with the convex hull of the signed coordinate vectors, and the 24-cell array with the convex hull of vectors having two signed nonzero unit coordinates. A further leaf checks selected exact reference-edge distances for twelve higher-dimensional templates and all 45 additional witnesses' positive edge-conversion identities. A separate exact Python audit checks all 2,490 listed edges. Complete named-solid, face and edge-adjacency classification remains outside the formal proof. The new Lean interval library is separate from the production Python certifier.
 
 The expanded computational freeze is commit `1abc63218db34cea95802aeb3b6d4a6b6fe1c61b`, with site data version `538e4f4362be3be9`. It has 140 problems, 10,404 populated cases, 10,398 selected coordinate witnesses marked exact-certified, and six source-only bounds. These counts include imported and community constructions. They are not a count of new world records or Lean-certified numerical cases.
 
@@ -55,13 +63,12 @@ For the generic formal library, with Lean's `elan`/Lake available:
 
 ```sh
 cd formal
-lake update
 lake exe cache get
 lake build
 lake env lean Audit.lean
 ```
 
-The default library build excludes individual catalogue instance modules, whose exact arithmetic can be expensive. The completed cohort can be rebuilt separately using `formal/catalogue/verified-module-manifest.json` and the runner documented in `formal/README.md`. A compressed bundle of all 402 proposed rational certificates is included; run `python catalogue/unpack_witnesses.py` from `formal` before rebuilding the cohort to restore the hash-checked certificate inputs. Unpacking this bundle does not establish Lean verification.
+The default library build excludes individual catalogue instance modules, whose exact arithmetic can be expensive. Completed evidence is compressed under `formal/ci-evidence/published-402`, `published-85` and `published-45`. Run `python formal/evidence_bundle.py --cohort formal/ci-evidence/published-402` to validate a cohort, or add `--extract proof-inspection --environment ENVIRONMENT_ID` to inspect one immutable build namespace. The module manifest is an environment-scoped index. Fresh reruns regenerate local plans and receipts from frozen inputs in a separate working copy; `formal/README.md` gives the pinned core/support build, full 402-record shard driver and 85/45 algebraic driver commands. Unpacking inputs or sources alone does not establish verification.
 
 To regenerate the figure, install NumPy/Matplotlib and run `python figures/render_examples.py`. To compile the manuscript, run `tectonic manuscript.tex` from this directory, or use a LaTeX installation with `latexmk -pdf manuscript.tex`. The bibliography is embedded; no BibTeX step is needed. `arxiv-source.zip` contains only the LaTeX source and figure required for a later author-approved submission.
 

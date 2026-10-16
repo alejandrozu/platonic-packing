@@ -1,0 +1,77 @@
+name: Release original Lean proof evidence
+
+on:
+  workflow_dispatch:
+    inputs:
+      final_main_commit:
+        description: Exact 40-hex reviewed final main commit
+        required: true
+        type: string
+      preservation_artifact_id:
+        description: Aggregation original-raw-evidence artifact ID
+        required: true
+        type: string
+      preservation_artifact_sha256:
+        description: Exact 64-hex GitHub-published SHA256 of that artifact
+        required: true
+        type: string
+
+permissions: {}
+
+concurrency:
+  group: lean-frozen-catalogue-permanent-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    permissions:
+      contents: write
+      actions: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+      FINAL_MAIN_COMMIT: ${{ inputs.final_main_commit }}
+      PRESERVATION_ARTIFACT_ID: ${{ inputs.preservation_artifact_id }}
+      PRESERVATION_ARTIFACT_SHA256: ${{ inputs.preservation_artifact_sha256 }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - name: Require the explicit current main commit before checkout
+        run: |
+          python3 - <<'PY'
+          import json, os, re, subprocess
+          commit = os.environ['FINAL_MAIN_COMMIT']
+          if not re.fullmatch(r'[0-9a-f]{40}', commit):
+              raise ValueError('An exact lowercase 40-hex main commit is required')
+          actual = json.loads(subprocess.check_output(['gh', 'api',
+              'repos/alejandrozu/platonic-packing/git/ref/heads/main'], text=True))
+          if actual['object']['type'] != 'commit' or actual['object']['sha'] != commit:
+              raise ValueError('Provided commit is not the current main head')
+          PY
+      - name: Checkout the exact reviewed final publication
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.final_main_commit }}
+          sparse-checkout: docs/research-2026-10-16-generalization
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Restore verify and release all 33 original raw ZIPs
+        run: >-
+          python3 docs/research-2026-10-16-generalization/ci-evidence/release_from_preservation.py
+          --checkout .
+          --paper docs/research-2026-10-16-generalization
+          --final-main-commit "$FINAL_MAIN_COMMIT"
+          --preservation-artifact-id "$PRESERVATION_ARTIFACT_ID"
+          --preservation-artifact-sha256 "$PRESERVATION_ARTIFACT_SHA256"
+          --execute
+      - name: Preserve final release hash-verification receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-permanent-release-verification
+          path: |
+            docs/research-2026-10-16-generalization/ci-evidence/release-work/release-raw-verification.json
+            docs/research-2026-10-16-generalization/ci-evidence/release-work/proof-artifact-release-index.json
+          if-no-files-found: warn
+          retention-days: 30

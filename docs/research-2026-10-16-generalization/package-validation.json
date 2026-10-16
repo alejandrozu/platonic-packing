@@ -1,21 +1,98 @@
 {
-  "checked_at_utc": "2026-10-16T02:58:52.419472+00:00",
+  "checked_at_utc": "2026-10-16T07:20:07.062367+00:00",
   "status": "passed",
-  "distinct_verified_catalogue_records": 57,
-  "checked_lean_source_files": 177,
-  "native_records": 402,
-  "compressed_proposed_witnesses": 402,
-  "negative_kernel_checks": 16,
+  "distinct_verified_rational_records": 402,
+  "additional_verified_algebraic_records": 130,
+  "additional_verified_algebraic_families": 130,
+  "method_proofs": [
+    {
+      "receipt": "core-verification.json",
+      "stages": 18,
+      "audited_declarations": 68
+    },
+    {
+      "receipt": "extension-verification-v2.json",
+      "stages": 10,
+      "audited_declarations": 61
+    },
+    {
+      "receipt": "extension-identity-verification.json",
+      "stages": 1,
+      "audited_declarations": 10
+    },
+    {
+      "receipt": "catalogue/nd-reference-edge-lean-verification.json",
+      "stages": 1,
+      "audited_declarations": 159
+    }
+  ],
+  "cohorts": [
+    {
+      "cohort_id": "rational-402",
+      "records": 402,
+      "environments": 12,
+      "archive_members": 15999,
+      "checked_sources": 7561,
+      "checked_stages": 7501,
+      "archive_sha256": "004ca73f8fba112489aec21ab6e76fef2611a9dc41cc03b11ffb244b4581e8cb",
+      "manifest_sha256": "f0e5feb0bbe4f1bde19dc3fcf0c9dec0be8bb41a802916ae7bff274416bcfaba",
+      "summary_sha256": "4a1614cd0fd55a5629b358cb17c205e343986fb0fed21697737bfcb1d53ad411"
+    },
+    {
+      "cohort_id": "algebraic-3d85",
+      "records": 85,
+      "environments": 8,
+      "archive_members": 6257,
+      "checked_sources": 2898,
+      "checked_stages": 2898,
+      "archive_sha256": "47a59a828e904f555ee6576cd57055df167da6b8c55ae40669a65cc780133323",
+      "manifest_sha256": "99af33831006c1e321d393bc84371288329abc1c1c835bb80a19e42144d7b5c7",
+      "summary_sha256": "ecc58e0cedd60e44605805e5c58581293afa3b974f52cf6067c0070b2412884e"
+    },
+    {
+      "cohort_id": "algebraic-nd45",
+      "records": 45,
+      "environments": 12,
+      "archive_members": 4939,
+      "checked_sources": 2240,
+      "checked_stages": 2240,
+      "archive_sha256": "5b4b13d8b5bd50963e39f30a2a19043a23844b84cf425f2f89ac3b079ec5a2a2",
+      "manifest_sha256": "98da5dcbe5375c624d5e47e37654ff4f00f8fdcfcef838acf027939a1d068a9c",
+      "summary_sha256": "2dbf374ad93f4dde82f296c9be7a6b69260023432a0d69ed3b38d329e25e02be"
+    }
+  ],
+  "remote_publication": {
+    "mode": "remote-strict-aggregation",
+    "aggregation_run_id": 38863167208,
+    "aggregation_commit": "1e9938a56ff65f547726b1c230244040e2d160c2",
+    "kernel_reexecuted": false,
+    "raw_artifacts": 33,
+    "locally_hashed_artifacts": 8,
+    "metadata_only_artifacts": 25
+  },
+  "nd_reference_edge_evidence": {
+    "receipt": "catalogue/nd-reference-edge-lean-verification.json",
+    "lean_stages": 1,
+    "lean_audited_declarations": 159,
+    "selected_reference_edges": 12,
+    "native_positive_edge_ratios": 45,
+    "python_listed_edges_checked": 2490,
+    "python_audit_is_lean_proof": false,
+    "transitive_generic_sources": 9
+  },
+  "checked_plaintext_generic_sources": 37,
+  "native_rational_records": 402,
+  "compressed_rational_witnesses": 402,
   "checks": [
-    "Selected source/log/receipt byte hashes match build evidence",
-    "All chunk dependency sources and logs are present",
-    "Original hashed plan manifests are present",
-    "All frozen input byte hashes match",
-    "All compressed proposed-witness byte hashes match",
-    "LaTeX source bundle matches the final manuscript and figure",
-    "All paper count macros and README count match the completed proof manifest",
-    "No unselected catalogue instance sources remain in the published tree",
-    "No compiled Lean objects are included"
+    "All publication allowlist byte hashes match",
+    "Each proof environment retains its own source/log/receipt/plan closure",
+    "Every archived byte hash and semantic axiom audit matches",
+    "Generic all-dimension method proofs have separate actual receipts",
+    "Selected ND reference-edge Lean leaf and separate 2490-edge Python audit match frozen native inputs",
+    "All frozen native inputs and bounded proposed witness archives match",
+    "Exact402 record identities and fixed totals match the frozen target cohort",
+    "Manuscript macros and portable verification metadata match strict evidence",
+    "No compiled objects, caches or flat generated numerical source copies are included"
   ],
   "optimality_proved": false,
   "submission_status": "GitHub manuscript; no arXiv submission"
