@@ -50,8 +50,21 @@ jobs:
           "$HOME/.elan/bin/elan" toolchain install "$(tr -d '\r\n' < lean-toolchain)"
       - name: Restore pinned mathlib
         run: |
-          lake update
           lake exe cache get
+          git diff --exit-code -- lake-manifest.json
+          python3 - <<'PYDEPS'
+          import json, subprocess
+          from pathlib import Path
+          manifest = json.loads(Path('lake-manifest.json').read_text())
+          for item in manifest['packages']:
+              if item['type'] != 'git':
+                  raise SystemExit('Only pinned git dependencies are allowed')
+              directory = Path(manifest['packagesDir']) / item['name']
+              actual = subprocess.check_output(['git', '-C', str(directory), 'rev-parse', 'HEAD'], text=True).strip()
+              if actual != item['rev']:
+                  raise SystemExit('Dependency revision differs from frozen manifest: ' + item['name'])
+          print('All dependency checkouts match the frozen manifest')
+          PYDEPS
       - name: Verify complete generic core and negative cases
         run: python3 verify_core.py --mathlib-project .
       - name: Kernel-check source-bound family shard
