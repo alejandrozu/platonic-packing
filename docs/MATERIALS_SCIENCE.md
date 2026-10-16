@@ -34,6 +34,9 @@ The numbered entries below match the public page. Each DOI links the primary pub
 | 20 | Geng et al. (2019), [10.1126/sciadv.aaw0514](https://doi.org/10.1126/sciadv.aaw0514) | Inverse design optimizes hard shapes for target crystals through entropy. Shape/free-energy optimization differs from fixed-shape container minimization. |
 | 21 | Santos et al. (2021), [10.1038/s41586-021-03355-z](https://doi.org/10.1038/s41586-021-03355-z) | Superlattice crystallites form macroscopic solids while retaining nanoscale order. Chemical interactions and processing are essential. |
 | 22 | Skye, Teich & Dshemuchadse (2022), [10.1039/D2SM00545J](https://doi.org/10.1039/D2SM00545J) | Boundary-induced shells and motifs in confined tetrahedral shapes. Spherical interfaces; no universal container-size scaling claimed. |
+| 23 | Haji-Akbari, Engel & Glotzer (2011), [10.1063/1.3651370](https://doi.org/10.1063/1.3651370) | Single-particle free volume versus collective motion; Section II.D identifies a product approximation. Our simultaneously safe product subset is a different, rigorous lower bound. |
+| 24 | van Anders et al. (2014), [10.1073/pnas.1418159111](https://doi.org/10.1073/pnas.1418159111) | Configurational integrals include positions and orientations. Our fixed-orientation volume is not the full rotational partition function. |
+| 25 | Torquato & Jiao (2009), [10.1103/PhysRevE.80.041104](https://doi.org/10.1103/PhysRevE.80.041104) | Classical lattice bases and finite periodic motifs. Strict cell containment is sufficient; general face-crossing motifs require periodic-image tests. |
 
 ## Applying the literature to this catalogue
 
@@ -47,3 +50,5 @@ The numbered entries below match the public page. Each DOI links the primary pub
 ## Editorial and verification notes
 
 Claims use original paraphrases and link to primary publications. No external figures have been copied. Experiments, simulations, calculated properties and proposed catalogue uses are labelled separately. The older literature page now links the full Teich et al. PNAS article instead of only a conference abstract. Bibliographic checks preserve the 2026 journal year and 2025 first-online date for Huang et al.
+
+The [Lean materials supplement](MATERIALS_FORMALIZATION.md) documents the additional formal connection. It proves geometric sufficient conditions within a stated model, not the experimental findings or thermodynamic theories of these cited papers. Neither the full position-and-orientation partition function nor atomistic alloy/grain-boundary energies are inferred from the new results. The linked source and build evidence identify the exact formal scope.

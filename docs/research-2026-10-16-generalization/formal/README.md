@@ -163,6 +163,46 @@ uniform error budget requires positive wall slack as well as pair gaps.
 Support attenuation concerns geometric extent; it is not a claim about the
 whole penalty energy, its gradients or optimizer success.
 
+### Connections to materials models
+
+`Extensions/FreeVolume.lean` defines labelled translations as
+`(Fin n × Fin d) -> R`, fixing the coordinate-product Lebesgue measure. Explicit
+wall and pair budgets in `TranslationClearance` imply feasibility of every
+simultaneous translation in the cube `[-epsilon,epsilon]^(n*d)`. The translated
+hulls are exact affine translates and preserve squared Euclidean distances.
+The finite-inequality `certifiedTranslationRegion` is closed, measurable and
+contained in the full geometric feasible region. Its volume is at least
+`ofReal(2*epsilon)^(n*d)`, positive for `epsilon > 0`. The larger feasible set
+receives an outer-measure bound without a measurability assertion about it.
+The cube formula handles zero/negative radii by `ofReal` and the empty-dimensional
+case by exponent zero. An exact-fit interval regression proves that geometric
+feasibility alone can leave the entire translation set with measure zero.
+
+`Extensions/PeriodicMotif.lean` proves pairwise disjointness of the entire
+integer-indexed family of a motif repeated in an open rectangular cell with
+positive widths. It proves the actual lattice-shift action, coordinate-lattice
+injectivity and the finite-certificate/strict-vertex-bound bridge. Injective
+linear transport, basis changes and explicit finite Euclidean spaces are
+covered. Isometries guarantee congruence; injective linearity alone can deform
+the bodies. General periodic motifs crossing cell faces need additional image
+checks, and a general catalogue container need not tile space.
+
+The two-stage [`extension-materials-verification.json`](extension-materials-verification.json)
+contains **37 named axiom audits**. Nine named analytic regression groups cover
+zero/negative motion radii, signed normals, exact-fit zero volume, an explicit
+two-interval configuration with positive feasible volume, positive
+cells and interval motifs, nonpositive cell widths and overlap without cell
+containment. These propositions add no Boolean-checker rejection counts and no
+catalogue records. Numerical motion budgets and periodic cells have not been
+computed for all 532 witnesses.
+
+The [materials explanation](../../MATERIALS_FORMALIZATION.md) connects the results
+to classical configuration-volume and periodic-cell literature. The volume is
+for fixed orientations and labelled particles; it does not integrate rotations
+or establish a full partition function, entropy, assembly probability, alloy
+energy or material property. The proofs concern geometric ingredients of a
+stated model, rather than the empirical conclusions of cited papers.
+
 `Extensions/CayleyGeometry.lean` derives row orthogonality from the checked raw
 Cayley formula and inverse witness in every finite dimension. This avoids
 recomputing the same numerical Gram identities when a certificate selects that
@@ -271,6 +311,7 @@ lake build
 python verify_core.py --mathlib-project .
 python verify_extensions.py --mathlib-project . --modules PackingCertificates/Extensions/GenericDimension.lean --output analytic-continuation-prerequisite-verification.json
 python verify_extensions.py --mathlib-project . --modules PackingCertificates/Extensions/Clearance.lean PackingCertificates/Extensions/SupportIdentity.lean --output extension-clearance-support-verification.json
+python verify_extensions.py --mathlib-project . --modules PackingCertificates/Extensions/FreeVolume.lean PackingCertificates/Extensions/PeriodicMotif.lean --output extension-materials-verification.json
 python evidence_bundle.py --input-manifest catalogue/rational-witnesses-manifest.json --input-archive rational-witnesses.zip --embedded-manifest witness-manifest.json --extract catalogue
 python catalogue/audit_source_bindings.py
 python verify_extensions.py --mathlib-project . --modules PackingCertificates/Extensions/NDGeometry.lean PackingCertificates/Extensions/NDSupport.lean PackingCertificates/Extensions/NDModels.lean PackingCertificates/Extensions/BoxSupport.lean PackingCertificates/Extensions/CayleyGeometry.lean PackingCertificates/Extensions/NDSupportRegression.lean --output support225-generic-verification.json

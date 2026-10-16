@@ -42,7 +42,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-We generalize soft-to-rigid finite-container packing from polygons and cubes to convex polyhedra and regular polytopes in dimensions four through six. Two paths are distinguished: blending with an inscribed ball, and erosion followed by dilation, which retains an actual eroded core for non-tangential solids. Continuation becomes one move in an archive search alongside symmetry-released starts, insertion, deletion, rigid perturbation, crystal cuts and nested substitution. A new Lean development proves dimension-independent certificate soundness and verifies all \leanRecords{} selected rational certificates plus \leanAlgebraicRecords{} additional algebraic-coordinate witnesses, covering all 140 frozen problem families in dimensions 3--6. The kernel checks exported raw rotation parameters, proper rotations, congruence, whole-body containment and every pairwise separation. Further theorems establish an exact support-function identity, orientation attenuation and quantitative clearance guarantees under perturbation. A separate source audit binds these exact literals to the original records without changing scales or placements; parsing remains outside the kernel. The additional cohort selects one two-piece witness per remaining family; this is family coverage, rather than verification of every population in the 10,398-witness archive. Independent exact-arithmetic checkers and five separately rechecked examples complement this formal layer. A historical comparison of 1,824 attempts on 40 prism-family cases illustrates why improvement frequency and magnitude lead to different search policies. The results establish constructive feasibility and an auditable method; they do not prove global optimality or universal superiority of continuation.
+We generalize soft-to-rigid finite-container packing from polygons and cubes to convex polyhedra and regular polytopes in dimensions four through six. Two paths are distinguished: blending with an inscribed ball, and erosion followed by dilation, which retains an actual eroded core for non-tangential solids. Continuation becomes one move in an archive search alongside symmetry-released starts, insertion, deletion, rigid perturbation, crystal cuts and nested substitution. A new Lean development proves dimension-independent certificate soundness and verifies all \leanRecords{} selected rational certificates plus \leanAlgebraicRecords{} additional algebraic-coordinate witnesses, covering all 140 frozen problem families in dimensions 3--6. The kernel checks exported raw rotation parameters, proper rotations, congruence, whole-body containment and every pairwise separation. Further theorems establish an exact support-function identity, orientation attenuation and quantitative clearance guarantees, with extensions to translational configuration volume and periodic motifs. A separate source audit binds these exact literals to the original records without changing scales or placements; parsing remains outside the kernel. The additional cohort selects one two-piece witness per remaining family; this is family coverage, rather than verification of every population in the 10,398-witness archive. Independent exact-arithmetic checkers and five separately rechecked examples complement this formal layer. A historical comparison of 1,824 attempts on 40 prism-family cases illustrates why improvement frequency and magnitude lead to different search policies. The results establish constructive feasibility and an auditable method; they do not prove global optimality or universal superiority of continuation.
 \end{abstract}
 
 \section{Purpose and relation to earlier work}
@@ -55,6 +55,46 @@ The earlier DOI publications document the initial nine-family implementation~\ci
 General polyhedron packing and continuous rotations predate this work~\cite{romanova2018}; Berthold et al.~\cite{berthold2026} already studied all 25 ordered Platonic-solid pairs. Rounded polyhedral particles and shape evolution also have established uses~\cite{jin2015}. Sequential linear programming~\cite{torquato2010}, lattice packing~\cite{betke2000}, and periodic polyhedron packing~\cite{torquato2009} supply important context and seed constructions. We claim an implemented and inspectable generalization of a search-and-certification pipeline, rather than invention of these underlying geometric ideas.
 
 The repository is an open, versioned research archive connecting independent contributions with geometry definitions, coordinate witnesses, certificates, source lineage and search code. Its literature review and historical-source audit~\cite{repoRelated,repoAudit} connect the catalogue to prior research; its search-method study, large-population analysis and higher-dimensional notes~\cite{repoSearch,repoLarge,repoHigher} record the implementation's empirical development. These project research materials complement, rather than replace, citations to the original papers.
+
+\subsection{Materials-science motivation}\label{sec:materials}
+Faceted colloids and nanocrystals make polyhedral geometry a materials variable:
+faces and edges affect neighbour contacts, accessible motion and collective
+orientation. Simulations across 145 convex polyhedra found diverse ordered
+phases~\cite{damasceno2012}, while experiments with silver polyhedra assembled
+extended supercrystals whose structures depended on shape and polymer-mediated
+interactions~\cite{henzie2012}. These results motivate comparing many shapes and
+orientations, beyond reporting one density for one solid.
+
+Confinement is particularly relevant to a finite-container catalogue. Dense
+Platonic clusters in spherical confinement exhibit layers and preferred particle
+counts~\cite{teich2016}. Experiments in prismatic cavities show walls selecting
+differently oriented nanoparticle domains~\cite{chaabani2024}; microscopy of
+confined truncated tetrahedra observed gravity-driven structural changes
+initiated by rotations at crystalline defects~\cite{doan2024}. These systems
+are physical precedents for studying wall alignment and competing motifs, not
+experimental realizations of the present records. A jump in a selected numerical
+bound alone does not identify a phase transition or its cause.
+
+Arrangement also matters to function. Silver-polyhedron supercrystals with
+different bulk and surface structures improved measured Raman sensing relative
+to a single-structure comparator~\cite{lee2018}. The grains of a dense
+polycrystalline solid form a space-filling microstructure that evolves during
+coarsening: their capillarity-driven growth~\cite{macpherson2007} and atomic-scale boundary
+energies~\cite{olmsted2009} require physics beyond rigid-particle packing.
+Particle pose, collective lattice orientation and atomic-lattice orientation
+should therefore remain distinct. Matching viewer colours do not establish
+that pieces constitute one crystal grain.
+
+The archive supplies reproducible candidate geometries for subsequent physical
+calculations. Its exact certificates establish containment and nonoverlap;
+thermodynamic assembly additionally depends on free energy and accessible
+configurations~\cite{cersonsky2018}. Hard-particle formulations integrate over
+positions and orientations~\cite{vananders2014}, and tetrahedral phase studies
+show the importance of collective motion beyond a product of independently
+estimated single-particle free volumes~\cite{haji2011}. The formal consequences
+below address precise geometric ingredients of those models: simultaneous safe
+translations and periodic repetition of a finite motif. They do not verify the
+cited experiments or replace their physical assumptions.
 
 \section{Packing problem and normalization}
 Fix an integer $d\geq1$. Let $P,C\subset\R^d$ be compact, full-dimensional convex polytopes, with fixed reference scales and the origin in their interiors. Write
@@ -284,6 +324,74 @@ compute tolerance radii for all 532 records. A positive uniform perturbation
 radius needs positive wall slack as well as positive pair gaps; existing wall
 containment alone does not supply it.
 
+\subsection{Configuration volume and periodic motifs}\label{sec:materialsformal}
+The clearance conditions have a measure-theoretic consequence relevant to
+fixed-orientation hard-particle models. Write $t=(t_{iq})\in\R^{nd}$ for
+independent translations of the $n$ labelled particles, keeping their rotations
+fixed, and let
+\[
+B_\varepsilon=\{t:|t_{iq}|\leq\varepsilon\text{ for every }i,q\}.
+\]
+\begin{theorem}\label{thm:freevolume}
+If $\varepsilon>0$ and the original certificate satisfies the wall and pair
+budgets in Theorem~\ref{thm:clearance}, there is a measurable region of feasible
+simultaneous translations containing $B_\varepsilon$. Its product Lebesgue
+measure is at least $(2\varepsilon)^{nd}>0$.
+\end{theorem}
+\begin{proof}
+Impose the finite linear translation constraints used by the wall and
+separating-plane certificate. They define a measurable certified region.
+The clearance budgets put every $t\in B_\varepsilon$ in this region, and the
+finite certificate implies whole-hull feasibility there. The product measure of
+the $nd$ intervals $[-\varepsilon,\varepsilon]$ is
+$(2\varepsilon)^{nd}$; measure monotonicity gives the bound.
+\end{proof}
+\code{FreeVolume.lean} also identifies the resulting hulls with exact affine
+translates and proves distance preservation. The simultaneous quantifier is
+essential: multiplying single-particle free volumes measured with all neighbours
+fixed is generally an approximation~\cite[Section II.D]{haji2011}; here the
+Cartesian product is a proved safe subset, not a factorization assumption for
+the entire feasible region. The module's exact-fit interval regression shows
+that a feasible witness can have only a zero-measure translation set. No
+positive numerical budget is inferred for all 532 witnesses.
+
+This volume is labelled and expressed in the chosen coordinate units, with
+orientations fixed. For particles with nontrivial continuous orientational
+degrees of freedom, such as 3D polyhedra, fixing all orientations selects a
+zero-measure rotational slice. A lower bound for the full configurational integral~\cite{vananders2014}
+would additionally require an orientation neighbourhood and its measure; neither
+a complete entropy calculation nor a free-energy ranking follows here.
+
+A separate sufficient criterion links finite motifs to the classical
+periodic-cell framework~\cite{torquato2009}. For widths $L_q>0$, set
+\[
+F=\prod_{q=1}^d(0,L_q),\qquad
+\lambda(z)_q=L_qz_q,\quad z\in\mathbb Z^d.
+\]
+\begin{theorem}\label{thm:periodicmotif}
+If a finite pairwise-disjoint motif $P_1,\ldots,P_n$ has $P_i\subseteq F$,
+then the complete family $\{P_i+\lambda(z):i=1,\ldots,n,\ z\in\mathbb Z^d\}$
+is pairwise disjoint and invariant as a family under every lattice translation.
+\end{theorem}
+\begin{proof}
+Within one cell use motif disjointness and translation injectivity. Distinct
+integer cells differ in some coordinate by at least one; the corresponding
+translated open intervals are disjoint. Every body lies in its cell, so bodies
+in different cells cannot intersect. Adding a lattice shift permutes the
+integer indices.
+\end{proof}
+\code{PeriodicMotif.lean} connects this statement to finite certificates and
+strict vertex bounds, and transports it through injective real-linear maps to
+transformed cells and bodies. General linear transport can deform particles;
+injectivity alone does not guarantee congruence to the original solids, whereas
+an isometry does. The strict whole-body cell condition is sufficient but restrictive:
+general periodic motifs may cross cell faces and require periodic-image checks.
+A polyhedral container need not tile space, and boxing its motif can reduce the
+resulting density. These are formalizations of classical geometric ingredients
+of materials models, not new theories of crystallization. A separate
+\href{https://github.com/alejandrozu/platonic-packing/blob/main/docs/MATERIALS_FORMALIZATION.md}{repository explanation}
+relates their precise scope to the physical literature.
+
 \subsection{Production exact-arithmetic checks}
 The 3D exporter records full coordinates, scale and scalar-first rational quaternions. The certifier generates or receives rational separator proposals; not every native JSON stores its separating planes. A nonzero rational quaternion $q$ denotes the exactly proper orthogonal rotation $H(q)/\|q\|^2$. Exact canonical geometry is represented in algebraic number fields or multiquadratic extensions, with positive normalization factors where needed. The certifier checks facets and geometry and decides the final inequalities using integer-based outward-rounded enclosures of exact quantities. Floating-point routines may propose a separator but cannot turn a failing exact inequality into a successful one.
 
@@ -314,6 +422,8 @@ Lean declaration & Kernel-checked meaning\\
 \code{euclidean_opening_preserves_packing} & The geometric continuation applies in every finite Euclidean dimension.\\
 \code{SupportIdentity.support_ballBlend}, \code{orientation_support_abs_difference} & Exact support supremum of the blend and orientation attenuation in every finite Euclidean dimension.\\
 \code{Clearance.finite_packing_perturbation_sound}, \code{affine_placement_coordinate_error} & Explicit vertex and pose error budgets preserve whole-hull containment and strict separation.\\
+\code{FreeVolume.exists_positive_measurable_feasible_region} & Positive clearance supplies a measurable region of simultaneous fixed-orientation translations with an explicit volume lower bound.\\
+\code{PeriodicMotif.vertex_certificate_periodic_packing}, \code{periodic_piece_shift} & A strictly cell-enclosed finite certificate gives a disjoint, translation-periodic family over all integer cells.\\
 \code{Rational.checkPlaced_sound} & Exact rational tests imply rigidly placed whole-body containment and separation.\\
 \code{Cayley.check_sound} & Checked raw skew/sign parameters give the stated Cayley rotation with determinant one.\\
 \code{Barycentric.check_sound} & Rational convex combinations prove containment in the actual container vertex hull.\\
@@ -561,5 +671,16 @@ Software tools include Python, NumPy/SciPy and numerical optimizers, JavaScript 
 \bibitem{hales2017} T. Hales et al. A formal proof of the Kepler conjecture. \emph{Forum of Mathematics, Pi} 5, e2, 2017. \url{https://doi.org/10.1017/fmp.2017.1}.
 \bibitem{lean4} L. de Moura and S. Ullrich. The Lean 4 theorem prover and programming language. In \emph{Automated Deduction--CADE 28}, pp. 625--635, 2021. \url{https://doi.org/10.1007/978-3-030-79876-5_37}.
 \bibitem{mathlib2020} The mathlib Community. The Lean mathematical library. In \emph{Certified Programs and Proofs (CPP 2020)}, pp. 367--381, 2020. \url{https://doi.org/10.1145/3372885.3373824}.
+\bibitem{damasceno2012} P. F. Damasceno, M. Engel and S. C. Glotzer. Predictive self-assembly of polyhedra into complex structures. \emph{Science} 337, 453--457, 2012. \url{https://doi.org/10.1126/science.1220869}.
+\bibitem{henzie2012} J. Henzie, M. Gr\"unwald, A. Widmer-Cooper, P. L. Geissler and P. Yang. Self-assembly of uniform polyhedral silver nanocrystals into densest packings and exotic superlattices. \emph{Nature Materials} 11, 131--137, 2012. \url{https://doi.org/10.1038/nmat3178}.
+\bibitem{teich2016} E. G. Teich, G. van Anders, D. Klotsa, J. Dshemuchadse and S. C. Glotzer. Clusters of polyhedra in spherical confinement. \emph{PNAS} 113, E669--E678, 2016. \url{https://doi.org/10.1073/pnas.1524875113}.
+\bibitem{chaabani2024} W. Cha\^abani, J. Lyu, J. Marcone et al. Prismatic Confinement Induces Tunable Orientation in Plasmonic Supercrystals. \emph{ACS Nano} 18, 9566--9575, 2024. \url{https://doi.org/10.1021/acsnano.3c12799}.
+\bibitem{doan2024} D. Doan, J. Kulikowski and X. W. Gu. Direct observation of phase transitions in truncated tetrahedral microparticles under quasi-2D confinement. \emph{Nature Communications} 15, 1954, 2024. \url{https://doi.org/10.1038/s41467-024-46230-x}.
+\bibitem{lee2018} Y. H. Lee, C. L. Lay, W. Shi et al. Creating two self-assembly micro-environments to achieve supercrystals with dual structures using polyhedral nanoparticles. \emph{Nature Communications} 9, 2769, 2018. \url{https://doi.org/10.1038/s41467-018-05102-x}.
+\bibitem{macpherson2007} R. D. MacPherson and D. J. Srolovitz. The von Neumann relation generalized to coarsening of three-dimensional microstructures. \emph{Nature} 446, 1053--1055, 2007. \url{https://doi.org/10.1038/nature05745}.
+\bibitem{olmsted2009} D. L. Olmsted, S. M. Foiles and E. A. Holm. Survey of computed grain boundary properties in face-centered cubic metals: I. Grain boundary energy. \emph{Acta Materialia} 57, 3694--3703, 2009. \url{https://doi.org/10.1016/j.actamat.2009.04.007}.
+\bibitem{cersonsky2018} R. K. Cersonsky, G. van Anders, P. M. Dodd and S. C. Glotzer. Relevance of packing to colloidal self-assembly. \emph{PNAS} 115, 1439--1444, 2018. \url{https://doi.org/10.1073/pnas.1720139115}.
+\bibitem{vananders2014} G. van Anders, D. Klotsa, N. K. Ahmed, M. Engel and S. C. Glotzer. Understanding shape entropy through local dense packing. \emph{PNAS} 111, E4812--E4821, 2014. \url{https://doi.org/10.1073/pnas.1418159111}.
+\bibitem{haji2011} A. Haji-Akbari, M. Engel and S. C. Glotzer. Phase diagram of hard tetrahedra. \emph{Journal of Chemical Physics} 135, 194101, 2011. \url{https://doi.org/10.1063/1.3651370}.
 \end{thebibliography}
 \end{document}
