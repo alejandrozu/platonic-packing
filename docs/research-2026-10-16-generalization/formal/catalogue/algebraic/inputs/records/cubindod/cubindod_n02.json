@@ -1,0 +1,61 @@
+{
+ "problem": "min/cubes_in_dodecahedron",
+ "piece": "cube",
+ "container": "dodecahedron",
+ "n": 2,
+ "s": 0.91554,
+ "s_plus": "0.91554+",
+ "s_full": 0.9155439894213,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020114620173e-07,
+  "min_wall_gap": 1.000000355855235e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.45848435806059556,
+   -0.20493914699694388,
+   0.050480279060143046,
+   0.2960287781426342,
+   -0.3921430169232062,
+   0.5695360041150894,
+   -0.6589533798428854
+  ],
+  [
+   -0.4584843305264416,
+   0.2049391916188933,
+   -0.05048024140698465,
+   0.6752743598086897,
+   0.1254357841930866,
+   0.6800097571063367,
+   -0.25662644693992614
+  ]
+ ],
+ "record_id": "cubindod_n02",
+ "title": "2 unit cubes in a dodecahedron",
+ "source": {
+  "hash": "f5b33f25d5df952a",
+  "clear": 1e-07,
+  "cap": 1.0514623710197
+ },
+ "s_tight": 0.915543919129,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 0.6390597660106628,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/cubindod/cubindod_n02_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l5/m3/n2/platonic_n2_m3_l5.html"
+ },
+ "density": 0.34008445467615983
+}

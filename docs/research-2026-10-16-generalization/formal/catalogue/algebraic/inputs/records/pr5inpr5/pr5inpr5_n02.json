@@ -1,0 +1,67 @@
+{
+ "problem": "min/prism5_in_prism5",
+ "piece": "prism5",
+ "container": "prism5",
+ "n": 2,
+ "s": 1.64983,
+ "s_plus": "1.64983+",
+ "s_full": 1.6498396574499,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020125855436e-07,
+  "min_wall_gap": 1.000000080519925e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -0.2136207301653717,
+   -0.5986943517333546,
+   0.041891820230470306,
+   0.6894652966717347,
+   0.7042249155021413,
+   -0.06377513924721996,
+   -0.1569637049937237
+  ],
+  [
+   0.17082041033201034,
+   0.5257311646923509,
+   0.324919728724941,
+   0.30901699437494745,
+   4.727857385720404e-16,
+   -2.0795124619154682e-16,
+   -0.9510565162951536
+  ]
+ ],
+ "record_id": "pr5inpr5_n02",
+ "title": "2 prism5s in a prism5",
+ "family": "prisms",
+ "source": {
+  "hash": "7dbe7a4fc321b775",
+  "clear": 1e-07,
+  "cap": 1.9720769090888
+ },
+ "s_tight": 1.649839392466,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "reinsert",
+  "seed": 309452627,
+  "var": "base",
+  "expand": 0.023062199407669258,
+  "rh": 0.15028483462389672,
+  "remove": [
+   1
+  ],
+  "from": "pool",
+  "raw": 1.6498394177390783,
+  "host": "laptop"
+ },
+ "density": 0.4453534078321598
+}

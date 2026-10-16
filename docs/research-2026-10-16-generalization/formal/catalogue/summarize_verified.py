@@ -13,6 +13,13 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import sys
+
+# This is the trusted local parser. Its optional formal_root argument permits
+# replay against isolated Linux-object artifact roots without importing any
+# Python file from those artifacts.
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import verify_extensions as extension_audit
 
 HERE = Path(__file__).resolve().parent
 FORMAL = HERE.parent
@@ -156,6 +163,42 @@ def verify_core_maps(receipt, required=False):
         'olean_hashes': object_map, 'limitation': limitation}
 
 
+def verify_extension_closure(plan, row):
+    planned = {artifact_path(s['path']) for s in plan['steps']}
+    direct = {p.resolve() for p in (FORMAL/'PackingCertificates').glob('*.lean')}
+    current, needed = {}, {}
+    for step in plan['steps']:
+        source = artifact_path(step['path'])
+        snapshot = extension_audit.dependency_snapshot(source, FORMAL)
+        current[step['path']] = snapshot
+        for dependency in snapshot:
+            path = artifact_path(dependency['path'])
+            if path not in planned and path not in direct:
+                needed[dependency['path']] = dependency
+    declared = {}
+    for pin in plan.get('extension_dependencies', []):
+        path = artifact_path(pin['path'])
+        relative = rel(path)
+        olean = rel(path.with_suffix('.olean'))
+        if relative in declared or pin.get('olean_path', olean) != olean:
+            raise ValueError('invalid_or_duplicate_extension_dependency_pin: '+relative)
+        declared[relative] = dict(path=relative, source_sha256=pin['source_sha256'],
+            olean_path=olean, olean_sha256=pin['olean_sha256'])
+    if declared != needed:
+        raise ValueError('local_extension_import_closure_differs_from_pins')
+    normalized = [needed[k] for k in sorted(needed)]
+    if needed:
+        if row.get('extension_dependencies_before') != normalized or row.get('extension_dependencies_after') != normalized:
+            raise ValueError('extension_dependency_stability_attestation_missing_or_changed')
+        for built in row['steps']:
+            expected = current[built['path']]
+            if built.get('local_import_dependencies_before') != expected or built.get('local_import_dependencies_after') != expected or built.get('all_local_imports_stable') is not True:
+                raise ValueError('step_local_import_closure_attestation_missing_or_changed: '+built['path'])
+    return dict(extension_dependencies=normalized,
+        transitive_local_imports_verified=bool(needed),
+        transitive_local_import_snapshots=current if needed else {})
+
+
 def inspect_chunks(row, receipt, selected):
     if not row.get('complete') or not row.get('steps'):
         raise ValueError('chunk_record_not_complete')
@@ -268,7 +311,8 @@ def inspect_chunks(row, receipt, selected):
     return dict(dependencies=dependencies, steps=steps, plan=plan,
         plan_manifest_path=rel(manifest), plan_manifest_sha256=sha(manifest),
         core_dependencies=verify_core_maps(receipt, required=True),
-        all_step_axioms=sorted(all_axioms))
+        all_step_axioms=sorted(all_axioms),
+        **verify_extension_closure(dict(plan, steps=expected_steps), row))
 
 
 def inspect(row, receipt_path, receipt, by_id, by_path):
@@ -319,6 +363,10 @@ def inspect(row, receipt_path, receipt, by_id, by_path):
             evidence.update(inspect_chunks(row, receipt, selected))
         else:
             evidence['core_dependencies'] = verify_core_maps(receipt)
+            evidence.update(verify_extension_closure(
+                dict(steps=[dict(path=row['path'])],
+                    extension_dependencies=row.get('extension_dependencies', [])),
+                dict(row, steps=[row])))
         return (selected, evidence, (target.stat().st_mtime_ns,
             receipt.get('checked_at_utc') or '', receipt_path.stat().st_mtime_ns)), None
     except (KeyError, ValueError, OSError) as error:

@@ -17,12 +17,15 @@ import re
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import time
 
 import run_lean
 
 HERE=Path(__file__).resolve().parent
 FORMAL=HERE.parent
+sys.path.insert(0,str(FORMAL))
+import verify_extensions as extension_audit
 
 
 def digest(path):
@@ -108,6 +111,41 @@ def current_sources(row):
     return {s['path']:digest(FORMAL/s['path']) for s in row['steps']}
 
 
+def extension_dependencies(row):
+    """Require exact pins for all imported local sources outside old core/plan.
+
+    The direct-core maps remain unchanged for old receipts. Nested extension
+    libraries cannot silently enter that trusted boundary: they need explicit
+    source AND object pins, including every transitive extension dependency.
+    """
+    planned={(FORMAL/s['path']).resolve() for s in row['steps']}
+    direct={p.resolve() for p in (FORMAL/'PackingCertificates').glob('*.lean')}
+    needed=set()
+    for step in row['steps']:
+        needed.update(p for p in extension_audit.local_import_closure(FORMAL/step['path'])
+            if p not in planned and p not in direct)
+    pins=row.get('extension_dependencies',[])
+    normalized={}
+    for pin in pins:
+        source=(FORMAL/pin['path']).resolve()
+        if not source.is_relative_to(FORMAL.resolve()) or source in normalized:
+            raise ValueError('Invalid or duplicate extension dependency pin: '+pin['path'])
+        target=source.with_suffix('.olean')
+        relative=str(source.relative_to(FORMAL)).replace('\\','/')
+        olean_relative=str(target.relative_to(FORMAL)).replace('\\','/')
+        if pin.get('olean_path',olean_relative)!=olean_relative:
+            raise ValueError('Invalid extension object path: '+relative)
+        if not source.is_file() or not target.is_file() or digest(source)!=pin['source_sha256'] or digest(target)!=pin['olean_sha256']:
+            raise ValueError('Extension source/object pin mismatch: '+relative)
+        normalized[source]=dict(path=relative,source_sha256=digest(source),
+            olean_path=olean_relative,olean_sha256=digest(target))
+    if set(normalized)!=needed:
+        raise ValueError('Imported local extension closure differs from declared pins: '+row['id']+
+            '; missing='+str(sorted(str(p.relative_to(FORMAL)) for p in needed-set(normalized)))+
+            '; extra='+str(sorted(str(p.relative_to(FORMAL)) for p in set(normalized)-needed)))
+    return [normalized[p] for p in sorted(normalized,key=str)]
+
+
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument('--lean',type=Path,default=Path(shutil.which('lean') or str(Path.home()/'.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean.exe')))
@@ -129,7 +167,9 @@ def main():
         (not args.only or r['id'] in args.only or r['record_id'] in args.only)),key=lambda r:r['n'])
     if not plans:
         raise SystemExit('No chunked records match the selection')
-    for row in plans:validate_plan(row)
+    for row in plans:
+        validate_plan(row)
+        extension_dependencies(row)
     manifest_sha=digest(manifest)
     core_source=core_hashes('lean')
     core_objects=core_hashes('olean')
@@ -159,20 +199,25 @@ def main():
 
     for row in plans:
         source_before=current_sources(row)
+        extensions_before=extension_dependencies(row)
         result={k:v for k,v in row.items() if k!='steps'}
         result.update(steps=[],passed=False,complete=False,source_hashes_before=source_before,
-            elapsed_seconds=0.0,verified_build_seconds=0.0)
+            elapsed_seconds=0.0,verified_build_seconds=0.0,
+            extension_dependencies_before=extensions_before,extension_dependencies_after=None)
         receipt['results'].append(result)
         previous_steps={s['id']:s for s in old.get(row['id'],{}).get('steps',[])}
         dependencies={}
         started=time.monotonic()
         for step in row['steps']:
             source=FORMAL/step['path']; target=source.with_suffix('.olean')
+            imports_before=extension_audit.dependency_snapshot(source)
             previous=previous_steps.get(step['id'])
             reusable=(previous and previous.get('passed') and target.is_file() and
                 previous.get('source_sha256')==digest(source) and
                 previous.get('olean_sha256')==digest(target) and
                 previous.get('dependency_olean_hashes')==dependencies and
+                previous.get('local_import_dependencies_before')==imports_before and
+                previous.get('local_import_dependencies_after')==imports_before and
                 previous.get('all_expected_audits_seen') and
                 (FORMAL/previous.get('log','')).is_file() and
                 digest(FORMAL/previous['log'])==previous.get('log_sha256'))
@@ -192,8 +237,13 @@ def main():
             built['passed']=bool(built['passed'] and not missing and
                 not (used-run_lean.ALLOWED) and 'sorryAx' not in log)
             built['dependency_olean_hashes']=dict(dependencies)
+            imports_after=extension_audit.dependency_snapshot(source)
+            built['local_import_dependencies_before']=imports_before
+            built['local_import_dependencies_after']=imports_after
+            built['all_local_imports_stable']=imports_before==imports_after
             stable=(digest(manifest)==manifest_sha and core_hashes('lean')==core_source and
-                core_hashes('olean')==core_objects and current_sources(row)==source_before)
+                core_hashes('olean')==core_objects and current_sources(row)==source_before and
+                imports_before==imports_after and not extension_audit.changed_dependencies(extensions_before))
             built['all_sources_stable']=stable
             built['passed']=bool(built['passed'] and stable)
             result['steps'].append(built)
@@ -209,11 +259,13 @@ def main():
         complete_steps=len(result['steps'])==len(row['steps'])
         all_pass=complete_steps and all(s['passed'] for s in result['steps'])
         result['source_hashes_after']=current_sources(row)
+        result['extension_dependencies_after']=extension_dependencies(row)
         result['dependency_olean_hashes']=dependencies
         result['dependency_source_hashes']={s['path']:source_before[s['path']] for s in row['steps'][:-1]}
         result['dependency_object_hashes']={s['path'].replace('.lean','.olean'):digest((FORMAL/s['path']).with_suffix('.olean'))
             for s in result['steps'] if s['passed'] and s['kind'] not in ('aggregate','ordinary')}
-        result['passed']=bool(all_pass and result['source_hashes_after']==source_before)
+        result['passed']=bool(all_pass and result['source_hashes_after']==source_before and
+            result['extension_dependencies_after']==extensions_before)
         result['complete']=True
         result['exit_code']=0 if result['passed'] else next((s['exit_code'] for s in result['steps'] if not s['passed']),None)
         result['audit_output_seen']=bool(result['passed'] and all(s['all_expected_audits_seen'] for s in result['steps']))

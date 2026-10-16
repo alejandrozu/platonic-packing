@@ -1,0 +1,61 @@
+{
+ "problem": "min/prism8_l3_in_cube",
+ "piece": "prism8_l3",
+ "container": "cube",
+ "n": 2,
+ "s": 4.12132,
+ "s_plus": "4.12132+",
+ "s_full": 4.1213206142705,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020227003273e-07,
+  "min_wall_gap": 1.0000001493537525e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.8535534259486844,
+   -0.8535534259486848,
+   0.560660207135233,
+   5.962602256936723e-16,
+   -0.1950903220161276,
+   0.9807852804032307,
+   7.610988260106149e-17
+  ],
+  [
+   -0.8535534259486844,
+   0.853553425948685,
+   -0.027381273162955255,
+   0.5555702330196021,
+   1.2877456920664775e-16,
+   -1.280157518184374e-16,
+   -0.8314696123025455
+  ]
+ ],
+ "record_id": "pr8l3incub_n02",
+ "title": "2 octagonal prisms of height 3 in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "f99cf6d3bbd57573",
+  "clear": 1e-07,
+  "cap": 4.7677672283691
+ },
+ "s_tight": 4.12132034356,
+ "closed_form_conjecture": "(4 + 3\u221a2)/2",
+ "volume_lower_bound": 3.0712769270442126,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "symfresh",
+  "seed": 1132122518,
+  "var": "base",
+  "sym": "C2+0",
+  "raw": 4.121320408627463
+ },
+ "density": 0.4138545433217779
+}

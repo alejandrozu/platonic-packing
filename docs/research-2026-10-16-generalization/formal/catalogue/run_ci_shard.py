@@ -224,6 +224,12 @@ def evidence_files(status, outdir):
     paths.update(p for p in outdir.iterdir() if p.is_file() and p.suffix in ('.json', '.log') and p.name != 'evidence-inventory.json')
     paths.update(p for p in HERE.glob('*.py'))
     paths.add(HERE / 'rational-witnesses-manifest.json')
+    generic=status.get('generic_extension_receipt',{})
+    if generic.get('path'):
+        receipt=(FORMAL/generic['path']).resolve()
+        if not receipt.is_relative_to(FORMAL.resolve()):
+            raise ValueError('Generic receipt path escapes formal project')
+        paths.add(receipt)
     return sorted((p for p in paths if p.is_file()), key=lambda p: str(p.relative_to(FORMAL)))
 
 
@@ -240,7 +246,7 @@ def package(status, outdir):
     temporary.replace(archive)
 
 
-def build_record(rec, args, outdir, status, status_path, deadline):
+def build_record(rec, args, outdir, status, status_path, deadline, strategy_picker=None, emitter=None):
     witness = HERE / rec['witness_path']
     if sha(witness) != rec['witness_sha256']:
         raise IntegrityError('Witness changed after plan: ' + rec['record_id'])
@@ -248,11 +254,11 @@ def build_record(rec, args, outdir, status, status_path, deadline):
     ensure_input(c['source_path'], c['source_sha256'])
     if c['dimension'] > 3:
         ensure_input('src/polytopes_nd.json', c['geometry_sha256'])
-    for strategy in strategies(c):
+    for strategy in (strategy_picker or strategies)(c):
         if deadline - time.monotonic() < 600:
             rec['failure'] = 'Insufficient remaining job budget for another attempt; no formal success claimed'
             break
-        row = emit(c, witness, strategy)
+        row = (emitter or emit)(c, witness, strategy)
         stem = rec['record_id'] + '-' + strategy
         manifest, receipt, driver_log = (outdir / (stem + ending) for ending in ('-plan.json', '-receipt.json', '-driver.log'))
         write_json(manifest, [row])
@@ -363,6 +369,9 @@ def main():
             except Exception as exc:
                 rec['driver_error'], rec['complete'] = repr(exc), True
                 print(json.dumps(dict(record_id=rec['record_id'], driver_error=repr(exc))), flush=True)
+            status['passed_records'] = sum(r['passed'] for r in status['records'])
+            status['unverified_records'] = len(selected) - status['passed_records']
+            status['elapsed_seconds'] = round(time.monotonic() - started, 3)
             write_json(status_path, status)
             package(status, outdir)
     except Exception as exc:

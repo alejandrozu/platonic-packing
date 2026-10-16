@@ -1,0 +1,105 @@
+# Algebraic-coordinate catalogue certificates
+
+This directory extends the rational catalogue pipeline to the exact canonical
+coordinate hulls of the frozen three-dimensional Platonic, Archimedean, Catalan,
+prism and antiprism inputs. An exported JSON file, generated Lean source, or
+successful Python calculation does **not** count as a formal verification.
+Only successful source-bound Lean receipts identify verified records.
+
+## Frozen data and scope
+
+The input freeze is `1abc63218db34cea95802aeb3b6d4a6b6fe1c61b` of
+`alejandrozu/platonic-packing`. `input-manifest.json` lists 9,996 original native
+record files outside the earlier 402 rational targets, with immutable URLs,
+SHA256 digests and preserved native attribution. This includes 8,409 3D records
+in 85 problem families and 1,587 additional higher-dimensional records. Six
+source-only bounds without a selected coordinate witness are excluded.
+
+The 3D exporter operates on the actual selected JSON's `s_full`, centres and
+scalar-first quaternions. It never attaches those coordinates to a different,
+historically smaller scale from the index. Every unquoted JSON number first has
+its native Python binary64 value and then becomes exactly `Fraction(value)`;
+quoted rational strings retain their exact rational meaning. All 8,409 frozen
+3D source poses and scales are rational under those semantics.
+
+The initial pilot is the minimum available coordinate-backed selected record in
+each of the 85 3D problem families. It includes 3,464 placed vertices and 85
+unordered pairs. Its proposal report is `export3d-report.json`; this is a
+preparation report, not a Lean success report. Full exports use a separate
+`export3d-all-report.json` so that the pilot registry remains stable.
+
+## Formal meaning
+
+The new Lean modules live in `PackingCertificates/Algebraic/`:
+
+- `Interval.lean` proves rational interval arithmetic, checked outward widening,
+  square-root bounds from exact rational squares, and Horner evaluation.
+- `Root.lean` proves existence and uniqueness of each canonical real root from
+  exact opposite endpoint signs and a nonzero divided-difference interval. The
+  56 3D templates use 13 shared root specifications. No external root-counting
+  oracle is trusted.
+- `Template.lean` defines the actual real canonical vertex as the source
+  polynomial at that unique root, optionally divided by the positive square
+  root of its source `D` polynomial. Intervals enclose that exact vertex; they
+  do not replace it with a rational point. Exact coefficient cancellation also
+  proves that all canonical vertices sum to zero.
+- `Simplex.lean` proves a dimension-independent Cramer certificate for membership
+  in the actual container vertex hull. A uniform nonnegative baseline weight on
+  every container vertex and corrections on an injective affine basis give a
+  convex combination with exact total mass and coordinates. Cached determinant
+  and adjugate interval bounds are themselves checked against the actual basis.
+- `Placement.lean` proves that rational interval transforms enclose the exact
+  real rigid placement and its exact container-normalized point. Membership of
+  all normalized vertices implies containment of the whole piece hull.
+- `Packing.lean` combines these checks. Every raw quaternion-to-matrix relation,
+  proper determinant and row Gram identity is checked exactly. The resulting
+  maps preserve squared Euclidean distances for **all real points**. Every
+  placed vertex has a checked container-hull membership witness, and every
+  unordered pair has a strict rational separating plane. Therefore the actual
+  closed placed bodies are contained and pairwise disjoint.
+
+The geometric conclusions concern the exact frozen canonical coordinate hulls.
+They do not additionally prove the conventional named-solid classification or
+all edge/face normalization facts from scratch. The frozen geometry file, JSON
+parser and deterministic exporter/transcription remain an explicit audited
+boundary. Native credits and complete original public inputs are preserved.
+
+The audited declarations use only the usual Lean/mathlib axioms `propext`,
+`Classical.choice` and `Quot.sound`. Numerical instance proofs use
+`decide +kernel`; they do not use `native_decide`, `sorry`, proof axioms for
+floating-point output, or an assumption that Python's result is correct.
+
+## Reproduction
+
+Run from the `formal` directory with Python, pinned Lean 4.31.0, and the pinned
+mathlib revision from the parent formal project. SciPy is needed only when
+regenerating numerical proposals; it is not trusted by the proof checker.
+
+```text
+python catalogue/algebraic/inventory_templates.py
+python catalogue/algebraic/fetch_inputs.py --workers 8
+python catalogue/algebraic/geometry_intervals.py --lean
+python catalogue/algebraic/export_3d.py
+python catalogue/algebraic/generate_3d.py
+python catalogue/algebraic/run_verified.py --mathlib-project PATH_TO_PINNED_MATHLIB_PROJECT --only tetintet_n02_pingyou_20261013 --receipt catalogue/algebraic/tet2-verification.json
+```
+
+`run_verified.py` rebuilds the transitive local extension dependencies, checks
+the successful pinned direct-core receipt, snapshots imported source/object
+hashes, validates original native scale/poses against the proposals, requires the
+prescribed semantic `.valid` declaration, and records its axiom audit and log.
+For the whole pilot omit `--only`. Use `--resume` with the same receipt to reuse
+only matching successful stages and unchanged imported dependencies.
+
+The full 8,409-record 3D preparation can be resumed independently:
+
+```text
+python catalogue/algebraic/export_3d.py --all --resume
+python catalogue/algebraic/generate_3d.py --all
+python catalogue/algebraic/run_verified.py --registry catalogue/algebraic/generated3d-all-registry.json --mathlib-project PATH_TO_PINNED_MATHLIB_PROJECT --receipt catalogue/algebraic/full3d-verification.json --resume
+```
+
+The 1,587 remaining ND records are frozen for the parallel ND extension; the 3D
+exporter does not claim to certify them. A long preparation or proof run may be
+partial; inspect the receipt's exact verified/unverified record lists rather
+than inferring coverage from a directory size or a target count.

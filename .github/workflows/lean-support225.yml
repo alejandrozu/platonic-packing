@@ -1,0 +1,86 @@
+name: Lean support-first catalogue certificates
+
+on:
+  push:
+    branches: [lean/full-catalogue-and-dimension-proofs-20261016]
+    paths: [.github/workflows/lean-support225.yml]
+  workflow_dispatch:
+    inputs:
+      scope:
+        description: Complete catalogue or optimized ND subcohort
+        type: choice
+        options: ['all402', '225']
+        default: 'all402'
+      block_size:
+        description: Pieces per bounded arithmetic proof file
+        type: choice
+        options: ['8', '4', '1']
+        default: '8'
+
+permissions:
+  contents: read
+
+jobs:
+  certificates:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      max-parallel: ${{ (inputs.scope || 'all402') == 'all402' && 8 || 6 }}
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    defaults:
+      run:
+        working-directory: docs/research-2026-10-16-generalization/formal
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: docs/research-2026-10-16-generalization/formal
+          fetch-depth: 1
+      - name: Install pinned Lean
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o /tmp/packing-elan-init.sh
+          sh /tmp/packing-elan-init.sh -y --no-modify-path --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          "$HOME/.elan/bin/elan" toolchain install "$(tr -d '\r\n' < lean-toolchain)"
+      - name: Restore pinned mathlib
+        run: |
+          lake update
+          lake exe cache get
+      - name: Verify frozen generic core
+        run: python3 verify_core.py --mathlib-project .
+      - name: Verify support geometry and corruption regressions
+        run: >-
+          python3 verify_extensions.py --mathlib-project . --memory-mb 3072
+          --modules
+          PackingCertificates/Extensions/NDGeometry.lean
+          PackingCertificates/Extensions/NDSupport.lean
+          PackingCertificates/Extensions/NDModels.lean
+          PackingCertificates/Extensions/BoxSupport.lean
+          PackingCertificates/Extensions/CayleyGeometry.lean
+          PackingCertificates/Extensions/NDSupportRegression.lean
+          --output support225-generic-verification.json
+      - name: Restore exact frozen proposed witnesses
+        run: |
+          python3 catalogue/unpack_witnesses.py
+          python3 catalogue/audit_source_bindings.py
+      - name: Kernel-check support-first shard with strict import closure
+        run: >-
+          python3 catalogue/run_support_ci_shard.py
+          --shard-index ${{ matrix.shard }} --shard-count 12
+          --scope ${{ inputs.scope || 'all402' }}
+          --block-size ${{ inputs.block_size || '8' }} --mathlib-project .
+          --memory-mb 8192 --timeout 1800
+      - name: Retain complete and failed proof evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-support225-shard-${{ matrix.shard }}
+          path: |
+            docs/research-2026-10-16-generalization/formal/catalogue/ci-support/shard-*/evidence.zip
+            docs/research-2026-10-16-generalization/formal/core-verification.json
+            docs/research-2026-10-16-generalization/formal/support225-generic-verification.json
+            docs/research-2026-10-16-generalization/formal/core-build-logs/
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 9

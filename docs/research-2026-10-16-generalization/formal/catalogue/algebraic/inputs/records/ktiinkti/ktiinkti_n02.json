@@ -1,0 +1,66 @@
+{
+ "problem": "min/triakis_icosahedron_in_triakis_icosahedron",
+ "piece": "triakis_icosahedron",
+ "container": "triakis_icosahedron",
+ "n": 2,
+ "s": 1.99179,
+ "s_plus": "1.99179+",
+ "s_full": 1.9917984982458,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020629892595e-07,
+  "min_wall_gap": 1.0000027472756301e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -1.8406731015777664,
+   0.10531317162001447,
+   -2.590914121682599,
+   0.25997702781331994,
+   -0.8271875753761534,
+   -0.49628036746067533,
+   0.04334117010153345
+  ],
+  [
+   1.6991102058769685,
+   -0.22622231918607666,
+   2.6784048027715452,
+   0.3980100425518423,
+   0.3205640857722379,
+   -0.6964709992615302,
+   -0.5037408263467791
+  ]
+ ],
+ "record_id": "ktiinkti_n02",
+ "title": "2 triakis icosahedra in a triakis icosahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "5195f4d31c622f33",
+  "clear": 1e-07,
+  "cap": 2.0000000519885
+ },
+ "s_tight": 1.991798446891,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "search": {
+  "move": "hop",
+  "seed": 1726416120,
+  "var": "gentle",
+  "minDiff": 0.021163307855976355,
+  "expand": 0.014281899521148122,
+  "rh": 0.15501867759744287,
+  "focus": 0,
+  "from": "best",
+  "raw": 1.9980690325427908,
+  "host": "actions"
+ },
+ "density": 0.2531009608582016
+}
