@@ -13,6 +13,8 @@ if [ -n "$id" ] && [ "$rest" = "completed success" ] && ! grep -q "^$id$" "$seen
   out=$(python3 -I scripts/import_records_batch.py "$d"/records-platonic-* 2>&1 | tail -1); rm -rf "$d"
   echo "$id" >> "$seen"; echo "records offload: run $id imported ($out)"; exit 0
 fi
+# a pause (state/ACTIONS_PAUSE, state/STOP) still imports a finished run but starts no new one
+if [ -f state/STOP ] || [ -f state/ACTIONS_PAUSE ]; then echo "records offload: paused"; exit 0; fi
 case "$rest" in queued*|in_progress*|waiting*|requested*|pending*) echo "records offload: run $id active"; exit 0;; esac
 behind=$(timeout 300 python3 - <<'PY'
 import sys, json, hashlib
