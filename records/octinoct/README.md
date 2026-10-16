@@ -95,7 +95,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 90 | [5.17694+](octinoct_n90.json) | 5.176940682579 |  | 4.48140 | 0.6487 | ![](octinoct_n90.png) |
 | 91 | [5.17694+](octinoct_n91.json) | 5.176940684788 |  | 4.49794 | 0.6559 | ![](octinoct_n91.png) |
 | 92 | [5.21059+](octinoct_n92.json) | 5.210596436550 |  | 4.51436 | 0.6503 | ![](octinoct_n92.png) |
-| 93 | [5.26598+](octinoct_n93.json) | 5.265986323961 |  | 4.53065 | 0.6369 | ![](octinoct_n93.png) |
+| 93 | [5.21688+](octinoct_n93.json) | 5.216884986404 |  | 4.53065 | 0.6550 | ![](octinoct_n93.png) |
 | 94 | [5.27414+](octinoct_n94.json) | 5.274146711526 |  | 4.54684 | 0.6407 | ![](octinoct_n94.png) |
 | 95 | [5.63299+](octinoct_n95.json) | 5.632993415742 |  | 4.56290 | 0.5315 | ![](octinoct_n95.png) |
 | 96 | [5.98930+](octinoct_n96.json) | 5.989302325379 |  | 4.57886 | 0.4468 | ![](octinoct_n96.png) |
