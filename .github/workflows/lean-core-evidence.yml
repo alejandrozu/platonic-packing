@@ -1,0 +1,45 @@
+name: Lean complete core evidence
+
+on:
+  push:
+    branches: [lean/full-catalogue-and-dimension-proofs-20261016]
+    paths: [.github/workflows/lean-core-evidence.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  core:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: docs/research-2026-10-16-generalization/formal
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: docs/research-2026-10-16-generalization/formal
+          fetch-depth: 1
+      - name: Install pinned Lean
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o /tmp/packing-elan-init.sh
+          sh /tmp/packing-elan-init.sh -y --no-modify-path --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          "$HOME/.elan/bin/elan" toolchain install "$(tr -d '\r\n' < lean-toolchain)"
+      - name: Restore pinned mathlib
+        run: |
+          lake update
+          lake exe cache get
+      - name: Verify all core stages and negative cases
+        run: python3 verify_core.py --mathlib-project .
+      - name: Archive complete source, object and log closure
+        run: python3 catalogue/package_core_evidence.py
+      - name: Retain complete core evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-complete-core-evidence
+          path: docs/research-2026-10-16-generalization/formal/catalogue/ci-core/evidence.zip
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 9
