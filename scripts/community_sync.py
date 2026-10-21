@@ -86,7 +86,10 @@ def archive_pass():
         Lt, t = exact.tight_container(pb, C0, R)
         s = pb.s_of_L(Lt)
         con = rec.get('contribution') or {}
-        credit = (rec.get('found_by') or con.get('credit') or con.get('submitted_by') or e.get('author')
+        # the contributor's credit first (21 Oct: a submitted found_by can describe the construction instead, e.g.
+        # "trivial: subset of the 5x5x5 grid" in issue #98)
+        credit = ((con.get('credit') if kind == 'community' else None) or rec.get('found_by') or con.get('credit')
+                  or con.get('submitted_by') or e.get('author')
                   or ('community contribution' if kind == 'community' else 'published construction'))
         with engine.locked():
             case = engine.load_case(p, n); cur = case['best']
