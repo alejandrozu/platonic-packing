@@ -6,7 +6,7 @@
 \usepackage{xcolor,hyperref,xurl}
 \hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,
  pdftitle={Shape Continuation for Convex-Polytope Packing},
- pdfauthor={Yohei Nakajima and Alejandro Zarzuelo Urdiales}}
+ pdfauthor={Alejandro Zarzuelo Urdiales}}
 \setlength{\emergencystretch}{2em}
 \makeatletter
 \setlength{\@fptop}{0pt}
@@ -37,7 +37,7 @@
 \newtheorem{proposition}{Proposition}
 \newtheorem{theorem}{Theorem}
 \title{Shape Continuation for Convex-Polytope Packing:\\Generalization and Lean-Verified Catalogue Certificates}
-\author{Yohei Nakajima \and Alejandro Zarzuelo Urdiales}
+\author{Alejandro Zarzuelo Urdiales}
 \date{16 October 2026}
 \begin{document}
 \maketitle
@@ -129,7 +129,7 @@ For $0\leq\tau\leq1$, set
 \begin{equation}\label{eq:blend}
 H_\tau=(1-\tau)P\oplus\tau\rho\B_d.
 \end{equation}
-Here $\oplus$ denotes Minkowski addition. The endpoints are $H_1=\rho\B_d$ and $H_0=P$. This formula is dimension-independent and does not require all facets to touch the inscribed ball.
+Here $\oplus$ denotes Minkowski addition. The endpoints are $H_1=\rho\B_d$ and $H_0=P$. This formula is dimension-independent and does not require all facets to touch the inscribed ball. It is the ball-blend path used by Nakajima~\cite[Section 3]{nakajima2026}, written here in $\R^d$.
 
 \begin{proposition}\label{prop:blend}
 The family satisfies $H_\tau\subseteq P$. If $0\leq\tau_1\leq\tau_2\leq1$, then $H_{\tau_2}\subseteq H_{\tau_1}$.
@@ -252,7 +252,7 @@ This classical inclusion principle needs dimension and normalization compatibili
 
 The implemented 3D sweep currently uses Platonic intermediate solids; the higher-dimensional sweep uses the supported regular polytopes. It generalizes the project's whole-body inclusion contribution by PingYou Ltd~\cite{ping79}; related independent contributions include honeycomb windows, prism subdivisions and face lifts~\cite{pingConstructions}. These construction ideas and inherited coordinates retain their original attribution. Re-padding, exact checking or combining a witness does not transfer its construction authorship. Lean's affine transport and subset-replacement lemmas formalize ingredients of this inclusion reasoning, rather than an end-to-end proof of either composition script or all instances of~\eqref{eq:composebound}.
 
-Other contributions include Stian's octahedron-in-cube improvements for $n=13,15,18$~\cite{stian}; konoha-ily2's exact rational cube witnesses~\cite{konoha}; Ryan Xu's independently published cube coordinates for $n=34,35,36$~\cite{ryan}; and Sam Scott's tightening audit of Haowei Lin's previously published arrangements~\cite{scott}. The archive also incorporates coordinate reconstructions matching Friedman's historical $n=13,14$ cube bounds by \code{@BuilderOfAgents}/tronford~\cite{builderRecon}, alongside original sources from Friedman, Walsh, Lin and Berthold et al., documented in the source audit~\cite{repoAudit}. Imported original constructions, reconstructions and later refinements remain separate provenance roles. The catalogue is the combined result of these searches and contributions, not solely the work of the two manuscript authors.
+Other contributions include Stian's octahedron-in-cube improvements for $n=13,15,18$~\cite{stian}; konoha-ily2's exact rational cube witnesses~\cite{konoha}; Ryan Xu's independently published cube coordinates for $n=34,35,36$~\cite{ryan}; and Sam Scott's tightening audit of Haowei Lin's previously published arrangements~\cite{scott}. The archive also incorporates coordinate reconstructions matching Friedman's historical $n=13,14$ cube bounds by \code{@BuilderOfAgents}/tronford~\cite{builderRecon}, alongside original sources from Friedman, Walsh, Lin and Berthold et al., documented in the source audit~\cite{repoAudit}. Imported original constructions, reconstructions and later refinements remain separate provenance roles. The catalogue is the combined result of these searches and contributions, not solely the work of the manuscript author.
 
 \section{Exact witnesses and the scope of formal proof}
 \subsection{Finite geometric certificate}
@@ -641,6 +641,9 @@ The earlier DOI releases~\cite{zarzueloMethods,zarzueloPatterns,zarzueloData} re
 Per-environment source/log archives retain the exact numerical proof sources and their build receipts without flattening independent namespaces. Original Linux build objects and raw CI artifact ZIPs are preserved separately in the repository's \href{https://github.com/alejandrozu/platonic-packing/releases/tag/lean-frozen-catalogue-2026-10-16}{proof-evidence release}, with SHA-256 indices. Preserved failed or superseded checkpoints do not contribute to verified counts. Fresh reproduction generates new local objects and receipts with the pinned toolchain.
 
 Software tools include Python, NumPy/SciPy and numerical optimizers, JavaScript dynamics and visualization, Lean/mathlib, and LaTeX. AI coding and drafting tools, including Claude and Codex, assisted implementation, analysis and manuscript preparation under human direction. Generated suggestions are not evidence of correctness; the mathematical arguments, exact checker outputs and Lean build artifacts identify the independently inspectable support for each claim. The recorded construction credit remains distinct from software assistance.
+
+\section*{Acknowledgements}
+The author thanks Yohei Nakajima for the soft-to-rigid study and associated open-source implementations~\cite{nakajima2026} that motivated this extension.
 
 \begin{thebibliography}{99}
 \bibitem{nakajima2026} Y. Nakajima. \emph{Soft-to-Rigid: Shape Continuation as an Alternative Search for Packing Congruent Shapes}. arXiv:2610.14463v1, 2026. \url{https://arxiv.org/abs/2610.14463}.

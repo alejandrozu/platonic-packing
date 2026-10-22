@@ -1,13 +1,14 @@
 # Shape continuation for convex-polytope packing
 
-This directory contains the proposed joint-author manuscript **Shape Continuation for Convex-Polytope Packing: Generalization and Lean-Verified Catalogue Certificates**, dated 16 October 2026, and its reproducibility materials.
+This directory contains the sole-author manuscript **Shape Continuation for Convex-Polytope Packing: Generalization and Lean-Verified Catalogue Certificates**, dated 16 October 2026 and editorially revised on 21 October 2026, with its reproducibility materials.
 
-Proposed authors: **Yohei Nakajima and Alejandro Zarzuelo Urdiales**. The author list is included at Alejandro's request for discussion with Yohei. This repository copy does not assert Yohei's approval of the manuscript, its author order, or a submission. It has not been submitted to arXiv or sent to him by the drafting agent. The accompanying commit supplies a public version timestamp, not a journal acceptance or priority adjudication.
+Author: **Alejandro Zarzuelo Urdiales**. The current manuscript cites and acknowledges Yohei Nakajima's upstream soft-to-rigid study and open-source implementations. Earlier proposed joint-author drafts remain in Git history; the current PDF, LaTeX and typesetting archive use the sole-author byline. Community constructions retain their individual credits. The manuscript is prepared for author-approved arXiv processing and has not been submitted.
 
 ## Read
 
 - [Paper (PDF)](manuscript.pdf)
 - [Editable LaTeX](manuscript.tex)
+- [Typesetting source archive](arxiv-source.zip)
 - [Lean sources, exact scope and reproduction](formal/README.md)
 - [Actual Lean build and axiom audit](formal/verification.json)
 - [Geometric continuation in every finite dimension](formal/PackingCertificates/Extensions/GenericDimension.lean)
