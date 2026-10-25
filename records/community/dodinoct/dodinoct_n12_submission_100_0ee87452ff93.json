@@ -1,0 +1,158 @@
+{
+ "problem": "min/dodecahedron_in_octahedron",
+ "piece": "dodecahedron",
+ "container": "octahedron",
+ "n": 12,
+ "s_full": 7.5054371370322,
+ "pieces": [
+  [
+   -0.11853191228026651,
+   3.103811734436284,
+   0.15613421040653871,
+   0.21163444527947567,
+   -0.9450339459841292,
+   0.11972614190244929,
+   0.2186031872001623
+  ],
+  [
+   0.042925949117568134,
+   0.16641246172878343,
+   -3.1294268370936806,
+   0.08863444868144542,
+   -0.30254403765366683,
+   -0.12798179166899265,
+   -0.9403359510240729
+  ],
+  [
+   -1.1032783963659096,
+   0.8488257905613225,
+   1.3078011141822785,
+   0.5236489920036763,
+   -0.2841980463211189,
+   -0.04347610866715781,
+   0.8019557541510345
+  ],
+  [
+   -1.3157159783345844,
+   -1.1940696613642527,
+   -0.7692744387412556,
+   0.7350307576785243,
+   -0.28013095100078256,
+   0.30218536872789015,
+   -0.538461176395031
+  ],
+  [
+   1.2512768648543469,
+   1.2638013709905271,
+   -0.491381642653809,
+   0.7393846809484651,
+   0.38923033474384916,
+   0.44995239738552295,
+   0.315202919055246
+  ],
+  [
+   0.15381349734511932,
+   0.060232370289985925,
+   3.12431747680905,
+   0.7448422756801653,
+   0.28016783543709456,
+   0.5834228925884429,
+   0.16227660567629668
+  ],
+  [
+   1.0483497580062349,
+   -0.9768905892122142,
+   -1.299671069155169,
+   0.19448873448082574,
+   -0.8630025394769008,
+   0.0050224599042341025,
+   -0.4662354811819642
+  ],
+  [
+   -3.1062981147025917,
+   0.152981461768276,
+   -0.052249091998997174,
+   0.7503472588838426,
+   0.329847875420919,
+   0.5135284814564174,
+   0.2539052360603769
+  ],
+  [
+   0.09486987498194213,
+   -3.116696684622331,
+   -0.12301519157785115,
+   0.2844155282234932,
+   -0.5821233452596202,
+   0.30941767362468847,
+   -0.6960610041208933
+  ],
+  [
+   3.125887161299333,
+   -0.15621980019863752,
+   -0.058235427555104746,
+   0.03334595195283082,
+   -0.4507212583085851,
+   -0.134455578434828,
+   -0.881850379727106
+  ],
+  [
+   0.9603319592795768,
+   -1.1548106820495365,
+   1.126163438171812,
+   0.00338541830840501,
+   -0.37292865951713944,
+   -0.11120848998476049,
+   0.9211652542345136
+  ],
+  [
+   -1.107311482791921,
+   1.158869158526234,
+   -1.0117956407905715,
+   0.5817889504673793,
+   0.30776968140593813,
+   0.1866368347473557,
+   0.7293600840715379
+  ]
+ ],
+ "s": 7.50543,
+ "s_plus": "7.50543+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 6.681098e-07,
+  "min_wall_gap": 4.157046e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-25",
+ "record_id": "dodinoct_n12_submission_100_0ee87452ff93",
+ "title": "12 dodecahedra in an octahedron",
+ "family": "platonic",
+ "source": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/100",
+  "submitted_by": "konoha-ily2"
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 5.799595312187052,
+ "density": 0.4613867251712434,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting poi",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/100",
+  "submitted_by": "konoha-ily2",
+  "credit": "konoha-ily2 (Hirotaka Nakano)",
+  "kind": "construction",
+  "replayed_on": "2026-10-25",
+  "witness_sha256": "90a7c95f078febd57c5787c77dd7fc75b17a9f59d8a6d3ec02d52c0eacc57cea",
+  "method": "Batch of 513 witnesses in 22 problems (`MANIFEST.json` + `records/<record_id>.json` + `SUMMARY.tsv`), each at least 1e-4 (relative) below the current `records/SUMMARY.csv` entry (main at cbf76f2f, checked 2026-10-25). Every record passes `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED) from that commit locally. 211 records improve by \u2265 1 %, 398 by \u2265 0.1 %.\n\nEach record starts from the current catalogue configuration for the same problem and n, or, where `derived_from` is set (278 records), from the first n pieces of the configuration for a larger n. Following the form's guidance for refinements, `found_by`, `credit` and `method` are kept exactly as in the seed record, and the refinement is named separately in `refined_by`, `refinement_credit` and `refinement`. The contact equations showed that s was not fixed by the contacts; I moved along the contact-preserving directions that decrease s and re-detected contacts. Rigidity analysis and code: https://doi.org/10.5281/zenodo.23630728\n\n**One new construction.** octintet n = 30, 31, 32, 33, 34, 35, 84, 98, 99, 100 are subsets of the alternating tetrahedral\u2013octahedral honeycomb, which tiles a tetrahedron of edge k with (k \u2212 1)k(k + 1)/6 unit octahedra (35 for k = 6, 84 for k = 8, 120 for k = 9); centres scaled by s/k for clearance. The current records for these n are above the honeycomb value k (for example 45/7 for n = 31\u201335). These records carry my own `found_by`.\n\nClearance: centres expanded by 3e-7 about the origin, container sized from the vertices for a 2e-7 wall gap, `s_full` rounded up at the 13th decimal. Each record also has `s_tight` (the touching value of the configuration); for 54 records whose s is fixed by the contacts there is `closed_form_conjecture`, with `closed_form_poly` and `closed_form_digits` (agreement with s computed to 120 digits). Closed forms for current records that this batch does not change are in a separate issue.\n\nPer problem:\n\n| problem | records | \u2265 1 % | \u2265 0.1 % | large",
+  "archive": "https://github.com/user-attachments/files/33927348/platonic_descent_513.zip",
+  "archive_sha256": "634a4dae5a45cc19c79eafd9297da5d34750a77447b002af6b9e80aa20c3fa6a"
+ },
+ "previous_record": {
+  "s_full": 7.507213944033,
+  "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+  "date": "2026-10-15"
+ },
+ "case_id": "dodinoct_n12"
+}

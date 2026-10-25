@@ -1,0 +1,185 @@
+{
+ "problem": "min/icosahedron_in_tetrahedron",
+ "piece": "icosahedron",
+ "container": "tetrahedron",
+ "n": 15,
+ "s_full": 8.5036645363238,
+ "pieces": [
+  [
+   1.697482088499927,
+   1.697482088499927,
+   1.6974820884999269,
+   0.7071067811865474,
+   6.209447999196459e-17,
+   4.8480979226476945e-18,
+   0.7071067811865477
+  ],
+  [
+   -0.10321330759403038,
+   -0.10463057173236778,
+   1.6686917449682037,
+   0.007306645676092142,
+   0.793223817758913,
+   -0.5110800795522139,
+   0.3309678838706882
+  ],
+  [
+   -0.5340904027537113,
+   0.5169756386432225,
+   -1.680367324389438,
+   0.5205228324672637,
+   -1.5493325011098476e-16,
+   0.8050475996672728,
+   0.28452476720000913
+  ],
+  [
+   -1.697482088499927,
+   1.697482088499927,
+   -1.6974820884999269,
+   0.49999999999999994,
+   -0.8090169943749475,
+   0.30901699437494745,
+   -7.65350221332737e-17
+  ],
+  [
+   -1.3514368008835012,
+   0.7111510283701559,
+   -0.39088076107186454,
+   0.006879100648222417,
+   0.7941187279049332,
+   -0.5080753615380674,
+   0.33344797339747695
+  ],
+  [
+   -0.08437810831356679,
+   1.671272677364144,
+   -0.08451536572375072,
+   0.01380195173769275,
+   -0.8055499286738675,
+   0.49879842275871566,
+   -0.3195292662576855
+  ],
+  [
+   -0.39663023356489063,
+   -1.3620094383574501,
+   0.7074603643299653,
+   0.008287897578626574,
+   0.7945567663367336,
+   -0.5103499732982023,
+   0.32886739056459163
+  ],
+  [
+   -0.046636282825726384,
+   -0.05086184521107205,
+   -0.04612515478360377,
+   0.7966029610566473,
+   -1.1969726285499143e-16,
+   0.5534394572678578,
+   -0.24316350378878956
+  ],
+  [
+   0.773091542484915,
+   0.8473212755156398,
+   0.8539986733391347,
+   0.4976059309481936,
+   -0.8098975427033615,
+   0.31047565617701967,
+   -0.007692511273153478
+  ],
+  [
+   -1.697482088499927,
+   -1.697482088499927,
+   1.6974820884999269,
+   0.8090169943749473,
+   -0.5000000000000001,
+   -3.0069554216216796e-17,
+   -0.3090169943749474
+  ],
+  [
+   -1.6800054076237096,
+   -0.5331404527077681,
+   0.5179495362392506,
+   0.8226393043036995,
+   -0.014482535976183446,
+   0.3037791748598335,
+   0.48038843042677737
+  ],
+  [
+   1.696453227170369,
+   -0.0030782276092916217,
+   -0.0022102541705526376,
+   0.000362608351736342,
+   -0.49983645290561224,
+   -0.3081679650643782,
+   0.8094417175868804
+  ],
+  [
+   0.5159969199616213,
+   -1.6786375502121569,
+   -0.5348414582493916,
+   5.0321062881160003e-17,
+   0.8045514238497867,
+   -0.5227861047794542,
+   -0.28176531907033286
+  ],
+  [
+   0.7068460202669641,
+   -0.3919221553860132,
+   -1.3535605841685836,
+   0.4867554823520253,
+   -0.8140343940407562,
+   0.3154577578541126,
+   -0.030058421924683488
+  ],
+  [
+   1.697482088499927,
+   -1.697482088499927,
+   -1.6974820884999269,
+   1.527681416496867e-17,
+   -0.8090169943749476,
+   0.49999999999999994,
+   -0.30901699437494745
+  ]
+ ],
+ "s": 8.50366,
+ "s_plus": "8.50366+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 4.534568e-07,
+  "min_wall_gap": 2e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-25",
+ "record_id": "icointet_n15_submission_100_21418abebcbc",
+ "title": "15 icosahedra in a tetrahedron",
+ "family": "platonic",
+ "source": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/100",
+  "submitted_by": "konoha-ily2"
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 6.524048494505748,
+ "density": 0.4515784244723497,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting poi",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/100",
+  "submitted_by": "konoha-ily2",
+  "credit": "konoha-ily2 (Hirotaka Nakano)",
+  "kind": "construction",
+  "replayed_on": "2026-10-25",
+  "witness_sha256": "5090e4e04086af2df17cdd9d7792aeb647c6b1b7eab14726a22bf5ab568c8fab",
+  "method": "Batch of 513 witnesses in 22 problems (`MANIFEST.json` + `records/<record_id>.json` + `SUMMARY.tsv`), each at least 1e-4 (relative) below the current `records/SUMMARY.csv` entry (main at cbf76f2f, checked 2026-10-25). Every record passes `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED) from that commit locally. 211 records improve by \u2265 1 %, 398 by \u2265 0.1 %.\n\nEach record starts from the current catalogue configuration for the same problem and n, or, where `derived_from` is set (278 records), from the first n pieces of the configuration for a larger n. Following the form's guidance for refinements, `found_by`, `credit` and `method` are kept exactly as in the seed record, and the refinement is named separately in `refined_by`, `refinement_credit` and `refinement`. The contact equations showed that s was not fixed by the contacts; I moved along the contact-preserving directions that decrease s and re-detected contacts. Rigidity analysis and code: https://doi.org/10.5281/zenodo.23630728\n\n**One new construction.** octintet n = 30, 31, 32, 33, 34, 35, 84, 98, 99, 100 are subsets of the alternating tetrahedral\u2013octahedral honeycomb, which tiles a tetrahedron of edge k with (k \u2212 1)k(k + 1)/6 unit octahedra (35 for k = 6, 84 for k = 8, 120 for k = 9); centres scaled by s/k for clearance. The current records for these n are above the honeycomb value k (for example 45/7 for n = 31\u201335). These records carry my own `found_by`.\n\nClearance: centres expanded by 3e-7 about the origin, container sized from the vertices for a 2e-7 wall gap, `s_full` rounded up at the 13th decimal. Each record also has `s_tight` (the touching value of the configuration); for 54 records whose s is fixed by the contacts there is `closed_form_conjecture`, with `closed_form_poly` and `closed_form_digits` (agreement with s computed to 120 digits). Closed forms for current records that this batch does not change are in a separate issue.\n\nPer problem:\n\n| problem | records | \u2265 1 % | \u2265 0.1 % | large",
+  "archive": "https://github.com/user-attachments/files/33927348/platonic_descent_513.zip",
+  "archive_sha256": "634a4dae5a45cc19c79eafd9297da5d34750a77447b002af6b9e80aa20c3fa6a"
+ },
+ "previous_record": {
+  "s_full": 8.5045790459004,
+  "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+  "date": "2026-10-13"
+ },
+ "case_id": "icointet_n15"
+}

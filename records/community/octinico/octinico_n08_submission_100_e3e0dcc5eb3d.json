@@ -1,0 +1,122 @@
+{
+ "problem": "min/octahedron_in_icosahedron",
+ "piece": "octahedron",
+ "container": "icosahedron",
+ "n": 8,
+ "s_full": 1.5742490769654,
+ "pieces": [
+  [
+   -0.1071193756207615,
+   -0.3511393943319661,
+   0.7272949271279641,
+   0.25435544820357686,
+   0.7148762970917575,
+   -0.5534450378875108,
+   0.34344399232367806
+  ],
+  [
+   0.10711937562076124,
+   0.3511393943319662,
+   -0.7272949271279642,
+   0.2543554482035769,
+   0.7148762970917574,
+   -0.553445037887511,
+   0.34344399232367806
+  ],
+  [
+   0.4949826021526012,
+   -0.6393417968662941,
+   0.11125407848700868,
+   0.8370954748475558,
+   0.07646291620391918,
+   0.04466705791724306,
+   -0.5398420531714394
+  ],
+  [
+   0.6985830933875594,
+   0.25342424457907436,
+   -0.006789959143691908,
+   0.03434025531926259,
+   0.34031126135758866,
+   0.7633148626260969,
+   -0.5480505567481139
+  ],
+  [
+   0.04880980076280864,
+   0.5363961927391829,
+   0.6050251845396055,
+   0.4700972505255121,
+   0.2918539739790301,
+   0.6775512470554236,
+   0.48451433470501365
+  ],
+  [
+   -0.6985830933875596,
+   -0.25342424457907464,
+   0.0067899591436919446,
+   0.41181249251358276,
+   0.7803815161634894,
+   0.2991087149232928,
+   -0.3632480377057259
+  ],
+  [
+   -0.0488098007628087,
+   -0.5363961927391828,
+   -0.6050251845396052,
+   0.01019441798826214,
+   -0.6854730055111065,
+   -0.272729157277477,
+   -0.6750123253157446
+  ],
+  [
+   -0.49498260215260126,
+   0.6393417968662941,
+   -0.1112540784870085,
+   0.04466705791724314,
+   -0.5398420531714394,
+   -0.837095474847556,
+   -0.07646291620391882
+  ]
+ ],
+ "s": 1.57424,
+ "s_plus": "1.57424+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 2.617414e-07,
+  "min_wall_gap": 2.923387e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-25",
+ "record_id": "octinico_n08_submission_100_e3e0dcc5eb3d",
+ "title": "8 octahedra in an icosahedron",
+ "family": "platonic",
+ "source": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/100",
+  "submitted_by": "konoha-ily2"
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.20013443936408,
+ "density": 0.44306694800318364,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting poi",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/100",
+  "submitted_by": "konoha-ily2",
+  "credit": "konoha-ily2 (Hirotaka Nakano)",
+  "kind": "construction",
+  "replayed_on": "2026-10-25",
+  "witness_sha256": "465ef91aa60a82f200ce31ee99ee97b4fc3d52f3957598dba9a31178690c27d6",
+  "method": "Batch of 513 witnesses in 22 problems (`MANIFEST.json` + `records/<record_id>.json` + `SUMMARY.tsv`), each at least 1e-4 (relative) below the current `records/SUMMARY.csv` entry (main at cbf76f2f, checked 2026-10-25). Every record passes `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED) from that commit locally. 211 records improve by \u2265 1 %, 398 by \u2265 0.1 %.\n\nEach record starts from the current catalogue configuration for the same problem and n, or, where `derived_from` is set (278 records), from the first n pieces of the configuration for a larger n. Following the form's guidance for refinements, `found_by`, `credit` and `method` are kept exactly as in the seed record, and the refinement is named separately in `refined_by`, `refinement_credit` and `refinement`. The contact equations showed that s was not fixed by the contacts; I moved along the contact-preserving directions that decrease s and re-detected contacts. Rigidity analysis and code: https://doi.org/10.5281/zenodo.23630728\n\n**One new construction.** octintet n = 30, 31, 32, 33, 34, 35, 84, 98, 99, 100 are subsets of the alternating tetrahedral\u2013octahedral honeycomb, which tiles a tetrahedron of edge k with (k \u2212 1)k(k + 1)/6 unit octahedra (35 for k = 6, 84 for k = 8, 120 for k = 9); centres scaled by s/k for clearance. The current records for these n are above the honeycomb value k (for example 45/7 for n = 31\u201335). These records carry my own `found_by`.\n\nClearance: centres expanded by 3e-7 about the origin, container sized from the vertices for a 2e-7 wall gap, `s_full` rounded up at the 13th decimal. Each record also has `s_tight` (the touching value of the configuration); for 54 records whose s is fixed by the contacts there is `closed_form_conjecture`, with `closed_form_poly` and `closed_form_digits` (agreement with s computed to 120 digits). Closed forms for current records that this batch does not change are in a separate issue.\n\nPer problem:\n\n| problem | records | \u2265 1 % | \u2265 0.1 % | large",
+  "archive": "https://github.com/user-attachments/files/33927348/platonic_descent_513.zip",
+  "archive_sha256": "634a4dae5a45cc19c79eafd9297da5d34750a77447b002af6b9e80aa20c3fa6a"
+ },
+ "previous_record": {
+  "s_full": 1.5768363732616,
+  "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+  "date": "2026-10-13"
+ },
+ "case_id": "octinico_n08"
+}

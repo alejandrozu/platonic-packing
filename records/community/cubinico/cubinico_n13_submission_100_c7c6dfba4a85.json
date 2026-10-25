@@ -1,0 +1,167 @@
+{
+ "problem": "min/cube_in_icosahedron",
+ "piece": "cube",
+ "container": "icosahedron",
+ "n": 13,
+ "s_full": 2.2680331914125,
+ "pieces": [
+  [
+   -0.8906906948085346,
+   -0.039031755960422895,
+   -0.7956606653067247,
+   0.21475658436798978,
+   0.546768080355954,
+   0.46162815878177477,
+   -0.6646982163314478
+  ],
+  [
+   0.5871407191955222,
+   0.9602914180541563,
+   0.004539351813433826,
+   0.9711777324690847,
+   0.029265268315928575,
+   0.2311869946237101,
+   -0.05009919703408754
+  ],
+  [
+   -0.14941923445147395,
+   -0.12691319574731946,
+   0.11684354155257463,
+   -0.007397600434614229,
+   0.1335363869202472,
+   0.6283921337753473,
+   0.7663136662525091
+  ],
+  [
+   0.7482525033547032,
+   -0.9407673204647045,
+   0.0672789598314932,
+   0.4444949232480519,
+   0.5547343966292351,
+   -0.6610674082853113,
+   0.2401747157925841
+  ],
+  [
+   0.04527640726991546,
+   0.6668845596100581,
+   -1.1041818628020292,
+   0.4623070603602213,
+   0.5965293127487779,
+   0.1903953393456444,
+   -0.6278332387887874
+  ],
+  [
+   -0.5532369005217346,
+   1.07846041956301,
+   0.14010848590919836,
+   0.3595652455175279,
+   -0.5046684196497374,
+   0.721276408309786,
+   -0.3094882279504203
+  ],
+  [
+   -0.05387847978134643,
+   0.7380730677799334,
+   0.9800397798291484,
+   0.36093781612460174,
+   -0.5078460920005693,
+   0.7198457246494889,
+   -0.3060038765029042
+  ],
+  [
+   -0.4258192329462671,
+   -1.080466391319496,
+   -0.03652217801477386,
+   0.08704162421751388,
+   0.11111907774427308,
+   -0.09867805889265414,
+   0.9850578393718905
+  ],
+  [
+   0.055899479995823384,
+   -0.43153195997382254,
+   1.10106912850438,
+   0.6228634962653771,
+   0.7516033206879029,
+   -0.00019616694837253543,
+   -0.21710245247236665
+  ],
+  [
+   -0.025745855757144713,
+   -0.6271700577953871,
+   -1.0680408790585498,
+   0.9566128574155841,
+   0.09074583324702795,
+   0.11154803722747117,
+   -0.25340495292356213
+  ],
+  [
+   1.107384160118698,
+   -0.06163665367595825,
+   0.6507938050943753,
+   0.5987044451703895,
+   -0.19399811617964993,
+   0.4608304795895637,
+   0.6257419494753536
+  ],
+  [
+   1.0676024679453473,
+   -0.0625111924313455,
+   -0.6788899481847568,
+   0.8657246341280973,
+   0.21525481597179558,
+   0.024987395270355716,
+   -0.45117829307528035
+  ],
+  [
+   -1.0895954892785726,
+   0.04468977683880796,
+   0.42813449713327467,
+   0.5946888835341761,
+   0.7927537074507889,
+   0.001619921618865065,
+   -0.13373132384693176
+  ]
+ ],
+ "s": 2.26803,
+ "s_plus": "2.26803+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 3e-07,
+  "min_wall_gap": 2e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-25",
+ "record_id": "cubinico_n13_submission_100_c7c6dfba4a85",
+ "title": "13 cubes in an icosahedron",
+ "family": "platonic",
+ "source": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/100",
+  "submitted_by": "konoha-ily2"
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.8129386423607219,
+ "density": 0.5107414440697116,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting poi",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/100",
+  "submitted_by": "konoha-ily2",
+  "credit": "konoha-ily2 (Hirotaka Nakano)",
+  "kind": "construction",
+  "replayed_on": "2026-10-25",
+  "witness_sha256": "4a7b76ef726e05126d5157f7d735d3b366a82399c335d4270d621a7306d54737",
+  "method": "Batch of 513 witnesses in 22 problems (`MANIFEST.json` + `records/<record_id>.json` + `SUMMARY.tsv`), each at least 1e-4 (relative) below the current `records/SUMMARY.csv` entry (main at cbf76f2f, checked 2026-10-25). Every record passes `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED) from that commit locally. 211 records improve by \u2265 1 %, 398 by \u2265 0.1 %.\n\nEach record starts from the current catalogue configuration for the same problem and n, or, where `derived_from` is set (278 records), from the first n pieces of the configuration for a larger n. Following the form's guidance for refinements, `found_by`, `credit` and `method` are kept exactly as in the seed record, and the refinement is named separately in `refined_by`, `refinement_credit` and `refinement`. The contact equations showed that s was not fixed by the contacts; I moved along the contact-preserving directions that decrease s and re-detected contacts. Rigidity analysis and code: https://doi.org/10.5281/zenodo.23630728\n\n**One new construction.** octintet n = 30, 31, 32, 33, 34, 35, 84, 98, 99, 100 are subsets of the alternating tetrahedral\u2013octahedral honeycomb, which tiles a tetrahedron of edge k with (k \u2212 1)k(k + 1)/6 unit octahedra (35 for k = 6, 84 for k = 8, 120 for k = 9); centres scaled by s/k for clearance. The current records for these n are above the honeycomb value k (for example 45/7 for n = 31\u201335). These records carry my own `found_by`.\n\nClearance: centres expanded by 3e-7 about the origin, container sized from the vertices for a 2e-7 wall gap, `s_full` rounded up at the 13th decimal. Each record also has `s_tight` (the touching value of the configuration); for 54 records whose s is fixed by the contacts there is `closed_form_conjecture`, with `closed_form_poly` and `closed_form_digits` (agreement with s computed to 120 digits). Closed forms for current records that this batch does not change are in a separate issue.\n\nPer problem:\n\n| problem | records | \u2265 1 % | \u2265 0.1 % | large",
+  "archive": "https://github.com/user-attachments/files/33927348/platonic_descent_513.zip",
+  "archive_sha256": "634a4dae5a45cc19c79eafd9297da5d34750a77447b002af6b9e80aa20c3fa6a"
+ },
+ "previous_record": {
+  "s_full": 2.2704948183697,
+  "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+  "date": "2026-10-13"
+ },
+ "case_id": "cubinico_n13"
+}
