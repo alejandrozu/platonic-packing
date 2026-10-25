@@ -4,7 +4,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 
 | n | s | touching limit | closed form (conj.) | volume bound | density | picture |
 |---|---|---|---|---|---|---|
-| 2 | [1.48861+](cubinico_n02.json) | 1.488614044226 |  | 0.97143 | 0.2779 | ![](cubinico_n02.png) |
+| 2 | [1.48861+](cubinico_n02.json) | 1.488614044226 | -53/38 + 49√5/38 | 0.97143 | 0.2779 | ![](cubinico_n02.png) |
 | 3 | [1.67433+](cubinico_n03.json) | 1.674338466038 |  | 1.11201 | 0.2930 | ![](cubinico_n03.png) |
 | 4 | [1.77569+](cubinico_n04.json) | 1.775698185345 |  | 1.22393 | 0.3275 | ![](cubinico_n04.png) |
 | 5 | [1.86891+](cubinico_n05.json) | 1.868912869245 |  | 1.31843 | 0.3511 | ![](cubinico_n05.png) |
@@ -33,8 +33,8 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 28 | [2.96855+](cubinico_n28.json) | 2.968556330960 |  | 2.34129 | 0.4906 | ![](cubinico_n28.png) |
 | 29 | [2.99673+](cubinico_n29.json) | 2.996731481028 |  | 2.36883 | 0.4939 | ![](cubinico_n29.png) |
 | 30 | [3.03349+](cubinico_n30.json) | 3.033492215807 |  | 2.39576 | 0.4926 | ![](cubinico_n30.png) |
-| 31 | [3.05572+](cubinico_n31.json) | 3.055728109099 |  | 2.42208 | 0.4980 | ![](cubinico_n31.png) |
-| 32 | [3.05572+](cubinico_n32.json) | 3.055728109099 |  | 2.44785 | 0.5141 | ![](cubinico_n32.png) |
+| 31 | [3.05572+](cubinico_n31.json) | 3.055728109099 | 12 - 4√5 | 2.42208 | 0.4980 | ![](cubinico_n31.png) |
+| 32 | [3.05572+](cubinico_n32.json) | 3.055728109099 | 12 - 4√5 | 2.44785 | 0.5141 | ![](cubinico_n32.png) |
 | 33 | [3.32854+](cubinico_n33.json) | 3.328546488023 |  | 2.47309 | 0.4102 | ![](cubinico_n33.png) |
 | 34 | [3.32854+](cubinico_n34.json) | 3.328546488023 |  | 2.49782 | 0.4226 | ![](cubinico_n34.png) |
 | 35 | [3.32854+](cubinico_n35.json) | 3.328546488647 |  | 2.52208 | 0.4350 | ![](cubinico_n35.png) |

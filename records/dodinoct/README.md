@@ -4,8 +4,8 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 
 | n | s | touching limit | closed form (conj.) | volume bound | density | picture |
 |---|---|---|---|---|---|---|
-| 2 | [4.72683+](dodinoct_n02.json) | 4.726839426706 |  | 3.19164 | 0.3078 | ![](dodinoct_n02.png) |
-| 3 | [5.39557+](dodinoct_n03.json) | 5.395574976898 |  | 3.65352 | 0.3105 | ![](dodinoct_n03.png) |
+| 2 | [4.72683+](dodinoct_n02.json) | 4.726839426706 | √(64527√5 + 146083)/114 | 3.19164 | 0.3078 | ![](dodinoct_n02.png) |
+| 3 | [5.39557+](dodinoct_n03.json) | 5.395574976898 | √(2520√5 + 6010)/20 | 3.65352 | 0.3105 | ![](dodinoct_n03.png) |
 | 4 | [5.51395+](dodinoct_n04.json) | 5.513954928241 |  | 4.02121 | 0.3879 | ![](dodinoct_n04.png) |
 | 5 | [5.62673+](dodinoct_n05.json) | 5.626729885874 |  | 4.33172 | 0.4563 | ![](dodinoct_n05.png) |
 | 6 | [5.67171+](dodinoct_n06.json) | 5.671716159582 |  | 4.60314 | 0.5346 | ![](dodinoct_n06.png) |
@@ -15,7 +15,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 10 | [7.17739+](dodinoct_n10.json) | 7.177396431625 |  | 5.45763 | 0.4397 | ![](dodinoct_n10.png) |
 | 11 | [7.39543+](dodinoct_n11.json) | 7.395439567599 |  | 5.63380 | 0.4421 | ![](dodinoct_n11.png) |
 | 12 | [7.50721+](dodinoct_n12.json) | 7.507213696761 |  | 5.79960 | 0.4611 | ![](dodinoct_n12.png) |
-| 13 | [7.52570+](dodinoct_n13.json) | 7.525706605720 |  | 5.95642 | 0.4958 | ![](dodinoct_n13.png) |
+| 13 | [7.52570+](dodinoct_n13.json) | 7.525706605720 | √(1265√5 + 2835)/10 | 5.95642 | 0.4958 | ![](dodinoct_n13.png) |
 | 14 | [7.84884+](dodinoct_n14.json) | 7.848843621388 |  | 6.10539 | 0.4707 | ![](dodinoct_n14.png) |
 | 15 | [7.97890+](dodinoct_n15.json) | 7.978905402631 |  | 6.24742 | 0.4800 | ![](dodinoct_n15.png) |
 | 16 | [8.06006+](dodinoct_n16.json) | 8.060065493295 |  | 6.38328 | 0.4967 | ![](dodinoct_n16.png) |

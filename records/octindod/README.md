@@ -4,7 +4,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 
 | n | s | touching limit | closed form (conj.) | volume bound | density | picture |
 |---|---|---|---|---|---|---|
-| 2 | [0.74006+](octindod_n02.json) | 0.740066720225 |  | 0.49736 | 0.3035 | ![](octindod_n02.png) |
+| 2 | [0.74006+](octindod_n02.json) | 0.740066720225 | -4/3 + (2√(3 - √5) + 2√5)/3 | 0.49736 | 0.3035 | ![](octindod_n02.png) |
 | 3 | [0.83184+](octindod_n03.json) | 0.831841816941 |  | 0.56934 | 0.3206 | ![](octindod_n03.png) |
 | 4 | [0.89628+](octindod_n04.json) | 0.896286525156 |  | 0.62664 | 0.3417 | ![](octindod_n04.png) |
 | 5 | [0.94386+](octindod_n05.json) | 0.943865253782 |  | 0.67502 | 0.3658 | ![](octindod_n05.png) |

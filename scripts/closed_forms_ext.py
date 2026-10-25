@@ -64,7 +64,7 @@ def lookup(record_id, src_hash, s, bsrc=None):
         try:
             v = float(value(e['closed_form'], 30))
             if v <= s * (1 + 1e-9) and s - v <= 2e-6 * s:
-                return pretty(e['closed_form']), e['provenance']
+                return pretty(e['closed_form']), e['provenance'], bool(e.get('already_in_catalogue'))
         except Exception:
             pass
     bsrc = bsrc or {}
@@ -74,8 +74,8 @@ def lookup(record_id, src_hash, s, bsrc=None):
             cf = r.get('closed_form_conjecture')
             v = float(value(cf, 30)) if isinstance(cf, str) and cf else None
             if v is not None and v <= s * (1 + 1e-9) and s - v <= 2e-6 * s:
-                return pretty(cf), {'by': bsrc.get('lineage'), 'issue': bsrc.get('issue'),
-                                    'digits': r.get('closed_form_digits'), 'with': 'the submitted packing'}
+                return pretty(cf), {'name': bsrc.get('lineage'), 'issue': bsrc.get('issue'),
+                                    'digits': r.get('closed_form_digits'), 'with': 'the submitted packing'}, False
         except Exception:
             pass
     return None
@@ -83,13 +83,26 @@ def lookup(record_id, src_hash, s, bsrc=None):
 
 def apply(rec, src_hash, s, bsrc):
     """put an external closed form into a record dict; True if the record changed"""
-    if rec.get('derived_from'): return False                  # the record holds another packing (n + 1 minus one piece)
+    if rec.get('derived_from'):           # the record holds the n + 1 packing minus one piece: check against its own scale
+        s, bsrc = float(rec.get('s_tight') or s), None
     x = lookup(rec.get('record_id'), src_hash, s, bsrc)
     if not x: return False
-    cf, prov = x
+    cf, prov, already = x
+    if already:                                               # our own closed form, confirmed independently
+        if rec.get('closed_form_confirmation') == prov: return False
+        rec['closed_form_confirmation'] = prov; return True
     if rec.get('closed_form_conjecture') == cf and rec.get('closed_form_source') == prov: return False
     rec['closed_form_conjecture'] = cf; rec['closed_form_source'] = prov
     return True
+
+
+def meta_of(record_id, src_hash, s, bsrc, cf_own):
+    """the closed-form fields of a new record: (closed_form_conjecture, extra fields)"""
+    x = lookup(record_id, src_hash, s, bsrc)
+    if not x: return cf_own, {}
+    cf, prov, already = x
+    if already: return cf_own, {'closed_form_confirmation': prov}
+    return cf, {'closed_form_source': prov}
 
 
 def do_import(results, touch_dir):

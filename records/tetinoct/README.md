@@ -6,7 +6,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 |---|---|---|---|---|---|---|
 | 2 | [1.15470+](tetinoct_n02.json) | 1.154700617502 |  | 0.79370 | 0.3248 | ![](tetinoct_n02.png) |
 | 3 | [1.28445+](tetinoct_n03.json) | 1.284457160042 |  | 0.90856 | 0.3539 | ![](tetinoct_n03.png) |
-| 4 | [1.35355+](tetinoct_n04.json) | 1.353553523103 |  | 1.00000 | 0.4032 | ![](tetinoct_n04.png) |
+| 4 | [1.35355+](tetinoct_n04.json) | 1.353553523103 | √2/4 + 1 | 1.00000 | 0.4032 | ![](tetinoct_n04.png) |
 | 5 | [1.47561+](tetinoct_n05.json) | 1.475612953591 |  | 1.07722 | 0.3890 | ![](tetinoct_n05.png) |
 | 6 | [1.48186+](tetinoct_n06.json) | 1.481860775184 |  | 1.14471 | 0.4610 | ![](tetinoct_n06.png) |
 | 7 | [1.64305+](tetinoct_n07.json) | 1.643050262473 |  | 1.20507 | 0.3945 | ![](tetinoct_n07.png) |

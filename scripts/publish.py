@@ -86,8 +86,8 @@ def build_problem(p, log):
                     'credit': "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping "
                               "search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
                     'search': b.get('src', {})}
-            x = closed_forms_ext.lookup(meta['record_id'], h, b['s'], b.get('src'))   # issue #99/#100 closed forms (25 Oct)
-            if x: meta['closed_form_conjecture'], meta['closed_form_source'] = x
+            meta['closed_form_conjecture'], extra = closed_forms_ext.meta_of(meta['record_id'], h, b['s'], b.get('src'), cf)
+            meta.update(extra)                                                   # issue #99/#100 closed forms (25 Oct)
             rec = claim.make_claim({'piece': piece, 'container': container, 'C': b['C'], 'Q': b['Q']}, GAP=CLEAR, WALL=CLEAR, meta=meta)
             if prev is not None and rec['s_full'] > prev['s_full']:
                 # monotone records: the (n+1)-record minus its last piece, same container (all clearances kept)
@@ -96,6 +96,7 @@ def build_problem(p, log):
                 rec['s_tight'] = min(round(b['s'], 12), prev.get('s_tight', b['s']))
                 rec['problem'] = prev['problem']; rec['record_id'] = f'{p}_n{n:02d}'; rec['title'] = meta['title']
                 if rec.pop('closed_form_source', None): rec['closed_form_conjecture'] = cf   # bound to the archive packing, not this one
+                rec.pop('closed_form_confirmation', None)
             rec['density'] = n * SOL[piece]['volume'] / (SOL[container]['volume'] * rec['s_full'] ** 3)
             rec['date'] = time.strftime('%Y-%m-%d')
             json.dump(rec, open(fn, 'w'), indent=1)

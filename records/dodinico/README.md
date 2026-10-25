@@ -8,7 +8,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 3 | [3.14562+](dodinico_n03.json) | 3.145623653066 |  | 2.19236 | 0.3385 | ![](dodinico_n03.png) |
 | 4 | [3.37546+](dodinico_n04.json) | 3.375463527009 |  | 2.41300 | 0.3653 | ![](dodinico_n04.png) |
 | 5 | [3.57490+](dodinico_n05.json) | 3.574901176543 |  | 2.59932 | 0.3844 | ![](dodinico_n05.png) |
-| 6 | [3.61803+](dodinico_n06.json) | 3.618034120360 |  | 2.76219 | 0.4450 | ![](dodinico_n06.png) |
+| 6 | [3.61803+](dodinico_n06.json) | 3.618034120360 | √5/2 + 5/2 | 2.76219 | 0.4450 | ![](dodinico_n06.png) |
 | 7 | [3.85641+](dodinico_n07.json) | 3.856415662220 |  | 2.90784 | 0.4287 | ![](dodinico_n07.png) |
 | 8 | [3.96510+](dodinico_n08.json) | 3.965106245500 |  | 3.04019 | 0.4508 | ![](dodinico_n08.png) |
 | 9 | [4.02206+](dodinico_n09.json) | 4.022063433118 |  | 3.16192 | 0.4859 | ![](dodinico_n09.png) |

@@ -4,14 +4,14 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 
 | n | s | touching limit | closed form (conj.) | volume bound | density | picture |
 |---|---|---|---|---|---|---|
-| 2 | [2.49071+](icoincub_n02.json) | 2.490712042735 |  | 1.63409 | 0.2824 | ![](icoincub_n02.png) |
-| 3 | [2.75550+](icoincub_n03.json) | 2.755506323007 |  | 1.87056 | 0.3128 | ![](icoincub_n03.png) |
-| 4 | [2.75633+](icoincub_n04.json) | 2.756339064604 |  | 2.05882 | 0.4167 | ![](icoincub_n04.png) |
+| 2 | [2.49071+](icoincub_n02.json) | 2.490712042735 | 1 + 2√5/3 | 1.63409 | 0.2824 | ![](icoincub_n02.png) |
+| 3 | [2.75550+](icoincub_n03.json) | 2.755506323007 | -644/241 + (√(539067 - 116376√15) + 261√15)/241 | 1.87056 | 0.3128 | ![](icoincub_n03.png) |
+| 4 | [2.75633+](icoincub_n04.json) | 2.756339064604 | -5 + (√(555 - 300√3) + 10√3)/3 | 2.05882 | 0.4167 | ![](icoincub_n04.png) |
 | 5 | [3.03667+](icoincub_n05.json) | 3.036676107963 |  | 2.21779 | 0.3896 | ![](icoincub_n05.png) |
 | 6 | [3.10330+](icoincub_n06.json) | 3.103300930764 |  | 2.35676 | 0.4380 | ![](icoincub_n06.png) |
 | 7 | [3.19155+](icoincub_n07.json) | 3.191552539304 |  | 2.48102 | 0.4698 | ![](icoincub_n07.png) |
 | 8 | [3.23606+](icoincub_n08.json) | 3.236067977500 | 1 + √5 | 2.59395 | 0.5150 | ![](icoincub_n08.png) |
-| 9 | [3.36339+](icoincub_n09.json) | 3.363390100446 |  | 2.69782 | 0.5161 | ![](icoincub_n09.png) |
+| 9 | [3.36339+](icoincub_n09.json) | 3.363390100446 | 3/2 + 5√5/6 | 2.69782 | 0.5161 | ![](icoincub_n09.png) |
 | 10 | [3.70419+](icoincub_n10.json) | 3.704191990877 |  | 2.79425 | 0.4293 | ![](icoincub_n10.png) |
 | 11 | [3.82854+](icoincub_n11.json) | 3.828547132833 |  | 2.88444 | 0.4276 | ![](icoincub_n11.png) |
 | 12 | [3.87899+](icoincub_n12.json) | 3.878996489172 |  | 2.96933 | 0.4486 | ![](icoincub_n12.png) |
@@ -67,14 +67,14 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 62 | [6.47213+](icoincub_n62.json) | 6.472135955000 | 2 + 2√5 | 5.13328 | 0.4989 | ![](icoincub_n62.png) |
 | 63 | [6.47213+](icoincub_n63.json) | 6.472135955000 | 2 + 2√5 | 5.16073 | 0.5070 | ![](icoincub_n63.png) |
 | 64 | [6.47213+](icoincub_n64.json) | 6.472135955000 | 2 + 2√5 | 5.18790 | 0.5150 | ![](icoincub_n64.png) |
-| 65 | [6.72678+](icoincub_n65.json) | 6.726780200893 |  | 5.21478 | 0.4659 | ![](icoincub_n65.png) |
-| 66 | [6.72678+](icoincub_n66.json) | 6.726780200893 |  | 5.24138 | 0.4731 | ![](icoincub_n66.png) |
-| 67 | [6.72678+](icoincub_n67.json) | 6.726780200893 |  | 5.26772 | 0.4802 | ![](icoincub_n67.png) |
-| 68 | [6.72678+](icoincub_n68.json) | 6.726780200893 |  | 5.29380 | 0.4874 | ![](icoincub_n68.png) |
-| 69 | [6.72678+](icoincub_n69.json) | 6.726780200893 |  | 5.31963 | 0.4946 | ![](icoincub_n69.png) |
-| 70 | [6.72678+](icoincub_n70.json) | 6.726780200893 |  | 5.34520 | 0.5017 | ![](icoincub_n70.png) |
-| 71 | [6.72678+](icoincub_n71.json) | 6.726780200893 |  | 5.37053 | 0.5089 | ![](icoincub_n71.png) |
-| 72 | [6.72678+](icoincub_n72.json) | 6.726780200893 |  | 5.39563 | 0.5161 | ![](icoincub_n72.png) |
+| 65 | [6.72678+](icoincub_n65.json) | 6.726780200893 | 3 + 5√5/3 | 5.21478 | 0.4659 | ![](icoincub_n65.png) |
+| 66 | [6.72678+](icoincub_n66.json) | 6.726780200893 | 3 + 5√5/3 | 5.24138 | 0.4731 | ![](icoincub_n66.png) |
+| 67 | [6.72678+](icoincub_n67.json) | 6.726780200893 | 3 + 5√5/3 | 5.26772 | 0.4802 | ![](icoincub_n67.png) |
+| 68 | [6.72678+](icoincub_n68.json) | 6.726780200893 | 3 + 5√5/3 | 5.29380 | 0.4874 | ![](icoincub_n68.png) |
+| 69 | [6.72678+](icoincub_n69.json) | 6.726780200893 | 3 + 5√5/3 | 5.31963 | 0.4946 | ![](icoincub_n69.png) |
+| 70 | [6.72678+](icoincub_n70.json) | 6.726780200893 | 3 + 5√5/3 | 5.34520 | 0.5017 | ![](icoincub_n70.png) |
+| 71 | [6.72678+](icoincub_n71.json) | 6.726780200893 | 3 + 5√5/3 | 5.37053 | 0.5089 | ![](icoincub_n71.png) |
+| 72 | [6.72678+](icoincub_n72.json) | 6.726780200893 | 3 + 5√5/3 | 5.39563 | 0.5161 | ![](icoincub_n72.png) |
 | 73 | [7.40838+](icoincub_n73.json) | 7.408383981754 |  | 5.42050 | 0.3917 | ![](icoincub_n73.png) |
 | 74 | [7.40838+](icoincub_n74.json) | 7.408383981754 |  | 5.44513 | 0.3971 | ![](icoincub_n74.png) |
 | 75 | [7.40838+](icoincub_n75.json) | 7.408383981754 |  | 5.46955 | 0.4024 | ![](icoincub_n75.png) |
