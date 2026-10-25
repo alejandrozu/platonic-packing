@@ -22,6 +22,7 @@ import engine as _engine
 PID = {p: v for p, v in PID.items() if _engine.FAM[p] == 'platonic'}
 PROBLEMS = [pc for pc in PROBLEMS if _engine.FAMILY[pc] == 'platonic']
 from records import closed_form
+import closed_forms_ext
 
 CLEAR = 1e-7
 SOL = json.load(open(os.path.join(ROOT, 'src', 'solids.json')))
@@ -68,6 +69,8 @@ def build_problem(p, log):
         old = _read(fn); st = status_of(fn)
         if old and old.get('source') == src and st is not None:
             rec, (ver, cert) = old, st
+            if closed_forms_ext.apply(rec, h, b['s'], b.get('src')):           # closed form from others (25 Oct)
+                json.dump(rec, open(fn, 'w'), indent=1)
         elif time.time() > DEADLINE:                    # time budget (15 Oct: n <= 100): the next publish continues
             if old and st is not None: rec, (ver, cert) = old, st
             else: prev = None; continue
@@ -83,6 +86,8 @@ def build_problem(p, log):
                     'credit': "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping "
                               "search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
                     'search': b.get('src', {})}
+            x = closed_forms_ext.lookup(meta['record_id'], h, b['s'], b.get('src'))   # issue #99/#100 closed forms (25 Oct)
+            if x: meta['closed_form_conjecture'], meta['closed_form_source'] = x
             rec = claim.make_claim({'piece': piece, 'container': container, 'C': b['C'], 'Q': b['Q']}, GAP=CLEAR, WALL=CLEAR, meta=meta)
             if prev is not None and rec['s_full'] > prev['s_full']:
                 # monotone records: the (n+1)-record minus its last piece, same container (all clearances kept)
@@ -90,6 +95,7 @@ def build_problem(p, log):
                 rec['n'] = n; rec['pieces'] = prev['pieces'][:-1]; rec['derived_from'] = f'{p}_n{n + 1:02d} minus its last piece'
                 rec['s_tight'] = min(round(b['s'], 12), prev.get('s_tight', b['s']))
                 rec['problem'] = prev['problem']; rec['record_id'] = f'{p}_n{n:02d}'; rec['title'] = meta['title']
+                if rec.pop('closed_form_source', None): rec['closed_form_conjecture'] = cf   # bound to the archive packing, not this one
             rec['density'] = n * SOL[piece]['volume'] / (SOL[container]['volume'] * rec['s_full'] ** 3)
             rec['date'] = time.strftime('%Y-%m-%d')
             json.dump(rec, open(fn, 'w'), indent=1)

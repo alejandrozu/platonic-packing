@@ -96,6 +96,11 @@ def archive_pass():
             if cur and s >= cur['s'] - 1e-9: continue
             src = {'move': kind, 'lineage': credit, 'issue': con.get('issue') or e.get('issue'),
                    'submitted_by': con.get('submitted_by'), 'record_file': e.get('file')}
+            # a refinement of a catalogue packing keeps the original credit too (25 Oct, issue #100: the submitted
+            # found_by is the seed record's, the contribution credit is the refiner's)
+            seed = (rec.get('found_by') or '').split(' (')[0].strip()
+            if kind == 'community' and seed and con.get('credit') and seed != con['credit'].split(' (')[0].strip():
+                src['refines'] = seed
             if kind == 'literature': src.update(source=credit, url=e.get('url'))
             case['best'] = {'s': s, 'C': (C0 + t).tolist(), 'Q': Q, 'src': src, 't': time.time(), 'tightened': False}
             st = case['stats']; st['improvements'] += 1; st['since'] = 0; st['last_improve'] = time.time()

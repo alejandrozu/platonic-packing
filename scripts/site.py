@@ -106,6 +106,7 @@ def load():
         p['rows'].append({'n': r['n'], 'id': r['record_id'], 's': r['s_plus'], 'ref': ref[0] if ref else None, 'refsrc': ref[1] if ref else None,
                           'refcode': src_code(ref[1]) if ref else None, 'cmp': compare(r['s_full'], ref[0]) if ref else None,
                           'sf': r['s_full'], 'st': r.get('s_tight'), 'cf': r.get('closed_form_conjecture'),
+                          'cfby': (r.get('closed_form_source') or {}).get('name') if isinstance(r.get('closed_form_source'), dict) else None,
                           'den': round(r['density'], 4), 'vlb': round(r['volume_lower_bound'], 5),
                           'move': (r.get('search') or {}).get('move'), 'derived': r.get('derived_from'), 'who': r.get('found_by'),
                           'issue': contribution.get('issue') or src.get('issue'), 'file': os.path.relpath(f, ROOT).replace(os.sep, '/'),
