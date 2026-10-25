@@ -15,11 +15,11 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 10 | [2.14529+](cubinico_n10.json) | 2.145298123200 |  | 1.66112 | 0.4642 | ![](cubinico_n10.png) |
 | 11 | [2.19133+](cubinico_n11.json) | 2.191330717833 |  | 1.71475 | 0.4792 | ![](cubinico_n11.png) |
 | 12 | [2.23031+](cubinico_n12.json) | 2.230312382976 |  | 1.76521 | 0.4958 | ![](cubinico_n12.png) |
-| 13 | [2.27049+](cubinico_n13.json) | 2.270494698069 |  | 1.81294 | 0.5091 | ![](cubinico_n13.png) |
+| 13 | [2.26803+](cubinico_n13.json) | 2.268032923839 |  | 1.81294 | 0.5107 | ![](cubinico_n13.png) |
 | 14 | [2.38899+](cubinico_n14.json) | 2.388998296559 |  | 1.85828 | 0.4706 | ![](cubinico_n14.png) |
-| 15 | [2.44896+](cubinico_n15.json) | 2.448968714796 |  | 1.90151 | 0.4681 | ![](cubinico_n15.png) |
-| 16 | [2.50092+](cubinico_n16.json) | 2.500925459195 |  | 1.94286 | 0.4688 | ![](cubinico_n16.png) |
-| 17 | [2.55400+](cubinico_n17.json) | 2.554002331186 |  | 1.98252 | 0.4677 | ![](cubinico_n17.png) |
+| 15 | [2.44790+](cubinico_n15.json) | 2.447900384025 |  | 1.90151 | 0.4687 | ![](cubinico_n15.png) |
+| 16 | [2.49857+](cubinico_n16.json) | 2.498579090462 |  | 1.94286 | 0.4702 | ![](cubinico_n16.png) |
+| 17 | [2.55347+](cubinico_n17.json) | 2.553478099351 |  | 1.98252 | 0.4680 | ![](cubinico_n17.png) |
 | 18 | [2.59994+](cubinico_n18.json) | 2.599945092641 |  | 2.02066 | 0.4694 | ![](cubinico_n18.png) |
 | 19 | [2.64812+](cubinico_n19.json) | 2.648128477352 |  | 2.05741 | 0.4690 | ![](cubinico_n19.png) |
 | 20 | [2.70200+](cubinico_n20.json) | 2.702000856676 |  | 2.09288 | 0.4647 | ![](cubinico_n20.png) |
@@ -35,12 +35,12 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 30 | [3.03349+](cubinico_n30.json) | 3.033492215807 |  | 2.39576 | 0.4926 | ![](cubinico_n30.png) |
 | 31 | [3.05572+](cubinico_n31.json) | 3.055728109099 | 12 - 4√5 | 2.42208 | 0.4980 | ![](cubinico_n31.png) |
 | 32 | [3.05572+](cubinico_n32.json) | 3.055728109099 | 12 - 4√5 | 2.44785 | 0.5141 | ![](cubinico_n32.png) |
-| 33 | [3.32854+](cubinico_n33.json) | 3.328546488023 |  | 2.47309 | 0.4102 | ![](cubinico_n33.png) |
-| 34 | [3.32854+](cubinico_n34.json) | 3.328546488023 |  | 2.49782 | 0.4226 | ![](cubinico_n34.png) |
-| 35 | [3.32854+](cubinico_n35.json) | 3.328546488647 |  | 2.52208 | 0.4350 | ![](cubinico_n35.png) |
-| 36 | [3.32854+](cubinico_n36.json) | 3.328546489343 |  | 2.54587 | 0.4474 | ![](cubinico_n36.png) |
-| 37 | [3.32854+](cubinico_n37.json) | 3.328546489827 |  | 2.56923 | 0.4599 | ![](cubinico_n37.png) |
-| 38 | [3.32854+](cubinico_n38.json) | 3.328546490915 |  | 2.59217 | 0.4723 | ![](cubinico_n38.png) |
+| 33 | [3.32623+](cubinico_n33.json) | 3.326238674010 | -9/2 + 7√5/2 | 2.47309 | 0.4110 | ![](cubinico_n33.png) |
+| 34 | [3.32623+](cubinico_n34.json) | 3.326238674010 | -9/2 + 7√5/2 | 2.49782 | 0.4235 | ![](cubinico_n34.png) |
+| 35 | [3.32623+](cubinico_n35.json) | 3.326238674010 | -9/2 + 7√5/2 | 2.52208 | 0.4359 | ![](cubinico_n35.png) |
+| 36 | [3.32624+](cubinico_n36.json) | 3.326247224676 |  | 2.54587 | 0.4484 | ![](cubinico_n36.png) |
+| 37 | [3.32791+](cubinico_n37.json) | 3.327916085708 |  | 2.56923 | 0.4601 | ![](cubinico_n37.png) |
+| 38 | [3.32791+](cubinico_n38.json) | 3.327916088707 |  | 2.59217 | 0.4726 | ![](cubinico_n38.png) |
 | 39 | [3.32854+](cubinico_n39.json) | 3.328546491332 |  | 2.61471 | 0.4847 | ![](cubinico_n39.png) |
 | 40 | [3.32854+](cubinico_n40.json) | 3.328546496851 |  | 2.63687 | 0.4972 | ![](cubinico_n40.png) |
 | 41 | [3.32854+](cubinico_n41.json) | 3.328546509755 |  | 2.65866 | 0.5096 | ![](cubinico_n41.png) |
@@ -74,7 +74,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 69 | [3.81670+](cubinico_n69.json) | 3.816706429696 |  | 3.16241 | 0.5688 | ![](cubinico_n69.png) |
 | 70 | [3.86605+](cubinico_n70.json) | 3.866049986780 |  | 3.17762 | 0.5553 | ![](cubinico_n70.png) |
 | 71 | [3.87849+](cubinico_n71.json) | 3.878498414203 |  | 3.19268 | 0.5578 | ![](cubinico_n71.png) |
-| 72 | [3.89147+](cubinico_n72.json) | 3.891471978443 |  | 3.20759 | 0.5600 | ![](cubinico_n72.png) |
+| 72 | [3.89065+](cubinico_n72.json) | 3.890659845883 |  | 3.20759 | 0.5604 | ![](cubinico_n72.png) |
 | 73 | [3.89147+](cubinico_n73.json) | 3.891471978452 |  | 3.22238 | 0.5678 | ![](cubinico_n73.png) |
 | 74 | [3.90364+](cubinico_n74.json) | 3.903646510014 |  | 3.23702 | 0.5702 | ![](cubinico_n74.png) |
 | 75 | [3.93247+](cubinico_n75.json) | 3.932472670004 |  | 3.25154 | 0.5653 | ![](cubinico_n75.png) |
@@ -91,15 +91,15 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 86 | [4.38266+](cubinico_n86.json) | 4.382661339211 |  | 3.40331 | 0.4683 | ![](cubinico_n86.png) |
 | 87 | [4.38266+](cubinico_n87.json) | 4.382661435666 |  | 3.41645 | 0.4737 | ![](cubinico_n87.png) |
 | 88 | [4.38266+](cubinico_n88.json) | 4.382661435666 |  | 3.42949 | 0.4792 | ![](cubinico_n88.png) |
-| 89 | [4.46062+](cubinico_n89.json) | 4.460624747922 |  | 3.44243 | 0.4596 | ![](cubinico_n89.png) |
-| 90 | [4.46062+](cubinico_n90.json) | 4.460624765951 |  | 3.45528 | 0.4648 | ![](cubinico_n90.png) |
-| 91 | [4.46062+](cubinico_n91.json) | 4.460624765951 |  | 3.46803 | 0.4700 | ![](cubinico_n91.png) |
+| 89 | [4.45578+](cubinico_n89.json) | 4.455788043238 |  | 3.44243 | 0.4611 | ![](cubinico_n89.png) |
+| 90 | [4.45684+](cubinico_n90.json) | 4.456841385971 |  | 3.45528 | 0.4660 | ![](cubinico_n90.png) |
+| 91 | [4.45723+](cubinico_n91.json) | 4.457236115951 |  | 3.46803 | 0.4710 | ![](cubinico_n91.png) |
 | 92 | [4.46062+](cubinico_n92.json) | 4.460624765951 |  | 3.48068 | 0.4751 | ![](cubinico_n92.png) |
 | 93 | [4.46062+](cubinico_n93.json) | 4.460624765951 |  | 3.49325 | 0.4803 | ![](cubinico_n93.png) |
 | 94 | [4.46062+](cubinico_n94.json) | 4.460624765951 |  | 3.50573 | 0.4855 | ![](cubinico_n94.png) |
 | 95 | [4.46062+](cubinico_n95.json) | 4.460624765951 |  | 3.51811 | 0.4906 | ![](cubinico_n95.png) |
 | 96 | [4.46062+](cubinico_n96.json) | 4.460624765951 |  | 3.53041 | 0.4958 | ![](cubinico_n96.png) |
-| 97 | [4.54098+](cubinico_n97.json) | 4.540989396138 |  | 3.54263 | 0.4748 | ![](cubinico_n97.png) |
-| 98 | [4.54098+](cubinico_n98.json) | 4.540989396138 |  | 3.55476 | 0.4797 | ![](cubinico_n98.png) |
-| 99 | [4.54098+](cubinico_n99.json) | 4.540989396138 |  | 3.56681 | 0.4846 | ![](cubinico_n99.png) |
-| 100 | [4.54098+](cubinico_n100.json) | 4.540989396138 |  | 3.57878 | 0.4895 | ![](cubinico_n100.png) |
+| 97 | [4.53489+](cubinico_n97.json) | 4.534899537045 |  | 3.54263 | 0.4767 | ![](cubinico_n97.png) |
+| 98 | [4.53533+](cubinico_n98.json) | 4.535339093084 |  | 3.55476 | 0.4815 | ![](cubinico_n98.png) |
+| 99 | [4.53885+](cubinico_n99.json) | 4.538855583558 |  | 3.56681 | 0.4853 | ![](cubinico_n99.png) |
+| 100 | [4.54046+](cubinico_n100.json) | 4.540468045022 |  | 3.57878 | 0.4897 | ![](cubinico_n100.png) |

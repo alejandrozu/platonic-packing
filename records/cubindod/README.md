@@ -67,16 +67,16 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 62 | [2.47213+](cubindod_n62.json) | 2.472135955000 | -2 + 2√5 | 2.00753 | 0.5355 | ![](cubindod_n62.png) |
 | 63 | [2.47213+](cubindod_n63.json) | 2.472135955000 | -2 + 2√5 | 2.01827 | 0.5441 | ![](cubindod_n63.png) |
 | 64 | [2.47213+](cubindod_n64.json) | 2.472135955000 | -2 + 2√5 | 2.02889 | 0.5528 | ![](cubindod_n64.png) |
-| 65 | [2.77726+](cubindod_n65.json) | 2.777265819115 |  | 2.03940 | 0.3960 | ![](cubindod_n65.png) |
-| 66 | [2.77726+](cubindod_n66.json) | 2.777265819115 |  | 2.04981 | 0.4021 | ![](cubindod_n66.png) |
-| 67 | [2.77726+](cubindod_n67.json) | 2.777265819115 |  | 2.06011 | 0.4081 | ![](cubindod_n67.png) |
+| 65 | [2.77625+](cubindod_n65.json) | 2.776250729812 |  | 2.03940 | 0.3964 | ![](cubindod_n65.png) |
+| 66 | [2.77625+](cubindod_n66.json) | 2.776250737118 |  | 2.04981 | 0.4025 | ![](cubindod_n66.png) |
+| 67 | [2.77648+](cubindod_n67.json) | 2.776489109156 |  | 2.06011 | 0.4085 | ![](cubindod_n67.png) |
 | 68 | [2.77726+](cubindod_n68.json) | 2.777265819115 |  | 2.07031 | 0.4142 | ![](cubindod_n68.png) |
 | 69 | [2.77726+](cubindod_n69.json) | 2.777265819115 |  | 2.08040 | 0.4203 | ![](cubindod_n69.png) |
 | 70 | [2.77726+](cubindod_n70.json) | 2.777265819115 |  | 2.09041 | 0.4264 | ![](cubindod_n70.png) |
 | 71 | [2.77726+](cubindod_n71.json) | 2.777265819115 |  | 2.10031 | 0.4325 | ![](cubindod_n71.png) |
 | 72 | [2.77726+](cubindod_n72.json) | 2.777265819115 |  | 2.11013 | 0.4386 | ![](cubindod_n72.png) |
-| 73 | [2.84578+](cubindod_n73.json) | 2.845784371450 |  | 2.11985 | 0.4133 | ![](cubindod_n73.png) |
-| 74 | [2.84578+](cubindod_n74.json) | 2.845784371450 |  | 2.12949 | 0.4190 | ![](cubindod_n74.png) |
+| 73 | [2.84547+](cubindod_n73.json) | 2.845475962259 |  | 2.11985 | 0.4135 | ![](cubindod_n73.png) |
+| 74 | [2.84547+](cubindod_n74.json) | 2.845476089557 |  | 2.12949 | 0.4191 | ![](cubindod_n74.png) |
 | 75 | [2.84578+](cubindod_n75.json) | 2.845784371450 |  | 2.13904 | 0.4247 | ![](cubindod_n75.png) |
 | 76 | [2.84578+](cubindod_n76.json) | 2.845784371450 |  | 2.14850 | 0.4303 | ![](cubindod_n76.png) |
 | 77 | [2.84578+](cubindod_n77.json) | 2.845784371450 |  | 2.15789 | 0.4360 | ![](cubindod_n77.png) |
