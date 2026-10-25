@@ -351,7 +351,7 @@ if (typeof document !== 'undefined') (async () => {
       const tr = document.createElement('tr');
       if (!r) { tr.innerHTML = `<td class="n">${n}</td><td class="pending" colspan="${ncol}">no packing yet</td>`; tr.style.cursor = 'default'; tb.appendChild(tr); continue }
       tr.tabIndex = 0; tr.dataset.n = n;
-      tr.innerHTML = `<td class="n">${n}</td><td class="s">${r.s}</td><td class="cf">${r.cf ? fmtCF(r.cf) : ''}</td>` +
+      tr.innerHTML = `<td class="n">${n}</td><td class="s">${r.s}</td><td class="cf"${r.cfby ? ` title="Closed form by ${escapeHTML(r.cfby)}"` : ''}>${r.cf ? fmtCF(r.cf) + (r.cfby ? '<sup>†</sup>' : '') : ''}</td>` +
         (p.hasref ? `<td class="mut" title="${escapeHTML(r.refsrc || '')}">${r.ref != null ? r.ref.toFixed(5) + (r.refcode && !r.external ? ' ' + r.refcode : '') : ''}</td><td>${chip(r)}</td>` : '') +
         `<td class="mut">${r.den.toFixed(3)}</td><td class="mut">${r.vlb.toFixed(3)}</td>` +
         `<td>${r.ok ? '<span class="tick" title="Exact certificate: CERTIFIED">✓ certified</span>' : r.source_only ? `<span class="mut" title="Source linked; no coordinates or local certificate">${r.author_report ? 'author report' : 'published source'}</span>` : r.ver ? '<span class="tick" title="Floating-point check passed; exact certificate pending">✓ float-checked</span>' : '<span class="cross">pending</span>'}</td>`;
