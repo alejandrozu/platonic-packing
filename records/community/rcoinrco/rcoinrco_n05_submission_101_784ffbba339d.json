@@ -1,0 +1,113 @@
+{
+ "problem": "min/rhombicuboctahedron_in_rhombicuboctahedron",
+ "piece": "rhombicuboctahedron",
+ "container": "rhombicuboctahedron",
+ "n": 5,
+ "s_full": 2.3288863993793556,
+ "pieces": [
+  [
+   -0.6019445460032494,
+   -0.5200078232406106,
+   1.5388097306105186,
+   -0.5970460168504246,
+   0.7029256640441341,
+   -0.294795971300437,
+   0.2500537940047847
+  ],
+  [
+   1.0164428516858128,
+   1.1600095109373092,
+   0.8404773378512306,
+   0.09486329514914507,
+   -0.8762434360121613,
+   -0.37135103535655867,
+   -0.2920561668903078
+  ],
+  [
+   -1.6041076824687293,
+   0.6644431489246748,
+   -0.39810930363433666,
+   -0.6532814768477759,
+   0.6532814878832058,
+   -0.2705980485229528,
+   0.2705980519742582
+  ],
+  [
+   0.6644431634807875,
+   0.6644431638570092,
+   -1.6041076731138204,
+   0.7071067809291081,
+   3.831774698171328e-10,
+   0.707106781443987,
+   -1.0120829345473556e-10
+  ],
+  [
+   0.7679658391362512,
+   -1.4605890910234012,
+   -0.3201014874889222,
+   0.42164733037152063,
+   -0.018956776875168998,
+   0.7838054126476549,
+   0.45552524025054225
+  ]
+ ],
+ "s": 2.32888,
+ "s_plus": "2.32888+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 1.000029e-07,
+  "min_wall_gap": 1e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "PolyPack's polyhedra search (packages/polyhedra/src/search.ts as at PolyPack commit 54e3ca2) from scratch: a soft-to-rigid run of the simulator (balls hardening into the solids under pressure; ported from upstream's MIT geom.js and sim.js), then polish and hops as in the warm search; seed 1, 200,000 evaluations, clearance 1e-7",
+ "date": "2026-10-28",
+ "record_id": "rcoinrco_n05_submission_101_784ffbba339d",
+ "title": "5 rhombicuboctahedra in a rhombicuboctahedron",
+ "family": "archimedean",
+ "source": {
+  "url": "https://github.com/sinkomr/PolyPack/blob/5e62dd63bd16e06ed600a7d46307b1c9a0a30c41/data/polyhedra/configs/rcoinrco.jsonl",
+  "repository": "https://github.com/sinkomr/PolyPack",
+  "site": "https://polypack.fly.dev",
+  "commit": "5e62dd63bd16e06ed600a7d46307b1c9a0a30c41",
+  "record": "polyhedra/rcoinrco/5",
+  "index": "https://github.com/sinkomr/PolyPack/blob/5e62dd63bd16e06ed600a7d46307b1c9a0a30c41/data/polyhedra/records.json",
+  "documentation": "https://github.com/sinkomr/PolyPack/blob/5e62dd63bd16e06ed600a7d46307b1c9a0a30c41/docs/spaces/POLYHEDRA.md",
+  "author": "PolyPack (Michael Sinko using Opus 5.5)",
+  "derivation": "Fresh search from random positions; no upstream record was used.",
+  "date": "2026-10-25",
+  "lineage": {
+   "kind": "fresh search (no upstream record used)",
+   "steps": [
+    {
+     "step": "fresh search",
+     "how": "PolyPack's polyhedra search (packages/polyhedra/src/search.ts as at PolyPack commit 54e3ca2) from scratch: a soft-to-rigid run of the simulator (balls hardening into the solids under pressure; ported from upstream's MIT geom.js and sim.js), then polish and hops as in the warm search; seed 1, 200,000 evaluations, clearance 1e-7",
+     "file": "search/rcoinrco_n05_fresh.json"
+    }
+   ]
+  }
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.7099759466766968,
+ "density": 0.39584493329374737,
+ "found_by": "PolyPack (Michael Sinko using Opus 5.5)",
+ "credit": "PolyPack (Michael Sinko using Opus 5.5): https://github.com/sinkomr/PolyPack, https://polypack.fly.dev. A new arrangement. Fresh search from random positions; no upstream record was used.",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/101",
+  "submitted_by": "sinkomr",
+  "credit": "Michael Sinko using Opus 5.5",
+  "kind": "construction",
+  "replayed_on": "2026-10-28",
+  "witness_sha256": "5e7889a204b0d5a3deacee88cd82f993db0e1b87740573e9fae6f4ee705648f9",
+  "method": "669 native witnesses in 20 problems: `MANIFEST.json` (SHA-256 of every file) and `records/<problem>_nNN.json`. Each beats the current certified coordinate record (main at e0fc321, 2026-10-25) by more than 1e-12: 0.0248 % to 22.34 %, median 7.53 %. All pass `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED), unmodified from e0fc321, run as the workflow runs them (Python 3.12). Wall gaps >= 1.00e-07, pair gaps >= 1.00e-07 (verify_general.py).\n\n**Method and lineage.** The code, searches and constructions were made with Claude Opus 5.5 (Anthropic), with Michael Sinko directing. No record starts from a packing of this repository; `found_by` is the credit alone. 663 are PolyPack constructions from its compute study of 2026-10-23: cuts of a lattice packing (the densest lattice packings of octahedra, icosahedra and dodecahedra, the cubic lattice, SC/BCC/FCC box cuts) or of the FCC arrangement of tetrahedral layers, all pieces in one orientation, position and orientation optimised, lattice scaled by 1 + 2e-7 for clearance; 652 are cuts alone and 11 were searched further. 6 come from searches from random starts. 379 delete pieces from a larger packing and rescale the container to wall clearance 1e-7. Searches: PolyPack's warm search (packages/polyhedra/src/search.ts, commit 54e3ca2; seed 1, 150,000 evaluations) or the compute study's basin hopping. Each record's `method` and `source.lineage` give its steps.\n\n**Sources.** https://github.com/sinkomr/PolyPack (`data/polyhedra/`, `docs/spaces/POLYHEDRA.md`; each record links its file at commit 5e62dd6 in `source`) and https://polypack.fly.dev. PolyPack's own certifier (`python/polyhedra/certify.py`, a port of `certify_general.py`) and all its records are public there. **Permission.** PolyPack is MIT-licensed (`LICENSE`: Copyright (c) 2026 The PolyPack contributors); Michael Sinko, its owner, permits publication of these witnesses here under this repository's MIT license.\n\n**Per problem** (gain = 1 - s_full / current",
+  "archive": "https://github.com/user-attachments/files/33945420/polypack-3d-constructions-669.zip",
+  "archive_sha256": "ef12c969725a811513f749629e9ddce5fe4f5a150d2e9750196dd78ae0409376"
+ },
+ "previous_record": {
+  "s_full": 2.330956545278,
+  "found_by": "Alejandro Zarzuelo",
+  "date": "2026-10-15"
+ },
+ "case_id": "rcoinrco_n05"
+}
