@@ -1,0 +1,129 @@
+{
+ "problem": "min/prism5_l2_in_cube",
+ "piece": "prism5_l2",
+ "container": "cube",
+ "n": 5,
+ "s_full": 3.3258408417710923,
+ "pieces": [
+  [
+   0.8394395465948178,
+   0.35358614580248426,
+   0.2125704653511122,
+   0.8205163458411235,
+   -0.3472959031080186,
+   -0.16942534078713845,
+   -0.4212286027694199
+  ],
+  [
+   -0.662920320883546,
+   0.9019240110289071,
+   -0.9080941604474998,
+   0.7051429833809483,
+   0.052662823591370686,
+   -0.7051429833809483,
+   -0.05266282359137067
+  ],
+  [
+   -0.6629203208835457,
+   -0.9080941604474997,
+   -0.9019240110289071,
+   0.16232312222608647,
+   -0.6882232225018093,
+   -0.1623231222260864,
+   0.6882232225018095
+  ],
+  [
+   0.6624060689115461,
+   -0.9019240110289068,
+   0.9080941604474997,
+   0.4570777656460267,
+   -0.5395182259683504,
+   -0.45707776564602665,
+   0.5395182259683504
+  ],
+  [
+   -0.8340751835366936,
+   0.22332692705203291,
+   0.35519797768295935,
+   0.3816137712694059,
+   0.9109880283105364,
+   -0.1442863290063172,
+   0.06044168358264039
+  ]
+ ],
+ "s": 3.32584,
+ "s_plus": "3.32584+",
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap": 1.00002e-07,
+  "min_wall_gap": 1.00002e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "Search from upstream's records/pr5l2incub/pr5l2incub_n05.json (n = 5, commit cbf76f2f): PolyPack compute study of 2026-10-23 (own Python code; compression by penalty continuation with one separating plane per near pair as variables, L-BFGS; polish by trust-region sequential LP with HiGHS to pair and wall clearance 1e-7, with a dilation fallback): basin hopping from the seed packing (seed 27, 240 s); final move of the best: hop-jiggle-2 + penalty continuation + slp.",
+ "date": "2026-10-28",
+ "record_id": "pr5l2incub_n05_submission_102_b423a47c6589",
+ "title": "5 prism5 l2s in a cube",
+ "family": "prisms",
+ "source": {
+  "url": "https://github.com/sinkomr/PolyPack/blob/5e62dd63bd16e06ed600a7d46307b1c9a0a30c41/data/polyhedra/configs/pr5l2incub.jsonl",
+  "repository": "https://github.com/sinkomr/PolyPack",
+  "site": "https://polypack.fly.dev",
+  "commit": "5e62dd63bd16e06ed600a7d46307b1c9a0a30c41",
+  "record": "polyhedra/pr5l2incub/5",
+  "index": "https://github.com/sinkomr/PolyPack/blob/5e62dd63bd16e06ed600a7d46307b1c9a0a30c41/data/polyhedra/records.json",
+  "documentation": "https://github.com/sinkomr/PolyPack/blob/5e62dd63bd16e06ed600a7d46307b1c9a0a30c41/docs/spaces/POLYHEDRA.md",
+  "author": "PolyPack (Michael Sinko using Opus 5.5)",
+  "derivation": "Search started from upstream's records/pr5l2incub/pr5l2incub_n05.json at commit cbf76f2f (found_by: Alejandro Zarzuelo).",
+  "date": "2026-10-23",
+  "lineage": {
+   "kind": "search started from an upstream record",
+   "steps": [
+    {
+     "step": "seed",
+     "record": "records/pr5l2incub/pr5l2incub_n05.json",
+     "n": 5,
+     "commit": "cbf76f2f6fb33a0380b9a283c00c6e62cce22e78"
+    },
+    {
+     "step": "search",
+     "how": "basin hopping from the seed packing (seed 27, 240 s)",
+     "file": "runs/main/pr5l2incub_n05_best.json"
+    }
+   ]
+  }
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.5815645622089454,
+ "density": 0.4676754638838664,
+ "found_by": "PolyPack (Michael Sinko using Opus 5.5) (search started from the packing of Alejandro Zarzuelo)",
+ "credit": "PolyPack (Michael Sinko using Opus 5.5): https://github.com/sinkomr/PolyPack, https://polypack.fly.dev. A new arrangement found by a search started from upstream's packing records/pr5l2incub/pr5l2incub_n05.json (n = 5, s_full = 3.3933936319567, commit cbf76f2f). That packing's found_by: \"Alejandro Zarzuelo\"; its credit: \"soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction\". The seed's credit chain is kept in source_credit.",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/102",
+  "submitted_by": "sinkomr",
+  "credit": "Michael Sinko using Opus 5.5",
+  "kind": "construction",
+  "replayed_on": "2026-10-28",
+  "witness_sha256": "3f3772cea63c6277053234c80ed7ebdcf6aca40f5865f3460b9fce33111a5123",
+  "method": "322 native witnesses in 23 problems: `MANIFEST.json` (SHA-256 of every file) and `records/<problem>_nNN.json`. Each beats the current certified coordinate record (main at e0fc321, 2026-10-25) by more than 1e-12: 0.0013 % to 18.59 %, median 0.56 %. All pass `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED), unmodified from e0fc321, run as the workflow runs them (Python 3.12). Wall gaps >= 1.00e-07, pair gaps >= 8.18e-08 (verify_general.py).\n\n**Method and lineage.** The code, searches and constructions were made with Claude Opus 5.5 (Anthropic), with Michael Sinko directing. Every record comes from a search started from a packing of this repository at cbf76f2f, named in each `source_credit` with its `found_by`, `credit` and `method` verbatim; `found_by` adds \"(search started from the packing of <lineage>)\". 302 use PolyPack's warm search (packages/polyhedra/src/search.ts at 54e3ca2; seed 1, 150,000 evaluations); 20 use PolyPack's compute study of 2026-10-23 (basin hopping; cubes in a tetrahedron n = 41-44 by inserting cubes one at a time into PingYou Ltd's n = 40 packing). 27 delete pieces from a result for a larger n. Seeds by lineage: Kamp et al. 291, PingYou Ltd 22, Alejandro Zarzuelo 7, Stian 1, H. Lin 1. Each `credit` descending from Kamp et al. cites them (arXiv:2605.04850); octincub n = 21 descends from Hyra-results (Apache-2.0) via this repository's record and carries a modification notice.\n\n**Sources.** https://github.com/sinkomr/PolyPack (`data/polyhedra/`, `docs/spaces/POLYHEDRA.md`; each record links its file at commit 5e62dd6 in `source`) and https://polypack.fly.dev. PolyPack's own certifier (`python/polyhedra/certify.py`, a port of `certify_general.py`) and all its records are public there. **Permission.** PolyPack is MIT-licensed (`LICENSE`: Copyright (c) 2026 The PolyPack contributors); Michael Sinko, its owner, permits publication of these witnesses here under this repository's MIT license.\n\n**Per problem** (gain = 1 - s_full / current",
+  "archive": "https://github.com/user-attachments/files/33945468/polypack-3d-searches-322.zip",
+  "archive_sha256": "b37917ef7a856e41f35a5b37f886cedba76c803458dc839a13c27ae1aa64f79e"
+ },
+ "source_credit": {
+  "record_file": "records/pr5l2incub/pr5l2incub_n05.json",
+  "commit": "cbf76f2f6fb33a0380b9a283c00c6e62cce22e78",
+  "url": "https://github.com/alejandrozu/platonic-packing/blob/cbf76f2f6fb33a0380b9a283c00c6e62cce22e78/records/pr5l2incub/pr5l2incub_n05.json",
+  "n": 5,
+  "s_full": 3.3933936319567,
+  "found_by": "Alejandro Zarzuelo",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes"
+ },
+ "previous_record": {
+  "s_full": 3.3933936319567,
+  "found_by": "Alejandro Zarzuelo",
+  "date": "2026-10-14"
+ },
+ "case_id": "pr5l2incub_n05"
+}

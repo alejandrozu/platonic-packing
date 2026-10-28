@@ -1,0 +1,238 @@
+{
+ "problem": "min/octahedron_in_cube",
+ "piece": "octahedron",
+ "container": "cube",
+ "n": 17,
+ "s_full": 2.4806518328995675,
+ "pieces": [
+  [
+   -0.81272730526574,
+   -0.7402098243758601,
+   -0.672638521394027,
+   0.4677009798694361,
+   0.050828021929797594,
+   0.5409004445965687,
+   0.6972080139033886
+  ],
+  [
+   -0.8320686307777878,
+   -0.051675268040618345,
+   -0.13929611324638416,
+   0.4565787843154849,
+   0.053602786889823,
+   0.5504546759444119,
+   0.6968946869373956
+  ],
+  [
+   0.00884583836762923,
+   -0.7399742072156839,
+   -0.6696141301807652,
+   0.4614247439195246,
+   0.05408364849748221,
+   0.5378873297633684,
+   0.7034482107049781
+  ],
+  [
+   0.8254933433592034,
+   -0.7403344611807067,
+   0.2314236312883245,
+   0.45240313976137697,
+   0.06589507600349657,
+   0.5461424615094244,
+   0.7019384943347732
+  ],
+  [
+   0.8309584325209064,
+   -0.7403342698564176,
+   -0.6637831569545396,
+   0.45762012962954807,
+   0.05914273382612947,
+   0.5417483749595371,
+   0.7025629169135729
+  ],
+  [
+   0.7853583887361814,
+   0.006088435467465327,
+   0.6956295753853335,
+   0.47563869354725224,
+   0.01596844662682775,
+   0.5503924265127719,
+   0.6859890806349414
+  ],
+  [
+   0.828729892354319,
+   -0.001218471139672779,
+   -0.2144086569104039,
+   0.45314304289677376,
+   0.060159317519708586,
+   0.5455138448471557,
+   0.7024648633703247
+  ],
+  [
+   0.8309584148599743,
+   0.7403342701895392,
+   0.23385124806088828,
+   0.4576201589019259,
+   0.05914272023754431,
+   0.5417483925182756,
+   0.7025628854510776
+  ],
+  [
+   -0.8195158113474964,
+   0.74139180818029,
+   0.2347739232615573,
+   0.4769328278172531,
+   0.05000006390187602,
+   0.5524194178978763,
+   0.681812186814975
+  ],
+  [
+   -0.8320775257105341,
+   -0.6894207665721304,
+   0.6740734260529826,
+   0.44694852202322477,
+   0.1075262016624658,
+   0.4636595121857842,
+   0.757426558404799
+  ],
+  [
+   -0.8245817817666586,
+   0.6991620761863243,
+   -0.6689510326081874,
+   0.4510572071910188,
+   0.07558331266006874,
+   0.5027963638832836,
+   0.7335055385981195
+  ],
+  [
+   -0.1029055098520494,
+   -0.06290239311806965,
+   0.7547266473655617,
+   0.5525960158043134,
+   0.06504041259735897,
+   0.4323499269398635,
+   0.7095639003792817
+  ],
+  [
+   0.8320774720325218,
+   0.7403258163818577,
+   -0.6629755852571,
+   0.4557681280855511,
+   0.060002959280135194,
+   0.5406251507786076,
+   0.7045562466152911
+  ],
+  [
+   0.00915898848661969,
+   0.7402677499377577,
+   -0.6619760092819474,
+   0.4561812017417018,
+   0.06053413462406024,
+   0.5420713664164352,
+   0.7031308295290655
+  ],
+  [
+   0.0050512279026320986,
+   -0.0007762289521932358,
+   -0.21577685035613617,
+   0.4568949379365292,
+   0.055124131045380914,
+   0.5414438292572453,
+   0.703595711771837
+  ],
+  [
+   -0.011721050852636692,
+   -0.7378186501445542,
+   0.23469451307163475,
+   0.45325632243200487,
+   0.0561790651220117,
+   0.5367466297059169,
+   0.7094403951825484
+  ],
+  [
+   -2.9240291685725698e-05,
+   0.7382905521751071,
+   0.2664236451294223,
+   0.48159833745859343,
+   0.050289675217460666,
+   0.5511132351359084,
+   0.6795647077222845
+  ]
+ ],
+ "s": 2.48065,
+ "s_plus": "2.48065+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 1.000033e-07,
+  "min_wall_gap": 1e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "Search from upstream's records/octincub/octincub_n17.json (n = 17, commit cbf76f2f): PolyPack's polyhedra search (packages/polyhedra/src/search.ts as at PolyPack commit 54e3ca2), started from the seed packing: a polish, then hops until the budget ends (a soft hop: expand 0.5-3 %, soften, shake, re-harden; or a jiggle of one to three pieces), each followed by the separating-plane penalty polish (one plane per near pair as variables, L-BFGS for penalty weights 1e1 to 1e9) and a legalization to pair and wall clearance 1e-7; seed 1, 150,000 evaluations.",
+ "date": "2026-10-28",
+ "record_id": "octincub_n17_submission_102_96816ca91aad",
+ "title": "17 octahedra in a cube",
+ "family": "platonic",
+ "source": {
+  "url": "https://github.com/sinkomr/PolyPack/blob/5e62dd63bd16e06ed600a7d46307b1c9a0a30c41/data/polyhedra/configs/octincub.jsonl",
+  "repository": "https://github.com/sinkomr/PolyPack",
+  "site": "https://polypack.fly.dev",
+  "commit": "5e62dd63bd16e06ed600a7d46307b1c9a0a30c41",
+  "record": "polyhedra/octincub/17",
+  "index": "https://github.com/sinkomr/PolyPack/blob/5e62dd63bd16e06ed600a7d46307b1c9a0a30c41/data/polyhedra/records.json",
+  "documentation": "https://github.com/sinkomr/PolyPack/blob/5e62dd63bd16e06ed600a7d46307b1c9a0a30c41/docs/spaces/POLYHEDRA.md",
+  "author": "PolyPack (Michael Sinko using Opus 5.5)",
+  "derivation": "Search started from upstream's records/octincub/octincub_n17.json at commit cbf76f2f (found_by: Stian (their packing for n + 1 minus one piece)).",
+  "date": "2026-10-25",
+  "lineage": {
+   "kind": "search started from an upstream record",
+   "steps": [
+    {
+     "step": "seed",
+     "record": "records/octincub/octincub_n17.json",
+     "n": 17,
+     "commit": "cbf76f2f6fb33a0380b9a283c00c6e62cce22e78"
+    },
+    {
+     "step": "search",
+     "how": "PolyPack's polyhedra search (packages/polyhedra/src/search.ts as at PolyPack commit 54e3ca2), started from the seed packing: a polish, then hops until the budget ends (a soft hop: expand 0.5-3 %, soften, shake, re-harden; or a jiggle of one to three pieces), each followed by the separating-plane penalty polish (one plane per near pair as variables, L-BFGS for penalty weights 1e1 to 1e9) and a legalization to pair and wall clearance 1e-7; seed 1, 150,000 evaluations",
+     "file": "search/octincub_n17_warm.json"
+    }
+   ]
+  }
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.0011557364619312,
+ "density": 0.5249829785127851,
+ "found_by": "PolyPack (Michael Sinko using Opus 5.5) (search started from the packing of Stian)",
+ "credit": "PolyPack (Michael Sinko using Opus 5.5): https://github.com/sinkomr/PolyPack, https://polypack.fly.dev. A new arrangement found by a search started from upstream's packing records/octincub/octincub_n17.json (n = 17, s_full = 2.4809998160525, commit cbf76f2f). That packing's found_by: \"Stian (their packing for n + 1 minus one piece)\"; its credit: \"soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction\". The seed's credit chain is kept in source_credit.",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/102",
+  "submitted_by": "sinkomr",
+  "credit": "Michael Sinko using Opus 5.5",
+  "kind": "construction",
+  "replayed_on": "2026-10-28",
+  "witness_sha256": "be3fd035847e460a7cf639ae62c188411bb3fe0ea4684854ba4d2495cab8d801",
+  "method": "322 native witnesses in 23 problems: `MANIFEST.json` (SHA-256 of every file) and `records/<problem>_nNN.json`. Each beats the current certified coordinate record (main at e0fc321, 2026-10-25) by more than 1e-12: 0.0013 % to 18.59 %, median 0.56 %. All pass `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED), unmodified from e0fc321, run as the workflow runs them (Python 3.12). Wall gaps >= 1.00e-07, pair gaps >= 8.18e-08 (verify_general.py).\n\n**Method and lineage.** The code, searches and constructions were made with Claude Opus 5.5 (Anthropic), with Michael Sinko directing. Every record comes from a search started from a packing of this repository at cbf76f2f, named in each `source_credit` with its `found_by`, `credit` and `method` verbatim; `found_by` adds \"(search started from the packing of <lineage>)\". 302 use PolyPack's warm search (packages/polyhedra/src/search.ts at 54e3ca2; seed 1, 150,000 evaluations); 20 use PolyPack's compute study of 2026-10-23 (basin hopping; cubes in a tetrahedron n = 41-44 by inserting cubes one at a time into PingYou Ltd's n = 40 packing). 27 delete pieces from a result for a larger n. Seeds by lineage: Kamp et al. 291, PingYou Ltd 22, Alejandro Zarzuelo 7, Stian 1, H. Lin 1. Each `credit` descending from Kamp et al. cites them (arXiv:2605.04850); octincub n = 21 descends from Hyra-results (Apache-2.0) via this repository's record and carries a modification notice.\n\n**Sources.** https://github.com/sinkomr/PolyPack (`data/polyhedra/`, `docs/spaces/POLYHEDRA.md`; each record links its file at commit 5e62dd6 in `source`) and https://polypack.fly.dev. PolyPack's own certifier (`python/polyhedra/certify.py`, a port of `certify_general.py`) and all its records are public there. **Permission.** PolyPack is MIT-licensed (`LICENSE`: Copyright (c) 2026 The PolyPack contributors); Michael Sinko, its owner, permits publication of these witnesses here under this repository's MIT license.\n\n**Per problem** (gain = 1 - s_full / current",
+  "archive": "https://github.com/user-attachments/files/33945468/polypack-3d-searches-322.zip",
+  "archive_sha256": "b37917ef7a856e41f35a5b37f886cedba76c803458dc839a13c27ae1aa64f79e"
+ },
+ "source_credit": {
+  "record_file": "records/octincub/octincub_n17.json",
+  "commit": "cbf76f2f6fb33a0380b9a283c00c6e62cce22e78",
+  "url": "https://github.com/alejandrozu/platonic-packing/blob/cbf76f2f6fb33a0380b9a283c00c6e62cce22e78/records/octincub/octincub_n17.json",
+  "n": 17,
+  "s_full": 2.4809998160525,
+  "found_by": "Stian (their packing for n + 1 minus one piece)",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+  "lineage": "Stian"
+ },
+ "previous_record": {
+  "s_full": 2.4809998160525,
+  "found_by": "Stian (their packing for n + 1 minus one piece)",
+  "date": "2026-10-15"
+ },
+ "case_id": "octincub_n17"
+}

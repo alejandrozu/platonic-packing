@@ -1,0 +1,248 @@
+{
+ "problem": "min/cube_in_dodecahedron",
+ "piece": "cube",
+ "container": "dodecahedron",
+ "n": 18,
+ "s_full": 1.6802137030145363,
+ "pieces": [
+  [
+   0.1169182717496198,
+   -0.012585587307943492,
+   -0.08079451474945616,
+   0.3329424151566929,
+   -0.8377256083854379,
+   0.09344644944446587,
+   0.4226498720348784
+  ],
+  [
+   -0.6171487731084178,
+   1.018058711907239,
+   0.42616718651746255,
+   0.43862747151104303,
+   0.291504272824791,
+   0.774426769171272,
+   -0.3505629463472493
+  ],
+  [
+   0.6767660748912814,
+   -1.2389932348559054,
+   0.12019434244439105,
+   0.07457290014030322,
+   -0.14545006648893394,
+   -0.8816750325670553,
+   0.4426424038328356
+  ],
+  [
+   0.833390215610016,
+   -0.7107019083994022,
+   -0.9634546960069488,
+   0.3402224615454226,
+   0.2265520506326012,
+   -0.8605938624026527,
+   0.30381087704198617
+  ],
+  [
+   -0.012240335509186179,
+   0.5350134258348009,
+   1.3290489598976356,
+   0.7753742339704255,
+   -0.19080179167146577,
+   0.09593721646268993,
+   -0.594294139367978
+  ],
+  [
+   0.17791609038339937,
+   -0.4523116448927229,
+   1.3495538157600027,
+   0.12361582637143005,
+   0.294639279002259,
+   -0.6117046300444032,
+   0.7236879633666553
+  ],
+  [
+   -0.7652743588628337,
+   0.898553258110197,
+   -0.7321705591655651,
+   0.2204639867828357,
+   0.5243552771167124,
+   -0.8099358519078501,
+   -0.14300730640767367
+  ],
+  [
+   0.9820655036057143,
+   -0.49275075917697797,
+   0.7135885507592106,
+   0.37859658258551354,
+   0.868660722247443,
+   0.20960521336263818,
+   -0.24116142272412486
+  ],
+  [
+   1.3726385634003968,
+   -0.007791380801261973,
+   -0.3555909121417847,
+   0.8455312981859822,
+   0.4238501338917603,
+   0.3166918473727004,
+   -0.0716530641042727
+  ],
+  [
+   -1.3146578489742995,
+   0.2101063239654776,
+   0.44003893676159045,
+   0.43340428595277425,
+   0.014647730856240654,
+   0.1459240473665064,
+   0.8891863366576808
+  ],
+  [
+   -0.47579569867487115,
+   -0.6080199027041141,
+   -0.9594709902072287,
+   0.15132076719855903,
+   -0.15806027811969803,
+   -0.9195545098472484,
+   0.3264023243096626
+  ],
+  [
+   -0.42230438391639247,
+   -1.3279460295100503,
+   -0.2193192243879608,
+   0.6114264529426113,
+   -0.30585090344632104,
+   -0.7033037493190066,
+   0.1948762522651588
+  ],
+  [
+   0.46224378458804916,
+   1.369513646374472,
+   0.001539397761984504,
+   0.34837953866508636,
+   0.2973974645369831,
+   0.8785347196293584,
+   -0.1355108539277959
+  ],
+  [
+   0.8411157736675524,
+   0.7571374396327644,
+   0.8470239308415507,
+   0.7332146777103403,
+   -0.44356359923372174,
+   -0.26908618295618103,
+   -0.43959094163440254
+  ],
+  [
+   -1.2990932604010745,
+   0.03810653004205176,
+   -0.6042015069984223,
+   0.7232842198512954,
+   -0.1997781328716203,
+   -0.6580896871218985,
+   -0.06218198006041568
+  ],
+  [
+   -0.9029183297336485,
+   -0.8189921180190464,
+   0.8595642637643885,
+   0.9816300842381962,
+   -0.0904725506716068,
+   -0.09864769553494059,
+   0.13596222806033745
+  ],
+  [
+   0.9051981098474385,
+   0.735559728941771,
+   -0.9562699496218133,
+   0.27766887460007117,
+   -0.2586807295134828,
+   0.915058976512526,
+   -0.13656992992804345
+  ],
+  [
+   -0.000545940644682,
+   0.4151488295400425,
+   -1.369358379024312,
+   0.30052581497527336,
+   -0.875016049909069,
+   -0.3569831314305651,
+   -0.128818441261356
+  ]
+ ],
+ "s": 1.68021,
+ "s_plus": "1.68021+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 1.000027e-07,
+  "min_wall_gap": 1e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "Search from upstream's records/cubindod/cubindod_n18.json (n = 18, commit cbf76f2f): PolyPack's polyhedra search (packages/polyhedra/src/search.ts as at PolyPack commit 54e3ca2), started from the seed packing: a polish, then hops until the budget ends (a soft hop: expand 0.5-3 %, soften, shake, re-harden; or a jiggle of one to three pieces), each followed by the separating-plane penalty polish (one plane per near pair as variables, L-BFGS for penalty weights 1e1 to 1e9) and a legalization to pair and wall clearance 1e-7; seed 1, 150,000 evaluations.",
+ "date": "2026-10-28",
+ "record_id": "cubindod_n18_submission_102_0086b176c4c0",
+ "title": "18 cubes in a dodecahedron",
+ "family": "platonic",
+ "source": {
+  "url": "https://github.com/sinkomr/PolyPack/blob/5e62dd63bd16e06ed600a7d46307b1c9a0a30c41/data/polyhedra/configs/cubindod.jsonl",
+  "repository": "https://github.com/sinkomr/PolyPack",
+  "site": "https://polypack.fly.dev",
+  "commit": "5e62dd63bd16e06ed600a7d46307b1c9a0a30c41",
+  "record": "polyhedra/cubindod/18",
+  "index": "https://github.com/sinkomr/PolyPack/blob/5e62dd63bd16e06ed600a7d46307b1c9a0a30c41/data/polyhedra/records.json",
+  "documentation": "https://github.com/sinkomr/PolyPack/blob/5e62dd63bd16e06ed600a7d46307b1c9a0a30c41/docs/spaces/POLYHEDRA.md",
+  "author": "PolyPack (Michael Sinko using Opus 5.5)",
+  "derivation": "Search started from upstream's records/cubindod/cubindod_n18.json at commit cbf76f2f (found_by: Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)).",
+  "date": "2026-10-25",
+  "lineage": {
+   "kind": "search started from an upstream record",
+   "steps": [
+    {
+     "step": "seed",
+     "record": "records/cubindod/cubindod_n18.json",
+     "n": 18,
+     "commit": "cbf76f2f6fb33a0380b9a283c00c6e62cce22e78"
+    },
+    {
+     "step": "search",
+     "how": "PolyPack's polyhedra search (packages/polyhedra/src/search.ts as at PolyPack commit 54e3ca2), started from the seed packing: a polish, then hops until the budget ends (a soft hop: expand 0.5-3 %, soften, shake, re-harden; or a jiggle of one to three pieces), each followed by the separating-plane penalty polish (one plane per near pair as variables, L-BFGS for penalty weights 1e1 to 1e9) and a legalization to pair and wall clearance 1e-7; seed 1, 150,000 evaluations",
+     "file": "search/cubindod_n18_warm.json"
+    }
+   ]
+  }
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.3292978812421148,
+ "density": 0.4951917159230786,
+ "found_by": "PolyPack (Michael Sinko using Opus 5.5) (search started from the packing of Berthold, Kamp, Mexi, Pokutta and P\u00f3lik)",
+ "credit": "PolyPack (Michael Sinko using Opus 5.5): https://github.com/sinkomr/PolyPack, https://polypack.fly.dev. A new arrangement found by a search started from upstream's packing records/cubindod/cubindod_n18.json (n = 18, s_full = 1.6893887040939, commit cbf76f2f). That packing's found_by: \"Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)\"; its credit: \"soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction\". The seed's credit chain is kept in source_credit. Kamp et al.: T. Berthold, D. Kamp, G. Mexi, S. Pokutta and I. P\u00f3lik, Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions, arXiv:2605.04850 (2026), supplement https://github.com/DominikKamp/Packing at 27f71632.",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/102",
+  "submitted_by": "sinkomr",
+  "credit": "Michael Sinko using Opus 5.5",
+  "kind": "construction",
+  "replayed_on": "2026-10-28",
+  "witness_sha256": "847a6ad5d2d542d8065cd1fe2f3af751175803e20e371cd022782609776939bc",
+  "method": "322 native witnesses in 23 problems: `MANIFEST.json` (SHA-256 of every file) and `records/<problem>_nNN.json`. Each beats the current certified coordinate record (main at e0fc321, 2026-10-25) by more than 1e-12: 0.0013 % to 18.59 %, median 0.56 %. All pass `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED), unmodified from e0fc321, run as the workflow runs them (Python 3.12). Wall gaps >= 1.00e-07, pair gaps >= 8.18e-08 (verify_general.py).\n\n**Method and lineage.** The code, searches and constructions were made with Claude Opus 5.5 (Anthropic), with Michael Sinko directing. Every record comes from a search started from a packing of this repository at cbf76f2f, named in each `source_credit` with its `found_by`, `credit` and `method` verbatim; `found_by` adds \"(search started from the packing of <lineage>)\". 302 use PolyPack's warm search (packages/polyhedra/src/search.ts at 54e3ca2; seed 1, 150,000 evaluations); 20 use PolyPack's compute study of 2026-10-23 (basin hopping; cubes in a tetrahedron n = 41-44 by inserting cubes one at a time into PingYou Ltd's n = 40 packing). 27 delete pieces from a result for a larger n. Seeds by lineage: Kamp et al. 291, PingYou Ltd 22, Alejandro Zarzuelo 7, Stian 1, H. Lin 1. Each `credit` descending from Kamp et al. cites them (arXiv:2605.04850); octincub n = 21 descends from Hyra-results (Apache-2.0) via this repository's record and carries a modification notice.\n\n**Sources.** https://github.com/sinkomr/PolyPack (`data/polyhedra/`, `docs/spaces/POLYHEDRA.md`; each record links its file at commit 5e62dd6 in `source`) and https://polypack.fly.dev. PolyPack's own certifier (`python/polyhedra/certify.py`, a port of `certify_general.py`) and all its records are public there. **Permission.** PolyPack is MIT-licensed (`LICENSE`: Copyright (c) 2026 The PolyPack contributors); Michael Sinko, its owner, permits publication of these witnesses here under this repository's MIT license.\n\n**Per problem** (gain = 1 - s_full / current",
+  "archive": "https://github.com/user-attachments/files/33945468/polypack-3d-searches-322.zip",
+  "archive_sha256": "b37917ef7a856e41f35a5b37f886cedba76c803458dc839a13c27ae1aa64f79e"
+ },
+ "source_credit": {
+  "record_file": "records/cubindod/cubindod_n18.json",
+  "commit": "cbf76f2f6fb33a0380b9a283c00c6e62cce22e78",
+  "url": "https://github.com/alejandrozu/platonic-packing/blob/cbf76f2f6fb33a0380b9a283c00c6e62cce22e78/records/cubindod/cubindod_n18.json",
+  "n": 18,
+  "s_full": 1.6893887040939,
+  "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "source_url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l5/m3/n18/platonic_n18_m3_l5.html"
+ },
+ "previous_record": {
+  "s_full": 1.6893887040939,
+  "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+  "date": "2026-10-13"
+ },
+ "case_id": "cubindod_n18"
+}

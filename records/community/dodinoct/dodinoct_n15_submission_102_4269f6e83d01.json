@@ -1,0 +1,221 @@
+{
+ "problem": "min/dodecahedron_in_octahedron",
+ "piece": "dodecahedron",
+ "container": "octahedron",
+ "n": 15,
+ "s_full": 7.948019820110957,
+ "pieces": [
+  [
+   0.024891960740518675,
+   0.9395147598762572,
+   2.3315294368794603,
+   0.3074630989378486,
+   0.11351146577904914,
+   0.9326780962180077,
+   -0.1506424865812409
+  ],
+  [
+   0.02248611645306088,
+   -1.7277569112997717,
+   -1.6338654031758308,
+   0.4768538877675343,
+   0.48644148272032484,
+   0.10535560159691051,
+   0.7244896485264596
+  ],
+  [
+   -3.4354765238298253,
+   0.16558351516721953,
+   0.06463947453457532,
+   0.26471949272184103,
+   0.4945189529720589,
+   -0.3154678143518581,
+   -0.7654114275555148
+  ],
+  [
+   1.5596363922869068,
+   -1.5451092777819244,
+   0.24964762808127122,
+   0.5912458883295726,
+   -0.02353449588310831,
+   0.15094034593989314,
+   -0.7918910524841456
+  ],
+  [
+   -1.4149107541005805,
+   1.380018374171369,
+   0.38779532194792854,
+   0.20496284623254643,
+   -0.8276828933942885,
+   -0.2295760114386034,
+   0.4692825530729377
+  ],
+  [
+   -0.0216730916535012,
+   3.332657034756014,
+   4.915330706862823e-07,
+   -0.003920320199628838,
+   -0.6059644689667512,
+   -0.44665051342064555,
+   0.6582514810469092
+  ],
+  [
+   1.3531668525432963,
+   1.3481408449547505,
+   0.28887932490104185,
+   0.3786081621471647,
+   0.13258041624108602,
+   -0.3256929715446273,
+   0.8561555822812331
+  ],
+  [
+   -1.6787213534745755,
+   0.0016013086445604006,
+   -1.6555559853571458,
+   0.5012346076249448,
+   0.40288970382305245,
+   -0.4093772439848425,
+   0.6471893283883903
+  ],
+  [
+   -0.054659937725405415,
+   -3.439272760361341,
+   0.1584657219017435,
+   0.12536964824760274,
+   -0.24213321754792186,
+   -0.1820125643755313,
+   -0.9447356152213201
+  ],
+  [
+   0.025460928304026152,
+   -0.08633693392933596,
+   -3.3932952971671217,
+   0.43681916636486806,
+   -0.46140168990688124,
+   0.7330795750177457,
+   -0.24267639592506215
+  ],
+  [
+   0.0970109825408417,
+   -1.329442627782389,
+   2.2649780099255015,
+   0.1533087885781645,
+   0.9472339173218319,
+   -0.09622421780460759,
+   0.2645472001887825
+  ],
+  [
+   -0.11052753414852745,
+   1.6383302809041087,
+   -1.4781561875410034,
+   -0.08471865578136707,
+   0.3196089420675085,
+   0.4993336044234827,
+   0.8008363284757624
+  ],
+  [
+   3.430301504914183,
+   0.08899029690115845,
+   0.12869464916238002,
+   0.7015108899479784,
+   -0.13275436623325235,
+   -0.3704515440277559,
+   -0.5941585672679094
+  ],
+  [
+   -1.6964201269031525,
+   -1.5051254794670688,
+   0.4898860138650702,
+   0.08417413632074809,
+   -0.28706484576600894,
+   -0.12359988385653821,
+   -0.94616677061216
+  ],
+  [
+   1.7251609200247888,
+   0.021632619880226335,
+   -1.6062131808112712,
+   0.7462337186712767,
+   -0.20229397984015943,
+   -0.0041311624560518255,
+   0.6341887071962325
+  ]
+ ],
+ "s": 7.94801,
+ "s_plus": "7.94801+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 1.000174e-07,
+  "min_wall_gap": 1e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "Search from upstream's records/dodinoct/dodinoct_n15.json (n = 15, commit cbf76f2f): PolyPack's polyhedra search (packages/polyhedra/src/search.ts as at PolyPack commit 54e3ca2), started from the seed packing: a polish, then hops until the budget ends (a soft hop: expand 0.5-3 %, soften, shake, re-harden; or a jiggle of one to three pieces), each followed by the separating-plane penalty polish (one plane per near pair as variables, L-BFGS for penalty weights 1e1 to 1e9) and a legalization to pair and wall clearance 1e-7; seed 1, 150,000 evaluations.",
+ "date": "2026-10-28",
+ "record_id": "dodinoct_n15_submission_102_4269f6e83d01",
+ "title": "15 dodecahedra in an octahedron",
+ "family": "platonic",
+ "source": {
+  "url": "https://github.com/sinkomr/PolyPack/blob/5e62dd63bd16e06ed600a7d46307b1c9a0a30c41/data/polyhedra/configs/dodinoct.jsonl",
+  "repository": "https://github.com/sinkomr/PolyPack",
+  "site": "https://polypack.fly.dev",
+  "commit": "5e62dd63bd16e06ed600a7d46307b1c9a0a30c41",
+  "record": "polyhedra/dodinoct/15",
+  "index": "https://github.com/sinkomr/PolyPack/blob/5e62dd63bd16e06ed600a7d46307b1c9a0a30c41/data/polyhedra/records.json",
+  "documentation": "https://github.com/sinkomr/PolyPack/blob/5e62dd63bd16e06ed600a7d46307b1c9a0a30c41/docs/spaces/POLYHEDRA.md",
+  "author": "PolyPack (Michael Sinko using Opus 5.5)",
+  "derivation": "Search started from upstream's records/dodinoct/dodinoct_n15.json at commit cbf76f2f (found_by: Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)).",
+  "date": "2026-10-25",
+  "lineage": {
+   "kind": "search started from an upstream record",
+   "steps": [
+    {
+     "step": "seed",
+     "record": "records/dodinoct/dodinoct_n15.json",
+     "n": 15,
+     "commit": "cbf76f2f6fb33a0380b9a283c00c6e62cce22e78"
+    },
+    {
+     "step": "search",
+     "how": "PolyPack's polyhedra search (packages/polyhedra/src/search.ts as at PolyPack commit 54e3ca2), started from the seed packing: a polish, then hops until the budget ends (a soft hop: expand 0.5-3 %, soften, shake, re-harden; or a jiggle of one to three pieces), each followed by the separating-plane penalty polish (one plane per near pair as variables, L-BFGS for penalty weights 1e1 to 1e9) and a legalization to pair and wall clearance 1e-7; seed 1, 150,000 evaluations",
+     "file": "search/dodinoct_n15_warm.json"
+    }
+   ]
+  }
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 6.247424664361039,
+ "density": 0.48565320495628383,
+ "found_by": "PolyPack (Michael Sinko using Opus 5.5) (search started from the packing of Berthold, Kamp, Mexi, Pokutta and P\u00f3lik)",
+ "credit": "PolyPack (Michael Sinko using Opus 5.5): https://github.com/sinkomr/PolyPack, https://polypack.fly.dev. A new arrangement found by a search started from upstream's packing records/dodinoct/dodinoct_n15.json (n = 15, s_full = 7.9789057477263, commit cbf76f2f). That packing's found_by: \"Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)\"; its credit: \"soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction\". The seed's credit chain is kept in source_credit. Kamp et al.: T. Berthold, D. Kamp, G. Mexi, S. Pokutta and I. P\u00f3lik, Out-of-the-Box Global Optimization for Packing Problems: New Models and Improved Solutions, arXiv:2605.04850 (2026), supplement https://github.com/DominikKamp/Packing at 27f71632.",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/102",
+  "submitted_by": "sinkomr",
+  "credit": "Michael Sinko using Opus 5.5",
+  "kind": "construction",
+  "replayed_on": "2026-10-28",
+  "witness_sha256": "c6d9d1f50ebd56727afc5b71e994b0f2b329b6dfa8f4ae3ff37f9add51ec5793",
+  "method": "322 native witnesses in 23 problems: `MANIFEST.json` (SHA-256 of every file) and `records/<problem>_nNN.json`. Each beats the current certified coordinate record (main at e0fc321, 2026-10-25) by more than 1e-12: 0.0013 % to 18.59 %, median 0.56 %. All pass `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED), unmodified from e0fc321, run as the workflow runs them (Python 3.12). Wall gaps >= 1.00e-07, pair gaps >= 8.18e-08 (verify_general.py).\n\n**Method and lineage.** The code, searches and constructions were made with Claude Opus 5.5 (Anthropic), with Michael Sinko directing. Every record comes from a search started from a packing of this repository at cbf76f2f, named in each `source_credit` with its `found_by`, `credit` and `method` verbatim; `found_by` adds \"(search started from the packing of <lineage>)\". 302 use PolyPack's warm search (packages/polyhedra/src/search.ts at 54e3ca2; seed 1, 150,000 evaluations); 20 use PolyPack's compute study of 2026-10-23 (basin hopping; cubes in a tetrahedron n = 41-44 by inserting cubes one at a time into PingYou Ltd's n = 40 packing). 27 delete pieces from a result for a larger n. Seeds by lineage: Kamp et al. 291, PingYou Ltd 22, Alejandro Zarzuelo 7, Stian 1, H. Lin 1. Each `credit` descending from Kamp et al. cites them (arXiv:2605.04850); octincub n = 21 descends from Hyra-results (Apache-2.0) via this repository's record and carries a modification notice.\n\n**Sources.** https://github.com/sinkomr/PolyPack (`data/polyhedra/`, `docs/spaces/POLYHEDRA.md`; each record links its file at commit 5e62dd6 in `source`) and https://polypack.fly.dev. PolyPack's own certifier (`python/polyhedra/certify.py`, a port of `certify_general.py`) and all its records are public there. **Permission.** PolyPack is MIT-licensed (`LICENSE`: Copyright (c) 2026 The PolyPack contributors); Michael Sinko, its owner, permits publication of these witnesses here under this repository's MIT license.\n\n**Per problem** (gain = 1 - s_full / current",
+  "archive": "https://github.com/user-attachments/files/33945468/polypack-3d-searches-322.zip",
+  "archive_sha256": "b37917ef7a856e41f35a5b37f886cedba76c803458dc839a13c27ae1aa64f79e"
+ },
+ "source_credit": {
+  "record_file": "records/dodinoct/dodinoct_n15.json",
+  "commit": "cbf76f2f6fb33a0380b9a283c00c6e62cce22e78",
+  "url": "https://github.com/alejandrozu/platonic-packing/blob/cbf76f2f6fb33a0380b9a283c00c6e62cce22e78/records/dodinoct/dodinoct_n15.json",
+  "n": 15,
+  "s_full": 7.9789057477263,
+  "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+  "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "source_url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l2/m5/n15/platonic_n15_m5_l2.html"
+ },
+ "previous_record": {
+  "s_full": 7.9789057477263,
+  "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+  "date": "2026-10-13"
+ },
+ "case_id": "dodinoct_n15"
+}
