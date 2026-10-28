@@ -30,7 +30,8 @@ def credit_of(bs, default='Alejandro Zarzuelo'):
     lin = bs.get('lineage')
     if bs.get('move') == 'community':
         return (f"{lin} (community contribution" + (f", {bs['issue']}" if bs.get('issue') else '')
-                + (f"; refinement of the packing by {bs['refines']}" if bs.get('refines') else '') + ')')
+                + (f"; refinement of the packing by {bs['refines']}" if bs.get('refines') else '')
+                + (f"; search started from the packing of {bs['started_from']}" if bs.get('started_from') else '') + ')')
     if bs.get('move') == 'literature':
         return f"{bs.get('source')} (published packing, imported as a starting point; not improved yet)"
     if bs.get('move') == 'tighten' and lin:
