@@ -23,8 +23,8 @@ Smallest container found for n unit-edge pieces; entry = s = container edge / pi
 | 16 | [3.03538+](tetintet/tetintet_n16.json) | [2.99465+](octinoct/octinoct_n16.json) | [3.12130+](icoinico/icoinico_n16.json) | [3.10210+](dodindod/dodindod_n16.json) | [3.00000+](cubincub/cubincub_n16.json) | 3.00000 T |
 | 17 | [3.08936+](tetintet/tetintet_n17.json) | [3.00000+](octinoct/octinoct_n17.json) | [3.19692+](icoinico/icoinico_n17.json) | [3.16774+](dodindod/dodindod_n17.json) ≈ 6/5 + 22√(5)/25 | [3.00000+](cubincub/cubincub_n17.json) | 3.00000 T |
 | 18 | [3.11466+](tetintet/tetintet_n18.json) ≈ 251704511789/6577993305 - 6027514273√654/4385328870 | [3.00000+](octinoct/octinoct_n18.json) | [3.19821+](icoinico/icoinico_n18.json) ≈ (24 + 5√5)/11 | [3.21549+](dodindod/dodindod_n18.json) ≈ (53 + 18√5)/29 | [3.00000+](cubincub/cubincub_n18.json) | 3.00000 T |
-| 19 | [3.18726+](tetintet/tetintet_n19.json) | [3.00000+](octinoct/octinoct_n19.json) | [3.31147+](icoinico/icoinico_n19.json) | [3.29218+](dodindod/dodindod_n19.json) | [3.00000+](cubincub/cubincub_n19.json) | 3.00000 T |
-| 20 | [3.24580+](tetintet/tetintet_n20.json) | [3.16653+](octinoct/octinoct_n20.json) | [3.35370+](icoinico/icoinico_n20.json) | [3.34969+](dodindod/dodindod_n20.json) | [3.00000+](cubincub/cubincub_n20.json) | 3.00000 T |
+| 19 | [3.18717+](tetintet/tetintet_n19.json) | [3.00000+](octinoct/octinoct_n19.json) | [3.31147+](icoinico/icoinico_n19.json) | [3.29218+](dodindod/dodindod_n19.json) | [3.00000+](cubincub/cubincub_n19.json) | 3.00000 T |
+| 20 | [3.24321+](tetintet/tetintet_n20.json) | [3.16653+](octinoct/octinoct_n20.json) | [3.35370+](icoinico/icoinico_n20.json) | [3.34969+](dodindod/dodindod_n20.json) | [3.00000+](cubincub/cubincub_n20.json) | 3.00000 T |
 | 21 | [3.29827+](tetintet/tetintet_n21.json) | [3.20000+](octinoct/octinoct_n21.json) ≈ 16/5 | [3.40705+](icoinico/icoinico_n21.json) | [3.39148+](dodindod/dodindod_n21.json) ≈ -6 + 21√(5)/5 | [3.00000+](cubincub/cubincub_n21.json) | 3.00000 T |
 | 22 | [3.34340+](tetintet/tetintet_n22.json) | [3.25000+](octinoct/octinoct_n22.json) ≈ 13/4 | [3.47954+](icoinico/icoinico_n22.json) | [3.44428+](dodindod/dodindod_n22.json) | [3.00000+](cubincub/cubincub_n22.json) | 3.00000 T |
 | 23 | [3.38259+](tetintet/tetintet_n23.json) | [3.25000+](octinoct/octinoct_n23.json) ≈ 13/4 | [3.55296+](icoinico/icoinico_n23.json) | [3.53935+](dodindod/dodindod_n23.json) | [3.00000+](cubincub/cubincub_n23.json) | 3.00000 T |
@@ -46,8 +46,8 @@ Smallest container found for n unit-edge pieces; entry = s = container edge / pi
 | 39 | [4.04630+](tetintet/tetintet_n39.json) | [3.92959+](octinoct/octinoct_n39.json) | [4.06965+](icoinico/icoinico_n39.json) | [4.14221+](dodindod/dodindod_n39.json) | [4.00000+](cubincub/cubincub_n39.json) |  |
 | 40 | [4.05505+](tetintet/tetintet_n40.json) | [3.95554+](octinoct/octinoct_n40.json) | [4.10751+](icoinico/icoinico_n40.json) | [4.17626+](dodindod/dodindod_n40.json) | [4.00000+](cubincub/cubincub_n40.json) |  |
 | 41 | [4.09742+](tetintet/tetintet_n41.json) | [3.98275+](octinoct/octinoct_n41.json) | [4.14147+](icoinico/icoinico_n41.json) | [4.21500+](dodindod/dodindod_n41.json) | [4.00000+](cubincub/cubincub_n41.json) |  |
-| 42 | [4.12200+](tetintet/tetintet_n42.json) | [3.99013+](octinoct/octinoct_n42.json) | [4.17091+](icoinico/icoinico_n42.json) | [4.25406+](dodindod/dodindod_n42.json) | [4.00000+](cubincub/cubincub_n42.json) |  |
-| 43 | [4.19284+](tetintet/tetintet_n43.json) | [3.99416+](octinoct/octinoct_n43.json) | [4.22140+](icoinico/icoinico_n43.json) | [4.28531+](dodindod/dodindod_n43.json) | [4.00000+](cubincub/cubincub_n43.json) |  |
+| 42 | [4.12200+](tetintet/tetintet_n42.json) | [3.99013+](octinoct/octinoct_n42.json) | [4.17091+](icoinico/icoinico_n42.json) | [4.23606+](dodindod/dodindod_n42.json) | [4.00000+](cubincub/cubincub_n42.json) |  |
+| 43 | [4.19284+](tetintet/tetintet_n43.json) | [3.99416+](octinoct/octinoct_n43.json) | [4.22140+](icoinico/icoinico_n43.json) | [4.25142+](dodindod/dodindod_n43.json) | [4.00000+](cubincub/cubincub_n43.json) |  |
 | 44 | [4.23487+](tetintet/tetintet_n44.json) | [3.99517+](octinoct/octinoct_n44.json) | [4.22140+](icoinico/icoinico_n44.json) | [4.30787+](dodindod/dodindod_n44.json) | [4.00000+](cubincub/cubincub_n44.json) |  |
 | 45 | [4.25826+](tetintet/tetintet_n45.json) | [4.06338+](octinoct/octinoct_n45.json) | [4.22518+](icoinico/icoinico_n45.json) | [4.31862+](dodindod/dodindod_n45.json) | [4.00000+](cubincub/cubincub_n45.json) |  |
 | 46 | [4.31075+](tetintet/tetintet_n46.json) | [4.08154+](octinoct/octinoct_n46.json) | [4.22914+](icoinico/icoinico_n46.json) | [4.35530+](dodindod/dodindod_n46.json) | [4.00000+](cubincub/cubincub_n46.json) |  |
@@ -71,40 +71,40 @@ Smallest container found for n unit-edge pieces; entry = s = container edge / pi
 | 64 | [4.85880+](tetintet/tetintet_n64.json) | [4.61159+](octinoct/octinoct_n64.json) | [4.83945+](icoinico/icoinico_n64.json) | [4.84683+](dodindod/dodindod_n64.json) | [4.00000+](cubincub/cubincub_n64.json) |  |
 | 65 | [4.85880+](tetintet/tetintet_n65.json) | [4.61159+](octinoct/octinoct_n65.json) | [4.87102+](icoinico/icoinico_n65.json) | [4.85833+](dodindod/dodindod_n65.json) | [4.63467+](cubincub/cubincub_n65.json) |  |
 | 66 | [4.86501+](tetintet/tetintet_n66.json) | [4.66611+](octinoct/octinoct_n66.json) | [4.90649+](icoinico/icoinico_n66.json) | [4.90388+](dodindod/dodindod_n66.json) | [4.67553+](cubincub/cubincub_n66.json) |  |
-| 67 | [4.93461+](tetintet/tetintet_n67.json) | [4.73832+](octinoct/octinoct_n67.json) | [4.92443+](icoinico/icoinico_n67.json) | [6.10140+](dodindod/dodindod_n67.json) | [4.67553+](cubincub/cubincub_n67.json) |  |
-| 68 | [4.95487+](tetintet/tetintet_n68.json) | [4.77435+](octinoct/octinoct_n68.json) | [4.96011+](icoinico/icoinico_n68.json) | [6.10140+](dodindod/dodindod_n68.json) | [4.67553+](cubincub/cubincub_n68.json) |  |
-| 69 | [4.98496+](tetintet/tetintet_n69.json) | [4.77435+](octinoct/octinoct_n69.json) | [4.96011+](icoinico/icoinico_n69.json) | [6.10140+](dodindod/dodindod_n69.json) | [4.70710+](cubincub/cubincub_n69.json) ≈ √2/2 + 4 |  |
-| 70 | [4.98869+](tetintet/tetintet_n70.json) | [4.80724+](octinoct/octinoct_n70.json) | [4.98426+](icoinico/icoinico_n70.json) | [6.10140+](dodindod/dodindod_n70.json) | [4.70710+](cubincub/cubincub_n70.json) ≈ √2/2 + 4 |  |
-| 71 | [5.08544+](tetintet/tetintet_n71.json) | [4.82657+](octinoct/octinoct_n71.json) | [5.02112+](icoinico/icoinico_n71.json) | [6.10140+](dodindod/dodindod_n71.json) | [4.70710+](cubincub/cubincub_n71.json) ≈ √2/2 + 4 |  |
-| 72 | [5.97332+](tetintet/tetintet_n72.json) | [4.84710+](octinoct/octinoct_n72.json) | [5.04048+](icoinico/icoinico_n72.json) | [6.10140+](dodindod/dodindod_n72.json) | [4.70710+](cubincub/cubincub_n72.json) ≈ √2/2 + 4 |  |
-| 73 | [5.97363+](tetintet/tetintet_n73.json) | [4.86683+](octinoct/octinoct_n73.json) | [5.04048+](icoinico/icoinico_n73.json) | [6.10140+](dodindod/dodindod_n73.json) | [4.70710+](cubincub/cubincub_n73.json) ≈ √2/2 + 4 |  |
-| 74 | [5.97656+](tetintet/tetintet_n74.json) | [4.91966+](octinoct/octinoct_n74.json) | [5.05825+](icoinico/icoinico_n74.json) | [6.10140+](dodindod/dodindod_n74.json) | [4.81105+](cubincub/cubincub_n74.json) |  |
-| 75 | [5.97656+](tetintet/tetintet_n75.json) | [4.92545+](octinoct/octinoct_n75.json) | [5.08453+](icoinico/icoinico_n75.json) | [6.10140+](dodindod/dodindod_n75.json) | [4.82287+](cubincub/cubincub_n75.json) |  |
-| 76 | [6.06484+](tetintet/tetintet_n76.json) | [4.93042+](octinoct/octinoct_n76.json) | [5.10751+](icoinico/icoinico_n76.json) | [6.10140+](dodindod/dodindod_n76.json) | [4.84057+](cubincub/cubincub_n76.json) |  |
-| 77 | [6.06484+](tetintet/tetintet_n77.json) | [4.93383+](octinoct/octinoct_n77.json) | [5.14367+](icoinico/icoinico_n77.json) | [6.10140+](dodindod/dodindod_n77.json) | [4.85049+](cubincub/cubincub_n77.json) |  |
-| 78 | [6.06495+](tetintet/tetintet_n78.json) | [4.94141+](octinoct/octinoct_n78.json) | [5.15850+](icoinico/icoinico_n78.json) | [6.10140+](dodindod/dodindod_n78.json) | [4.85875+](cubincub/cubincub_n78.json) |  |
-| 79 | [6.06857+](tetintet/tetintet_n79.json) | [4.94214+](octinoct/octinoct_n79.json) | [5.17574+](icoinico/icoinico_n79.json) | [6.56901+](dodindod/dodindod_n79.json) | [4.88561+](cubincub/cubincub_n79.json) ≈ 4√2/3 + 3 |  |
-| 80 | [6.07076+](tetintet/tetintet_n80.json) | [4.95092+](octinoct/octinoct_n80.json) | [5.18775+](icoinico/icoinico_n80.json) | [6.56901+](dodindod/dodindod_n80.json) | [4.89442+](cubincub/cubincub_n80.json) |  |
-| 81 | [6.16218+](tetintet/tetintet_n81.json) | [4.95092+](octinoct/octinoct_n81.json) | [5.19485+](icoinico/icoinico_n81.json) | [6.56901+](dodindod/dodindod_n81.json) | [4.92144+](cubincub/cubincub_n81.json) |  |
-| 82 | [6.16218+](tetintet/tetintet_n82.json) | [4.95092+](octinoct/octinoct_n82.json) | [5.19485+](icoinico/icoinico_n82.json) | [6.56901+](dodindod/dodindod_n82.json) | [5.00000+](cubincub/cubincub_n82.json) ≈ 5 |  |
-| 83 | [6.16218+](tetintet/tetintet_n83.json) | [4.95357+](octinoct/octinoct_n83.json) | [5.24066+](icoinico/icoinico_n83.json) | [6.56901+](dodindod/dodindod_n83.json) | [5.00000+](cubincub/cubincub_n83.json) ≈ 5 |  |
-| 84 | [6.17873+](tetintet/tetintet_n84.json) | [4.95637+](octinoct/octinoct_n84.json) | [5.25864+](icoinico/icoinico_n84.json) | [6.56901+](dodindod/dodindod_n84.json) | [5.00000+](cubincub/cubincub_n84.json) ≈ 5 |  |
-| 85 | [6.17873+](tetintet/tetintet_n85.json) | [4.96896+](octinoct/octinoct_n85.json) | [5.26024+](icoinico/icoinico_n85.json) | [6.56901+](dodindod/dodindod_n85.json) | [5.00000+](cubincub/cubincub_n85.json) ≈ 5 |  |
-| 86 | [6.22544+](tetintet/tetintet_n86.json) | [5.04282+](octinoct/octinoct_n86.json) | [5.36698+](icoinico/icoinico_n86.json) | [6.56901+](dodindod/dodindod_n86.json) | [5.00000+](cubincub/cubincub_n86.json) ≈ 5 |  |
-| 87 | [6.22933+](tetintet/tetintet_n87.json) | [5.06739+](octinoct/octinoct_n87.json) | [5.38064+](icoinico/icoinico_n87.json) | [6.56901+](dodindod/dodindod_n87.json) | [5.00000+](cubincub/cubincub_n87.json) ≈ 5 |  |
-| 88 | [6.22933+](tetintet/tetintet_n88.json) ≈ 503409023578/6577993305 - 6027514273√654/2192664435 | [5.10396+](octinoct/octinoct_n88.json) | [5.39481+](icoinico/icoinico_n88.json) | [6.56901+](dodindod/dodindod_n88.json) | [5.00000+](cubincub/cubincub_n88.json) ≈ 5 |  |
-| 89 | [6.22933+](tetintet/tetintet_n89.json) ≈ 503409023578/6577993305 - 6027514273√654/2192664435 | [5.13076+](octinoct/octinoct_n89.json) | [5.43479+](icoinico/icoinico_n89.json) | [6.56901+](dodindod/dodindod_n89.json) | [5.00000+](cubincub/cubincub_n89.json) ≈ 5 |  |
-| 90 | [6.22933+](tetintet/tetintet_n90.json) ≈ 503409023578/6577993305 - 6027514273√654/2192664435 | [5.17694+](octinoct/octinoct_n90.json) | [5.45167+](icoinico/icoinico_n90.json) | [6.56903+](dodindod/dodindod_n90.json) | [5.00000+](cubincub/cubincub_n90.json) ≈ 5 |  |
-| 91 | [6.29001+](tetintet/tetintet_n91.json) | [5.17694+](octinoct/octinoct_n91.json) | [5.46123+](icoinico/icoinico_n91.json) | [6.57405+](dodindod/dodindod_n91.json) | [5.00000+](cubincub/cubincub_n91.json) ≈ 5 |  |
-| 92 | [6.31878+](tetintet/tetintet_n92.json) | [5.21059+](octinoct/octinoct_n92.json) | [5.47968+](icoinico/icoinico_n92.json) | [6.70814+](dodindod/dodindod_n92.json) | [5.00000+](cubincub/cubincub_n92.json) ≈ 5 |  |
-| 93 | [6.36464+](tetintet/tetintet_n93.json) | [5.21688+](octinoct/octinoct_n93.json) | [5.49326+](icoinico/icoinico_n93.json) | [6.70814+](dodindod/dodindod_n93.json) | [5.00000+](cubincub/cubincub_n93.json) ≈ 5 |  |
-| 94 | [6.37069+](tetintet/tetintet_n94.json) | [5.27414+](octinoct/octinoct_n94.json) | [5.50028+](icoinico/icoinico_n94.json) | [6.70814+](dodindod/dodindod_n94.json) | [5.00000+](cubincub/cubincub_n94.json) ≈ 5 |  |
-| 95 | [6.37453+](tetintet/tetintet_n95.json) | [5.63299+](octinoct/octinoct_n95.json) | [6.23606+](icoinico/icoinico_n95.json) ≈ √5 + 4 | [6.70814+](dodindod/dodindod_n95.json) | [5.00000+](cubincub/cubincub_n95.json) ≈ 5 |  |
-| 96 | [6.48172+](tetintet/tetintet_n96.json) | [5.98930+](octinoct/octinoct_n96.json) | [6.23606+](icoinico/icoinico_n96.json) ≈ √5 + 4 | [6.71007+](dodindod/dodindod_n96.json) | [5.00000+](cubincub/cubincub_n96.json) ≈ 5 |  |
-| 97 | [6.48172+](tetintet/tetintet_n97.json) | [6.00000+](octinoct/octinoct_n97.json) ≈ 6 | [6.23606+](icoinico/icoinico_n97.json) ≈ √5 + 4 | [6.71305+](dodindod/dodindod_n97.json) | [5.00000+](cubincub/cubincub_n97.json) ≈ 5 |  |
-| 98 | [6.48172+](tetintet/tetintet_n98.json) | [6.00000+](octinoct/octinoct_n98.json) ≈ 6 | [6.25798+](icoinico/icoinico_n98.json) | [6.71402+](dodindod/dodindod_n98.json) | [5.00000+](cubincub/cubincub_n98.json) ≈ 5 |  |
-| 99 | [6.49161+](tetintet/tetintet_n99.json) | [6.00000+](octinoct/octinoct_n99.json) ≈ 6 | [6.26070+](icoinico/icoinico_n99.json) | [6.73200+](dodindod/dodindod_n99.json) | [5.00000+](cubincub/cubincub_n99.json) ≈ 5 |  |
-| 100 | [6.49161+](tetintet/tetintet_n100.json) | [6.00000+](octinoct/octinoct_n100.json) ≈ 6 | [6.37576+](icoinico/icoinico_n100.json) | [6.76007+](dodindod/dodindod_n100.json) | [5.00000+](cubincub/cubincub_n100.json) ≈ 5 |  |
+| 67 | [4.93461+](tetintet/tetintet_n67.json) | [4.73832+](octinoct/octinoct_n67.json) | [4.92443+](icoinico/icoinico_n67.json) | [5.00000+](dodindod/dodindod_n67.json) | [4.67553+](cubincub/cubincub_n67.json) |  |
+| 68 | [4.95487+](tetintet/tetintet_n68.json) | [4.77435+](octinoct/octinoct_n68.json) | [4.96011+](icoinico/icoinico_n68.json) | [5.00000+](dodindod/dodindod_n68.json) | [4.67553+](cubincub/cubincub_n68.json) |  |
+| 69 | [4.98496+](tetintet/tetintet_n69.json) | [4.77435+](octinoct/octinoct_n69.json) | [4.96011+](icoinico/icoinico_n69.json) | [5.00000+](dodindod/dodindod_n69.json) | [4.70710+](cubincub/cubincub_n69.json) ≈ √2/2 + 4 |  |
+| 70 | [4.98869+](tetintet/tetintet_n70.json) | [4.80724+](octinoct/octinoct_n70.json) | [4.98426+](icoinico/icoinico_n70.json) | [5.00000+](dodindod/dodindod_n70.json) | [4.70710+](cubincub/cubincub_n70.json) ≈ √2/2 + 4 |  |
+| 71 | [5.08544+](tetintet/tetintet_n71.json) | [4.82657+](octinoct/octinoct_n71.json) | [5.02112+](icoinico/icoinico_n71.json) | [5.00000+](dodindod/dodindod_n71.json) | [4.70710+](cubincub/cubincub_n71.json) ≈ √2/2 + 4 |  |
+| 72 | [5.35529+](tetintet/tetintet_n72.json) | [4.84710+](octinoct/octinoct_n72.json) | [5.04048+](icoinico/icoinico_n72.json) | [5.00000+](dodindod/dodindod_n72.json) | [4.70710+](cubincub/cubincub_n72.json) ≈ √2/2 + 4 |  |
+| 73 | [5.36025+](tetintet/tetintet_n73.json) | [4.86683+](octinoct/octinoct_n73.json) | [5.04048+](icoinico/icoinico_n73.json) | [5.00000+](dodindod/dodindod_n73.json) | [4.70710+](cubincub/cubincub_n73.json) ≈ √2/2 + 4 |  |
+| 74 | [5.36068+](tetintet/tetintet_n74.json) | [4.91966+](octinoct/octinoct_n74.json) | [5.05825+](icoinico/icoinico_n74.json) | [5.00000+](dodindod/dodindod_n74.json) | [4.81105+](cubincub/cubincub_n74.json) |  |
+| 75 | [5.36715+](tetintet/tetintet_n75.json) | [4.92545+](octinoct/octinoct_n75.json) | [5.08453+](icoinico/icoinico_n75.json) | [5.01824+](dodindod/dodindod_n75.json) | [4.82287+](cubincub/cubincub_n75.json) |  |
+| 76 | [5.36858+](tetintet/tetintet_n76.json) | [4.93042+](octinoct/octinoct_n76.json) | [5.10751+](icoinico/icoinico_n76.json) | [5.18583+](dodindod/dodindod_n76.json) | [4.84057+](cubincub/cubincub_n76.json) |  |
+| 77 | [5.37120+](tetintet/tetintet_n77.json) | [4.93383+](octinoct/octinoct_n77.json) | [5.14367+](icoinico/icoinico_n77.json) | [5.22592+](dodindod/dodindod_n77.json) | [4.85049+](cubincub/cubincub_n77.json) |  |
+| 78 | [5.41260+](tetintet/tetintet_n78.json) | [4.94141+](octinoct/octinoct_n78.json) | [5.15850+](icoinico/icoinico_n78.json) | [5.24183+](dodindod/dodindod_n78.json) | [4.85875+](cubincub/cubincub_n78.json) |  |
+| 79 | [5.41260+](tetintet/tetintet_n79.json) | [4.94214+](octinoct/octinoct_n79.json) | [5.17574+](icoinico/icoinico_n79.json) | [5.25502+](dodindod/dodindod_n79.json) | [4.88561+](cubincub/cubincub_n79.json) ≈ 4√2/3 + 3 |  |
+| 80 | [5.41260+](tetintet/tetintet_n80.json) | [4.95092+](octinoct/octinoct_n80.json) | [5.18775+](icoinico/icoinico_n80.json) | [5.25502+](dodindod/dodindod_n80.json) | [4.89442+](cubincub/cubincub_n80.json) |  |
+| 81 | [5.41260+](tetintet/tetintet_n81.json) | [4.95092+](octinoct/octinoct_n81.json) | [5.19485+](icoinico/icoinico_n81.json) | [5.27252+](dodindod/dodindod_n81.json) | [4.92144+](cubincub/cubincub_n81.json) |  |
+| 82 | [5.44999+](tetintet/tetintet_n82.json) | [4.95092+](octinoct/octinoct_n82.json) | [5.19485+](icoinico/icoinico_n82.json) | [5.27916+](dodindod/dodindod_n82.json) | [5.00000+](cubincub/cubincub_n82.json) ≈ 5 |  |
+| 83 | [5.49558+](tetintet/tetintet_n83.json) | [4.95357+](octinoct/octinoct_n83.json) | [5.24066+](icoinico/icoinico_n83.json) | [5.27921+](dodindod/dodindod_n83.json) | [5.00000+](cubincub/cubincub_n83.json) ≈ 5 |  |
+| 84 | [5.51727+](tetintet/tetintet_n84.json) | [4.95637+](octinoct/octinoct_n84.json) | [5.25864+](icoinico/icoinico_n84.json) | [5.29406+](dodindod/dodindod_n84.json) | [5.00000+](cubincub/cubincub_n84.json) ≈ 5 |  |
+| 85 | [5.55764+](tetintet/tetintet_n85.json) | [4.96896+](octinoct/octinoct_n85.json) | [5.26024+](icoinico/icoinico_n85.json) | [5.29406+](dodindod/dodindod_n85.json) | [5.00000+](cubincub/cubincub_n85.json) ≈ 5 |  |
+| 86 | [5.57405+](tetintet/tetintet_n86.json) | [5.04282+](octinoct/octinoct_n86.json) | [5.36698+](icoinico/icoinico_n86.json) | [5.30510+](dodindod/dodindod_n86.json) | [5.00000+](cubincub/cubincub_n86.json) ≈ 5 |  |
+| 87 | [5.58092+](tetintet/tetintet_n87.json) | [5.06739+](octinoct/octinoct_n87.json) | [5.38064+](icoinico/icoinico_n87.json) | [5.39881+](dodindod/dodindod_n87.json) | [5.00000+](cubincub/cubincub_n87.json) ≈ 5 |  |
+| 88 | [5.59877+](tetintet/tetintet_n88.json) | [5.10396+](octinoct/octinoct_n88.json) | [5.39481+](icoinico/icoinico_n88.json) | [5.42226+](dodindod/dodindod_n88.json) | [5.00000+](cubincub/cubincub_n88.json) ≈ 5 |  |
+| 89 | [5.59877+](tetintet/tetintet_n89.json) | [5.13076+](octinoct/octinoct_n89.json) | [5.43479+](icoinico/icoinico_n89.json) | [5.44061+](dodindod/dodindod_n89.json) | [5.00000+](cubincub/cubincub_n89.json) ≈ 5 |  |
+| 90 | [5.59877+](tetintet/tetintet_n90.json) | [5.17694+](octinoct/octinoct_n90.json) | [5.45167+](icoinico/icoinico_n90.json) | [5.47213+](dodindod/dodindod_n90.json) | [5.00000+](cubincub/cubincub_n90.json) ≈ 5 |  |
+| 91 | [5.59877+](tetintet/tetintet_n91.json) | [5.17694+](octinoct/octinoct_n91.json) | [5.46123+](icoinico/icoinico_n91.json) | [5.47213+](dodindod/dodindod_n91.json) | [5.00000+](cubincub/cubincub_n91.json) ≈ 5 |  |
+| 92 | [5.61597+](tetintet/tetintet_n92.json) | [5.21059+](octinoct/octinoct_n92.json) | [5.47968+](icoinico/icoinico_n92.json) | [5.47213+](dodindod/dodindod_n92.json) | [5.00000+](cubincub/cubincub_n92.json) ≈ 5 |  |
+| 93 | [5.66531+](tetintet/tetintet_n93.json) | [5.21688+](octinoct/octinoct_n93.json) | [5.49326+](icoinico/icoinico_n93.json) | [5.58538+](dodindod/dodindod_n93.json) | [5.00000+](cubincub/cubincub_n93.json) ≈ 5 |  |
+| 94 | [5.71521+](tetintet/tetintet_n94.json) | [5.27414+](octinoct/octinoct_n94.json) | [5.50028+](icoinico/icoinico_n94.json) | [5.59717+](dodindod/dodindod_n94.json) | [5.00000+](cubincub/cubincub_n94.json) ≈ 5 |  |
+| 95 | [5.71521+](tetintet/tetintet_n95.json) | [5.33333+](octinoct/octinoct_n95.json) | [5.66666+](icoinico/icoinico_n95.json) | [5.61616+](dodindod/dodindod_n95.json) | [5.00000+](cubincub/cubincub_n95.json) ≈ 5 |  |
+| 96 | [5.71521+](tetintet/tetintet_n96.json) | [5.33333+](octinoct/octinoct_n96.json) | [5.66666+](icoinico/icoinico_n96.json) | [5.61803+](dodindod/dodindod_n96.json) | [5.00000+](cubincub/cubincub_n96.json) ≈ 5 |  |
+| 97 | [5.71521+](tetintet/tetintet_n97.json) | [5.33333+](octinoct/octinoct_n97.json) | [5.66666+](icoinico/icoinico_n97.json) | [5.61803+](dodindod/dodindod_n97.json) | [5.00000+](cubincub/cubincub_n97.json) ≈ 5 |  |
+| 98 | [5.72460+](tetintet/tetintet_n98.json) | [5.33333+](octinoct/octinoct_n98.json) | [5.66666+](icoinico/icoinico_n98.json) | [5.61803+](dodindod/dodindod_n98.json) | [5.00000+](cubincub/cubincub_n98.json) ≈ 5 |  |
+| 99 | [5.74329+](tetintet/tetintet_n99.json) | [5.33333+](octinoct/octinoct_n99.json) | [5.66666+](icoinico/icoinico_n99.json) | [5.61803+](dodindod/dodindod_n99.json) | [5.00000+](cubincub/cubincub_n99.json) ≈ 5 |  |
+| 100 | [5.78444+](tetintet/tetintet_n100.json) | [5.36114+](octinoct/octinoct_n100.json) | [5.66666+](icoinico/icoinico_n100.json) | [5.61803+](dodindod/dodindod_n100.json) | [5.00000+](cubincub/cubincub_n100.json) ≈ 5 |  |
 
 ### Duals
 
@@ -122,14 +122,14 @@ Smallest container found for n unit-edge pieces; entry = s = container edge / pi
 | 11 | [3.70710+](cubinoct/cubinoct_n11.json) ≈ (6 + √2)/2 | [2.23071+](octincub/octincub_n11.json) ≈ (3√2 + √6)/3 | 2.19540 W | [4.06524+](dodinico/dodinico_n11.json) ≈ (25 + 7√5)/10 | [1.86714+](icoindod/icoindod_n11.json) |
 | 12 | [3.70710+](cubinoct/cubinoct_n12.json) ≈ (6 + √2)/2 | [2.29102+](octincub/octincub_n12.json) | 2.25949 L | [4.06524+](dodinico/dodinico_n12.json) ≈ (25 + 7√5)/10 | [1.87422+](icoindod/icoindod_n12.json) |
 | 13 | [3.79737+](cubinoct/cubinoct_n13.json) | [2.33663+](octincub/octincub_n13.json) ✱ | 2.33667 L | [4.06524+](dodinico/dodinico_n13.json) ≈ (25 + 7√5)/10 | [1.90402+](icoindod/icoindod_n13.json) |
-| 14 | [3.91512+](cubinoct/cubinoct_n14.json) | [2.36547+](octincub/octincub_n14.json) | 2.35702 W | [4.59694+](dodinico/dodinico_n14.json) | [1.97107+](icoindod/icoindod_n14.json) |
+| 14 | [3.91512+](cubinoct/cubinoct_n14.json) | [2.35702+](octincub/octincub_n14.json) | 2.35702 W | [4.59694+](dodinico/dodinico_n14.json) | [1.97107+](icoindod/icoindod_n14.json) |
 | 15 | [3.96266+](cubinoct/cubinoct_n15.json) | [2.41967+](octincub/octincub_n15.json) ✱ | 2.41976 W | [4.67481+](dodinico/dodinico_n15.json) | [2.00000+](icoindod/icoindod_n15.json) |
 | 16 | [4.00052+](cubinoct/cubinoct_n16.json) | [2.45865+](octincub/octincub_n16.json) ✱ | 2.46211 W | [4.79245+](dodinico/dodinico_n16.json) | [2.05510+](icoindod/icoindod_n16.json) |
-| 17 | [4.04396+](cubinoct/cubinoct_n17.json) | [2.48099+](octincub/octincub_n17.json) | 2.47487 L | [4.88916+](dodinico/dodinico_n17.json) | [2.09085+](icoindod/icoindod_n17.json) |
+| 17 | [4.04396+](cubinoct/cubinoct_n17.json) | [2.48065+](octincub/octincub_n17.json) | 2.47487 L | [4.88916+](dodinico/dodinico_n17.json) | [2.09085+](icoindod/icoindod_n17.json) |
 | 18 | [4.04898+](cubinoct/cubinoct_n18.json) | [2.48099+](octincub/octincub_n18.json) ✱ | 2.48257 W | [4.97123+](dodinico/dodinico_n18.json) | [2.16215+](icoindod/icoindod_n18.json) |
 | 19 | [4.10658+](cubinoct/cubinoct_n19.json) | [2.55209+](octincub/octincub_n19.json) | 2.52683 W | [5.07936+](dodinico/dodinico_n19.json) | [2.20355+](icoindod/icoindod_n19.json) |
 | 20 | [4.32269+](cubinoct/cubinoct_n20.json) | [2.57418+](octincub/octincub_n20.json) ✱ | 2.57792 W | [5.15760+](dodinico/dodinico_n20.json) | [2.24176+](icoindod/icoindod_n20.json) |
-| 21 | [4.47061+](cubinoct/cubinoct_n21.json) | [2.58957+](octincub/octincub_n21.json) ✱ | 2.59285 L | [5.26142+](dodinico/dodinico_n21.json) | [2.28370+](icoindod/icoindod_n21.json) |
+| 21 | [4.47061+](cubinoct/cubinoct_n21.json) | [2.58891+](octincub/octincub_n21.json) ✱ | 2.59285 L | [5.26142+](dodinico/dodinico_n21.json) | [2.28370+](icoindod/icoindod_n21.json) |
 | 22 | [4.59310+](cubinoct/cubinoct_n22.json) | [2.60569+](octincub/octincub_n22.json) ✱ | 2.60591 W | [5.32240+](dodinico/dodinico_n22.json) | [2.29459+](icoindod/icoindod_n22.json) |
 | 23 | [4.62576+](cubinoct/cubinoct_n23.json) | [2.62246+](octincub/octincub_n23.json) | 2.61533 W | [5.40195+](dodinico/dodinico_n23.json) | [2.34871+](icoindod/icoindod_n23.json) |
 | 24 | [4.70710+](cubinoct/cubinoct_n24.json) ≈ √2/2 + 4 | [2.62792+](octincub/octincub_n24.json) ✱ | 2.63319 L | [5.47474+](dodinico/dodinico_n24.json) | [2.36541+](icoindod/icoindod_n24.json) |
@@ -149,70 +149,70 @@ Smallest container found for n unit-edge pieces; entry = s = container edge / pi
 | 38 | [5.13601+](cubinoct/cubinoct_n38.json) | [3.18237+](octincub/octincub_n38.json) |  | [6.26922+](dodinico/dodinico_n38.json) | [2.69655+](icoindod/icoindod_n38.json) |
 | 39 | [5.17002+](cubinoct/cubinoct_n39.json) | [3.23286+](octincub/octincub_n39.json) |  | [6.30736+](dodinico/dodinico_n39.json) | [2.72805+](icoindod/icoindod_n39.json) |
 | 40 | [5.19194+](cubinoct/cubinoct_n40.json) | [3.24518+](octincub/octincub_n40.json) |  | [6.32472+](dodinico/dodinico_n40.json) | [2.74184+](icoindod/icoindod_n40.json) |
-| 41 | [5.86370+](cubinoct/cubinoct_n41.json) ≈ 2 + 2√(√3 + 2) | [3.29304+](octincub/octincub_n41.json) |  | [6.34613+](dodinico/dodinico_n41.json) | [2.75337+](icoindod/icoindod_n41.json) |
-| 42 | [5.86370+](cubinoct/cubinoct_n42.json) ≈ 2 + 2√(√3 + 2) | [3.30790+](octincub/octincub_n42.json) |  | [6.39501+](dodinico/dodinico_n42.json) | [2.79184+](icoindod/icoindod_n42.json) |
-| 43 | [5.86370+](cubinoct/cubinoct_n43.json) ≈ 2 + 2√(√3 + 2) | [3.32591+](octincub/octincub_n43.json) |  | [6.43815+](dodinico/dodinico_n43.json) | [2.80899+](icoindod/icoindod_n43.json) |
-| 44 | [5.86370+](cubinoct/cubinoct_n44.json) ≈ 2 + 2√(√3 + 2) | [3.33882+](octincub/octincub_n44.json) |  | [6.47807+](dodinico/dodinico_n44.json) | [2.83493+](icoindod/icoindod_n44.json) |
-| 45 | [5.86370+](cubinoct/cubinoct_n45.json) ≈ 2 + 2√(√3 + 2) | [3.35546+](octincub/octincub_n45.json) |  | [6.54517+](dodinico/dodinico_n45.json) | [2.85401+](icoindod/icoindod_n45.json) |
+| 41 | [5.49344+](cubinoct/cubinoct_n41.json) | [3.29304+](octincub/octincub_n41.json) |  | [6.34613+](dodinico/dodinico_n41.json) | [2.75337+](icoindod/icoindod_n41.json) |
+| 42 | [5.49444+](cubinoct/cubinoct_n42.json) | [3.30790+](octincub/octincub_n42.json) |  | [6.39501+](dodinico/dodinico_n42.json) | [2.79184+](icoindod/icoindod_n42.json) |
+| 43 | [5.49444+](cubinoct/cubinoct_n43.json) | [3.32591+](octincub/octincub_n43.json) |  | [6.43815+](dodinico/dodinico_n43.json) | [2.80899+](icoindod/icoindod_n43.json) |
+| 44 | [5.49715+](cubinoct/cubinoct_n44.json) | [3.33882+](octincub/octincub_n44.json) |  | [6.47807+](dodinico/dodinico_n44.json) | [2.83493+](icoindod/icoindod_n44.json) |
+| 45 | [5.82579+](cubinoct/cubinoct_n45.json) | [3.35546+](octincub/octincub_n45.json) |  | [6.54517+](dodinico/dodinico_n45.json) | [2.85401+](icoindod/icoindod_n45.json) |
 | 46 | [5.86370+](cubinoct/cubinoct_n46.json) ≈ 2 + 2√(√3 + 2) | [3.38464+](octincub/octincub_n46.json) |  | [6.56316+](dodinico/dodinico_n46.json) | [2.88408+](icoindod/icoindod_n46.json) |
 | 47 | [5.86370+](cubinoct/cubinoct_n47.json) ≈ 2 + 2√(√3 + 2) | [3.39126+](octincub/octincub_n47.json) |  | [6.60581+](dodinico/dodinico_n47.json) | [2.89597+](icoindod/icoindod_n47.json) |
 | 48 | [5.86370+](cubinoct/cubinoct_n48.json) ≈ 2 + 2√(√3 + 2) | [3.41398+](octincub/octincub_n48.json) |  | [6.61815+](dodinico/dodinico_n48.json) | [2.92002+](icoindod/icoindod_n48.json) |
-| 49 | [6.58205+](cubinoct/cubinoct_n49.json) | [3.43064+](octincub/octincub_n49.json) |  | [6.62096+](dodinico/dodinico_n49.json) | [2.94027+](icoindod/icoindod_n49.json) |
-| 50 | [6.58205+](cubinoct/cubinoct_n50.json) | [3.43064+](octincub/octincub_n50.json) |  | [6.64475+](dodinico/dodinico_n50.json) | [2.94895+](icoindod/icoindod_n50.json) |
-| 51 | [6.58205+](cubinoct/cubinoct_n51.json) | [3.44004+](octincub/octincub_n51.json) |  | [6.64776+](dodinico/dodinico_n51.json) | [2.97215+](icoindod/icoindod_n51.json) |
-| 52 | [6.58205+](cubinoct/cubinoct_n52.json) | [3.45000+](octincub/octincub_n52.json) |  | [6.66387+](dodinico/dodinico_n52.json) | [2.99344+](icoindod/icoindod_n52.json) |
-| 53 | [6.58205+](cubinoct/cubinoct_n53.json) | [3.49367+](octincub/octincub_n53.json) |  | [6.66813+](dodinico/dodinico_n53.json) | [2.99717+](icoindod/icoindod_n53.json) |
-| 54 | [6.58205+](cubinoct/cubinoct_n54.json) | [3.51134+](octincub/octincub_n54.json) |  | [6.67170+](dodinico/dodinico_n54.json) | [3.01849+](icoindod/icoindod_n54.json) |
-| 55 | [6.58205+](cubinoct/cubinoct_n55.json) | [3.52576+](octincub/octincub_n55.json) |  | [6.72810+](dodinico/dodinico_n55.json) | [3.03104+](icoindod/icoindod_n55.json) |
-| 56 | [6.58205+](cubinoct/cubinoct_n56.json) | [3.58267+](octincub/octincub_n56.json) ≈ 38√2/15 |  | [6.86955+](dodinico/dodinico_n56.json) | [3.04009+](icoindod/icoindod_n56.json) |
-| 57 | [6.82842+](cubinoct/cubinoct_n57.json) ≈ 4 + 2√2 | [3.58267+](octincub/octincub_n57.json) ≈ 38√2/15 |  | [7.02931+](dodinico/dodinico_n57.json) | [3.04327+](icoindod/icoindod_n57.json) |
-| 58 | [6.82842+](cubinoct/cubinoct_n58.json) ≈ 4 + 2√2 | [3.58267+](octincub/octincub_n58.json) ≈ 38√2/15 |  | [7.08987+](dodinico/dodinico_n58.json) | [3.07127+](icoindod/icoindod_n58.json) |
-| 59 | [6.82842+](cubinoct/cubinoct_n59.json) ≈ 4 + 2√2 | [3.58267+](octincub/octincub_n59.json) ≈ 38√2/15 |  | [7.14430+](dodinico/dodinico_n59.json) | [3.09619+](icoindod/icoindod_n59.json) |
-| 60 | [6.82842+](cubinoct/cubinoct_n60.json) ≈ 4 + 2√2 | [3.58267+](octincub/octincub_n60.json) ≈ 38√2/15 |  | [7.17005+](dodinico/dodinico_n60.json) | [3.09740+](icoindod/icoindod_n60.json) |
-| 61 | [6.82842+](cubinoct/cubinoct_n61.json) ≈ 4 + 2√2 | [3.58267+](octincub/octincub_n61.json) ≈ 38√2/15 |  | [7.25170+](dodinico/dodinico_n61.json) | [3.16290+](icoindod/icoindod_n61.json) |
-| 62 | [6.82842+](cubinoct/cubinoct_n62.json) ≈ 4 + 2√2 | [3.58267+](octincub/octincub_n62.json) ≈ 38√2/15 |  | [7.28586+](dodinico/dodinico_n62.json) | [3.19103+](icoindod/icoindod_n62.json) |
-| 63 | [6.82842+](cubinoct/cubinoct_n63.json) ≈ 4 + 2√2 | [3.58267+](octincub/octincub_n63.json) ≈ 38√2/15 |  | [7.32457+](dodinico/dodinico_n63.json) | [3.72812+](icoindod/icoindod_n63.json) |
-| 64 | [6.82842+](cubinoct/cubinoct_n64.json) ≈ 4 + 2√2 | [3.58267+](octincub/octincub_n64.json) ≈ 38√2/15 |  | [7.36290+](dodinico/dodinico_n64.json) | [3.72820+](icoindod/icoindod_n64.json) |
-| 65 | [7.15891+](cubinoct/cubinoct_n65.json) | [3.77123+](octincub/octincub_n65.json) ≈ (8√2)/3 |  | [7.39829+](dodinico/dodinico_n65.json) | [3.72830+](icoindod/icoindod_n65.json) |
-| 66 | [7.15891+](cubinoct/cubinoct_n66.json) | [3.77123+](octincub/octincub_n66.json) ≈ (8√2)/3 |  | [7.46574+](dodinico/dodinico_n66.json) | [3.72838+](icoindod/icoindod_n66.json) |
-| 67 | [7.16592+](cubinoct/cubinoct_n67.json) | [3.77123+](octincub/octincub_n67.json) ≈ (8√2)/3 |  | [7.48512+](dodinico/dodinico_n67.json) | [3.73985+](icoindod/icoindod_n67.json) |
-| 68 | [7.20477+](cubinoct/cubinoct_n68.json) | [3.77123+](octincub/octincub_n68.json) ≈ (8√2)/3 |  | [7.48834+](dodinico/dodinico_n68.json) | [3.74124+](icoindod/icoindod_n68.json) |
-| 69 | [7.20477+](cubinoct/cubinoct_n69.json) | [3.77123+](octincub/octincub_n69.json) ≈ (8√2)/3 |  | [7.57659+](dodinico/dodinico_n69.json) | [3.75736+](icoindod/icoindod_n69.json) |
-| 70 | [7.23520+](cubinoct/cubinoct_n70.json) | [3.77123+](octincub/octincub_n70.json) ≈ (8√2)/3 |  | [7.59628+](dodinico/dodinico_n70.json) | [3.77336+](icoindod/icoindod_n70.json) |
-| 71 | [7.23520+](cubinoct/cubinoct_n71.json) | [3.77123+](octincub/octincub_n71.json) ≈ (8√2)/3 |  | [7.59897+](dodinico/dodinico_n71.json) | [3.77398+](icoindod/icoindod_n71.json) |
-| 72 | [7.23520+](cubinoct/cubinoct_n72.json) | [3.77123+](octincub/octincub_n72.json) ≈ (8√2)/3 |  | [7.64869+](dodinico/dodinico_n72.json) | [3.78309+](icoindod/icoindod_n72.json) |
-| 73 | [7.34849+](cubinoct/cubinoct_n73.json) | [3.77123+](octincub/octincub_n73.json) ≈ (8√2)/3 |  | [7.67592+](dodinico/dodinico_n73.json) | [3.80526+](icoindod/icoindod_n73.json) |
-| 74 | [7.34849+](cubinoct/cubinoct_n74.json) | [3.82485+](octincub/octincub_n74.json) |  | [7.68093+](dodinico/dodinico_n74.json) | [3.82883+](icoindod/icoindod_n74.json) |
-| 75 | [7.34849+](cubinoct/cubinoct_n75.json) | [3.87313+](octincub/octincub_n75.json) |  | [7.74882+](dodinico/dodinico_n75.json) | [3.85251+](icoindod/icoindod_n75.json) |
-| 76 | [7.34849+](cubinoct/cubinoct_n76.json) | [3.87521+](octincub/octincub_n76.json) |  | [7.78880+](dodinico/dodinico_n76.json) | [3.87501+](icoindod/icoindod_n76.json) |
-| 77 | [7.34849+](cubinoct/cubinoct_n77.json) | [3.90973+](octincub/octincub_n77.json) |  | [7.86527+](dodinico/dodinico_n77.json) | [3.90157+](icoindod/icoindod_n77.json) |
-| 78 | [7.34849+](cubinoct/cubinoct_n78.json) | [3.93859+](octincub/octincub_n78.json) |  | [7.88505+](dodinico/dodinico_n78.json) | [3.93743+](icoindod/icoindod_n78.json) |
-| 79 | [7.34849+](cubinoct/cubinoct_n79.json) | [3.96876+](octincub/octincub_n79.json) |  | [7.91415+](dodinico/dodinico_n79.json) | [4.02204+](icoindod/icoindod_n79.json) |
-| 80 | [7.34849+](cubinoct/cubinoct_n80.json) | [3.99373+](octincub/octincub_n80.json) |  | [7.93808+](dodinico/dodinico_n80.json) | [4.02570+](icoindod/icoindod_n80.json) |
-| 81 | [7.41421+](cubinoct/cubinoct_n81.json) ≈ 6 + √2 | [4.02342+](octincub/octincub_n81.json) |  | [7.94912+](dodinico/dodinico_n81.json) | [4.02570+](icoindod/icoindod_n81.json) |
-| 82 | [7.41421+](cubinoct/cubinoct_n82.json) ≈ 6 + √2 | [4.03917+](octincub/octincub_n82.json) |  | [7.97814+](dodinico/dodinico_n82.json) | [4.02570+](icoindod/icoindod_n82.json) |
-| 83 | [7.41421+](cubinoct/cubinoct_n83.json) ≈ 6 + √2 | [4.05375+](octincub/octincub_n83.json) |  | [8.00704+](dodinico/dodinico_n83.json) | [4.02570+](icoindod/icoindod_n83.json) |
-| 84 | [7.41421+](cubinoct/cubinoct_n84.json) ≈ 6 + √2 | [4.08091+](octincub/octincub_n84.json) |  | [8.01460+](dodinico/dodinico_n84.json) | [4.02570+](icoindod/icoindod_n84.json) |
-| 85 | [7.41421+](cubinoct/cubinoct_n85.json) ≈ 6 + √2 | [4.09345+](octincub/octincub_n85.json) |  | [8.06640+](dodinico/dodinico_n85.json) | [4.02570+](icoindod/icoindod_n85.json) |
-| 86 | [7.41421+](cubinoct/cubinoct_n86.json) ≈ 6 + √2 | [4.10174+](octincub/octincub_n86.json) |  | [8.10187+](dodinico/dodinico_n86.json) | [4.02570+](icoindod/icoindod_n86.json) |
-| 87 | [7.41421+](cubinoct/cubinoct_n87.json) ≈ 6 + √2 | [4.12114+](octincub/octincub_n87.json) |  | [8.10332+](dodinico/dodinico_n87.json) | [4.06116+](icoindod/icoindod_n87.json) |
-| 88 | [7.41421+](cubinoct/cubinoct_n88.json) ≈ 6 + √2 | [4.13833+](octincub/octincub_n88.json) |  | [8.13946+](dodinico/dodinico_n88.json) | [4.09525+](icoindod/icoindod_n88.json) |
-| 89 | [7.41421+](cubinoct/cubinoct_n89.json) ≈ 6 + √2 | [4.18143+](octincub/octincub_n89.json) |  | [8.15083+](dodinico/dodinico_n89.json) | [4.11162+](icoindod/icoindod_n89.json) |
-| 90 | [7.41421+](cubinoct/cubinoct_n90.json) ≈ 6 + √2 | [4.49979+](octincub/octincub_n90.json) |  | [8.18629+](dodinico/dodinico_n90.json) | [4.11204+](icoindod/icoindod_n90.json) |
-| 91 | [7.41421+](cubinoct/cubinoct_n91.json) ≈ 6 + √2 | [4.51634+](octincub/octincub_n91.json) |  | [8.19376+](dodinico/dodinico_n91.json) | [4.13040+](icoindod/icoindod_n91.json) |
-| 92 | [7.41421+](cubinoct/cubinoct_n92.json) ≈ 6 + √2 | [4.51676+](octincub/octincub_n92.json) |  | [8.21188+](dodinico/dodinico_n92.json) | [4.14678+](icoindod/icoindod_n92.json) |
-| 93 | [7.41421+](cubinoct/cubinoct_n93.json) ≈ 6 + √2 | [4.52090+](octincub/octincub_n93.json) |  | [8.24008+](dodinico/dodinico_n93.json) | [4.14678+](icoindod/icoindod_n93.json) |
-| 94 | [7.41421+](cubinoct/cubinoct_n94.json) ≈ 6 + √2 | [4.53506+](octincub/octincub_n94.json) |  | [8.31302+](dodinico/dodinico_n94.json) | [4.14678+](icoindod/icoindod_n94.json) |
-| 95 | [7.41421+](cubinoct/cubinoct_n95.json) ≈ 6 + √2 | [4.54950+](octincub/octincub_n95.json) |  | [8.31302+](dodinico/dodinico_n95.json) | [4.14678+](icoindod/icoindod_n95.json) |
-| 96 | [7.41421+](cubinoct/cubinoct_n96.json) ≈ 6 + √2 | [4.55633+](octincub/octincub_n96.json) |  | [8.33243+](dodinico/dodinico_n96.json) | [4.14916+](icoindod/icoindod_n96.json) |
-| 97 | [7.57538+](cubinoct/cubinoct_n97.json) ≈ 2 + 4√(6√2 + 9)/3 | [4.64078+](octincub/octincub_n97.json) |  | [8.36617+](dodinico/dodinico_n97.json) | [4.19860+](icoindod/icoindod_n97.json) |
-| 98 | [7.57538+](cubinoct/cubinoct_n98.json) ≈ 2 + 4√(6√2 + 9)/3 | [4.64283+](octincub/octincub_n98.json) |  | [8.37112+](dodinico/dodinico_n98.json) | [4.24006+](icoindod/icoindod_n98.json) |
-| 99 | [7.57603+](cubinoct/cubinoct_n99.json) | [4.64907+](octincub/octincub_n99.json) |  | [8.38458+](dodinico/dodinico_n99.json) | [4.26466+](icoindod/icoindod_n99.json) |
-| 100 | [7.58355+](cubinoct/cubinoct_n100.json) | [4.65344+](octincub/octincub_n100.json) |  | [10.03207+](dodinico/dodinico_n100.json) ≈ 641/158 + 2111√5/790 | [4.34522+](icoindod/icoindod_n100.json) |
+| 49 | [5.89697+](cubinoct/cubinoct_n49.json) | [3.43064+](octincub/octincub_n49.json) |  | [6.62096+](dodinico/dodinico_n49.json) | [2.94027+](icoindod/icoindod_n49.json) |
+| 50 | [5.95900+](cubinoct/cubinoct_n50.json) | [3.43064+](octincub/octincub_n50.json) |  | [6.64475+](dodinico/dodinico_n50.json) | [2.94895+](icoindod/icoindod_n50.json) |
+| 51 | [5.95900+](cubinoct/cubinoct_n51.json) | [3.44004+](octincub/octincub_n51.json) |  | [6.64776+](dodinico/dodinico_n51.json) | [2.97215+](icoindod/icoindod_n51.json) |
+| 52 | [5.95902+](cubinoct/cubinoct_n52.json) | [3.45000+](octincub/octincub_n52.json) |  | [6.66387+](dodinico/dodinico_n52.json) | [2.99344+](icoindod/icoindod_n52.json) |
+| 53 | [6.12372+](cubinoct/cubinoct_n53.json) | [3.48839+](octincub/octincub_n53.json) |  | [6.66813+](dodinico/dodinico_n53.json) | [2.99717+](icoindod/icoindod_n53.json) |
+| 54 | [6.12687+](cubinoct/cubinoct_n54.json) | [3.48839+](octincub/octincub_n54.json) |  | [6.67170+](dodinico/dodinico_n54.json) | [3.01849+](icoindod/icoindod_n54.json) |
+| 55 | [6.16156+](cubinoct/cubinoct_n55.json) | [3.48839+](octincub/octincub_n55.json) |  | [6.72810+](dodinico/dodinico_n55.json) | [3.03104+](icoindod/icoindod_n55.json) |
+| 56 | [6.16156+](cubinoct/cubinoct_n56.json) | [3.48839+](octincub/octincub_n56.json) |  | [6.86955+](dodinico/dodinico_n56.json) | [3.04009+](icoindod/icoindod_n56.json) |
+| 57 | [6.16156+](cubinoct/cubinoct_n57.json) | [3.48839+](octincub/octincub_n57.json) |  | [7.02931+](dodinico/dodinico_n57.json) | [3.04327+](icoindod/icoindod_n57.json) |
+| 58 | [6.16797+](cubinoct/cubinoct_n58.json) | [3.48839+](octincub/octincub_n58.json) |  | [7.08987+](dodinico/dodinico_n58.json) | [3.07127+](icoindod/icoindod_n58.json) |
+| 59 | [6.16797+](cubinoct/cubinoct_n59.json) | [3.48839+](octincub/octincub_n59.json) |  | [7.14430+](dodinico/dodinico_n59.json) | [3.09619+](icoindod/icoindod_n59.json) |
+| 60 | [6.18170+](cubinoct/cubinoct_n60.json) | [3.48839+](octincub/octincub_n60.json) |  | [7.17005+](dodinico/dodinico_n60.json) | [3.09740+](icoindod/icoindod_n60.json) |
+| 61 | [6.18170+](cubinoct/cubinoct_n61.json) | [3.48839+](octincub/octincub_n61.json) |  | [7.25170+](dodinico/dodinico_n61.json) | [3.16290+](icoindod/icoindod_n61.json) |
+| 62 | [6.18251+](cubinoct/cubinoct_n62.json) | [3.48839+](octincub/octincub_n62.json) |  | [7.28586+](dodinico/dodinico_n62.json) | [3.19103+](icoindod/icoindod_n62.json) |
+| 63 | [6.19940+](cubinoct/cubinoct_n63.json) | [3.48839+](octincub/octincub_n63.json) |  | [7.32457+](dodinico/dodinico_n63.json) | [3.30677+](icoindod/icoindod_n63.json) |
+| 64 | [6.19993+](cubinoct/cubinoct_n64.json) | [3.48839+](octincub/octincub_n64.json) |  | [7.36290+](dodinico/dodinico_n64.json) | [3.32220+](icoindod/icoindod_n64.json) |
+| 65 | [6.26216+](cubinoct/cubinoct_n65.json) | [3.77123+](octincub/octincub_n65.json) ≈ (8√2)/3 |  | [7.39829+](dodinico/dodinico_n65.json) | [3.34089+](icoindod/icoindod_n65.json) |
+| 66 | [6.26635+](cubinoct/cubinoct_n66.json) | [3.77123+](octincub/octincub_n66.json) ≈ (8√2)/3 |  | [7.46574+](dodinico/dodinico_n66.json) | [3.36320+](icoindod/icoindod_n66.json) |
+| 67 | [6.26666+](cubinoct/cubinoct_n67.json) | [3.77123+](octincub/octincub_n67.json) ≈ (8√2)/3 |  | [7.48512+](dodinico/dodinico_n67.json) | [3.38955+](icoindod/icoindod_n67.json) |
+| 68 | [6.29880+](cubinoct/cubinoct_n68.json) | [3.77123+](octincub/octincub_n68.json) ≈ (8√2)/3 |  | [7.48834+](dodinico/dodinico_n68.json) | [3.40526+](icoindod/icoindod_n68.json) |
+| 69 | [6.31078+](cubinoct/cubinoct_n69.json) | [3.77123+](octincub/octincub_n69.json) ≈ (8√2)/3 |  | [7.57659+](dodinico/dodinico_n69.json) | [3.41813+](icoindod/icoindod_n69.json) |
+| 70 | [6.34891+](cubinoct/cubinoct_n70.json) | [3.77123+](octincub/octincub_n70.json) ≈ (8√2)/3 |  | [7.59628+](dodinico/dodinico_n70.json) | [3.44082+](icoindod/icoindod_n70.json) |
+| 71 | [6.34911+](cubinoct/cubinoct_n71.json) | [3.77123+](octincub/octincub_n71.json) ≈ (8√2)/3 |  | [7.59897+](dodinico/dodinico_n71.json) | [3.45343+](icoindod/icoindod_n71.json) |
+| 72 | [6.39068+](cubinoct/cubinoct_n72.json) | [3.77123+](octincub/octincub_n72.json) ≈ (8√2)/3 |  | [7.64869+](dodinico/dodinico_n72.json) | [3.47180+](icoindod/icoindod_n72.json) |
+| 73 | [6.39068+](cubinoct/cubinoct_n73.json) | [3.77123+](octincub/octincub_n73.json) ≈ (8√2)/3 |  | [7.67592+](dodinico/dodinico_n73.json) | [3.48696+](icoindod/icoindod_n73.json) |
+| 74 | [6.39068+](cubinoct/cubinoct_n74.json) | [3.82485+](octincub/octincub_n74.json) |  | [7.68093+](dodinico/dodinico_n74.json) | [3.48716+](icoindod/icoindod_n74.json) |
+| 75 | [6.39068+](cubinoct/cubinoct_n75.json) | [3.87313+](octincub/octincub_n75.json) |  | [7.74882+](dodinico/dodinico_n75.json) | [3.49860+](icoindod/icoindod_n75.json) |
+| 76 | [6.40784+](cubinoct/cubinoct_n76.json) | [3.87521+](octincub/octincub_n76.json) |  | [7.78880+](dodinico/dodinico_n76.json) | [3.50216+](icoindod/icoindod_n76.json) |
+| 77 | [6.40784+](cubinoct/cubinoct_n77.json) | [3.90973+](octincub/octincub_n77.json) |  | [7.86527+](dodinico/dodinico_n77.json) | [3.50304+](icoindod/icoindod_n77.json) |
+| 78 | [6.40795+](cubinoct/cubinoct_n78.json) | [3.93859+](octincub/octincub_n78.json) |  | [7.88505+](dodinico/dodinico_n78.json) | [3.52210+](icoindod/icoindod_n78.json) |
+| 79 | [6.41149+](cubinoct/cubinoct_n79.json) | [3.96876+](octincub/octincub_n79.json) |  | [7.91415+](dodinico/dodinico_n79.json) | [3.52210+](icoindod/icoindod_n79.json) |
+| 80 | [6.41973+](cubinoct/cubinoct_n80.json) | [3.99373+](octincub/octincub_n80.json) |  | [7.93808+](dodinico/dodinico_n80.json) | [3.52210+](icoindod/icoindod_n80.json) |
+| 81 | [6.41973+](cubinoct/cubinoct_n81.json) | [4.02342+](octincub/octincub_n81.json) |  | [7.94912+](dodinico/dodinico_n81.json) | [3.54126+](icoindod/icoindod_n81.json) |
+| 82 | [6.41973+](cubinoct/cubinoct_n82.json) | [4.03917+](octincub/octincub_n82.json) |  | [7.97814+](dodinico/dodinico_n82.json) | [3.54498+](icoindod/icoindod_n82.json) |
+| 83 | [6.46356+](cubinoct/cubinoct_n83.json) | [4.05375+](octincub/octincub_n83.json) |  | [8.00704+](dodinico/dodinico_n83.json) | [3.54878+](icoindod/icoindod_n83.json) |
+| 84 | [6.46356+](cubinoct/cubinoct_n84.json) | [4.08091+](octincub/octincub_n84.json) |  | [8.01460+](dodinico/dodinico_n84.json) | [3.54878+](icoindod/icoindod_n84.json) |
+| 85 | [6.79900+](cubinoct/cubinoct_n85.json) | [4.08248+](octincub/octincub_n85.json) |  | [8.06640+](dodinico/dodinico_n85.json) | [3.55775+](icoindod/icoindod_n85.json) |
+| 86 | [6.83361+](cubinoct/cubinoct_n86.json) | [4.08248+](octincub/octincub_n86.json) |  | [8.10187+](dodinico/dodinico_n86.json) | [3.56062+](icoindod/icoindod_n86.json) |
+| 87 | [6.95085+](cubinoct/cubinoct_n87.json) | [4.08248+](octincub/octincub_n87.json) |  | [8.10332+](dodinico/dodinico_n87.json) | [3.65693+](icoindod/icoindod_n87.json) |
+| 88 | [6.95085+](cubinoct/cubinoct_n88.json) | [4.08248+](octincub/octincub_n88.json) |  | [8.13946+](dodinico/dodinico_n88.json) | [3.66380+](icoindod/icoindod_n88.json) |
+| 89 | [7.00000+](cubinoct/cubinoct_n89.json) | [4.08248+](octincub/octincub_n89.json) |  | [8.15083+](dodinico/dodinico_n89.json) | [3.67486+](icoindod/icoindod_n89.json) |
+| 90 | [7.00000+](cubinoct/cubinoct_n90.json) | [4.16044+](octincub/octincub_n90.json) |  | [8.18629+](dodinico/dodinico_n90.json) | [3.67555+](icoindod/icoindod_n90.json) |
+| 91 | [7.00000+](cubinoct/cubinoct_n91.json) | [4.16658+](octincub/octincub_n91.json) |  | [8.19376+](dodinico/dodinico_n91.json) | [3.69284+](icoindod/icoindod_n91.json) |
+| 92 | [7.00000+](cubinoct/cubinoct_n92.json) | [4.16658+](octincub/octincub_n92.json) |  | [8.21188+](dodinico/dodinico_n92.json) | [3.69474+](icoindod/icoindod_n92.json) |
+| 93 | [7.02720+](cubinoct/cubinoct_n93.json) | [4.16658+](octincub/octincub_n93.json) |  | [8.24008+](dodinico/dodinico_n93.json) | [3.69534+](icoindod/icoindod_n93.json) |
+| 94 | [7.02724+](cubinoct/cubinoct_n94.json) | [4.16828+](octincub/octincub_n94.json) |  | [8.31302+](dodinico/dodinico_n94.json) | [3.72242+](icoindod/icoindod_n94.json) |
+| 95 | [7.02724+](cubinoct/cubinoct_n95.json) | [4.16828+](octincub/octincub_n95.json) |  | [8.31302+](dodinico/dodinico_n95.json) | [3.72743+](icoindod/icoindod_n95.json) |
+| 96 | [7.02726+](cubinoct/cubinoct_n96.json) | [4.26436+](octincub/octincub_n96.json) |  | [8.33243+](dodinico/dodinico_n96.json) | [3.73677+](icoindod/icoindod_n96.json) |
+| 97 | [7.03193+](cubinoct/cubinoct_n97.json) | [4.26436+](octincub/octincub_n97.json) |  | [8.36617+](dodinico/dodinico_n97.json) | [3.75161+](icoindod/icoindod_n97.json) |
+| 98 | [7.05504+](cubinoct/cubinoct_n98.json) | [4.26436+](octincub/octincub_n98.json) |  | [8.37112+](dodinico/dodinico_n98.json) | [3.76473+](icoindod/icoindod_n98.json) |
+| 99 | [7.13162+](cubinoct/cubinoct_n99.json) | [4.28513+](octincub/octincub_n99.json) |  | [8.38458+](dodinico/dodinico_n99.json) | [3.76512+](icoindod/icoindod_n99.json) |
+| 100 | [7.16011+](cubinoct/cubinoct_n100.json) | [4.29413+](octincub/octincub_n100.json) |  | [8.39333+](dodinico/dodinico_n100.json) | [3.78647+](icoindod/icoindod_n100.json) |
 
 previous: F = E. Friedman, W = R. Walsh, L = H. Lin, N = Y. Nakajima, T = trivial grid packing; source dates and attribution are in docs/references.json. ✱ = more than the printed precision below a registered reference (usually 1e-5; 1e-3 for cube n=13). These search-archive tables do not include all external or community candidates; the website selects across all three registries.
 
 **Cubes in a cube vs published values** (n = 2–33): better at 11, 28; equal at 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 29, 30, 31, 32, 33; behind at none.
 
-**Octahedra in a cube vs published values** (n = 2–30): better at 13, 15, 16, 18, 20, 21, 22, 24, 25, 28, 29, 30; equal at 2, 3, 4, 5, 6, 7, 8, 9, 10, 26, 27; behind at 11 (+1.61%), 12 (+1.40%), 14 (+0.36%), 17 (+0.25%), 19 (+1.00%), 23 (+0.27%).
+**Octahedra in a cube vs published values** (n = 2–30): better at 13, 15, 16, 18, 20, 21, 22, 24, 25, 28, 29, 30; equal at 2, 3, 4, 5, 6, 7, 8, 9, 10, 14, 26, 27; behind at 11 (+1.61%), 12 (+1.40%), 17 (+0.23%), 19 (+1.00%), 23 (+0.27%).
 
