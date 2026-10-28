@@ -3,85 +3,86 @@
  "piece": "rhombicuboctahedron",
  "container": "rhombicuboctahedron",
  "n": 5,
- "s": 2.33095,
- "s_plus": "2.33095+",
- "s_full": 2.330956545278,
+ "s": 2.32888,
+ "s_plus": "2.32888+",
+ "s_full": 2.3288863986358,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.000002022214794e-07,
-  "min_wall_gap": 1.0000012462541008e-07
+  "min_pair_gap": 1.0000292682917607e-07,
+  "min_wall_gap": 1.000000260376055e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
- "date": "2026-10-15",
+ "date": "2026-10-28",
  "pieces": [
   [
-   -0.9873339572505101,
-   1.0605861489303927,
-   0.961855820116532,
-   0.06481814779490434,
-   -0.9149718966177651,
-   0.00037636554586543367,
-   -0.3982774089313924
+   -0.6019445447590187,
+   -0.5200078224002836,
+   1.5388097290162426,
+   0.5970460168504247,
+   -0.7029256640441343,
+   0.29479597130043705,
+   -0.2500537940047848
   ],
   [
-   0.6874359098492284,
-   1.470700988315972,
-   -0.7360747512966931,
-   0.4679851439248242,
-   0.46382396385099084,
-   0.5123021348366802,
-   0.5508209856795548
+   1.0164428529300435,
+   1.1600095117776363,
+   0.8404773362569545,
+   0.0948632951491451,
+   -0.8762434360121615,
+   -0.3713510353565587,
+   -0.29205616689030783
   ],
   [
-   0.742317216493877,
-   -0.7367785557031727,
-   1.4052341161745272,
-   0.4933074053040131,
-   -0.5000938100937175,
-   0.43806770014722785,
-   -0.5609373183038275
+   -1.6041076812244988,
+   0.6644431497650019,
+   -0.3981093052286126,
+   0.6532814768477759,
+   -0.6532814878832058,
+   0.2705980485229528,
+   -0.2705980519742582
   ],
   [
-   -1.4077731892120422,
-   -0.7816531406720665,
-   -0.7111665567843528,
-   0.17755114763646318,
-   -0.6551967939057786,
-   -0.36056241479486434,
-   -0.6396776502785289
+   0.6644431647250183,
+   0.6644431646973362,
+   -1.6041076747080965,
+   0.7071067809291081,
+   3.831774698171328e-10,
+   0.707106781443987,
+   -1.0120829345473556e-10
   ],
   [
-   1.0537059980318144,
-   -1.0266350684828873,
-   -0.9735584652204641,
-   0.706574408564747,
-   0.5927544140717884,
-   0.25322044901002894,
-   0.2920174891388328
+   0.7679658403804819,
+   -1.460589090183074,
+   -0.32010148908319813,
+   0.42164733037152063,
+   -0.018956776875168998,
+   0.7838054126476549,
+   0.45552524025054225
   ]
  ],
  "record_id": "rcoinrco_n05",
  "title": "5 rhombicuboctahedra in a rhombicuboctahedron",
  "family": "archimedean",
  "source": {
-  "hash": "52d764c976227014",
+  "hash": "4084562e8297eb54",
   "clear": 1e-07,
   "cap": 2.3656882432603
  },
- "s_tight": 2.330956405911,
+ "s_tight": 2.328886321653,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.7099759466766968,
- "found_by": "Alejandro Zarzuelo",
+ "found_by": "PolyPack (Michael Sinko using Opus 5.5) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/101)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "bench-hop",
-  "from": "best",
-  "minDiff": 0.025,
-  "host": "bench"
+  "move": "community",
+  "lineage": "PolyPack (Michael Sinko using Opus 5.5)",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/101",
+  "submitted_by": "sinkomr",
+  "record_file": "records/community/rcoinrco/rcoinrco_n05_submission_101_784ffbba339d.json"
  },
- "density": 0.394791208099489
+ "density": 0.39584493367289764
 }

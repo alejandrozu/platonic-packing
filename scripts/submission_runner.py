@@ -172,6 +172,13 @@ def write_record(api, row, fields, issue):
         if row.get(key): contribution[key] = row[key]
     out['contribution'] = contribution
     if original: out['source_credit'] = original
+    # 28 Oct 2026: keep the submitted lineage of a construction (records placed inside cells, the larger packing it was
+    # cut from, a refinement's own credit) and any proposed closed form, as data only (bounded size, never executed)
+    for key in ('uses_records', 'derived_from', 'refined_by', 'refinement_credit', 'refinement'):
+        value = obj.get(key)
+        if isinstance(value, (str, list, dict)) and len(json.dumps(value)) <= 20000: out[key] = value
+    proposed = obj.get('closed_form_conjecture')
+    if isinstance(proposed, str) and 0 < len(proposed) <= 300: out['submitted_closed_form'] = proposed
     if padding:
         # This role is distinct from original geometric authorship. A form may
         # explicitly separate the two roles; otherwise retain its credit as given.
