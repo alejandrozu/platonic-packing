@@ -98,11 +98,17 @@ def archive_pass():
                    'submitted_by': con.get('submitted_by'), 'record_file': e.get('file')}
             # a refinement of a catalogue packing keeps the original credit too (25 Oct, issue #100: the submitted
             # found_by is the seed record's, the contribution credit is the refiner's)
-            seed = (rec.get('found_by') or '').split(' (')[0].strip()
-            m = re.search(r'search started from the (?:published )?packing of (.+)\)\s*$', rec.get('found_by') or '')
+            fb = rec.get('found_by') or ''
+            seed = fb.split(' (')[0].strip()
+            m = re.search(r'\s*\(search started from the (?:published )?packing of (.+)\)\s*$', fb)
+            own = fb[:m.start()].strip() if m else fb.strip()
+            if kind == 'community' and con.get('credit') and con['credit'] in own:
+                src['lineage'] = own                            # the submitted credit names the contributor, e.g.
+                                                                # "PolyPack (Michael Sinko using Opus 5.5)" (#101, #102)
             if kind == 'community' and m:                       # 28 Oct, issue #102: a search from someone else's packing
                 src['started_from'] = m.group(1).strip()
-            elif kind == 'community' and seed and con.get('credit') and seed != con['credit'].split(' (')[0].strip():
+            elif kind == 'community' and seed and con.get('credit') and con['credit'] not in own \
+                    and seed != con['credit'].split(' (')[0].strip():
                 src['refines'] = seed
             if kind == 'literature': src.update(source=credit, url=e.get('url'))
             case['best'] = {'s': s, 'C': (C0 + t).tolist(), 'Q': Q, 'src': src, 't': time.time(), 'tightened': False}
