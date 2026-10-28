@@ -3,104 +3,103 @@
  "piece": "tetrahedron",
  "container": "cube",
  "n": 7,
- "s": 1.26234,
- "s_plus": "1.26234+",
- "s_full": 1.2623456830728,
+ "s": 1.26223,
+ "s_plus": "1.26223+",
+ "s_full": 1.2622314456319,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000019906586388e-07,
-  "min_wall_gap": 1.0000001138266157e-07
+  "min_pair_gap": 1.0000000050247593e-07,
+  "min_wall_gap": 1.0000003125565371e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
  "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
- "date": "2026-10-13",
+ "date": "2026-10-28",
  "pieces": [
   [
-   0.3144846125951158,
-   -0.31605725062125717,
-   -0.21235174254523304,
-   0.3272289430726078,
-   -0.8519950914450226,
-   0.32823152925858623,
-   -0.24349465326725667
+   0.3674097092108065,
+   -0.2679874670532415,
+   -0.21446572934992292,
+   0.24517160758885037,
+   -0.8945884244155112,
+   0.31979663978562867,
+   -0.1932163112055836
   ],
   [
-   0.04485391745610297,
-   -0.10957039386063541,
-   0.06016037384307273,
-   0.06345179438224754,
-   -0.6701886777859742,
-   0.7390697751589409,
-   0.024430992687022413
+   0.0394931081674838,
+   -0.10792134411759946,
+   0.06698774520678025,
+   0.018735116528281602,
+   -0.6483778335675341,
+   0.760622591837019,
+   0.026616782940061878
   ],
   [
-   0.3975997363339997,
-   0.13117244609874967,
-   0.3657601244565198,
-   0.34870889787340564,
-   0.8418574368829106,
-   -0.15763474855088433,
-   0.3805646417603065
+   0.3692304831690105,
+   0.1311156227650094,
+   0.3935947317730843,
+   0.3570174967641907,
+   0.861916482731787,
+   -0.13778648849171252,
+   0.33264600912775033
   ],
   [
-   -0.2293113364103471,
-   0.05178410256946338,
-   -0.24862106317701757,
-   0.4734308276492185,
-   -0.44518435294137537,
-   0.5571400261975903,
-   -0.5169807873955217
+   -0.22754507586450873,
+   0.051451107587972965,
+   -0.25049530125644287,
+   0.47562460165626314,
+   -0.4439110109748686,
+   0.5552546453850769,
+   -0.5180893083367806
   ],
   [
-   -0.22514397201111103,
-   -0.27472486449165046,
-   0.34292638330284403,
-   0.8627854200536007,
-   -0.2842589556474301,
-   -0.33988429422415567,
-   0.24346833801731171
+   -0.22812323661843859,
+   -0.3156277782232256,
+   0.2948648880066664,
+   0.8936172488062785,
+   -0.2848624011828107,
+   -0.2723518533398388,
+   0.2147698605731637
   ],
   [
-   -0.42704859630445663,
-   0.3265709318332209,
-   0.12214977091581947,
-   0.6957731263349525,
-   0.5518830412912682,
-   0.4566738525395321,
-   -0.05266742647869148
+   -0.42699147755097505,
+   0.32799540525570225,
+   0.12272903344096316,
+   0.6966051004155945,
+   0.5508325232627534,
+   0.4565938598829623,
+   -0.053356466413599986
   ],
   [
-   0.12332662795156621,
-   0.3825959465539068,
-   -0.37975754732976585,
-   0.0020070674416450087,
-   0.7071039327286226,
-   -0.4985787748377999,
-   0.5014171968343715
+   0.11775152652426343,
+   0.3863735608445465,
+   -0.375966013521969,
+   0.007359645940365497,
+   0.7070684801421272,
+   -0.49476886154461713,
+   0.5051769726016598
   ]
  ],
  "record_id": "tetincub_n07",
  "title": "7 unit tetrahedra in a cube",
  "source": {
-  "hash": "e23fe16e2f19915d",
+  "hash": "cae671f8c864809b",
   "clear": 1e-07,
   "cap": 1.2962847128624
  },
- "s_tight": 1.262345483073,
+ "s_tight": 1.262231245632,
  "closed_form_conjecture": null,
  "volume_lower_bound": 0.9378727781442496,
- "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "found_by": "PolyPack (Michael Sinko using Opus 5.5) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/102; search started from the packing of Berthold, Kamp, Mexi, Pokutta and P\u00f3lik)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "search": {
-  "move": "literature",
-  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
-  "issue": null,
-  "submitted_by": null,
-  "record_file": "records/external/tetincub/tetincub_n07_kamp.json",
-  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
-  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l3/m1/n7/platonic_n7_m1_l3.html"
+  "move": "community",
+  "lineage": "PolyPack (Michael Sinko using Opus 5.5)",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/102",
+  "submitted_by": "sinkomr",
+  "record_file": "records/community/tetincub/tetincub_n07_submission_102_576e872bc10f.json",
+  "started_from": "Berthold, Kamp, Mexi, Pokutta and P\u00f3lik"
  },
- "density": 0.41010672804514764
+ "density": 0.4102180874558613
 }

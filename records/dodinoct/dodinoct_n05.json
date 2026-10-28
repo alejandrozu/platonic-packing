@@ -3,86 +3,85 @@
  "piece": "dodecahedron",
  "container": "octahedron",
  "n": 5,
- "s": 5.62673,
- "s_plus": "5.62673+",
- "s_full": 5.6267301252223,
+ "s": 5.62608,
+ "s_plus": "5.62608+",
+ "s_full": 5.6260837122128,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.000001976780851e-07,
-  "min_wall_gap": 1.0000000294496658e-07
+  "min_pair_gap": 1.0001143913029864e-07,
+  "min_wall_gap": 1.0000000960630473e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
  "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
- "date": "2026-10-13",
+ "date": "2026-10-28",
  "pieces": [
   [
-   -0.06825137120763561,
-   -0.005530231321841301,
-   -1.6801734018374597,
-   0.04323537038419327,
-   0.5192035185162671,
-   0.5421935823247713,
-   -0.6592302544588662
+   -0.055255984526948985,
+   -0.011051483676363615,
+   -1.7027845774087014,
+   0.04435737486600131,
+   0.5355320814858434,
+   0.5014126457512278,
+   -0.6781026262116899
   ],
   [
-   1.6772332686133287,
-   -0.005591813045347589,
-   0.06706887623691969,
-   0.45882811492476455,
-   0.19229000542871652,
-   0.7632997923273933,
-   -0.4121586366919534
+   1.6887687732040253,
+   -4.829704279385026e-11,
+   0.065394226063545,
+   0.4477709490546786,
+   0.19122544364887947,
+   0.7573873451396793,
+   -0.4350843783753101
   ],
   [
-   0.0017794043378546876,
-   1.7225562273634822,
-   0.0041257554747449335,
-   0.6732160737461864,
-   -0.3041112787889387,
-   0.670745743701742,
-   -0.06630682822396897
+   -2.456212885846272e-06,
+   1.7220111812690906,
+   -5.793509394379918e-06,
+   0.6724974910531258,
+   -0.3007458254301239,
+   0.6725009197992885,
+   -0.07100412581473954
   ],
   [
-   0.050148886153040986,
-   0.0002539754573695755,
-   1.6997445090162895,
-   0.026588529531470447,
-   -0.5409215994777768,
-   0.48937114465744996,
-   0.683529630734773
+   0.05527114952004355,
+   -0.01107119516322792,
+   1.7027925934798345,
+   0.0443904483492791,
+   -0.535513635146549,
+   0.5014445616400114,
+   0.6780914291370566
   ],
   [
-   -1.7463860340122603,
-   -0.03326687992089841,
-   -0.06215057021439733,
-   0.6901485041813412,
-   -0.3625402396858375,
-   0.6220921388539703,
-   -0.07253266547484162
+   -1.6887370726657107,
+   -3.3604376377292836e-05,
+   -0.06538158178904184,
+   0.6388843876149412,
+   -0.3950306693251466,
+   0.6515683260317436,
+   -0.10600106634652333
   ]
  ],
  "record_id": "dodinoct_n05",
  "title": "5 unit dodecahedra in an octahedron",
  "source": {
-  "hash": "18e54992d42ee318",
+  "hash": "454191fa063e1fe1",
   "clear": 1e-07,
   "cap": 5.6717164109335
  },
- "s_tight": 5.626729885874,
+ "s_tight": 5.626083466936,
  "closed_form_conjecture": null,
  "volume_lower_bound": 4.331722326690956,
- "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "found_by": "PolyPack (Michael Sinko using Opus 5.5) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/102; search started from the packing of Berthold, Kamp, Mexi, Pokutta and P\u00f3lik)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "search": {
-  "move": "literature",
-  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
-  "issue": null,
-  "submitted_by": null,
-  "record_file": "records/external/dodinoct/dodinoct_n05_kamp.json",
-  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
-  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l2/m5/n5/platonic_n5_m5_l2.html"
+  "move": "community",
+  "lineage": "PolyPack (Michael Sinko using Opus 5.5)",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/102",
+  "submitted_by": "sinkomr",
+  "record_file": "records/community/dodinoct/dodinoct_n05_submission_102_f3103af3bc13.json",
+  "started_from": "Berthold, Kamp, Mexi, Pokutta and P\u00f3lik"
  },
- "density": 0.4562612352749309
+ "density": 0.4564185207515596
 }
