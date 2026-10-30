@@ -59,6 +59,19 @@ def github_pass():
     return accepted, pending
 
 
+def uses_of(rec, credit):
+    """the finders of the catalogue records a cell composition places inside its cells (submitted uses_records), the
+    contributor's own name left out"""
+    me = (credit or '').split(' (')[0].strip()
+    out = []
+    for u in rec.get('uses_records') or []:
+        if not isinstance(u, dict): continue
+        name = re.sub(r'\s*\((?:search started|their packing|community contribution|published packing|re-tightened|nested construction|refinement)[^)]*(?:\([^)]*\)[^)]*)*\)', '',
+                      str(u.get('found_by') or '')).strip()
+        if name and name.split(' (')[0].strip() != me and name not in out: out.append(name[:120])
+    return out[:8]
+
+
 def archive_pass():
     """Community packings smaller than the archive's best become the best (credited)."""
     seen = set(open(SEEN).read().split()) if os.path.exists(SEEN) else set()
@@ -110,6 +123,8 @@ def archive_pass():
             elif kind == 'community' and seed and con.get('credit') and con['credit'] not in own \
                     and seed != con['credit'].split(' (')[0].strip():
                 src['refines'] = seed
+            uses = uses_of(rec, con.get('credit'))                # 30 Oct, issue #104: records placed in cells
+            if kind == 'community' and uses: src['uses'] = uses
             if kind == 'literature': src.update(source=credit, url=e.get('url'))
             case['best'] = {'s': s, 'C': (C0 + t).tolist(), 'Q': Q, 'src': src, 't': time.time(), 'tightened': False}
             st = case['stats']; st['improvements'] += 1; st['since'] = 0; st['last_improve'] = time.time()
