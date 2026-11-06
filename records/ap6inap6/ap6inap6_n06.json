@@ -3,95 +3,94 @@
  "piece": "antiprism6",
  "container": "antiprism6",
  "n": 6,
- "s": 2.24662,
- "s_plus": "2.24662+",
- "s_full": 2.2466220840827,
+ "s": 2.15176,
+ "s_plus": "2.15176+",
+ "s_full": 2.1517652979211,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.7116298028820776e-06,
-  "min_wall_gap": 1.000000128259515e-07
+  "min_pair_gap": 1.0000020099093112e-07,
+  "min_wall_gap": 1.0000001604559827e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
- "date": "2026-10-15",
+ "date": "2026-11-06",
  "pieces": [
   [
-   0.15920838158523992,
-   -1.1547028483584054,
-   -0.5333046263421305,
-   1.0,
-   0.0,
-   0.0,
-   0.0
+   -0.8776518243580651,
+   0.4960842670365252,
+   -0.4610215203748181,
+   0.2615636642185204,
+   0.017815988552616336,
+   0.0047737797450367655,
+   -0.9650099746320865
   ],
   [
-   -1.1025859417892554,
-   0.06893925147271954,
-   0.5333046263454121,
-   1.0,
-   0.0,
-   0.0,
-   0.0
+   0.009488003414728061,
+   -1.1492227616247792,
+   -0.47648904150155524,
+   3.6041842580743245e-16,
+   -0.9659258262890683,
+   -0.25881904510252096,
+   1.4592083739459696e-15
   ],
   [
-   0.6233109251605214,
-   1.0796061912978892,
-   0.5333046263454121,
-   1.0,
-   0.0,
-   0.0,
-   0.0
+   0.9908022053116556,
+   0.5613212778181663,
+   -0.4167759684449964,
+   0.025208559179885466,
+   0.9639803793704781,
+   -0.2638264499423767,
+   0.022404487131512555
   ],
   [
-   0.4864783990576004,
-   -1.112646986095821,
-   0.32229676245502464,
-   1.0,
-   0.0,
-   0.0,
-   0.0
+   0.57433193228844,
+   -0.9974578053396275,
+   0.49272490853691,
+   3.573382678688845e-17,
+   -0.2588190451025207,
+   0.9659258262890683,
+   6.524608740478076e-17
   ],
   [
-   0.8543162201056897,
-   0.7533821506780009,
-   -0.5333046263421305,
-   1.0,
-   0.0,
-   0.0,
-   0.0
+   0.5705422901962419,
+   0.9967894566178562,
+   0.4804096546713397,
+   0.00594092032526881,
+   -0.7092088370459154,
+   -0.7049679282160898,
+   0.0027840812458218593
   ],
   [
-   -1.1126469860963344,
-   0.38224458590878757,
-   -0.32229676245174294,
-   1.0,
-   0.0,
-   0.0,
-   0.0
+   -1.1318260684518748,
+   -0.016756111574555733,
+   0.4423989342352303,
+   0.8665985205154126,
+   -0.0031476880812771673,
+   0.023834732109453617,
+   -0.49842652602516224
   ]
  ],
  "record_id": "ap6inap6_n06",
  "title": "6 antiprism6s in a antiprism6",
  "family": "prisms",
  "source": {
-  "hash": "d2f3c8c315bbb9d5",
+  "hash": "6b351a757ee9af87",
   "clear": 1e-07,
   "cap": 2.3013537416885
  },
- "s_tight": 2.246621850331,
+ "s_tight": 2.151764939796,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.8171205928321397,
- "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/42)",
+ "found_by": "Alejandro Zarzuelo (arrows procedure of PingYou Ltd: kicks with fixed-orientation LP and free tightening, scripts/patterns/)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "community",
-  "lineage": "PingYou Ltd",
-  "issue": "https://github.com/alejandrozu/platonic-packing/issues/42",
-  "submitted_by": "BuddenPing",
-  "record_file": "records/community/ap6inap6/ap6inap6_n06_submission_42_e92dc79182d6.json"
+  "move": "arrow",
+  "arrow": "subset N13->6",
+  "script": "scripts/patterns/arrows_search.py, arrows_kick.py",
+  "raw": 2.1517649397963807
  },
- "density": 0.5291285307738933
+ "density": 0.6022357777768645
 }

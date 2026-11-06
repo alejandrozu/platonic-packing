@@ -3,86 +3,85 @@
  "piece": "antiprism12",
  "container": "antiprism12",
  "n": 5,
- "s": 2.15102,
- "s_plus": "2.15102+",
- "s_full": 2.1510288097038,
+ "s": 2.1501,
+ "s_plus": "2.15010+",
+ "s_full": 2.1501078578995,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020103085903e-07,
-  "min_wall_gap": 1.0000001782195511e-07
+  "min_pair_gap": 1.0000020095745857e-07,
+  "min_wall_gap": 1.000000309225868e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
- "date": "2026-10-14",
+ "date": "2026-11-06",
  "pieces": [
   [
-   -0.011674507993476546,
-   2.2211369919797064,
-   0.4726380923326032,
-   0.8662412642026757,
-   -0.003618436980981073,
-   -0.005192328473873058,
-   0.49958584730893285
+   1.582084614357058,
+   -1.5541572270372954,
+   -0.4555885739867255,
+   0.0106594805358159,
+   -0.6080905979809524,
+   0.7937959184204391,
+   0.0004899193055464909
   ],
   [
-   1.920821520600223,
-   -1.1166556412656883,
-   0.47324514794692507,
-   0.2583613919921957,
-   0.00434766541462676,
-   0.004347665414626831,
-   -0.9660287711754448
+   1.3286043007548616,
+   -1.7163187021018502,
+   0.4053249211091545,
+   0.003973340601960756,
+   0.3819314476665811,
+   0.924132331395371,
+   0.009592492769179846
   ],
   [
-   -0.10851575883761821,
-   2.1478485673332894,
-   -0.49696813536819995,
-   1.872958797831482e-16,
-   -1.451739790931508e-16,
-   -9.048810192274766e-17,
-   1.0
+   0.5994572600207125,
+   2.086939735533626,
+   0.046181964603200856,
+   0.10831624472966107,
+   0.0015711495209507432,
+   0.9921318642109588,
+   0.06276532987354311
   ],
   [
-   1.7773284817843282,
-   -1.2172739013750786,
-   -0.49696813536820406,
-   0.7071067811865471,
-   -6.679189883191289e-16,
-   7.2276103563398665e-16,
-   0.707106781186548
+   -2.146130043296942,
+   -0.5750538062546395,
+   -0.4965705068750394,
+   0.7071067811865477,
+   3.0644019151839675e-17,
+   1.0087711928865309e-16,
+   -0.7071067811865474
   ],
   [
-   -1.8816133766874017,
-   -1.0899604168996833,
-   0.2402104772338353,
-   0.19509567609991096,
-   -0.0360504439923347,
-   -0.030239274340241592,
-   0.9796548519465669
+   -2.1771078864523257,
+   -0.16693248996629934,
+   0.4965705052164784,
+   1.4328019515156231e-16,
+   -1.6650970647737601e-16,
+   -2.318678926369466e-16,
+   -1.0
   ]
  ],
  "record_id": "ap12inap12_n05",
  "title": "5 antiprism12s in a antiprism12",
  "family": "prisms",
  "source": {
-  "hash": "83fe6f4417af481c",
+  "hash": "15ac10265b5b6b2d",
   "clear": 1e-07,
   "cap": 2.15283594028
  },
- "s_tight": 2.151028478652,
+ "s_tight": 2.150107491728,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.7099759466766968,
- "found_by": "Alejandro Zarzuelo",
+ "found_by": "Alejandro Zarzuelo (arrows procedure of PingYou Ltd: kicks with fixed-orientation LP and free tightening, scripts/patterns/)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "ascend",
-  "seed": 1793041158,
-  "var": "base",
-  "raw": 2.164688837782137,
-  "host": "laptop"
+  "move": "arrow",
+  "arrow": "subset N12->5",
+  "script": "scripts/patterns/arrows_search.py, arrows_kick.py",
+  "raw": 2.1501074917275385
  },
- "density": 0.5023788216621774
+ "density": 0.5030246472406864
 }

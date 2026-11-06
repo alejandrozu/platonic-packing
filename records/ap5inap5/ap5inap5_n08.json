@@ -5,111 +5,110 @@
  "n": 8,
  "s": 2.38196,
  "s_plus": "2.38196+",
- "s_full": 2.3819690109855,
+ "s_full": 2.3819664088245,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.701724902923293e-06,
-  "min_wall_gap": 1.0000000316701119e-07
+  "min_pair_gap": 1.0000020087368919e-07,
+  "min_wall_gap": 1.0000003602961272e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
- "date": "2026-10-15",
+ "date": "2026-11-06",
  "pieces": [
   [
-   1.013112683194338,
-   -0.11803422487805995,
-   -0.26286608192080374,
-   1.0,
-   0.0,
-   0.0,
-   0.0
+   -0.363271306707876,
+   1.1180341201829544,
+   -0.5877853213909213,
+   2.8554607609673146e-15,
+   -0.9510565162951528,
+   -0.3090169943749502,
+   -1.7265414769958914e-15
   ],
   [
-   -1.0131126832014004,
-   0.11803422487592925,
-   0.2628660819242866,
-   1.0,
-   0.0,
-   0.0,
-   0.0
+   -1.0131107755670519,
+   -0.5000000587786522,
+   0.2628655869613343,
+   0.8090169943749473,
+   3.111273817798066e-15,
+   -5.0261652738806405e-15,
+   -0.5877852522924732
   ],
   [
-   -0.16246017312445746,
-   -1.118036225378061,
-   -0.26286608192080374,
+   0.36327130670787133,
+   -1.1180341201829578,
+   0.5877853213909235,
    1.0,
-   0.0,
-   0.0,
-   0.0
+   4.2363294893300126e-17,
+   -6.453485762534822e-17,
+   7.967771258275842e-17
   ],
   [
-   -1.1755728563123267,
-   -1.0653510302441981e-12,
-   -0.5877864281526562,
-   1.0,
-   0.0,
-   0.0,
-   0.0
+   1.0131107755670512,
+   0.5000000587786558,
+   -0.26286558696134005,
+   9.380309817510875e-15,
+   0.9510565162951539,
+   -0.3090169943749466,
+   -1.6973213563714557e-15
   ],
   [
-   1.1755728563052643,
-   -1.0653510302441981e-12,
-   0.5877864281561392,
-   1.0,
-   0.0,
-   0.0,
-   0.0
+   -0.4253254541761441,
+   0.9270510921064512,
+   0.2628655869613394,
+   0.30901699437494684,
+   -1.168300683215508e-14,
+   -8.285631907990299e-15,
+   0.9510565162951539
   ],
   [
-   -3.5311413564291953e-12,
-   -1.0000020005010661,
-   0.5877864281561392,
-   1.0,
-   0.0,
-   0.0,
-   0.0
+   -0.9510566280987923,
+   -0.3090170307021536,
+   -0.5877853213909202,
+   4.408668409380081e-15,
+   7.225391113279719e-16,
+   -1.0,
+   1.6515975960191925e-17
   ],
   [
-   0.1624601731173952,
-   1.1180362253759302,
-   0.2628660819242866,
-   1.0,
-   0.0,
-   0.0,
-   0.0
+   0.4253254541761294,
+   -0.9270510921064585,
+   -0.26286558696132906,
+   0.8090169943749471,
+   6.451089122567465e-16,
+   2.8465534926627375e-15,
+   0.5877852522924736
   ],
   [
-   -3.5311413564291953e-12,
-   1.0000020004989356,
-   -0.5877864281526562,
-   1.0,
-   0.0,
-   0.0,
-   0.0
+   0.9510566280987925,
+   0.30901703070215425,
+   0.5877853213909253,
+   1.627158836897679e-17,
+   0.5877852522924727,
+   -0.8090169943749479,
+   1.0301676234082114e-15
   ]
  ],
  "record_id": "ap5inap5_n08",
  "title": "8 antiprism5s in a antiprism5",
  "family": "prisms",
  "source": {
-  "hash": "3712264ed493931c",
+  "hash": "982df4852e6bb2b5",
   "clear": 1e-07,
   "cap": 2.5893497753398
  },
- "s_tight": 2.38196877588,
- "closed_form_conjecture": null,
+ "s_tight": 2.38196601125,
+ "closed_form_conjecture": "(7 - \u221a5)/2",
  "volume_lower_bound": 2.0,
- "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/38)",
+ "found_by": "Alejandro Zarzuelo (arrows procedure of PingYou Ltd: kicks with fixed-orientation LP and free tightening, scripts/patterns/)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "community",
-  "lineage": "PingYou Ltd",
-  "issue": "https://github.com/alejandrozu/platonic-packing/issues/38",
-  "submitted_by": "BuddenPing",
-  "record_file": "records/community/ap5inap5/ap5inap5_n08_submission_38_77102fe57157.json"
+  "move": "arrow",
+  "arrow": "subset N9->8",
+  "script": "scripts/patterns/arrows_search.py, arrows_kick.py",
+  "raw": 2.3819660112501144
  },
- "density": 0.5919454214291288
+ "density": 0.5919473614300038
 }
