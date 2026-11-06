@@ -1,0 +1,1609 @@
+{
+ "classes": [
+  [
+   "plateau",
+   "P1 on a plateau"
+  ],
+  [
+   "deletion",
+   "P1 built by deletion"
+  ],
+  [
+   "frozen",
+   "P1 frozen subset of n+1"
+  ],
+  [
+   "insertion",
+   "P3 built by insertion"
+  ],
+  [
+   "composite",
+   "P4 composite or nested"
+  ],
+  [
+   "window",
+   "P5 lattice window"
+  ],
+  [
+   "one_orient",
+   "P6 one orientation class"
+  ],
+  [
+   "layered",
+   "P6 two or three layers"
+  ],
+  [
+   "symmetric",
+   "P7 symmetric"
+  ],
+  [
+   "closed",
+   "P8 closed form"
+  ],
+  [
+   "rational",
+   "P8 rational scale"
+  ],
+  [
+   "optimal",
+   "P9 proven optimal"
+  ],
+  [
+   "rattler",
+   "P10 has a rattler"
+  ],
+  [
+   "isostatic",
+   "P10 contacts >= 6n + 1"
+  ],
+  [
+   "transfer",
+   "P11 matched by transfer"
+  ]
+ ],
+ "formal": [
+  [
+   "window",
+   "plateau",
+   "lattice_windows",
+   "a window of N pieces gives every n <= N at the same scale"
+  ],
+  [
+   "composite",
+   "transfer",
+   "Packing.transfer_piece / transfer_container",
+   "transfer is composition with one piece"
+  ],
+  [
+   "optimal",
+   "plateau",
+   "optimal_plateau_of_common_point / _of_one_piece",
+   "an extremal bound plus deletion proves a whole plateau"
+  ],
+  [
+   "deletion",
+   "plateau",
+   "Packing.restrict",
+   "s(m) <= s(n) for m <= n"
+  ],
+  [
+   "rattler",
+   "plateau",
+   "Packing.restrict",
+   "removing a rattler keeps the scale: s(n-1) <= s(n) is attained without it"
+  ],
+  [
+   "window",
+   "one_orient",
+   "voronoi_packing",
+   "a single-lattice window uses one orientation"
+  ]
+ ],
+ "records": 8514,
+ "totals": {
+  "plateau": 2836,
+  "deletion": 1246,
+  "frozen": 601,
+  "insertion": 1902,
+  "composite": 51,
+  "window": 889,
+  "one_orient": 1241,
+  "layered": 857,
+  "symmetric": 776,
+  "closed": 1206,
+  "rational": 668,
+  "optimal": 30,
+  "rattler": 649,
+  "isostatic": 107,
+  "transfer": 19
+ },
+ "domains": {
+  "plateau": 8514,
+  "deletion": 8514,
+  "frozen": 8514,
+  "insertion": 8514,
+  "composite": 8514,
+  "window": 8514,
+  "one_orient": 8514,
+  "layered": 8514,
+  "symmetric": 8514,
+  "closed": 8514,
+  "rational": 8514,
+  "optimal": 8514,
+  "rattler": 2494,
+  "isostatic": 2494,
+  "transfer": 8514
+ },
+ "pairs": {
+  "plateau->deletion": {
+   "n_a": 2836,
+   "n_ab": 1108,
+   "p_b_given_a": 0.3907,
+   "p_b": 0.1463,
+   "lift": 2.67
+  },
+  "plateau->frozen": {
+   "n_a": 2836,
+   "n_ab": 565,
+   "p_b_given_a": 0.1992,
+   "p_b": 0.0706,
+   "lift": 2.822
+  },
+  "plateau->insertion": {
+   "n_a": 2836,
+   "n_ab": 274,
+   "p_b_given_a": 0.0966,
+   "p_b": 0.2234,
+   "lift": 0.432
+  },
+  "plateau->composite": {
+   "n_a": 2836,
+   "n_ab": 46,
+   "p_b_given_a": 0.0162,
+   "p_b": 0.006,
+   "lift": 2.708
+  },
+  "plateau->window": {
+   "n_a": 2836,
+   "n_ab": 819,
+   "p_b_given_a": 0.2888,
+   "p_b": 0.1044,
+   "lift": 2.766
+  },
+  "plateau->one_orient": {
+   "n_a": 2836,
+   "n_ab": 809,
+   "p_b_given_a": 0.2853,
+   "p_b": 0.1458,
+   "lift": 1.957
+  },
+  "plateau->layered": {
+   "n_a": 2836,
+   "n_ab": 556,
+   "p_b_given_a": 0.1961,
+   "p_b": 0.1007,
+   "lift": 1.948
+  },
+  "plateau->symmetric": {
+   "n_a": 2836,
+   "n_ab": 484,
+   "p_b_given_a": 0.1707,
+   "p_b": 0.0911,
+   "lift": 1.872
+  },
+  "plateau->closed": {
+   "n_a": 2836,
+   "n_ab": 986,
+   "p_b_given_a": 0.3477,
+   "p_b": 0.1416,
+   "lift": 2.454
+  },
+  "plateau->rational": {
+   "n_a": 2836,
+   "n_ab": 603,
+   "p_b_given_a": 0.2126,
+   "p_b": 0.0785,
+   "lift": 2.71
+  },
+  "plateau->optimal": {
+   "n_a": 2836,
+   "n_ab": 21,
+   "p_b_given_a": 0.0074,
+   "p_b": 0.0035,
+   "lift": 2.101
+  },
+  "plateau->rattler": {
+   "n_a": 664,
+   "n_ab": 110,
+   "p_b_given_a": 0.1657,
+   "p_b": 0.2602,
+   "lift": 0.637
+  },
+  "plateau->isostatic": {
+   "n_a": 664,
+   "n_ab": 86,
+   "p_b_given_a": 0.1295,
+   "p_b": 0.0429,
+   "lift": 3.019
+  },
+  "plateau->transfer": {
+   "n_a": 2836,
+   "n_ab": 13,
+   "p_b_given_a": 0.0046,
+   "p_b": 0.0022,
+   "lift": 2.054
+  },
+  "deletion->plateau": {
+   "n_a": 1246,
+   "n_ab": 1108,
+   "p_b_given_a": 0.8892,
+   "p_b": 0.3331,
+   "lift": 2.67
+  },
+  "deletion->frozen": {
+   "n_a": 1246,
+   "n_ab": 380,
+   "p_b_given_a": 0.305,
+   "p_b": 0.0706,
+   "lift": 4.32
+  },
+  "deletion->insertion": {
+   "n_a": 1246,
+   "n_ab": 0,
+   "p_b_given_a": 0.0,
+   "p_b": 0.2234,
+   "lift": 0.0
+  },
+  "deletion->composite": {
+   "n_a": 1246,
+   "n_ab": 5,
+   "p_b_given_a": 0.004,
+   "p_b": 0.006,
+   "lift": 0.67
+  },
+  "deletion->window": {
+   "n_a": 1246,
+   "n_ab": 251,
+   "p_b_given_a": 0.2014,
+   "p_b": 0.1044,
+   "lift": 1.929
+  },
+  "deletion->one_orient": {
+   "n_a": 1246,
+   "n_ab": 267,
+   "p_b_given_a": 0.2143,
+   "p_b": 0.1458,
+   "lift": 1.47
+  },
+  "deletion->layered": {
+   "n_a": 1246,
+   "n_ab": 190,
+   "p_b_given_a": 0.1525,
+   "p_b": 0.1007,
+   "lift": 1.515
+  },
+  "deletion->symmetric": {
+   "n_a": 1246,
+   "n_ab": 124,
+   "p_b_given_a": 0.0995,
+   "p_b": 0.0911,
+   "lift": 1.092
+  },
+  "deletion->closed": {
+   "n_a": 1246,
+   "n_ab": 519,
+   "p_b_given_a": 0.4165,
+   "p_b": 0.1416,
+   "lift": 2.941
+  },
+  "deletion->rational": {
+   "n_a": 1246,
+   "n_ab": 354,
+   "p_b_given_a": 0.2841,
+   "p_b": 0.0785,
+   "lift": 3.621
+  },
+  "deletion->optimal": {
+   "n_a": 1246,
+   "n_ab": 7,
+   "p_b_given_a": 0.0056,
+   "p_b": 0.0035,
+   "lift": 1.594
+  },
+  "deletion->rattler": {
+   "n_a": 244,
+   "n_ab": 38,
+   "p_b_given_a": 0.1557,
+   "p_b": 0.2602,
+   "lift": 0.598
+  },
+  "deletion->isostatic": {
+   "n_a": 244,
+   "n_ab": 34,
+   "p_b_given_a": 0.1393,
+   "p_b": 0.0429,
+   "lift": 3.248
+  },
+  "deletion->transfer": {
+   "n_a": 1246,
+   "n_ab": 0,
+   "p_b_given_a": 0.0,
+   "p_b": 0.0022,
+   "lift": 0.0
+  },
+  "frozen->plateau": {
+   "n_a": 601,
+   "n_ab": 565,
+   "p_b_given_a": 0.9401,
+   "p_b": 0.3331,
+   "lift": 2.822
+  },
+  "frozen->deletion": {
+   "n_a": 601,
+   "n_ab": 380,
+   "p_b_given_a": 0.6323,
+   "p_b": 0.1463,
+   "lift": 4.32
+  },
+  "frozen->insertion": {
+   "n_a": 601,
+   "n_ab": 11,
+   "p_b_given_a": 0.0183,
+   "p_b": 0.2234,
+   "lift": 0.082
+  },
+  "frozen->composite": {
+   "n_a": 601,
+   "n_ab": 6,
+   "p_b_given_a": 0.01,
+   "p_b": 0.006,
+   "lift": 1.667
+  },
+  "frozen->window": {
+   "n_a": 601,
+   "n_ab": 186,
+   "p_b_given_a": 0.3095,
+   "p_b": 0.1044,
+   "lift": 2.964
+  },
+  "frozen->one_orient": {
+   "n_a": 601,
+   "n_ab": 193,
+   "p_b_given_a": 0.3211,
+   "p_b": 0.1458,
+   "lift": 2.203
+  },
+  "frozen->layered": {
+   "n_a": 601,
+   "n_ab": 248,
+   "p_b_given_a": 0.4126,
+   "p_b": 0.1007,
+   "lift": 4.099
+  },
+  "frozen->symmetric": {
+   "n_a": 601,
+   "n_ab": 141,
+   "p_b_given_a": 0.2346,
+   "p_b": 0.0911,
+   "lift": 2.574
+  },
+  "frozen->closed": {
+   "n_a": 601,
+   "n_ab": 297,
+   "p_b_given_a": 0.4942,
+   "p_b": 0.1416,
+   "lift": 3.489
+  },
+  "frozen->rational": {
+   "n_a": 601,
+   "n_ab": 165,
+   "p_b_given_a": 0.2745,
+   "p_b": 0.0785,
+   "lift": 3.499
+  },
+  "frozen->optimal": {
+   "n_a": 601,
+   "n_ab": 8,
+   "p_b_given_a": 0.0133,
+   "p_b": 0.0035,
+   "lift": 3.778
+  },
+  "frozen->rattler": {
+   "n_a": 376,
+   "n_ab": 50,
+   "p_b_given_a": 0.133,
+   "p_b": 0.2602,
+   "lift": 0.511
+  },
+  "frozen->isostatic": {
+   "n_a": 376,
+   "n_ab": 61,
+   "p_b_given_a": 0.1622,
+   "p_b": 0.0429,
+   "lift": 3.781
+  },
+  "frozen->transfer": {
+   "n_a": 601,
+   "n_ab": 4,
+   "p_b_given_a": 0.0067,
+   "p_b": 0.0022,
+   "lift": 2.982
+  },
+  "insertion->plateau": {
+   "n_a": 1902,
+   "n_ab": 274,
+   "p_b_given_a": 0.1441,
+   "p_b": 0.3331,
+   "lift": 0.432
+  },
+  "insertion->deletion": {
+   "n_a": 1902,
+   "n_ab": 0,
+   "p_b_given_a": 0.0,
+   "p_b": 0.1463,
+   "lift": 0.0
+  },
+  "insertion->frozen": {
+   "n_a": 1902,
+   "n_ab": 11,
+   "p_b_given_a": 0.0058,
+   "p_b": 0.0706,
+   "lift": 0.082
+  },
+  "insertion->composite": {
+   "n_a": 1902,
+   "n_ab": 0,
+   "p_b_given_a": 0.0,
+   "p_b": 0.006,
+   "lift": 0.0
+  },
+  "insertion->window": {
+   "n_a": 1902,
+   "n_ab": 42,
+   "p_b_given_a": 0.0221,
+   "p_b": 0.1044,
+   "lift": 0.211
+  },
+  "insertion->one_orient": {
+   "n_a": 1902,
+   "n_ab": 60,
+   "p_b_given_a": 0.0315,
+   "p_b": 0.1458,
+   "lift": 0.216
+  },
+  "insertion->layered": {
+   "n_a": 1902,
+   "n_ab": 105,
+   "p_b_given_a": 0.0552,
+   "p_b": 0.1007,
+   "lift": 0.548
+  },
+  "insertion->symmetric": {
+   "n_a": 1902,
+   "n_ab": 61,
+   "p_b_given_a": 0.0321,
+   "p_b": 0.0911,
+   "lift": 0.352
+  },
+  "insertion->closed": {
+   "n_a": 1902,
+   "n_ab": 210,
+   "p_b_given_a": 0.1104,
+   "p_b": 0.1416,
+   "lift": 0.779
+  },
+  "insertion->rational": {
+   "n_a": 1902,
+   "n_ab": 94,
+   "p_b_given_a": 0.0494,
+   "p_b": 0.0785,
+   "lift": 0.63
+  },
+  "insertion->optimal": {
+   "n_a": 1902,
+   "n_ab": 4,
+   "p_b_given_a": 0.0021,
+   "p_b": 0.0035,
+   "lift": 0.597
+  },
+  "insertion->rattler": {
+   "n_a": 296,
+   "n_ab": 94,
+   "p_b_given_a": 0.3176,
+   "p_b": 0.2602,
+   "lift": 1.22
+  },
+  "insertion->isostatic": {
+   "n_a": 296,
+   "n_ab": 19,
+   "p_b_given_a": 0.0642,
+   "p_b": 0.0429,
+   "lift": 1.496
+  },
+  "insertion->transfer": {
+   "n_a": 1902,
+   "n_ab": 0,
+   "p_b_given_a": 0.0,
+   "p_b": 0.0022,
+   "lift": 0.0
+  },
+  "composite->plateau": {
+   "n_a": 51,
+   "n_ab": 46,
+   "p_b_given_a": 0.902,
+   "p_b": 0.3331,
+   "lift": 2.708
+  },
+  "composite->deletion": {
+   "n_a": 51,
+   "n_ab": 5,
+   "p_b_given_a": 0.098,
+   "p_b": 0.1463,
+   "lift": 0.67
+  },
+  "composite->frozen": {
+   "n_a": 51,
+   "n_ab": 6,
+   "p_b_given_a": 0.1176,
+   "p_b": 0.0706,
+   "lift": 1.667
+  },
+  "composite->insertion": {
+   "n_a": 51,
+   "n_ab": 0,
+   "p_b_given_a": 0.0,
+   "p_b": 0.2234,
+   "lift": 0.0
+  },
+  "composite->window": {
+   "n_a": 51,
+   "n_ab": 32,
+   "p_b_given_a": 0.6275,
+   "p_b": 0.1044,
+   "lift": 6.009
+  },
+  "composite->one_orient": {
+   "n_a": 51,
+   "n_ab": 35,
+   "p_b_given_a": 0.6863,
+   "p_b": 0.1458,
+   "lift": 4.708
+  },
+  "composite->layered": {
+   "n_a": 51,
+   "n_ab": 6,
+   "p_b_given_a": 0.1176,
+   "p_b": 0.1007,
+   "lift": 1.169
+  },
+  "composite->symmetric": {
+   "n_a": 51,
+   "n_ab": 27,
+   "p_b_given_a": 0.5294,
+   "p_b": 0.0911,
+   "lift": 5.809
+  },
+  "composite->closed": {
+   "n_a": 51,
+   "n_ab": 45,
+   "p_b_given_a": 0.8824,
+   "p_b": 0.1416,
+   "lift": 6.229
+  },
+  "composite->rational": {
+   "n_a": 51,
+   "n_ab": 29,
+   "p_b_given_a": 0.5686,
+   "p_b": 0.0785,
+   "lift": 7.247
+  },
+  "composite->optimal": {
+   "n_a": 51,
+   "n_ab": 2,
+   "p_b_given_a": 0.0392,
+   "p_b": 0.0035,
+   "lift": 11.129
+  },
+  "composite->rattler": {
+   "n_a": 12,
+   "n_ab": 0,
+   "p_b_given_a": 0.0,
+   "p_b": 0.2602,
+   "lift": 0.0
+  },
+  "composite->isostatic": {
+   "n_a": 12,
+   "n_ab": 6,
+   "p_b_given_a": 0.5,
+   "p_b": 0.0429,
+   "lift": 11.654
+  },
+  "composite->transfer": {
+   "n_a": 51,
+   "n_ab": 14,
+   "p_b_given_a": 0.2745,
+   "p_b": 0.0022,
+   "lift": 123.009
+  },
+  "window->plateau": {
+   "n_a": 889,
+   "n_ab": 819,
+   "p_b_given_a": 0.9213,
+   "p_b": 0.3331,
+   "lift": 2.766
+  },
+  "window->deletion": {
+   "n_a": 889,
+   "n_ab": 251,
+   "p_b_given_a": 0.2823,
+   "p_b": 0.1463,
+   "lift": 1.929
+  },
+  "window->frozen": {
+   "n_a": 889,
+   "n_ab": 186,
+   "p_b_given_a": 0.2092,
+   "p_b": 0.0706,
+   "lift": 2.964
+  },
+  "window->insertion": {
+   "n_a": 889,
+   "n_ab": 42,
+   "p_b_given_a": 0.0472,
+   "p_b": 0.2234,
+   "lift": 0.211
+  },
+  "window->composite": {
+   "n_a": 889,
+   "n_ab": 32,
+   "p_b_given_a": 0.036,
+   "p_b": 0.006,
+   "lift": 6.009
+  },
+  "window->one_orient": {
+   "n_a": 889,
+   "n_ab": 685,
+   "p_b_given_a": 0.7705,
+   "p_b": 0.1458,
+   "lift": 5.286
+  },
+  "window->layered": {
+   "n_a": 889,
+   "n_ab": 288,
+   "p_b_given_a": 0.324,
+   "p_b": 0.1007,
+   "lift": 3.218
+  },
+  "window->symmetric": {
+   "n_a": 889,
+   "n_ab": 399,
+   "p_b_given_a": 0.4488,
+   "p_b": 0.0911,
+   "lift": 4.924
+  },
+  "window->closed": {
+   "n_a": 889,
+   "n_ab": 326,
+   "p_b_given_a": 0.3667,
+   "p_b": 0.1416,
+   "lift": 2.589
+  },
+  "window->rational": {
+   "n_a": 889,
+   "n_ab": 251,
+   "p_b_given_a": 0.2823,
+   "p_b": 0.0785,
+   "lift": 3.599
+  },
+  "window->optimal": {
+   "n_a": 889,
+   "n_ab": 8,
+   "p_b_given_a": 0.009,
+   "p_b": 0.0035,
+   "lift": 2.554
+  },
+  "window->rattler": {
+   "n_a": 231,
+   "n_ab": 2,
+   "p_b_given_a": 0.0087,
+   "p_b": 0.2602,
+   "lift": 0.033
+  },
+  "window->isostatic": {
+   "n_a": 231,
+   "n_ab": 63,
+   "p_b_given_a": 0.2727,
+   "p_b": 0.0429,
+   "lift": 6.357
+  },
+  "window->transfer": {
+   "n_a": 889,
+   "n_ab": 14,
+   "p_b_given_a": 0.0157,
+   "p_b": 0.0022,
+   "lift": 7.057
+  },
+  "one_orient->plateau": {
+   "n_a": 1241,
+   "n_ab": 809,
+   "p_b_given_a": 0.6519,
+   "p_b": 0.3331,
+   "lift": 1.957
+  },
+  "one_orient->deletion": {
+   "n_a": 1241,
+   "n_ab": 267,
+   "p_b_given_a": 0.2151,
+   "p_b": 0.1463,
+   "lift": 1.47
+  },
+  "one_orient->frozen": {
+   "n_a": 1241,
+   "n_ab": 193,
+   "p_b_given_a": 0.1555,
+   "p_b": 0.0706,
+   "lift": 2.203
+  },
+  "one_orient->insertion": {
+   "n_a": 1241,
+   "n_ab": 60,
+   "p_b_given_a": 0.0483,
+   "p_b": 0.2234,
+   "lift": 0.216
+  },
+  "one_orient->composite": {
+   "n_a": 1241,
+   "n_ab": 35,
+   "p_b_given_a": 0.0282,
+   "p_b": 0.006,
+   "lift": 4.708
+  },
+  "one_orient->window": {
+   "n_a": 1241,
+   "n_ab": 685,
+   "p_b_given_a": 0.552,
+   "p_b": 0.1044,
+   "lift": 5.286
+  },
+  "one_orient->layered": {
+   "n_a": 1241,
+   "n_ab": 309,
+   "p_b_given_a": 0.249,
+   "p_b": 0.1007,
+   "lift": 2.474
+  },
+  "one_orient->symmetric": {
+   "n_a": 1241,
+   "n_ab": 466,
+   "p_b_given_a": 0.3755,
+   "p_b": 0.0911,
+   "lift": 4.12
+  },
+  "one_orient->closed": {
+   "n_a": 1241,
+   "n_ab": 402,
+   "p_b_given_a": 0.3239,
+   "p_b": 0.1416,
+   "lift": 2.287
+  },
+  "one_orient->rational": {
+   "n_a": 1241,
+   "n_ab": 262,
+   "p_b_given_a": 0.2111,
+   "p_b": 0.0785,
+   "lift": 2.691
+  },
+  "one_orient->optimal": {
+   "n_a": 1241,
+   "n_ab": 14,
+   "p_b_given_a": 0.0113,
+   "p_b": 0.0035,
+   "lift": 3.202
+  },
+  "one_orient->rattler": {
+   "n_a": 439,
+   "n_ab": 2,
+   "p_b_given_a": 0.0046,
+   "p_b": 0.2602,
+   "lift": 0.018
+  },
+  "one_orient->isostatic": {
+   "n_a": 439,
+   "n_ab": 43,
+   "p_b_given_a": 0.0979,
+   "p_b": 0.0429,
+   "lift": 2.283
+  },
+  "one_orient->transfer": {
+   "n_a": 1241,
+   "n_ab": 14,
+   "p_b_given_a": 0.0113,
+   "p_b": 0.0022,
+   "lift": 5.055
+  },
+  "layered->plateau": {
+   "n_a": 857,
+   "n_ab": 556,
+   "p_b_given_a": 0.6488,
+   "p_b": 0.3331,
+   "lift": 1.948
+  },
+  "layered->deletion": {
+   "n_a": 857,
+   "n_ab": 190,
+   "p_b_given_a": 0.2217,
+   "p_b": 0.1463,
+   "lift": 1.515
+  },
+  "layered->frozen": {
+   "n_a": 857,
+   "n_ab": 248,
+   "p_b_given_a": 0.2894,
+   "p_b": 0.0706,
+   "lift": 4.099
+  },
+  "layered->insertion": {
+   "n_a": 857,
+   "n_ab": 105,
+   "p_b_given_a": 0.1225,
+   "p_b": 0.2234,
+   "lift": 0.548
+  },
+  "layered->composite": {
+   "n_a": 857,
+   "n_ab": 6,
+   "p_b_given_a": 0.007,
+   "p_b": 0.006,
+   "lift": 1.169
+  },
+  "layered->window": {
+   "n_a": 857,
+   "n_ab": 288,
+   "p_b_given_a": 0.3361,
+   "p_b": 0.1044,
+   "lift": 3.218
+  },
+  "layered->one_orient": {
+   "n_a": 857,
+   "n_ab": 309,
+   "p_b_given_a": 0.3606,
+   "p_b": 0.1458,
+   "lift": 2.474
+  },
+  "layered->symmetric": {
+   "n_a": 857,
+   "n_ab": 310,
+   "p_b_given_a": 0.3617,
+   "p_b": 0.0911,
+   "lift": 3.969
+  },
+  "layered->closed": {
+   "n_a": 857,
+   "n_ab": 322,
+   "p_b_given_a": 0.3757,
+   "p_b": 0.1416,
+   "lift": 2.653
+  },
+  "layered->rational": {
+   "n_a": 857,
+   "n_ab": 186,
+   "p_b_given_a": 0.217,
+   "p_b": 0.0785,
+   "lift": 2.766
+  },
+  "layered->optimal": {
+   "n_a": 857,
+   "n_ab": 18,
+   "p_b_given_a": 0.021,
+   "p_b": 0.0035,
+   "lift": 5.961
+  },
+  "layered->rattler": {
+   "n_a": 577,
+   "n_ab": 27,
+   "p_b_given_a": 0.0468,
+   "p_b": 0.2602,
+   "lift": 0.18
+  },
+  "layered->isostatic": {
+   "n_a": 577,
+   "n_ab": 49,
+   "p_b_given_a": 0.0849,
+   "p_b": 0.0429,
+   "lift": 1.979
+  },
+  "layered->transfer": {
+   "n_a": 857,
+   "n_ab": 4,
+   "p_b_given_a": 0.0047,
+   "p_b": 0.0022,
+   "lift": 2.092
+  },
+  "symmetric->plateau": {
+   "n_a": 776,
+   "n_ab": 484,
+   "p_b_given_a": 0.6237,
+   "p_b": 0.3331,
+   "lift": 1.872
+  },
+  "symmetric->deletion": {
+   "n_a": 776,
+   "n_ab": 124,
+   "p_b_given_a": 0.1598,
+   "p_b": 0.1463,
+   "lift": 1.092
+  },
+  "symmetric->frozen": {
+   "n_a": 776,
+   "n_ab": 141,
+   "p_b_given_a": 0.1817,
+   "p_b": 0.0706,
+   "lift": 2.574
+  },
+  "symmetric->insertion": {
+   "n_a": 776,
+   "n_ab": 61,
+   "p_b_given_a": 0.0786,
+   "p_b": 0.2234,
+   "lift": 0.352
+  },
+  "symmetric->composite": {
+   "n_a": 776,
+   "n_ab": 27,
+   "p_b_given_a": 0.0348,
+   "p_b": 0.006,
+   "lift": 5.809
+  },
+  "symmetric->window": {
+   "n_a": 776,
+   "n_ab": 399,
+   "p_b_given_a": 0.5142,
+   "p_b": 0.1044,
+   "lift": 4.924
+  },
+  "symmetric->one_orient": {
+   "n_a": 776,
+   "n_ab": 466,
+   "p_b_given_a": 0.6005,
+   "p_b": 0.1458,
+   "lift": 4.12
+  },
+  "symmetric->layered": {
+   "n_a": 776,
+   "n_ab": 310,
+   "p_b_given_a": 0.3995,
+   "p_b": 0.1007,
+   "lift": 3.969
+  },
+  "symmetric->closed": {
+   "n_a": 776,
+   "n_ab": 304,
+   "p_b_given_a": 0.3918,
+   "p_b": 0.1416,
+   "lift": 2.766
+  },
+  "symmetric->rational": {
+   "n_a": 776,
+   "n_ab": 163,
+   "p_b_given_a": 0.2101,
+   "p_b": 0.0785,
+   "lift": 2.677
+  },
+  "symmetric->optimal": {
+   "n_a": 776,
+   "n_ab": 18,
+   "p_b_given_a": 0.0232,
+   "p_b": 0.0035,
+   "lift": 6.583
+  },
+  "symmetric->rattler": {
+   "n_a": 482,
+   "n_ab": 0,
+   "p_b_given_a": 0.0,
+   "p_b": 0.2602,
+   "lift": 0.0
+  },
+  "symmetric->isostatic": {
+   "n_a": 482,
+   "n_ab": 81,
+   "p_b_given_a": 0.168,
+   "p_b": 0.0429,
+   "lift": 3.917
+  },
+  "symmetric->transfer": {
+   "n_a": 776,
+   "n_ab": 9,
+   "p_b_given_a": 0.0116,
+   "p_b": 0.0022,
+   "lift": 5.197
+  },
+  "closed->plateau": {
+   "n_a": 1206,
+   "n_ab": 986,
+   "p_b_given_a": 0.8176,
+   "p_b": 0.3331,
+   "lift": 2.454
+  },
+  "closed->deletion": {
+   "n_a": 1206,
+   "n_ab": 519,
+   "p_b_given_a": 0.4303,
+   "p_b": 0.1463,
+   "lift": 2.941
+  },
+  "closed->frozen": {
+   "n_a": 1206,
+   "n_ab": 297,
+   "p_b_given_a": 0.2463,
+   "p_b": 0.0706,
+   "lift": 3.489
+  },
+  "closed->insertion": {
+   "n_a": 1206,
+   "n_ab": 210,
+   "p_b_given_a": 0.1741,
+   "p_b": 0.2234,
+   "lift": 0.779
+  },
+  "closed->composite": {
+   "n_a": 1206,
+   "n_ab": 45,
+   "p_b_given_a": 0.0373,
+   "p_b": 0.006,
+   "lift": 6.229
+  },
+  "closed->window": {
+   "n_a": 1206,
+   "n_ab": 326,
+   "p_b_given_a": 0.2703,
+   "p_b": 0.1044,
+   "lift": 2.589
+  },
+  "closed->one_orient": {
+   "n_a": 1206,
+   "n_ab": 402,
+   "p_b_given_a": 0.3333,
+   "p_b": 0.1458,
+   "lift": 2.287
+  },
+  "closed->layered": {
+   "n_a": 1206,
+   "n_ab": 322,
+   "p_b_given_a": 0.267,
+   "p_b": 0.1007,
+   "lift": 2.653
+  },
+  "closed->symmetric": {
+   "n_a": 1206,
+   "n_ab": 304,
+   "p_b_given_a": 0.2521,
+   "p_b": 0.0911,
+   "lift": 2.766
+  },
+  "closed->rational": {
+   "n_a": 1206,
+   "n_ab": 668,
+   "p_b_given_a": 0.5539,
+   "p_b": 0.0785,
+   "lift": 7.06
+  },
+  "closed->optimal": {
+   "n_a": 1206,
+   "n_ab": 23,
+   "p_b_given_a": 0.0191,
+   "p_b": 0.0035,
+   "lift": 5.412
+  },
+  "closed->rattler": {
+   "n_a": 577,
+   "n_ab": 124,
+   "p_b_given_a": 0.2149,
+   "p_b": 0.2602,
+   "lift": 0.826
+  },
+  "closed->isostatic": {
+   "n_a": 577,
+   "n_ab": 67,
+   "p_b_given_a": 0.1161,
+   "p_b": 0.0429,
+   "lift": 2.707
+  },
+  "closed->transfer": {
+   "n_a": 1206,
+   "n_ab": 14,
+   "p_b_given_a": 0.0116,
+   "p_b": 0.0022,
+   "lift": 5.202
+  },
+  "rational->plateau": {
+   "n_a": 668,
+   "n_ab": 603,
+   "p_b_given_a": 0.9027,
+   "p_b": 0.3331,
+   "lift": 2.71
+  },
+  "rational->deletion": {
+   "n_a": 668,
+   "n_ab": 354,
+   "p_b_given_a": 0.5299,
+   "p_b": 0.1463,
+   "lift": 3.621
+  },
+  "rational->frozen": {
+   "n_a": 668,
+   "n_ab": 165,
+   "p_b_given_a": 0.247,
+   "p_b": 0.0706,
+   "lift": 3.499
+  },
+  "rational->insertion": {
+   "n_a": 668,
+   "n_ab": 94,
+   "p_b_given_a": 0.1407,
+   "p_b": 0.2234,
+   "lift": 0.63
+  },
+  "rational->composite": {
+   "n_a": 668,
+   "n_ab": 29,
+   "p_b_given_a": 0.0434,
+   "p_b": 0.006,
+   "lift": 7.247
+  },
+  "rational->window": {
+   "n_a": 668,
+   "n_ab": 251,
+   "p_b_given_a": 0.3757,
+   "p_b": 0.1044,
+   "lift": 3.599
+  },
+  "rational->one_orient": {
+   "n_a": 668,
+   "n_ab": 262,
+   "p_b_given_a": 0.3922,
+   "p_b": 0.1458,
+   "lift": 2.691
+  },
+  "rational->layered": {
+   "n_a": 668,
+   "n_ab": 186,
+   "p_b_given_a": 0.2784,
+   "p_b": 0.1007,
+   "lift": 2.766
+  },
+  "rational->symmetric": {
+   "n_a": 668,
+   "n_ab": 163,
+   "p_b_given_a": 0.244,
+   "p_b": 0.0911,
+   "lift": 2.677
+  },
+  "rational->closed": {
+   "n_a": 668,
+   "n_ab": 668,
+   "p_b_given_a": 1.0,
+   "p_b": 0.1416,
+   "lift": 7.06
+  },
+  "rational->optimal": {
+   "n_a": 668,
+   "n_ab": 18,
+   "p_b_given_a": 0.0269,
+   "p_b": 0.0035,
+   "lift": 7.647
+  },
+  "rational->rattler": {
+   "n_a": 241,
+   "n_ab": 31,
+   "p_b_given_a": 0.1286,
+   "p_b": 0.2602,
+   "lift": 0.494
+  },
+  "rational->isostatic": {
+   "n_a": 241,
+   "n_ab": 45,
+   "p_b_given_a": 0.1867,
+   "p_b": 0.0429,
+   "lift": 4.352
+  },
+  "rational->transfer": {
+   "n_a": 668,
+   "n_ab": 0,
+   "p_b_given_a": 0.0,
+   "p_b": 0.0022,
+   "lift": 0.0
+  },
+  "optimal->plateau": {
+   "n_a": 30,
+   "n_ab": 21,
+   "p_b_given_a": 0.7,
+   "p_b": 0.3331,
+   "lift": 2.101
+  },
+  "optimal->deletion": {
+   "n_a": 30,
+   "n_ab": 7,
+   "p_b_given_a": 0.2333,
+   "p_b": 0.1463,
+   "lift": 1.594
+  },
+  "optimal->frozen": {
+   "n_a": 30,
+   "n_ab": 8,
+   "p_b_given_a": 0.2667,
+   "p_b": 0.0706,
+   "lift": 3.778
+  },
+  "optimal->insertion": {
+   "n_a": 30,
+   "n_ab": 4,
+   "p_b_given_a": 0.1333,
+   "p_b": 0.2234,
+   "lift": 0.597
+  },
+  "optimal->composite": {
+   "n_a": 30,
+   "n_ab": 2,
+   "p_b_given_a": 0.0667,
+   "p_b": 0.006,
+   "lift": 11.129
+  },
+  "optimal->window": {
+   "n_a": 30,
+   "n_ab": 8,
+   "p_b_given_a": 0.2667,
+   "p_b": 0.1044,
+   "lift": 2.554
+  },
+  "optimal->one_orient": {
+   "n_a": 30,
+   "n_ab": 14,
+   "p_b_given_a": 0.4667,
+   "p_b": 0.1458,
+   "lift": 3.202
+  },
+  "optimal->layered": {
+   "n_a": 30,
+   "n_ab": 18,
+   "p_b_given_a": 0.6,
+   "p_b": 0.1007,
+   "lift": 5.961
+  },
+  "optimal->symmetric": {
+   "n_a": 30,
+   "n_ab": 18,
+   "p_b_given_a": 0.6,
+   "p_b": 0.0911,
+   "lift": 6.583
+  },
+  "optimal->closed": {
+   "n_a": 30,
+   "n_ab": 23,
+   "p_b_given_a": 0.7667,
+   "p_b": 0.1416,
+   "lift": 5.412
+  },
+  "optimal->rational": {
+   "n_a": 30,
+   "n_ab": 18,
+   "p_b_given_a": 0.6,
+   "p_b": 0.0785,
+   "lift": 7.647
+  },
+  "optimal->rattler": {
+   "n_a": 28,
+   "n_ab": 0,
+   "p_b_given_a": 0.0,
+   "p_b": 0.2602,
+   "lift": 0.0
+  },
+  "optimal->isostatic": {
+   "n_a": 28,
+   "n_ab": 4,
+   "p_b_given_a": 0.1429,
+   "p_b": 0.0429,
+   "lift": 3.33
+  },
+  "optimal->transfer": {
+   "n_a": 30,
+   "n_ab": 1,
+   "p_b_given_a": 0.0333,
+   "p_b": 0.0022,
+   "lift": 14.937
+  },
+  "rattler->plateau": {
+   "n_a": 649,
+   "n_ab": 110,
+   "p_b_given_a": 0.1695,
+   "p_b": 0.2662,
+   "lift": 0.637
+  },
+  "rattler->deletion": {
+   "n_a": 649,
+   "n_ab": 38,
+   "p_b_given_a": 0.0586,
+   "p_b": 0.0978,
+   "lift": 0.598
+  },
+  "rattler->frozen": {
+   "n_a": 649,
+   "n_ab": 50,
+   "p_b_given_a": 0.077,
+   "p_b": 0.1508,
+   "lift": 0.511
+  },
+  "rattler->insertion": {
+   "n_a": 649,
+   "n_ab": 94,
+   "p_b_given_a": 0.1448,
+   "p_b": 0.1187,
+   "lift": 1.22
+  },
+  "rattler->composite": {
+   "n_a": 649,
+   "n_ab": 0,
+   "p_b_given_a": 0.0,
+   "p_b": 0.0048,
+   "lift": 0.0
+  },
+  "rattler->window": {
+   "n_a": 649,
+   "n_ab": 2,
+   "p_b_given_a": 0.0031,
+   "p_b": 0.0926,
+   "lift": 0.033
+  },
+  "rattler->one_orient": {
+   "n_a": 649,
+   "n_ab": 2,
+   "p_b_given_a": 0.0031,
+   "p_b": 0.176,
+   "lift": 0.018
+  },
+  "rattler->layered": {
+   "n_a": 649,
+   "n_ab": 27,
+   "p_b_given_a": 0.0416,
+   "p_b": 0.2314,
+   "lift": 0.18
+  },
+  "rattler->symmetric": {
+   "n_a": 649,
+   "n_ab": 0,
+   "p_b_given_a": 0.0,
+   "p_b": 0.1933,
+   "lift": 0.0
+  },
+  "rattler->closed": {
+   "n_a": 649,
+   "n_ab": 124,
+   "p_b_given_a": 0.1911,
+   "p_b": 0.2314,
+   "lift": 0.826
+  },
+  "rattler->rational": {
+   "n_a": 649,
+   "n_ab": 31,
+   "p_b_given_a": 0.0478,
+   "p_b": 0.0966,
+   "lift": 0.494
+  },
+  "rattler->optimal": {
+   "n_a": 649,
+   "n_ab": 0,
+   "p_b_given_a": 0.0,
+   "p_b": 0.0112,
+   "lift": 0.0
+  },
+  "rattler->isostatic": {
+   "n_a": 649,
+   "n_ab": 0,
+   "p_b_given_a": 0.0,
+   "p_b": 0.0429,
+   "lift": 0.0
+  },
+  "rattler->transfer": {
+   "n_a": 649,
+   "n_ab": 0,
+   "p_b_given_a": 0.0,
+   "p_b": 0.0048,
+   "lift": 0.0
+  },
+  "isostatic->plateau": {
+   "n_a": 107,
+   "n_ab": 86,
+   "p_b_given_a": 0.8037,
+   "p_b": 0.2662,
+   "lift": 3.019
+  },
+  "isostatic->deletion": {
+   "n_a": 107,
+   "n_ab": 34,
+   "p_b_given_a": 0.3178,
+   "p_b": 0.0978,
+   "lift": 3.248
+  },
+  "isostatic->frozen": {
+   "n_a": 107,
+   "n_ab": 61,
+   "p_b_given_a": 0.5701,
+   "p_b": 0.1508,
+   "lift": 3.781
+  },
+  "isostatic->insertion": {
+   "n_a": 107,
+   "n_ab": 19,
+   "p_b_given_a": 0.1776,
+   "p_b": 0.1187,
+   "lift": 1.496
+  },
+  "isostatic->composite": {
+   "n_a": 107,
+   "n_ab": 6,
+   "p_b_given_a": 0.0561,
+   "p_b": 0.0048,
+   "lift": 11.654
+  },
+  "isostatic->window": {
+   "n_a": 107,
+   "n_ab": 63,
+   "p_b_given_a": 0.5888,
+   "p_b": 0.0926,
+   "lift": 6.357
+  },
+  "isostatic->one_orient": {
+   "n_a": 107,
+   "n_ab": 43,
+   "p_b_given_a": 0.4019,
+   "p_b": 0.176,
+   "lift": 2.283
+  },
+  "isostatic->layered": {
+   "n_a": 107,
+   "n_ab": 49,
+   "p_b_given_a": 0.4579,
+   "p_b": 0.2314,
+   "lift": 1.979
+  },
+  "isostatic->symmetric": {
+   "n_a": 107,
+   "n_ab": 81,
+   "p_b_given_a": 0.757,
+   "p_b": 0.1933,
+   "lift": 3.917
+  },
+  "isostatic->closed": {
+   "n_a": 107,
+   "n_ab": 67,
+   "p_b_given_a": 0.6262,
+   "p_b": 0.2314,
+   "lift": 2.707
+  },
+  "isostatic->rational": {
+   "n_a": 107,
+   "n_ab": 45,
+   "p_b_given_a": 0.4206,
+   "p_b": 0.0966,
+   "lift": 4.352
+  },
+  "isostatic->optimal": {
+   "n_a": 107,
+   "n_ab": 4,
+   "p_b_given_a": 0.0374,
+   "p_b": 0.0112,
+   "lift": 3.33
+  },
+  "isostatic->rattler": {
+   "n_a": 107,
+   "n_ab": 0,
+   "p_b_given_a": 0.0,
+   "p_b": 0.2602,
+   "lift": 0.0
+  },
+  "isostatic->transfer": {
+   "n_a": 107,
+   "n_ab": 4,
+   "p_b_given_a": 0.0374,
+   "p_b": 0.0048,
+   "lift": 7.769
+  },
+  "transfer->plateau": {
+   "n_a": 19,
+   "n_ab": 13,
+   "p_b_given_a": 0.6842,
+   "p_b": 0.3331,
+   "lift": 2.054
+  },
+  "transfer->deletion": {
+   "n_a": 19,
+   "n_ab": 0,
+   "p_b_given_a": 0.0,
+   "p_b": 0.1463,
+   "lift": 0.0
+  },
+  "transfer->frozen": {
+   "n_a": 19,
+   "n_ab": 4,
+   "p_b_given_a": 0.2105,
+   "p_b": 0.0706,
+   "lift": 2.982
+  },
+  "transfer->insertion": {
+   "n_a": 19,
+   "n_ab": 0,
+   "p_b_given_a": 0.0,
+   "p_b": 0.2234,
+   "lift": 0.0
+  },
+  "transfer->composite": {
+   "n_a": 19,
+   "n_ab": 14,
+   "p_b_given_a": 0.7368,
+   "p_b": 0.006,
+   "lift": 123.009
+  },
+  "transfer->window": {
+   "n_a": 19,
+   "n_ab": 14,
+   "p_b_given_a": 0.7368,
+   "p_b": 0.1044,
+   "lift": 7.057
+  },
+  "transfer->one_orient": {
+   "n_a": 19,
+   "n_ab": 14,
+   "p_b_given_a": 0.7368,
+   "p_b": 0.1458,
+   "lift": 5.055
+  },
+  "transfer->layered": {
+   "n_a": 19,
+   "n_ab": 4,
+   "p_b_given_a": 0.2105,
+   "p_b": 0.1007,
+   "lift": 2.092
+  },
+  "transfer->symmetric": {
+   "n_a": 19,
+   "n_ab": 9,
+   "p_b_given_a": 0.4737,
+   "p_b": 0.0911,
+   "lift": 5.197
+  },
+  "transfer->closed": {
+   "n_a": 19,
+   "n_ab": 14,
+   "p_b_given_a": 0.7368,
+   "p_b": 0.1416,
+   "lift": 5.202
+  },
+  "transfer->rational": {
+   "n_a": 19,
+   "n_ab": 0,
+   "p_b_given_a": 0.0,
+   "p_b": 0.0785,
+   "lift": 0.0
+  },
+  "transfer->optimal": {
+   "n_a": 19,
+   "n_ab": 1,
+   "p_b_given_a": 0.0526,
+   "p_b": 0.0035,
+   "lift": 14.937
+  },
+  "transfer->rattler": {
+   "n_a": 12,
+   "n_ab": 0,
+   "p_b_given_a": 0.0,
+   "p_b": 0.2602,
+   "lift": 0.0
+  },
+  "transfer->isostatic": {
+   "n_a": 12,
+   "n_ab": 4,
+   "p_b_given_a": 0.3333,
+   "p_b": 0.0429,
+   "lift": 7.769
+  }
+ }
+}

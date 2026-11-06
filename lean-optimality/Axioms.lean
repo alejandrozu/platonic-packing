@@ -93,3 +93,9 @@ import PackingOptimality
 #print axioms PackingOptimality.PrismCube.pr3l15incub_n02
 #print axioms PackingOptimality.PrismCube.pr3l15incub_n03
 #print axioms PackingOptimality.PrismCube.pr8incub_n02
+#print axioms PackingOptimality.PrismCube.pcentre
+#print axioms PackingOptimality.PrismCube.pr6incub_n02
+#print axioms PackingOptimality.optimal_plateau_of_common_point
+#print axioms PackingOptimality.optimal_plateau_of_one_piece
+#print axioms PackingOptimality.Packing.transfer_piece
+#print axioms PackingOptimality.Packing.transfer_container

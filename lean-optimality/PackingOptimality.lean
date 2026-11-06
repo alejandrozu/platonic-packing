@@ -25,3 +25,4 @@ import PackingOptimality.Triakis
 import PackingOptimality.PrismCube
 import PackingOptimality.TriPrismCube
 import PackingOptimality.PolyPrism
+import PackingOptimality.Relations

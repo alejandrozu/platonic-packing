@@ -11,7 +11,7 @@ completion, golden shells and layers, recursive composition, exact tilings, Wels
 and mixed, quadratic-field and column layers. Their "arrows" (6 Nov 2026) recover smaller square-antiprism packings
 from a larger one.
 
-## The nine classes
+## The eleven classes
 
 | Class | Mechanism | Formal statement (Lean, `lean-optimality/`) | In the catalogue |
 |---|---|---|---|
@@ -23,7 +23,9 @@ from a larger one.
 | P6 Layers, orientation classes | few layers, few orientations | descriptive | 1,241 single-orientation 3D records |
 | P7 Symmetry | invariance under container symmetries | descriptive | 776 3D records with nontrivial symmetry |
 | P8 Algebraic scales | contact equations close the scale | exact certificates | 1,624 closed forms (895 rational, 266 in Q(√2), 185 in Q(√3), 148 in Q(√5)) |
-| P9 Extremal | a lower bound meets the construction | `docs/OPTIMALITY.md` | centre lemmas, facet width, two balls, volume tilings |
+| P9 Extremal | a lower bound meets the construction | `optimal_plateau_of_common_point`, `optimal_plateau_of_one_piece`; `docs/OPTIMALITY.md` | 55 records proven optimal in Lean (centre, facet-width, two-ball, width and box lemmas, volume tilings) |
+| P10 Contacts | contact graph; rattlers (pieces touching nothing) | measured | 649 of 2,494 3D records with n ≤ 30 have a rattler |
+| P11 Transfer | one piece of K in t K′, or of C′ in λ C | `Packing.transfer_piece`, `Packing.transfer_container` | 19 Platonic records are exactly a transfer; no transfer bound beats a record |
 
 ## Exact instances proved in Lean
 
@@ -36,6 +38,37 @@ These are at the exact scales; the certified records carry 10⁻⁷ clearance.
   scale 4 (`tcu56`), hence every n ≤ 56.
 * **Triakis recursion** (`Triakis.lean`): 4 triakis tetrahedra at exactly 5/3, hence 4ᵏ at (5/3)ᵏ for every k
   (`triakis_recursion`), including 16 at 25/9 and 64 at 125/27.
+
+## Relations between the classes
+
+Figure: [`patterns-paper/fig_relations.pdf`](patterns-paper/fig_relations.pdf); data:
+[`patterns/relations.json`](patterns/relations.json) (`scripts/patterns/relations.py`).
+
+**Formal implications** (Lean, any bodies and containers):
+
+* a lattice window of N pieces gives every n ≤ N at the same scale (`lattice_windows`): windows end plateaus;
+* composition with one piece is transfer (`Packing.transfer_piece`, `Packing.transfer_container`);
+* deletion and separator certificates make the arrows' F step sound (`Packing.restrict`, `Packing.of_separators`);
+* an extremal lower bound plus deletion proves a whole plateau optimal (`optimal_plateau_of_common_point`,
+  `optimal_plateau_of_one_piece`, `Relations.lean`).
+
+**Empirical associations.** The lift P(B | A)/P(B) is measured over the 3D records.
+
+* **Rigid cluster.** Windows, single orientation, symmetry, composites and rational scales attract one another
+  (lifts 3.6 to 7). 77% of windows have one orientation class.
+* **Plateaus.** 92% of windows, 94% of frozen subsets and 82% of records with a closed form lie on plateaus.
+* **Avoidance.** Rattlers avoid the rigid cluster: in windows the lift is 0.03, and no symmetric record has a
+  rattler. Records built by insertion are windows a fifth as often as average.
+* **Optimality.** Proven optimality goes with closed forms (lift 5.4).
+
+## Contact graphs and transfer
+
+* `scripts/patterns/contacts.py` builds the contact graph of every 3D record with n ≤ 30
+  ([`patterns/contacts3d.json`](patterns/contacts3d.json)). A pair is in contact when its best separating plane
+  has margin below 10⁻⁵; a piece touches a wall when a container facet is that close.
+* `scripts/patterns/transfer.py` gives the one-piece scales between Platonic solids, for example
+  s₁(tet in cube) = 1/√2, s₁(cube in octahedron) = 1 + 1/√2 and s₁(cube in dodecahedron) = 1/φ. It also gives
+  every transfer bound between the 25 Platonic families ([`patterns/transfer.json`](patterns/transfer.json)).
 
 ## PingYou's arrows
 
@@ -59,6 +92,11 @@ Starting only from catalogue records, they reach PingYou's values:
 | 6 | 2.292893610 | 6 pieces of n = 9, F, P; a 16° spin, F, P | 2.2459217996 | 2.245921799598007 |
 | 7 | 2.373563494 | insert into n = 6; four spins | 2.3629758095 | 2.362975810 |
 | 8 | 2.402020630 | insert into n = 7; four spins | 2.3849425743 | 2.384942574336931 |
+
+PingYou Ltd has since submitted their constructions for N = 2–20 with exact certificates (PR #107). They are
+now the records (N = 15–17 at exactly 3). The same arrows on other antiprism families improved 14 records,
+for example hexagonal antiprisms at n = 6 from 2.2466 to 2.1518, and octagonal antiprisms at n = 9 from 2.7464
+to 2.6249 and at n = 10 from 2.8515 to 2.7118.
 
 ## Data and scripts
 

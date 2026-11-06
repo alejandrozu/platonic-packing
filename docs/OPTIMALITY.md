@@ -172,7 +172,7 @@ contains the centre.
 
 These lower bounds are elementary. What is new is that the records attain them exactly.
 
-### Prisms in a cube: twelve more new results (6 Nov 2026)
+### Prisms in a cube: thirteen more new results (6 Nov 2026)
 
 | Records | Optimal side | Argument | Lean theorems |
 |---|---|---|---|
@@ -182,6 +182,7 @@ These lower bounds are elementary. What is new is that the records attain them e
 | 2 dodecagonal prisms of height 3/2 (`pr12l15incub_n02`) | 2 + √3 | one prism already needs 2 + √3 (axis widths) | `PrismCube.pr12l15incub_n02` |
 | 2 dodecagonal prisms of height 2 (`pr12l2incub_n02`) | 4 | box centre lemma | `PrismCube.pr12l2incub_n02` |
 | 2 octagonal prisms of height 1 (`pr8incub_n02`) | 1 + √2 | one prism already needs 1 + √2 (axis widths) | `PrismCube.pr8incub_n02` (`PolyPrism.lean`) |
+| 2 hexagonal prisms of height 1 (`pr6incub_n02`) | 2 | box centre lemma for any polygon (`pcentre`) | `PrismCube.pr6incub_n02` (`PolyPrism.lean`) |
 
 All bases have unit edges; "height" is the length of the lateral edges. A cube container makes two arguments
 exact, because a piece can be translated independently along each axis.
@@ -202,6 +203,9 @@ exact, because a piece can be translated independently along each axis.
   - *Dodecagonal prism, height 1, s < 2 + √3.* Widths force |aᵢ| > 1/2 for every coordinate; the threshold
     4r/(4r² + 1) is exactly 1/2. The caps then reduce to r Σ|aᵢ|(1 − √(1 − aᵢ²)) < 1, and the twelve sides to
     ‖b‖₁ ≤ √3 < 2.
+  - *Any polygon with inradius ρ, height L, s < 2L* (`pcentre`): the box lemma holds when L√3 ≤ 2ρ (sides,
+    via |bᵢ| ≤ √(1 − aᵢ²) and ‖b‖₁ ≤ √3) and L ≤ (7/5)ρ (caps). The hexagonal prism of height 1 meets the first
+    condition with equality: √3 = 2ρ.
   - *Dodecagonal prism, height 2, s < 4.* No width step is needed. The sides use |bᵢ| ≤ √(1 − aᵢ²), the caps use
     √(1 − aᵢ²) ≥ (7/10)(|aⱼ| + |aₖ|).
   - *Triangular prism, height 2, s < 2.* Widths force |aᵢ| < 13/19. The caps hold because ‖a‖₁ ≤ √3 < 2. Each side

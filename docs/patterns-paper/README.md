@@ -18,8 +18,13 @@ python3 scripts/patterns/stats.py             # docs/patterns/stats.json
 python3 scripts/patterns/paper_macros.py      # macros.tex, table_families.tex
 python3 scripts/patterns/figures.py           # figures
 python3 scripts/patterns/figures.py arrow <arrow result json>
+python3 scripts/patterns/contacts.py 30        # docs/patterns/contacts3d.json
+python3 scripts/patterns/transfer.py           # docs/patterns/transfer.json (one-piece scales, numerical)
+python3 scripts/patterns/relations.py          # docs/patterns/relations.json
+python3 scripts/patterns/relations_macros.py   # relations_macros.tex
+python3 scripts/patterns/fig_relations.py      # fig_relations.pdf
 cd docs/patterns-paper && latexmk -pdf patterns.tex
 ```
 
 The Lean theorems cited are in `lean-optimality/PackingOptimality/` (`Patterns.lean`, `Windows.lean`,
-`Triakis.lean`, `Basic.lean`), built and axiom-audited by `.github/workflows/lean-optimality.yml`.
+`Triakis.lean`, `Relations.lean`, `PrismCube.lean`, `TriPrismCube.lean`, `PolyPrism.lean`, `Basic.lean`), built and axiom-audited by `.github/workflows/lean-optimality.yml`.
