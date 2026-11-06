@@ -10,90 +10,88 @@
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020091877525e-07,
-  "min_wall_gap": 1.0000003225485443e-07
+  "min_pair_gap": 1.0000020107048242e-07,
+  "min_wall_gap": 1.0000003425325588e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
  "date": "2026-11-06",
  "pieces": [
   [
-   0.6649763973284043,
-   0.2511202098074406,
-   0.4230828277451303,
-   0.026706051944008814,
-   -0.07667307367604041,
-   0.07667307367604047,
-   -0.9937450711000789
+   0.6349020788736945,
+   0.2514116565146846,
+   -0.4753622335368906,
+   0.019148982250191036,
+   -0.3935609903991452,
+   -0.9179356595827186,
+   -0.04622973265405286
   ],
   [
-   0.2514116565146984,
-   0.6349020788736967,
-   -0.475362233536891,
-   0.04622973265405378,
-   0.37078888446215713,
-   0.927368174705616,
-   0.019148982250191217
+   0.25112020980744915,
+   0.6649763973283923,
+   0.4230828277451306,
+   0.026706051944008182,
+   -0.07667307367603873,
+   0.07667307367603873,
+   0.9937450711000791
   ],
   [
-   -0.6477781231277383,
-   -0.2926405166320673,
-   -0.42308282774513073,
-   0.04149516845969,
-   0.3556165999192256,
-   -0.9283206953461866,
-   0.10017819846835045
+   -0.6229609621609975,
+   0.622960962160998,
+   -0.523845639924188,
+   1.0,
+   0.0,
+   0.0,
+   0.0
   ],
   [
-   -0.6267184525519011,
-   0.27116867817013923,
-   0.47536223353688456,
-   0.6974526973997734,
-   0.050038702046347285,
-   1.0267274806634917e-14,
-   -0.7148817127240682
-  ],
-  [
-   0.6229609621609999,
-   -0.6229609621609998,
-   -0.5238456399241896,
-   1.6973601202141596e-16,
-   -0.3826834323650899,
-   -0.9238795325112867,
-   -1.3476762527634086e-16
-  ],
-  [
-   2.995592633760121e-16,
-   -0.8809998415170787,
-   0.5238456399241894,
-   3.663827483924544e-17,
+   -0.8809998415170751,
+   2.8998622687350017e-16,
+   0.523845639924188,
+   0.0,
    0.9238795325112867,
-   -0.38268343236508995,
-   -2.250687829633009e-17
+   -0.3826834323650898,
+   0.0
+  ],
+  [
+   -0.29264051663207014,
+   -0.6477781231277414,
+   -0.4230828277451306,
+   0.10017819846835002,
+   -0.35561659991921607,
+   -0.92832069534619,
+   0.0414951684596942
+  ],
+  [
+   0.2711686781701494,
+   -0.6267184525519013,
+   0.4753622335368906,
+   0.012324174925213961,
+   0.035382705538746846,
+   0.035382705538746846,
+   -0.9986712387016707
   ]
  ],
  "record_id": "ap4inap4_n06",
  "title": "6 antiprism4s in a antiprism4",
  "family": "prisms",
  "source": {
-  "hash": "f9cd0f9253c1f690",
+  "hash": "42dc8fba14edd949",
   "clear": 1e-07,
-  "cap": 2.362976179963
+  "cap": 2.3629761821506
  },
- "s_tight": 2.245921799598,
+ "s_tight": 2.245921799599,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.8171205928321397,
- "found_by": "PingYou Ltd (arrows: subset relaxation, fixed-orientation LP and free tightening, with kicks; first reported 2026-11-06; this witness reproduced from catalogue records by their procedure, scripts/patterns/)",
+ "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/pull/107)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "arrow",
+  "move": "community",
   "lineage": "PingYou Ltd",
-  "arrow": "subset N9->6; kick spin (1, 0, 16)",
-  "reported": "2026-11-06",
-  "reproduced_from_catalogue": true,
-  "script": "scripts/patterns/arrows_search.py, arrows_kick.py",
-  "raw": 2.245921799598012
+  "issue": "https://github.com/alejandrozu/platonic-packing/pull/107",
+  "submitted_by": "BuddenPing",
+  "record_file": "records/community/ap4inap4/ap4inap4_n06_pingyou_20261106.json"
  },
  "density": 0.5296233797373612
 }
