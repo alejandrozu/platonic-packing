@@ -172,7 +172,7 @@ contains the centre.
 
 These lower bounds are elementary. What is new is that the records attain them exactly.
 
-### Prisms in a cube: eleven more new results (6 Nov 2026)
+### Prisms in a cube: twelve more new results (6 Nov 2026)
 
 | Records | Optimal side | Argument | Lean theorems |
 |---|---|---|---|
@@ -181,6 +181,7 @@ These lower bounds are elementary. What is new is that the records attain them e
 | 2 and 3 dodecagonal prisms of height 1 (`pr12incub_n02`, `_n03`) | 2 + √3 | box centre lemma | `PrismCube.pr12incub_n02`, `_n03` (`PrismCube.lean`) |
 | 2 dodecagonal prisms of height 3/2 (`pr12l15incub_n02`) | 2 + √3 | one prism already needs 2 + √3 (axis widths) | `PrismCube.pr12l15incub_n02` |
 | 2 dodecagonal prisms of height 2 (`pr12l2incub_n02`) | 4 | box centre lemma | `PrismCube.pr12l2incub_n02` |
+| 2 octagonal prisms of height 1 (`pr8incub_n02`) | 1 + √2 | one prism already needs 1 + √2 (axis widths) | `PrismCube.pr8incub_n02` (`PolyPrism.lean`) |
 
 All bases have unit edges; "height" is the length of the lateral edges. A cube container makes two arguments
 exact, because a piece can be translated independently along each axis.
@@ -190,7 +191,9 @@ exact, because a piece can be translated independently along each axis.
   For the triangle, six differences of its vertices lie at 60° steps, so that width is at least (√3/2)√(1 − aᵢ²)
   (`six_dirs`). The dodecagon contains the disc of radius r = (2 + √3)/2, so for it the width is 2r√(1 − aᵢ²).
   Some axis has aᵢ² ≥ 1/3, which gives s ≥ 3/2 for the triangular prism of height 3/2. Some axis also has
-  aᵢ² ≤ 1/3, which gives s ≥ 2 + √3 for the dodecagonal prism of height 3/2.
+  aᵢ² ≤ 1/3, which gives s ≥ 2 + √3 for the dodecagonal prism of height 3/2. For the octagonal prism of
+  height 1 (`PolyPrism.lean`, any polygon with an inscribed circle) the same step needs |aᵢ| ≤ 4ρ/(4ρ² + 1),
+  and for ρ = (1 + √2)/2 that is exactly 1/√2.
 - **Box centre lemma** (`PrismCube.centre_of_box`). The admissible translations of a placed piece form a box. For
   each facet (normal β, offset h) and any points vᵢ of the piece, the cube's centre satisfies
   ⟨β, y⟩ ≤ (s/2) Σᵢ |bᵢ| + Σᵢ bᵢ (L vᵢ)ᵢ in piece coordinates, with b = Lβ. For the best vᵢ this is sharp. If the

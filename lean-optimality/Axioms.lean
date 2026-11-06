@@ -92,3 +92,4 @@ import PackingOptimality
 #print axioms PackingOptimality.PrismCube.pr3l2incub_n06
 #print axioms PackingOptimality.PrismCube.pr3l15incub_n02
 #print axioms PackingOptimality.PrismCube.pr3l15incub_n03
+#print axioms PackingOptimality.PrismCube.pr8incub_n02
