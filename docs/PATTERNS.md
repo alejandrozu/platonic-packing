@@ -55,7 +55,7 @@ Figure: [`patterns-paper/fig_relations.pdf`](patterns-paper/fig_relations.pdf); 
 **Empirical associations.** The lift P(B | A)/P(B) is measured over the 3D records.
 
 * **Rigid cluster.** Windows, single orientation, symmetry, composites and rational scales attract one another
-  (lifts 3.6 to 7). 77% of windows have one orientation class.
+  (lifts 3.6 to 7.2). 77% of windows have one orientation class.
 * **Plateaus.** 92% of windows, 94% of frozen subsets and 82% of records with a closed form lie on plateaus.
 * **Avoidance.** Rattlers avoid the rigid cluster: in windows the lift is 0.03, and no symmetric record has a
   rattler. Records built by insertion are windows a fifth as often as average.
