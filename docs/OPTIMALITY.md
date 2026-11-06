@@ -172,6 +172,54 @@ contains the centre.
 
 These lower bounds are elementary. What is new is that the records attain them exactly.
 
+### Prisms in a cube: eleven more new results (6 Nov 2026)
+
+| Records | Optimal side | Argument | Lean theorems |
+|---|---|---|---|
+| 2 and 3 triangular prisms of height 3/2 (`pr3l15incub_n02`, `_n03`) | 3/2 | one prism already needs 3/2 (axis widths) | `PrismCube.pr3l15incub_n02`, `_n03` (`TriPrismCube.lean`) |
+| 2 to 6 triangular prisms of height 2 (`pr3l2incub_n02` … `_n06`) | 2 | box centre lemma | `PrismCube.pr3l2incub_n02` … `_n06` (`TriPrismCube.lean`) |
+| 2 and 3 dodecagonal prisms of height 1 (`pr12incub_n02`, `_n03`) | 2 + √3 | box centre lemma | `PrismCube.pr12incub_n02`, `_n03` (`PrismCube.lean`) |
+| 2 dodecagonal prisms of height 3/2 (`pr12l15incub_n02`) | 2 + √3 | one prism already needs 2 + √3 (axis widths) | `PrismCube.pr12l15incub_n02` |
+| 2 dodecagonal prisms of height 2 (`pr12l2incub_n02`) | 4 | box centre lemma | `PrismCube.pr12l2incub_n02` |
+
+All bases have unit edges; "height" is the length of the lateral edges. A cube container makes two arguments
+exact, because a piece can be translated independently along each axis.
+
+- **Axis widths** (`PrismCube.width_le`). A piece inside a cube of side s has width at most s along each axis.
+  For a prism with axis a, the width along eᵢ is at least L|aᵢ| plus the base's width in the projected direction.
+  For the triangle, six differences of its vertices lie at 60° steps, so that width is at least (√3/2)√(1 − aᵢ²)
+  (`six_dirs`). The dodecagon contains the disc of radius r = (2 + √3)/2, so for it the width is 2r√(1 − aᵢ²).
+  Some axis has aᵢ² ≥ 1/3, which gives s ≥ 3/2 for the triangular prism of height 3/2. Some axis also has
+  aᵢ² ≤ 1/3, which gives s ≥ 2 + √3 for the dodecagonal prism of height 3/2.
+- **Box centre lemma** (`PrismCube.centre_of_box`). The admissible translations of a placed piece form a box. For
+  each facet (normal β, offset h) and any points vᵢ of the piece, the cube's centre satisfies
+  ⟨β, y⟩ ≤ (s/2) Σᵢ |bᵢ| + Σᵢ bᵢ (L vᵢ)ᵢ in piece coordinates, with b = Lβ. For the best vᵢ this is sharp. If the
+  bound is below h for every facet, the centre is inside every piece, and two pieces cannot fit. The vᵢ used are
+  vertices or points on the inscribed cylinder.
+  - *Dodecagonal prism, height 1, s < 2 + √3.* Widths force |aᵢ| > 1/2 for every coordinate; the threshold
+    4r/(4r² + 1) is exactly 1/2. The caps then reduce to r Σ|aᵢ|(1 − √(1 − aᵢ²)) < 1, and the twelve sides to
+    ‖b‖₁ ≤ √3 < 2.
+  - *Dodecagonal prism, height 2, s < 4.* No width step is needed. The sides use |bᵢ| ≤ √(1 − aᵢ²), the caps use
+    √(1 − aᵢ²) ≥ (7/10)(|aⱼ| + |aₖ|).
+  - *Triangular prism, height 2, s < 2.* Widths force |aᵢ| < 13/19. The caps hold because ‖a‖₁ ≤ √3 < 2. Each side
+    reduces to Σᵢ |bᵢ|(1 − |aᵢ|) ≤ √3/2 for unit b ⊥ a (`key3`). Adding a multiple of Σ aᵢbᵢ = 0 and applying
+    Cauchy–Schwarz gives the square of the left side at most 4 − 2Σ|aᵢ| − P². Here P = Σ ±(|aᵢ| − aᵢ²) has
+    mixed signs, so P² ≥ 1/64. Also Σ|aᵢ| ≥ 115/71, which follows from 1/4 ≤ |aᵢ| ≤ 13/19.
+- **Constructions.**
+  - The dodecagonal prisms are stacked along an axis.
+  - Six triangular prisms of height 2 fit in the cube of side exactly 2. In each half of the cube, three prisms
+    form a strip of alternating triangles: along y in the half x ≤ 0, along z in the half x ≥ 0. The previous
+    record for n = 6 was 2.0000000034.
+  - Three triangular prisms of height 3/2 fit at exactly 3/2: their bases form a pinwheel in the square of side
+    3/2, and each base touches the other two. The bases have vertices (0, a), (0, a + 1), (√3/2, √3/2);
+    (a, 0), (a + 1, 0), (√3/2, √3/2); and (3/2, 1/2), (3/2, 3/2), (3/2 − √3/2, 1), with a = (√3 − 1)/2.
+- **Numerical survey** (`scripts/optimality/one_piece.py`, `width_bound.py`, `scan_lower_bounds.py`). The
+  scripts compare the one-piece scale s₁ and the centre-avoiding scale with every record. The centre argument
+  is numerically exact for further cube families: 4, 5 and 12-gonal antiprisms (n = 2; for the 12-gonal one,
+  n = 2–4), and dodecagonal prisms of height 3 (n = 2). For 6- and 8-gonal antiprisms and the pentagonal prism of
+  height 3, s₁ itself equals s(2). These are the next candidates; they need sector bounds for the 12-, 16- and
+  10-gon.
+
 ## 2. Proven with computer assistance elsewhere, not in Lean (57 records)
 
 Hiroaki Hosono (wand125) has computer-assisted proofs of the following results. Each was checked by two

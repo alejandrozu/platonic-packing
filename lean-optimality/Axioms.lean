@@ -80,3 +80,15 @@ import PackingOptimality
 #print axioms PackingOptimality.Packing.of_separators
 #print axioms PackingOptimality.Packing.smulBoth
 #print axioms PackingOptimality.Windows.rdo93C
+#print axioms PackingOptimality.PrismCube.centre_of_box
+#print axioms PackingOptimality.PrismCube.pr12incub_n02
+#print axioms PackingOptimality.PrismCube.pr12incub_n03
+#print axioms PackingOptimality.PrismCube.pr12l15incub_n02
+#print axioms PackingOptimality.PrismCube.pr12l2incub_n02
+#print axioms PackingOptimality.PrismCube.pr3l2incub_n02
+#print axioms PackingOptimality.PrismCube.pr3l2incub_n03
+#print axioms PackingOptimality.PrismCube.pr3l2incub_n04
+#print axioms PackingOptimality.PrismCube.pr3l2incub_n05
+#print axioms PackingOptimality.PrismCube.pr3l2incub_n06
+#print axioms PackingOptimality.PrismCube.pr3l15incub_n02
+#print axioms PackingOptimality.PrismCube.pr3l15incub_n03
