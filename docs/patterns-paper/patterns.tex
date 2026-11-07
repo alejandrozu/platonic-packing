@@ -16,6 +16,7 @@
 \newcommand{\repo}{https://github.com/alejandrozu/platonic-packing}
 \input{macros.tex}
 \input{relations_macros.tex}
+\input{nd_macros.tex}
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -32,7 +33,7 @@
 \maketitle
 
 \begin{abstract}
-The Polyhedra-in-Polyhedra catalogue holds \nRecords{} certified packings of $n$ congruent convex polytopes in a scaled container, across \nFamilies{} problem families in dimensions 3--6. The records are far from structureless. We classify their recurring patterns into eleven classes: deletion and plateaus, subset relaxation (``arrows''), insertion and completion, composition and recursion, lattice windows, layers and orientation classes, symmetry, algebraic contact scales, extremal (provably optimal) configurations, contact structure, and transfer by inclusion. For each class we give a mechanism, prove it in Lean~4 with Mathlib where it is a theorem about packings, and measure how often it occurs across the catalogue. We then measure the relations between the classes. The formal implications are proved once for all bodies: lattice windows give plateaus, composition with a single piece gives the transfer bounds, and an extremal lower bound plus deletion proves a whole plateau optimal. Empirically, \pWinPla{}\% of lattice windows lie on plateaus. About a quarter of the records with $n\le30$ contain a rattler, but lattice windows almost never do (lift \liftRatWin{}). No transfer bound beats a record in the 25 Platonic families, and \nTrMatch{} records are exactly a transfer. A new box centre lemma for cube containers proves \nPrism{} prism-in-cube records optimal. Examples are triangular prisms of height 2 at side 2 for every $n$ from 2 to 6, which includes a new exact six-prism construction, and dodecagonal prisms at $2+\sqrt3$. This brings the catalogue to \nProven{} records proven optimal in Lean. PingYou Ltd's arrows reproduce their square-antiprism bounds from catalogue records, and their submitted constructions for $N=2$--20 are now the records. Applied to other antiprism families, arrows improve 14 records, by up to $5\%$.
+The Polyhedra-in-Polyhedra catalogue holds \nRecords{} certified packings of $n$ congruent convex polytopes in a scaled container, across \nFamilies{} problem families in dimensions 3--6. The records are far from structureless. We classify their recurring patterns into eleven classes: deletion and plateaus, subset relaxation (``arrows''), insertion and completion, composition and recursion, lattice windows, layers and orientation classes, symmetry, algebraic contact scales, extremal (provably optimal) configurations, contact structure, and transfer by inclusion. For each class we give a mechanism, prove it in Lean~4 with Mathlib where it is a theorem about packings, and measure how often it occurs across the catalogue. We then measure the relations between the classes. The formal implications are proved once for all bodies: lattice windows give plateaus, composition with a single piece gives the transfer bounds, and an extremal lower bound plus deletion proves a whole plateau optimal. Empirically, \pWinPla{}\% of lattice windows lie on plateaus. About a quarter of the records with $n\le30$ contain a rattler, but lattice windows almost never do (lift \liftRatWin{}). No transfer bound beats a record in the 25 Platonic families, and \nTrMatch{} records are exactly a transfer. A new box centre lemma for cube containers proves \nPrism{} prism-in-cube records optimal. Examples are triangular prisms of height 2 at side 2 for every $n$ from 2 to 6, which includes a new exact six-prism construction, and dodecagonal prisms at $2+\sqrt3$. Lemma F in dimension 5, with a new bound between Hosono's near-axis step and the elementary far region, proves side 2 optimal for 2 to 32 five-cubes in a five-cube. This brings the catalogue to \nProven{} records proven optimal in Lean. In dimensions 4--6, symmetric records are more than twice as common as in 3D, and the commonest rational relative rotations between orientation classes in 4D are the isoclinic $(60^\circ,60^\circ)$ of the 24-cell's triality and simple $45^\circ$ and $72^\circ$ turns. PingYou Ltd's arrows reproduce their square-antiprism bounds from catalogue records, and their submitted constructions for $N=2$--20 are now the records. Applied to other antiprism families, arrows improve 14 records, by up to $5\%$.
 \end{abstract}
 
 \section{Introduction}
@@ -229,6 +230,36 @@ The configuration symmetry group of a record is the set of container symmetries,
 \label{fig:sym}
 \end{figure}
 
+\section{Rotations, symmetry and subsets in dimensions 4--6}\label{sec:nd}
+
+The measures of Sections~\ref{sec:deletion}--\ref{sec:extremal} apply unchanged to the \ndRecords{} records of the \ndFamilies{} families of regular polytopes in dimensions 4--6 (\code{scripts/patterns/features\_nd.py}). The symmetry groups are computed from the vertex sets, by backtracking over vertex images with the Gram matrix of a basis of neighbouring vertices, and checked against their orders (120 for the 5-cell, 384 for the tesseract and 16-cell, 1152 for the 24-cell, 14\,400 for the 600- and 120-cells, 720, 3840 and 46\,080 for the simplex, cube and cross-polytope in 5D and 6D, and 5040 for the 6-simplex). A relative rotation $R_a^{-1}R_b$ is reduced modulo the piece's proper symmetries to the representative closest to the identity, and described by its rotation angles, one per invariant plane. It is \emph{simple} if one angle is nonzero and \emph{isoclinic} if all are equal.
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lrrrr}
+\toprule
+ & 3D & 4D & 5D & 6D \\
+\midrule
+records & 8514 & \ndFourRec & \ndFiveRec & \ndSixRec \\
+one orientation class (\%) & \ndThreeOne & \ndFourOne & \ndFiveOne & \ndSixOne \\
+nontrivial configuration symmetry (\%) & \ndThreeSym & \ndFourSym & \ndFiveSym & \ndSixSym \\
+on a plateau (\%) & & \ndFourPla & \ndFivePla & \ndSixPla \\
+consecutive records frozen (\%) & \ndThreeFrz & \ndFourFrz & \ndFiveFrz & \ndSixFrz \\
+rational relative rotations (\%) & & \ndFourRat & \ndFiveRat & \ndSixRat \\
+lattice windows & 889 & \ndFourLat & \ndFiveLat & \ndSixLat \\
+\bottomrule
+\end{tabular}
+\caption{The pattern measures by dimension. The 3D plateau and rotation figures use other denominators (Section~\ref{sec:deletion} and P6) and are left out.}
+\label{tab:nd}
+\end{table}
+
+Table~\ref{tab:nd} compares the dimensions. Three observations stand out.
+\begin{itemize}
+\item \textbf{Symmetry depends on the container.} Records in a simplex are almost never symmetric (5-cell \ndSymCfive\%, 5-simplex \ndSymSxfive\%, 6-simplex \ndSymSxsix\%), and few have a single orientation class (3.8\%, 0\% and 1.4\%). Records in a cube are the most symmetric (tesseract \ndSymCeight\%, 5-cube \ndSymHcfive\%, 6-cube \ndSymHcsix\%). Some records carry the container's whole group: 25 24-cells in a 24-cell (order 1152), and 10 and 12 cross-polytopes in the 5- and 6-cross-polytope (orders 3840 and 46\,080), with one piece towards each vertex of the container and, in the 24-cell, one more at the centre.
+\item \textbf{Relative rotations in 4D are isoclinic or simple.} The commonest rational relative rotations are the isoclinic $(60^\circ,60^\circ)$ (\ndIsoSixty{} class pairs), the simple $45^\circ$ (\ndSimpleFortyfive), the simple $72^\circ$ (\ndSimpleSeventytwo), the isoclinic $(45^\circ,45^\circ)$ (\ndIsoFortyfive) and the simple $90^\circ$ (\ndSimpleNinety). The $60^\circ$ isoclinic rotations are left multiplications by unit quaternions of order 3 or 6, which permute the three 16-cells inscribed in a 24-cell. Accordingly, 24 16-cells in a 24-cell (scale $\sqrt2$, symmetry 1152) and 24 16-cells in a 600-cell come in three classes of eight. The $72^\circ$ rotations come from the 600- and 120-cells. In 5D and 6D almost no relative rotation is rational.
+\item \textbf{The relations of Section~\ref{sec:relations} persist.} Over the 4D--6D records the lifts are \ndLiftSymOne{} (symmetric given one orientation class), \ndLiftLatSym{} (lattice given symmetric), \ndLiftPlaLat{} (plateau given lattice), \ndLiftPlaSym{} (plateau given symmetric) and \ndLiftCfSym{} (closed form given symmetric). About one consecutive pair in six is a frozen subset in every dimension. The most frozen pairs are in the cube families and the 24-cell, whose records are grids and shells.
+\end{itemize}
+
 \section{Algebraic scales (P8)}
 
 A rigid record is a solution of its contact system: equalities between support functions of touching pieces and walls. Its scale is then algebraic. \nClosedForms{} records carry a conjectured closed form matched to $10^{-11}$: \nRational{} rational, \nSqrtTwo{} in $\Q(\sqrt2)$, \nSqrtThree{} in $\Q(\sqrt3)$ and \nSqrtFive{} in $\Q(\sqrt5)$, the rest in nested or biquadratic fields. The field reflects the geometry of the contacts. Golden scales come from dodecahedral and icosahedral walls, silver ratios $\delta=1+\sqrt2$ from square antiprisms (PingYou's $S_2\le(5-\delta)/\sqrt\delta$, $S_9\le1+2/(11-4\delta)$, $S_{20}\le3+1/(\delta+2)$~\cite{pingArrows}), and $\sqrt3$ from hexagonal and dodecagonal prisms. A closed form is an exact statement only once the contact system is solved and certified; PingYou's ``six-equation'', ``77-equation'' and ``115-equation'' contact constructions are such certificates~\cite{pingArrows}.
@@ -238,7 +269,7 @@ A rigid record is a solution of its contact system: equalities between support f
 At the extreme of the classification are records whose scale is matched by a lower bound. \nProven{} catalogue records are proven optimal in Lean, \nNovel{} of them for the first time. Four mechanisms occur.
 \begin{itemize}
 \item \textbf{Volume tilings.} $k^d$ cubes and $k^3$ triangular prisms at scale $k$ (\code{Cubes.lean}, \code{Prisms.lean}).
-\item \textbf{Centre lemmas for $n=2$ and plateaus.} If every piece at scale below $s$ contains the container's centre, then $s(2)\ge s$. Proven instances include the cube centre lemma in dimensions 3 and 4 (plateaus $s=2$ for $2\le n\le 8$ cubes and $2\le n\le 16$ tesseracts), and the octahedron lemma (2 octahedra in a cube, $\sqrt2$).
+\item \textbf{Centre lemmas for $n=2$ and plateaus.} If every piece at scale below $s$ contains the container's centre, then $s(2)\ge s$. Proven instances include the cube centre lemma in dimensions 3, 4 and 5 (plateaus $s=2$ for $2\le n\le 8$ cubes, $2\le n\le 16$ tesseracts and $2\le n\le 32$ 5-cubes), and the octahedron lemma (2 octahedra in a cube, $\sqrt2$). In dimension 5 the band between Hosono's near-axis step and the elementary far bound is new. There each zero-sum column vector is paired with its own column, turned in the plane of $e_1$ and the first column to a fixed direction at about $56^\circ$, and a sphere bound $\sum_i(s_i^3+\lambda s_i)\le U(\lambda)$ closes the inequality. Lean checks its 1174 interval cases.
 \item \textbf{Elementary bounds.} The facet-width and two-ball lemmas prove optimality of 2 tetrahedra in a cube, octahedron, dodecahedron and icosahedron; 2 five-simplices in a 5-cube (the Paley construction); 2 five-cells in a 24-cell; and 2 16-, 24-, 120- and 600-cells in a tesseract or 16-cell.
 \item \textbf{Widths and boxes in a cube.} In a cube a placed piece can be translated independently along each axis, so its admissible translations form a box. Two consequences follow. A piece has width at most $s$ along each axis (\lean{width\_le}). For every facet $(\beta,h)$ and any points $v_i$ of the piece, the centre of the cube satisfies $\langle\beta,y\rangle\le \tfrac s2\sum_i|b_i|+\sum_i b_i(Lv_i)_i$ in piece coordinates, with $b=L\beta$. For the best $v_i$ this is sharp (\lean{centre\_of\_box}). If the right side is below $h$ for every facet, the centre lies inside every placed piece.
 \end{itemize}
@@ -361,6 +392,7 @@ Module & Theorems & Content \\
 \code{Triakis.lean} & \code{ktt4}, \code{triakis_recursion}, \code{ktt16}, \code{ktt64} & the recursion $4^k$ at $(5/3)^k$ \\
 \code{Relations.lean} & \code{transfer_piece}, \code{transfer_container}, \code{optimal_plateau_of_*} & transfer; extremal bound plus deletion \\
 \code{PrismCube.lean}, \code{TriPrism\-Cube.lean}, \code{PolyPrism.lean} & \code{width_le}, \code{centre_of_box}, \code{pcentre}, 13 records & widths and the box centre lemma; optimal prisms in a cube \\
+\code{LemmaF5.lean}, \code{LemmaF5\-Sphere.lean}, \code{Penteracts.lean} & \code{lemmaF5}, \code{band5}, \code{centre5}, \code{hc5inhc5_plateau} & the cube centre lemma in 5D; 30 records \\
 \bottomrule
 \end{tabularx}
 \end{center}

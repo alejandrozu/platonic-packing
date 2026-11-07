@@ -23,7 +23,7 @@ from a larger one.
 | P6 Layers, orientation classes | few layers, few orientations | descriptive | 1,241 single-orientation 3D records |
 | P7 Symmetry | invariance under container symmetries | descriptive | 776 3D records with nontrivial symmetry |
 | P8 Algebraic scales | contact equations close the scale | exact certificates | 1,624 closed forms (895 rational, 266 in Q(√2), 185 in Q(√3), 148 in Q(√5)) |
-| P9 Extremal | a lower bound meets the construction | `optimal_plateau_of_common_point`, `optimal_plateau_of_one_piece`; `docs/OPTIMALITY.md` | 55 records proven optimal in Lean (centre, facet-width, two-ball, width and box lemmas, volume tilings) |
+| P9 Extremal | a lower bound meets the construction | `optimal_plateau_of_common_point`, `optimal_plateau_of_one_piece`; `docs/OPTIMALITY.md` | 85 records proven optimal in Lean (centre, facet-width, two-ball, width and box lemmas, volume tilings) |
 | P10 Contacts | contact graph; rattlers (pieces touching nothing) | measured | 649 of 2,494 3D records with n ≤ 30 have a rattler |
 | P11 Transfer | one piece of K in t K′, or of C′ in λ C | `Packing.transfer_piece`, `Packing.transfer_container` | 19 Platonic records are exactly a transfer; no transfer bound beats a record |
 
@@ -98,6 +98,44 @@ now the records (N = 15–17 at exactly 3). The same arrows on other antiprism f
 for example hexagonal antiprisms at n = 6 from 2.2466 to 2.1518, and octagonal antiprisms at n = 9 from 2.7464
 to 2.6249 and at n = 10 from 2.8515 to 2.7118.
 
+## Rotations, symmetry and subsets in 4D–6D
+
+_7 November 2026._ The 3D measures (orientation classes, relative rotations, configuration symmetry, lattice
+windows, subset inheritance) now cover all 1,890 records of the 54 families of regular polytopes in dimensions
+4–6 (`scripts/patterns/features_nd.py`, `stats_nd.py`). The symmetry groups are computed from the vertex sets and
+checked against their orders: 120 (5-cell), 384 (tesseract, 16-cell), 1152 (24-cell), 14,400 (600-cell,
+120-cell), 720, 3,840 and 46,080 (simplex, cube and cross-polytope in 5D and 6D).
+
+| | 3D | 4D | 5D | 6D |
+|---|---|---|---|---|
+| records | 8,514 | 1,404 | 279 | 207 |
+| one orientation class | 14.6% | 17.5% | 15.4% | 15.9% |
+| nontrivial configuration symmetry | 9.1% | 20.0% | 22.6% | 24.6% |
+| on a plateau | | 21.1% | 17.6% | 22.7% |
+| consecutive records frozen (record n inside record n + 1) | 17.9% | 16.4% | 16.7% | 19.7% |
+| relative rotations at a rational angle | | 12.6% | 1.1% | 1.4% |
+| lattice windows | 889 | 264 | 41 | 12 |
+
+* **Symmetry depends on the container.** Records in simplex containers are almost never symmetric (5-cell 6.8%,
+  5-simplex 5.4%, 6-simplex 8.7%), and few have one orientation class (3.8%, 0% and 1.4%). Records in cube containers are the most
+  symmetric (tesseract 32.9%, 5-cube 36.6%, 6-cube 36.2%). Several records carry the container's whole group:
+  25 24-cells in a 24-cell (order 1152), 10 cross-polytopes in a 5-cross-polytope (3,840) and 12 in a
+  6-cross-polytope (46,080): one piece towards each vertex of the container, and one more at the centre of
+  the 24-cell.
+* **Relative rotations in 4D are isoclinic or simple.** Among pairs of orientation classes, the commonest rational
+  rotations are the isoclinic (60°, 60°) (96 pairs), the simple 45° (70), the simple 72° (48), the isoclinic
+  (45°, 45°) (35) and the simple 90° (29). The 60° isoclinic rotations are the triality of the 24-cell:
+  24 16-cells in a 24-cell (scale √2, symmetry 1152) and 24 16-cells in a 600-cell come in three classes of
+  eight, pairwise turned by (60°, 60°): the isoclinic rotations (left multiplication by a unit quaternion of
+  order 3 or 6) that permute the three 16-cells inscribed in a 24-cell. The 72° rotations
+  come from the 600-cell and 120-cell (H4). In 5D and 6D almost no relative rotation is rational.
+* **The rigid cluster is the same as in 3D.** Over the 4D–6D records the lifts are 3.8 (symmetric given one
+  orientation class), 2.8 (lattice given symmetric), 3.7 (plateau given lattice), 3.2 (plateau given symmetric)
+  and 3.4 (closed form given symmetric).
+* **Subsets.** About one consecutive pair in six is frozen in every dimension, as in 3D. The families with the
+  most frozen pairs are the cubes (5-cubes 30, tesseracts 29, 6-cubes 22) and the 24-cell (27), where the
+  records are grids or shells.
+
 ## Data and scripts
 
 * `patterns/features3d.json`: per 3D record, the orientation classes, configuration symmetry (exact and loose),
@@ -105,5 +143,8 @@ to 2.6249 and at n = 10 from 2.8515 to 2.7118.
 * `patterns/inherit3d.json`: subset inheritance f(k, N), the share of record k found rigidly inside record N
   (`scripts/patterns/inherit.py`).
 * `patterns/stats.json`: everything above, aggregated (`scripts/patterns/stats.py`).
+* `patterns/features_nd.json`, `patterns/inherit_nd.json`, `patterns/stats_nd.json`: the same measures for the
+  4D–6D records, with the relative rotation angles of each pair of orientation classes
+  (`scripts/patterns/features_nd.py`, `stats_nd.py`).
 * `patterns-paper/`: the manuscript, its figures (`scripts/patterns/figures.py`) and the generated macros and
   tables (`scripts/patterns/paper_macros.py`).

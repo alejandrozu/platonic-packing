@@ -27,6 +27,17 @@ import PackingOptimality
 #print axioms PackingOptimality.LemmaF4.near4
 #print axioms PackingOptimality.LemmaF4.far4
 #print axioms PackingOptimality.LemmaF4.lemmaF4
+#print axioms PackingOptimality.LemmaF5Sphere.sphA
+#print axioms PackingOptimality.LemmaF5Sphere.sphB
+#print axioms PackingOptimality.LemmaF5Sphere.sphC
+#print axioms PackingOptimality.LemmaF5Sphere.cs5
+#print axioms PackingOptimality.LemmaF5Sphere.band_final
+#print axioms PackingOptimality.LemmaF5.band5
+#print axioms PackingOptimality.LemmaF5.near5
+#print axioms PackingOptimality.LemmaF5.far5
+#print axioms PackingOptimality.LemmaF5.lemmaF5
+#print axioms PackingOptimality.centre5
+#print axioms PackingOptimality.hc5inhc5_plateau
 #print axioms PackingOptimality.CentreGeneral.centre_of_lemmaF
 #print axioms PackingOptimality.centre4
 #print axioms PackingOptimality.c8inc8_plateau

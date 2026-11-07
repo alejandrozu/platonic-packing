@@ -277,7 +277,7 @@ previous: F = E. Friedman, W = R. Walsh, L = H. Lin, N = Y. Nakajima, T = trivia
 **Octahedra in a cube vs published values** (n = 2–30): better at 13, 15, 16, 18, 20, 21, 22, 24, 25, 28, 29, 30; equal at 2, 3, 4, 5, 6, 7, 8, 9, 10, 14, 26, 27; behind at 11 (+1.61%), 12 (+1.40%), 17 (+0.23%), 19 (+1.00%), 23 (+0.27%).
 <!-- RESULTS:END -->
 
-Upper bounds only — none of these is proven optimal (see [docs/MATH.md](docs/MATH.md) §1 and §8). Highlights:
+Mostly upper bounds: the 85 records proven optimal in Lean (for example 2–8 cubes in a cube, 2–32 five-cubes in a five-cube) are listed in [docs/OPTIMALITY.md](docs/OPTIMALITY.md); see also [docs/MATH.md](docs/MATH.md) §1 and §8. Highlights:
 two copies of every non-cube solid fit in a container of edge **< 2** (two cubes need exactly 2); 15 tetrahedra fit
 in a tetrahedron of edge 3 and 19 octahedra in an octahedron of edge 3 (exact lattice constructions, §7), yet 13
 tetrahedra fit in 2.97194; 12 icosahedra fit in an icosahedron of edge ≈ φ²; 11–12 dodecahedra in ≈ 5 − √5.

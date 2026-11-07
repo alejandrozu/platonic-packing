@@ -1,6 +1,6 @@
 # Which records are optimal?
 
-_6 November 2026._ A record gives an upper bound: its packing fits in a container of scale s. It is **optimal**
+_7 November 2026._ A record gives an upper bound: its packing fits in a container of scale s. It is **optimal**
 when no packing of the same n pieces fits in a smaller container. This file tracks which low-n records are
 proven optimal in Lean, which are proven elsewhere with computer assistance, and which have strong numerical
 evidence.
@@ -38,6 +38,36 @@ Machine-readable list: [`optimality.json`](optimality.json). Lean proofs: [`lean
 | 13 tesseracts in a tesseract (`c8inc8_n13`) | 2 | cube centre lemma (d = 4) + grid | `c8inc8_n13` |
 | 14 tesseracts in a tesseract (`c8inc8_n14`) | 2 | cube centre lemma (d = 4) + grid | `c8inc8_n14` |
 | 15 tesseracts in a tesseract (`c8inc8_n15`) | 2 | cube centre lemma (d = 4) + grid | `c8inc8_n15` |
+| 2 5-cubes in a 5-cube (`hc5inhc5_n02`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n02` |
+| 3 5-cubes in a 5-cube (`hc5inhc5_n03`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n03` |
+| 4 5-cubes in a 5-cube (`hc5inhc5_n04`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n04` |
+| 5 5-cubes in a 5-cube (`hc5inhc5_n05`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n05` |
+| 6 5-cubes in a 5-cube (`hc5inhc5_n06`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n06` |
+| 7 5-cubes in a 5-cube (`hc5inhc5_n07`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n07` |
+| 8 5-cubes in a 5-cube (`hc5inhc5_n08`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n08` |
+| 9 5-cubes in a 5-cube (`hc5inhc5_n09`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n09` |
+| 10 5-cubes in a 5-cube (`hc5inhc5_n10`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n10` |
+| 11 5-cubes in a 5-cube (`hc5inhc5_n11`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n11` |
+| 12 5-cubes in a 5-cube (`hc5inhc5_n12`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n12` |
+| 13 5-cubes in a 5-cube (`hc5inhc5_n13`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n13` |
+| 14 5-cubes in a 5-cube (`hc5inhc5_n14`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n14` |
+| 15 5-cubes in a 5-cube (`hc5inhc5_n15`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n15` |
+| 16 5-cubes in a 5-cube (`hc5inhc5_n16`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n16` |
+| 17 5-cubes in a 5-cube (`hc5inhc5_n17`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n17` |
+| 18 5-cubes in a 5-cube (`hc5inhc5_n18`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n18` |
+| 19 5-cubes in a 5-cube (`hc5inhc5_n19`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n19` |
+| 20 5-cubes in a 5-cube (`hc5inhc5_n20`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n20` |
+| 21 5-cubes in a 5-cube (`hc5inhc5_n21`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n21` |
+| 22 5-cubes in a 5-cube (`hc5inhc5_n22`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n22` |
+| 23 5-cubes in a 5-cube (`hc5inhc5_n23`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n23` |
+| 24 5-cubes in a 5-cube (`hc5inhc5_n24`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n24` |
+| 25 5-cubes in a 5-cube (`hc5inhc5_n25`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n25` |
+| 26 5-cubes in a 5-cube (`hc5inhc5_n26`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n26` |
+| 27 5-cubes in a 5-cube (`hc5inhc5_n27`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n27` |
+| 28 5-cubes in a 5-cube (`hc5inhc5_n28`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n28` |
+| 29 5-cubes in a 5-cube (`hc5inhc5_n29`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n29` |
+| 30 5-cubes in a 5-cube (`hc5inhc5_n30`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n30` |
+| 31 5-cubes in a 5-cube (`hc5inhc5_n31`) | 2 | cube centre lemma (d = 5) + grid | `hc5inhc5_n31` |
 
 The five records with k^d cubes are instances of one theorem, `cubes_in_cube_optimal`: in every dimension d ≥ 1, the smallest cube
 holding k^d unit cubes has side exactly k. The proof works for any rigid motions, reflections included, and only
@@ -100,8 +130,32 @@ The final step, from Lemma F to the centre lemma, is proved once for every dimen
 (`CentreGeneral.centre_of_lemmaF`).
 
 Hosono's spectral bound replaces √2 Σᵢ xᵢ(1 − xᵢ²) by √2 Tr √(diag(p) − ppᵀ). That needs matrix square roots, and
-it is what extends to 5D. The elementary bound here is weaker and fails in 5D, where its minimum on the far
-region is about −0.10.
+it is what he extends to 5D. The elementary bound is weaker: in 5D it holds only while every pᵢ ≤ 1/2.
+
+**5-cubes in a 5-cube, n = 2–31 (`Penteracts.lean`, 7 Nov 2026).** Side 2 is optimal for every n from 2 to 32.
+The cube centre lemma in dimension 5 (`centre5`) follows from Lemma F in dimension 5 (`LemmaF5.lemmaF5`). Hosono
+proved s₅(2) = 2 first, with a spectral certificate of 21,502 simplices. The Lean proof splits a column by its
+entry c of largest square (any entry in the band works):
+
+1. **Near an axis (c² ≥ 3/4): Hosono's polar step** with m = 4, which needs Lemma F in 4D (now proven).
+2. **The band (9/20 ≤ c² ≤ 3/4): new.** Write R = [c r; x M] and ρ = ‖x‖₂. Each other column k gives a zero-sum
+   vector ζ = (c rₖ, xᵢMᵢₖ), so ‖ζ‖₁ ≥ √2‖ζ‖₂ ≥ √2⟨|ζ|, |w|⟩ for every weight with ‖w‖₂ ≤ 1. The far region uses the
+   column itself as weight. Here the column is first turned in the plane of e₁ and x, so that x points in a fixed
+   direction at angle ψ ≈ 56° from e₁ (cos ψ = 14/25, sin ψ = 207/250):
+   w = (sin ψ · rₖ/ρ, Mᵢₖ + (c − cos ψ) xᵢ rₖ/ρ²). Then ‖w‖₂² = 1 − (1 − cos²ψ − sin²ψ) rₖ²/ρ² ≤ 1. Summing over k
+   with the orthonormal rows reduces F ≤ 1 to two facts. The first is λT + m₃/ρ² ≤ ρ U(λ), where T = Σ|xᵢ|,
+   m₃ = Σ|xᵢ|³, λ = (2 − √2)/(√2 (1 − c cos ψ)) ∈ [0.66, 0.81], and U(λ) bounds Σ(sᵢ³ + λsᵢ) on the unit sphere in
+   R⁴. U is checked at λ = 33/50, 147/200 and 161/200 and interpolated linearly in λ, which is valid because the
+   sum is linear in λ. The second is a one-variable inequality in c (`band_final`; smallest slack about 0.002, at
+   c² = 3/4).
+3. **Far from the axes (every c² ≤ 9/20): the 4D argument with five rows**, with the sphere bound
+   Σ(sᵢ³ + (29/70) sᵢ) ≤ 99/70 under sᵢ² ≤ 9/20 (true maximum about 1.4061).
+
+The four sphere bounds are in `LemmaF5Sphere.lean`. A tournament reduces each to its largest coordinate. Each
+coordinate range is cut into intervals, and on each interval s³ + λs ≤ α + βs² holds by an exact factorization:
+a tangent (s − t)²(u − s) or a chord (s − a)(b − s)(s − u). For every choice of intervals, `linarith` closes the
+resulting linear bound in the sᵢ² (1,174 cases in all). The partitions were found by a small search over exact
+linear programs (`scripts/optimality/lemma_f5/`). Lean checks every case, and no other computer search is used.
 
 ### New optimality results (not previously proven by anyone, as far as we found)
 
@@ -227,7 +281,7 @@ exact, because a piece can be translated independently along each axis.
   height 3, s₁ itself equals s(2). These are the next candidates; they need sector bounds for the 12-, 16- and
   10-gon.
 
-## 2. Proven with computer assistance elsewhere, not in Lean (57 records)
+## 2. Proven with computer assistance elsewhere, not in Lean (27 records)
 
 Hiroaki Hosono (wand125) has computer-assisted proofs of the following results. Each was checked by two
 independent checkers, and none has been peer reviewed. They are in
@@ -236,7 +290,7 @@ independent checkers, and none has been peer reviewed. They are in
 
 | Result | Records | Method |
 |---|---|---|
-| s_d(2) = 2 for d = 5, 6 (d = 4 is now in Lean, section 1) | `hc5inhc5_n02`–`n31`, `hc6inhc6_n02`–`n24` (53 records, side 2) | the cube centre lemma in dimension d (see below), then the plateau argument |
+| s₆(2) = 2 (d = 4 and d = 5 are now in Lean, section 1) | `hc6inhc6_n02`–`n24` (23 records, side 2) | the cube centre lemma in dimension 6 (see below), then the plateau argument |
 | s₃(9) = s₃(10) = 2 + 1/√2 | `cubincub_n09`, `cubincub_n10` | an 8-point lemma by interval branch and bound ([`problems/cubes-in-cube`](https://github.com/wand125/square-packing/tree/main/problems/cubes-in-cube)) |
 | s₃(25) = s₃(26) = 3 | `cubincub_n25`, `cubincub_n26` | a closed counting measure by interval branch and bound ([`closed-measure`](https://github.com/wand125/square-packing/tree/main/problems/cubes-in-cube/closed-measure)) |
 
@@ -250,7 +304,9 @@ proves that implication (`cube_plateau_of_centre_lemma`). Status by dimension:
   assistance: a hand proof near the axes plus interval checks elsewhere, and later a 5-simplex spectral
   certificate. The Lean proof here uses no computer search.
 - **d = 4.** Proven in Lean here (section 1). Hosono proved it earlier with computer assistance.
-- **d = 5, 6.** Hosono, [`problems/cubes-n-dim`](https://github.com/wand125/square-packing/tree/main/problems/cubes-n-dim).
+- **d = 5.** Proven in Lean here (section 1), with a new bound for the band 9/20 ≤ c² ≤ 3/4. Hosono proved it
+  earlier with computer assistance.
+- **d = 6.** Hosono, [`problems/cubes-n-dim`](https://github.com/wand125/square-packing/tree/main/problems/cubes-n-dim).
   - **Near an axis:** the same polar-decomposition step, which is formalized for any dimension, with
     Lemma F one dimension down as its hypothesis.
   - **Elsewhere:** a spectral bound with exact rational certificates: 21,502 simplices in 5D and about
@@ -307,9 +363,16 @@ argument.
 
 ## 4. Next targets
 
-- s₅(2) = 2 in Lean (30 records). The near-axis step is already in Lean and needs Lemma F in 4D, which is now
-  proven. The far region needs more than the elementary bound: Hosono's spectral bound with its certificate, or
-  a new idea.
+- s₆(2) = 2 in Lean (23 records). Lemma F in 5D is now proven, but the formalized polar step uses
+  ‖row‖₁ ≤ 2, which holds only up to four coordinates. The 6D near region therefore needs that step adapted,
+  and the band and far region need their own sphere bounds.
+- n = 3 for the Platonic solids. Every n = 3 Platonic record is open except cubes in a cube. The two tools used so
+  far stop at n = 2: a common point shared by all pieces, and a one-piece bound. For n = 3 a pigeonhole on two
+  points, or a structure lemma, is needed. One candidate is tetrahedra in a cube at side 1. Below side 1, a
+  tetrahedron either contains the ball of radius 0.05 about the centre, or has a face plane within 0.05 of the
+  centre with the opposite vertex towards a corner (the facet-width argument). Two steps are missing: that a
+  tetrahedron of the second kind meets any tetrahedron containing the ball, and that two of the second kind
+  point to opposite corners. Then three cannot fit. This is a plan, not yet a proof.
 - n = 2: certify s_c rigorously for one pair, for example 2 octahedra in a cube at √2. That needs a rigorous
   global bound over all rotations.
 - Plateaus starting above n = 2, which need new ideas:
