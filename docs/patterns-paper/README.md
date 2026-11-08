@@ -1,5 +1,7 @@
 # Patterns paper
 
+> The journal version of this paper (revised and restructured) is Paper III in [`docs/papers/`](../papers/README.md).
+
 _Deletion, Arrows, Windows and Composition: a Classification of Structural Patterns in Certified Polytope
 Packings_ (7 November 2026).
 

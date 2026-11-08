@@ -1,0 +1,760 @@
+\documentclass[11pt,a4paper]{article}
+\input{../preamble.tex}
+\hypersetup{pdftitle={Width, facet and ball bounds},pdfauthor={Alejandro Zarzuelo Urdiales}}
+
+\title{Width, facet and ball bounds:\\
+thirty optimal packings of prisms, tetrahedra, octahedra\\ and four-dimensional polytopes, with proofs checked in Lean}
+\author{Alejandro Zarzuelo Urdiales}
+\date{8 November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove that thirty packings of the Polyhedra-in-Polyhedra catalogue are optimal: no smaller container holds the same number of pieces. They are $k^3$ triangular prisms in a triangular prism; two regular tetrahedra in each of the cube, octahedron, dodecahedron and icosahedron; two octahedra in a cube; two $5$-simplices in a $5$-cube and two $5$-cells in a $24$-cell; two $16$-, $24$-, $120$- or $600$-cells in a tesseract, and two $24$-, $120$- or $600$-cells in a $16$-cell; and thirteen packings of triangular, hexagonal, octagonal and dodecagonal prisms in a cube, among them six triangular prisms of height~$2$ in a cube of side exactly~$2$. Each lower bound comes from one of five arguments, each short: the volume bound; a \emph{facet-width lemma} for simplices; a \emph{two-ball lemma} for pieces that contain a large ball; for an octahedron in a cube, a new inequality for orthogonal $3\times3$ matrices (Lemma~O); and, for prisms in a cube, axis widths and a \emph{box centre lemma}, which use that a piece in a cube can be translated along each axis independently. In every case the bound is attained by an explicit packing. All statements are formalized in Lean~4 with Mathlib, use only the standard axioms, and are linked to their Lean declarations.
+\end{abstract}
+
+\tableofcontents
+
+%===========================================================================
+\section{Introduction}\label{sec:intro}
+
+\subsection{The problem}
+The Polyhedra-in-Polyhedra catalogue~\cite{archive} records, for a piece $K$, a container $C$ and a number $n$, the smallest known scale $s$ such that $n$ congruent copies of $K$ fit in $sC$ with disjoint interiors. Pieces and containers have unit edges, so $s$ is the edge of the container. A record is \emph{optimal} when no packing at a smaller scale exists. Proving optimality needs a lower bound, which is usually much harder than the packing itself.
+
+Paper~I of this series~\cite{cubecentre} proves the optimality of $55$ records of cubes in cubes, in dimensions three to five. This paper proves thirty further records, of different pieces and containers. Almost all of them have $n=2$, where a lower bound can come from a single piece: if every copy of $K$ inside $sC$ contains the centre of $C$ in its interior, then two copies cannot fit (\cref{lem:common}). We call such a statement a \emph{centre lemma}. The arguments are different for different shapes, but each is short, and each is attained exactly by a packing. Paper~III~\cite{patterns} places these results among the structural patterns of the catalogue: every one of them is a lower bound that, together with deletion, proves a whole plateau.
+
+\subsection{Main results}
+
+\begin{maintheorem}
+The thirty catalogue records of \cref{tab:results} are optimal. Each lower bound holds for placements by arbitrary rigid motions, reflections included, and requires only disjoint interiors.
+\end{maintheorem}
+
+\begin{table}[p]
+\centering\small
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\textwidth}{>{\raggedright}X l >{\raggedright}p{2.2cm} >{\raggedright\arraybackslash}p{3.4cm}}
+\toprule
+Record & Optimal $s$ & Argument & Lean theorem \\
+\midrule
+\multicolumn{4}{l}{\emph{Volume (\cref{sec:volume})}} \\
+$k^3$ triangular prisms in a triangular prism, $k=2,3,4$ & $k$ & volume, tiling & \lean{Prisms}{pr3inpr3_n08}, \lean{Prisms}{pr3inpr3_n27}, \lean{Prisms}{pr3inpr3_n64} \\
+\midrule
+\multicolumn{4}{l}{\emph{Facet width (\cref{sec:facet})}} \\
+2 tetrahedra in a cube & $2\sqrt2/3\approx0.9428$ & facet width & \lean{TetInCube}{tetincub_n02} \\
+2 tetrahedra in an octahedron & $2/\sqrt3\approx1.1547$ & facet width & \lean{TetInOct}{tetinoct_n02} \\
+2 tetrahedra in a dodecahedron & $\sqrt2(\sqrt5-1)/3\approx0.5827$ & facet width & \lean{TetInDod}{tetindod_n02} \\
+2 tetrahedra in an icosahedron & $2\sqrt{(5-\sqrt5)/15}\approx0.8585$ & facet width & \lean{TetInIco}{tetinico_n02} \\
+2 $5$-simplices in a $5$-cube & $2\sqrt3/5\approx0.6928$ & facet width & \lean{Simplex5}{sx5inhc5_n02} \\
+2 $5$-cells in a $24$-cell & $\sqrt{10}/4\approx0.7906$ & facet width & \lean{C5inC24}{c5inc24_n02} \\
+\midrule
+\multicolumn{4}{l}{\emph{Octahedron centre lemma (\cref{sec:oct})}} \\
+2 octahedra in a cube & $\sqrt2\approx1.4142$ & Lemma O & \lean{OctInCube}{octincub_n02} \\
+\midrule
+\multicolumn{4}{l}{\emph{Two balls (\cref{sec:ball})}} \\
+2 $16$-cells in a tesseract & $3\sqrt2/4\approx1.0607$ & two balls & \lean{Polytopes4}{c16inc8_n02} \\
+2 $24$-cells in a tesseract & $3\sqrt2/2\approx2.1213$ & two balls & \lean{Polytopes4}{c24inc8_n02} \\
+2 $24$-cells in a $16$-cell & $3$ & two balls & \lean{Polytopes4}{c24inc16_n02} \\
+2 $120$-cells in a tesseract & $(21+9\sqrt5)/4\approx10.2812$ & two balls & \lean{Cells120}{c120inc8_n02} \\
+2 $120$-cells in a $16$-cell & $3\sqrt2(7+3\sqrt5)/4\approx14.5397$ & two balls & \lean{Cells120}{c120inc16_n02} \\
+2 $600$-cells in a tesseract & $3\sqrt2(2+\sqrt5)/4\approx4.4930$ & two balls & \lean{Cells600}{c600inc8_n02} \\
+2 $600$-cells in a $16$-cell & $3(2+\sqrt5)/2\approx6.3541$ & two balls & \lean{Cells600}{c600inc16_n02} \\
+\midrule
+\multicolumn{4}{l}{\emph{Prisms in a cube (\cref{sec:prisms}); bases have unit edges, $L$ is the height}} \\
+2, 3 triangular prisms, $L=3/2$ & $3/2$ & one-piece width & \lean{TriPrismCube}{pr3l15incub_n02}, \lean{TriPrismCube}{pr3l15incub_n03} \\
+2--6 triangular prisms, $L=2$ & $2$ & box centre lemma & \lean{TriPrismCube}{pr3l2incub_n02}--\lean{TriPrismCube}{pr3l2incub_n06} \\
+2, 3 dodecagonal prisms, $L=1$ & $2+\sqrt3\approx3.7321$ & widths, box & \lean{PrismCube}{pr12incub_n02}, \lean{PrismCube}{pr12incub_n03} \\
+2 dodecagonal prisms, $L=3/2$ & $2+\sqrt3$ & one-piece width & \lean{PrismCube}{pr12l15incub_n02} \\
+2 dodecagonal prisms, $L=2$ & $4$ & box centre lemma & \lean{PrismCube}{pr12l2incub_n02} \\
+2 octagonal prisms, $L=1$ & $1+\sqrt2\approx2.4142$ & one-piece width & \lean{PolyPrism}{pr8incub_n02} \\
+2 hexagonal prisms, $L=1$ & $2$ & box centre lemma & \lean{PolyPrism}{pr6incub_n02} \\
+\bottomrule
+\end{tabularx}
+\caption{The thirty records proved optimal in this paper, grouped by argument. Every Lean theorem is the conjunction of a packing at scale $s$ and the bound $s\le t$ for every packing at scale $t$. Edges are~$1$ for every piece; $s$ is the edge of the container (for prism containers, the scale of the unit prism).}
+\label{tab:results}
+\end{table}
+
+\subsection{Five lower bounds}
+The lower bounds of \cref{tab:results} come from five arguments. Each is proved once in Lean, in the generality stated here, and then applied.
+\begin{enumerate}
+\item \textbf{Volume} (\cref{sec:volume}). $n\vol(K)\le s^3\vol(C)$. It is exact only when the pieces tile the container, as $k^3$ unit prisms tile the prism of scale $k$.
+\item \textbf{Facet width} (\cref{sec:facet}). A simplex inside $sC$ that misses the centre of $C$ has a facet hyperplane separating it from the centre, and the opposite vertex lies at least one height beyond that hyperplane. So the centre is inside whenever $sR_C$ is less than the height, where $R_C$ is the circumradius of $C$. The bound is exact when the apex can sit at a vertex of $sC$ with the opposite facet through the centre.
+\item \textbf{Lemma O} (\cref{sec:oct}). For an octahedron in a cube, the facet-width bound is not exact. A new inequality for $3\times3$ orthogonal matrices gives the exact centre lemma.
+\item \textbf{Two balls} (\cref{sec:ball}). A piece that contains a ball of radius $k$ about its own centre contains the container's centre as soon as $sC$ is too small for two disjoint balls of radius~$k$. For the regular $16$-, $24$-, $120$- and $600$-cells, a packing attains this bound.
+\item \textbf{Axis widths and the box centre lemma} (\cref{sec:prisms}). In a cube container a piece can be translated along each axis independently. Its width along each axis is at most the side, and the possible positions of the cube's centre, seen from the piece, fill a box. If that box lies inside the piece for every rotation, the centre lemma holds. Both facts are sharp for prisms.
+\end{enumerate}
+
+\subsection{What is new}
+To our knowledge, none of the twenty-seven records outside \cref{sec:volume} had been proved optimal before. The facet-width and two-ball bounds are elementary; what is new is that the records attain them exactly, with explicit and sometimes delicate packings. Examples are the tetrahedra in the icosahedron, whose rotation has entries in $\Q(\sqrt2,\varphi,1/\sqrt{3(\varphi+2)})$, and the $5$-cells in the $24$-cell, whose base must be turned by exactly $15^\circ$ (\cref{fig:c5}). Lemma~O, the box centre lemma and its side inequality for triangular prisms (\cref{lem:key3}) are new. The packing of six triangular prisms of height~$2$ in a cube of side exactly~$2$ (\cref{fig:six}) improves the catalogue's previous numerical record for $n=6$, which was slightly above~$2$.
+
+\subsection{How to read the Lean links}
+Every theorem is followed by the Lean declarations that prove it, linked to the source at commit \href{\repo/tree/\leancommit}{\texttt{\leancommitshort}} of the repository~\cite{archive}. The project builds with \code{lake build} in \codepath{lean-optimality/}; \code{Axioms.lean} prints the axioms of every main theorem, and all depend only on \code{propext}, \code{Classical.choice} and \code{Quot.sound}. \Cref{sec:formal} describes the files.
+
+%===========================================================================
+\section{Packings, centre lemmas and point reflections}\label{sec:setting}
+
+\begin{summarybox}
+\textbf{This section.} The definitions and three general lemmas used throughout, shared with Paper~I~\cite{cubecentre}.\\
+\textbf{Lean.} \leanfile{Basic}, \leanfile{Relations}, \leanfile{Cubes}, \leanfile{Polytopes4}.
+\end{summarybox}
+
+Let $E$ be a finite-dimensional real inner product space, $K,C\subseteq E$ and $s\ge0$.
+
+\begin{definition}[\lean{Basic}{Packing}]
+A \emph{packing} of $n$ copies of $K$ in $sC$ is a family of affine isometries $g_1,\dots,g_n$ of $E$ with $g_i(K)\subseteq sC$ for all $i$ and $\interior g_i(K)\cap\interior g_j(K)=\emptyset$ for $i\ne j$. A scale $s$ is \emph{optimal} for $n$ copies if a packing at scale $s$ exists and every packing has scale at least~$s$.
+\end{definition}
+
+Affine isometries include reflections, so every lower bound below holds a fortiori for packings by rotations. A packing of $n$ copies restricts to one of any $m\le n$ copies (\lean{Basic}{Packing.restrict}).
+
+\begin{lemma}[Common point; \lean{Basic}{no_packing_two_of_common_point}]\label{lem:common}
+If every copy $g(K)\subseteq sC$ contains a fixed point $c$ in its interior, then two copies do not fit in $sC$.
+\end{lemma}
+
+\begin{lemma}[Plateau; \lean{Relations}{optimal_plateau_of_common_point}]\label{lem:plateau}
+Suppose that for every $t<s$ every copy $g(K)\subseteq tC$ contains $c$ in its interior, and that $N$ copies fit at scale $s$. Then $s$ is optimal for every $n$ with $2\le n\le N$.
+\end{lemma}
+
+The second ingredient is a construction. The containers in this paper are centrally symmetric, $C=-C$, and the two-piece packings are a piece and its point reflection.
+
+\begin{lemma}[Point reflection; \lean{Cubes}{interior_disjoint_of_separated}]\label{lem:reflect}
+Let $C=-C$, let $g(K)\subseteq sC$, and let $f$ be a nonzero linear functional with $f\ge 0$ on $g(K)$. Then $g$ and $-g$ form a packing of two copies of $K$ in $sC$.
+\end{lemma}
+\begin{proof}
+$-g(K)\subseteq -sC=sC$, and the interiors lie in the open half-spaces $f>0$ and $f<0$. In dimension~$4$ the lemma is \lean{Polytopes4}{pairPacking}; the three-dimensional constructions check the same separation directly (for example \lean{OctInCube}{g12_disjoint}).
+\end{proof}
+
+So for $n=2$ the problem has one piece: find the smallest $s$ at which a copy of $K$ fits in $sC$ on one side of a hyperplane through the centre. A centre lemma says that below $s$ every copy contains the centre, which is stronger. All the $n=2$ results below have this form.
+
+%===========================================================================
+\section{Volume: triangular prisms in a triangular prism}\label{sec:volume}
+
+\begin{summarybox}
+\textbf{Records.} $8$, $27$ and $64$ unit triangular prisms in a triangular prism: scale $2$, $3$, $4$.\\
+\textbf{Argument.} The volume bound, attained by a tiling.\\
+\textbf{Lean.} \leanfile{Prisms} (\lean{Prisms}{prisms_in_prism_optimal}).
+\end{summarybox}
+
+The \emph{unit triangular prism} has an equilateral base of edge~$1$ and height~$1$. In Lean it is \lean{Prisms}{prism3}, the image $\mathrm{sh}(R)$ of the right-triangle prism
+\[
+R=\{y\in\R^3:\ y_0\ge0,\ y_1\ge0,\ y_0+y_1\le1,\ 0\le y_2\le1\}
+\]
+under the linear shear $\mathrm{sh}$ that maps $(1,0)$, $(0,1)$ to $(1,0)$, $(1/2,\sqrt3/2)$ (\lean{Prisms}{shear}).
+
+\begin{theorem}[\lean{Prisms}{prisms_in_prism_optimal}]\label{thm:tiling}
+Scale $k$ is optimal for $k^3$ unit triangular prisms in a triangular prism.
+\end{theorem}
+\begin{proof}
+\emph{Lower bound.} The prism is convex, so the volume bound gives $k^3\vol(K)\le s^3\vol(K)$ (\lean{Prisms}{prism_scale_ge}, from \lean{Basic}{card_le_of_packing_self}).
+
+\emph{Tiling.} In the model $R$, the prism of scale $k$ is cut by the planes $y_0\in\Z$, $y_1\in\Z$, $y_0+y_1\in\Z$ and $y_2\in\Z$ (\cref{fig:tiling}). Each of the $k$ layers has $k(k+1)/2$ upward triangles, translates of the base (\lean{Prisms}{upTile}), and $k(k-1)/2$ downward ones, point reflections of it (\lean{Prisms}{downTile}). Translations and point reflections commute with the shear up to a change of vector, so every tile is the image of the unit prism under an affine isometry (\lean{Prisms}{tileMap}). An interior point of a tile determines $\lfloor y_0\rfloor$, $\lfloor y_1\rfloor$, $\lfloor y_2\rfloor$ and whether $\{y_0\}+\{y_1\}<1$, so distinct tiles have disjoint interiors (\lean{Prisms}{tile_disjoint}). The number of tiles is $k\cdot k^2=k^3$; Lean checks it by \code{decide} for $k=2,3,4$.
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.3\textwidth]{fig_tiling.pdf}
+\caption{One layer of the tiling of the triangular prism of scale $k=3$: six translates (blue) and three point reflections (orange) of the unit triangle. Stacking $k$ layers gives $k^3$ unit prisms.}
+\label{fig:tiling}
+\end{figure}
+
+\leanbox{\lean{Prisms}{pr3inpr3_n08}, \lean{Prisms}{pr3inpr3_n27}, \lean{Prisms}{pr3inpr3_n64}.}
+
+The volume bound is not sharp for any other record in this paper. All the remaining arguments are centre lemmas.
+
+%===========================================================================
+\section{The facet-width lemma: simplices}\label{sec:facet}
+
+\begin{summarybox}
+\textbf{Records.} Two regular tetrahedra in the cube, octahedron, dodecahedron and icosahedron; two $5$-simplices in a $5$-cube; two $5$-cells in a $24$-cell.\\
+\textbf{Argument.} A simplex that misses the centre has a vertex one height away from it, and the container is too small for that (\cref{thm:facet}). The bound is attained by an apex at a container vertex and the opposite facet through the centre.\\
+\textbf{Lean.} \leanfile{FacetWidth}, \leanfile{TetInCube}, \leanfile{TetInOct}, \leanfile{TetInDod}, \leanfile{TetInIco}, \leanfile{Simplex5}, \leanfile{C5inC24}.
+\end{summarybox}
+
+\subsection{The lemma}
+
+Let the piece be a polytope given by its facet inequalities,
+\[
+K=\{y:\ c_j+\langle a_j,y\rangle\ge0\ \text{for all } j\},
+\]
+and suppose that for every facet $j$ some point $v_j\in K$ has $c_j+\langle a_j,v_j\rangle\ge1$. For a simplex, $\lambda_j(y)=c_j+\langle a_j,y\rangle$ are the barycentric coordinates and $v_j$ is the vertex opposite facet $j$; then $\norm{a_j}=1/h_j$ with $h_j$ the height over facet $j$.
+
+\begin{theorem}[Facet width; \lean{FacetWidth}{centre_of_facet_width}]\label{thm:facet}
+Let $W=1/\max_j\norm{a_j}$, let $C$ lie in the closed ball of radius $R$ about the origin, and let $sR<W$. If $g$ is an affine isometry with $g(K)\subseteq sC$, then the origin lies in the interior of $g(K)$.
+\end{theorem}
+\begin{proof}
+Let $y^*=g^{-1}(0)$. If $\lambda_j(y^*)>0$ for every $j$, then $y^*$ lies in an open set contained in $K$, and $0$ is an interior point of $g(K)$. Otherwise $\lambda_j(y^*)\le0$ for some $j$, so $\langle a_j,v_j-y^*\rangle\ge1$ and $\norm{v_j-y^*}\ge1/\norm{a_j}\ge W$. Since $g$ is an isometry, $\norm{g(v_j)}=\norm{v_j-y^*}\ge W$. But $g(v_j)\in sC$, so $\norm{g(v_j)}\le sR<W$ (\cref{fig:facet}).
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.36\textwidth]{fig_facet_width.pdf}
+\caption{The facet-width lemma in the plane. A triangle that misses the container's centre (red) has a facet line separating them, so its opposite vertex is at least the width $w$ from the centre. Every point of $sC$ is within $sR_C$ of the centre.}
+\label{fig:facet}
+\end{figure}
+
+\begin{corollary}\label{cor:facet}
+If a regular simplex of edge~$1$ and height $h$ is packed twice in $sC$, then $s\ge h/R_C$, where $R_C$ is the circumradius of~$C$.
+\end{corollary}
+\begin{proof}
+For $s<h/R_C$, \cref{thm:facet} puts the centre in every copy, and \cref{lem:common} applies.
+\end{proof}
+
+The regular $d$-simplex of edge $1$ has height $h_d=\sqrt{(d+1)/(2d)}$: $\sqrt{2/3}$ for the tetrahedron, $\sqrt{5/8}$ for the $5$-cell and $\sqrt{3/5}$ for the $5$-simplex. \Cref{tab:facet} lists the six containers. In Lean, each container is either an explicit set of inequalities or the convex hull of its vertices, and its circumradius bound is a lemma (\lean{TetInCube}{cube_norm}, \lean{TetInOct}{octa_norm}, \lean{TetInDod}{dod_norm}, \lean{TetInIco}{ico_norm}, \lean{Simplex5}{box_norm}, \lean{C5inC24}{c24_norm}).
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{l l l l l}
+\toprule
+Piece & Container & $R_C$ (edge 1) & $h/R_C$ & Centre lemma \\
+\midrule
+tetrahedron & cube & $\sqrt3/2$ & $2\sqrt2/3$ & \lean{TetInCube}{centre_tet} \\
+tetrahedron & octahedron & $\sqrt2/2$ & $2/\sqrt3$ & \lean{TetInOct}{centre_tet_oct} \\
+tetrahedron & dodecahedron & $\sqrt3\,\varphi/2$ & $2\sqrt2/(3\varphi)$ & \lean{TetInDod}{centre_tet_dod} \\
+tetrahedron & icosahedron & $\sqrt{\varphi+2}/2$ & $2\sqrt{(5-\sqrt5)/15}$ & \lean{TetInIco}{centre_tet_ico} \\
+$5$-simplex & $5$-cube & $\sqrt5/2$ & $2\sqrt3/5$ & \lean{Simplex5}{centre_sx5} \\
+$5$-cell & $24$-cell & $1$ & $\sqrt{10}/4$ & \lean{C5inC24}{centre_c5} \\
+\bottomrule
+\end{tabular}
+\caption{The facet-width bound for the six simplex records; $\varphi=(1+\sqrt5)/2$. In every case a packing attains it.}
+\label{tab:facet}
+\end{table}
+
+\subsection{When the bound is exact}
+Equality in the proof of \cref{thm:facet} needs a vertex $v_j$ at distance exactly $sR_C$ from the centre, hence at a vertex of $sC$, and the opposite facet in a hyperplane through the centre, perpendicular to that vertex direction. If the rest of the simplex also fits in $sC$, that hyperplane separates it from its point reflection, and \cref{lem:reflect} gives the packing. All six containers admit such a placement; the work is in checking that the base fits. The constructions are in \cref{fig:tets}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.86\textwidth]{fig_tets.pdf}
+\caption{Two regular tetrahedra of edge $1$ at the optimal scale of each Platonic container. In each case the apex of the blue tetrahedron is a vertex of the container, its opposite face lies in a plane through the centre, and the orange tetrahedron is its point reflection. In the dodecahedron (bottom left) the packing is the cube packing (top left) inside the inscribed cube (green).}
+\label{fig:tets}
+\end{figure}
+
+\subsection{Tetrahedra in the Platonic solids}\label{sec:tets}
+
+\paragraph{Cube.} Write the tetrahedron as $\{y:\ \tfrac14+\langle a_j,y\rangle\ge0\}$ with $a_j=\tfrac{\sqrt2}{2}\sigma_j$ and $\sigma_j\in\{(1,1,1),(1,-1,-1),(-1,1,-1),(-1,-1,1)\}$ (\lean{TetInCube}{tetra}); its vertices are $v_j=\tfrac{\sqrt2}{4}\sigma_j$. Translate by $\tfrac{\sqrt2}{12}(1,1,1)$ (\lean{TetInCube}{t1}). The apex $\tfrac{\sqrt2}{3}(1,1,1)$ is a corner of the cube of side $2\sqrt2/3$, the opposite face lies in $x+y+z=0$, and the other vertices, such as $\tfrac{\sqrt2}{3}(1,-\tfrac12,-\tfrac12)$, have coordinates of absolute value at most $\sqrt2/3$.
+
+\begin{theorem}[\lean{TetInCube}{tetincub_n02}]
+Edge $2\sqrt2/3$ is optimal for two regular tetrahedra in a cube.
+\end{theorem}
+
+\paragraph{Octahedron.} Let $H$ be the Householder reflection with $H(1,1,1)/\sqrt3=e_3$, and lift by $\tfrac{\sqrt6}{12}e_3$ (\lean{TetInOct}{Hh}, \lean{TetInOct}{h1}). The apex goes to $\tfrac{\sqrt6}{3}e_3$, a vertex of the octahedron $\{\norm{x}_1\le\sqrt6/3\}$ of edge $2/\sqrt3$, and the base lies in $z=0$ inside the equatorial square. Membership of each vertex is checked through barycentric coordinates (\lean{TetInOct}{image_tetra_sub}).
+
+\begin{theorem}[\lean{TetInOct}{tetinoct_n02}]
+Edge $2/\sqrt3$ is optimal for two regular tetrahedra in an octahedron.
+\end{theorem}
+
+\paragraph{Dodecahedron.} The dodecahedron of edge $1$ is the convex hull of the $20$ points $\tfrac{\varphi}{2}(\pm1,\pm1,\pm1)$ and the cyclic permutations of $(0,\pm\tfrac12,\pm\tfrac{\varphi^2}{2})$ (\lean{TetInDod}{dodV}), all at distance $\sqrt3\varphi/2$ from the centre. The first eight span an inscribed cube of edge $\varphi$. At scale $2\sqrt2/(3\varphi)$ it is the cube of edge $2\sqrt2/3$, so the cube packing fits unchanged. Each tetrahedron vertex is a corner of that cube or the combination $\tfrac12A+\tfrac14B+\tfrac14C$ of three corners (\lean{TetInDod}{comb}).
+
+\begin{theorem}[\lean{TetInDod}{tetindod_n02}]
+Edge $\sqrt2(\sqrt5-1)/3=2\sqrt2/(3\varphi)$ is optimal for two regular tetrahedra in a dodecahedron.
+\end{theorem}
+
+\paragraph{Icosahedron.} The icosahedron of edge $1$ is the convex hull of the cyclic permutations of $(0,\pm\tfrac12,\pm\tfrac\varphi2)$ (\lean{TetInIco}{icoV}). Here the inscribed-cube trick is not available, since no cube has its corners at vertices of the icosahedron, and the rotation is explicit. Put $s=2\sqrt{(5-\sqrt5)/15}$ and $\iota=1/\sqrt{3(\varphi+2)}$. The tetrahedron with vertices
+\[
+A=(0,\sqrt2\,\iota,\sqrt2\,\varphi\iota),\qquad B_0=(0,\varphi\iota,-\iota),\qquad B_\pm=(\pm\tfrac12,-\tfrac{\varphi\iota}{2},\tfrac{\iota}{2})
+\]
+has its apex $A$ at the vertex $s(0,\tfrac12,\tfrac\varphi2)$ of the scaled icosahedron and its base in the plane $y+\varphi z=0$, with one edge parallel to the $x$-axis. The rotation taking the tetrahedron of the cube construction there has entries in $\Q(\sqrt2,\varphi,\iota)$ (\lean{TetInIco}{gI}). Each base vertex is an explicit convex combination of three vertices of the scaled icosahedron and its centre:
+\[
+B_0=s\Bigl(\tfrac\alpha2V_1+\tfrac\alpha2V_2+\alpha V_3\Bigr),\qquad B_+=s\,(aV_4+bV_5+cV_6),
+\]
+with $\alpha=\sqrt2(\varphi-1)/2$, $c=\sqrt2/4$ and $a,b=\sqrt2\bigl((\varphi-1)(\kappa-1)\pm1\bigr)/8$, $\kappa=\sqrt{3(\varphi+2)}$ (\lean{TetInIco}{w3_bounds}, \lean{TetInIco}{wab_bounds}). The plane $y+\varphi z=0$ separates the tetrahedron from its point reflection (\lean{TetInIco}{fsep}).
+
+\begin{theorem}[\lean{TetInIco}{tetinico_n02}]
+Edge $2\sqrt{(5-\sqrt5)/15}$ is optimal for two regular tetrahedra in an icosahedron.
+\end{theorem}
+
+\subsection{Simplices in dimensions four and five}\label{sec:simplices}
+
+\paragraph{$5$-simplices in a $5$-cube.} Let $\chi$ be the quadratic character modulo $5$ ($\chi(0)=0$, $\chi(\pm1)=1$, $\chi(\pm2)=-1$) and let $P_{ij}=\chi(j-i)$ be the Paley matrix of order~$5$:
+\[
+P=\begin{pmatrix}
+0&1&-1&-1&1\\ 1&0&1&-1&-1\\ -1&1&0&1&-1\\ -1&-1&1&0&1\\ 1&-1&-1&1&0
+\end{pmatrix}.
+\]
+Its rows have four entries $\pm1$ and sum zero, and distinct rows have inner product $-1$. So the rows divided by $\sqrt{10}$ are the vertices of a regular $4$-simplex of edge $1$ centred at the origin, in the hyperplane $\sum x_i=0$. Together with the apex $\tfrac{\sqrt3}{5}\one$, a corner of the cube of edge $2\sqrt3/5$ at distance $\sqrt{3/5}=h_5$ from the origin, they form a regular $5$-simplex of edge $1$. Every base coordinate is at most $1/\sqrt{10}<\sqrt3/5$, so the simplex lies in the cube (\lean{Simplex5}{inside}), and $\sum x_i=0$ separates it from its point reflection (\lean{Simplex5}{disj}).
+
+\begin{theorem}[\lean{Simplex5}{sx5inhc5_n02}]
+Edge $2\sqrt3/5$ is optimal for two regular $5$-simplices in a $5$-cube.
+\end{theorem}
+
+\paragraph{$5$-cells in a $24$-cell.} The $24$-cell of edge $1$ is $\{y\in\R^4:\ \norm{y}_\infty\le\sqrt2/2,\ \norm{y}_1\le\sqrt2\}$; its vertices are the $24$ permutations of $(\pm1,\pm1,0,0)/\sqrt2$, at distance $1$ from the centre (\lean{C5inC24}{c24_norm}). At scale $\sqrt{10}/4$, put the apex at the vertex $\tfrac{\sqrt5}{4}(1,1,0,0)$ and the base tetrahedron, centred at the origin, in the hyperplane $y_0+y_1=0$. One base vertex is $\tfrac{\sqrt3}{4}(1,-1,0,0)$. The other three are $\tfrac{\sqrt3}{12}(-1,1,0,0)+\tfrac{\sqrt3}{3}(0,0,\cos\theta,\sin\theta)$ for $\theta=15^\circ,135^\circ,255^\circ$ (\cref{fig:c5}). The angle matters: at $\theta=0$ a coordinate would be $\sqrt3/3\approx0.5774$, above the bound $\sqrt5/4\approx0.5590$, while at $15^\circ$ the largest coordinate is $\tfrac{\sqrt3}{3}\cos15^\circ=(3\sqrt2+\sqrt6)/12\approx0.5577$ (\lean{C5inC24}{tight}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.34\textwidth]{fig_c5.pdf}
+\caption{The three base vertices of the $5$-cell in the $24$-cell that lie off the $(1,-1,0,0)$ direction, projected to the $(y_2,y_3)$-plane. They sit on the circle of radius $\sqrt3/3$, inside the square $\abs{y_2},\abs{y_3}\le\sqrt5/4$ only when turned by about $15^\circ$ from the axes (blue); unturned (red circles), one coordinate is too large.}
+\label{fig:c5}
+\end{figure}
+
+\begin{theorem}[\lean{C5inC24}{c5inc24_n02}]
+Edge $\sqrt{10}/4$ is optimal for two regular $5$-cells in a $24$-cell.
+\end{theorem}
+
+\begin{remark}
+The facet-width bound is not exact for every pair. For tetrahedra in a tetrahedron the container is not centrally symmetric, and a single tetrahedron can avoid the centroid at the record scale; that record remains open (\cref{sec:open}).
+\end{remark}
+
+%===========================================================================
+\section{The octahedron centre lemma}\label{sec:oct}
+
+\begin{summarybox}
+\textbf{Record.} Two regular octahedra in a cube: edge $\sqrt2$.\\
+\textbf{Argument.} The facet-width bound gives only $2\sqrt2/3\approx0.943$. The exact centre lemma reduces to Lemma~O, an inequality for orthogonal $3\times3$ matrices, proved with one tangent line and ten exact line certificates.\\
+\textbf{Lean.} \leanfile{OctInCube}, \leanfile{OctBands} (generated).
+\end{summarybox}
+
+\subsection{Reduction to Lemma O}
+The regular octahedron of edge $1$ is $\{y:\ \norm{y}_1\le\rho\}$ with $\rho=\sqrt2/2$ (\lean{OctInCube}{octa}); its vertices are $\pm\rho e_k$. The cube is $sQ$ with $Q=[-\tfrac12,\tfrac12]^3$ (\lean{OctInCube}{cubeC}).
+
+\begin{theorem}[Octahedron centre lemma; \lean{OctInCube}{centre_oct}]\label{thm:oct}
+A regular octahedron of edge $1$ inside a cube of side $s<\sqrt2$ contains the cube's centre in its interior.
+\end{theorem}
+
+Let the octahedron be placed by $g(y)=Ay+p$ with $A$ orthogonal. Its vertices $p\pm\rho Ae_k$ lie in the cube, so
+\begin{equation}\label{eq:oct-row}
+\abs{p_i}+\rho\abs{A_{ik}}\le\tfrac s2\qquad\text{for all } i,k.
+\end{equation}
+The centre is $g(y^*)$ with $y^*=-A^\top p$, and it is inside the octahedron iff $\norm{A^\top p}_1<\rho$. Let $\sigma_k=\sgn\,(A^\top p)_k$ and $m_i=(\tfrac s2-\abs{p_i})/\rho$. Then $m_i\ge\norm{A_i}_\infty$ by \eqref{eq:oct-row}, and
+\[
+\norm{A^\top p}_1=\sum_i p_i\langle A_i,\sigma\rangle\le\sum_i\abs{p_i}\,\abs{\langle A_i,\sigma\rangle}=\rho\sum_i\Bigl(\frac{s}{2\rho}-m_i\Bigr)\abs{\langle A_i,\sigma\rangle}<\rho\sum_i(1-m_i)\abs{\langle A_i,\sigma\rangle},
+\]
+using $s<\sqrt2=2\rho$ in the last step. So \cref{thm:oct} follows from:
+
+\begin{theorem}[Lemma O; \lean{OctInCube}{lemmaO}]\label{thm:lemmaO}
+Let $R$ be an orthogonal $3\times3$ matrix with rows $R_i$, let $\sigma\in\{\pm1\}^3$, and let $m_i\ge\norm{R_i}_\infty$. Then
+\[
+\sum_{i=1}^3\abs{\langle R_i,\sigma\rangle}\,(1-m_i)\le1.
+\]
+Equality holds for the reflection $R=I-\tfrac23\one\one^\top$, whose rows are $(\tfrac13,-\tfrac23,-\tfrac23)$ up to order, with $\sigma=\one$ and $m_i=\tfrac23$.
+\end{theorem}
+
+\subsection{One row}
+\begin{lemma}[\lean{OctInCube}{row_facts}]\label{lem:row}
+Let $(\rho_1,\rho_2,\rho_3)$ be a unit vector with $\abs{\rho_k}\le m$, and $r=\abs{\rho_1+\rho_2+\rho_3}$. Then $r\le3m$, $m\ge 0.5773$, and
+\[
+1\le 6m^2-4mr+r^2.
+\]
+\end{lemma}
+\begin{proof}
+Assume $\sum\rho_k\ge0$ and put $d_k=m-\rho_k\ge0$. Then $\sum d_k=3m-r$ and $\sum d_k^2=3m^2-2mr+1$, and $\sum d_k^2\le(\sum d_k)^2$ gives the inequality. Also $1=\sum\rho_k^2\le3m^2$.
+\end{proof}
+
+Replacing $\rho_k$ by $\sigma_k\rho_k$ reduces a row and a sign vector to this case, with $r_i=\abs{\langle R_i,\sigma\rangle}$. Since $R$ is orthogonal, $\sum_ir_i^2=\norm{R\sigma}^2=3$ (\lean{OctInCube}{sum_w_sq}).
+
+For fixed $r$, the constraints $m\ge r/3$ and $6m^2-4mr+r^2\ge1$ give $m\ge m_*(r)=\bigl(2r+\sqrt{6-2r^2}\bigr)/6$, so each term of Lemma~O is at most $\phi(r)=r(1-m_*(r))$. \Cref{fig:lemmaO} shows $\phi$ against $r^2$.
+
+\subsection{Lines and bands}
+\begin{lemma}[Tangent line; \lean{OctBands}{oct_tangent}]
+Under the constraints of \cref{lem:row}, if $r^2\le2.09$ then $r(1-m)\le\tfrac14+\tfrac1{12}r^2$, with equality at $r=1$, $m=\tfrac23$.
+\end{lemma}
+
+If all three rows have $r_i^2\le2.09$, summing the tangent lines gives $\tfrac34+\tfrac{3}{12}=1$. Otherwise exactly one row is large, since $\sum r_i^2=3$. For the two small rows $m_i\ge0.5773$, so their terms are at most $0.4227(r_1+r_2)$, and $(r_1+r_2)^2\le2(3-r_0^2)$. For the large row, ten more lines $r(1-m)\le\alpha+\beta r^2$ on bands of $r^2\in[2.09,3]$ (\cref{tab:bands}) close the bound (\lean{OctInCube}{one_big}): on each band, the sum of the line and the AM--GM bound $r_1+r_2\le\bigl(2(3-r_0^2)+t^2\bigr)/(2t)$, with the listed $t$, is at most~$1$. \Cref{fig:lemmaO} (right) shows the margins. Each line is proved by contradiction with \code{nlinarith}; the file \leanfile{OctBands} is generated from exact rationals.
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{l l l l l}
+\toprule
+Lemma & band of $r^2$ & $\alpha$ & $\beta$ & $t$ \\
+\midrule
+\lean{OctBands}{oct_tangent} & $[0,\ 2.09]$ & $1/4$ & $1/12$ & -- \\
+\lean{OctBands}{oct_band1} & $[2.09,\ 2.12]$ & $2291/12500$ & $72/625$ & $1.337$ \\
+\lean{OctBands}{oct_band2} & $[2.12,\ 2.16]$ & $17377/100000$ & $374/3125$ & $1.311$ \\
+\lean{OctBands}{oct_band3} & $[2.16,\ 2.22]$ & $15861/100000$ & $1267/10000$ & $1.272$ \\
+\lean{OctBands}{oct_band4} & $[2.22,\ 2.30]$ & $13377/100000$ & $13789/100000$ & $1.216$ \\
+\lean{OctBands}{oct_band5} & $[2.30,\ 2.40]$ & $4703/50000$ & $3103/20000$ & $1.14$ \\
+\lean{OctBands}{oct_band6} & $[2.40,\ 2.55]$ & $447/25000$ & $1869/10000$ & $1.024$ \\
+\lean{OctBands}{oct_band7} & $[2.55,\ 2.70]$ & $-6431/50000$ & $4887/20000$ & $0.866$ \\
+\lean{OctBands}{oct_band8} & $[2.70,\ 2.85]$ & $-42377/100000$ & $17683/50000$ & $0.67$ \\
+\lean{OctBands}{oct_band9} & $[2.85,\ 2.95]$ & $-111491/100000$ & $1863/3125$ & $0.447$ \\
+\lean{OctBands}{oct_band10} & $[2.95,\ 3]$ & $-228447/50000$ & $88351/50000$ & $0.223$ \\
+\bottomrule
+\end{tabular}
+\caption{The line certificates for Lemma~O: $r(1-m)\le\alpha+\beta r^2$ on each band, and the AM--GM parameter $t$ used for the two small rows.}
+\label{tab:bands}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{fig_lemmaO.pdf}
+\caption{Lemma O. Left: the largest possible term $\phi(r)=r(1-m_*(r))$ of one row (black) against $r^2$, the tangent line $\tfrac14+\tfrac{r^2}{12}$ (blue), which touches at $r=1$, and the ten band lines (orange). Right: the margin of each line over $\phi$; the dotted line is $r^2=2.09$.}
+\label{fig:lemmaO}
+\end{figure}
+
+\begin{proof}[Proof of \cref{thm:lemmaO}]
+Apply \cref{lem:row} to each row, and then the tangent lines or one large row (\lean{OctInCube}{oct_sep}).
+\end{proof}
+
+\subsection{Construction}
+At $s=\sqrt2$, place $g_1(y)=Hy+\tfrac{\rho}{3}\one$ with $H=I-\tfrac23\one\one^\top$ (\lean{OctInCube}{g1}). The vertices of $g_1(\text{octa})$ are the permutations of $\rho(\tfrac23,-\tfrac13,-\tfrac13)$ and $\rho(0,1,1)$, so every coordinate is at most $\rho=s/2$ in absolute value (\lean{OctInCube}{g1_bound}). The plane $x+y+z=0$ supports $g_1(\text{octa})$ along a face, and the point reflection $g_2=-g_1$ is the second octahedron (\cref{fig:octa}). This is the equality case of Lemma~O.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.32\textwidth]{fig_octa.pdf}
+\caption{Two regular octahedra of edge $1$ in the cube of edge $\sqrt2$, in opposite corners, separated by the hexagonal plane $x+y+z=0$ (green).}
+\label{fig:octa}
+\end{figure}
+
+\begin{theorem}[\lean{OctInCube}{octincub_n02}]
+Edge $\sqrt2$ is optimal for two regular octahedra in a cube.
+\end{theorem}
+
+%===========================================================================
+\section{The two-ball lemma: regular polytopes in dimension four}\label{sec:ball}
+
+\begin{summarybox}
+\textbf{Records.} Two $16$-, $24$-, $120$- or $600$-cells in a tesseract; two $24$-, $120$- or $600$-cells in a $16$-cell.\\
+\textbf{Argument.} Each piece contains its inscribed ball. Two disjoint balls of radius $k$ need a tesseract of edge $3k$, or a $16$-cell of edge $3\sqrt2\,k$; below that, the centre is inside every piece. Translations, one reflection and one rotation attain the bounds.\\
+\textbf{Lean.} \leanfile{BallBound}, \leanfile{Polytopes4}, \leanfile{Cells120}, \leanfile{Cells600}.
+\end{summarybox}
+
+\subsection{The lemma}
+\begin{theorem}[Two balls; \lean{BallBound}{centre_ball_box}, \lean{BallBound}{centre_ball_l1}]\label{thm:ball}
+Let $K\subseteq\R^d$ contain the closed ball of radius $k>0$ about the origin, and let $g(K)\subseteq sC$.
+\begin{enumerate}
+\item If $C=[-\tfrac12,\tfrac12]^d$ and $s<2k(1+1/\sqrt d)$, then $0\in\interior g(K)$.
+\item If $C=\{\norm{x}_1\le\rho\}$ and $s<k(1+\sqrt d)/\rho$, then $0\in\interior g(K)$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+$g(K)$ contains the ball of radius $k$ about $p=g(0)$, so it suffices that $\norm{p}<k$ (\lean{BallBound}{interior_of_near}). (1) The ball lies in the cube, so $\abs{p_i}\le s/2-k$ and $\norm{p}\le\sqrt d\,(s/2-k)<k$. (2) The ball lies in the cross-polytope, so $\norm{p}_1+k\sqrt d\le s\rho$, and $\norm{p}\le\norm{p}_1\le s\rho-k\sqrt d<k$.
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.62\textwidth]{fig_two_ball.pdf}
+\caption{The two-ball bound in the plane: two disjoint balls of radius $k$ fit in a square or a cross-polytope only at the scales shown, touching at the centre. In dimension $4$ the bounds are $3k$ for the tesseract and $3\sqrt2\,k$ for the $16$-cell of edge $1$.}
+\label{fig:ball}
+\end{figure}
+
+In dimension $4$ the hypercube bound is $2k(1+\tfrac12)=3k$, and for the $16$-cell of edge~$1$, $\{\norm{x}_1\le\sqrt2/2\}$, the cross-polytope bound is $3k/(\sqrt2/2)=3\sqrt2\,k$ (\cref{fig:ball}).
+
+\subsection{\texorpdfstring{The regular $4$-polytopes by their facets}{The regular 4-polytopes by their facets}}
+Each piece is written in Lean as an intersection of half-spaces whose normals have equal length, so that it contains its inscribed ball by Cauchy--Schwarz:
+\begin{itemize}
+\item the \textbf{$16$-cell} \lean{Polytopes4}{c16} $=\{\norm{y}_1\le\sqrt2/2\}$, inradius $k=\sqrt2/4$ (\lean{Polytopes4}{ball_c16});
+\item the \textbf{$24$-cell} \lean{Polytopes4}{c24} $=\{\norm{y}_\infty\le\sqrt2/2,\ \norm{y}_1\le\sqrt2\}$, inradius $\sqrt2/2$ (\lean{Polytopes4}{ball_c24});
+\item the \textbf{$120$-cell} \lean{Cells120}{c120} $=\{\langle n,y\rangle\le k_{120}\}$ over the $120$ vertices $n$ of the unit $600$-cell: the $8$ points $\pm e_i$, the $16$ points $(\pm\tfrac12)^4$ and the $96$ even permutations of $\tfrac12(\pm\varphi,\pm1,\pm\varphi^{-1},0)$, with $k_{120}=\varphi^4/2=(7+3\sqrt5)/4$ (\lean{Cells120}{ball_c120});
+\item the \textbf{$600$-cell} \lean{Cells600}{c600} $=\{\langle v,y\rangle\le2+\sqrt5\}$ over the $600$ vertices $v$ of the standard $120$-cell of circumradius $2\sqrt2$, all of norm $2\sqrt2$, with inradius $k_{600}=(2+\sqrt5)/(2\sqrt2)=\sqrt2(2+\sqrt5)/4$ (\lean{Cells600}{ball_c600}).
+\end{itemize}
+The last two are the polar descriptions: each regular polytope is cut out by the vertex directions of its dual. That these sets are the regular $120$- and $600$-cells of edge $1$ is checked numerically, outside Lean, by \codepath{scripts/optimality/check_polar_hreps.py}: every facet meets $20$, respectively $4$, vertices, and the edge is~$1$. The Lean theorems are about the sets as defined.
+
+\Cref{tab:ball} lists the bounds.
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{l l l l l l}
+\toprule
+Piece & inradius $k$ & tesseract $3k$ & & $16$-cell $3\sqrt2\,k$ & \\
+\midrule
+$16$-cell & $\sqrt2/4$ & $3\sqrt2/4$ & \lean{Polytopes4}{c16inc8_n02} & -- & \\
+$24$-cell & $\sqrt2/2$ & $3\sqrt2/2$ & \lean{Polytopes4}{c24inc8_n02} & $3$ & \lean{Polytopes4}{c24inc16_n02} \\
+$120$-cell & $(7+3\sqrt5)/4$ & $(21+9\sqrt5)/4$ & \lean{Cells120}{c120inc8_n02} & $3\sqrt2(7+3\sqrt5)/4$ & \lean{Cells120}{c120inc16_n02} \\
+$600$-cell & $\sqrt2(2+\sqrt5)/4$ & $3\sqrt2(2+\sqrt5)/4$ & \lean{Cells600}{c600inc8_n02} & $3(2+\sqrt5)/2$ & \lean{Cells600}{c600inc16_n02} \\
+\bottomrule
+\end{tabular}
+\caption{The two-ball bounds for regular $4$-polytopes of edge $1$. All seven are attained.}
+\label{tab:ball}
+\end{table}
+
+\subsection{Constructions}
+The constructions use two kinds of placement. Let $K'$ be a congruent copy of the piece, centred at the origin.
+\begin{itemize}
+\item \emph{Tesseract of edge $3k$.} Suppose
+\begin{equation}\label{eq:shapeT}
+\abs{y_i}\le k\ \text{for all } i\quad\text{and}\quad \textstyle\sum_iy_i\ge-2k\qquad(y\in K').
+\end{equation}
+Then the translate $K'+\tfrac k2\one$ lies in $[-\tfrac k2,\tfrac{3k}2]^4\subseteq[-\tfrac{3k}2,\tfrac{3k}2]^4$ and on the side $\sum_ix_i\ge0$.
+\item \emph{$16$-cell of edge $3\sqrt2\,k$}, that is $\{\norm{x}_1\le3k\}$. Suppose
+\begin{equation}\label{eq:shapeX}
+\norm{y}_1\le2k\quad\text{and}\quad y_0\ge-k\qquad(y\in K').
+\end{equation}
+Then the translate $K'+ke_0$ has $\norm{x}_1\le\norm{y}_1+k\le3k$ and lies on the side $x_0\ge0$.
+\end{itemize}
+\Cref{lem:reflect} then adds the point reflection. It remains to find $K'$:
+\begin{itemize}
+\item the \textbf{$24$-cell} satisfies both conditions as defined, since $\sum_iy_i\ge-\norm{y}_1\ge-\sqrt2=-2k$ (\lean{Polytopes4}{c24inc8_packing}, \lean{Polytopes4}{c24inc16_packing});
+\item the \textbf{$120$-cell} as well: the facets with normals $\pm e_i$ and $-\tfrac12\one$ give \eqref{eq:shapeT}, and the sixteen facets $(\pm\tfrac12)^4$ and the facet $-e_0$ give \eqref{eq:shapeX} (\lean{Cells120}{coord_le}, \lean{Cells120}{l1_le}, \lean{Cells120}{c120inc8_packing}, \lean{Cells120}{c120inc16_packing}). The two constructions use only these $24$ of its $120$ facets;
+\item the \textbf{$16$-cell} after the reflection $I-\tfrac12\one\one^\top$ (\lean{Polytopes4}{H4}), which maps the vertices $\pm\tfrac{\sqrt2}{2}e_i$ to points with all coordinates $\pm\tfrac{\sqrt2}{4}=\pm k$ and coordinate sum $\mp\tfrac{\sqrt2}{2}=\mp2k$, so that \eqref{eq:shapeT} holds; the $16$-cell becomes a half-cube of $[-k,k]^4$ (\lean{Polytopes4}{c16inc8_packing});
+\item the \textbf{$600$-cell} after the rotation
+\[
+M=\tfrac{1}{\sqrt2}\begin{pmatrix}1&1&0&0\\1&-1&0&0\\0&0&1&1\\0&0&1&-1\end{pmatrix}
+\]
+(\lean{Cells600}{M}), which turns the $24$ facets whose normals are the permutations of $(0,0,\pm2,\pm2)$ into facets with normals along $\pm e_i$ and $(\pm\tfrac12)^4$. The rotated piece satisfies both conditions, exactly as the $120$-cell does (\lean{Cells600}{Ml_bound}, \lean{Cells600}{l1_M}, \lean{Cells600}{c600inc8_packing}, \lean{Cells600}{c600inc16_packing}).
+\end{itemize}
+
+\begin{theorem}\label{thm:ball-records}
+The seven two-ball bounds of \cref{tab:ball} are optimal.
+\end{theorem}
+\leanbox{\lean{Polytopes4}{c16inc8_n02}, \lean{Polytopes4}{c24inc8_n02}, \lean{Polytopes4}{c24inc16_n02}, \lean{Cells120}{c120inc8_n02}, \lean{Cells120}{c120inc16_n02}, \lean{Cells600}{c600inc8_n02}, \lean{Cells600}{c600inc16_n02}.}
+
+\begin{remark}
+In the plane, two discs of radius $k$ fit in a square of side $2k(1+1/\sqrt2)$ along a diagonal (\cref{fig:ball}). In the tesseract the diagonal translation $\tfrac k2\one$ has length exactly $k$, so the two pieces touch the centre, as the discs do.
+\end{remark}
+
+%===========================================================================
+\section{Prisms in a cube}\label{sec:prisms}
+
+\begin{summarybox}
+\textbf{Records.} Thirteen packings of prisms in a cube: triangular prisms of height $3/2$ ($n=2,3$) and $2$ ($n=2$--$6$), dodecagonal prisms of height $1$ ($n=2,3$), $3/2$ and $2$, an octagonal and a hexagonal prism of height~$1$.\\
+\textbf{Argument.} Two facts that hold because a piece in a cube can be translated along each axis independently: \emph{axis widths} (\cref{sec:widths}), which already decide three families with one piece, and the \emph{box centre lemma} (\cref{sec:box}), which decides the rest.\\
+\textbf{Lean.} \leanfile{PrismCube}, \leanfile{TriPrismCube}, \leanfile{PolyPrism}.
+\end{summarybox}
+
+Throughout, the container is $sQ$ with $Q=[-\tfrac12,\tfrac12]^3$, a piece is placed by $g(y)=Ay+p$ with $A$ orthogonal, and the prism axis is $e_2$ in piece coordinates (in Lean, coordinates are numbered $0,1,2$). We write $a=Ae_2$ for the axis in the cube, so $\sum_ia_i^2=1$. The pieces are:
+\begin{itemize}
+\item the \textbf{triangular prism} \lean{TriPrismCube}{tprism} of height $L$: base triangle with vertices $(0,0)$, $(0,1)$, $(\sqrt3/2,1/2)$, and $\abs{y_2}\le L/2$;
+\item the \textbf{prism over a polygon} \lean{PolyPrism}{pprism} with unit normals $(n^x_k,n^y_k)$ and inradius $\rho$: $\{n^x_ky_0+n^y_ky_1\le\rho\ \forall k,\ \abs{y_2}\le L/2\}$, which covers every regular polygon; the regular dodecagonal prism \lean{PrismCube}{dprism} has $\rho=r=(2+\sqrt3)/2$, the octagonal $\rho=(1+\sqrt2)/2$, the hexagonal $\rho=\sqrt3/2$.
+\end{itemize}
+Every regular polygon with unit edges contains the disc of radius $\rho$ about its centre, which is all that the width arguments use for polygons.
+
+\subsection{Axis widths}\label{sec:widths}
+\begin{lemma}[Axis widths; \lean{PrismCube}{width_le}]\label{lem:width}
+If $g(K)\subseteq sQ$, then $\langle A_i,p-q\rangle\le s$ for all $p,q\in K$ and every row $A_i$ of $A$.
+\end{lemma}
+For a prism, the row $A_i$ has component $a_i$ along the axis and a component of length $\sqrt{1-a_i^2}$ in the base plane. The width of the prism along $e_i$ is therefore $L\abs{a_i}$ plus the width of the base in a direction of length $\sqrt{1-a_i^2}$ (\cref{fig:axiswidth}).
+
+\begin{figure}[htbp]
+\centering
+\begin{minipage}{0.45\textwidth}\centering
+\includegraphics[width=0.85\textwidth]{fig_axis_width.pdf}
+\end{minipage}\hfill
+\begin{minipage}{0.45\textwidth}\centering
+\includegraphics[width=0.66\textwidth]{fig_widths.pdf}
+\end{minipage}
+\caption{Left: a prism whose axis makes the angle $\arccos a_i$ with $e_i$ spans at least $L\abs{a_i}+2\rho\sqrt{1-a_i^2}$ along $e_i$ (\lean{PolyPrism}{pwidth}). Right: for the unit triangle, the six differences of its vertices are unit vectors at $60^\circ$ steps, so one is within $30^\circ$ of any direction $u$ (\lean{TriPrismCube}{six_dirs}).}
+\label{fig:axiswidth}
+\end{figure}
+
+\begin{lemma}[\lean{PolyPrism}{pwidth}, \lean{TriPrismCube}{twidth}]\label{lem:prism-width}
+If a prism of height $L$ lies in $sQ$, then for every $i$:
+\begin{enumerate}
+\item over a polygon with inradius $\rho$: $L\abs{a_i}+2\rho\sqrt{1-a_i^2}\le s$;
+\item over the unit triangle: $L\abs{a_i}+w_i\le s$ for some $w_i\ge0$ with $w_i^2\ge\tfrac34(1-a_i^2)$.
+\end{enumerate}
+\end{lemma}
+
+A one-variable computation turns these into thresholds. For $t\in[0,1]$,
+\begin{equation}\label{eq:threshold}
+Lt+2\rho\sqrt{1-t^2}\ge2\rho\iff t\le\frac{4\rho L}{4\rho^2+L^2}.
+\end{equation}
+For the triangle we use it with $L=c$: if $ct+w<c$ and $w^2\ge\tfrac34(1-t^2)$, then $(1-t)\bigl(\tfrac34(1+t)-c^2(1-t)\bigr)<0$ (\lean{TriPrismCube}{tri_contra}).
+
+\subsection{One prism is enough}\label{sec:onepiece}
+Since $\sum a_i^2=1$, some coordinate has $a_i^2\ge1/3$ and some has $a_i^2\le1/3$. This alone decides three families.
+
+\begin{proposition}\label{prop:onepiece}
+\begin{enumerate}
+\item A triangular prism of height $3/2$ does not fit in a cube of side $s<3/2$ (\lean{TriPrismCube}{no_fit_t15}).
+\item A dodecagonal prism of height $3/2$ does not fit in a cube of side $s<2+\sqrt3$ (\lean{PrismCube}{no_fit_l15}).
+\item An octagonal prism of height $1$ does not fit in a cube of side $s<1+\sqrt2$ (\lean{PolyPrism}{no_fit_o1}).
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(1) Take $t=\abs{a_i}\ge1/\sqrt3>\tfrac12$. If $s<\tfrac32$, then $\tfrac32t+w_i<\tfrac32$, but with $c=\tfrac32$ both factors of $(1-t)\bigl(\tfrac34(1+t)-\tfrac94(1-t)\bigr)=(1-t)(3t-\tfrac32)$ are nonnegative, a contradiction.
+(2) Take $\abs{a_i}\le1/\sqrt3$. The threshold \eqref{eq:threshold} is $6r/(4r^2+\tfrac94)\approx0.692>1/\sqrt3$, so the width along $e_i$ is at least $2r=2+\sqrt3$.
+(3) Take $\abs{a_i}\le1/\sqrt3$. For $\rho=(1+\sqrt2)/2$ and $L=1$ the threshold is $4\rho/(4\rho^2+1)=1/\sqrt2$ exactly, and $1/\sqrt3<1/\sqrt2$.
+\end{proof}
+
+The constructions of \cref{sec:constructions} fit three triangular prisms of height $3/2$ at side $3/2$ and stack two dodecagonal or octagonal prisms at the sides above.
+
+\begin{theorem}[\lean{TriPrismCube}{pr3l15incub}, \lean{PrismCube}{pr12l15incub_n02}, \lean{PolyPrism}{pr8incub_n02}]
+Side $3/2$ is optimal for two and three triangular prisms of height $3/2$; side $2+\sqrt3$ for two dodecagonal prisms of height $3/2$; side $1+\sqrt2$ for two octagonal prisms of height $1$.
+\end{theorem}
+
+\subsection{The box centre lemma}\label{sec:box}
+In a cube, the translations that keep a rotated piece inside form a box: $p_i$ ranges over an interval for each $i$ independently. Seen from the piece, the preimages $y=-A^\top p$ of the cube's centre form a rotated box (\cref{fig:box}). The centre lemma holds for the rotation $A$ if this box lies in the interior of the piece, and it suffices to check each facet against the box's extreme corner.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.7\textwidth]{fig_box.pdf}
+\caption{The box centre lemma for a unit square in a square of side $s<2$. Left: the centres $p$ of the placed piece that keep it inside form a box (green); two extreme positions are shown. Right: the corresponding preimages $-A^{-1}p$ of the container's centre form a rotated box inside the piece. If this holds for every rotation, every copy contains the centre.}
+\label{fig:box}
+\end{figure}
+
+\begin{theorem}[Box centre lemma; \lean{PrismCube}{centre_of_box}]\label{thm:box}
+Let $K$ contain the open polytope $\{y:\ \langle\beta_f,y\rangle<h_f\ \forall f\}$, and let $g(K)\subseteq sQ$ with linear part $A$. Suppose that for every facet $f$ there are points $v_0,v_1,v_2\in K$ with
+\[
+\frac s2\sum_i\abs{b_i}+\sum_ib_i\,(Av_i)_i<h_f,\qquad b=A\beta_f.
+\]
+Then the cube's centre lies in the interior of $g(K)$.
+\end{theorem}
+\begin{proof}
+Let $y=-A^\top p$ be the preimage of the centre. Then $\langle\beta_f,y\rangle=-\langle b,p\rangle=-\sum_ib_ip_i$. Since $g(v_i)\in sQ$, $\abs{(Av_i)_i+p_i}\le s/2$, which gives $-b_ip_i\le\tfrac s2\abs{b_i}+b_i(Av_i)_i$ whatever the sign of $b_i$. Summing, $\langle\beta_f,y\rangle<h_f$ for every $f$, so $y$ lies in the open polytope, which is contained in $K$.
+\end{proof}
+
+For the best points $v_i$ the bound is sharp, because each $p_i$ can be moved independently. In the applications the $v_i$ are vertices of the piece or points of its inscribed cylinder.
+
+\subsection{Triangular prisms of height 2: side 2 for two to six}\label{sec:tri2}
+
+\begin{theorem}[\lean{TriPrismCube}{centre_t2}]\label{thm:tri2}
+A triangular prism of height $2$ inside a cube of side $s<2$ contains the cube's centre in its interior.
+\end{theorem}
+
+The proof has three steps.
+
+\emph{Widths} (\lean{TriPrismCube}{lt_13_19}). Here $L=2$ and $s<2$, so with $c=2$ and $t=\abs{a_i}<1$ the triangle inequality of \cref{sec:widths} gives $\tfrac34(1+t)<4(1-t)$, that is, $\abs{a_i}<13/19$ for every $i$. Then also $a_i^2>1-2(13/19)^2$, so $\abs{a_i}>1/4$.
+
+\emph{Caps} (\lean{TriPrismCube}{cap_t2}). For the facets $y_2=\pm1$, $b=\pm a$; with $v_i$ the vertex $(0,0,\mp1)$ the condition of \cref{thm:box} becomes $\tfrac s2\norm{a}_1-1<1$, which holds because $\norm{a}_1\le\sqrt3<2$.
+
+\emph{Sides} (\lean{TriPrismCube}{side_t2}). For a side with unit normal $\beta$ in the base plane, the opposite vertex is at distance $\sqrt3/2$ from it. Take for $v_i$ that vertex at height $-\sgn(a_ib_i)$. The condition becomes $\tfrac s2\norm{b}_1-\sum_i\abs{a_i}\abs{b_i}<\tfrac{\sqrt3}2$, which follows from $s<2$ and:
+
+\begin{lemma}[Side inequality; \lean{TriPrismCube}{key3}]\label{lem:key3}
+Let $a,b\in\R^3$ be orthogonal unit vectors with $\abs{a_i}<13/19$ for every $i$. Then
+\[
+\sum_i\abs{b_i}\,(1-\abs{a_i})\le\frac{\sqrt3}2.
+\]
+\end{lemma}
+\begin{proof}
+Write $\alpha_i=\abs{a_i}\in[\tfrac14,\tfrac{13}{19}]$, $t_i=\abs{b_i}$ and $e_i=\sgn(a_ib_i)$, so that $\sum_ie_i\alpha_it_i=0$. For any $\lambda$, Cauchy--Schwarz with $\sum t_i^2=1$ gives
+\[
+\Bigl(\sum_i(1-\alpha_i)t_i\Bigr)^2=\Bigl(\sum_i(1-\alpha_i-\lambda e_i\alpha_i)t_i\Bigr)^2\le\sum_i(1-\alpha_i)^2-2\lambda P+\lambda^2,
+\]
+with $P=\sum_ie_i(\alpha_i-\alpha_i^2)$. At $\lambda=P$ the right side is $4-2\sum\alpha_i-P^2$ (\lean{TriPrismCube}{cs3}). The signs $e_i$ are not all equal, since $\sum e_i\alpha_it_i=0$ with $\alpha_i>0$ and $t\ne0$; and $f_i=\alpha_i-\alpha_i^2\in[\tfrac3{16},\tfrac14]$, so $P^2\ge\tfrac1{64}$ (\lean{TriPrismCube}{mixed}). Finally $\sum\alpha_i\ge\tfrac{115}{71}$ on the sphere with $\alpha_i\le\tfrac{13}{19}$ (\lean{TriPrismCube}{sum_lo}; the minimum is $(26+\sqrt{23})/19\approx1.6208$). Then $4-2\cdot\tfrac{115}{71}-\tfrac1{64}<\tfrac34$ (\lean{TriPrismCube}{key3core}).
+\end{proof}
+
+With six prisms at side $2$ (\cref{sec:constructions}) and \cref{lem:plateau}:
+
+\begin{theorem}[\lean{TriPrismCube}{pr3l2incub}]
+Side $2$ is optimal for $n$ triangular prisms of height $2$ in a cube, for every $2\le n\le6$.
+\end{theorem}
+
+\subsection{Prisms over polygons}\label{sec:poly}
+
+\begin{theorem}[\lean{PolyPrism}{pcentre}]\label{thm:pcentre}
+Let $K$ be a prism of height $L$ over a polygon with inradius $\rho$, with $L\sqrt3\le2\rho$ and $L\le\tfrac75\rho$. If $K$ lies in a cube of side $s<2L$, it contains the cube's centre in its interior.
+\end{theorem}
+\begin{proof}
+Apply \cref{thm:box} with points of the inscribed cylinder.
+
+\emph{Sides} (\lean{PolyPrism}{pside}). For a side with normal $\beta$, $b=A\beta\perp a$, and the best point for coordinate $i$ gives $b_i(Av_i)_i=-\abs{b_i}\bigl(\rho\sqrt{1-a_i^2}+\tfrac L2\abs{a_i}\bigr)$. Since $\abs{b_i}\le\sqrt{1-a_i^2}$, $\sum\abs{b_i}\sqrt{1-a_i^2}\ge\sum b_i^2=1$, and the condition follows from $\tfrac s2\norm{b}_1<L\sqrt3\le2\rho$, using $\norm{b}_1\le\sqrt3$.
+
+\emph{Caps} (\lean{PolyPrism}{pcap}). Here $b=\pm a$, and the condition becomes $\tfrac s2\norm{a}_1-\rho\sum\abs{a_i}\sqrt{1-a_i^2}<L$. Since $1-a_i^2=a_j^2+a_k^2$, $\sqrt{1-a_i^2}\ge\tfrac{7}{10}(\abs{a_j}+\abs{a_k})$, so $\sum\abs{a_i}\sqrt{1-a_i^2}\ge\tfrac7{10}(\norm{a}_1^2-1)$; and $L(\norm{a}_1-1)\le\tfrac L2(\norm{a}_1^2-1)\le\tfrac7{10}\rho(\norm{a}_1^2-1)$.
+\end{proof}
+
+\paragraph{Hexagonal prisms of height 1.} Here $\rho=\sqrt3/2$, so $L\sqrt3=2\rho$ holds with equality and $L=1\le\tfrac75\rho$. Two prisms stacked along an axis fill height $2$ in the cube of side $2$.
+
+\begin{theorem}[\lean{PolyPrism}{pr6incub_n02}]
+Side $2$ is optimal for two hexagonal prisms of height $1$ in a cube.
+\end{theorem}
+
+\paragraph{Dodecagonal prisms of height 2.} The same argument, proved first for the dodecagon (\lean{PrismCube}{centre_d2}), applies with $L=2$, $\rho=r$: $2\sqrt3\le2+\sqrt3$ and $2\le\tfrac75r$. So the centre lemma holds below side $2L=4$, and two prisms stacked along an axis fit at side~$4$.
+
+\begin{theorem}[\lean{PrismCube}{pr12l2incub_n02}]
+Side $4$ is optimal for two dodecagonal prisms of height $2$ in a cube.
+\end{theorem}
+
+\paragraph{Dodecagonal prisms of height 1.} Now $2L=2<2+\sqrt3$, so \cref{thm:pcentre} does not apply, and widths come first.
+
+\begin{theorem}[\lean{PrismCube}{centre_d1}]
+A dodecagonal prism of height $1$ inside a cube of side $s<2+\sqrt3$ contains the cube's centre in its interior.
+\end{theorem}
+\begin{proof}
+If $\abs{a_i}\le\tfrac12$ for some $i$, the width along $e_i$ is at least $2r$ by \eqref{eq:threshold}, whose threshold $4r/(4r^2+1)$ is exactly $\tfrac12$ for $r=(2+\sqrt3)/2$. So $\abs{a_i}>\tfrac12$ for every $i$. The sides then need only $\norm{b}_1\le\sqrt3<2$, and the caps reduce to $r\sum_i\abs{a_i}\bigl(1-\sqrt{1-a_i^2}\bigr)<1$ (\lean{PrismCube}{cap_d1}).
+\end{proof}
+
+Three dodecagonal prisms of height $1$ stack in height $3\le2+\sqrt3$.
+
+\begin{theorem}[\lean{PrismCube}{pr12incub_n02}, \lean{PrismCube}{pr12incub_n03}]
+Side $2+\sqrt3$ is optimal for two and three dodecagonal prisms of height $1$ in a cube.
+\end{theorem}
+
+\subsection{Constructions}\label{sec:constructions}
+
+\paragraph{Six triangular prisms of height 2 at side 2} (\lean{TriPrismCube}{g6}, \lean{TriPrismCube}{pack6}). Split the cube $[-1,1]^3$ by the plane $x=0$. In each half, three prisms of length $2$ have bases forming a strip of three alternating triangles in a $1\times2$ rectangle, which fits because $\sqrt3/2<1$ (\cref{fig:six}). The prisms run along $y$ in the half $x\le0$, with
+\[
+y\mapsto(-y_0,\,y_2,\,y_1-1),\quad(y_0-\tfrac{\sqrt3}2,\,y_2,\,y_1-\tfrac12),\quad(-y_0,\,y_2,\,y_1),
+\]
+and along $z$ in the half $x\ge0$, with $y\mapsto(y_0,\,y_1-1,\,y_2)$, $(\tfrac{\sqrt3}2-y_0,\,y_1-\tfrac12,\,y_2)$, $(y_0,y_1,y_2)$. Each pair is separated by an explicit plane (\lean{TriPrismCube}{f6}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_six_prisms.pdf}
+\caption{(a) Six triangular prisms of height $2$ in the cube of side $2$, shown with the two halves $x\le0$ and $x\ge0$ pulled apart: three prisms along $y$ (blue) and three along $z$ (orange). (b) The cross-section of each half: three alternating unit triangles in a $1\times2$ rectangle.}
+\label{fig:six}
+\end{figure}
+
+\paragraph{Three triangular prisms of height $3/2$ at side $3/2$} (\lean{TriPrismCube}{g3}, \lean{TriPrismCube}{pack3}). The bases form a pinwheel in the square $[0,\tfrac32]^2$ (\cref{fig:pinwheel}), each touching the other two. With $a=(\sqrt3-1)/2$ their vertices are
+\[
+(0,a),\ (0,a+1),\ (\tfrac{\sqrt3}2,\tfrac{\sqrt3}2);\qquad (a,0),\ (a+1,0),\ (\tfrac{\sqrt3}2,\tfrac{\sqrt3}2);\qquad (\tfrac32,\tfrac12),\ (\tfrac32,\tfrac32),\ (\tfrac32-\tfrac{\sqrt3}2,1).
+\]
+
+\begin{figure}[htbp]
+\centering
+\begin{minipage}{0.3\textwidth}\centering
+\includegraphics[width=0.95\textwidth]{fig_pinwheel.pdf}
+\end{minipage}\hfill
+\begin{minipage}{0.66\textwidth}
+\caption{Left: the bases of three triangular prisms of height $3/2$ in the square of side $3/2$. Below: stacked prisms. (a) Three dodecagonal prisms of height $1$ at side $2+\sqrt3$; (b) two of height $3/2$ at side $2+\sqrt3$; (c) two of height $2$ at side $4$; (d) two octagonal prisms of height $1$ at side $1+\sqrt2$; (e) two hexagonal prisms of height $1$ at side $2$.}
+\label{fig:pinwheel}
+\end{minipage}
+\par\medskip
+\includegraphics[width=\textwidth]{fig_stacks.pdf}
+\end{figure}
+
+\paragraph{Stacks} (\lean{PrismCube}{stackPacking}, \lean{PolyPrism}{pstackPacking}). The other prism packings stack the prisms along an axis, separated by horizontal planes (\cref{fig:pinwheel}, bottom). A regular $m$-gon with unit edges and $m$ divisible by $4$ has width $2\rho$ in two perpendicular directions, so its prism fits in a cube of side $\max(2\rho,nL)$; the hexagon fits in a square of side $2$, its vertex-to-vertex width.
+
+%===========================================================================
+\section{Formalization}\label{sec:formal}
+
+\Cref{tab:files} lists the Lean files of this paper. They build on \leanfile{Basic} and \leanfile{Cubes} of Paper~I~\cite{cubecentre}. The main theorems are stated for Mathlib's Euclidean spaces (\code{EuclideanSpace}) and their affine isometries (\code{AffineIsometryEquiv}).
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabularx}{\textwidth}{l r X}
+\toprule
+File & Lines & Content \\
+\midrule
+\leanfile{Prisms} & 354 & unit triangular prism, tiling, $k^3$ prisms \\
+\leanfile{FacetWidth} & 65 & \lean{FacetWidth}{centre_of_facet_width} \\
+\leanfile{TetInCube} & 147 & tetrahedron centre lemma in a cube, packing \\
+\leanfile{TetInOct} & 196 & in an octahedron (Householder construction) \\
+\leanfile{TetInDod} & 156 & in a dodecahedron (inscribed cube) \\
+\leanfile{TetInIco} & 343 & in an icosahedron (explicit rotation, convex combinations) \\
+\leanfile{Simplex5} & 206 & $5$-simplices in a $5$-cube (Paley matrix; generated) \\
+\leanfile{C5inC24} & 236 & $5$-cells in a $24$-cell \\
+\leanfile{OctBands} & 172 & eleven line certificates (generated) \\
+\leanfile{OctInCube} & 422 & Lemma O, octahedron centre lemma, packing \\
+\leanfile{BallBound} & 146 & two-ball lemma for cubes and cross-polytopes \\
+\leanfile{Polytopes4} & 222 & $16$-cell, $24$-cell, point-reflection pairs, three records \\
+\leanfile{Cells120} & 186 & $120$-cell by its facets, two records \\
+\leanfile{Cells600} & 267 & $600$-cell by its facets, rotation $M$, two records \\
+\leanfile{PrismCube} & 633 & axis widths, box centre lemma, dodecagonal prisms \\
+\leanfile{TriPrismCube} & 575 & triangular prisms, side inequality, six-prism and pinwheel packings \\
+\leanfile{PolyPrism} & 354 & prisms over polygons, octagonal and hexagonal prisms \\
+\leanfile{Relations} & 59 & plateau from a common point \\
+\bottomrule
+\end{tabularx}
+\caption{The Lean files of this paper, in \codepath{lean-optimality/PackingOptimality/}.}
+\label{tab:files}
+\end{table}
+
+\paragraph{What is checked.} Every main theorem is listed in \code{Axioms.lean} and depends only on \code{propext}, \code{Classical.choice} and \code{Quot.sound}; continuous integration builds the project and runs this audit on every change. The repository contains no \code{sorry}.
+
+\paragraph{What is generated.} \leanfile{OctBands} is produced from exact rationals by \codepath{scripts/optimality/lean_gen/octgen.py} and \code{emit_oct.py}, and \leanfile{Simplex5} by \code{emit_simplex5.py}. Lean checks the generated files.
+
+\paragraph{What is not in Lean.} The Lean statements are about explicit sets: inequalities, or convex hulls of vertex lists. That these sets are the catalogue's pieces and containers, at the catalogue's normalization of unit edges, is checked by inspection of standard coordinates, and for the $120$- and $600$-cells by the numerical check of \cref{sec:ball}.
+
+%===========================================================================
+\section{Open problems}\label{sec:open}
+
+\paragraph{Platonic pairs.} Let $s_c$ be the scale below which every copy of the piece contains the container's centre. Then $s(2)\ge s_c$, with equality when the container is centrally symmetric (\cref{lem:reflect}). For the fifteen Platonic records with $n=2$ that are not proved here, a global search over rotations, with exact linear programming over translations, finds $s_c$ equal to the record value to about seven digits~\cite{archive}. Examples are two octahedra in an octahedron ($1.9331196$), two cubes in an octahedron ($1+\sqrt2$) and two icosahedra in a dodecahedron ($\sqrt5-1$). This is numerical evidence, not a proof: each pair needs a rigorous bound over all rotations, as Lemma~O gives for octahedra in a cube.
+
+\paragraph{Tetrahedral containers.} For tetrahedra, octahedra, dodecahedra or icosahedra in a tetrahedron, a single piece can avoid the centroid at the record scale, so no centre lemma exists. The plateaus there (for example octahedra in a tetrahedron at $s=3$ for $n=2$--$4$) need an argument about two pieces at once.
+
+\paragraph{Three pieces.} Every $n=3$ record for Platonic solids is open, except cubes in a cube. A natural first case is three tetrahedra in a cube at side~$1$. Below side $1$, a tetrahedron either contains a small ball about the centre or has a face plane close to the centre with the opposite vertex towards a corner, as in \cref{thm:facet}; two such tetrahedra pointing to opposite corners, and one containing the ball, would have to overlap. Turning this into a proof needs two lemmas that we do not have yet.
+
+\paragraph{More prisms and antiprisms.} The numerical survey of the repository finds the centre argument exact for $4$-, $5$- and $12$-gonal antiprisms in a cube ($n=2$, and $n=2$--$4$ for the $12$-gonal one) and for dodecagonal prisms of height $3$; for $6$- and $8$-gonal antiprisms and the pentagonal prism of height $3$, one piece already needs the record side. These need width bounds for the $10$-, $12$- and $16$-gon in place of the inscribed disc.
+
+%===========================================================================
+\section*{Acknowledgements}
+The packings of this paper are catalogue records~\cite{archive}. The tetrahedron records were found by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\'olik~\cite{bkmpp}. The records of $8$ and $64$ triangular prisms in a triangular prism were contributed by PingYou Ltd, and the search that found $27$ started from their packing. The other records were found by the author with a generalization of Yohei Nakajima's soft-to-rigid method~\cite{nakajima}. AI coding and drafting tools, including Claude (Anthropic), assisted the search, the formalization and the preparation of this manuscript under the author's direction. The Lean build is the evidence for the formal claims.
+
+\begin{thebibliography}{9}
+\bibitem{archive} A. Zarzuelo Urdiales and contributors. \emph{Polyhedra in Polyhedra: certified finite packings}. \url{https://github.com/alejandrozu/platonic-packing}, \url{https://polyhedrainpolyhedra.wiki}, 2026.
+\bibitem{bkmpp} T. Berthold, D. Kamp, G. Mexi, S. Pokutta and I. P\'olik. \emph{Out-of-the-box global optimization for packing problems: new models and improved solutions}. arXiv:2605.04850, 2026.
+\bibitem{cubecentre} A. Zarzuelo Urdiales. \emph{The cube centre lemma in dimensions three, four and five: side $2$ is optimal for $2$ to $2^d$ unit cubes, with proofs checked in Lean}. Polyhedra-in-Polyhedra, 2026. (Paper I of this series.)
+\bibitem{mathlib} The mathlib Community. The Lean mathematical library. In \emph{Proceedings of CPP 2020}, 367--381, 2020.
+\bibitem{nakajima} Y. Nakajima. \emph{Soft-to-Rigid: Shape Continuation as an Alternative Search for Packing Congruent Shapes}. arXiv:2610.14463, 2026.
+\bibitem{patterns} A. Zarzuelo Urdiales. \emph{Deletion, arrows, windows and composition: structural patterns in certified polytope packings}. Polyhedra-in-Polyhedra, 2026. (Paper III of this series.)
+\end{thebibliography}
+
+\end{document}

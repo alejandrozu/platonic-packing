@@ -1,0 +1,647 @@
+\documentclass[11pt,a4paper]{article}
+\input{../preamble.tex}
+\hypersetup{pdftitle={The cube centre lemma in dimensions three, four and five},pdfauthor={Alejandro Zarzuelo Urdiales}}
+
+\title{The cube centre lemma in dimensions three, four and five:\\
+side $2$ is optimal for $2$ to $2^d$ unit cubes, with proofs checked in Lean}
+\author{Alejandro Zarzuelo Urdiales}
+\date{8 November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $s_d(n)$ be the smallest side of a $d$-dimensional cube that holds $n$ unit $d$-cubes with disjoint interiors, each placed by an arbitrary rigid motion. We prove $s_d(n)=2$ for every $2\le n\le 2^d$ and $d\in\{3,4,5\}$, and $s_d(k^d)=k$ in every dimension. All proofs are formalized in Lean~4 with Mathlib and use only the standard axioms. The lower bound $s_d(2)\ge 2$ is the \emph{cube centre lemma}: a unit $d$-cube inside a cube of side less than $2$ contains the container's centre in its interior. Following Hosono, it reduces to a matrix inequality, Lemma~F: $\sum_i \abs{R_{ij}}\,(2-\norm{R_i}_1)\le 1$ for every orthogonal $d\times d$ matrix $R$ and every column $j$. Hosono proved Lemma~F for $d\le 6$ with computer-assisted far regions. We give proofs whose only computation is checked by Lean. In dimension~3, a minimiser argument on a circle reduces the inequality to an algebraic identity. In dimension~4, Hosono's near-axis step is combined with a new far-region bound from zero-sum vectors and Cauchy--Schwarz. In dimension~5 the near-axis step and the far-region bound leave a gap, the band $9/20\le c^2\le 3/4$ for the largest entry $c$ of the column. We close it with a new bound that pairs each zero-sum vector with its own column, turned in a fixed plane, and with four sphere inequalities certified by 1174 interval cases. Every statement in this paper is linked to its Lean declaration.
+\end{abstract}
+
+\tableofcontents
+
+%===========================================================================
+\section{Introduction}\label{sec:intro}
+
+\subsection{The problem}
+Pack $n$ unit cubes into a cube, as small as possible. Each unit cube may be rotated, reflected and translated; distinct cubes must have disjoint interiors. In dimension $d$ write
+\[
+s_d(n)=\inf\{s\ge0:\ n\text{ unit $d$-cubes fit in }[0,s]^d\}.
+\]
+The $2\times2\times\dots\times2$ grid gives $s_d(n)\le 2$ for $n\le 2^d$, and the volume bound gives $s_d(n)\ge n^{1/d}$, which is sharp only at $n=2^d$. Whether $s_d(n)=2$ already for $n=2$ is a question about a single cube: \emph{can a unit cube inside a cube of side $s<2$ avoid the container's centre?} If it cannot, two such cubes overlap at the centre, and $s_d(n)=2$ for every $n$ from $2$ to $2^d$ (\cref{fig:grid}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.82\textwidth]{fig_grid_tilt.pdf}
+\caption{Left: the grid packing of $2^3$ unit cubes in a cube of side $2$. Right: a tilted unit cube in a cube of side $s<2$, pushed into the corner of the region it can reach; the container's centre (red) is still inside it. The cube centre lemma says this always happens, so no two unit cubes fit at side $s<2$.}
+\label{fig:grid}
+\end{figure}
+
+For squares ($d=2$) the answer is elementary and classical. In higher dimensions it is not: a rotated cube can be much thinner along some axes than along others, and the region it can reach is a box whose corners are far from the centre. Hiroaki Hosono~\cite{hosono} reduced the question to an inequality for orthogonal matrices, which we call Lemma~F after his \code{PROOF.md}, and proved it with computer assistance for $d\le 6$.
+
+\subsection{Main results}
+
+\begin{maintheorem}
+For $d\in\{3,4,5\}$ and every $2\le n\le 2^d$, the smallest cube holding $n$ unit $d$-cubes has side exactly $2$. In every dimension $d\ge1$ and for every $k\ge1$, the smallest cube holding $k^d$ unit $d$-cubes has side exactly $k$. The results hold for placements by arbitrary rigid motions, reflections included, and require only disjoint interiors.
+\end{maintheorem}
+
+\leanbox{\lean{CubeCentre}{cubincub_plateau} ($d=3$), \lean{Tesseracts}{c8inc8_plateau} ($d=4$), \lean{Penteracts}{hc5inhc5_plateau} ($d=5$), \lean{Cubes}{cubes_in_cube_optimal} ($k^d$ cubes).}
+
+The plateau theorems rest on the cube centre lemma in each dimension (\lean{CubeCentre}{centre3}, \lean{Tesseracts}{centre4}, \lean{Penteracts}{centre5}), and these on Lemma~F (\cref{sec:lemmaF}). \Cref{tab:results} lists the 55 catalogue records~\cite{archive} that these theorems prove optimal. Paper~II~\cite{widthball} proves thirty further records with other pieces and containers, and Paper~III~\cite{patterns} places all of them among the structural patterns of the catalogue.
+
+\begin{table}[t]
+\centering\small
+\begin{tabularx}{\textwidth}{>{\raggedright}X l >{\raggedright}p{2.7cm} >{\raggedright\arraybackslash}p{5.2cm}}
+\toprule
+Records & Side & Argument & Lean \\
+\midrule
+$k^3$ cubes in a cube, $k=2,3,4$ & $k$ & volume + grid & \lean{Cubes}{cubincub_n08}, \lean{Cubes}{cubincub_n27}, \lean{Cubes}{cubincub_n64} \\
+16 tesseracts in a tesseract & 2 & volume + grid & \lean{Cubes}{c8inc8_n16} \\
+32 five-cubes in a five-cube & 2 & volume + grid & \lean{Cubes}{hc5inhc5_n32} \\
+$n=2,\dots,7$ cubes in a cube & 2 & centre lemma, $d=3$ & \lean{CubeCentre}{cubincub_n02}--\lean{CubeCentre}{cubincub_n07} \\
+$n=2,\dots,15$ tesseracts & 2 & centre lemma, $d=4$ & \lean{Tesseracts}{c8inc8_n02}--\lean{Tesseracts}{c8inc8_n15} \\
+$n=2,\dots,31$ five-cubes & 2 & centre lemma, $d=5$ & \lean{Penteracts}{hc5inhc5_n02}--\lean{Penteracts}{hc5inhc5_n31} \\
+\bottomrule
+\end{tabularx}
+\caption{The 55 records of the Polyhedra-in-Polyhedra catalogue proved optimal in this paper. The record names are those of the catalogue (\code{cubincub}: cubes in a cube; \code{c8inc8}: tesseracts; \code{hc5inhc5}: five-cubes).}
+\label{tab:results}
+\end{table}
+
+\subsection{What is new}
+The plateau argument and the reduction to Lemma~F are Hosono's, and so is the near-axis step used in dimensions~4 and~5, which we use in his own Lean formalization. The following are new:
+\begin{enumerate}
+\item \textbf{Dimension 3} (\cref{sec:d3}). A proof of Lemma~F without computer search. A frame rotation on a circle has a minimiser; at a minimiser some entry vanishes, and with a zero entry the inequality is an algebraic identity.
+\item \textbf{Dimension 4} (\cref{sec:d4}). An elementary far region: zero-sum vectors and Cauchy--Schwarz reduce Lemma~F to a separable inequality in the entries of one column, closed by three line bounds and 81 linear cases.
+\item \textbf{Dimension 5} (\cref{sec:d5}). In dimension~5 the near-axis step needs $c^2\ge3/4$ and the elementary far bound needs $c^2\le 1/2$, where $c$ is the largest entry of the column. We close the band between them with a rotated weight (\cref{thm:band}), and reduce what remains to sphere inequalities for $\sum_i(s_i^3+\lambda s_i)$. Their proofs are 1174 interval cases, generated from exact certificates and checked by Lean.
+\end{enumerate}
+The Lean proofs use no computer search beyond the generated certificates, which Lean checks line by line.
+
+\subsection{How to read the Lean links}
+Every theorem in this paper is followed by the Lean declarations that prove it, linked to the source at commit \href{\repo/tree/\leancommit}{\texttt{\leancommitshort}} of the repository~\cite{archive}. The project builds with \code{lake build} in \codepath{lean-optimality/}, and \code{Axioms.lean} prints the axioms of every main theorem; all depend only on \code{propext}, \code{Classical.choice} and \code{Quot.sound}. \Cref{sec:formal} describes the files.
+
+%===========================================================================
+\section{Packings, the common-point lemma and the volume bound}\label{sec:setting}
+
+\begin{summarybox}
+\textbf{This section.} The definition of a packing, the common-point lemma, the volume bound, and the plateau theorem that turns a centre lemma into optimality for $2\le n\le2^d$.\\
+\textbf{Records.} The five volume records: $k^3$ cubes ($k=2,3,4$), $16$ tesseracts, $32$ five-cubes.\\
+\textbf{Lean.} \leanfile{Basic}, \leanfile{Cubes}.
+\end{summarybox}
+
+\subsection{Packings in Lean}
+Let $E$ be a finite-dimensional real inner product space, $K,C\subseteq E$ and $s\ge 0$.
+
+\begin{definition}[\lean{Basic}{Packing}]
+A \emph{packing} of $n$ copies of $K$ in $sC$ is a family of affine isometries $g_1,\dots,g_n$ of $E$ with $g_i(K)\subseteq sC$ for all $i$ and $\interior g_i(K)\cap\interior g_j(K)=\emptyset$ for $i\ne j$.
+\end{definition}
+
+Affine isometries include rotations, reflections and translations, so every lower bound proved for this definition holds a fortiori for the catalogue's packings, which use rotations only. Touching is allowed. A scale $s$ is \emph{optimal} for $n$ pieces if a packing at scale $s$ exists and every packing has scale at least $s$; in Lean this is the conjunction \texttt{Nonempty (Packing K C s n) $\wedge$ $\forall t\ge0$, Packing K C t n $\to$ s $\le$ t}.
+
+\begin{lemma}[Restriction; \lean{Basic}{Packing.restrict}]
+A packing of $n$ copies restricts to a packing of any $m\le n$ of them. Hence $s(m)\le s(n)$.
+\end{lemma}
+
+\begin{lemma}[Common point; \lean{Basic}{no_packing_two_of_common_point}]\label{lem:common}
+If every congruent copy of $K$ inside $sC$ contains a fixed point $c$ in its interior, then no two copies fit in $sC$.
+\end{lemma}
+\begin{proof}
+Two copies would both contain $c$ in their interiors.
+\end{proof}
+
+\subsection{\texorpdfstring{The volume bound and $k^d$ cubes}{The volume bound and grids of cubes}}
+
+\begin{theorem}[Volume bound; \lean{Basic}{card_mul_volume_le}]
+If $K$ is convex and $n$ copies of $K$ pack in $sC$, then $n\,\vol(K)\le \abs{s}^{\dim E}\vol(C)$.
+\end{theorem}
+\begin{proof}
+Affine isometries preserve Lebesgue measure (\lean{Basic}{affineIsometry_measurePreserving}), and the boundary of a convex set is null (\lean{Basic}{volume_interior_of_convex}). The interiors are disjoint subsets of $sC$.
+\end{proof}
+
+Let $Q_d=[0,1]^d$ (\lean{Cubes}{cube}). The grid of $k^d$ translates $v+Q_d$, $v\in\{0,\dots,k-1\}^d$, is a packing in $kQ_d$ (\lean{Cubes}{gridPacking}); distinct cells are separated by a coordinate hyperplane (\lean{Cubes}{cell_disjoint}).
+
+\begin{corollary}[\lean{Cubes}{cubes_in_cube_optimal}]
+For every $d\ge1$ and $k\ge1$, side $k$ is optimal for $k^d$ unit $d$-cubes.
+\end{corollary}
+
+This gives the five volume records of \cref{tab:results}. For $n<k^d$ the volume bound is not sharp, and a different argument is needed.
+
+\subsection{From the centre lemma to a plateau}
+
+\begin{theorem}[Plateau; \lean{Cubes}{cube_plateau_of_centre_lemma}]\label{thm:plateau}
+Suppose that for every $0\le s<2$ and every affine isometry $g$ with $g(Q_d)\subseteq sQ_d$, the point $\frac s2\one$ lies in $\interior g(Q_d)$. Then side $2$ is optimal for every $2\le n\le 2^d$.
+\end{theorem}
+\begin{proof}
+The grid restricted to $n$ cells gives side $2$. If $n\ge 2$ cubes fitted at side $s<2$, the hypothesis and \cref{lem:common} would give a contradiction.
+\end{proof}
+
+The hypothesis is the \emph{cube centre lemma in dimension $d$}. The rest of the paper proves it for $d=3,4,5$. The same pattern, a common point and deletion, proves most optimal plateaus in the catalogue (\lean{Relations}{optimal_plateau_of_common_point}; Paper~II~\cite{widthball} gives further instances).
+
+%===========================================================================
+\section{The cube centre lemma and Lemma F}\label{sec:lemmaF}
+
+\begin{summarybox}
+\textbf{This section.} In every dimension, the cube centre lemma follows from Lemma~F, an inequality for orthogonal matrices (Hosono's reduction).\\
+\textbf{Lean.} \leanfile{CentreGeneral} (\lean{CentreGeneral}{centre_of_lemmaF}).
+\end{summarybox}
+
+\subsection{Widths of a rotated cube}
+Write an affine isometry as $g(x)=Lx+b$ with $L$ orthogonal, and let $L_{ij}$ be its matrix entries. The image $g(Q_d)$ is the set of points $b+\sum_k t_kLe_k$ with $t\in[0,1]^d$. Its extent in coordinate $i$ is an interval of length
+\[
+w_i=\sum_k \abs{L_{ik}}=\norm{L_i}_1 ,
+\]
+the $\ell^1$ norm of row $i$ of $L$. If $g(Q_d)\subseteq[0,s]^d$, this interval lies in $[0,s]$, so the image's centre $m=g(\tfrac12\one)$ satisfies
+\begin{equation}\label{eq:centre-box}
+\Bigl\lvert \tfrac s2-m_i\Bigr\rvert\le \frac{s-w_i}{2}\qquad(i=1,\dots,d).
+\end{equation}
+The admissible positions of $m$ form a box (\cref{fig:square}). The cube centre lemma asks whether, for every position in this box, the container's centre lies in the cube.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.6\textwidth]{fig_square.pdf}
+\caption{The two-dimensional picture. A unit square rotated by $\theta$ has width $w=\abs{\cos\theta}+\abs{\sin\theta}$ along each axis. Inside a square of side $s$, its centre ranges over a square of side $s-w$ (green). The container's centre lies inside the rotated square for every admissible position, here shown at two opposite corners.}
+\label{fig:square}
+\end{figure}
+
+\subsection{Lemma F}
+
+\begin{definition}[\lean{NearAxis}{Fcol}, \lean{NearAxis}{LemmaF}]
+For a $d\times d$ orthogonal matrix $R$ and a column $j$ let
+\[
+F_j(R)=\sum_{i=1}^d \abs{R_{ij}}\,\bigl(2-\norm{R_i}_1\bigr).
+\]
+\emph{Lemma F in dimension $d$} is the statement $F_j(R)\le 1$ for every orthogonal $R$ and every $j$.
+\end{definition}
+
+For the identity, $F_j=1$: the inequality is tight. For a rotation by $\theta$ in a coordinate plane, with $\sigma=\abs{\cos\theta}+\abs{\sin\theta}$, the two rows meeting the plane give $F_j=\sigma(2-\sigma)=1-(\sigma-1)^2$. In dimension~2 this is the whole proof of Lemma~F. In higher dimensions $F_j$ can exceed this family's values far from the axes but stays below $1$ (\cref{fig:lemmaF}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_lemmaF.pdf}
+\caption{$F_j(R)$ for random orthogonal matrices (Haar samples, and perturbations of signed permutations and of $2\times2$ rotation blocks, where $F$ is largest), plotted against the largest squared entry of column $j$. Red: rotations in one coordinate plane. Shaded: the regions of the proofs in \cref{sec:d4,sec:d5}. Lemma F says every point lies below the dashed line $F=1$.}
+\label{fig:lemmaF}
+\end{figure}
+
+\begin{theorem}[Lemma F gives the centre lemma; \lean{CentreGeneral}{centre_of_lemmaF}]\label{thm:centre-of-F}
+If Lemma~F holds in dimension $d$, then for every $0\le s<2$ and every affine isometry $g$ with $g(Q_d)\subseteq sQ_d$, the point $\frac s2\one$ lies in $\interior g(Q_d)$.
+\end{theorem}
+
+\begin{proof}
+Write $g(x)=Lx+b$ and $c=\frac s2\one$, and let $y=L^{-1}(c-b)$ be the container's centre in the cube's own coordinates. Then $c\in\interior g(Q_d)$ if and only if $y\in(0,1)^d$. Since $L$ is orthogonal, $y-\frac12\one=L^{\top}(c-m)$, so by \eqref{eq:centre-box}
+\[
+\Bigl\lvert y_j-\tfrac12\Bigr\rvert=\Bigl\lvert\sum_i L_{ij}(c_i-m_i)\Bigr\rvert\le\sum_i\abs{L_{ij}}\,\frac{s-w_i}2<\sum_i\abs{L_{ij}}\,\frac{2-w_i}2=\frac{F_j(L)}2\le\frac12 .
+\]
+The strict inequality uses $s<2$ and $\sum_i\abs{L_{ij}}>0$ (column $j$ is a unit vector). Hence $y\in(0,1)^d$.
+\end{proof}
+
+In Lean the extreme points of each coordinate interval are images of explicit vertices of the cube, chosen by the signs of row $i$ (\lean{CentreGeneral}{pos_part}, \lean{CentreGeneral}{neg_part}). The same argument appears in dimension~3 as \lean{CubeCentre}{centre3}.
+
+So the cube centre lemma in dimension $d$ follows from Lemma~F in dimension $d$, and \cref{thm:plateau} turns it into an optimal plateau. The next three sections prove Lemma~F for $d=3,4,5$.
+
+%===========================================================================
+\section{Dimension 3: a minimiser argument}\label{sec:d3}
+
+\begin{summarybox}
+\textbf{Result.} Lemma~F for $d=3$, hence side $2$ for $2\le n\le8$ cubes.\\
+\textbf{Argument.} A frame rotation on a circle has a minimiser; at a minimiser some entry vanishes, and then the inequality is an identity. No computer search.\\
+\textbf{Lean.} \leanfile{CubeCentre} (\lean{CubeCentre}{core}, \lean{CubeCentre}{centre3}).
+\end{summarybox}
+
+For $d=3$ write the columns of $R$ as $a,b,c$. Since $\sum_ia_i^2=1$,
+\[
+F_1(R)=\sum_i\abs{a_i}\bigl(2-\abs{a_i}-\abs{b_i}-\abs{c_i}\bigr)=2\norm a_1-1-\sum_i\abs{a_i}\bigl(\abs{b_i}+\abs{c_i}\bigr),
+\]
+so Lemma~F is equivalent to
+\begin{equation}\label{eq:core}
+2\bigl(\norm a_1-1\bigr)\le\sum_i\abs{a_i}\bigl(\abs{b_i}+\abs{c_i}\bigr).
+\end{equation}
+
+\begin{theorem}[Lemma F in dimension 3; \lean{CubeCentre}{core}, \lean{LemmaF4}{lemmaF3}]\label{thm:d3}
+Inequality \eqref{eq:core} holds for every orthogonal $3\times3$ matrix with columns $a,b,c$.
+\end{theorem}
+
+\begin{proof}
+\emph{Step 1: a zero entry.} Suppose $c_3=0$ (\lean{CubeCentre}{reduced}). Then $(c_1,c_2)$ is a unit vector orthogonal to $(a_1,a_2)$ and $(b_1,b_2)$, so $(a_1,a_2)=\ell(-c_2,c_1)$ and $(b_1,b_2)=m(-c_2,c_1)$ with $\ell^2=b_3^2$ and $m^2=a_3^2$ (from the unit rows and columns). Put $P=\abs{b_3}$, $Q=\abs{a_3}$, $S=\abs{c_2}$, $T=\abs{c_1}$, so $P^2+Q^2=S^2+T^2=1$. Then $\abs{a_1}=PS$, $\abs{a_2}=PT$, $\abs{b_1}=QS$, $\abs{b_2}=QT$, and the difference of the two sides of \eqref{eq:core} is
+\[
+2(1-P)(1-Q)+2P(1-S)(1-T)\ \ge 0
+\]
+(\lean{CubeCentre}{pqst}; the identity uses $S^2+T^2=1$). Any other zero entry of $b$ or $c$ reduces to this one by permuting rows and exchanging $b$ and $c$ (\lean{CubeCentre}{zero_case}).
+
+\emph{Step 2: the general case.} Keep $a$ and rotate the pair $(b,c)$ in its own plane: for a unit vector $(p,q)$ put $b'=pb+qc$, $c'=pc-qb$. Then $(a,b',c')$ is again orthonormal, the left side of \eqref{eq:core} is unchanged, and the right side becomes
+\[
+\Phi(p,q)=\sum_i\abs{a_i}\,T_i(p,q),\qquad T_i(p,q)=\abs{pb_i+qc_i}+\abs{pc_i-qb_i}
+\]
+(\lean{CubeCentre}{Phi}, \lean{CubeCentre}{T}). $\Phi$ is continuous on the unit circle, so it has a minimiser $(p^*,q^*)$, and $\Phi(1,0)\ge\Phi(p^*,q^*)$. If the frame at the minimiser has a zero entry in $b'$ or $c'$, Step~1 applies to it and gives \eqref{eq:core} for $\Phi(p^*,q^*)$, hence for $\Phi(1,0)$. Otherwise every entry of $b'$ and $c'$ is nonzero, so every $T_i(p^*,q^*)$ is positive and so is the minimum $\Phi(p^*,q^*)$. No entry changes sign for small $t\ge0$, and each $T_i$ is linear there. The two neighbours $(p^*\mp tq^*,\,q^*\pm tp^*)$, which have norm $\sqrt{1+t^2}$, then satisfy
+\[
+T_i(p^*-tq^*,q^*+tp^*)+T_i(p^*+tq^*,q^*-tp^*)=2\,T_i(p^*,q^*)
+\]
+(\lean{CubeCentre}{T_pair}). Rescaled to the circle by the homogeneity of $T_i$ (\lean{CubeCentre}{T_hom}), the two neighbours average to $\Phi(p^*,q^*)/\sqrt{1+t^2}$, which is less than the positive minimum. This is impossible, so the minimiser always has a zero entry, and \eqref{eq:core} holds.
+\end{proof}
+
+Hosono had proved \cref{thm:d3} with an interval computation. The cube centre lemma in dimension~3 is \lean{CubeCentre}{centre3}, and \lean{CubeCentre}{cubincub_plateau} gives $s_3(n)=2$ for $2\le n\le 8$.
+
+%===========================================================================
+\section{The near-axis step}\label{sec:near}
+
+\begin{summarybox}
+\textbf{Result.} Near a coordinate axis ($c^2\ge1-1/m$), Lemma~F in dimension $m+1$ follows from Lemma~F in dimension $m$, for $m\le4$.\\
+\textbf{Origin.} Hosono's argument and Lean file, used unchanged (MIT licence).\\
+\textbf{Lean.} \leanfile{NearAxis} (\lean{NearAxis}{near_identity}, \lean{NearAxis}{near_region}).
+\end{summarybox}
+
+The near-axis step is Hosono's~\cite{hosono}. We use his Lean file unchanged except for its namespace (\leanfile{NearAxis}, MIT licence), and describe it here because dimensions~4 and~5 both depend on it. It reduces Lemma~F in dimension $m+1$, near a coordinate axis, to Lemma~F in dimension $m$.
+
+\subsection{Block form}
+Fix a column $j$ and an entry $c=R_{i_0j}$. Deleting row $i_0$ and column $j$ writes $R$ in block form (\cref{fig:block}):
+\[
+R\simeq\begin{pmatrix} c & r^\top\\ x & M\end{pmatrix},\qquad c\in\R,\ r,x\in\R^m,\ M\in\R^{m\times m},
+\]
+where $r$ is the rest of row $i_0$ and $x$ the rest of column $j$ (\lean{LemmaF4}{block_orth}, \lean{LemmaF4}{Fcol_eq_F1}). Then
+\[
+F_j(R)=F_1(c,r,x,M)=\abs c\,(2-\abs c-\norm r_1)+\sum_{i=1}^m\abs{x_i}\,(2-\abs{x_i}-\norm{M_i}_1)
+\]
+(\lean{NearAxis}{F1}). The orthonormality relations used are collected in \lean{NearAxis}{BlockOrth}: column $j$ and row $i_0$ are unit vectors, column $j$ is orthogonal to the other columns, and the rows other than $i_0$ are orthonormal.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[scale=0.62]
+\draw[thick] (0,0) rectangle (5,5);
+\fill[orange!25] (0,4) rectangle (1,5); \node at (0.5,4.5) {$c$};
+\fill[blue!10] (1,4) rectangle (5,5); \node at (3,4.5) {$r^\top$};
+\fill[green!12] (0,0) rectangle (1,4); \node at (0.5,2) {$x$};
+\node at (3,2) {$M$};
+\draw (1,0) -- (1,5); \draw (0,4) -- (5,4);
+\node[left] at (-0.2,4.5) {\small row $i_0$};
+\node[above] at (0.5,5.1) {\small column $j$};
+\node[right] at (5.4,3.4) {\small $M=PQ$, $P=I-\frac{xx^\top}{1+c}$};
+\node[right] at (5.4,2.4) {\small $Q$ orthogonal, $Q^\top x=-r$};
+\node[right] at (5.4,1.4) {\small $\norm x_2^2=1-c^2$};
+\end{tikzpicture}
+\caption{The block form around the entry $c=R_{i_0j}$, and the polar factor of $M$.}
+\label{fig:block}
+\end{figure}
+
+\subsection{The polar factor}
+For $c>0$ and $x\ne0$ put $Q=(I+\beta xx^\top)M$ with $\beta=(1/c-1)/\norm x_2^2$ (\lean{NearAxis}{polarQ}). This is the orthogonal factor of the polar decomposition $M=PQ$, $P=I-\frac{1-c}{\norm x^2}xx^\top=I-\frac{1}{1+c}xx^\top$, and it is orthogonal (\lean{NearAxis}{polarQ_orth}). Two facts follow from the orthogonality of column $j$ to the others. First, $M^\top x=-cr$ and $M^\top x=c\,Q^\top x$, so $y:=Q^\top x=-r$. Second, the rows of $M$ are those of $Q$ moved by a rank-one term,
+\[
+M_i=Q_i-\tfrac{1}{1+c}\,x_i\,y^\top .
+\]
+
+\begin{lemma}[\lean{NearAxis}{near_identity}]\label{lem:near-identity}
+With $K(Q,x)=\norm{Q^\top x}_1+\sum_i\abs{x_i}\norm{Q_i}_1-2\norm x_1$ (\lean{NearAxis}{K}),
+\[
+1-F_1(c,r,x,M)\ \ge\ K(Q,x)+2(1-c)\bigl(1-\norm{Q^\top x}_1\bigr).
+\]
+\end{lemma}
+\begin{proof}
+By the triangle inequality $\norm{M_i}_1\ge\norm{Q_i}_1-\frac{1}{1+c}\abs{x_i}\norm y_1$, and $\norm r_1=\norm y_1$. Substituting into $F_1$ and using $\frac{1}{1+c}\norm x_2^2=1-c$ gives
+$1-F_1\ge 2(1-c)+(2c-1)\norm y_1-\sum_i\abs{x_i}(2-\norm{Q_i}_1)$, which is the claim, because $K(Q,x)=\norm y_1-\sum_i\abs{x_i}(2-\norm{Q_i}_1)$.
+\end{proof}
+
+\begin{lemma}[Lemma K; \lean{NearAxis}{lemmaK}]
+If $Q$ is orthogonal, every row has $\norm{Q_i}_1\le2$, and every column has $F_j(Q)\le1$, then $K(Q,x)\ge0$ for all $x$.
+\end{lemma}
+\begin{proof}
+With $y=Q^\top x$ we have $x=Qy$, so $\abs{x_i}\le\sum_j\abs{Q_{ij}}\abs{y_j}$. Since $2-\norm{Q_i}_1\ge0$,
+\[
+\sum_i\abs{x_i}(2-\norm{Q_i}_1)\le\sum_j\abs{y_j}\sum_i\abs{Q_{ij}}(2-\norm{Q_i}_1)=\sum_j\abs{y_j}F_j(Q)\le\norm y_1. \qedhere
+\]
+\end{proof}
+
+For $m\le4$ every unit vector has $\norm v_1\le\sqrt m\,\norm v_2\le2$ (\lean{NearAxis}{rowL1_le_two}), and $m\norm x_2^2\le1$ gives $\norm{Q^\top x}_1\le\sqrt m\norm x_2\le1$ (\lean{NearAxis}{l1_QTx_le_one}). Together:
+
+\begin{theorem}[Near region; \lean{NearAxis}{near_region}]\label{thm:near}
+Let $m\le4$ and assume Lemma~F in dimension $m$. If $c>0$ and $c^2\ge1-1/m$, then $F_1(c,r,x,M)\le1$.
+\end{theorem}
+
+The restriction $m\le 4$ enters only through $\norm{Q_i}_1\le2$. For $m=3$ the near region is $c^2\ge2/3$, and for $m=4$ it is $c^2\ge3/4$. A negative $c$ is handled by changing the sign of row $i_0$, which changes neither $F$ nor the relations (\lean{LemmaF4}{near4}, \lean{LemmaF5}{near5}).
+
+%===========================================================================
+\section{Dimension 4: an elementary far region}\label{sec:d4}
+
+\begin{summarybox}
+\textbf{Result.} Lemma~F for $d=4$, hence side $2$ for $2\le n\le16$ tesseracts.\\
+\textbf{Argument.} Near the axes, the near-axis step with $m=3$. Elsewhere, new: zero-sum vectors and Cauchy--Schwarz give a separable inequality, closed by three line bounds and $81$ linear cases.\\
+\textbf{Lean.} \leanfile{LemmaF4} (\lean{LemmaF4}{pair_bound}, \lean{LemmaF4}{far4}, \lean{LemmaF4}{lemmaF4}), \leanfile{Tesseracts}.
+\end{summarybox}
+
+Fix a column $j$ of an orthogonal $4\times4$ matrix $R$, and write $x_i=\abs{R_{ij}}$ and $S=\sum_ix_i$. If some $x_i^2\ge2/3$, \cref{thm:near} with $m=3$ and \cref{thm:d3} give $F_j\le1$ (\lean{LemmaF4}{near4}). It remains to treat columns with every $x_i^2\le 2/3$.
+
+\subsection{Zero-sum vectors}
+
+\begin{lemma}[\lean{LemmaF4}{pair_bound}]\label{lem:pair}
+Let $a,b$ be orthogonal, with $\norm b_2=1$. Then $\sqrt2\sum_i\abs{a_i}\,b_i^2\le\sum_i\abs{a_i}\abs{b_i}$.
+\end{lemma}
+\begin{proof}
+The vector $z_i=a_ib_i$ has zero sum. For a zero-sum vector the positive and negative parts have equal $\ell^1$ norm, so $\norm z_1^2\ge 2\norm z_2^2$. By Cauchy--Schwarz with the unit vector $(\abs{b_i})_i$, $\norm z_2\ge\sum_i\abs{z_i}\abs{b_i}=\sum_i\abs{a_i}b_i^2$.
+\end{proof}
+
+Lean uses $140/99\le\sqrt2$ in place of $\sqrt2$. Apply \cref{lem:pair} with $a$ the column $j$ and $b$ each other column, and sum. The rows are unit vectors, so $\sum_{k\ne j}R_{ik}^2=1-x_i^2$, and
+\begin{equation}\label{eq:far4}
+F_j(R)=2S-1-\sum_{k\ne j}\sum_i x_i\abs{R_{ik}}\ \le\ 2S-1-\sqrt2\sum_i x_i\bigl(1-x_i^2\bigr)
+\end{equation}
+(\lean{LemmaF4}{far_core}). Since $\sum_ix_i^2=1$, the right side is at most $1$ exactly when
+\[
+\sum_i\varphi(x_i)\ge-2,\qquad\varphi(t)=\sqrt2\,(t-t^3)-2t.
+\]
+
+\subsection{Line bounds}
+The function $\varphi$ is not convex in $t^2$, so we bound it from below by lines in $t^2$ on three ranges (\cref{fig:phi4}):
+\begin{align*}
+\varphi(t)&\ge-0.06592-1.65782\,t^2 && (t^2\le2/5), &&\text{\lean{LemmaF4}{phi_small}}\\
+\varphi(t)&\ge\phantom{-}0.03645-1.91374\,t^2 && (2/5\le t^2\le3/5), &&\text{\lean{LemmaF4}{phi_large2}}\\
+\varphi(t)&\ge-0.14366-1.65782\,t^2 && (2/5\le t^2\le2/3), &&\text{\lean{LemmaF4}{phi_large}}
+\end{align*}
+Each is a one-variable cubic inequality on an interval with an explicit nonnegativity certificate. Every coordinate falls in one of three ranges (\lean{LemmaF4}{phi_cases}); for each of the $3^4=81$ combinations, the sum of the bounds is linear in the $x_i^2$ and is closed by \code{linarith} using $\sum_ix_i^2=1$ (\lean{LemmaF4}{far_poly}). The true minimum of $\sum_i\varphi(x_i)$ on the far region is about $0.009$ above $-2$, attained at $x^2=(2/3,1/9,1/9,1/9)$.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_phi4.pdf}
+\caption{The far region in dimension~4. Left: $\varphi(t)=\frac{140}{99}(t-t^3)-2t$ against $t^2$. Right: the gaps between $\varphi$ and its three line bounds, each nonnegative on its range.}
+\label{fig:phi4}
+\end{figure}
+
+\begin{theorem}[Lemma F in dimension 4; \lean{LemmaF4}{lemmaF4}]\label{thm:d4}
+$F_j(R)\le1$ for every orthogonal $4\times4$ matrix and every column $j$.
+\end{theorem}
+\begin{proof}
+If some entry of column $j$ has square at least $2/3$, use \lean{LemmaF4}{near4}; otherwise \lean{LemmaF4}{far4}.
+\end{proof}
+
+With \cref{thm:centre-of-F} this gives the cube centre lemma \lean{Tesseracts}{centre4} and the plateau \lean{Tesseracts}{c8inc8_plateau}: side $2$ is optimal for $2$ to $16$ tesseracts. Hosono's proof of the far region uses the spectral bound $\sum_{k}\norm{z^k}_2\ge\tr\sqrt{\operatorname{diag}(p)-pp^\top}$, $p_i=x_i^2$, which is stronger and needs a computer to certify; the weaker bound \eqref{eq:far4} suffices in dimension~4.
+
+%===========================================================================
+\section{Dimension 5: the band}\label{sec:d5}
+
+\begin{summarybox}
+\textbf{Result.} Lemma~F for $d=5$, hence side $2$ for $2\le n\le32$ five-cubes.\\
+\textbf{Argument.} Near region ($c^2\ge3/4$): the near-axis step with $m=4$. Far region ($c^2\le9/20$): the zero-sum bound with five rows. The band between them is new: a rotated weight pairs each zero-sum vector with its own column, and four sphere inequalities, certified by $1174$ interval cases, close it.\\
+\textbf{Lean.} \leanfile{LemmaF5}, \leanfile{LemmaF5Sphere} (generated), \leanfile{Penteracts}.
+\end{summarybox}
+
+\subsection{Three regions}
+In dimension~5 both previous arguments fall short. Let $c$ be an entry of column $j$. \Cref{thm:near} with $m=4$ needs $c^2\ge3/4$. The analogue of \eqref{eq:far4} with five rows holds while every entry has square at most $1/2$, with slack about $0.006$ at that boundary, and fails beyond it, for instance at $x^2=(0.55,\,0.1125,\,0.1125,\,0.1125,\,0.1125)$. We split by the entries of the column:
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+Region & Condition & Argument & Lean \\
+\midrule
+near & some $c^2\ge3/4$ & polar step, Lemma F in 4D & \lean{LemmaF5}{near5} \\
+band & some $9/20\le c^2\le 3/4$ & rotated weight + sphere bounds & \lean{LemmaF5}{band5} \\
+far & every $c^2\le 9/20$ & zero-sum bound, five rows & \lean{LemmaF5}{far5} \\
+\bottomrule
+\end{tabular}
+\end{center}
+The band is new. In it, write $R$ in block form around $c$ as in \cref{sec:near}, assume $c>0$ (flip the sign of row $i_0$ otherwise), and put $\rho=\norm x_2=\sqrt{1-c^2}$, $X_i=\abs{x_i}$,
+\[
+T=\sum_{i=1}^4X_i,\qquad m_3=\sum_{i=1}^4X_i^3 .
+\]
+
+\subsection{The rotated weight}
+Fix another column $k$ of $R$: it is $(r_k,M_{1k},\dots,M_{4k})$, a unit vector. Its entrywise product with column $j$,
+\[
+\zeta^{(k)}=(c\,r_k,\ x_1M_{1k},\ \dots,\ x_4M_{4k})\in\R^5,
+\]
+has zero sum, because the two columns are orthogonal. As in \cref{lem:pair}, $\norm{\zeta}_1\ge\sqrt2\norm\zeta_2\ge\sqrt2\sum_i\abs{\zeta_i}\abs{w_i}$ for every weight $w$ with $\norm w_2\le1$. In \cref{sec:d4} the weight was the column $k$ itself. In the band we turn it first.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[scale=2.6,>=Stealth]
+\draw[->,gray] (0,0) -- (1.3,0) node[below,black] {\small $e_0$ (row $i_0$)};
+\draw[->,gray] (0,0) -- (0,1.15) node[left,black] {\small $(0,\abs{x})/\rho$};
+\draw[thick,->,blue!70!black] (0,0) -- ({cos(35)},{sin(35)}) node[right] {\small column $j$: $(c,\rho)$};
+\draw[thick,->,orange!80!black] (0,0) -- ({cos(56)},{sin(56)}) node[above] {\small $(\cos\psi,\sin\psi)$};
+\draw (0.3,0) arc (0:35:0.3); \node at (0.38,0.1) {\small $\phi$};
+\draw (0.5,0) arc (0:56:0.5); \node at (0.45,0.42) {\small $\psi$};
+\draw[->,thick,red!70!black] ({0.8*cos(37)},{0.8*sin(37)}) arc (37:54:0.8);
+\node[red!70!black,anchor=west] at ({0.86*cos(46)},{0.86*sin(46)}) {\small $Z$};
+\node[align=left,anchor=west,font=\small] at (2.35,0.45) {$\cos\phi=c,\ \sin\phi=\rho$\\[3pt] $\cos\psi=\tfrac{14}{25},\ \sin\psi=\tfrac{207}{250}$\\[3pt] $Z$ turns the plane by $\psi-\phi$\\ and fixes its orthogonal complement};
+\end{tikzpicture}
+\caption{The plane in which the weights are turned. After the signs of $x$ are absorbed, column $j$ is the unit vector $(c,\abs{x})$, which lies in the plane spanned by $e_0$ and $(0,\abs x)/\rho$. The map $Z$ turns this plane so that column $j$ points in a fixed direction at $\psi\approx56^\circ$ from $e_0$, whatever $c$ is. The weight for column $k$ is the image of column $k$ under $Z$.}
+\label{fig:rotation}
+\end{figure}
+
+Let $\cos\psi=14/25$ and $\sin\psi=207/250$, so that $\kappa:=\cos^2\psi+\sin^2\psi=1-\frac{51}{62500}<1$. The weight is the column $k$ (with the signs of $x$ absorbed) mapped by the transformation $Z$ of \cref{fig:rotation}. Written out, and scaled by $\rho^2$ to avoid division, it is
+\begin{equation}\label{eq:weight}
+\tilde w^{(k)}=\bigl(\sin\psi\cdot\rho\, r_k,\ \ \rho^2M_{ik}+(c-\cos\psi)\,x_i\,r_k\ \ (i=1,\dots,4)\bigr).
+\end{equation}
+
+\begin{lemma}[norm of the weight; in \lean{LemmaF5}{band_core}]\label{lem:norm}
+If column $k$ is a unit vector orthogonal to column $j$, then
+\[
+\norm{\tilde w^{(k)}}_2^2=\rho^4-(1-\kappa)\,\rho^2r_k^2\ \le\ \rho^4 .
+\]
+\end{lemma}
+\begin{proof}
+Expand. The relations $r_k^2+\sum_iM_{ik}^2=1$, $c\,r_k+\sum_ix_iM_{ik}=0$ and $c^2+\sum_ix_i^2=1=c^2+\rho^2$ reduce the sum of squares to $\rho^4+\rho^2r_k^2\bigl(\sin^2\psi-\rho^2-2c(c-\cos\psi)+(c-\cos\psi)^2\bigr)=\rho^4-\rho^2r_k^2(1-\kappa)$. In Lean this is one \code{linear_combination} with explicit polynomial coefficients.
+\end{proof}
+
+Applying the zero-sum bound with this weight and $K=\rho^2$ (\lean{LemmaF5}{zs_bound}),
+\begin{equation}\label{eq:zs}
+\tfrac{140}{99}\sum_{i}\abs{\zeta^{(k)}_i}\abs{\tilde w^{(k)}_i}\le\rho^2\norm{\zeta^{(k)}}_1 .
+\end{equation}
+The left side is bounded below without absolute values: the first term equals $c\sin\psi\,\rho\,r_k^2$, and $\abs{x_iM_{ik}}\abs{\tilde w_i}\ge\abs{x_i}M_{ik}\tilde w_i$ (\lean{LemmaF5}{abs_term}).
+
+\begin{lemma}[sum over the columns; in \lean{LemmaF5}{band_core}]\label{lem:sum}
+\[
+\sum_{k}\Bigl(c\sin\psi\,\rho\,r_k^2+\sum_i\abs{x_i}M_{ik}\tilde w^{(k)}_i\Bigr)=c\sin\psi\,\rho^3+\rho^2\,(T-m_3)-c\,(c-\cos\psi)\,m_3 .
+\]
+\end{lemma}
+\begin{proof}
+Use $\sum_kr_k^2=1-c^2=\rho^2$ (row $i_0$), $\sum_kM_{ik}^2=1-x_i^2$ (row $i$), and $\sum_kr_kM_{ik}=-c\,x_i$ (rows $i_0$ and $i$ orthogonal), and $\abs{x_i}x_i^2=X_i^3$.
+\end{proof}
+
+\begin{theorem}[The band; \lean{LemmaF5}{band_core}, \lean{LemmaF5}{band5}]\label{thm:band}
+If $9/20\le c^2\le3/4$, then $F_1(c,r,x,M)\le1$.
+\end{theorem}
+\begin{proof}
+Since $c^2+\sum_ix_i^2=1$, we have $F_1=2c+2T-1-\sum_kL_k$ with $L_k=\norm{\zeta^{(k)}}_1$. Summing \eqref{eq:zs} over $k$ and using \cref{lem:sum},
+\[
+\rho^2\sum_kL_k\ \ge\ \tfrac{140}{99}\bigl(c\sin\psi\,\rho^3+\rho^2T-\rho^2m_3-c(c-\cos\psi)m_3\bigr).
+\]
+So $F_1\le1$ follows from
+\begin{equation}\label{eq:band}
+\rho^2\,(2c+2T-2)\ \le\ \tfrac{140}{99}\bigl(c\sin\psi\,\rho^3+\rho^2T-\rho^2m_3-c(c-\cos\psi)m_3\bigr),
+\end{equation}
+which is \lean{LemmaF5Sphere}{band_final} (\cref{sec:sphere,sec:onevar}).
+\end{proof}
+
+\subsection{Reduction to a sphere inequality}\label{sec:sphere}
+Write $r=140/99$ and $D(c)=r(1-c\cos\psi)$. Using $\rho^2+c^2=1$, \eqref{eq:band} reads
+\[
+(2-r)\,\rho^2T+D(c)\,m_3\ \le\ r\sin\psi\,c\,\rho^3+(2-2c)\,\rho^2 .
+\]
+Divide by $D(c)\rho^3$ and put $s_i=X_i/\rho$, a nonnegative unit vector in $\R^4$. The left side becomes $\rho^3D(c)\bigl(\lambda\sum_is_i+\sum_is_i^3\bigr)$ with
+\[
+\lambda=\lambda(c)=\frac{2-r}{D(c)}=\frac{29/70}{1-\frac{14}{25}c}\in[0.663,\,0.805]\qquad(9/20\le c^2\le3/4).
+\]
+So it suffices to bound $\sum_i(s_i^3+\lambda s_i)$ on the sphere.
+
+\begin{definition}
+For $\lambda>0$ let $\Psi_n(\lambda)=\max\bigl\{\sum_{i=1}^n(s_i^3+\lambda s_i):\ s\in\R^n_{\ge0},\ \norm s_2=1\bigr\}$.
+\end{definition}
+
+At a maximiser the Lagrange condition $3s_i+\lambda/s_i=2\nu$ has at most two positive solutions, so the nonzero $s_i$ take at most two values. Numerically the maximiser of $\Psi_4$ in the band has one large coordinate and three equal small ones, $(a,b,b,b)$, with $a^2$ from about $0.82$ at $\lambda=0.66$ down to $0.68$ at $\lambda=0.805$. Other two-level points come within $0.005$ to $0.04$ of the maximum, which is why the certificates need several intervals. Because $\sum_i(s_i^3+\lambda s_i)$ is affine in $\lambda$, bounds at two values $\lambda_a<\lambda_b$ give a bound on $[\lambda_a,\lambda_b]$ by interpolation. We certify three nodes.
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lllrrrr}
+\toprule
+Lemma & $\lambda$ & $n$ & $\Psi_n(\lambda)$ & certified $U$ & intervals & cases \\
+\midrule
+\lean{LemmaF5Sphere}{sphA} & $33/50$ & 4 & $1.86930$ & $1.87333$ & $4+4$ & 256 \\
+\lean{LemmaF5Sphere}{sphB} & $147/200$ & 4 & $1.99487$ & $1.99925$ & $4+4$ & 256 \\
+\lean{LemmaF5Sphere}{sphC} & $161/200$ & 4 & $2.11782$ & $2.12352$ & $4+5$ & 500 \\
+\lean{LemmaF5Sphere}{cs5} & $29/70$ & 5, $s_i^2\le\frac{9}{20}$ & $1.40607$ & $99/70\approx1.41429$ & $2+3$ & 162 \\
+\bottomrule
+\end{tabular}
+\caption{The four sphere bounds. The first three cover the band; the last one, with five coordinates capped at $s_i^2\le9/20$, covers the far region (\cref{sec:far5}). Intervals: for the largest coordinate $+$ for the others; cases $=k_{\text{largest}}\cdot k_{\text{others}}^{\,n-1}$.}
+\label{tab:sphere}
+\end{table}
+
+\subsection{Certificates for the sphere bounds}\label{sec:certificates}
+Each sphere bound in \cref{tab:sphere} is proved in three steps (\leanfile{LemmaF5Sphere}).
+\begin{enumerate}
+\item \textbf{The largest coordinate.} A tournament of comparisons reduces the statement to the case where $s_0$ is the largest coordinate (for instance \lean{LemmaF5Sphere}{sphA_core}). Then $s_0^2\ge1/n$, every other $s_i\le s_0$, and $s_i^2\le1/2$.
+\item \textbf{Line bounds on intervals.} The ranges of $s_0$ and of the other coordinates are cut into intervals. On each interval a line in $s^2$ bounds $s^3+\lambda s$ from above, by an exact factorization of the gap:
+\begin{gather*}
+\text{tangent at }t:\quad \alpha+\beta s^2-s^3-\lambda s=(s-t)^2(u-s),\qquad u=\tfrac{\lambda-t^2}{2t},\ \ 0\le s\le u;\\
+\text{chord on }[a,b]:\quad \alpha+\beta s^2-s^3-\lambda s=(s-a)(b-s)(s-u),\qquad u=\tfrac{\lambda-ab}{a+b}\le a\le s\le b.
+\end{gather*}
+All parameters are rational. \Cref{fig:sphere} shows the gaps for $\lambda=33/50$.
+\item \textbf{Linear cases.} For each choice of intervals, the sum of the line bounds is linear in the $s_i^2$. With $\sum_is_i^2=1$, $s_i^2\le s_0^2$ and the interval endpoints, \code{linarith} closes it. In Lean the squares and cubes are first replaced by fresh variables, so that every case is purely linear.
+\end{enumerate}
+The partitions were found by a random search over breakpoints in which every candidate was scored by solving its case linear programs numerically (\codepath{scripts/optimality/lemma_f5/}). They are stored in \codepath{certificates.json}, from which \code{build.py} generates \leanfile{LemmaF5Sphere}. The search only proposes; Lean checks each line lemma and each case.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_sphere.pdf}
+\caption{The certificate for $\lambda=33/50$ (\lean{LemmaF5Sphere}{sphA}). Each curve is the gap $\alpha+\beta s^2-s^3-\lambda s$ of one line bound on its interval (dotted lines). Tangent lines touch zero at a point (dots); chords vanish at both endpoints. Left: the three smaller coordinates. Right: the largest coordinate.}
+\label{fig:sphere}
+\end{figure}
+
+\subsection{The one-variable inequality}\label{sec:onevar}
+Rescaling the sphere bounds to radius $\rho$ gives $\lambda_a\rho^2T+m_3\le U_a\rho^3$ (\lean{LemmaF5}{scale4}). For $\lambda(c)\in[\lambda_a,\lambda_b]$, take the nonnegative weights
+\[
+\alpha(c)=\frac{D(c)\lambda_b-(2-r)}{\lambda_b-\lambda_a},\qquad\beta(c)=\frac{(2-r)-D(c)\lambda_a}{\lambda_b-\lambda_a},
+\]
+so that $\alpha+\beta=D(c)$ and $\alpha\lambda_a+\beta\lambda_b=2-r$. Then $(2-r)\rho^2T+D(c)m_3\le\rho^3\bigl(\alpha U_a+\beta U_b\bigr)$, and \eqref{eq:band} follows from the one-variable inequality
+\[
+\rho\,G(c)\le 2-2c,\qquad G(c)=\alpha(c)U_a+\beta(c)U_b-r\sin\psi\,c,\qquad\rho=\sqrt{1-c^2}.
+\]
+$G$ is linear in $c$. The band is split at $c=11225/14406$, where $\lambda(c)=147/200$:
+\begin{align*}
+G_1(c)&=\tfrac{15338317}{7425000}-\tfrac{6108137}{3437500}\,c&&\text{on }[0.67,\,11225/14406],&&\text{\lean{LemmaF5Sphere}{seg1}}\\
+G_2(c)&=\tfrac{14012927}{6930000}-\tfrac{21295267}{12375000}\,c&&\text{on }[11225/14406,\,0.8661],&&\text{\lean{LemmaF5Sphere}{seg2}}
+\end{align*}
+(the interval ends $0.67<\sqrt{9/20}$ and $0.8661>\sqrt{3/4}$ are rational). Squaring, $\rho G\le2-2c$ follows from the cubic inequality $(1+c)G(c)^2\le4(1-c)$, proved by \code{nlinarith} from products of the interval constraints. \Cref{fig:margin} shows the slack: it is smallest at $c^2=3/4$, about $0.002$.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_margin.pdf}
+\caption{Left: the sphere maximum $\Psi_4(\lambda)$ and the three certified nodes, interpolated linearly; the grey band is the range of $\lambda(c)$. Right: the slack of the band inequality \eqref{eq:band}, $r\sin\psi\,c\rho+2-2c-D(c)\rho\,U(\lambda(c))$, with the exact maximum $\Psi_4$ (black) and with the certified bounds (orange). Both stay positive on $9/20\le c^2\le3/4$.}
+\label{fig:margin}
+\end{figure}
+
+\subsection{The far region}\label{sec:far5}
+If every entry of column $j$ has square at most $9/20$, the argument of \cref{sec:d4} applies with five rows: \cref{lem:pair} for the four other columns (\lean{LemmaF5}{pair5}) gives $F_j\le 2S-1-r\sum_ix_i(1-x_i^2)$, and $F_j\le1$ reduces to
+\[
+\sum_{i=1}^5\Bigl(x_i^3+\tfrac{29}{70}x_i\Bigr)\le\tfrac{99}{70}\qquad\Bigl(\sum_ix_i^2=1,\ x_i^2\le\tfrac{9}{20}\Bigr),
+\]
+which is \lean{LemmaF5Sphere}{cs5} (\cref{tab:sphere}; true maximum $1.40607$, attained near $x=(0.659,0.659,0.210,0.210,0.210)$). See \lean{LemmaF5}{far5_core} and \lean{LemmaF5}{far5}.
+
+\subsection{Lemma F in dimension 5}
+
+\begin{theorem}[\lean{LemmaF5}{lemmaF5}]\label{thm:d5}
+$F_j(R)\le1$ for every orthogonal $5\times5$ matrix and every column $j$.
+\end{theorem}
+\begin{proof}
+If some entry of column $j$ has square at least $3/4$, use \cref{thm:near} with $m=4$ and \cref{thm:d4} (\lean{LemmaF5}{near5}). Otherwise, if some entry has square at least $9/20$, use \cref{thm:band} (\lean{LemmaF5}{band5}). Otherwise every entry has square below $9/20$; use \lean{LemmaF5}{far5}.
+\end{proof}
+
+\begin{corollary}[\lean{Penteracts}{centre5}, \lean{Penteracts}{hc5inhc5_plateau}]
+A unit five-cube inside a five-cube of side $s<2$ contains the centre. Side $2$ is optimal for every $2\le n\le32$ unit five-cubes.
+\end{corollary}
+
+Hosono~\cite{hosono} proved $s_5(2)=2$ first, with a spectral certificate of $21{,}502$ leaves for the region away from the axes.
+
+%===========================================================================
+\section{Formalization}\label{sec:formal}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[node distance=7mm and 9mm, every node/.style={draw,rounded corners,font=\small\ttfamily,inner sep=3pt}]
+\node (basic) {Basic};
+\node (cubes) [right=of basic] {Cubes};
+\node (cc) [right=of cubes] {CubeCentre};
+\node (near) [below=of cubes] {NearAxis};
+\node (f4) [right=of near] {LemmaF4};
+\node (cg) [below=of near] {CentreGeneral};
+\node (tess) [right=of cg] {Tesseracts};
+\node (sph) [right=of f4,xshift=4mm] {LemmaF5Sphere};
+\node (f5) [below=of sph] {LemmaF5};
+\node (pent) [below=of f5] {Penteracts};
+\draw[-{Stealth}] (basic) -- (cubes);
+\draw[-{Stealth}] (cubes) -- (cc);
+\draw[-{Stealth}] (cc) -- (f4);
+\draw[-{Stealth}] (near) -- (f4);
+\draw[-{Stealth}] (near) -- (cg);
+\draw[-{Stealth}] (cubes.south west) to[out=-120,in=150] (cg.west);
+\draw[-{Stealth}] (f4) -- (tess);
+\draw[-{Stealth}] (cg) -- (tess);
+\draw[-{Stealth}] (f4) -- (f5);
+\draw[-{Stealth}] (sph) -- (f5);
+\draw[-{Stealth}] (f5) -- (pent);
+\draw[-{Stealth}] (cg) to[bend right=12] (pent);
+\end{tikzpicture}
+\caption{Imports among the Lean files of this paper (\codepath{lean-optimality/PackingOptimality/}). \texttt{NearAxis} is Hosono's file; \texttt{LemmaF5Sphere} is generated.}
+\label{fig:modules}
+\end{figure}
+
+\Cref{fig:modules} shows the files and \cref{tab:files} their content. The main theorems are stated for Mathlib's Euclidean space $\R^d$ (\code{EuclideanSpace}) and its affine isometries (\code{AffineIsometryEquiv}), and the matrix lemmas for real matrices indexed by \code{Fin d}.
+
+\begin{table}[t]
+\centering\small
+\begin{tabularx}{\textwidth}{l r X}
+\toprule
+File & Lines & Content \\
+\midrule
+\leanfile{Basic} & 128 & packings, restriction, common-point lemma, volume bound \\
+\leanfile{Cubes} & 200 & unit cube, grid packing, $k^d$ cubes, plateau from a centre lemma \\
+\leanfile{CubeCentre} & 463 & Lemma F in 3D (\lean{CubeCentre}{core}), \lean{CubeCentre}{centre3}, cubes $n=2$--$8$ \\
+\leanfile{NearAxis} & 311 & Hosono's near-axis step (ported, MIT) \\
+\leanfile{LemmaF4} & 311 & block form, Lemma F in 4D: \lean{LemmaF4}{near4}, \lean{LemmaF4}{far4} \\
+\leanfile{CentreGeneral} & 174 & \lean{CentreGeneral}{centre_of_lemmaF} in every dimension \\
+\leanfile{Tesseracts} & 58 & \lean{Tesseracts}{centre4}, tesseracts $n=2$--$16$ \\
+\leanfile{LemmaF5Sphere} & 680 & generated sphere bounds and \lean{LemmaF5Sphere}{band_final} \\
+\leanfile{LemmaF5} & 460 & Lemma F in 5D: near, band, far \\
+\leanfile{Penteracts} & 94 & \lean{Penteracts}{centre5}, five-cubes $n=2$--$32$ \\
+\bottomrule
+\end{tabularx}
+\caption{The Lean files. Building \texttt{LemmaF5Sphere} takes about nine minutes on two cores, the rest a few minutes.}
+\label{tab:files}
+\end{table}
+
+\paragraph{What is checked.} Every theorem listed in \code{Axioms.lean} depends only on \code{propext}, \code{Classical.choice} and \code{Quot.sound}; the continuous integration of the repository builds the project and runs this audit on every change. The repository contains no \code{sorry}.
+
+\paragraph{What is generated.} \leanfile{LemmaF5Sphere} is produced by \codepath{scripts/optimality/lemma_f5/build.py} from \codepath{certificates.json}; the far-region boilerplate of \leanfile{LemmaF5} by \code{gen_far5.py}. The identities of \cref{lem:norm,lem:sum} were also checked with SymPy (\code{ident.py}). None of this needs to be trusted: Lean checks the generated files.
+
+\paragraph{Exact constants.} Lean uses $140/99$ for $\sqrt2$ (it is smaller, so every bound stays valid), rational angles for $\psi$ with $\cos^2\psi+\sin^2\psi<1$, and rational interval endpoints.
+
+%===========================================================================
+\section{Outlook}\label{sec:outlook}
+
+\paragraph{Dimension 6.} Hosono proved $s_6(2)=2$ with computer assistance, which settles the 23 records $n=2$--$24$ of the catalogue's six-cube family; they are not yet in Lean. Lemma~F in dimension~5 is now available as the input of the near-axis step, but that step uses $\norm{Q_i}_1\le2$ for the rows of a $5\times5$ orthogonal matrix, which fails (the bound is $\sqrt5$). A Lean proof in dimension~6 needs a different near-axis step, and new sphere bounds for the band and the far region.
+
+\paragraph{Lemma F in general.} Lemma~F is now proved in Lean for $d\le5$, and for $d=6$ with computer assistance~\cite{hosono}; whether it holds in every dimension is open. A proof for all $d$ would give $s_d(n)=2$ for all $2\le n\le 2^d$. The structure of the maximisers, signed permutations and rotations in one plane, suggests an induction on $d$; the near-axis step is one, but it degrades as $d$ grows.
+
+\paragraph{Beyond the plateau.} In dimension~3, Hosono proved $s_3(9)=s_3(10)=2+1/\sqrt2$ and $s_3(25)=s_3(26)=3$ with interval branch and bound. These are the next targets for a Lean proof; they need lemmas about two or more pieces at once, not a single common point.
+
+%===========================================================================
+\section*{Acknowledgements}
+Hiroaki Hosono (\code{wand125}) found the reduction to Lemma~F, proved it with computer assistance in dimensions up to six, and wrote the near-axis step in Lean; his file is used here under the MIT licence. The catalogue records of cube packings combine searches and contributions acknowledged in~\cite{archive}. AI coding and drafting tools, including Claude (Anthropic), assisted the search for certificates, the formalization and the preparation of this manuscript under the author's direction. The Lean build is the evidence for the formal claims.
+
+\begin{thebibliography}{9}
+\bibitem{archive} A. Zarzuelo Urdiales and contributors. \emph{Polyhedra in Polyhedra: certified finite packings}. \url{https://github.com/alejandrozu/platonic-packing}, \url{https://polyhedrainpolyhedra.wiki}, 2026.
+\bibitem{hosono} H. Hosono. \emph{square-packing}: computer-assisted optimality proofs for cube packings, problems \code{cubes-n-dim} and \code{cubes-in-cube}. \url{https://github.com/wand125/square-packing}, commit \code{ea1c454}, 2026.
+\bibitem{mathlib} The mathlib Community. The Lean mathematical library. In \emph{Proceedings of CPP 2020}, 367--381, 2020.
+\bibitem{patterns} A. Zarzuelo Urdiales. \emph{Deletion, arrows, windows and composition: structural patterns in certified polytope packings}. Polyhedra-in-Polyhedra, 2026. (Paper III of this series.)
+\bibitem{widthball} A. Zarzuelo Urdiales. \emph{Width, facet and ball bounds: thirty optimal packings of prisms, tetrahedra, octahedra and four-dimensional polytopes, with proofs checked in Lean}. Polyhedra-in-Polyhedra, 2026. (Paper II of this series.)
+\end{thebibliography}
+
+\end{document}
