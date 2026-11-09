@@ -123,7 +123,7 @@ Lemma F, unrestricted, in every dimension. Local optimisation never went below t
    the extremal examples of `regionW.py`. The block pivot is available in every size. For orthogonal
    `R = [C B; A M]` with a `k × k` block `C` and `I + C` invertible, `Q = M − A (I + C)⁻¹ B` is orthogonal
    (checked numerically). For `k = 1` this is the polar factor used above.
-3. A weaker statement also suffices: `Ξ ≥ 0` for *some* admissible pivot row `b` (`pivot_at_gen` only needs
-   `a y_b xᵢ ≤ yᵢ`), not necessarily the smallest one.
-4. Any proof of `PivotConj m` for `m ≥ 5` plugs into `centre_all_of_pivotConj` directly. A proof for `m = 5`
+2. A weaker statement also suffices: `Ξ ≥ 0` for *some* admissible pivot row `b`, not necessarily the smallest one.
+   The block-form `pivot_step` only needs `a y_b xᵢ ≤ yᵢ` for all `i`, together with `‖r‖₁ ≤ 1 + c`.
+3. Any proof of `PivotConj m` for `m ≥ 5` plugs into `centre_all_of_pivotConj` directly. A proof for `m = 5`
    alone gives `d = 6` through `lemmaFr_succ_of_pivotConj lemmaFr_five`.
