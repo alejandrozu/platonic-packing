@@ -3,8 +3,13 @@
 Goal: prove the cube centre lemma, and with it `s_d(n) = 2` for `2 ≤ n ≤ 2^d`, in **every** dimension `d`.
 Lean proofs exist for `d ≤ 5` (Paper I). Hosono proved `d = 6` with computer assistance. We know of no result for `d ≥ 7`.
 
-Notation: `R` is an orthogonal `d × d` matrix, `x_i = |R_ij|` is its column `j`, `S = ‖x‖₁`, and
-`F_j(R) = Σᵢ xᵢ (2 − ‖Rᵢ‖₁)`. Lemma F says `F_j(R) ≤ 1`.
+Notation: `R` is an orthogonal `d × d` matrix, `x_i = |R_ij|` is its column `j`, `S = ‖x‖₁`, `w_i = ‖Rᵢ‖₁` and
+`F_j(R) = Σᵢ xᵢ (2 − wᵢ)`. Lemma F says `F_j(R) ≤ 1`.
+
+**Summary.** In Lean, the cube centre lemma in every dimension now follows from a single explicit inequality, the
+*pivot conjecture* `Ξ ≥ 0` (§4), needed only in dimensions `d ≥ 6` (`centre_all_of_pivotConj`). The conjecture is
+proved in every dimension when the pivot row is concentrated (`caseA_ok`). It is verified numerically in the
+remaining (spread) case, but not proved there yet.
 
 ## 1. Only the restricted lemma is needed
 
@@ -14,37 +19,78 @@ a matrix with all rows of ℓ¹ norm `< 2` and `F_j > 1` puts the container's ce
 reflection then gives two cubes in a cube of side `< 2`. So restricted Lemma F in dimension `d` is the statement
 `s_d(2) = 2`.
 
-## 2. Proved in Lean (`lean-optimality/PackingOptimality/LemmaFr.lean`)
-
-* `centre_of_lemmaF_rows` (in `CentreGeneral.lean`): restricted Lemma F gives the cube centre lemma, in any dimension.
-* `near_step`, `step_at`: **Hosono's near-axis step works in every dimension for the restricted lemma.** With all
-  rows of `R` at most 2, the rows of the polar factor `Q` are at most 2 as well (`‖Qᵢ‖₁ ≤ ‖Mᵢ‖₁ + |xᵢ|‖r‖₁/(1+c)`),
-  so `NearAxis.lemmaK` applies without the hypothesis `m ≤ 4`. The step works at **any** entry `c = R i₀ j ≠ 0`
-  whose row has `‖R_{i₀}‖₁ − |c| ≤ 1`. It does not need `c` to be large.
-* `remaining_bound`: if no entry of column `j` qualifies, then `F_j(R) ≤ S − 1`.
-* `lemmaFr_succ`: restricted Lemma F in dimension `m`, plus the *remaining case* in dimension `m + 1`, gives
-  restricted Lemma F in dimension `m + 1`.
-* `lemmaFr_le_four`, `centre_le_four`: since `S ≤ √d ≤ 2` for `d ≤ 4`, the remaining case is empty, and
-  **restricted Lemma F and the cube centre lemma hold for `d ≤ 4`**. The proof has no computer search and no case
-  split. It replaces the 3D minimiser argument and the 4D far region (81 cases) of Paper I.
+## 2. Proved in Lean
 
 All of these use only `propext`, `Classical.choice` and `Quot.sound`.
 
-## 3. What is left: the remaining case
+### 2.1 The near step (`LemmaFr.lean`)
 
-**Remaining case in dimension `d`:** `R` orthogonal with all rows `≤ 2`; every row `i` with `xᵢ ≠ 0` has
-`‖Rᵢ‖₁ > 1 + xᵢ`; and `S > 2`. Show `F_j(R) ≤ 1`. Equivalently, `Σᵢ xᵢ(‖Rᵢ‖₁ − xᵢ − 1) ≥ S − 2`.
+* `centre_of_lemmaF_rows` (in `CentreGeneral.lean`): restricted Lemma F gives the cube centre lemma, in any dimension.
+* `near_step`, `step_at`: **Hosono's near-axis step works in every dimension for the restricted lemma.** With all
+  rows of `R` at most 2, the rows of the polar factor `Q` are at most 2 as well, so `NearAxis.lemmaK` applies
+  without the hypothesis `m ≤ 4`. The step works at any entry `c = R i₀ j ≠ 0` with `‖R_{i₀}‖₁ − |c| ≤ 1`.
+* `remaining_bound`: if no entry of column `j` qualifies, then `F_j(R) ≤ S − 1`.
+* `lemmaFr_le_four`, `centre_le_four`: since `S ≤ √d ≤ 2` for `d ≤ 4`, **restricted Lemma F and the cube centre
+  lemma hold for `d ≤ 4`**, with no computer search and no case split.
 
-Numerical supremum of `F` in the remaining case (penalty method, 200 restarts, `remaining.py`):
+### 2.2 The off-column step (`OffColumn.lean`)
 
-| d | 5 | 6 | 7 | 8 |
-|---|---|---|---|---|
-| sup F | 0.723 | 0.786 | 0.824 | 0.848 |
+Pivot at a row `p` and a column `q ≠ j` instead of at column `j`. Write `R = [c r; x M]` around the pivot
+`c = R p q > 0` and let `Q = M − x rᵀ/(1 + c)` be the polar factor of the minor. Column `j` survives in `Q`.
 
-The maximisers have the same shape. One "sink" row holds a large entry `c` of the column and has ℓ¹ norm exactly 2.
-The other rows have small entries and row norms just above `1 + xᵢ`. In every run the maximiser sits at the boundary
-`S = 2`. The margin shrinks with `d`, roughly like `1/d`, so a proof for all `d` must be sharp near `c² ≈ 1 − 1/d`.
-It must also use the row bound 2 on the sink row, which is active at the maximiser.
+* `offcol_step`, `offcol_at`: if `p` is a row where column `j` is smallest and `R p q ² ≥ 3/4`, then
+  `F_j(R) ≤ F_j(Q)`, so restricted Lemma F in dimension `d − 1` gives `F_j(R) ≤ 1`.
+  This removes the "sink" configurations that maximise `F` in the remaining case of §2.1.
+
+### 2.3 The pivot inequality (`PivotStep.lean`)
+
+Normalise the signs so that column `j` is nonnegative and `c = R p q > 0` (`flipM`). Put `ν = R p j`, `y_i = M i j`,
+`a = 1/(1 + c)`, `L = ‖r‖₁`, `ρ = L − ν` (the part of row `p` outside columns `j` and `q`), `κ₁ = 1 + c − ρ` and
+`Gᵢ = 2 − wᵢ`. Define
+
+`Ξ = ν (c (c + L) − 1) + Σᵢ ( 2 κ₁ max(xᵢ, 0) (yᵢ − a ν xᵢ) − ν xᵢ Gᵢ )`.
+
+* `pivot_bound`: **`F_j(R) ≤ F_j(Q) − a Ξ`** whenever `a ν xᵢ ≤ yᵢ` for all `i`. The only estimate used is the
+  triangle inequality for the rows of `Q`. The rest is the orthogonality of the columns `q` and `j` and
+  `‖column q‖₂ = 1`.
+* `pivot_step`, `pivot_at_gen`: `Ξ ≥ 0` gives `F_j(R) ≤ 1` from restricted Lemma F in dimension `d − 1`.
+* `exists_pivot`: for `d ≥ 5`, the row `p` where column `j` is smallest has its largest entry outside column `j`.
+* `pivot_caseA`, `caseA_ok`, `pivot_at`: **`Ξ ≥ 0` in every dimension when row `p` is concentrated**, i.e. `p` is
+  a row where column `j` is smallest, `c` is the largest entry of row `p`, and `ρ ≤ c + ν/2`. The proof has two
+  parts. First, `c (c + L) ≥ 1` because `c` is the largest entry of a unit row. Second, each row with `xᵢ > 0` has
+  `c Gᵢ ≤ 2c − 2c xᵢ − (c + ν) yᵢ`, from its orthogonality to row `p`.
+* `lemmaFr_five`: restricted Lemma F in dimension 5, from Lemma F in dimension 5 (`LemmaF5.lemmaF5`). **The remaining
+  case in `d = 5` is closed.**
+* `PivotConj m`: `Ξ ≥ 0` for every normalised matrix of size `m + 1`, every row `p` where column `j` is smallest
+  and every column `q ≠ j` holding the largest entry of row `p`.
+* **`lemmaFr_all_of_pivotConj`, `centre_all_of_pivotConj`: if `PivotConj m` holds for all `m ≥ 5`, then restricted
+  Lemma F and the cube centre lemma hold in every dimension.** Hence `s_d(n) = 2` for `2 ≤ n ≤ 2^d`.
+* `lemmaFr_succ4`, `RemainingCase4`: the induction step that uses every proved reduction (near step, off-column
+  step, concentrated pivot, `S ≤ 2`). It leaves only the matrices where the smallest-row pivot is spread
+  (`ρ > c + ν/2` and `c² < 3/4`).
+
+## 3. What is left: the pivot conjecture for a spread pivot row
+
+`PivotConj` is open exactly when row `p` is spread: `ρ > c + ν/2` (by `caseA_ok`). Numerical evidence
+(`scripts/optimality/lemmaF_all_d/`):
+
+| test | d | result |
+|---|---|---|
+| exact `F_j(Q) − F_j(R)` for the smallest-row pivot, maximised by an optimiser over all restricted `R` (`exactD2.py`) | 4–8 | never below 0; the supremum 0 is attained only at axis-aligned rows |
+| `F_j(Q) − F_j(R) − aΞ ≥ 0` (the identity of `pivot_bound`), random `R` (`checkX.py`) | 5–8 | holds in all samples |
+| `min Ξ/ν`, random restricted `R` (`xiCheck.py`) | 6, 8, 10, 12, 14 | 0.062, 0.116, 0.210, 0.299, 0.341 (minimum at nearly axis-aligned rows, a concentrated case) |
+| `min Ξ/ν` with a spread pivot row, `c ≤ 0.8`, optimiser (`minX2.py`) | 5, 6, 7, 8 | 0.416, 0.435, 0.496, 0.978 |
+| `min Ξ/ν` with `ρ − c ≥ 0.5`, optimiser | 5, 6, 7 | 0.356, 0.482, 0.469 |
+
+So in the open case `Ξ/ν` stays at least about 0.35, which is a wide margin. Attempts to build counterexamples
+(spread pivot row, light rows with small positive `xᵢ` and `yᵢ ≈ ν`) all move back to a nearly axis-aligned pivot.
+
+The difficulty is that single rows can have a negative term, with values down to `−0.15` found. Those terms are then
+paid for by `ν (c (c + L) − 1)` and by the other rows. A proof therefore has to use the orthogonality between
+different rows `i`, not only the orthogonality of each row with row `p`.
+
+Region left after **every** proved step (`RemainingCase4`, refined by allowing the concentrated pivot and the
+off-column step at any row, `regionW.py`): optimiser `sup F` = 0.43 (d = 5), 0.41 (d = 6), 0.50 (d = 7), far below 1.
 
 ## 4. The Helmert conjecture (would give the unrestricted Lemma F in every dimension)
 
@@ -55,36 +101,29 @@ orthonormal basis of `v^⊥`. Then
 
 **The Helmert basis.** Sort `v₁ ≥ … ≥ v_d` and let `A_k = v₁² + … + v_{k−1}²`. The vectors
 `b_k ∝ A_k e_k − v_k (v₁, …, v_{k−1}, 0, …)` form an orthonormal basis of `v^⊥` with
-`Σ_k ‖v ∘ b_k‖₁ = 2 Σ_{k≥2} v_k √(A_k / A_{k+1})`.
-Put `a_k = √A_k`. Each term of `v_k(1 − √(A_k/A_{k+1})) = v_k(a_{k+1} − a_k)/a_{k+1}` is at most `a_{k+1} − a_k`, and
-these telescope to `1 − v₁`. So the **Helmert value is always at least `2(‖v‖₁ − 1)`**.
+`Σ_k ‖v ∘ b_k‖₁ = 2 Σ_{k≥2} v_k √(A_k / A_{k+1})`, which is always at least `2(‖v‖₁ − 1)` (telescoping).
 
-**Conjecture H.** For every unit `v ≥ 0`, the Helmert basis minimises `Σ_k ‖v ∘ b_k‖₁` over orthonormal bases of
-`v^⊥`. Conjecture H implies Lemma F, unrestricted, in every dimension.
-
-Evidence (`helmert.py`, `helmert2.py`): local optimisation from random and perturbed starts never went below the
-Helmert value in any test. That covers 40 random vectors with 25 restarts each for `d = 3–7`, and sink-shaped,
-two-large-entry and geometric vectors with 30 restarts each for `d = 6, 8, 10`. For the uniform vector the optimum
-found equals the Helmert value in `d = 5` and is within 0.07 of it, above it, for `d ≤ 12` (`uniform.py`).
+**Conjecture H.** For every unit `v ≥ 0`, the Helmert basis minimises `Σ_k ‖v ∘ b_k‖₁`. Conjecture H implies
+Lemma F, unrestricted, in every dimension. Local optimisation never went below the Helmert value in any test
+(`helmert.py`, `helmert2.py`, `uniform.py`).
 
 ## 5. Two obstructions
 
 * **No convex certificate works for `d ≥ 6`.** Replacing the orthonormal basis by any isotropic measure on the
-  sphere of `v^⊥` (the convex relaxation behind every zero-sum or Cauchy–Schwarz bound) is false from `d = 6` on.
-  For uniform `v`, the measure uniform on the vectors `(e_a − e_b)/√2` gives `(d−1)√(2/d) < 2(√d − 1)` when
-  `d ≥ 6`. A proof must use the fact that the basis is orthonormal. This is why the far-region bound of Paper I
-  stops working at `d = 6`: at the uniform column it gives `(2−√2)√d − 1 + √2/√d`, which is `1.012` for `d = 6`.
-* **The positive-part strengthening is false.** `Σᵢ xᵢ max(2 − ‖Rᵢ‖₁, 0) ≤ 1` would have repaired the near step
-  without the row restriction. An 8×8 orthogonal matrix gives `1.0112`
-  (`scripts/optimality/lemmaF_all_d/fplus_counterexample_d8.json`, orthogonality error `7·10⁻¹⁶`). Lemma F holds
-  for that matrix (`0.656`), but this route is closed. The restriction to rows `≤ 2` in §2 is what makes the near
-  step work.
+  sphere of `v^⊥` is false from `d = 6` on: for uniform `v`, the measure uniform on `(e_a − e_b)/√2` gives
+  `(d−1)√(2/d) < 2(√d − 1)`. A proof must use the fact that the basis is orthonormal. The induction of §2 does.
+* **The positive-part strengthening is false.** `Σᵢ xᵢ max(2 − wᵢ, 0) ≤ 1` fails for an 8×8 orthogonal matrix
+  (`1.0112`, `fplus_counterexample_d8.json`), so the restriction to rows `≤ 2` in §1 is essential.
 
 ## 6. Next steps
 
-1. Close the remaining case in `d = 5`. That gives a short new Lean proof of the 5D centre lemma, without the
-   1174-case band certificate.
-2. Then `d = 6`, which would be the first Lean proof there (Hosono's is computer-assisted).
-3. For all `d`: either prove Conjecture H (an induction that removes the smallest coordinate, mirroring the
-   recursive structure of the Helmert basis), or prove the remaining case directly with an argument sharp to
-   `O(1/d)` near the sink configurations.
+1. Prove `Ξ ≥ 0` for a spread pivot row. Two routes look plausible. One is a bound on the light rows with
+   `xᵢ > 0` and `yᵢ ≈ ν` using the column identities `Σᵢ xᵢ Mᵢ = −c r'` and `Σᵢ yᵢ Mᵢ = −ν r'`. The other is a
+   two-row (2 × 2 block) pivot for configurations where two near-minimal rows share their two large columns, as in
+   the extremal examples of `regionW.py`. The block pivot is available in every size. For orthogonal
+   `R = [C B; A M]` with a `k × k` block `C` and `I + C` invertible, `Q = M − A (I + C)⁻¹ B` is orthogonal
+   (checked numerically). For `k = 1` this is the polar factor used above.
+3. A weaker statement also suffices: `Ξ ≥ 0` for *some* admissible pivot row `b` (`pivot_at_gen` only needs
+   `a y_b xᵢ ≤ yᵢ`), not necessarily the smallest one.
+4. Any proof of `PivotConj m` for `m ≥ 5` plugs into `centre_all_of_pivotConj` directly. A proof for `m = 5`
+   alone gives `d = 6` through `lemmaFr_succ_of_pivotConj lemmaFr_five`.
