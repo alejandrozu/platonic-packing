@@ -10,6 +10,7 @@ import PackingOptimality.LemmaF5Sphere
 import PackingOptimality.LemmaF5
 import PackingOptimality.Penteracts
 import PackingOptimality.LemmaFr
+import PackingOptimality.OffColumn
 import PackingOptimality.OctBands
 import PackingOptimality.OctInCube
 import PackingOptimality.FacetWidth

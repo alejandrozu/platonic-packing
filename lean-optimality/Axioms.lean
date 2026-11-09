@@ -42,6 +42,9 @@ import PackingOptimality
 #print axioms PackingOptimality.Restricted.lemmaFr_succ
 #print axioms PackingOptimality.Restricted.lemmaFr_le_four
 #print axioms PackingOptimality.Restricted.centre_le_four
+#print axioms PackingOptimality.Restricted.offcol_step
+#print axioms PackingOptimality.Restricted.offcol_at
+#print axioms PackingOptimality.Restricted.lemmaFr_succ2
 #print axioms PackingOptimality.hc5inhc5_plateau
 #print axioms PackingOptimality.CentreGeneral.centre_of_lemmaF
 #print axioms PackingOptimality.centre4
