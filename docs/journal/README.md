@@ -1,6 +1,6 @@
 # Polyhedra in Polyhedra Journal
 
-The Journal is an open-access editorial programme with an inaugural Q4 2026 issue in progress. New research articles require two independent expert reports and an unconflicted handling editor's acceptance decision. The founding coordinator is Alejandro Zarzuelo Urdiales; independently appointed editors or reviewers are listed only after agreeing to serve. A named independent editorial board and completed reviews are not claimed at launch.
+The Journal is an open-access editorial programme with an inaugural Q4 2026 issue in progress. New research articles require two independent expert reports and an unconflicted handling editor's acceptance decision. Alejandro Zarzuelo Urdiales is the editor and reviewer. The Journal is seeking additional editors; further appointments are listed after agreement. The founder's own papers still require independent handling and review. A named independent editorial board and completed reviews are not claimed at launch.
 
 The launch research library indexes existing works. It does not retrospectively accept, peer review or republish them. Original venues, licenses, versions and review status remain visible on each paper page. It contains 11 research papers and eight datasets, software releases or construction resources. The three original Zenodo deposits are two preprints and one dataset.
 
