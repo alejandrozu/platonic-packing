@@ -12,6 +12,17 @@ import journal
 
 
 class JournalTests(unittest.TestCase):
+    def test_cover_source_and_artwork_bytes_match_the_provenance(self):
+        provenance=json.loads((ROOT/'docs/journal/cover-provenance.json').read_text(encoding='utf8'))
+        paths={'q4-2026-cover.svg':'web/assets/journal-cover-q4-2026.svg',
+               'q4-2026-cover.png':'web/assets/journal-cover-q4-2026.png',
+               'render_cover.py':'docs/journal/cover/render_cover.py',
+               'icoinico_n16.json':'docs/journal/cover/icoinico_n16.json',
+               'icosahedron-geometry.json':'docs/journal/cover/icosahedron-geometry.json'}
+        for name,path in paths.items():
+            with self.subTest(name=name):
+                self.assertEqual(hashlib.sha256((ROOT/path).read_bytes()).hexdigest(),provenance['files'][name])
+
     def test_launch_cannot_silently_claim_peer_review_acceptance(self):
         data = journal.load_catalogue(ROOT)
         self.assertEqual(data['issue']['accepted_articles'], 0)
