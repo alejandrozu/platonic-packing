@@ -6,10 +6,18 @@ Lean proofs exist for `d ≤ 5` (Paper I). Hosono proved `d = 6` with computer a
 Notation: `R` is an orthogonal `d × d` matrix, `x_i = |R_ij|` is its column `j`, `S = ‖x‖₁`, `w_i = ‖Rᵢ‖₁` and
 `F_j(R) = Σᵢ xᵢ (2 − wᵢ)`. Lemma F says `F_j(R) ≤ 1`.
 
-**Summary.** In Lean, the cube centre lemma in every dimension now follows from a single explicit inequality, the
-*pivot conjecture* `Ξ ≥ 0` (§4), needed only in dimensions `d ≥ 6` (`centre_all_of_pivotConj`). The conjecture is
-proved in every dimension when the pivot row is concentrated (`caseA_ok`). It is verified numerically in the
-remaining (spread) case, but not proved there yet.
+**Summary (updated 9 Nov 2026, third session).** Proved in Lean: restricted Lemma F for `d ≤ 5`, together with three
+reduction steps that work in every dimension:
+* the near step (§2.1);
+* the off-column step (§2.2);
+* the concentrated pivot (§2.3).
+
+The induction leaves a remaining case. **The pivot inequality `Ξ ≥ 0` (formerly "the pivot conjecture") is false**,
+both in general and inside the remaining case. **The exact pivot inequality `F_j(R) ≤ F_j(Q)` is false in d = 9.**
+All counterexamples are verified at 50–60-digit precision (§3). So no single-pivot rule of the form "smallest row
+of column j, largest entry of that row" can carry the induction through every dimension. In the counterexamples
+`F_j` sits far below 1; only the induction step fails. The earlier Lean reduction `centre_all_of_pivotConj`
+assumed the false statement, so it has been removed.
 
 ## 1. Only the restricted lemma is needed
 
@@ -61,38 +69,48 @@ Normalise the signs so that column `j` is nonnegative and `c = R p q > 0` (`flip
   `c Gᵢ ≤ 2c − 2c xᵢ − (c + ν) yᵢ`, from its orthogonality to row `p`.
 * `lemmaFr_five`: restricted Lemma F in dimension 5, from Lemma F in dimension 5 (`LemmaF5.lemmaF5`). **The remaining
   case in `d = 5` is closed.**
-* `PivotConj m`: `Ξ ≥ 0` for every normalised matrix of size `m + 1`, every row `p` where column `j` is smallest
-  and every column `q ≠ j` holding the largest entry of row `p`.
-* **`lemmaFr_all_of_pivotConj`, `centre_all_of_pivotConj`: if `PivotConj m` holds for all `m ≥ 5`, then restricted
-  Lemma F and the cube centre lemma hold in every dimension.** Hence `s_d(n) = 2` for `2 ≤ n ≤ 2^d`.
+* (Removed: `PivotConj` and the theorems deriving Lemma F in every dimension from it. `PivotConj` is false, see §3.)
 * `lemmaFr_succ4`, `RemainingCase4`: the induction step that uses every proved reduction (near step, off-column
   step, concentrated pivot, `S ≤ 2`). It leaves only the matrices where the smallest-row pivot is spread
   (`ρ > c + ν/2` and `c² < 3/4`).
 
-## 3. What is left: the pivot conjecture for a spread pivot row
+## 3. The pivot inequality is false; so is its exact form in d = 9
 
-`PivotConj` is open exactly when row `p` is spread: `ρ > c + ν/2` (by `caseA_ok`). Numerical evidence
-(`scripts/optimality/lemmaF_all_d/`):
+`caseA_ok` proves `Ξ ≥ 0` when the pivot row is concentrated. For a spread pivot row it fails.
 
-| test | d | result |
-|---|---|---|
-| exact `F_j(Q) − F_j(R)` for the smallest-row pivot, maximised by an optimiser over all restricted `R` (`exactD2.py`) | 4–8 | never below 0; the supremum 0 is attained only at axis-aligned rows |
-| `F_j(Q) − F_j(R) − aΞ ≥ 0` (the identity of `pivot_bound`), random `R` (`checkX.py`) | 5–8 | holds in all samples |
-| `min Ξ/ν`, random restricted `R` (`xiCheck.py`) | 6, 8, 10, 12, 14 | 0.062, 0.116, 0.210, 0.299, 0.341 (minimum at nearly axis-aligned rows, a concentrated case) |
-| `min Ξ/ν` with a spread pivot row, `c ≤ 0.8`, optimiser (`minX2.py`) | 5, 6, 7, 8 | 0.416, 0.435, 0.496, 0.978 |
-| `min Ξ/ν` with `ρ − c ≥ 0.5`, optimiser | 5, 6, 7 | 0.356, 0.482, 0.469 |
+**Counterexamples to `Ξ ≥ 0`** (`pivot_counterexamples.json`, checked by `verify_pivot_cex.py` at 50 digits). In both,
+row `p` is the unique smallest row of column `j = 0` and column `q` holds the unique largest entry of row `p`. The
+pivot is admissible (`‖r‖₁ ≤ 1 + c`), every row of `R` and of `Q` has ℓ¹ norm below 2, and the matrices are
+orthogonal to 50 digits.
 
-So in the open case `Ξ/ν` stays at least about 0.35, which is a wide margin. Attempts to build counterexamples
-(spread pivot row, light rows with small positive `xᵢ` and `yᵢ ≈ ν`) all move back to a nearly axis-aligned pivot.
+| d | ν | c | Ξ | exact `F_j(Q) − F_j(R)` |
+|---|---|---|---|---|
+| 5 | 0.00513 | 0.5265 | −2.51·10⁻⁴ | +9.2·10⁻³ |
+| 6 | 0.00300 | 0.5186 | −8.99·10⁻⁴ | +4.7·10⁻³ |
 
-The difficulty is that single rows can have a negative term, with values down to `−0.15` found. Those terms are then
-paid for by `ν (c (c + L) − 1)` and by the other rows. A proof therefore has to use the orthogonality between
-different rows `i`, not only the orthogonality of each row with row `p`.
+Both lie near the equality case `R₀ = [1] ⊕ R'` of Lemma F, where row `p` of `R'` is the flat row
+`(½, ½, ½, ½)`. There the near step applies anyway, because the row `h` with `R_hj ≈ 1` has rest ≈ 0. My earlier
+random and optimised tests never sampled these neighbourhoods. The mechanism: rows whose entries have mixed signs
+relative to row `p` actually shrink under the pivot, while the triangle inequality in `pivot_bound` assumes they grow.
 
-Region left after **every** proved step (`RemainingCase4`, refined by allowing the concentrated pivot and the
-off-column step at any row, `regionW.py`): optimiser `sup F` = 0.43 (d = 5), 0.41 (d = 6), 0.50 (d = 7), far below 1.
+**Inside the remaining case it still fails.** Take a block matrix
+`(4 × 4 block with the flat row and row l = (√3/2, −1/(2√3), −1/(2√3), −1/(2√3)))  ⊕  (b × b block carrying column j)`,
+with `b ≥ 5` so that `S > 2` and every rest > 1 can hold. Reshape the flat row at order `√ν` and mix in column `j` at
+order `ν` (`blockrc3.py`). Then every hypothesis of the remaining case holds, and in d = 9, 10, 16% of the samples
+give `Ξ < 0`, with `Ξ/ν` down to `−0.62`.
 
-### 3.1 Attacking the spread case (9 Nov 2026, second session)
+**The exact pivot inequality also fails in d = 9** (`exact_pivot_counterexample_d9.json`, `verify_exact_pivot_cex.py`,
+60 digits). Here `R` is strictly inside the remaining case: rows ≤ 2, `min rest − 1 = 0.087`, `S − 2 = 0.072`,
+unique smallest row and unique largest entry, admissible, rows of `Q` ≤ 2. Yet
+`F_j(Q) − F_j(R) = −1.26·10⁻⁸`, with `F_j(R) = 0.3166`. The margins are small (argmin gap `10⁻⁸`), but the effect
+is first order in `ν`, so it is not a rounding artefact.
+
+**What this means.** In every counterexample `F_j(R)` is far below 1 (0.32 in d = 9), so Lemma F is not in danger.
+Only the induction step "pivot at the smallest row" fails, and only where `F` has a lot of slack. A proof for all
+dimensions therefore has to treat spread configurations by a direct bound, or use a strengthened (quantitative)
+induction hypothesis that leaves room below 1. The pivot steps remain useful near the extremal configurations.
+
+### 3.1 Attacking the spread case (9 Nov 2026, second session; superseded in part by §3)
 
 **Averaging over pivot columns.** `pivot_bound` needs no argmax: any column `q ≠ j` with `R p q ≠ 0` gives
 `F_j(R) ≤ F_j(Q^{(q)}) − a_q Ξ_q`, and the pivot is admissible (rows of `Q^{(q)}` at most 2) when
@@ -108,7 +126,7 @@ In closed form, `Σ_q c_q Ξ_q = ν²(1 − 2ν + F_j(R)) + (κ₁ terms)`.
 Generic rows also have small entries (`0 < c_q < (w_p − 1)/2`). Leaving them out of the average leaves the cross term
 `S3 = Σ_{small q} R_pq Σ_{i≠p} R_iq Gᵢ`. Writing `R_iq = Q_iq + a zᵢ R_pq` for one admissible pivot and applying
 restricted Lemma F to `Q` (with `0 ≤ Gᵢ ≤ G^Q_i`) shows that the small entries cost only
-`O(‖small part of row p‖₂²)`, so the cost is quadratic. Numerically the average over admissible `q` is always
+`O(‖small part of row p‖₂²)`, so the cost is quadratic. In random tests the average over admissible `q` was always
 `≥ 0` (`avgq.py`, `avgq2.py`, d = 5–10). The quadratic cost is not yet absorbed in general when `ν` is tiny.
 
 **Stress test in high dimension.** A heuristic count suggests many rows `i` with `yᵢ ≈ ν`, a small positive entry
@@ -147,13 +165,11 @@ Lemma F, unrestricted, in every dimension. Local optimisation never went below t
 
 ## 6. Next steps
 
-1. Prove `Ξ ≥ 0` for a spread pivot row. Two routes look plausible. One is a bound on the light rows with
-   `xᵢ > 0` and `yᵢ ≈ ν` using the column identities `Σᵢ xᵢ Mᵢ = −c r'` and `Σᵢ yᵢ Mᵢ = −ν r'`. The other is a
-   two-row (2 × 2 block) pivot for configurations where two near-minimal rows share their two large columns, as in
-   the extremal examples of `regionW.py`. The block pivot is available in every size. For orthogonal
-   `R = [C B; A M]` with a `k × k` block `C` and `I + C` invertible, `Q = M − A (I + C)⁻¹ B` is orthogonal
-   (checked numerically). For `k = 1` this is the polar factor used above.
-2. A weaker statement also suffices: `Ξ ≥ 0` for *some* admissible pivot row `b`, not necessarily the smallest one.
-   The block-form `pivot_step` only needs `a y_b xᵢ ≤ yᵢ` for all `i`, together with `‖r‖₁ ≤ 1 + c`.
-3. Any proof of `PivotConj m` for `m ≥ 5` plugs into `centre_all_of_pivotConj` directly. A proof for `m = 5`
-   alone gives `d = 6` through `lemmaFr_succ_of_pivotConj lemmaFr_five`.
+1. **A quantitative induction hypothesis.** The numerics give the sharp band profile
+   `F_j(R) ≤ 1 − (m + √(1 − m²) − 1)²`, with `m` the largest entry of column `j` (`m ≥ 1/√2`), with no violation in
+   d = 3–8 (`bandind.py`). Combined with Hosono's near-step identity, which uses Lemma F on *all* columns of `Q`
+   (`lemmaK`), the naive inductive inequality fails in about 1% of cases (`bandind.py`). It does show where slack is
+   lost: the triangle inequality and the `E` term of `lemmaK`.
+2. **A direct bound for spread configurations.** Show `F_j(R) ≤ 1` directly when the smallest row of column `j` is spread.
+   The numerics give `F ≲ 0.5` there (`regionW.py`, `rcB.py`), and the induction is only needed elsewhere.
+3. Block pivots (`Q = M − A (I + C)⁻¹ B` is orthogonal for any block size) for clusters of near-minimal rows.

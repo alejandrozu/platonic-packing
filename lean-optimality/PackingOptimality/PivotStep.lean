@@ -23,6 +23,12 @@ So `Ξ ≥ 0` reduces `F_j(R) ≤ 1` to restricted Lemma F in one dimension less
   column `j` is smallest) and `ρ ≤ c + ν/2` (row `p` is concentrated on its two largest entries).
 
 The proof of this case bounds the slack of a row `i` with `x i > 0` through its orthogonality to row `p`.
+
+**`Ξ ≥ 0` does not hold in general** for the smallest-row / largest-entry pivot, not even under the remaining-case
+hypotheses of `RemainingCase4`. Explicit counterexamples, verified at 50-digit precision, are in
+`scripts/optimality/lemmaF_all_d/pivot_counterexamples.json` (d = 5, 6, near equality cases of Lemma F). The inequality
+`F_j(R) ≤ F_j(Q)` itself also fails in d = 9 (`exact_pivot_counterexample_d9.json`). So the pivot step covers
+the concentrated case only. It is not an induction scheme for every dimension.
 -/
 
 namespace PackingOptimality.Restricted
@@ -571,15 +577,6 @@ theorem caseA_ok (R : Matrix (Fin (m + 1)) (Fin (m + 1)) ℝ) (hR : R * Rᵀ = 1
   have h2 := hcol p
   nlinarith
 
-/-- **The pivot conjecture** in dimension `m + 1`: `Ξ ≥ 0` for every normalised orthogonal matrix with rows of ℓ¹
-norm at most 2, every row `p` where column `j = q.succAbove j'` is smallest and every column `q ≠ j` holding the
-largest entry of row `p`. Numerically it holds with room to spare whenever row `p` is spread; `caseA_ok` proves
-it when row `p` is concentrated. -/
-def PivotConj (m : ℕ) : Prop :=
-  ∀ R : Matrix (Fin (m + 1)) (Fin (m + 1)) ℝ, R * Rᵀ = 1 → (∀ i, rowL1 R i ≤ 2) →
-    ∀ p q (j' : Fin m), (∀ i, 0 ≤ R i (q.succAbove j')) → 0 < R p q → (∀ k, |R p k| ≤ R p q) →
-      (∀ i, R p (q.succAbove j') ≤ R i (q.succAbove j')) → PivotOK R p q j'
-
 /-- In dimension at least 5, the largest entry of the row where a column is smallest lies outside that column. -/
 theorem exists_pivot (R : Matrix (Fin (m + 1)) (Fin (m + 1)) ℝ) (hR : R * Rᵀ = 1) (hw : ∀ i, rowL1 R i ≤ 2)
     (hm : 4 ≤ m) (j : Fin (m + 1)) :
@@ -619,49 +616,8 @@ theorem exists_pivot (R : Matrix (Fin (m + 1)) (Fin (m + 1)) ℝ) (hR : R * Rᵀ
     nlinarith
   · exact hqmax k (Finset.mem_erase.mpr ⟨hkj, Finset.mem_univ k⟩)
 
-/-- **Restricted Lemma F in dimension `m + 1` from dimension `m` and the pivot conjecture** (`m ≥ 4`). -/
-theorem lemmaFr_succ_of_pivotConj (hF : LemmaFr m) (hm : 4 ≤ m) (hP : PivotConj m) : LemmaFr (m + 1) := by
-  intro R hR hw j
-  obtain ⟨p, q, hmin, hqj, hmax⟩ := exists_pivot R hR hw hm j
-  apply pivot_at_gen hF R hR hw p q j hqj hmax hmin
-  intro R' hR'o habs hcol hpq j' hj'
-  subst hj'
-  have hrow : ∀ i, rowL1 R' i = rowL1 R i := fun i => by
-    unfold rowL1 l1; exact Finset.sum_congr rfl fun k _ => habs i k
-  apply hP R' hR'o (fun i => (hrow i).trans_le (hw i)) p q j' hcol
-  · rw [hpq]
-    rcases (abs_nonneg (R p q)).eq_or_lt with h0 | h0
-    · exfalso
-      have hrow1 := LemmaF4.sum_rows R hR p p
-      rw [if_pos rfl] at hrow1
-      have : ∀ k, R p k = 0 := fun k => abs_eq_zero.mp (le_antisymm (h0 ▸ hmax k) (abs_nonneg _))
-      simp [this] at hrow1
-    · exact h0
-  · intro k; rw [hpq, habs]; exact hmax k
-  · intro i
-    have h1 := habs p (q.succAbove j'); have h2 := habs i (q.succAbove j')
-    rw [abs_of_nonneg (hcol p)] at h1; rw [abs_of_nonneg (hcol i)] at h2
-    rw [h1, h2]; exact hmin i
-
 /-- Restricted Lemma F in dimension 5, from Lemma F in dimension 5 (`LemmaF5.lemmaF5`). -/
 theorem lemmaFr_five : LemmaFr 5 := lemmaFr_of_lemmaF LemmaF5.lemmaF5
-
-/-- **Restricted Lemma F in every dimension, from the pivot conjecture in dimensions 6 and up.** -/
-theorem lemmaFr_all_of_pivotConj (hP : ∀ m, 5 ≤ m → PivotConj m) : ∀ d, LemmaFr d
-  | 0 => lemmaFr_zero
-  | n + 1 => by
-    by_cases hn : n + 1 ≤ 4
-    · exact lemmaFr_le_four (n + 1) hn
-    · by_cases h5 : n + 1 = 5
-      · rw [h5]; exact lemmaFr_five
-      · exact lemmaFr_succ_of_pivotConj (lemmaFr_all_of_pivotConj hP n) (by omega) (hP n (by omega))
-
-open scoped Pointwise in
-/-- **The cube centre lemma in every dimension, from the pivot conjecture in dimensions 6 and up.** -/
-theorem centre_all_of_pivotConj (hP : ∀ m, 5 ≤ m → PivotConj m) {d : ℕ} (s : ℝ) (hs0 : 0 ≤ s) (hs : s < 2)
-    (g : EuclideanSpace ℝ (Fin d) ≃ᵃⁱ[ℝ] EuclideanSpace ℝ (Fin d)) (hg : g '' cube d ⊆ s • cube d) :
-    (s / 2) • WithLp.toLp 2 (fun _ => (1 : ℝ)) ∈ interior (g '' cube d) :=
-  CentreGeneral.centre_of_lemmaF_rows (lemmaFr_all_of_pivotConj hP d) s hs0 hs g hg
 
 /-- The case left by the concentrated pivot, the off-column step, the near step and `‖column j‖₁ ≤ 2`:
 every pair (row `p` where column `j` is smallest, column `q ≠ j` holding the largest entry of row `p`) has a
