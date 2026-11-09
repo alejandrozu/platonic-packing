@@ -1,0 +1,115 @@
+name: Submit a Journal paper
+description: Request editorial consideration of a paper on 3D polyhedral or higher-dimensional polytope packing.
+title: "[Journal] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Submit a paper for editorial consideration in the Polyhedra in Polyhedra Journal. Volume 1, Issue 1, Q4 2026 is in preparation.
+
+        Read the [Journal policies](https://polyhedrainpolyhedra.wiki/journal/policies/) before submitting. This is a public GitHub issue. Include public manuscript and evidence links. Omit private correspondence, reviewer contact details and other personal information.
+
+        Submission is not acceptance. Journal acceptance requires two independent expert reports and a decision by an unconflicted handling editor. This form does not invoke the packing-record certification workflow.
+  - type: input
+    id: manuscript-title
+    attributes:
+      label: Manuscript title
+      placeholder: Full title of the version submitted for review
+    validations:
+      required: true
+  - type: textarea
+    id: authors
+    attributes:
+      label: Authors
+      description: List every author in the agreed order. Public affiliations and ORCID links are optional. Do not include private contact details.
+    validations:
+      required: true
+  - type: input
+    id: manuscript-link
+    attributes:
+      label: Manuscript link and version
+      description: Supply a public PDF, preprint or DOI link and its version or date. Link the manuscript itself, not just a repository homepage.
+      placeholder: https://... ; version and date
+    validations:
+      required: true
+  - type: dropdown
+    id: article-type
+    attributes:
+      label: Article type
+      options:
+        - Original research article
+        - Methods or reproducibility report
+        - Proof note
+        - Review or synthesis
+    validations:
+      required: true
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      description: Two-dimensional packing submissions are outside the Journal's scope.
+      options:
+        - Three-dimensional convex polyhedral packing
+        - Higher-dimensional convex polytope packing
+        - Materials application of a polyhedral or polytope construction
+        - Related theory with an explicit connection to 3D or higher-dimensional packing
+    validations:
+      required: true
+  - type: textarea
+    id: abstract-and-claims
+    attributes:
+      label: Abstract and principal claims
+      description: Describe the contribution, the dimension and bodies studied, and what is new relative to the cited work. Distinguish feasibility, optimality, computational findings and physical-model claims where relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: reproducibility
+    attributes:
+      label: Evidence and reproducibility
+      description: Link coordinates, catalogue records, code, data and formal proofs as applicable. Identify commits, checksums, dependencies and reproduction instructions. Explain any unavailable or inapplicable item.
+    validations:
+      required: true
+  - type: textarea
+    id: related-publication
+    attributes:
+      label: Related publication and source credit
+      description: Give existing preprint, DOI or journal records and their current status. Identify prior construction authors, methods, refinements and any overlapping manuscript under review elsewhere. Write none where appropriate.
+    validations:
+      required: true
+  - type: textarea
+    id: disclosures
+    attributes:
+      label: Funding, interests and AI assistance
+      description: State relevant funding, financial or institutional interests and substantive AI assistance. Write none for any category that does not apply.
+    validations:
+      required: true
+  - type: textarea
+    id: editorial-conflicts
+    attributes:
+      label: Editorial and reviewer conflicts
+      description: Identify relevant relationships with the founding coordinator, editors or potential reviewers, including recent collaborations, shared affiliations and supervisory relationships. Give names only when appropriate for a public record. Do not post private contact details or correspondence. Write none if there are no known conflicts.
+    validations:
+      required: true
+  - type: dropdown
+    id: review-publication-consent
+    attributes:
+      label: Publication of review reports and responses
+      description: Your choice does not determine editorial acceptance. Reviewer consent is also required before reports are made public. Private reviewer identities are never inferred from this choice.
+      options:
+        - I consent to publishing the author response and reports for which the reviewers also consent
+        - Please request my consent separately before publishing review correspondence
+    validations:
+      required: true
+  - type: checkboxes
+    id: author-attestation
+    attributes:
+      label: Author approval and rights
+      options:
+        - label: Every listed author has approved this manuscript version and its submission for editorial consideration.
+          required: true
+        - label: I am authorized to share the linked material and have identified relevant prior publication, third-party rights and required permissions.
+          required: true
+        - label: For a new manuscript accepted by this Journal, all authors agree to retain copyright and permit publication under CC BY 4.0, with any third-party exceptions identified.
+          required: true
+        - label: I understand that this public issue requests editorial review and does not establish acceptance, independent peer review, optimality or certification of the whole paper.
+          required: true

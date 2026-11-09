@@ -1,0 +1,41 @@
+name: Journal print interest
+description: Express interest in the planned printed Journal edition for academics and research libraries.
+title: "[Journal print interest]"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The Q4 2026 founding issue is in preparation. A printed edition for academic distribution worldwide is planned. This form records interest only. It is not an order, reservation, payment request or delivery commitment.
+
+        This GitHub issue is public. Please omit postal addresses, payment details and private personal information. If printing proceeds, delivery arrangements will use a separate private route.
+  - type: input
+    id: institution
+    attributes:
+      label: Institution or research library
+      description: Optional public institutional name. A personal affiliation is not required.
+    validations:
+      required: false
+  - type: input
+    id: country
+    attributes:
+      label: Country
+      description: Optional country for understanding distribution interest. Do not supply a postal address.
+    validations:
+      required: false
+  - type: dropdown
+    id: format-interest
+    attributes:
+      label: Format of interest
+      options:
+        - Digital open-access edition
+        - Planned printed edition
+        - Both digital and planned printed editions
+    validations:
+      required: true
+  - type: textarea
+    id: comment
+    attributes:
+      label: Comment
+      description: Optional institutional or format requirements. Omit private personal information, postal addresses and payment details.
+    validations:
+      required: false

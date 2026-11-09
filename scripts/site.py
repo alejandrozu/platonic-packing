@@ -364,7 +364,7 @@ def constructions(data):
 
 
 # ------------------------------------------------------------------ page shell
-NAV = [('', 'Records'), ('constructions/', 'All constructions'), ('method/', 'Method'), ('materials/', 'Materials'), ('certification/', 'Certification'),
+NAV = [('', 'Records'), ('constructions/', 'All constructions'), ('journal/', 'Journal'), ('method/', 'Method'), ('materials/', 'Materials'), ('certification/', 'Certification'),
        ('contribute/', 'Contribute'), ('literature/', 'Literature'), ('about/', 'About')]
 
 
@@ -556,7 +556,9 @@ def build(fragment=None):
         write('CNAME', open(os.path.join(WEB, 'CNAME')).read().strip() + '\n')
     write('.nojekyll', '')
     write('robots.txt', f'User-agent: *\nAllow: /\nSitemap: {SITE_URL}sitemap.xml\n')
-    urls = ['', 'constructions/', 'method/', 'materials/', 'certification/', 'contribute/', 'literature/', 'about/']
+    from journal import build_journal
+    journal_urls = build_journal(ROOT, OUT, REPO, SITE_URL, page, fill)
+    urls = ['', 'constructions/', 'method/', 'materials/', 'certification/', 'contribute/', 'literature/', 'about/'] + journal_urls
     write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
           + ''.join(f'  <url><loc>{SITE_URL}{u}</loc></url>\n' for u in urls) + '</urlset>\n')
     if fragment:                                       # one-file explorer for the Claude artifact
