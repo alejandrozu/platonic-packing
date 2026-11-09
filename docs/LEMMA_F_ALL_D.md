@@ -92,6 +92,36 @@ different rows `i`, not only the orthogonality of each row with row `p`.
 Region left after **every** proved step (`RemainingCase4`, refined by allowing the concentrated pivot and the
 off-column step at any row, `regionW.py`): optimiser `sup F` = 0.43 (d = 5), 0.41 (d = 6), 0.50 (d = 7), far below 1.
 
+### 3.1 Attacking the spread case (9 Nov 2026, second session)
+
+**Averaging over pivot columns.** `pivot_bound` needs no argmax: any column `q ≠ j` with `R p q ≠ 0` gives
+`F_j(R) ≤ F_j(Q^{(q)}) − a_q Ξ_q`, and the pivot is admissible (rows of `Q^{(q)}` at most 2) when
+`c_q = |R p q| ≥ (w_p − 1)/2`. Weight `Ξ_q` by `c_q`:
+
+* the terms `−ν xᵢ Gᵢ` combine through row orthogonality, `Σ_q R_pq R_iq = −ν yᵢ`, into `+ν² yᵢ Gᵢ ≥ 0`;
+* the constants combine to `ν Σ_q c_q (c_q w_p − 1) = ν² (1 − ν w_p) ≥ 0`;
+* the `κ₁` terms are `≥ 0` for admissible `q`.
+
+So **if every nonzero entry of row `p` outside column `j` is an admissible pivot, some admissible `q` has `Ξ_q ≥ 0`**.
+In closed form, `Σ_q c_q Ξ_q = ν²(1 − 2ν + F_j(R)) + (κ₁ terms)`.
+
+Generic rows also have small entries (`0 < c_q < (w_p − 1)/2`). Leaving them out of the average leaves the cross term
+`S3 = Σ_{small q} R_pq Σ_{i≠p} R_iq Gᵢ`. Writing `R_iq = Q_iq + a zᵢ R_pq` for one admissible pivot and applying
+restricted Lemma F to `Q` (with `0 ≤ Gᵢ ≤ G^Q_i`) shows that the small entries cost only
+`O(‖small part of row p‖₂²)`, so the cost is quadratic. Numerically the average over admissible `q` is always
+`≥ 0` (`avgq.py`, `avgq2.py`, d = 5–10). The quadratic cost is not yet absorbed in general when `ν` is tiny.
+
+**Stress test in high dimension.** A heuristic count suggests many rows `i` with `yᵢ ≈ ν`, a small positive entry
+in column `q` and `Gᵢ ≈ 1` could pile up per-row deficits of order `√n` against the fixed surplus `ν (c w_p − 1)`.
+Explicit constructions (`construct3.py`, `construct4.py`) show why this fails. To share the pivot direction, the
+parts of these rows outside the pivot block must form a simplex (`Σ oᵢ = 0`). That forces each of them to have
+ℓ¹ norm about 2, which kills the slack `Gᵢ` the deficit needed. Every feasible structured instance had `Ξ/ν ≥ 1.1`.
+
+**Consequence for a proof.** The protection is a *global* orthogonality effect among the rows meeting column `q`,
+not a row-by-row one. This explains why every per-row bracket bound fails and why the isotropic relaxation (§5) fails.
+A proof has to carry global information: either restricted Lemma F applied to the columns of `Q` (as in the
+small-entry bound above), or a 2 × 2 block pivot.
+
 ## 4. The Helmert conjecture (would give the unrestricted Lemma F in every dimension)
 
 **Reformulation.** Take `v = |column j|` (signs can be absorbed), and let `b₂, …, b_d` be the other columns, an
