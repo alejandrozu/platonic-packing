@@ -45,6 +45,13 @@ import PackingOptimality
 #print axioms PackingOptimality.Restricted.offcol_step
 #print axioms PackingOptimality.Restricted.offcol_at
 #print axioms PackingOptimality.Restricted.lemmaFr_succ2
+#print axioms PackingOptimality.Restricted.pivot_bound
+#print axioms PackingOptimality.Restricted.pivot_caseA
+#print axioms PackingOptimality.Restricted.pivot_at
+#print axioms PackingOptimality.Restricted.lemmaFr_succ4
+#print axioms PackingOptimality.Restricted.lemmaFr_succ_of_pivotConj
+#print axioms PackingOptimality.Restricted.lemmaFr_all_of_pivotConj
+#print axioms PackingOptimality.Restricted.centre_all_of_pivotConj
 #print axioms PackingOptimality.hc5inhc5_plateau
 #print axioms PackingOptimality.CentreGeneral.centre_of_lemmaF
 #print axioms PackingOptimality.centre4
