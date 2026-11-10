@@ -59,7 +59,9 @@ nearid = json.load(open(os.path.join(EV, 'nearid.json'))) if os.path.exists(os.p
 
 macros = {k: '?' for k in ('maxdim', 'farHosonoFour', 'profilegap', 'farlowmax', 'rcmax', 'rcdmax', 'frameslast',
                              'framestarts', 'framesgap', 'framesmingap', 'framesaligned', 'framescount', 'nearidmin',
-                             'evidencecommit', 'frameslastn')}
+                             'evidencecommit', 'frameslastn', 'rcscalemin', 'rcscalemax', 'rcfirst',
+                             'rcfirstd', 'rcmaxcolmin', 'rcmaxcolmax', 'rcSmax', 'rcfourmax', 'rcfourdmax',
+                             'farlow', 'farlowthree', 'farlowtwo', 'farspread')}
 dims = sorted(glob_)
 macros['maxdim'] = str(max(dims)) if dims else '?'
 
@@ -105,6 +107,14 @@ if (4, round(2 / 3, 9)) in far:
 macros['profilegap'] = f'{max(abs(g) for g in gaps):.1e}'.replace('e-0', r'\cdot10^{-').replace('e-', r'\cdot10^{-') + '}' if gaps else '?'
 macros['profilegapmax'] = f'{max(gaps):.2e}' if gaps else '?'
 macros['farlowmax'] = fmt(lowmax, 4)
+def tauval(t):
+    vals = [far[(d, tt)]['maxF'] for d, tt in far if abs(tt - t) < 1e-9]
+    return (min(vals), max(vals)) if vals else None
+for key, t in (('farlow', 0.4), ('farlowthree', 0.3), ('farlowtwo', 0.2)):
+    v = tauval(t)
+    if v: macros[key] = fmt(v[1], 4)
+spread = max((tauval(t)[1] - tauval(t)[0]) for t in (0.9, 0.75, 0.6, 0.5, 0.4, 0.3, 0.2) if tauval(t)) if far else 0
+macros['farspread'] = f'{spread:.0e}'
 
 # ---------------------------------------------------------------- remaining case
 sig = sorted({t for _, t in rcS})
@@ -118,6 +128,17 @@ for d in sorted(rc):
 lines += [r'\bottomrule', r'\end{tabular}']
 open(os.path.join(OUT, 'tab_rc.tex'), 'w').write('\n'.join(lines) + '\n')
 macros['rcmax'] = fmt(max(r['maxF'] for r in rc.values()), 4) if rc else '?'
+if rc:
+    sc = [d * (1 - r['maxF']) for d, r in rc.items()]
+    macros['rcscalemin'] = f'{min(sc):.2f}'; macros['rcscalemax'] = f'{max(sc):.2f}'
+    macros['rcfirst'] = fmt(rc[min(rc)]['maxF'], 4); macros['rcfirstd'] = str(min(rc))
+    macros['rcmaxcolmin'] = f"{min(r['argmax_maxcol'] for r in rc.values()):.3f}"
+    macros['rcmaxcolmax'] = f"{max(r['argmax_maxcol'] for r in rc.values()):.3f}"
+    macros['rcSmax'] = f"{max(r['argmax_S'] for r in rc.values()) - 2:.4f}"
+rc4b = best_by(load('rc4.jsonl'), lambda r: r['d'])
+if rc4b:
+    macros['rcfourmax'] = fmt(max(r['maxF'] for r in rc4b.values()), 4)
+    macros['rcfourdmax'] = str(max(rc4b))
 macros['rcdmax'] = str(max(rc)) if rc else '?'
 
 # ---------------------------------------------------------------- frames

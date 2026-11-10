@@ -17,7 +17,7 @@ reductions checked in Lean, routes that fail,\\ and the evidence for $s_d(2)=2$}
 \maketitle
 
 \begin{abstract}
-Let $s_d(n)$ be the side of the smallest $d$-cube that holds $n$ unit $d$-cubes with disjoint interiors, each placed by an arbitrary rigid motion. Paper~I of this series proves $s_d(2)=2$ in Lean for $d\le5$, and Hosono proved $d=6$ with computer assistance (not yet peer reviewed). We know of no result for $d\ge7$, and no statement of the problem in the literature before Hosono's. This paper collects what we know about the conjecture that $s_d(2)=2$ in every dimension. \emph{Equivalent forms.} The conjecture is Hosono's Lemma~F for the orthogonal matrices whose rows have $\ell^1$ norm below~$2$. It is also a statement about the largest $(d-1)$-cube in a simplex whose vertices lie on orthogonal axes. \emph{Proofs in Lean, in every dimension.} The near-axis step, an off-column step and a pivot inequality reduce the induction on $d$ to an explicit remaining case, and give $d\le4$ without any computation. A new aligned step loses nothing. With it, the conjecture in every dimension follows from one geometric statement, in a restricted or an unrestricted form, the \emph{facet lemma}: some largest cube in such a simplex has a facet parallel to a facet of the simplex. \emph{The Helmert conjecture.} A recursive face-on-face placement should give the exact largest cube; this would imply Lemma~F directly, and the facet lemma. It contains the classical square in a triangle and Croft's theorem on the largest cube in a regular tetrahedron. For the regular $n$-simplex it predicts the side $1/(\sqrt2\sum_{k=2}^{n+1}\sqrt{1-1/k})$. \emph{Routes that fail.} We record the failure, with verified counterexamples, of the single-pivot induction at the smallest row ($d=5,6,9$; checked at 50--60 digits), of the positive-part strengthening ($d=8$), of convex relaxations, among them Hosono's spectral bound ($d\ge6$), and of local arguments for the facet lemma ($d=4$). \emph{Evidence.} A Hosono-style numerical search in dimensions $3$ to $32$ finds no counterexample. Away from the coordinate axes, and in the remaining case of the induction, $F$ stays far below~$1$. Conjecture~H and the facet lemma hold in every test up to $d=12$.
+Let $s_d(n)$ be the side of the smallest $d$-cube that holds $n$ unit $d$-cubes with disjoint interiors, each placed by an arbitrary rigid motion. Paper~I of this series proves $s_d(2)=2$ in Lean for $d\le5$, and Hosono proved $d=6$ with computer assistance (not yet peer reviewed). We know of no result for $d\ge7$, and no statement of the problem in the literature before Hosono's. This paper collects what we know about the conjecture that $s_d(2)=2$ in every dimension. \emph{Equivalent forms.} The conjecture is Hosono's Lemma~F for the orthogonal matrices whose rows have $\ell^1$ norm below~$2$. It is also a statement about the largest $(d-1)$-cube in a simplex whose vertices lie on orthogonal axes. \emph{Proofs in Lean, in every dimension.} The near-axis step, an off-column step and a pivot inequality reduce the induction on $d$ to an explicit remaining case, and give $d\le4$ without any computation. A new aligned step loses nothing. With it, the conjecture in every dimension follows from one geometric statement, in a restricted or an unrestricted form, the \emph{facet lemma}: some largest cube in such a simplex has a facet parallel to a facet of the simplex. \emph{The Helmert conjecture.} A recursive face-on-face placement should give the exact largest cube; this would imply Lemma~F directly, and the facet lemma. It contains the classical square in a triangle and Croft's theorem on the largest cube in a regular tetrahedron. For the regular $n$-simplex it predicts the side $1/(\sqrt2\sum_{k=2}^{n+1}\sqrt{1-1/k})$. \emph{Routes that fail.} We record the failure, with verified counterexamples, of the single-pivot induction at the smallest row ($d=5,6,9$; checked at 50--60 digits), of the positive-part strengthening ($d=8$), of convex relaxations, among them Hosono's spectral bound ($d\ge6$), and of local arguments for the facet lemma ($d=4$). \emph{Evidence.} A Hosono-style numerical search in dimensions $3$ to $32$ finds no counterexample. Away from the coordinate axes the largest values of $F$ do not depend on the dimension: they are attained by blocks of size at most $6$. In the remaining case of the induction the largest values approach $1$ like $1-1.1/d$, but only at its boundary, where an elementary bound gives $F\le1$; so a direct bound there must use more than a uniform gap. Conjecture~H and the facet lemma hold in every test up to $d=12$.
 \end{abstract}
 
 \tableofcontents
@@ -549,12 +549,13 @@ All searches are batched multi-start optimisations on $SO(d)$ in double precisio
 \end{table}
 
 \subsection{Away from the axes: Hosono's far region}\label{sec:far}
-For $\tau<1$ let $\Phi_d(\tau)$ be the supremum of $F_j$ over restricted matrices whose column $j$ has every squared entry at most~$\tau$. Hosono's far region in dimension $d$ is $\tau_d=1-1/(d-1)$, the complement of the region where the near-axis step applies in his setting. \Cref{tab:far} gives our values of $\Phi_d(\tau_d)$ and $\Phi_d(1/2)$, and \cref{fig:profile} the whole profile. Three observations:
+For $\tau<1$ let $\Phi_d(\tau)$ be the supremum of $F_j$ over restricted matrices whose column $j$ has every squared entry at most~$\tau$. Hosono's far region in dimension $d$ is $\tau_d=1-1/(d-1)$, the complement of the region where the near-axis step applies in his setting. \Cref{tab:far} gives our values of $\Phi_d(\tau_d)$ and $\Phi_d(1/2)$, and \cref{fig:profile} the whole profile. The striking fact is that \textbf{the profile does not depend on the dimension}:
 \begin{itemize}
-\item For $\tau\ge1/2$, the plane rotation at the boundary of the region, $1-\varphi(\sqrt\tau)$, is the best we found or within $\profilegap$ of it in every dimension. The profile does not depend on $d$ there.
-\item Below $\tau=1/2$ the profile flattens: $F_j$ cannot be large when column $j$ is spread. Far from the axes, in the range where only $\mathrm{RC}$-type matrices live, the values stay below $\farlowmax$.
-\item Hosono's far region $\tau_d$ approaches the axis as $d$ grows, and $\Phi_d(\tau_d)$ approaches~$1$, but only because the region does: at fixed $\tau$ the supremum is the same in every dimension.
+\item For $\tau\ge1/2$ the best value found is the plane rotation at the boundary of the region, $1-(\sqrt\tau+\sqrt{1-\tau}-1)^2$, to within $\profilegap$ (and never above it), in every dimension.
+\item For $\tau<1/2$ the best values found are $\farlow$ ($\tau=0.4$), $\farlowthree$ ($\tau=0.3$) and $\farlowtwo$ ($\tau=0.2$), the same in every dimension where $\tau$ is admissible ($\tau\ge1/d$); across dimensions they differ by at most $\farspread$. For $\tau=0.4$ and $0.3$ the maximisers found in every dimension are a block of size $3$, respectively $4$, carrying column~$j$, in direct sum with (up to optimiser noise) a signed permutation; for $\tau=0.2$ they use $6$ to $8$ rows and reach the same value. For example, for $\tau=0.4$ the block is the $3\times3$ matrix with column $(\sqrt{0.2},\sqrt{0.4},\sqrt{0.4})$ and rows $(\sqrt{0.2},\sqrt{0.8},0)$, $(\sqrt{0.4},\sqrt{0.1},\sqrt{0.5})$ up to signs, and in $d=9$ the search finds exactly this block plus the identity.
+\item Hosono's far region $\tau_d=1-1/(d-1)$ approaches the axis as $d$ grows, so $\Phi_d(\tau_d)$ approaches~$1$; this is the plane rotation again, not a new configuration.
 \end{itemize}
+So in this search no new extremal configuration appears as the dimension grows: every large value of $F_j$ away from the axes comes from a configuration that already exists in dimension $\le6$.
 
 \begin{table}[t]
 \centering\small
@@ -571,14 +572,28 @@ For $\tau<1$ let $\Phi_d(\tau)$ be the supremum of $F_j$ over restricted matrice
 \end{figure}
 
 \subsection{The remaining case}\label{sec:rc}
-\Cref{tab:rc} gives the largest $F_j$ found in the remaining case $\mathrm{RC}(d)$ of \cref{thm:succ}: rows of norm at most $2$, $\norm{x}_1\ge2$, and $w_i-x_i\ge1$ in every row. This is where a counterexample would have to live, since everything else is reduced to dimension $d-1$ in Lean. The case is empty for $d\le4$. In every dimension we tested the supremum is at most $\rcmax$, and the maximiser sits at the boundary $\norm x_1=2$, where \cref{thm:remaining} gives $F_j\le1$ anyway. $\mathrm{RC4}(d)\subseteq\mathrm{RC}(d)$, so the same bound holds there.
+The remaining case $\mathrm{RC}(d)$ of \cref{thm:succ} is where a counterexample would have to live: everything else is reduced to dimension $d-1$ in Lean. It is empty for $d\le4$, since there $\norm x_1\le\sqrt d\le2$. We search its closure: rows of norm at most $2$, $\norm x_1\ge2$, and $w_i-x_i\ge1$ in every row (rows with $x_i=0$ satisfy this automatically). \Cref{tab:rc} and \cref{fig:dims} give the results. They are not what we expected:
+\begin{itemize}
+\item The largest value found \emph{increases} with $d$, from $\rcfirst$ in $d=\rcfirstd$ to $\rcmax$ in $d=\rcdmax$. In every dimension $d(1-\max F_j)$ lies between $\rcscalemin$ and $\rcscalemax$: the room below~$1$ shrinks like $1.1/d$.
+\item The maximisers sit at the boundary $\norm x_1=2$ (within $\rcSmax$), where \cref{thm:remaining} already gives $F_j\le1$. They have one large entry, $\rcmaxcolmin$ in $d=5$ up to $\rcmaxcolmax$ in $d=24$, and $d-1$ entries of order $1/d$, and every row has rest just above~$1$. They are near-axis configurations that the near step just misses, because the row of the large entry has rest slightly above~$1$.
+\item Away from the boundary the values drop (the columns $\norm x_1\ge\sigma$ of \cref{tab:rc}).
+\item On the smaller case $\mathrm{RC4}(d)$ of \cref{thm:succ4} the largest value found is $\rcfourmax$ (up to $d=\rcfourdmax$).
+\end{itemize}
+So the bound $F_j\le\norm x_1-1$ of \cref{thm:remaining} is asymptotically sharp on the remaining case. A direct bound there cannot be a uniform constant below~$1$; it has to use $\norm x_1-2>0$ or the structure of the rows. This is the most useful negative information the numerics give for a proof.
 
 \begin{table}[t]
 \centering\small
 \input{tab_rc.tex}
-\caption{Largest $F_j$ found in the remaining case $\mathrm{RC}(d)$, with $\norm x_1$ and $\min_i(w_i-x_i)$ at the maximiser. The bound $F_j\le\norm x_1-1$ of \cref{thm:remaining} holds everywhere in $\mathrm{RC}$.}
+\caption{Largest $F_j$ found in the (closed) remaining case $\mathrm{RC}(d)$, with $\norm x_1$ and $\min_i(w_i-x_i)$ at the maximiser, and the largest values found with $\norm x_1\ge\sigma$. The bound $F_j\le\norm x_1-1$ of \cref{thm:remaining} holds everywhere in $\mathrm{RC}$.}
 \label{tab:rc}
 \end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{fig_dims.pdf}
+\caption{Largest $F_j$ found, by dimension: in Hosono's far region $\tau_d=1-1/(d-1)$, in the far region $\tau=1/2$ (flat: the plane rotation), and in the remaining cases $\mathrm{RC}(d)$ and $\mathrm{RC4}(d)$ of the induction, where the values approach $1$ like $1-1.1/d$ at the boundary $\norm x_1=2$.}
+\label{fig:dims}
+\end{figure}
 
 \subsection{Conjecture H and the facet lemma}\label{sec:numH}
 For each $d\le\frameslast$ we took $11$ vectors $v$: uniform, three random, two sparse (cubes of Gaussians), three sinks $(c,t,\dots,t)$ with $c=0.9,0.7,0.5$, a geometric sequence, and two large entries. For each, we minimised $\Val_v$ over frames from $\framestarts$ starts, half random and half perturbed Helmert frames, with the same smoothing (\code{frames.py}). \Cref{tab:frames} summarises. In every case the smallest value found is the Helmert value to within $\framesgap$, never below it by more than rounding, and the minimiser found has an aligned row in $\framesaligned$ of the $\framescount$ cases. For uniform $v$ this is \cref{conj:regular} for $n\le\frameslast-1$.
@@ -617,7 +632,7 @@ The following runs were made during the work and are recorded in the notes \code
 
 \paragraph{Structure.} The only maximisers found in any dimension are the equality set (columns on an axis). The inequality is non-degenerate to second order transversally to it, with the plane rotations as the worst direction. The extremal family, plane rotations, gives the same profile in every dimension. The Helmert frame has a closed form and a recursive geometric meaning that matches the two known cases.
 
-\paragraph{Numerics.} No counterexample in $d\le\maxdim$. Away from the axes $F_j$ is far below $1$, and the far-region profile does not depend on the dimension. In the remaining case, where a counterexample would have to live, $F_j\le\rcmax$ in every dimension tested. Conjecture~H and the facet lemma hold in every test up to $d=\frameslast$.
+\paragraph{Numerics.} No counterexample in $d\le\maxdim$. Away from the axes the far-region profile does not depend on the dimension, and its values are attained by blocks of size at most~$6$. In the remaining case, where a counterexample would have to live, the largest values found are below~$1$ in every dimension tested, but approach it like $1-1.1/d$ at the boundary $\norm x_1=2$, where \cref{thm:remaining} applies. Conjecture~H and the facet lemma hold in every test up to $d=\frameslast$.
 
 \paragraph{What failed.} Every refuted statement is a strengthening or a proof method: the pivot inequality, the exact pivot inequality, the positive-part strengthening, convex relaxations, local arguments. The counterexamples inside the remaining case have $F_j$ far below~$1$; the others lie next to the equality set, where the near step applies.
 
@@ -651,7 +666,7 @@ File & Lines & Content \\
 \begin{enumerate}
 \item \textbf{The facet lemma for $d\ge4$} (\cref{def:facet}). By \cref{thm:mainB} it is the only missing piece for $d\ge6$. It needs a global argument (\cref{sec:local}). Croft's proof for the regular tetrahedron is the first thing to study; extending it to the orthocentric tetrahedra $\Delta(v)$, $v\in\R^4$, would give the facet lemma in $d=4$.
 \item \textbf{Conjecture~H}, and the frame-step inequality (\cref{conj:star}).
-\item \textbf{A direct bound in the remaining case.} Numerically $F_j\le\rcmax$ on $\mathrm{RC}(d)$. Any bound below $1$ there, with restricted Lemma~F in dimension $d-1$, proves dimension~$d$ (\cref{thm:succ}).
+\item \textbf{A direct bound in the remaining case.} Any proof of $F_j\le1$ on $\mathrm{RC}(d)$ (or on $\mathrm{RC4}(d)$), with restricted Lemma~F in dimension $d-1$, proves dimension~$d$ (\cref{thm:succ,thm:succ4}). Numerically the room below $1$ shrinks like $1.1/d$ at the boundary $\norm x_1=2$ (\cref{sec:rc}), so such a bound has to improve on $F_j\le\norm x_1-1$ by a term that uses $\norm x_1-2$ or the rows.
 \item \textbf{The largest cube in a regular simplex} (\cref{conj:regular}), open for $n\ge4$.
 \item \textbf{Dimension 6 in Lean.} Hosono's proof uses $2.8$ million certificates. A Lean proof through \cref{thm:succ4} needs only the remaining case in dimension~$6$.
 \item \textbf{Two cubes in a tetrahedron.} Is the catalogue's record $1/\sigma_3+1$ optimal?
