@@ -173,3 +173,69 @@ Lemma F, unrestricted, in every dimension. Local optimisation never went below t
 2. **A direct bound for spread configurations.** Show `F_j(R) ≤ 1` directly when the smallest row of column `j` is spread.
    The numerics give `F ≲ 0.5` there (`regionW.py`, `rcB.py`), and the induction is only needed elsewhere.
 3. Block pivots (`Q = M − A (I + C)⁻¹ B` is orthogonal for any block size) for clusters of near-minimal rows.
+
+## 7. The frame formulation and the cube-in-simplex picture (10 Nov 2026)
+
+Decision: no separate d = 6 effort. Work goes into the statement for every dimension. A counterexample search
+(`cexsearch.py`, d = 7, 9, 12, 16) found no restricted matrix with `F > 1`; the value 1 is reached only at
+axis-aligned columns.
+
+### 7.1 Frame formulation (unrestricted Lemma F)
+
+Normalise column `j` to `v ≥ 0`. The other columns form a `d × (d−1)` matrix `C` whose columns are an orthonormal
+basis of `v^⊥`. Its rows `r_i` have Gram matrix `I − vvᵀ`. Put `Value(C) = Σ_i v_i ‖r_i‖₁`. Then
+
+`Lemma F  ⟺  Value(C) ≥ 2(S − 1)`,  `S = ‖v‖₁`.
+
+### 7.2 Geometric meaning: the largest cube in an orthocentric simplex
+
+A unit `(d−1)`-cube with edge frame `C` fits strictly inside the simplex
+`Δ_λ(v) = {ξ > 0 : ⟨v, ξ⟩ = λ}` (vertices `(λ/v_i) e_i`) if and only if `λ > Value(C)/2`. So:
+
+**Lemma F in dimension `d` ⟺ the largest `(d−1)`-cube inside the simplex with vertices `t_i e_i` has side at most
+`1 / (Σ_i 1/t_i − 1/h)`, where `h = (Σ_i t_i⁻²)^(−1/2)` is the distance from the origin to the simplex.**
+
+Conjecture H says the bound with the Helmert value is attained, by a cube with a facet inside the facet of the
+simplex opposite its farthest vertex, and recursively so. For a triangle this is the classical fact that the largest
+square in a triangle has a side on a side of the triangle, and the formula gives the known value `0.4641·e` for the
+equilateral triangle.
+
+Equivalent forms, each checked against the algebra:
+* mixed volumes: `V(Δ[n−1], □) ≥ vol(Δ)` for every unit cube `□`, `n = d − 1` (for a simplex this is equivalent to
+  "no translate of `□` fits strictly inside");
+* chords: `Σ_k 1/L_k ≥ 1`, where `L_k` is the longest chord of `Δ_{S−1}(v)` in the direction of the `k`-th frame vector;
+* averaged over the columns `j`, Lemma F is the identity `Σ_j (1 − F_j) = Σ_i (w_i − 1)²`.
+
+### 7.3 The frame step (new inequality, numerically tight, not yet in Lean)
+
+Remove row `p` (`ν = v_p`, `a = √(1−ν²)`) by rotating `ℝ^{d−1}` in the plane of `r_p` and `e_q` so that `r_p` becomes
+`a e_q`, then delete row `p` and column `q`. This gives a frame `C''` for `v' = v_{≠p}/a`. If
+`‖r_p‖₁ ≤ a + 2|C_pq|`, then
+
+`Value(C) ≥ a · Value(C'') + 2 v_p |C_pq|`.   (∗)
+
+Derivation: write `r_i = s_i + β_i û` with `û = r_p/a`, `β_i = −ν v_i/a`. The per-row triangle inequality gives the
+lower bound `−κ s_iq − b_i(1 − c' + ρ')` for every sign of `s_iq`, and `Σ_i v_i s_iq = 0` removes the first term.
+`star.py`: 97,617 cases inside the domain, minimum of LHS − RHS = `6·10⁻¹⁰`; outside the domain it fails.
+
+With Lemma F for `v'`, (∗) closes the induction when `v_p (a − |C_pq|) ≤ (1 − a)(1 − v_p)`. Iterating (∗) gives
+`Value(C) ≥ 2 Σ_t v_{p_t} |pivot_t|`, and the Helmert value is exactly the case where every pivot equals its
+Gram–Schmidt residual.
+
+In an adversarial search (`rules.py`, d = 5, 6, 8) the rule "best row" always closed the induction, and
+"largest `v_p`" failed only once, slightly, next to an axis-aligned `v`. The rules "smallest `v_p`" and "most
+concentrated row" fail, in line with §3.
+
+### 7.4 Structure of minimisers (proved on paper)
+
+Rotating two frame vectors in their plane (a Givens rotation of two columns of `C`) changes each affected term to
+`A|cos(θ − φ)|`, which is concave between sign changes. So a minimiser of `Value` cannot sit strictly between
+kinks of any pair: **at a minimiser the zero patterns of the columns of `C` are pairwise distinct**. In `d = 3`
+this forces an axis-aligned row, and (∗) with `|C_pq| = a` then proves Lemma F in 3D in a few lines.
+
+### 7.5 What is still missing
+
+The **facet lemma**: a largest cube in `Δ(v)` can be taken with a facet parallel to a facet of the simplex
+(equivalently, some minimiser of `Value` has an axis-aligned row). With it, (∗) proves Conjecture H and Lemma F in
+every dimension by induction. The concavity argument of §7.4 gives it for `d = 3` only. For `d ≥ 4` it yields
+single zero entries, not a full row. The pairwise bound `⟨|r_i|, |r_l|⟩ ≥ v_i v_l` alone is too weak (`lp.py`).
