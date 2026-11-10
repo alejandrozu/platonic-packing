@@ -59,7 +59,7 @@ nearid = json.load(open(os.path.join(EV, 'nearid.json'))) if os.path.exists(os.p
 
 macros = {k: '?' for k in ('maxdim', 'farHosonoFour', 'profilegap', 'farlowmax', 'rcmax', 'rcdmax', 'frameslast',
                              'framestarts', 'framesgap', 'framesmingap', 'framesaligned', 'framescount', 'nearidmin',
-                             'evidencecommit')}
+                             'evidencecommit', 'frameslastn')}
 dims = sorted(glob_)
 macros['maxdim'] = str(max(dims)) if dims else '?'
 
@@ -137,6 +137,7 @@ for d in sorted(byd):
 lines += [r'\bottomrule', r'\end{tabular}']
 open(os.path.join(OUT, 'tab_frames.tex'), 'w').write('\n'.join(lines) + '\n')
 macros['frameslast'] = str(max(byd)) if byd else '?'
+macros['frameslastn'] = str(max(byd) - 1) if byd else '?'
 macros['framestarts'] = '/'.join(sorted({str(r['starts']) for r in frames}, key=int, reverse=True)) if frames else '?'
 macros['framesgap'] = f'{max(abs(x) for x in allgap):.0e}' if allgap else '?'
 macros['framesmingap'] = f'{min(allgap):.1e}' if allgap else '?'
