@@ -260,3 +260,32 @@ Consequences:
 A candidate global mechanism (`flag.py`): with `v` sorted decreasingly and `β_k(c) = Σ_{i≥k} (sgn(c_k) v_i c_i)⁺`,
 numerically `Σ_j max_{k≥2} β_k(c_j) ≥ H(v)/2` for every frame, with equality at the Helmert frame (d = 3–7, weak
 optimiser). This is slightly stronger than Conjecture H and is not proved.
+
+## 8. Literature check (10 Nov 2026)
+
+**The problem itself.** `s_n(2) = 2` for `n ≥ 3` is posed as open in Hosono's issue #21
+(<https://github.com/wand125/square-packing/issues/21>). His README says no proof exists in the literature for any
+`n ≥ 3`, and Friedman's survey and *Cubes in Cubes* page give no lower bound for two cubes. Hosono proved
+`n ≤ 6` with computer assistance; this repository has `n ≤ 5` in Lean.
+
+**Our formulations.** No prior statement was found of Lemma F in every dimension (restricted or unrestricted),
+of Conjecture H (§4), of the cube-in-simplex form (§7.2), or of the facet lemma (§7.5).
+
+**Classical special cases of the cube-in-simplex form.** The simplices with vertices `t_i e_i` are the orthocentric
+simplices with interior orthocentre; in the plane these are the acute triangles.
+
+* `d = 3`: the largest square in a triangle. The equilateral value `(2√3 − 3)·e` is the Helmert value. Conway and
+  Guy, *The Book of Numbers* (1996), p. 206, treat the placements of the largest square, for the equilateral and
+  Calabi triangles.
+* `d = 4`, uniform `v`: **H. T. Croft, "On maximal regular polyhedra inscribed in a regular polyhedron",
+  Proc. London Math. Soc. (3) 41 (1980) 279–296.** It solves the largest cube in a regular tetrahedron: side
+  `1/(1 + (2/3)√3 + (1/2)√6) = 0.29590654` for edge 1. Firsching (arXiv:1407.0683, Exp. Math.,
+  doi:10.1080/10586458.2014.956374) lists it among the 14 cases Croft proved and confirms it numerically. This
+  equals the Helmert prediction exactly: for `v = (½, ½, ½, ½)`, `H = √½ + √⅔ + √¾`. The cube fits iff
+  `λ > H/2`, and the edge is `e = 2√2 λ`, so `side/e = 1/(√2 H) = 1/(1 + √6/2 + 2/√3)`.
+  **So Conjecture H is a theorem for the regular tetrahedron (Croft).** The face-on-face cube attains the
+  optimum, so the facet lemma holds there too. Croft's paper itself was not read (paywalled). Its method is the
+  natural template for the 4D facet lemma.
+
+**Not found.** The largest `n`-cube in a regular `n`-simplex for `n ≥ 4`; `ℓ¹`-minimal orthonormal bases of the
+sum-zero hyperplane (Conjecture H for uniform `v`).
