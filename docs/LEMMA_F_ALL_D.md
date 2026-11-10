@@ -307,3 +307,25 @@ sum-zero hyperplane (Conjecture H for uniform `v`).
 
 Conjecture H implies the facet lemma (the Helmert frame has an aligned row, at the smallest entry of `v`). So the
 chain is Conjecture H ⇒ facet lemma ⇒ (Lean) Lemma F ⇒ (Lean) `s_d(2) = 2`.
+
+## 10. Restricted aligned step; the evidence campaign (10 Nov 2026)
+
+**Lean** (`FacetStep.lean`, commit 5832d6c232, CI passed; all 157 audited declarations use standard axioms only):
+at an aligned row the polar factor never lengthens a row, `‖Q_i‖₁ = w_i − (|ν| + c − 1)|Q_ij| ≤ w_i`, so restricted
+Lemma F one dimension down suffices (`aligned_step_r`, `aligned_at_r`). With `FacetLemmaR`, `lemmaFr_of_facetR` and
+`cube_plateau_of_facetR`, the restricted facet lemma in dimensions ≥ 6 also gives `s_d(n) = 2` in every dimension.
+`lemmaF_le_four`, `lemmaF_all_of_facet`: Lemma F for `d ≤ 4`, and in every dimension from the facet lemma.
+
+**On paper:** Conjecture H in dimension `d` gives Lemma F in dimension `d` directly (`Val ≥ H ≥ 2(S − 1)`).
+Conjecture H holds for `d = 3` (facet lemma in 3D + the inscribed square on the shortest side is the largest).
+
+**Numerics** (`evidence/`, commit 5c9e0344b8; Paper IV §6):
+* global search, restricted and unrestricted, `d = 3–32`: the largest `F` is 1, only at axis-aligned columns;
+* far region: the profile `Φ_d(τ)` does not depend on `d` (spread `5.5·10⁻⁴`); for `τ ≥ 1/2` it is the plane rotation,
+  below `1/2` its values are attained by blocks of size 3, 4 (and in dimension ≤ 6); Hosono's d = 4 value 0.845 reproduced;
+* remaining case RC(d): the largest `F` found grows, `1 − F ≈ 1.1/d` (0.730 at d = 5, 0.954 at d = 24), always at the
+  boundary `S = 2`, with one entry near 1 and `d − 1` entries of order `1/d`; so `F ≤ S − 1` is asymptotically sharp
+  on RC and a direct bound there must use `S − 2` or the rows. RC4(d): 0.678 (d = 5) to 0.942 (d = 24). With `S ≥ 2.1`,
+  2.25, 2.5, 3 the values drop (d = 16: 0.883, 0.815, 0.689, 0.382);
+* Conjecture H, `d = 3–12`, 11 vectors each: no frame below the Helmert value (smallest difference `2.6·10⁻¹⁷`);
+  the best frame has an aligned row in 98 of 110 cases (all for `d ≤ 7`).
