@@ -239,3 +239,24 @@ The **facet lemma**: a largest cube in `Δ(v)` can be taken with a facet paralle
 (equivalently, some minimiser of `Value` has an axis-aligned row). With it, (∗) proves Conjecture H and Lemma F in
 every dimension by induction. The concavity argument of §7.4 gives it for `d = 3` only. For `d ≥ 4` it yields
 single zero entries, not a full row. The pairwise bound `⟨|r_i|, |r_l|⟩ ≥ v_i v_l` alone is too weak (`lp.py`).
+
+### 7.6 The facet lemma in d = 4: true numerically, but not a local statement
+
+`locmin.py` (12 random `v`, 40 local descents each, d = 4):
+
+* in every instance the global minimum of `Value` equals the Helmert value to 6 digits, and (except one numerical
+  tie next to an axis-aligned `v`) the minimiser has an axis-aligned row. So the facet lemma holds numerically in 4D;
+* each `v` has between 3 and 15 distinct local minima, and **most instances have local minima with no aligned row**
+  (3 or 4 zero entries spread over different rows). Their excess over the Helmert value is sometimes tiny:
+  `7·10⁻⁴`, `4·10⁻³`.
+
+Consequences:
+1. No local argument (first- or second-order conditions, the concavity of §7.4) can prove the facet lemma. A proof
+   has to compare non-aligned vertex configurations with the Helmert configuration globally.
+2. A proof of the facet lemma in d = 4 does not lift by itself. The induction step (∗) needs an aligned row at the
+   global minimiser **in each dimension**, and the induction hypothesis (Lemma F one dimension down) says nothing
+   about where the minimiser in the next dimension sits.
+
+A candidate global mechanism (`flag.py`): with `v` sorted decreasingly and `β_k(c) = Σ_{i≥k} (sgn(c_k) v_i c_i)⁺`,
+numerically `Σ_j max_{k≥2} β_k(c_j) ≥ H(v)/2` for every frame, with equality at the Helmert frame (d = 3–7, weak
+optimiser). This is slightly stronger than Conjecture H and is not proved.
