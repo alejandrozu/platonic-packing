@@ -4,11 +4,20 @@ Scans lean-optimality/PackingOptimality/*.lean at a pinned commit and defines, f
 `theorem|lemma|def|structure|abbrev NAME` in File.lean, a link target  \\leanurl{File}{NAME}  to
 https://github.com/alejandrozu/platonic-packing/blob/<commit>/lean-optimality/PackingOptimality/File.lean#L<line>.
 Then checks that every \\lean{File}{NAME} used in docs/papers/*/*.tex exists.
-Usage: python3 scripts/papers/leanlinks.py [commit]
+Usage: python3 scripts/papers/leanlinks.py [commit] [--out docs/papers/leanlinks.tex] [--papers 'I-*,II-*,III-*']
+A paper that pins a different commit (Paper IV) gets its own output file, and the check covers only the papers given.
 """
 import re, os, sys, subprocess, glob
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-commit = sys.argv[1] if len(sys.argv) > 1 else subprocess.check_output(['git', '-C', ROOT, 'rev-parse', 'HEAD'], text=True).strip()
+args = sys.argv[1:]
+opts = {}
+while '--out' in args or '--papers' in args:
+    for key in ('--out', '--papers'):
+        if key in args:
+            k = args.index(key); opts[key] = args[k + 1]; del args[k:k + 2]
+commit = args[0] if args else subprocess.check_output(['git', '-C', ROOT, 'rev-parse', 'HEAD'], text=True).strip()
+outfile = opts.get('--out', os.path.join('docs', 'papers', 'leanlinks.tex'))
+paper_globs = opts.get('--papers', 'I-*,II-*,III-*').split(',')
 files = subprocess.check_output(['git', '-C', ROOT, 'ls-tree', '--name-only', commit, 'lean-optimality/PackingOptimality/'], text=True).split()
 decl = re.compile(r'^\s*(?:@\[[^\]]*\]\s*)?(?:private\s+|protected\s+)?(?:noncomputable\s+)?(theorem|lemma|def|structure|abbrev|instance)\s+([^\s(:{\[]+)')
 table = {}
@@ -28,10 +37,10 @@ for (stem, name), line in sorted(table.items()):
     out.append(f'\\expandafter\\def\\csname leanurl@{stem}@{name}\\endcsname{{{base}{stem}.lean\\#L{line}}}')
 for stem in sorted({s for s, _ in table}):
     out.append(f'\\expandafter\\def\\csname leanfile@{stem}\\endcsname{{{base}{stem}.lean}}')
-open(os.path.join(ROOT, 'docs', 'papers', 'leanlinks.tex'), 'w').write('\n'.join(out) + '\n')
+open(os.path.join(ROOT, outfile), 'w').write('\n'.join(out) + '\n')
 # usage check
 bad = []
-for tex in glob.glob(os.path.join(ROOT, 'docs', 'papers', '*', '*.tex')):
+for tex in [t for g in paper_globs for t in glob.glob(os.path.join(ROOT, 'docs', 'papers', g, '*.tex'))]:
     s = open(tex).read()
     for stem, name in re.findall(r'\\lean\{([^}]*)\}\{([^}]*)\}', s):
         if (stem, name.replace('\\_', '_')) not in table: bad.append((os.path.basename(tex), stem, name))
