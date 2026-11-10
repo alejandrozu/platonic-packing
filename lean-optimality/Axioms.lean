@@ -49,6 +49,14 @@ import PackingOptimality
 #print axioms PackingOptimality.Restricted.pivot_caseA
 #print axioms PackingOptimality.Restricted.pivot_at
 #print axioms PackingOptimality.Restricted.lemmaFr_succ4
+#print axioms PackingOptimality.Restricted.aligned_step
+#print axioms PackingOptimality.Restricted.aligned_at
+#print axioms PackingOptimality.Restricted.Fcol_eq_colValue
+#print axioms PackingOptimality.Restricted.facetLemma_two
+#print axioms PackingOptimality.Restricted.lemmaF_succ_of_facet
+#print axioms PackingOptimality.Restricted.lemmaF_of_facet
+#print axioms PackingOptimality.Restricted.centre_of_facet
+#print axioms PackingOptimality.Restricted.cube_plateau_of_facet
 #print axioms PackingOptimality.hc5inhc5_plateau
 #print axioms PackingOptimality.CentreGeneral.centre_of_lemmaF
 #print axioms PackingOptimality.centre4

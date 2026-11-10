@@ -289,3 +289,21 @@ simplices with interior orthocentre; in the plane these are the acute triangles.
 
 **Not found.** The largest `n`-cube in a regular `n`-simplex for `n ≥ 4`; `ℓ¹`-minimal orthonormal bases of the
 sum-zero hyperplane (Conjecture H for uniform `v`).
+
+## 9. Every dimension reduced to the facet lemma, in Lean (10 Nov 2026)
+
+`FacetStep.lean` (standard axioms only):
+
+* `aligned_step`, `aligned_at`: if row `p` of an orthogonal `R` has no nonzero entry outside columns `j` and
+  `q ≠ j`, then Lemma F in dimension `d − 1` gives `F_j(R) ≤ 1 − 2(1 − |R_pj|)(1 − |R_pq|)`. The pivot turns the
+  minor into its polar factor `Q` with `M·j = c Q·j` and `x = −ν Q·j` exactly, so the step loses nothing.
+* `colValue`, `Fcol_eq_colValue`: `F_j(R) = 2‖column j‖₁ − 1 − V_j(R)` with `V_j(R) = Σᵢ |R_ij|(‖row i‖₁ − |R_ij|)`.
+* `FacetLemma d`: every orthogonal `R` and column `j` admit an orthogonal `R'` with the same `|column j|`,
+  `V_j(R') ≤ V_j(R)` and an aligned row. `facetLemma_two`: trivial for `d = 2`.
+* `lemmaF_succ_of_facet`, `lemmaF_of_facet`: Lemma F in dimension 5 and the facet lemma in dimensions `6, …, d`
+  give Lemma F in dimension `d`.
+* `centre_of_facet`, `cube_plateau_of_facet`: **the facet lemma in every dimension `≥ 6` gives the cube centre lemma
+  and `s_d(n) = 2` for all `2 ≤ n ≤ 2^d`, in every dimension.**
+
+Conjecture H implies the facet lemma (the Helmert frame has an aligned row, at the smallest entry of `v`). So the
+chain is Conjecture H ⇒ facet lemma ⇒ (Lean) Lemma F ⇒ (Lean) `s_d(2) = 2`.
