@@ -44,6 +44,11 @@ def best_by(rows, key):
     return out
 
 
+def sci(x, n=1):
+    m, e = f'{x:.{n}e}'.split('e')
+    return f'{m}\\cdot10^{{{int(e)}}}'
+
+
 def fmt(x, n=6):
     return f'{x:.{n}f}'
 
@@ -104,7 +109,7 @@ lines += [r'\bottomrule', r'\end{tabular}']
 open(os.path.join(OUT, 'tab_far.tex'), 'w').write('\n'.join(lines) + '\n')
 if (4, round(2 / 3, 9)) in far:
     macros['farHosonoFour'] = fmt(far[(4, round(2 / 3, 9))]['maxF'])
-macros['profilegap'] = f'{max(abs(g) for g in gaps):.1e}'.replace('e-0', r'\cdot10^{-').replace('e-', r'\cdot10^{-') + '}' if gaps else '?'
+macros['profilegap'] = sci(max(abs(g) for g in gaps)) if gaps else '?'
 macros['profilegapmax'] = f'{max(gaps):.2e}' if gaps else '?'
 macros['farlowmax'] = fmt(lowmax, 4)
 def tauval(t):
@@ -114,17 +119,20 @@ for key, t in (('farlow', 0.4), ('farlowthree', 0.3), ('farlowtwo', 0.2)):
     v = tauval(t)
     if v: macros[key] = fmt(v[1], 4)
 spread = max((tauval(t)[1] - tauval(t)[0]) for t in (0.9, 0.75, 0.6, 0.5, 0.4, 0.3, 0.2) if tauval(t)) if far else 0
-macros['farspread'] = f'{spread:.0e}'
+macros['farspread'] = sci(spread)
 
 # ---------------------------------------------------------------- remaining case
 sig = sorted({t for _, t in rcS})
-lines = [r'\begin{tabular}{r r l l l' + ' l' * len(sig) + '}', r'\toprule',
-         r'$d$ & starts & largest $F_j$ in $\mathrm{RC}(d)$ & $\norm x_1$ & $\min_i(w_i-x_i)$' +
-         ''.join(f' & $\\norm x_1\\ge{t:g}$' for t in sig) + r' \\', r'\midrule']
+rc4t = best_by(load('rc4.jsonl'), lambda r: r['d'])
+lines = [r'\begin{tabular}{r l l l l' + ' l' * len(sig) + '}', r'\toprule',
+         r'& \multicolumn{3}{c}{$\mathrm{RC}(d)$} & $\mathrm{RC4}(d)$ & \multicolumn{' + str(len(sig)) + r'}{c}{$\mathrm{RC}(d)$, $\norm x_1\ge\sigma$} \\',
+         r'\cmidrule(lr){2-4}\cmidrule(lr){5-5}\cmidrule(lr){6-' + str(5 + len(sig)) + '}',
+         r'$d$ & $\max F_j$ & $\norm x_1-2$ & $\min_i(w_i-x_i)-1$ & $\max F_j$' + ''.join(f' & $\sigma={t:g}$' for t in sig) + r' \\', r'\midrule']
 for d in sorted(rc):
     r = rc[d]
+    r4 = fmt(rc4t[d]['maxF'], 4) if d in rc4t else '--'
     extra = ''.join(f" & {fmt(rcS[(d, t)]['maxF'], 4) if (d, t) in rcS else '--'}" for t in sig)
-    lines.append(f"{d} & {r['starts_total']} & {fmt(r['maxF'])} & {r['argmax_S']:.5f} & {r['argmax_minrest']:.4f}{extra} \\\\")
+    lines.append(f"{d} & {fmt(r['maxF'], 4)} & ${sci(r['argmax_S'] - 2)}$ & ${sci(r['argmax_minrest'] - 1)}$ & {r4}{extra} \\\\")
 lines += [r'\bottomrule', r'\end{tabular}']
 open(os.path.join(OUT, 'tab_rc.tex'), 'w').write('\n'.join(lines) + '\n')
 macros['rcmax'] = fmt(max(r['maxF'] for r in rc.values()), 4) if rc else '?'
@@ -154,14 +162,14 @@ for d in sorted(byd):
     g = [r['gap'] for r in rs]; allgap += g
     room = min(r['helmert'] - r['lemmaF_bound'] for r in rs)
     al = sum(1 for r in rs if r['aligned_rows_at_min'] >= 1); aligned += al; count += len(rs)
-    lines.append(f"{d} & {len(rs)} & {rs[0]['starts']} & {min(g):.1e} & {max(g):.1e} & {room:.4f} & {al}/{len(rs)} \\\\")
+    lines.append(f"{d} & {len(rs)} & {rs[0]['starts']} & ${sci(min(g))}$ & ${sci(max(g))}$ & ${sci(room)}$ & {al}/{len(rs)} \\\\")
 lines += [r'\bottomrule', r'\end{tabular}']
 open(os.path.join(OUT, 'tab_frames.tex'), 'w').write('\n'.join(lines) + '\n')
 macros['frameslast'] = str(max(byd)) if byd else '?'
 macros['frameslastn'] = str(max(byd) - 1) if byd else '?'
 macros['framestarts'] = '/'.join(sorted({str(r['starts']) for r in frames}, key=int, reverse=True)) if frames else '?'
-macros['framesgap'] = f'{max(abs(x) for x in allgap):.0e}' if allgap else '?'
-macros['framesmingap'] = f'{min(allgap):.1e}' if allgap else '?'
+macros['framesgap'] = sci(max(allgap)) if allgap else '?'
+macros['framesmingap'] = sci(min(allgap)) if allgap else '?'
 macros['framesaligned'] = str(aligned)
 macros['framescount'] = str(count)
 
@@ -195,10 +203,11 @@ def fig_profile():
     ax.text(0.985, plane(0.985) - 0.035, 'plane rotation', color=GREY, ha='right', fontsize=8)
     show = [d for d in (4, 6, 8, 12, 16) if any(dd == d for dd, _ in far)]
     cols = [BLUE, ORANGE, GREEN, PURPLE, RED]
-    for d, col in zip(show, cols):
+    # the curves coincide; nested hollow markers (largest for the smallest d) keep every dimension visible
+    for k, (d, col) in enumerate(zip(show, cols)):
         ts = sorted(t for dd, t in far if dd == d)
-        ax.plot(ts, [far[(d, t)]['maxF'] for t in ts], color=col, lw=2, marker='o', ms=4.5,
-                mec='white', mew=1.0, label=f'$d={d}$', zorder=3)
+        ax.plot(ts, [far[(d, t)]['maxF'] for t in ts], color=col, lw=1.0, marker='o', ms=10 - 1.6 * k,
+                mfc='none', mec=col, mew=1.3, label=f'$d={d}$', zorder=3 + k)
     ax.axhline(1, color='black', lw=0.6, alpha=0.5)
     ax.set_xlabel(r'$\tau$ (bound on every squared entry of column $j$)')
     ax.set_ylabel(r'largest $F_j$ found')
