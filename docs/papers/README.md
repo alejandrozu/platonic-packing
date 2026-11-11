@@ -1,7 +1,8 @@
 # Papers for the Polyhedra-in-Polyhedra journal
 
-Four papers on the catalogue. Paper III is published. **Papers I, II and IV are drafts for the author's review; not
-yet published.**
+Four papers on the catalogue, all published in the Journal section of polyhedrainpolyhedra.wiki (Paper III as the
+8 November author copy; Papers I, II and IV as the author versions of 10 November 2026, commit `4842e61986`). Until
+the Q4 2026 issue is published, they may still receive small revisions.
 
 | Paper | Title | Records | PDF |
 |---|---|---|---|
