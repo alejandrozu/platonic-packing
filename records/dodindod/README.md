@@ -69,14 +69,14 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 64 | [4.84672+](dodindod_n64.json) | 4.846724677213 |  | 4.00000 | 0.5621 | ![](dodindod_n64.png) |
 | 65 | [4.85833+](dodindod_n65.json) | 4.858338588830 |  | 4.02073 | 0.5668 | ![](dodindod_n65.png) |
 | 66 | [4.90375+](dodindod_n66.json) | 4.903750554058 |  | 4.04124 | 0.5597 | ![](dodindod_n66.png) |
-| 67 | [5.00000+](dodindod_n67.json) | 5.000001200000 |  | 4.06155 | 0.5360 | ![](dodindod_n67.png) |
-| 68 | [5.00000+](dodindod_n68.json) | 5.000001200000 |  | 4.08166 | 0.5440 | ![](dodindod_n68.png) |
-| 69 | [5.00000+](dodindod_n69.json) | 5.000001200000 |  | 4.10157 | 0.5520 | ![](dodindod_n69.png) |
-| 70 | [5.00000+](dodindod_n70.json) | 5.000001200000 |  | 4.12129 | 0.5600 | ![](dodindod_n70.png) |
-| 71 | [5.00000+](dodindod_n71.json) | 5.000001200000 |  | 4.14082 | 0.5680 | ![](dodindod_n71.png) |
-| 72 | [5.00000+](dodindod_n72.json) | 5.000001200000 |  | 4.16017 | 0.5760 | ![](dodindod_n72.png) |
-| 73 | [5.00000+](dodindod_n73.json) | 5.000001200000 |  | 4.17934 | 0.5840 | ![](dodindod_n73.png) |
-| 74 | [5.00000+](dodindod_n74.json) | 5.000001200000 |  | 4.19834 | 0.5920 | ![](dodindod_n74.png) |
+| 67 | [5.00000+](dodindod_n67.json) | 5.000001200000 | 5 | 4.06155 | 0.5360 | ![](dodindod_n67.png) |
+| 68 | [5.00000+](dodindod_n68.json) | 5.000001200000 | 5 | 4.08166 | 0.5440 | ![](dodindod_n68.png) |
+| 69 | [5.00000+](dodindod_n69.json) | 5.000001200000 | 5 | 4.10157 | 0.5520 | ![](dodindod_n69.png) |
+| 70 | [5.00000+](dodindod_n70.json) | 5.000001200000 | 5 | 4.12129 | 0.5600 | ![](dodindod_n70.png) |
+| 71 | [5.00000+](dodindod_n71.json) | 5.000001200000 | 5 | 4.14082 | 0.5680 | ![](dodindod_n71.png) |
+| 72 | [5.00000+](dodindod_n72.json) | 5.000001200000 | 5 | 4.16017 | 0.5760 | ![](dodindod_n72.png) |
+| 73 | [5.00000+](dodindod_n73.json) | 5.000001200000 | 5 | 4.17934 | 0.5840 | ![](dodindod_n73.png) |
+| 74 | [5.00000+](dodindod_n74.json) | 5.000001200000 | 5 | 4.19834 | 0.5920 | ![](dodindod_n74.png) |
 | 75 | [5.00000+](dodindod_n75.json) | 5.000001200000 |  | 4.21716 | 0.6000 | ![](dodindod_n75.png) |
 | 76 | [5.02285+](dodindod_n76.json) | 5.022856765341 |  | 4.23582 | 0.5997 | ![](dodindod_n76.png) |
 | 77 | [5.17082+](dodindod_n77.json) | 5.170821644496 |  | 4.25432 | 0.5569 | ![](dodindod_n77.png) |
@@ -89,12 +89,12 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 84 | [5.20720+](dodindod_n84.json) | 5.207208869973 |  | 4.37952 | 0.5949 | ![](dodindod_n84.png) |
 | 85 | [5.21881+](dodindod_n85.json) | 5.218813897006 |  | 4.39683 | 0.5980 | ![](dodindod_n85.png) |
 | 86 | [5.22005+](dodindod_n86.json) | 5.220058364490 |  | 4.41400 | 0.6046 | ![](dodindod_n86.png) |
-| 87 | [5.38141+](dodindod_n87.json) | 5.381418697852 |  | 4.43105 | 0.5583 | ![](dodindod_n87.png) |
+| 87 | [5.38079+](dodindod_n87.json) | 5.380796518754 |  | 4.43105 | 0.5584 | ![](dodindod_n87.png) |
 | 88 | [5.38141+](dodindod_n88.json) | 5.381418700727 |  | 4.44796 | 0.5647 | ![](dodindod_n88.png) |
 | 89 | [5.40149+](dodindod_n89.json) | 5.401492944538 |  | 4.46475 | 0.5647 | ![](dodindod_n89.png) |
-| 90 | [5.47213+](dodindod_n90.json) | 5.472137296640 |  | 4.48140 | 0.5493 | ![](dodindod_n90.png) |
-| 91 | [5.47213+](dodindod_n91.json) | 5.472137296640 |  | 4.49794 | 0.5554 | ![](dodindod_n91.png) |
-| 92 | [5.47213+](dodindod_n92.json) | 5.472137296688 |  | 4.51436 | 0.5615 | ![](dodindod_n92.png) |
+| 90 | [5.47213+](dodindod_n90.json) | 5.472137296640 | 1 + 2√5 | 4.48140 | 0.5493 | ![](dodindod_n90.png) |
+| 91 | [5.47213+](dodindod_n91.json) | 5.472137296640 | 1 + 2√5 | 4.49794 | 0.5554 | ![](dodindod_n91.png) |
+| 92 | [5.47213+](dodindod_n92.json) | 5.472137296688 | 1 + 2√5 | 4.51436 | 0.5615 | ![](dodindod_n92.png) |
 | 93 | [5.47958+](dodindod_n93.json) | 5.479584083210 |  | 4.53065 | 0.5652 | ![](dodindod_n93.png) |
 | 94 | [5.54882+](dodindod_n94.json) | 5.548822153449 |  | 4.54684 | 0.5502 | ![](dodindod_n94.png) |
 | 95 | [5.56796+](dodindod_n95.json) | 5.567960510513 |  | 4.56290 | 0.5503 | ![](dodindod_n95.png) |

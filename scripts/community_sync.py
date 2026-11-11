@@ -115,6 +115,12 @@ def archive_pass():
             seed = fb.split(' (')[0].strip()
             m = re.search(r'\s*\(search started from the (?:published )?packing of (.+)\)\s*$', fb)
             own = fb[:m.start()].strip() if m else fb.strip()
+            if own.count('(') != own.count(')'):
+                # 11 Nov: a submitted found_by copied from the catalogue can arrive cut short ("...issues/100; refin",
+                # issues #104, #105, #108): complete it from the current record's credit, else keep only the name
+                try: cur_fb = json.load(open(os.path.join(ROOT, 'records', p, f'{p}_n{n:02d}.json'))).get('found_by') or ''
+                except Exception: cur_fb = ''
+                own = cur_fb if cur_fb.startswith(own) and cur_fb.count('(') == cur_fb.count(')') else (con.get('credit') or own.split(' (')[0])
             if kind == 'community' and con.get('credit') and con['credit'] in own:
                 src['lineage'] = own                            # the submitted credit names the contributor, e.g.
                                                                 # "PolyPack (Michael Sinko using Opus 5.5)" (#101, #102)

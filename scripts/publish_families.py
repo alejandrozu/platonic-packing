@@ -45,7 +45,8 @@ def credit_of(bs, default='Alejandro Zarzuelo'):
         return (f"{default} (arrows procedure of PingYou Ltd: kicks with fixed-orientation LP and free tightening, "
                 f"scripts/patterns/" + (f"; PingYou Ltd reports a stronger bound, {bs['stronger']}" if bs.get('stronger') else '') + ")")
     if bs.get('move') == 'monotone' and lin:
-        return f"{lin} (their packing for n + 1 minus one piece)"
+        sfx = ' (their packing for n + 1 minus one piece)'
+        return lin if lin.endswith(sfx) else f"{lin}{sfx}"      # 11 Nov: a lineage copied from a record has it already
     if lin:
         return f"{default} (search started from the packing of {lin})"
     return default
