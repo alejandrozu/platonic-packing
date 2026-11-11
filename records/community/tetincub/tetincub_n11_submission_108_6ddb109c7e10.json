@@ -1,0 +1,149 @@
+{
+ "problem": "min/tetrahedron_in_cube",
+ "piece": "tetrahedron",
+ "container": "cube",
+ "n": 11,
+ "s_full": 1.3989664116364,
+ "pieces": [
+  [
+   0.39003879817209736,
+   0.29771835228906296,
+   0.35621992684945586,
+   0.3188145466745512,
+   0.8369650876507273,
+   -0.2742153643006312,
+   0.3502180190452558
+  ],
+  [
+   -0.43857633089246123,
+   0.17394343981473898,
+   0.46088769823023085,
+   0.7069306738066726,
+   -0.48871701390254396,
+   -0.015780444583214544,
+   -0.511033932652403
+  ],
+  [
+   0.2334559975383478,
+   0.3459500443386954,
+   -0.3459497362677883,
+   0.00379055930478441,
+   -0.9999784472580225,
+   -0.003819185614473596,
+   -0.003761715145177855
+  ],
+  [
+   -0.1227276799592702,
+   -0.12151856932976643,
+   -0.49535886058622036,
+   0.4570127124314687,
+   -0.6921020787612361,
+   -0.556479871306401,
+   -0.04964117324579297
+  ],
+  [
+   -0.3301095427316558,
+   0.2027359603689038,
+   -0.359276056273437,
+   0.15134236625273217,
+   0.6354328835073454,
+   7.54493395577174e-05,
+   0.7571793268717533
+  ],
+  [
+   0.1853061856365724,
+   -0.41292070452856533,
+   0.492403161262842,
+   0.7048553469424587,
+   0.056382088349281816,
+   0.4585398385693731,
+   0.5382761525878454
+  ],
+  [
+   -0.07462636952599741,
+   0.49535886058622036,
+   0.060148061097774326,
+   0.2811145050019116,
+   -0.4112374594598365,
+   0.8424071282179082,
+   0.20544735905386188
+  ],
+  [
+   0.29053488073440503,
+   -0.010394054308802489,
+   0.0782391922809701,
+   0.0485081870181694,
+   -0.7146862180890657,
+   -0.05121695481926091,
+   -0.6958788608693331
+  ],
+  [
+   -0.2701672419056034,
+   -0.16084396954998587,
+   0.2965889867395156,
+   -0.11919552279050395,
+   -0.9856899488320902,
+   0.11792692465829831,
+   -0.017349137117629317
+  ],
+  [
+   -0.4700095522935617,
+   -0.43051842063720586,
+   -0.10440293791344736,
+   0.13235905425028413,
+   -0.8668596463596574,
+   0.3195430238739122,
+   0.359065022196115
+  ],
+  [
+   0.38158945223037677,
+   -0.4491018475678404,
+   -0.2398602656394505,
+   0.321453569790687,
+   -0.9012292462486382,
+   0.2508262339887313,
+   -0.14676392103635588
+  ]
+ ],
+ "s": 1.39896,
+ "s_plus": "1.39896+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 1.224745e-07,
+  "min_wall_gap": 2e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "randomised multi-start search from random initial placements; contact-preserving descent (rigidity analysis: https://doi.org/10.5281/zenodo.23630728); centres expanded by 3e-7 and the container sized for a 2e-7 wall gap",
+ "date": "2026-11-11",
+ "record_id": "tetincub_n11_submission_108_6ddb109c7e10",
+ "title": "11 tetrahedra in a cube",
+ "family": "platonic",
+ "source": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/108",
+  "submitted_by": "konoha-ily2"
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.090373979400975,
+ "density": 0.47348320050539733,
+ "found_by": "konoha-ily2 (Hirotaka Nakano)",
+ "credit": "konoha-ily2 (Hirotaka Nakano), computed with Claude (Anthropic)",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/108",
+  "submitted_by": "konoha-ily2",
+  "credit": "konoha-ily2 (Hirotaka Nakano)",
+  "kind": "construction",
+  "replayed_on": "2026-11-11",
+  "witness_sha256": "ec72811743d59715c15b84f1c753090d8481fafc9f7688ddcf4ed037b5de03f9",
+  "method": "Batch of 347 witnesses in 22 problems (`MANIFEST.json` + `records/<record_id>.json` + `SUMMARY.tsv`), each below the current `records/SUMMARY.csv` entry (main at e3d934be, checked 2026-11-07). Every record passes `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED) from that commit locally, run on the files extracted from the archive. The changes against the current records: median -0.12 %, largest -3.39 %; 32 records improve by \u2265 1 %, 188 by \u2265 0.1 %.\n\n**Relation to earlier submissions.** #104 and #105 were merged (the latter on 2026-11-06) and the public records rebuilt (main e3d934be, 2026-11-07); every record here is below the value in that archive and below the values in open submissions.\n\n**Against PolyPack.** I also compared with PolyPack's published records (https://github.com/sinkomr/PolyPack, `data/polyhedra/records.json`, fetched 2026-11-07) and kept only records that are below both the archive and PolyPack (237 of these records have a PolyPack value; `SUMMARY.tsv` lists both values, `polypack_s`, `change_vs_best`).\n\n**How the records were made.** `found_by`, `credit` and `method` identify where each record starts; `method` or `refinement` gives the steps.\n\n- *Refinements of catalogue records* (116): a contact-preserving descent (sequential linear programming with the contacts as inequalities) started from the catalogue record named in `refinement` (for some, a randomised multi-start search from perturbed copies of that record comes first; `refinement` says so). `found_by`, `credit` and `method` are the catalogue record's own, copied verbatim; my part is in `refined_by` and `refinement_credit`. For 9 of them the start was the record for a different n and the first n pieces were kept (`derived_from`). Rigidity analysis and code: https://doi.org/10.5281/zenodo.23630728\n- *Lattice cuts* (9): all pieces in one orientation at the points of a lattice inside the container, orientation and position of the container optimised, then a descent as above.\n-",
+  "archive": "https://github.com/user-attachments/files/34519897/platonic_lattice_347.zip",
+  "archive_sha256": "4aab43cf2d8eea8669d33885a18da4c6f67040e1e6369c7c045ad5e0f28944e1"
+ },
+ "previous_record": {
+  "s_full": 1.4045660757376,
+  "found_by": "konoha-ily2 (Hirotaka Nakano) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/100; refin (community contribution, https://github.com/alejandrozu/platonic-packing/issues/104)",
+  "date": "2026-11-06"
+ },
+ "case_id": "tetincub_n11"
+}

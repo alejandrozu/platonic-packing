@@ -1,0 +1,149 @@
+{
+ "problem": "min/tetrahedron_in_octahedron",
+ "piece": "tetrahedron",
+ "container": "octahedron",
+ "n": 11,
+ "s_full": 1.8397488635833,
+ "pieces": [
+  [
+   -0.04039607274679802,
+   -0.6899675254777062,
+   0.011468756715197145,
+   0.31768251907794104,
+   -0.8722491100583307,
+   -0.36985574649895453,
+   -0.03828882155988472
+  ],
+  [
+   -0.4281105628398953,
+   -0.10825783328033367,
+   0.39680423818598637,
+   0.40407290497145393,
+   -0.4040729049714538,
+   -0.012400593508174249,
+   0.820546403451082
+  ],
+  [
+   -0.17484166777317425,
+   0.6269781824421568,
+   0.02145335179382546,
+   0.3426588638999049,
+   -0.8576052746861662,
+   0.34265886389990496,
+   -0.17228754688635603
+  ],
+  [
+   0.28696610247250154,
+   0.40420980946478285,
+   -0.03213916894420632,
+   0.15867844433194944,
+   0.45602431660817866,
+   0.38455863375111576,
+   -0.7867513146947461
+  ],
+  [
+   0.010519341982364741,
+   0.16729845378274089,
+   -0.6338214172792379,
+   0.6965080102656944,
+   -7.731557923859643e-18,
+   0.5073837756746482,
+   0.5073837756746482
+  ],
+  [
+   0.7062696767048293,
+   -0.093623156514158,
+   -0.11247801100766275,
+   0.826336096628475,
+   -0.031098334714736504,
+   -0.39761888095686926,
+   0.3976188809568692
+  ],
+  [
+   0.35256853771147434,
+   -0.26580818586603383,
+   0.28427883645385094,
+   0.37524499521757276,
+   0.42105967156243707,
+   0.438582491433371,
+   -0.6996751708871721
+  ],
+  [
+   0.11473760026419,
+   0.11472778728887464,
+   0.7104132291282294,
+   0.8121374476310536,
+   -0.4109270815055962,
+   -1.7437491984924e-05,
+   0.4142121431543804
+  ],
+  [
+   -0.6793456594493094,
+   -0.01716400769906954,
+   -0.12214240328374555,
+   0.8568575754374897,
+   0.16712832797195754,
+   0.34486462373276616,
+   0.34486462373276594
+  ],
+  [
+   -0.014057228541721246,
+   -0.2952971102532596,
+   -0.45463781746044846,
+   -0.06426814676969032,
+   -0.3282028230426206,
+   -0.8750704061715021,
+   0.34986325400145435
+  ],
+  [
+   -0.060648022054024205,
+   -0.2631471674858984,
+   -0.0011549701976276139,
+   0.4471414347075755,
+   0.5795816781586919,
+   0.01161944327368433,
+   0.6811861744401565
+  ]
+ ],
+ "s": 1.83974,
+ "s_plus": "1.83974+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 1.258003e-07,
+  "min_wall_gap": 2e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "randomised multi-start search from random initial placements; contact-preserving descent (rigidity analysis: https://doi.org/10.5281/zenodo.23630728); centres expanded by 3e-7 and the container sized for a 2e-7 wall gap",
+ "date": "2026-11-11",
+ "record_id": "tetinoct_n11_submission_108_7b84c06f25c7",
+ "title": "11 tetrahedra in an octahedron",
+ "family": "platonic",
+ "source": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/108",
+  "submitted_by": "konoha-ily2"
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.4010196653276936,
+ "density": 0.4416284710153473,
+ "found_by": "konoha-ily2 (Hirotaka Nakano)",
+ "credit": "konoha-ily2 (Hirotaka Nakano), computed with Claude (Anthropic)",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/108",
+  "submitted_by": "konoha-ily2",
+  "credit": "konoha-ily2 (Hirotaka Nakano)",
+  "kind": "construction",
+  "replayed_on": "2026-11-11",
+  "witness_sha256": "669cd669b1a95e5506e925530ac6a47f0832368c7ec4a185269e28590598f507",
+  "method": "Batch of 347 witnesses in 22 problems (`MANIFEST.json` + `records/<record_id>.json` + `SUMMARY.tsv`), each below the current `records/SUMMARY.csv` entry (main at e3d934be, checked 2026-11-07). Every record passes `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED) from that commit locally, run on the files extracted from the archive. The changes against the current records: median -0.12 %, largest -3.39 %; 32 records improve by \u2265 1 %, 188 by \u2265 0.1 %.\n\n**Relation to earlier submissions.** #104 and #105 were merged (the latter on 2026-11-06) and the public records rebuilt (main e3d934be, 2026-11-07); every record here is below the value in that archive and below the values in open submissions.\n\n**Against PolyPack.** I also compared with PolyPack's published records (https://github.com/sinkomr/PolyPack, `data/polyhedra/records.json`, fetched 2026-11-07) and kept only records that are below both the archive and PolyPack (237 of these records have a PolyPack value; `SUMMARY.tsv` lists both values, `polypack_s`, `change_vs_best`).\n\n**How the records were made.** `found_by`, `credit` and `method` identify where each record starts; `method` or `refinement` gives the steps.\n\n- *Refinements of catalogue records* (116): a contact-preserving descent (sequential linear programming with the contacts as inequalities) started from the catalogue record named in `refinement` (for some, a randomised multi-start search from perturbed copies of that record comes first; `refinement` says so). `found_by`, `credit` and `method` are the catalogue record's own, copied verbatim; my part is in `refined_by` and `refinement_credit`. For 9 of them the start was the record for a different n and the first n pieces were kept (`derived_from`). Rigidity analysis and code: https://doi.org/10.5281/zenodo.23630728\n- *Lattice cuts* (9): all pieces in one orientation at the points of a lattice inside the container, orientation and position of the container optimised, then a descent as above.\n-",
+  "archive": "https://github.com/user-attachments/files/34519897/platonic_lattice_347.zip",
+  "archive_sha256": "4aab43cf2d8eea8669d33885a18da4c6f67040e1e6369c7c045ad5e0f28944e1"
+ },
+ "previous_record": {
+  "s_full": 1.8716491027340172,
+  "found_by": "PolyPack (Michael Sinko using Opus 5.5) (search started from the packing of Berthold, Kamp, Mexi, Pokutta and P\u00f3lik)",
+  "date": "2026-10-28"
+ },
+ "case_id": "tetinoct_n11"
+}

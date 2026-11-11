@@ -1,0 +1,113 @@
+{
+ "problem": "min/tetrahedron_in_icosahedron",
+ "piece": "tetrahedron",
+ "container": "icosahedron",
+ "n": 7,
+ "s_full": 1.0219239662453,
+ "pieces": [
+  [
+   0.318415735377514,
+   0.29167402743262083,
+   -0.3334260248025719,
+   0.9780970113090708,
+   -0.10193664176979335,
+   -0.12343779862365542,
+   0.13303483530228613
+  ],
+  [
+   -0.29529775494273475,
+   -0.2036224394888915,
+   -0.09439636532042293,
+   -0.5810327300327681,
+   0.24139106805813149,
+   0.6795915273126393,
+   -0.37720905993533266
+  ],
+  [
+   0.3042863839040113,
+   0.3004064468822354,
+   0.33882295682645597,
+   0.7610783596409306,
+   -0.6300218074415858,
+   0.018514744195584406,
+   0.15326270544943316
+  ],
+  [
+   0.05475428093447415,
+   -0.4261283608304219,
+   -0.07983835455338456,
+   -0.039196425915770404,
+   -0.8950541783729233,
+   0.03878082892271869,
+   -0.44253554126269606
+  ],
+  [
+   0.5190874194153842,
+   0.16765210611753573,
+   0.008732419449617675,
+   0.8011554002290001,
+   -0.19788084914229132,
+   0.34815714193344255,
+   0.44472440763620463
+  ],
+  [
+   -0.02913964089855862,
+   0.5064750629439927,
+   0.20067168403787106,
+   0.1348805398295361,
+   0.3684356525903201,
+   0.2563400553502546,
+   0.8833754501335581
+  ],
+  [
+   -0.020407221448942837,
+   0.5010781309201077,
+   -0.21480103551137186,
+   -0.8196701444245841,
+   0.41292121770749024,
+   0.18529739980537935,
+   0.3511435545917231
+  ]
+ ],
+ "s": 1.02192,
+ "s_plus": "1.02192+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 1.224688e-07,
+  "min_wall_gap": 2.000001e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "randomised multi-start search from random initial placements; contact-preserving descent (rigidity analysis: https://doi.org/10.5281/zenodo.23630728); centres expanded by 3e-7 and the container sized for a 2e-7 wall gap",
+ "date": "2026-11-11",
+ "record_id": "tetinico_n07_submission_108_2cbddbb72f88",
+ "title": "7 tetrahedra in an icosahedron",
+ "family": "platonic",
+ "source": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/108",
+  "submitted_by": "konoha-ily2"
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 0.7231236837509035,
+ "density": 0.3543088531293349,
+ "found_by": "konoha-ily2 (Hirotaka Nakano)",
+ "credit": "konoha-ily2 (Hirotaka Nakano), computed with Claude (Anthropic)",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/108",
+  "submitted_by": "konoha-ily2",
+  "credit": "konoha-ily2 (Hirotaka Nakano)",
+  "kind": "construction",
+  "replayed_on": "2026-11-11",
+  "witness_sha256": "60053ac2902376cffcfdde152b32ac99bc1ac70a82291eb3a2256a3dde6b2498",
+  "method": "Batch of 347 witnesses in 22 problems (`MANIFEST.json` + `records/<record_id>.json` + `SUMMARY.tsv`), each below the current `records/SUMMARY.csv` entry (main at e3d934be, checked 2026-11-07). Every record passes `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED) from that commit locally, run on the files extracted from the archive. The changes against the current records: median -0.12 %, largest -3.39 %; 32 records improve by \u2265 1 %, 188 by \u2265 0.1 %.\n\n**Relation to earlier submissions.** #104 and #105 were merged (the latter on 2026-11-06) and the public records rebuilt (main e3d934be, 2026-11-07); every record here is below the value in that archive and below the values in open submissions.\n\n**Against PolyPack.** I also compared with PolyPack's published records (https://github.com/sinkomr/PolyPack, `data/polyhedra/records.json`, fetched 2026-11-07) and kept only records that are below both the archive and PolyPack (237 of these records have a PolyPack value; `SUMMARY.tsv` lists both values, `polypack_s`, `change_vs_best`).\n\n**How the records were made.** `found_by`, `credit` and `method` identify where each record starts; `method` or `refinement` gives the steps.\n\n- *Refinements of catalogue records* (116): a contact-preserving descent (sequential linear programming with the contacts as inequalities) started from the catalogue record named in `refinement` (for some, a randomised multi-start search from perturbed copies of that record comes first; `refinement` says so). `found_by`, `credit` and `method` are the catalogue record's own, copied verbatim; my part is in `refined_by` and `refinement_credit`. For 9 of them the start was the record for a different n and the first n pieces were kept (`derived_from`). Rigidity analysis and code: https://doi.org/10.5281/zenodo.23630728\n- *Lattice cuts* (9): all pieces in one orientation at the points of a lattice inside the container, orientation and position of the container optimised, then a descent as above.\n-",
+  "archive": "https://github.com/user-attachments/files/34519897/platonic_lattice_347.zip",
+  "archive_sha256": "4aab43cf2d8eea8669d33885a18da4c6f67040e1e6369c7c045ad5e0f28944e1"
+ },
+ "previous_record": {
+  "s_full": 1.0254160528468403,
+  "found_by": "PolyPack (Michael Sinko using Opus 5.5) (search started from the packing of Berthold, Kamp, Mexi, Pokutta and P\u00f3lik)",
+  "date": "2026-10-28"
+ },
+ "case_id": "tetinico_n07"
+}

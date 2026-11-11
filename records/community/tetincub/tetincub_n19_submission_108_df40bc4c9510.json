@@ -1,0 +1,221 @@
+{
+ "problem": "min/tetrahedron_in_cube",
+ "piece": "tetrahedron",
+ "container": "cube",
+ "n": 19,
+ "s_full": 1.6251504233498,
+ "pieces": [
+  [
+   0.16708265923681775,
+   0.5980735318247031,
+   0.4141864497895893,
+   0.8827858555585574,
+   -0.3014612017626952,
+   -0.04170321441550867,
+   -0.3578702543729387
+  ],
+  [
+   0.047375134812248955,
+   -0.1399559377164459,
+   0.20306807121275733,
+   0.877954714027947,
+   -0.22908441488152703,
+   0.35173961357582023,
+   -0.2302066359078882
+  ],
+  [
+   0.6084508664429604,
+   0.4092316961641848,
+   0.02174950804613287,
+   0.10030850105309078,
+   -0.4486235281632799,
+   -0.4758071755523837,
+   -0.7498550968605041
+  ],
+  [
+   0.4604028140116402,
+   0.17275113033676293,
+   -0.39175702572748566,
+   0.7283623557367921,
+   0.026639392928937973,
+   0.6813104982382201,
+   0.06778367414294488
+  ],
+  [
+   -0.5412719653334669,
+   0.5858710834938443,
+   -0.16554744359733597,
+   0.1305166971059504,
+   -0.31509518026932665,
+   -0.8684862796638266,
+   0.35973879577170964
+  ],
+  [
+   -0.15140342439172555,
+   -0.529275284828371,
+   0.6010536672064588,
+   0.36317570723030984,
+   -0.12062344334535686,
+   0.8767837179198545,
+   -0.29121075286450326
+  ],
+  [
+   -0.6084508664429604,
+   0.22545827827479112,
+   0.5238998517147823,
+   0.1759198966061612,
+   0.4247082002778669,
+   -0.33985114297998736,
+   0.8204732385702834
+  ],
+  [
+   -0.24755283216717455,
+   -0.34497009015801267,
+   -0.36817634134524135,
+   0.06079242942203846,
+   0.21695242248097132,
+   0.6994219095825825,
+   0.6782661124517857
+  ],
+  [
+   -0.25835461319980746,
+   0.30183290285038006,
+   -0.4565803881851941,
+   0.4685491967647897,
+   -0.47357901885422726,
+   -0.5157184284672862,
+   0.5387198396674941
+  ],
+  [
+   -0.5785921119970806,
+   -0.07763537728530076,
+   -0.5475240419738742,
+   0.3579345667898081,
+   0.32685148687747545,
+   0.135386318746462,
+   0.8641304855860933
+  ],
+  [
+   0.5603647576424043,
+   -0.5619498959477814,
+   0.023579771912578387,
+   0.3513088500062171,
+   0.35206844822056216,
+   -0.8549967894157441,
+   0.14700472701122347
+  ],
+  [
+   0.1794584562955917,
+   0.5453764560416973,
+   -0.5810475925938459,
+   0.7066561920661786,
+   0.025239378251616616,
+   -0.4818344498628079,
+   -0.5175283208921087
+  ],
+  [
+   0.33674131484554526,
+   -0.3823307507153746,
+   0.3689944911881279,
+   0.7513254417292823,
+   0.04893424396967465,
+   -0.6561930910689644,
+   -0.05026079596239226
+  ],
+  [
+   0.0892303045174945,
+   -0.13874774183739216,
+   -0.2030680712127573,
+   0.904342072947197,
+   0.3128854090100773,
+   0.28855017487864076,
+   0.0317321997924677
+  ],
+  [
+   -0.5233406196019855,
+   -0.6084508664429604,
+   -0.04931048728405239,
+   0.8206632272386725,
+   0.1761574562450402,
+   0.3393921066451312,
+   -0.424609721997111
+  ],
+  [
+   0.5258743235371828,
+   0.08224635276761603,
+   0.6056868052219353,
+   0.28407460354343766,
+   0.11766755351345193,
+   0.8791217266197626,
+   -0.364144142142758
+  ],
+  [
+   -0.1957826878886933,
+   0.47609797514205293,
+   0.27235038211242046,
+   0.1521035528584587,
+   -0.5405462679170384,
+   0.031846143699764365,
+   0.8268373870237421
+  ],
+  [
+   -0.4592032076903042,
+   -0.2352606718369131,
+   0.3496331822041853,
+   0.4573768071757131,
+   0.5286540390740344,
+   0.5300289486456466,
+   -0.4800007050266179
+  ],
+  [
+   0.3771987410483689,
+   -0.4143193375122629,
+   -0.3111660872651563,
+   0.37902702506656677,
+   -0.47202005652496976,
+   -0.6209787212044362,
+   -0.4979166680466277
+  ]
+ ],
+ "s": 1.62515,
+ "s_plus": "1.62515+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 1.224745e-07,
+  "min_wall_gap": 2e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "randomised multi-start search from random initial placements; contact-preserving descent (rigidity analysis: https://doi.org/10.5281/zenodo.23630728); centres expanded by 3e-7 and the container sized for a 2e-7 wall gap",
+ "date": "2026-11-11",
+ "record_id": "tetincub_n19_submission_108_df40bc4c9510",
+ "title": "19 tetrahedra in a cube",
+ "family": "platonic",
+ "source": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/108",
+  "submitted_by": "konoha-ily2"
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.3082651848795346,
+ "density": 0.5216829664985775,
+ "found_by": "konoha-ily2 (Hirotaka Nakano)",
+ "credit": "konoha-ily2 (Hirotaka Nakano), computed with Claude (Anthropic)",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/108",
+  "submitted_by": "konoha-ily2",
+  "credit": "konoha-ily2 (Hirotaka Nakano)",
+  "kind": "construction",
+  "replayed_on": "2026-11-11",
+  "witness_sha256": "8b2e58d77b32dba825a8ebcc5b94a14caf9d30e397363ea985c1d8dfa892edbf",
+  "method": "Batch of 347 witnesses in 22 problems (`MANIFEST.json` + `records/<record_id>.json` + `SUMMARY.tsv`), each below the current `records/SUMMARY.csv` entry (main at e3d934be, checked 2026-11-07). Every record passes `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED) from that commit locally, run on the files extracted from the archive. The changes against the current records: median -0.12 %, largest -3.39 %; 32 records improve by \u2265 1 %, 188 by \u2265 0.1 %.\n\n**Relation to earlier submissions.** #104 and #105 were merged (the latter on 2026-11-06) and the public records rebuilt (main e3d934be, 2026-11-07); every record here is below the value in that archive and below the values in open submissions.\n\n**Against PolyPack.** I also compared with PolyPack's published records (https://github.com/sinkomr/PolyPack, `data/polyhedra/records.json`, fetched 2026-11-07) and kept only records that are below both the archive and PolyPack (237 of these records have a PolyPack value; `SUMMARY.tsv` lists both values, `polypack_s`, `change_vs_best`).\n\n**How the records were made.** `found_by`, `credit` and `method` identify where each record starts; `method` or `refinement` gives the steps.\n\n- *Refinements of catalogue records* (116): a contact-preserving descent (sequential linear programming with the contacts as inequalities) started from the catalogue record named in `refinement` (for some, a randomised multi-start search from perturbed copies of that record comes first; `refinement` says so). `found_by`, `credit` and `method` are the catalogue record's own, copied verbatim; my part is in `refined_by` and `refinement_credit`. For 9 of them the start was the record for a different n and the first n pieces were kept (`derived_from`). Rigidity analysis and code: https://doi.org/10.5281/zenodo.23630728\n- *Lattice cuts* (9): all pieces in one orientation at the points of a lattice inside the container, orientation and position of the container optimised, then a descent as above.\n-",
+  "archive": "https://github.com/user-attachments/files/34519897/platonic_lattice_347.zip",
+  "archive_sha256": "4aab43cf2d8eea8669d33885a18da4c6f67040e1e6369c7c045ad5e0f28944e1"
+ },
+ "previous_record": {
+  "s_full": 1.6259220809801,
+  "found_by": "konoha-ily2 (Hirotaka Nakano) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/105; refinement of the packing by PolyPack)",
+  "date": "2026-11-06"
+ },
+ "case_id": "tetincub_n19"
+}

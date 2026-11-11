@@ -1,0 +1,149 @@
+{
+ "problem": "min/cube_in_dodecahedron",
+ "piece": "cube",
+ "container": "dodecahedron",
+ "n": 11,
+ "s_full": 1.4664539578116,
+ "pieces": [
+  [
+   -0.05557393904940456,
+   -0.32030588306129204,
+   -1.1603976041613102,
+   0.48960430370077673,
+   0.1529213377478077,
+   0.8584134403243908,
+   0.00539033668168024
+  ],
+  [
+   -1.0745370874434115,
+   -0.11717195567904401,
+   0.5845067095084104,
+   -0.11113276323623283,
+   0.8644376872209006,
+   -0.4502354099648446,
+   0.19412642648915215
+  ],
+  [
+   -0.20219421449400324,
+   -1.0491457696252484,
+   0.1267106281098192,
+   0.16805345138725358,
+   -0.6075189780066403,
+   0.5694289385205021,
+   0.5276641098407335
+  ],
+  [
+   0.300814443463097,
+   -0.48851145223786696,
+   0.9371162502444675,
+   0.929213469992803,
+   -0.18385476934686568,
+   0.21764339873799515,
+   0.23535314308102898
+  ],
+  [
+   -0.12240026060693657,
+   0.48123977140190444,
+   1.0028998114780652,
+   -0.009506288910942429,
+   -0.3349397603477069,
+   0.5178784478065697,
+   -0.7871003117181573
+  ],
+  [
+   0.6604995600266178,
+   -0.7097646556887421,
+   -0.25136330339289054,
+   -0.3736720473884965,
+   0.3862558083045434,
+   0.39042911984935363,
+   -0.7474896346606769
+  ],
+  [
+   1.0594969615498884,
+   -0.014431511714105352,
+   0.4718359517693638,
+   0.5028165202663656,
+   -0.2902020546116054,
+   0.813251917765875,
+   0.03974459329962725
+  ],
+  [
+   -0.8935050781167219,
+   -0.10396146221321875,
+   -0.6534231438453988,
+   0.746333147529446,
+   0.2556835168689668,
+   0.1150245214395964,
+   0.6036407305408564
+  ],
+  [
+   0.38726547305295617,
+   0.5576876322162282,
+   -0.8509810123386948,
+   0.7733860591376844,
+   0.17465567018806868,
+   0.03460814666549865,
+   0.608417353949588
+  ],
+  [
+   0.5705468480174688,
+   0.8649694872361425,
+   0.378678022943765,
+   0.8149042493725646,
+   -0.30318753257566183,
+   0.04366628661865449,
+   -0.49203825040148713
+  ],
+  [
+   -0.461948160729306,
+   1.0158330058884457,
+   -0.46644681154162737,
+   -0.49630901486294426,
+   0.8474516814532814,
+   -0.16761275721872843,
+   -0.08607539128761114
+  ]
+ ],
+ "s": 1.46645,
+ "s_plus": "1.46645+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 2.999998e-07,
+  "min_wall_gap": 2.000001e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "randomised multi-start search from random initial placements; contact-preserving descent (rigidity analysis: https://doi.org/10.5281/zenodo.23630728); centres expanded by 3e-7 and the container sized for a 2e-7 wall gap",
+ "date": "2026-11-11",
+ "record_id": "cubindod_n11_submission_108_20941916ef49",
+ "title": "11 cubes in a dodecahedron",
+ "family": "platonic",
+ "source": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/108",
+  "submitted_by": "konoha-ily2"
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.1280517905548035,
+ "density": 0.4551785852337639,
+ "found_by": "konoha-ily2 (Hirotaka Nakano)",
+ "credit": "konoha-ily2 (Hirotaka Nakano), computed with Claude (Anthropic)",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/108",
+  "submitted_by": "konoha-ily2",
+  "credit": "konoha-ily2 (Hirotaka Nakano)",
+  "kind": "construction",
+  "replayed_on": "2026-11-11",
+  "witness_sha256": "065b22ce1b5b89a7338d12b38226c2615203bda83ca883d65a0d511bb314b41b",
+  "method": "Batch of 347 witnesses in 22 problems (`MANIFEST.json` + `records/<record_id>.json` + `SUMMARY.tsv`), each below the current `records/SUMMARY.csv` entry (main at e3d934be, checked 2026-11-07). Every record passes `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED) from that commit locally, run on the files extracted from the archive. The changes against the current records: median -0.12 %, largest -3.39 %; 32 records improve by \u2265 1 %, 188 by \u2265 0.1 %.\n\n**Relation to earlier submissions.** #104 and #105 were merged (the latter on 2026-11-06) and the public records rebuilt (main e3d934be, 2026-11-07); every record here is below the value in that archive and below the values in open submissions.\n\n**Against PolyPack.** I also compared with PolyPack's published records (https://github.com/sinkomr/PolyPack, `data/polyhedra/records.json`, fetched 2026-11-07) and kept only records that are below both the archive and PolyPack (237 of these records have a PolyPack value; `SUMMARY.tsv` lists both values, `polypack_s`, `change_vs_best`).\n\n**How the records were made.** `found_by`, `credit` and `method` identify where each record starts; `method` or `refinement` gives the steps.\n\n- *Refinements of catalogue records* (116): a contact-preserving descent (sequential linear programming with the contacts as inequalities) started from the catalogue record named in `refinement` (for some, a randomised multi-start search from perturbed copies of that record comes first; `refinement` says so). `found_by`, `credit` and `method` are the catalogue record's own, copied verbatim; my part is in `refined_by` and `refinement_credit`. For 9 of them the start was the record for a different n and the first n pieces were kept (`derived_from`). Rigidity analysis and code: https://doi.org/10.5281/zenodo.23630728\n- *Lattice cuts* (9): all pieces in one orientation at the points of a lattice inside the container, orientation and position of the container optimised, then a descent as above.\n-",
+  "archive": "https://github.com/user-attachments/files/34519897/platonic_lattice_347.zip",
+  "archive_sha256": "4aab43cf2d8eea8669d33885a18da4c6f67040e1e6369c7c045ad5e0f28944e1"
+ },
+ "previous_record": {
+  "s_full": 1.4719859608425,
+  "found_by": "konoha-ily2 (Hirotaka Nakano) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/105; refinement of the packing by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik)",
+  "date": "2026-11-06"
+ },
+ "case_id": "cubindod_n11"
+}

@@ -1,0 +1,149 @@
+{
+ "problem": "min/tetrahedron_in_dodecahedron",
+ "piece": "tetrahedron",
+ "container": "dodecahedron",
+ "n": 11,
+ "s_full": 0.7401503573056,
+ "pieces": [
+  [
+   0.13394225100854715,
+   -0.06252517076878047,
+   -0.5132727486705773,
+   -0.16971508041336789,
+   -0.3971337825905958,
+   -0.13869297650827483,
+   0.8912046950464548
+  ],
+  [
+   -0.2992769558640247,
+   0.07795488840485845,
+   0.4388277748662662,
+   -0.6768609942628445,
+   0.30254041902140244,
+   0.6326349877989687,
+   -0.22383355761919754
+  ],
+  [
+   -0.5461298181556016,
+   0.0848928704522258,
+   0.09875418574935585,
+   -0.2807409855185737,
+   -0.5059052589276385,
+   0.33687772824441514,
+   -0.7428039877735586
+  ],
+  [
+   -0.2959070856771462,
+   0.03712642888437814,
+   -0.47000078037534654,
+   0.4554870908783679,
+   -0.7958752741496392,
+   -0.37375075712783484,
+   0.13937155228657036
+  ],
+  [
+   -0.33016134598930297,
+   -0.43111983444460195,
+   -0.036495879249824066,
+   -0.2938491940710185,
+   0.6254056226722251,
+   -0.6873460748083682,
+   -0.22377629838592955
+  ],
+  [
+   0.12086801043202286,
+   0.44172981368857483,
+   -0.20487776430660634,
+   0.04911569526933475,
+   -0.24543993420876176,
+   0.33259491908310523,
+   0.9092455702250691
+  ],
+  [
+   0.5010731520807126,
+   -0.2752598631616505,
+   0.0056896990216365895,
+   0.15674341789601634,
+   -0.96623736678396,
+   -0.02947723421041136,
+   0.20235598493738335
+  ],
+  [
+   0.18952932713659468,
+   0.41893368005534576,
+   0.1999357626771795,
+   0.5094042503471222,
+   -0.6472768060553344,
+   -0.5670438822223054,
+   0.0011321242633447598
+  ],
+  [
+   -0.13298285709992094,
+   -0.43410482869123784,
+   0.33124301746822155,
+   0.5769947912084367,
+   -0.7188855401261616,
+   -0.36984932452060926,
+   0.1161553626291039
+  ],
+  [
+   0.1396805869405377,
+   -0.4862065382344282,
+   -0.18352040989302262,
+   0.8319183704274831,
+   0.49112285918830956,
+   -0.1750103494340896,
+   -0.18995141410091837
+  ],
+  [
+   0.3136565346905911,
+   0.00996747689925742,
+   0.4761171382787955,
+   0.40085129714700884,
+   -0.7537972606863911,
+   0.12106605948130945,
+   0.506409850416559
+  ]
+ ],
+ "s": 0.74015,
+ "s_plus": "0.74015+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 1.232179e-07,
+  "min_wall_gap": 2.000001e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "randomised multi-start search from random initial placements; contact-preserving descent (rigidity analysis: https://doi.org/10.5281/zenodo.23630728); centres expanded by 3e-7 and the container sized for a 2e-7 wall gap",
+ "date": "2026-11-11",
+ "record_id": "tetindod_n11_submission_108_cd9625fb1122",
+ "title": "11 tetrahedra in a dodecahedron",
+ "family": "platonic",
+ "source": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/108",
+  "submitted_by": "konoha-ily2"
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 0.5530617495423575,
+ "density": 0.41721605286147556,
+ "found_by": "konoha-ily2 (Hirotaka Nakano)",
+ "credit": "konoha-ily2 (Hirotaka Nakano), computed with Claude (Anthropic)",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/108",
+  "submitted_by": "konoha-ily2",
+  "credit": "konoha-ily2 (Hirotaka Nakano)",
+  "kind": "construction",
+  "replayed_on": "2026-11-11",
+  "witness_sha256": "a4f59326b74d9760606a9996e08eff9ada475d40094c94d714f6b13b2526e6a0",
+  "method": "Batch of 347 witnesses in 22 problems (`MANIFEST.json` + `records/<record_id>.json` + `SUMMARY.tsv`), each below the current `records/SUMMARY.csv` entry (main at e3d934be, checked 2026-11-07). Every record passes `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED) from that commit locally, run on the files extracted from the archive. The changes against the current records: median -0.12 %, largest -3.39 %; 32 records improve by \u2265 1 %, 188 by \u2265 0.1 %.\n\n**Relation to earlier submissions.** #104 and #105 were merged (the latter on 2026-11-06) and the public records rebuilt (main e3d934be, 2026-11-07); every record here is below the value in that archive and below the values in open submissions.\n\n**Against PolyPack.** I also compared with PolyPack's published records (https://github.com/sinkomr/PolyPack, `data/polyhedra/records.json`, fetched 2026-11-07) and kept only records that are below both the archive and PolyPack (237 of these records have a PolyPack value; `SUMMARY.tsv` lists both values, `polypack_s`, `change_vs_best`).\n\n**How the records were made.** `found_by`, `credit` and `method` identify where each record starts; `method` or `refinement` gives the steps.\n\n- *Refinements of catalogue records* (116): a contact-preserving descent (sequential linear programming with the contacts as inequalities) started from the catalogue record named in `refinement` (for some, a randomised multi-start search from perturbed copies of that record comes first; `refinement` says so). `found_by`, `credit` and `method` are the catalogue record's own, copied verbatim; my part is in `refined_by` and `refinement_credit`. For 9 of them the start was the record for a different n and the first n pieces were kept (`derived_from`). Rigidity analysis and code: https://doi.org/10.5281/zenodo.23630728\n- *Lattice cuts* (9): all pieces in one orientation at the points of a lattice inside the container, orientation and position of the container optimised, then a descent as above.\n-",
+  "archive": "https://github.com/user-attachments/files/34519897/platonic_lattice_347.zip",
+  "archive_sha256": "4aab43cf2d8eea8669d33885a18da4c6f67040e1e6369c7c045ad5e0f28944e1"
+ },
+ "previous_record": {
+  "s_full": 0.7465861686252301,
+  "found_by": "PolyPack (Michael Sinko using Opus 5.5) (search started from the packing of Berthold, Kamp, Mexi, Pokutta and P\u00f3lik)",
+  "date": "2026-10-28"
+ },
+ "case_id": "tetindod_n11"
+}
