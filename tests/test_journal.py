@@ -85,5 +85,34 @@ class JournalTests(unittest.TestCase):
             self.assertIn('is in progress',(out/'journal/issues/2026-q4/index.html').read_text(encoding='utf8'))
 
 
+    def test_series_papers_match_their_pdfs_and_carry_the_revision_note(self):
+        data = journal.load_catalogue(ROOT)
+        papers = {p['id']: p for p in data['papers']}
+        for pid, pages in (('cube-centre-2026-11-10', 17), ('width-ball-2026-11-10', 22), ('all-dimensions-2026-11-10', 23)):
+            with self.subTest(paper=pid):
+                item = papers[pid]
+                pdf = ROOT/'web/journal/downloads'/(pid + '.pdf')
+                self.assertEqual(hashlib.sha256(pdf.read_bytes()).hexdigest(), item['pdf_sha256'])
+                self.assertEqual(item['pages'], pages)
+                self.assertFalse(item['accepted_by_journal'])
+                self.assertIn('small revisions', item['version_note'])
+
+    def test_journal_and_issue_pages_open_with_the_revision_disclaimer(self):
+        def page(path, title, desc, body, active, **kwargs):
+            return '<html><head></head><body>' + body + '</body></html>'
+        def fill(body, values, root):
+            return body.replace('{{ROOT}}', root).replace('{{REPO}}', 'https://github.com/alejandrozu/platonic-packing').replace('{{TOC}}', '')
+        with tempfile.TemporaryDirectory() as folder:
+            out = Path(folder)
+            journal.build_journal(ROOT, out, 'https://github.com/alejandrozu/platonic-packing',
+                                  'https://polyhedrainpolyhedra.wiki/', page, fill)
+            for rel in ('journal/index.html', 'journal/issues/2026-q4/index.html'):
+                body = (out/rel).read_text(encoding='utf8').split('<body>', 1)[1]
+                self.assertTrue(body.startswith('<p class="j-revision-note"'), rel)
+                self.assertIn('until an issue is published, the papers in it are still subject to potential small revisions', body)
+            for pid in ('cube-centre-2026-11-10', 'width-ball-2026-11-10', 'all-dimensions-2026-11-10'):
+                self.assertTrue((out/'journal/downloads'/(pid + '.pdf')).is_file())
+
+
 if __name__=='__main__':
     unittest.main()

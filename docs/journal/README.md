@@ -2,12 +2,14 @@
 
 The Journal is an open-access editorial programme with an inaugural Q4 2026 issue in progress. New research articles require two independent expert reports and an unconflicted handling editor's acceptance decision. Alejandro Zarzuelo Urdiales is the editor and reviewer. The Journal is seeking additional editors; further appointments are listed after agreement. The founder's own papers still require independent handling and review. A named independent editorial board and completed reviews are not claimed at launch.
 
-The launch research library indexes existing works. It does not retrospectively accept, peer review or republish them. Original venues, licenses, versions and review status remain visible on each paper page. It contains 11 research papers and eight datasets, software releases or construction resources. The three original Zenodo deposits are two preprints and one dataset.
+The launch research library indexes existing works. It does not retrospectively accept, peer review or republish them. Original venues, licenses, versions and review status remain visible on each paper page. It contains 14 research papers and eight datasets, software releases or construction resources. The three original Zenodo deposits are two preprints and one dataset.
 
 ## Sources and version boundaries
 
 - `papers.json` contains the public bibliography, review labels, canonical sources, DOI scope, related construction links and publication metadata. Primary sources were checked on 9 November 2026.
 - The JOATP article is *Certified architecture transfer from polyhedral packing catalogues to finite-cluster magnetic response*, accepted and published 27 October 2026, version 1.1. Its publisher records editorial review with AI assistance and expressly does not claim independent external referee review. The model is an **uncalibrated equilibrium model**. The DOI `10.5281/zenodo.23629684` is the original v1.0 supplement, not the v1.1 article DOI.
+- `web/journal/downloads/cube-centre-2026-11-10.pdf`, `width-ball-2026-11-10.pdf` and `all-dimensions-2026-11-10.pdf` are the author versions of 10 November 2026 of Papers I, II and IV of the series (17, 22 and 23 pages). Their LaTeX sources are at commit `4842e61986` of the `papers-draft` branch (`docs/papers/`), and their SHA-256 hashes are recorded in `papers.json`.
+- Until an issue is published, the papers in it are still subject to potential small revisions; the Journal page and the issue page say so at the top.
 - `web/journal/downloads/patterns-2026-11-08.pdf` is an unchanged author-provided copy of the 21-page 8 November manuscript. Its SHA-256 is `919c2192fbb699f6db5217281e89aafbe02c2f549a7580dacc2af95f179c1dfb`. The earlier repository manuscript and its source remain paired in `docs/patterns-paper/`.
 - The current generalization manuscript is sole-authored by Alejandro Zarzuelo Urdiales. Earlier proposed joint authorship is not presented as an agreed collaboration.
 - Background periodic-packing and optimization papers are contextual sources. Their entries do not claim that they supplied finite-container catalogue coordinates.
