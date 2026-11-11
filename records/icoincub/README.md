@@ -16,7 +16,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 11 | [3.82821+](icoincub_n11.json) | 3.828216957765 |  | 2.88444 | 0.4278 | ![](icoincub_n11.png) |
 | 12 | [3.86775+](icoincub_n12.json) | 3.867759503064 |  | 2.96933 | 0.4525 | ![](icoincub_n12.png) |
 | 13 | [3.89783+](icoincub_n13.json) | 3.897831525329 |  | 3.04962 | 0.4789 | ![](icoincub_n13.png) |
-| 14 | [3.89908+](icoincub_n14.json) | 3.899089732837 |  | 3.12589 | 0.5153 | ![](icoincub_n14.png) |
+| 14 | [3.89908+](icoincub_n14.json) | 3.899089732837 | -29/4 + (√(18060 - 9570√3) + 55√3)/12 | 3.12589 | 0.5153 | ![](icoincub_n14.png) |
 | 15 | [4.13657+](icoincub_n15.json) | 4.136577397130 |  | 3.19861 | 0.4623 | ![](icoincub_n15.png) |
 | 16 | [4.19487+](icoincub_n16.json) | 4.194878116608 |  | 3.26817 | 0.4729 | ![](icoincub_n16.png) |
 | 17 | [4.24064+](icoincub_n17.json) | 4.240645377488 |  | 3.33489 | 0.4863 | ![](icoincub_n17.png) |

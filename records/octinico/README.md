@@ -18,9 +18,9 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 13 | [1.73530+](octinico_n13.json) | 1.735300358510 |  | 1.41096 | 0.5376 | ![](octinico_n13.png) |
 | 14 | [1.79967+](octinico_n14.json) | 1.799678300854 |  | 1.44625 | 0.5190 | ![](octinico_n14.png) |
 | 15 | [1.83909+](octinico_n15.json) | 1.839092704639 |  | 1.47989 | 0.5211 | ![](octinico_n15.png) |
-| 16 | [1.89391+](octinico_n16.json) | 1.893917148839 |  | 1.51207 | 0.5089 | ![](octinico_n16.png) |
+| 16 | [1.89259+](octinico_n16.json) | 1.892599419197 |  | 1.51207 | 0.5100 | ![](octinico_n16.png) |
 | 17 | [1.93714+](octinico_n17.json) | 1.937147478079 |  | 1.54294 | 0.5053 | ![](octinico_n17.png) |
-| 18 | [1.98180+](octinico_n18.json) | 1.981802685338 |  | 1.57262 | 0.4997 | ![](octinico_n18.png) |
+| 18 | [1.97928+](octinico_n18.json) | 1.979280568707 |  | 1.57262 | 0.5016 | ![](octinico_n18.png) |
 | 19 | [2.01303+](octinico_n19.json) | 2.013035471282 |  | 1.60122 | 0.5033 | ![](octinico_n19.png) |
 | 20 | [2.05290+](octinico_n20.json) | 2.052903649349 |  | 1.62883 | 0.4995 | ![](octinico_n20.png) |
 | 21 | [2.09071+](octinico_n21.json) | 2.090715291011 |  | 1.65554 | 0.4965 | ![](octinico_n21.png) |

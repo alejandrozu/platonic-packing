@@ -6,6 +6,7 @@ their source).
 
 RESULTS.tsv is cumulative (each zerogap-packing version contains the earlier ones), so an import replaces the file;
 closed forms imported before keep their provenance (version and issue), new ones get the latest version's.
+    python3 scripts/closed_forms_ext.py add TABLE.tsv ISSUE [DIGITS]   # closed forms from an issue's own table (record<TAB>form)
 
 Hirotaka Nakano (konoha-ily2) solved the contact equations of catalogue records to ~117 digits and identified integer
 polynomials for s (zerogap-packing, https://doi.org/10.5281/zenodo.23630728, issue #99). A closed form belongs to one
@@ -169,15 +170,61 @@ def do_import(results, touch_dir, source=None):
                     'provenance': dict(base, digits=min(digits, agree_digits),
                                        exact_touching_check=row['record'] in exact,
                                        **({'configuration': row['record']} if row['record'] != rid else {}))}
+    for k, e in load()['entries'].items():      # closed forms added from an issue's own table (do_add) stay until a version has them
+        if k not in out and e.get('provenance', {}).get('via') == 'issue table': out[k] = e
+    save(out)
+    return stats
+
+
+def save(entries):
     json.dump({'about': 'Closed forms of record scales from other people (scripts/closed_forms_ext.py); each entry is bound '
                         'to the record packing it was computed for (source hash).',
-               'entries': out}, open(DATA, 'w'), indent=1, ensure_ascii=False)
+               'entries': entries}, open(DATA, 'w'), indent=1, ensure_ascii=False)
+
+
+def mp_eps():
+    import mpmath as mp
+    return mp.mpf(10) ** -40
+
+
+def do_add(table, issue, digits):
+    """Closed forms listed in an issue's own table (TSV: record, closed form), for records the RESULTS.tsv of a zerogap
+    version does not have yet: the same value check, digits as the author states them, bound to the current record"""
+    entries = dict(load()['entries'])
+    stats = {'rows': 0, 'new': 0, 'agree': 0, 'differ': [], 'value_mismatch': [], 'no_record': []}
+    src = dict(ZEROGAP, work='zerogap-packing (method); values from the issue',
+               issue=f'https://github.com/alejandrozu/platonic-packing/issues/{issue}')
+    for line in open(table):
+        if not line.strip() or line.startswith('#'): continue
+        rid, cf = [x.strip() for x in line.rstrip('\n').split('\t')[:2]]
+        stats['rows'] += 1
+        fn = os.path.join(ROOT, 'records', rid.rsplit('_n', 1)[0], rid + '.json')
+        if not os.path.exists(fn): stats['no_record'].append(rid); continue
+        rec = json.load(open(fn)); st = float(rec['s_tight']); v = value(cf, 130)
+        if float(v) > st + 1e-9 * st or st - float(v) > 2e-6 * st or float(v) > rec['s_full']:
+            stats['value_mismatch'].append((rid, cf, float(v), rec['s_tight'], rec['s_full'])); continue
+        ours = None if rec.get('closed_form_source') else rec.get('closed_form_conjecture')
+        if ours:
+            try: same = abs(value(ours, 50) - v) < mp_eps()
+            except Exception: same = False
+            if not same: stats['differ'].append((rid, ours, cf)); continue
+            stats['agree'] += 1
+        else:
+            stats['new'] += 1
+        entries[rid] = {'hash': rec['source']['hash'], 'closed_form': cf, 'already_in_catalogue': bool(ours),
+                        'provenance': dict(src, digits=digits, via='issue table', exact_touching_check=False)}
+    save(entries)
     return stats
 
 
 if __name__ == '__main__':
     if len(sys.argv) >= 4 and sys.argv[1] == 'import':
         st = do_import(sys.argv[2], sys.argv[3])
+        print(json.dumps({k: (v if not isinstance(v, list) else len(v)) for k, v in st.items()}))
+        for k in ('differ', 'value_mismatch', 'no_record'):
+            for x in st[k][:20]: print(k, x)
+    elif len(sys.argv) >= 4 and sys.argv[1] == 'add':
+        st = do_add(sys.argv[2], int(sys.argv[3]), int(sys.argv[4]) if len(sys.argv) > 4 else 0)
         print(json.dumps({k: (v if not isinstance(v, list) else len(v)) for k, v in st.items()}))
         for k in ('differ', 'value_mismatch', 'no_record'):
             for x in st[k][:20]: print(k, x)

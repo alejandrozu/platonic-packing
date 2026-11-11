@@ -18,12 +18,12 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 13 | [1.15520+](octindod_n13.json) | 1.155203786026 |  | 0.92820 | 0.5187 | ![](octindod_n13.png) |
 | 14 | [1.16778+](octindod_n14.json) | 1.167781741926 |  | 0.95142 | 0.5408 | ![](octindod_n14.png) |
 | 15 | [1.17361+](octindod_n15.json) | 1.173613052611 |  | 0.97355 | 0.5708 | ![](octindod_n15.png) |
-| 16 | [1.22491+](octindod_n16.json) | 1.224911174482 |  | 0.99472 | 0.5355 | ![](octindod_n16.png) |
+| 16 | [1.22113+](octindod_n16.json) | 1.221134622468 |  | 0.99472 | 0.5405 | ![](octindod_n16.png) |
 | 17 | [1.23700+](octindod_n17.json) | 1.237004918536 |  | 1.01503 | 0.5525 | ![](octindod_n17.png) |
-| 18 | [1.25996+](octindod_n18.json) | 1.259961371490 |  | 1.03455 | 0.5536 | ![](octindod_n18.png) |
+| 18 | [1.25888+](octindod_n18.json) | 1.258881394813 |  | 1.03455 | 0.5550 | ![](octindod_n18.png) |
 | 19 | [1.27098+](octindod_n19.json) | 1.270980343109 |  | 1.05337 | 0.5693 | ![](octindod_n19.png) |
 | 20 | [1.27859+](octindod_n20.json) | 1.278592196943 |  | 1.07153 | 0.5886 | ![](octindod_n20.png) |
-| 21 | [1.27941+](octindod_n21.json) | 1.279411596388 |  | 1.08910 | 0.6168 | ![](octindod_n21.png) |
+| 21 | [1.27941+](octindod_n21.json) | 1.279411596388 | -7/6 + (4√(3 - √5) + 5√5)/6 | 1.08910 | 0.6168 | ![](octindod_n21.png) |
 | 22 | [1.36881+](octindod_n22.json) | 1.368812747204 |  | 1.10612 | 0.5277 | ![](octindod_n22.png) |
 | 23 | [1.38189+](octindod_n23.json) | 1.381898627437 |  | 1.12264 | 0.5362 | ![](octindod_n23.png) |
 | 24 | [1.42761+](octindod_n24.json) | 1.427618876377 |  | 1.13868 | 0.5074 | ![](octindod_n24.png) |

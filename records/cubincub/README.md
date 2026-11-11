@@ -76,9 +76,9 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 71 | [4.70710+](cubincub_n71.json) | 4.707107893318 | √2/2 + 4 | | | 4.14082 | 0.6808 | ![](cubincub_n71.png) |
 | 72 | [4.70710+](cubincub_n72.json) | 4.707107893320 | √2/2 + 4 | | | 4.16017 | 0.6904 | ![](cubincub_n72.png) |
 | 73 | [4.70710+](cubincub_n73.json) | 4.707107893320 | √2/2 + 4 | | | 4.17934 | 0.6999 | ![](cubincub_n73.png) |
-| 74 | [4.81098+](cubincub_n74.json) | 4.810981964472 |  | | | 4.19834 | 0.6646 | ![](cubincub_n74.png) |
-| 75 | [4.82287+](cubincub_n75.json) | 4.822876802395 |  | | | 4.21716 | 0.6686 | ![](cubincub_n75.png) |
-| 76 | [4.84057+](cubincub_n76.json) | 4.840578535260 |  | | | 4.23582 | 0.6701 | ![](cubincub_n76.png) |
+| 74 | [4.70710+](cubincub_n74.json) | 4.707108264029 |  | | | 4.19834 | 0.7095 | ![](cubincub_n74.png) |
+| 75 | [4.70710+](cubincub_n75.json) | 4.707108264029 |  | | | 4.21716 | 0.7191 | ![](cubincub_n75.png) |
+| 76 | [4.70710+](cubincub_n76.json) | 4.707108264029 |  | | | 4.23582 | 0.7287 | ![](cubincub_n76.png) |
 | 77 | [4.85021+](cubincub_n77.json) | 4.850218200091 |  | | | 4.25432 | 0.6748 | ![](cubincub_n77.png) |
 | 78 | [4.85875+](cubincub_n78.json) | 4.858750594479 |  | | | 4.27266 | 0.6800 | ![](cubincub_n78.png) |
 | 79 | [4.88561+](cubincub_n79.json) | 4.885619248850 | 4√2/3 + 3 | | | 4.29084 | 0.6774 | ![](cubincub_n79.png) |

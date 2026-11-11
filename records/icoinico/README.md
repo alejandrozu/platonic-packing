@@ -99,7 +99,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 94 | [5.49995+](icoinico_n94.json) | 5.499956207484 |  | 4.54684 | 0.5650 | ![](icoinico_n94.png) |
 | 95 | [5.61540+](icoinico_n95.json) | 5.615409369020 |  | 4.56290 | 0.5365 | ![](icoinico_n95.png) |
 | 96 | [5.61798+](icoinico_n96.json) | 5.617986338000 |  | 4.57886 | 0.5414 | ![](icoinico_n96.png) |
-| 97 | [5.61803+](icoinico_n97.json) | 5.618035374160 |  | 4.59470 | 0.5470 | ![](icoinico_n97.png) |
-| 98 | [5.61803+](icoinico_n98.json) | 5.618035374160 |  | 4.61044 | 0.5527 | ![](icoinico_n98.png) |
-| 99 | [5.61803+](icoinico_n99.json) | 5.618035374160 |  | 4.62607 | 0.5583 | ![](icoinico_n99.png) |
+| 97 | [5.61803+](icoinico_n97.json) | 5.618035374160 | (9 + √5)/2 | 4.59470 | 0.5470 | ![](icoinico_n97.png) |
+| 98 | [5.61803+](icoinico_n98.json) | 5.618035374160 | (9 + √5)/2 | 4.61044 | 0.5527 | ![](icoinico_n98.png) |
+| 99 | [5.61803+](icoinico_n99.json) | 5.618035374160 | (9 + √5)/2 | 4.62607 | 0.5583 | ![](icoinico_n99.png) |
 | 100 | [5.66666+](icoinico_n100.json) | 5.666668066667 | 17/3 | 4.64159 | 0.5496 | ![](icoinico_n100.png) |
