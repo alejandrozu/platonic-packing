@@ -1,0 +1,119 @@
+<div id="poly-wiki-preview" class="wp-draft">
+  <header class="wp-header"><span class="wp-wordmark">Wikipedia</span><span class="wp-context">Draft preview · 12 October 2026</span></header>
+  <div class="wp-layout">
+    <aside class="wp-contents" aria-label="Article contents"><strong>Contents</strong><nav>__TOC__</nav></aside>
+    <main class="wp-article">
+      <h1>Polyhedra in polyhedra packing</h1>
+      <div class="wp-tabs"><span>Draft article</span><a href="https://doi.org/10.5281/zenodo.23306130" target="_blank" rel="noopener">Construction archive ↗</a></div>
+      <div class="wp-local-note">Local draft preview. The rotating figure is an interactive companion to the proposed article.</div>
+      <figure class="wp-specimen" aria-label="Interactive polyhedral construction">
+        <h2>Inspect a construction</h2>
+        <canvas id="wp-canvas" role="img" aria-label="Numerical packing rendered from certified stored coordinates"></canvas>
+        <div id="wp-fallback" class="wp-fallback" hidden><strong>Original source diagram</strong><p><span></span></p><p>Public coordinates were not located for this better reported bound.</p><a target="_blank" rel="noopener">Open the original diagram ↗</a></div>
+        <div id="wp-figure-info" class="wp-figure-info" aria-live="polite"></div>
+        <label><span class="wp-control-label">Shape pair</span><select id="wp-family" aria-label="Shape pair"><option value="tetintet">Tetrahedra in tetrahedron</option><option value="cubincub">Cubes in cube</option><option value="octinoct">Octahedra in octahedron</option><option value="dodindod" selected>Dodecahedra in dodecahedron</option><option value="icoinico">Icosahedra in icosahedron</option><option value="cubinoct">Cubes in octahedron</option><option value="octincub">Octahedra in cube</option><option value="dodinico">Dodecahedra in icosahedron</option><option value="icoindod">Icosahedra in dodecahedron</option></select></label>
+        <div class="wp-controls"><label>Count <select id="wp-count" aria-label="Piece count"></select></label><button id="wp-pause" type="button" aria-pressed="true">Pause rotation</button></div>
+        <div class="wp-figure-links"><a id="wp-construction-link" href="https://github.com/alejandrozu/platonic-packing" target="_blank" rel="noopener">Exact construction ↗</a><a id="wp-source-link" href="https://doi.org/10.5281/zenodo.23306098" target="_blank" rel="noopener">Source ↗</a></div>
+        <figcaption id="wp-caption" class="wp-caption">1 central piece + 12 inner positions + 20 outer positions.</figcaption>
+      </figure>
+      __ARTICLE_BODY__
+      <footer class="wp-footer">Draft source and constructions by Alejandro Zarzuelo Urdiales. Numerical visualization of stored poses; exact feasibility is documented in the linked construction files. No Wikipedia or Commons submission.</footer>
+    </main>
+  </div>
+  <script type="application/json" id="wp-construction-data">__CONSTRUCTION_DATA__</script>
+</div>
+<style>
+#poly-wiki-preview{--wp-paper:light-dark(#fff,#151719);--wp-ink:light-dark(#202122,#eaecf0);--wp-soft:light-dark(#f8f9fa,#202427);--wp-rule:light-dark(#a2a9b1,#555b63);--wp-link:light-dark(#36c,#8ab4f8);--wp-muted:light-dark(#54595d,#b4bcc6);color-scheme:light dark;background:var(--wp-paper);color:var(--wp-ink);font:16px/1.62 Arial,Helvetica,sans-serif;width:100%;box-sizing:border-box;}
+#poly-wiki-preview *{box-sizing:border-box}
+#poly-wiki-preview [hidden]{display:none!important}
+#poly-wiki-preview a{color:var(--wp-link);text-decoration:none;overflow-wrap:anywhere}
+#poly-wiki-preview a:hover{text-decoration:underline}
+#poly-wiki-preview .wp-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;border-bottom:1px solid var(--wp-rule)}
+#poly-wiki-preview .wp-wordmark{font:26px/1 Georgia,serif;font-variant:small-caps;letter-spacing:1px}
+#poly-wiki-preview .wp-context{font-size:13px;color:var(--wp-muted)}
+#poly-wiki-preview .wp-layout{display:grid;grid-template-columns:155px minmax(0,1fr);gap:26px;padding:24px}
+#poly-wiki-preview .wp-contents{font-size:13px;padding-top:82px}
+#poly-wiki-preview .wp-contents strong{display:block;border-bottom:1px solid var(--wp-rule);padding-bottom:8px;margin-bottom:10px}
+#poly-wiki-preview .wp-contents a{display:block;margin:9px 0;line-height:1.4}
+#poly-wiki-preview .wp-article{min-width:0}
+#poly-wiki-preview h1{font:normal 31px/1.22 Georgia,serif;margin:0 0 10px;border-bottom:1px solid var(--wp-rule);padding-bottom:12px}
+#poly-wiki-preview h2{font:normal 25px/1.3 Georgia,serif;clear:both;margin:30px 0 14px;border-bottom:1px solid var(--wp-rule);padding-bottom:7px}
+#poly-wiki-preview h3{font:600 18px/1.4 Arial,sans-serif;margin:22px 0 12px}
+#poly-wiki-preview p{margin:0 0 15px}
+#poly-wiki-preview p a[href^="#reference-"]{font-size:11px;vertical-align:super;margin:0 1px}
+#poly-wiki-preview p a[href^="#reference-"]::before{content:"["}
+#poly-wiki-preview p a[href^="#reference-"]::after{content:"]"}
+#poly-wiki-preview .wp-tabs{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13px;padding:0 0 8px;border-bottom:1px solid var(--wp-rule);margin-bottom:14px}
+#poly-wiki-preview .wp-local-note{font-size:12px;color:var(--wp-muted);margin-bottom:18px}
+#poly-wiki-preview .wp-specimen{float:right;width:310px;max-width:100%;margin:0 0 20px 24px;padding:10px;background:var(--wp-soft);border:1px solid var(--wp-rule);font-size:13px;line-height:1.5}
+#poly-wiki-preview .wp-specimen h2{font:600 15px/1.4 Arial,sans-serif;border:0;margin:0 0 8px;padding:0;text-align:center}
+#poly-wiki-preview canvas{display:block;width:100%;height:260px;touch-action:none;background:var(--wp-paper)}
+#poly-wiki-preview .wp-figure-info{margin:9px 0;font-size:12px;min-height:36px}
+#poly-wiki-preview .wp-controls{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:9px 0}
+#poly-wiki-preview .wp-controls label{display:flex;align-items:center;gap:7px}
+#poly-wiki-preview select,#poly-wiki-preview button{font:13px/1.4 Arial,sans-serif;color:var(--wp-ink);background:var(--wp-paper);border:1px solid var(--wp-rule);border-radius:2px;padding:6px 8px;max-width:100%}
+#poly-wiki-preview #wp-family{width:100%}
+#poly-wiki-preview .wp-controls button{min-height:32px}
+#poly-wiki-preview .wp-figure-links{display:flex;flex-wrap:wrap;gap:10px}
+#poly-wiki-preview .wp-fallback{min-height:180px;padding:25px 12px;text-align:center}
+#poly-wiki-preview .wp-caption{font-size:12px;color:var(--wp-muted);margin:10px 0 0}
+#poly-wiki-preview .wp-table-scroll{overflow-x:auto;margin:18px 0}
+#poly-wiki-preview table{border-collapse:collapse;width:100%;font:13px/1.5 Arial,sans-serif;margin:0}
+#poly-wiki-preview th,#poly-wiki-preview td{border:1px solid var(--wp-rule);padding:7px 8px;vertical-align:top;text-align:left}
+#poly-wiki-preview th{background:var(--wp-soft);font-weight:600}
+#poly-wiki-preview td:first-child,#poly-wiki-preview th:first-child{width:30px}
+#poly-wiki-preview td:not(:first-child){min-width:100px}
+#poly-wiki-preview table a{white-space:nowrap}
+#poly-wiki-preview sup{font-size:10px}
+#poly-wiki-preview table small,#poly-wiki-preview table br+a{font-size:11px}
+#poly-wiki-preview code{font-size:13px;overflow-wrap:anywhere}
+#poly-wiki-preview pre{white-space:pre-wrap;overflow-wrap:anywhere}
+#poly-wiki-preview details{clear:both;border-top:1px solid var(--wp-rule);padding:12px 0}
+#poly-wiki-preview details summary{font:normal 23px/1.4 Georgia,serif;cursor:default}
+#poly-wiki-preview details[open] summary{margin-bottom:12px}
+#poly-wiki-preview .wp-footer{clear:both;border-top:1px solid var(--wp-rule);margin-top:30px;padding-top:16px;font-size:12px;color:var(--wp-muted)}
+#poly-wiki-preview .wp-reference-list{font-size:13px}
+#poly-wiki-preview mjx-container[display="true"]{max-width:100%;overflow-x:auto;overflow-y:hidden}
+@media(max-width:850px){#poly-wiki-preview .wp-layout{grid-template-columns:minmax(0,1fr);gap:0;padding:18px}#poly-wiki-preview .wp-contents{display:none}}
+@media(max-width:560px){#poly-wiki-preview .wp-header{padding:16px;align-items:flex-start}#poly-wiki-preview .wp-context{max-width:150px}#poly-wiki-preview h1{font-size:27px}#poly-wiki-preview .wp-specimen{float:none;width:100%;margin:14px 0 20px}#poly-wiki-preview canvas{height:300px}#poly-wiki-preview .wp-layout{padding:16px}#poly-wiki-preview table{min-width:600px}#poly-wiki-preview h2{font-size:23px}#poly-wiki-preview select,#poly-wiki-preview button{min-height:44px;font-size:16px}}
+</style>
+<script>
+(()=>{
+const root=document.getElementById('poly-wiki-preview');
+const data=JSON.parse(root.querySelector('#wp-construction-data').textContent);
+const canvas=root.querySelector('#wp-canvas'),ctx=canvas.getContext('2d');
+const family=root.querySelector('#wp-family'),count=root.querySelector('#wp-count'),pause=root.querySelector('#wp-pause');
+const info=root.querySelector('#wp-figure-info'),link=root.querySelector('#wp-construction-link'),sourceLink=root.querySelector('#wp-source-link'),fallback=root.querySelector('#wp-fallback');
+const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+let rotating=!motion.matches,yaw=-.72,pitch=.36,drag=null,last=0,shape=null,worldFaces=[],containerEdges=[],extent=1;
+function matrix(q){let [w,x,y,z]=q;const norm=Math.hypot(w,x,y,z);w/=norm;x/=norm;y/=norm;z/=norm;return [[1-2*(y*y+z*z),2*(x*y-w*z),2*(x*z+w*y)],[2*(x*y+w*z),1-2*(x*x+z*z),2*(y*z-w*x)],[2*(x*z-w*y),2*(y*z+w*x),1-2*(x*x+y*y)]];}
+function mv(m,v){return m.map(row=>row.reduce((s,x,i)=>s+x*v[i],0));}
+function transform(v){const c=Math.cos(yaw),s=Math.sin(yaw),a=Math.cos(pitch),b=Math.sin(pitch);const x=c*v[0]+s*v[1],y=-s*v[0]+c*v[1];return [x,a*v[2]-b*y,a*y+b*v[2]];}
+function choose(){const id=family.value+'_n'+String(count.value).padStart(2,'0'),r=data.records[id],compare=data.comparisons[id];shape=r;worldFaces=[];containerEdges=[];if(!r)return;
+  const sourceOnly=compare&&!compare.configURL;canvas.hidden=sourceOnly;fallback.hidden=!sourceOnly;link.hidden=sourceOnly;pause.hidden=sourceOnly;
+  sourceLink.href=compare?.paperURL||compare?.sourceURL||'https://doi.org/10.5281/zenodo.23306126';
+  const plural={cube:'cubes',tetrahedron:'tetrahedra',octahedron:'octahedra',dodecahedron:'dodecahedra',icosahedron:'icosahedra'}[r.piece];
+  info.textContent=r.n+' '+plural+' in a '+r.container+' · '+(compare?'best sourced scale '+compare.displayValue+' · '+compare.attribution:'frozen shell witness · certified scale '+r.scale);
+  canvas.setAttribute('aria-label',r.n+' '+r.piece+' pieces inside a '+r.container+', rendered from stored coordinates. Drag to turn the numerical view.');
+  link.href=r.url;link.textContent='Exact construction ↗';
+  if(sourceOnly){fallback.querySelector('a').href=compare.reportedSourceImageURL;fallback.querySelector('span').textContent=compare.attribution+' · '+compare.displayValue;root.querySelector('#wp-caption').textContent='Reported catalogue construction. The original diagram represents this result; a different archived pose set is not substituted.';draw();return;}
+  const solid=data.solids[r.piece],cont=data.solids[r.container];
+  for(const [i,p] of r.pieces.entries()){const m=matrix(p.slice(3));const shell=r.shells?.[i]||'ordinary';const verts=solid.V.map(v=>mv(m,v).map((x,i)=>x+p[i]));for(const f of solid.F)worldFaces.push({vertices:f.map(i=>verts[i]),shell});}
+  const cv=cont.V.map(v=>v.map(x=>x*r.scale));containerEdges=cont.E.map(e=>e.map(i=>cv[i]));extent=Math.max(...cv.map(v=>Math.hypot(...v)))*1.02;
+  root.querySelector('#wp-caption').textContent=r.id==='dodindod_n33'?'1 central piece + 12 inner positions + 20 outer positions. Colours mark positional shells; they do not label orientation domains.':'Numerical view of the linked archived construction. A certified positive-clearance reproduction may differ slightly from a touching or catalogue value.';
+  draw();
+}
+function draw(){if(!shape||canvas.hidden)return;const rect=canvas.getBoundingClientRect(),w=rect.width,h=rect.height,dpr=Math.min(window.devicePixelRatio||1,2);if(!w||!h)return;if(canvas.width!==Math.round(w*dpr)||canvas.height!==Math.round(h*dpr)){canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);}ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);const css=getComputedStyle(root),dark=window.matchMedia('(prefers-color-scheme: dark)').matches;const palette=dark?{ordinary:'#73a7cc',center:'#b39ddb',inner:'#e2af5e',outer:'#61b3b5'}:{ordinary:'#447da1',center:'#8065a5',inner:'#c38b36',outer:'#3d999c'};const k=Math.min(w,h)*.46/extent;const project=v=>{const t=transform(v);return [w/2+t[0]*k,h/2-t[1]*k,t[2]];};const faces=worldFaces.map(f=>({...f,p:f.vertices.map(project)})).sort((a,b)=>a.p.reduce((s,v)=>s+v[2],0)/a.p.length-b.p.reduce((s,v)=>s+v[2],0)/b.p.length);
+  for(const f of faces){ctx.beginPath();f.p.forEach((v,i)=>i?ctx.lineTo(v[0],v[1]):ctx.moveTo(v[0],v[1]));ctx.closePath();ctx.globalAlpha=f.shell==='outer'?.69:.96;ctx.fillStyle=palette[f.shell];ctx.fill();ctx.globalAlpha=.38;ctx.strokeStyle=css.color;ctx.lineWidth=.5;ctx.stroke();}
+  ctx.globalAlpha=.48;ctx.strokeStyle=getComputedStyle(root.querySelector('.wp-caption')).color;ctx.lineWidth=.85;for(const e of containerEdges){const a=project(e[0]),b=project(e[1]);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke();}ctx.globalAlpha=1;
+}
+function updateCounts(){const desired=count.value;count.replaceChildren(...Array.from({length:11},(_,i)=>new Option(String(i+2),String(i+2))),...(family.value==='dodindod'?[new Option('33 · shell','33')]:[]));count.value=Array.from(count.options).some(o=>o.value===desired)?desired:'12';choose();}
+family.addEventListener('change',updateCounts);count.addEventListener('change',choose);
+pause.textContent=rotating?'Pause rotation':'Rotate slowly';pause.setAttribute('aria-pressed',String(rotating));pause.addEventListener('click',()=>{rotating=!rotating;pause.textContent=rotating?'Pause rotation':'Rotate slowly';pause.setAttribute('aria-pressed',String(rotating));});
+canvas.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY};canvas.setPointerCapture(e.pointerId);});canvas.addEventListener('pointermove',e=>{if(!drag)return;yaw+=(e.clientX-drag.x)*.009;pitch=Math.max(-1.3,Math.min(1.3,pitch+(e.clientY-drag.y)*.009));drag={x:e.clientX,y:e.clientY};draw();});canvas.addEventListener('pointerup',()=>{drag=null;});canvas.addEventListener('pointercancel',()=>{drag=null;});
+root.addEventListener('click',e=>{const a=e.target.closest('a');if(!a)return;const href=a.getAttribute('href')||'';const id=href.includes('alejandrozu.github.io/platonic-packing/#')?href.split('#')[1]:null;if(id&&data.records[id]&&a!==link){e.preventDefault();family.value=id.split('_n')[0];const n=Number(id.split('_n')[1]);updateCounts();count.value=String(n);choose();root.querySelector('.wp-specimen').scrollIntoView({behavior:motion.matches?'auto':'smooth',block:'center'});}if(href.startsWith('#')){const target=root.querySelector(href);if(target){const parent=target.closest('details');if(parent)parent.open=true;}}});
+new ResizeObserver(draw).observe(canvas);window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',draw);motion.addEventListener('change',e=>{if(e.matches){rotating=false;pause.textContent='Rotate slowly';pause.setAttribute('aria-pressed','false');}});
+family.value='dodindod';updateCounts();count.value='33';choose();
+function frame(t){const dt=last?Math.min(t-last,100):0;last=t;if(rotating&&!drag&&document.visibilityState!=='hidden'){yaw+=dt*.000035;draw();}requestAnimationFrame(frame);}requestAnimationFrame(frame);
+})();
+</script>
