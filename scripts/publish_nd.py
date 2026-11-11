@@ -109,10 +109,19 @@ def build(p, deadline):
                               "4-6, basin-hopping search and exact certification developed with Claude (Anthropic) under "
                               "Alejandro Zarzuelo's direction",
                     'certificate': 'pending', 'search': b.get('src', {})}
+            bsrc = b.get('src') or {}
+            if bsrc.get('contributor') and bsrc.get('move') == 'community':
+                # a contributed packing (11 Nov 2026, issue #113): its credit is the contributor's, not the search's
+                issue = f", issue #{bsrc['issue']}" if bsrc.get('issue') else ''
+                meta['credit'] = (f"{bsrc['contributor']} (contributed packing{issue}); converted to this archive's units, "
+                                  "re-legalized with 1e-7 clearance and certified exactly here (certify_nd.py)")
             try:
                 rec = claim_nd.make_claim(p, piece, container, b['C'], b['R'], GAP=CLEAR, WALL=CLEAR, meta=meta)
             except Exception as e:
                 log(f'record {p}_n{n:02d} FAILED to build: {type(e).__name__}: {e}'); prev = None; continue
+            if bsrc.get('contributor') and bsrc.get('move') == 'community':
+                rec['method'] = (f"contributed packing{issue}, submitted with exact certificates; this record is its "
+                                 "re-legalization with explicit rational separating hyperplanes (src/claim_nd.py)")
             if prev is not None and rec['s_full'] > prev['s_full']:
                 rec = dict(prev); rec.update(meta)
                 rec['n'] = n; rec['pieces'] = prev['pieces'][:-1]
