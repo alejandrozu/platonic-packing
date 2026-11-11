@@ -79,8 +79,11 @@ theorem smul_cube_coord {s : ℝ} (hs : 0 ≤ s) {y : EuclideanSpace ℝ (Fin d)
   simp only [PiLp.smul_apply, smul_eq_mul]
   exact ⟨mul_nonneg hs (hx i).1, mul_le_of_le_one_right hs (hx i).2⟩
 
-/-- **Lemma F gives the cube centre lemma**, in any dimension. -/
-theorem centre_of_lemmaF (hF : LemmaF d) (s : ℝ) (hs0 : 0 ≤ s) (hs : s < 2)
+/-- **Lemma F for matrices with rows of ℓ¹ norm at most 2 gives the cube centre lemma**, in any dimension. Only
+such matrices occur: the rows of a unit cube placed in a cube of side `s < 2` have ℓ¹ norm at most `s`. -/
+theorem centre_of_lemmaF_rows
+    (hF : ∀ Q : Matrix (Fin d) (Fin d) ℝ, Q * Qᵀ = 1 → (∀ i, rowL1 Q i ≤ 2) → ∀ j, Fcol Q j ≤ 1)
+    (s : ℝ) (hs0 : 0 ≤ s) (hs : s < 2)
     (g : EuclideanSpace ℝ (Fin d) ≃ᵃⁱ[ℝ] EuclideanSpace ℝ (Fin d)) (hg : g '' cube d ⊆ s • cube d) :
     (s / 2) • WithLp.toLp 2 (fun _ => (1 : ℝ)) ∈ interior (g '' cube d) := by
   set L := g.linearIsometryEquiv with hLdef
@@ -134,7 +137,12 @@ theorem centre_of_lemmaF (hF : LemmaF d) (s : ℝ) (hs0 : 0 ≤ s) (hs : s < 2)
         _ ≤ ∑ i, |A i k| * ((s - ∑ l, |A i l|) / 2) := by
           apply Finset.sum_le_sum; intro i _
           rw [abs_mul]; exact mul_le_mul_of_nonneg_left (bnd i) (abs_nonneg _)
-    have hFk := hF A hAA k
+    have hrows : ∀ i, rowL1 A i ≤ 2 := fun i => by
+      have h1 := abs_nonneg (s / 2 - (g 0 i + (∑ k, A i k) / 2))
+      have h2 := bnd i
+      simp only [rowL1, l1]
+      linarith
+    have hFk := hF A hAA hrows k
     have hF' : ∑ i, |A i k| * (2 - ∑ l, |A i l|) ≤ 1 := by simpa [Fcol, rowL1, l1] using hFk
     -- `Σᵢ |A_ik| ≥ Σᵢ A_ik² = 1`
     have hsum : 1 ≤ ∑ i, |A i k| := by
@@ -170,5 +178,11 @@ theorem centre_of_lemmaF (hF : LemmaF d) (s : ℝ) (hs0 : 0 ≤ s) (hs : s < 2)
   have himg : IsOpen (g '' U) := by simpa using g.toHomeomorph.isOpenMap U hUo
   have hsub : g '' U ⊆ g '' cube d := image_mono fun y hy k => ⟨(hy k).1.le, (hy k).2.le⟩
   exact interior_maximal hsub himg ⟨x, hU, hgxm⟩
+
+/-- **Lemma F gives the cube centre lemma**, in any dimension. -/
+theorem centre_of_lemmaF (hF : LemmaF d) (s : ℝ) (hs0 : 0 ≤ s) (hs : s < 2)
+    (g : EuclideanSpace ℝ (Fin d) ≃ᵃⁱ[ℝ] EuclideanSpace ℝ (Fin d)) (hg : g '' cube d ⊆ s • cube d) :
+    (s / 2) • WithLp.toLp 2 (fun _ => (1 : ℝ)) ∈ interior (g '' cube d) :=
+  centre_of_lemmaF_rows (fun Q hQ _ j => hF Q hQ j) s hs0 hs g hg
 
 end PackingOptimality.CentreGeneral

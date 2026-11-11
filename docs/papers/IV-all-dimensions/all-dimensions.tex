@@ -1,0 +1,695 @@
+\documentclass[11pt,a4paper]{article}
+\def\leanlinksfile{../leanlinks-iv.tex}
+\input{../preamble.tex}
+\hypersetup{pdftitle={Two unit cubes in a cube in every dimension},pdfauthor={Alejandro Zarzuelo Urdiales}}
+\input{numbers.tex}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newcommand{\status}[1]{\textsf{\small[#1]}}
+\newcommand{\Val}{\operatorname{Val}}
+\newcommand{\rest}{\operatorname{rest}}
+
+\title{Two unit cubes in a cube in every dimension:\\
+reductions checked in Lean, routes that fail,\\ and the evidence for $s_d(2)=2$}
+\author{Alejandro Zarzuelo Urdiales}
+\date{10 November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $s_d(n)$ be the side of the smallest $d$-cube that holds $n$ unit $d$-cubes with disjoint interiors, each placed by an arbitrary rigid motion. Paper~I of this series proves $s_d(2)=2$ in Lean for $d\le5$, and Hosono proved $d=6$ with computer assistance (not yet peer reviewed). We know of no result for $d\ge7$, and no statement of the problem in the literature before Hosono's. This paper collects what we know about the conjecture that $s_d(2)=2$ in every dimension. \emph{Equivalent forms.} The conjecture is Hosono's Lemma~F for the orthogonal matrices whose rows have $\ell^1$ norm below~$2$. It is also a statement about the largest $(d-1)$-cube in a simplex whose vertices lie on orthogonal axes. \emph{Proofs in Lean, in every dimension.} The near-axis step, an off-column step and a pivot inequality reduce the induction on $d$ to an explicit remaining case, and give $d\le4$ without any computation. A new aligned step loses nothing. With it, the conjecture in every dimension follows from one geometric statement, in a restricted or an unrestricted form, the \emph{facet lemma}: some largest cube in such a simplex has a facet parallel to a facet of the simplex. \emph{The Helmert conjecture.} A recursive face-on-face placement should give the exact largest cube; this would imply Lemma~F directly, and the facet lemma. It contains the classical square in a triangle and Croft's theorem on the largest cube in a regular tetrahedron. For the regular $n$-simplex it predicts the side $1/(\sqrt2\sum_{k=2}^{n+1}\sqrt{1-1/k})$. \emph{Routes that fail.} We record the failure, with verified counterexamples, of the single-pivot induction at the smallest row ($d=5,6,9$; checked at 50--60 digits), of the positive-part strengthening ($d=8$), of convex relaxations, among them Hosono's spectral bound ($d\ge6$), and of local arguments for the facet lemma ($d=4$). \emph{Evidence.} A Hosono-style numerical search in dimensions $3$ to $32$ finds no counterexample. Away from the coordinate axes the largest values of $F$ do not depend on the dimension: each is already attained in dimension at most~$6$. In the remaining case of the induction the largest values approach $1$ like $1-1.1/d$, but only at its boundary, where an elementary bound gives $F\le1$; so a direct bound there must use more than a uniform gap. No frame beats the Helmert frame in any test up to $d=12$, which supports Conjecture~H and the facet lemma.
+\end{abstract}
+
+\tableofcontents
+
+%===========================================================================
+\section{Introduction}\label{sec:intro}
+
+\subsection{The problem}
+In dimension $d$ write $s_d(n)$ for the smallest side of a cube that holds $n$ unit $d$-cubes with disjoint interiors, each placed by an arbitrary rigid motion. The grid of $2^d$ cubes gives $s_d(n)\le2$ for $n\le 2^d$, and the volume bound gives $s_d(n)\ge n^{1/d}$. If two unit cubes already need side~$2$, then $s_d(n)=2$ for all $2\le n\le 2^d$ (Paper~I~\cite{cubecentre}, plateau theorem).
+
+\begin{conjecture}[Two cubes]\label{conj:two}
+$s_d(2)=2$ for every $d\ge1$. Equivalently, $s_d(n)=2$ for every $d\ge1$ and every $2\le n\le 2^d$.
+\end{conjecture}
+
+\Cref{tab:status} gives the status. Hosono~\cite{hosono} reduced the conjecture to an inequality for orthogonal matrices, Lemma~F (\cref{sec:forms}). He proved it for $d\le6$ with computer assistance, and Paper~I~\cite{cubecentre} proved it in Lean for $d\le5$. Hosono states the problem for general $d$ in his issue~\#21~\cite{hosonoissue}. He reports no proof of $s_d(2)=2$ for any $d\ge3$ in the literature, and Friedman's survey~\cite{friedman} and his page on cubes in cubes give no lower bound for two cubes. We searched for the other forms below (frames, the largest cube in a simplex, $\ell^1$-minimal orthonormal bases) and found no earlier statement. Two special cases of the geometric form are classical, and we use them as checks (\cref{sec:regular}).
+
+\begin{table}[t]
+\centering\small
+\begin{tabularx}{\textwidth}{l l X}
+\toprule
+$d$ & status of $s_d(2)=2$ & source \\
+\midrule
+$1,2$ & true & trivial; for squares see Friedman~\cite{friedman} \\
+$3,4$ & true, in Lean & Paper~I~\cite{cubecentre}; here a third proof without computation (\cref{cor:le4}) \\
+$5$ & true, in Lean & Paper~I~\cite{cubecentre} (1174 interval cases checked by Lean) \\
+$6$ & true, computer-assisted & Hosono~\cite{hosono}: $2.8$ million simplex certificates; not in Lean, not peer reviewed \\
+$\ge7$ & open & here: reduced to the facet lemma (\cref{thm:mainB}); no counterexample in $d\le\maxdim$ (\cref{sec:numerics}) \\
+\bottomrule
+\end{tabularx}
+\caption{The conjecture $s_d(2)=2$ by dimension.}
+\label{tab:status}
+\end{table}
+
+\subsection{Results}
+Every statement below carries a label. \status{Lean} means checked in Lean~4 with Mathlib, using only the standard axioms, and linked to its declaration. \status{proof} means proved in this paper on paper. \status{numerical} means a numerical observation, with the script that produced it. \status{literature} means quoted from the literature.
+
+\begin{enumerate}
+\item \textbf{Equivalent forms} (\cref{sec:forms}). The conjecture is equivalent to Lemma~F for the matrices whose rows have norm below~$2$. Lemma~F itself is equivalent to a statement about the largest cube in a simplex whose vertices lie on orthogonal axes. Further forms use frames, chords and mixed volumes \status{proof, Lean for the identities}.
+\item \textbf{Reductions in every dimension} (\cref{sec:proved}) \status{Lean}. Hosono's near-axis step holds for the restricted lemma in every dimension. With an elementary bound it gives $s_d(n)=2$ for $d\le 4$ without computation. An off-column step and a pivot inequality reduce the induction from $d-1$ to $d$ to an explicit remaining case. An aligned step, new here, gives $F_j\le1$ whenever some row has at most one nonzero entry outside column~$j$, from Lemma~F, or restricted Lemma~F, one dimension down.
+\item \textbf{Main Theorem B} (\cref{thm:mainB}) \status{Lean}. If the facet lemma, or its restricted form, holds in every dimension $d\ge6$, then $s_d(n)=2$ for $2\le n\le 2^d$ in every dimension.
+\item \textbf{The Helmert conjecture} (\cref{sec:helmert}). The recursive face-on-face cube should be the largest cube in a simplex with vertices on orthogonal axes. This implies Lemma~F in the same dimension directly, and the facet lemma. The facet lemma and Conjecture~H hold for $d=3$ \status{proof}. Conjecture~H holds for the regular tetrahedron by Croft's theorem \status{literature}. For regular simplices it predicts an explicit side (\cref{conj:regular}).
+\item \textbf{Routes that fail} (\cref{sec:failed}). Each comes with the reason it fails and, where possible, a verified counterexample.
+\item \textbf{Numerical evidence} in dimensions $3$ to $\maxdim$ (\cref{sec:numerics}) and a summary of all the evidence (\cref{sec:evidence}).
+\end{enumerate}
+
+\Cref{fig:map} shows how the statements fit together.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[node distance=5mm and 7mm,
+  box/.style={draw,rounded corners,align=center,font=\small,inner sep=3pt,minimum height=8mm},
+  open/.style={box,fill=orange!12}, done/.style={box,fill=teal!10}, bad/.style={box,fill=red!8,dashed},
+  arr/.style={-{Stealth},thick}, lab/.style={font=\scriptsize,midway,fill=white,inner sep=1pt}]
+\node[open] (H) {Conjecture H\\[-1pt]\scriptsize Helmert frame is optimal};
+\node[open,right=12mm of H] (P) {Facet lemma\\[-1pt]\scriptsize dimensions $6,\dots,d$};
+\node[open,right=12mm of P] (F) {Lemma F\\[-1pt]\scriptsize dimension $d$};
+\node[open,below=11mm of F] (Fr) {restricted Lemma F\\[-1pt]\scriptsize rows $\le2$};
+\node[open,below=11mm of Fr] (S) {$s_d(n)=2$\\[-1pt]\scriptsize $2\le n\le2^d$};
+\node[open,left=14mm of Fr] (RC) {remaining case\\[-1pt]\scriptsize $\mathrm{RC4}(d)$};
+\node[bad,below=11mm of RC] (Xi) {$\Xi\ge0$ at a spread pivot\\[-1pt]\scriptsize false: $d=5,6,9,10$};
+\node[box,left=10mm of RC] (low) {restricted Lemma F\\[-1pt]\scriptsize dimension $d-1$};
+\draw[arr] (H) -- node[lab,above=1pt]{\status{proof}} (P);
+\draw[arr] (H.north) to[out=25,in=155] node[lab,above=1pt]{\status{proof}, directly} (F.north);
+\draw[arr,teal!60!black] (P) -- node[lab,above=1pt]{\status{Lean}} (F);
+\draw[arr] (F) -- node[lab,right=1pt]{trivial} (Fr);
+\draw[arr,teal!60!black] (Fr) -- node[lab,right=1pt]{\status{Lean}} (S);
+\draw[arr,teal!60!black] (RC) -- node[lab,above=1pt]{\status{Lean}} (Fr);
+\draw[arr,teal!60!black] (low) -- node[lab,above=1pt]{and} (RC);
+\draw[arr,dashed,red!60!black] (Xi) -- node[lab,right=1pt]{would close} (RC);
+\end{tikzpicture}
+\caption{The reductions in dimension $d$. Boxes are statements; for $d\ge7$ all of them are open. Arrows are implications, checked in Lean (teal) or proved here. Restricted Lemma~F implies $s_d(2)=2$, and $s_d(2)=2$ is equivalent to its version with rows of norm below~$2$ (\cref{prop:converse}). The facet lemma can also be taken in its restricted form (\cref{thm:mainB}). The middle row is the pivot induction of \cref{sec:proved}; the top row is the route through the facet lemma, which starts from Lemma~F in dimension $5$. The red dashed box is a statement that would close the middle row, and is false.}
+\label{fig:map}
+\end{figure}
+
+\subsection{How to read the Lean links}
+Every \status{Lean} statement is followed by its declarations, linked to the source at commit \href{\repo/tree/\leancommit}{\texttt{\leancommitshort}} of the repository~\cite{archive}. The files of this paper are \leanfile{LemmaFr}, \leanfile{OffColumn}, \leanfile{PivotStep} and \leanfile{FacetStep}, on top of the files of Paper~I. \Cref{sec:formal} lists them. The scripts and data of \cref{sec:failed,sec:numerics} are in \codepath{scripts/optimality/lemmaF_all_d/} at the same repository; \cref{sec:formal} gives the commit.
+
+%===========================================================================
+\section{The conjecture and its equivalent forms}\label{sec:forms}
+
+\begin{summarybox}
+\textbf{This section.} The conjecture as an inequality for orthogonal matrices, for frames, and as a statement about the largest cube in a simplex with vertices on orthogonal axes.\\
+\textbf{Lean.} \leanfile{CentreGeneral}, \leanfile{FacetStep} (\lean{FacetStep}{Fcol_eq_colValue}).
+\end{summarybox}
+
+\subsection{Lemma F}
+For an orthogonal $d\times d$ matrix $R$ write $w_i=\norm{R_i}_1$ for the $\ell^1$ norm of row~$i$ and, for a column~$j$,
+\[
+F_j(R)=\sum_{i=1}^d \abs{R_{ij}}\,(2-w_i)
+\qquad\text{(\lean{NearAxis}{Fcol})}.
+\]
+\emph{Lemma F in dimension $d$} (\lean{NearAxis}{LemmaF}) is the statement $F_j(R)\le1$ for every orthogonal $R$ and every $j$. \emph{Restricted Lemma F} (\lean{LemmaFr}{LemmaFr}) is the same statement for the orthogonal matrices whose rows all have $w_i\le2$, and \emph{strictly restricted Lemma F} for those with all $w_i<2$. For the identity $F_j=1$. For a rotation in one coordinate plane, with $\sigma=\abs{\cos\theta}+\abs{\sin\theta}$, $F_j=1-(\sigma-1)^2$.
+
+The rows of a unit cube placed in a cube of side $s<2$ have $\ell^1$ norm at most $s$, because $w_i$ is the cube's extent in coordinate~$i$. So only the restricted lemma is needed.
+
+\begin{theorem}[Hosono; Paper~I \status{Lean}]\label{thm:FtoS}
+If restricted Lemma F holds in dimension $d$, then every unit $d$-cube inside a cube of side $s<2$ contains the centre in its interior, and $s_d(n)=2$ for every $2\le n\le 2^d$.
+\end{theorem}
+\leanbox{\lean{CentreGeneral}{centre_of_lemmaF_rows}, \lean{Cubes}{cube_plateau_of_centre_lemma}.}
+
+The converse holds for the rows of norm strictly below~$2$.
+
+\begin{proposition}[\status{proof}]\label{prop:converse}
+If $s_d(2)=2$, then $F_j(R)\le 1$ for every orthogonal $R$ whose rows all have $w_i<2$.
+\end{proposition}
+\begin{proof}
+Let $w_i<2$ for all $i$ and $F_j(R)>1$. Choose $s<2$ with $\max_iw_i<s$ and $\sum_i\abs{R_{ij}}(s-w_i)>1$. Place the unit cube $K=g([0,1]^d)$, $g(y)=Ry+b$, in $[0,s]^d$ so that its centre $m$ satisfies $m_i-\frac s2=-\sgn(R_{ij})\frac{s-w_i}2$. This is admissible~\cite[\S3]{cubecentre}. For the container's centre $z=\frac s2\one$ the cube coordinate $y=R^\top(z-b)$ has $y_j-\frac12=\sum_iR_{ij}(z_i-m_i)=\sum_i\abs{R_{ij}}\frac{s-w_i}2>\frac12$, so $z\notin\interior K$. A hyperplane through $z$ then separates $\interior K$ from $z$. The point reflection of $K$ in $z$ lies in the same container, and the two cubes have disjoint interiors (\lean{Cubes}{interior_disjoint_of_separated}). So two unit cubes fit in side $s<2$.
+\end{proof}
+
+Conversely, a unit cube in a cube of side $s<2$ has rows of norm at most $s<2$, so strictly restricted Lemma~F already gives the centre lemma (the proof of \lean{CentreGeneral}{centre_of_lemmaF_rows} only meets such rows). Hence \emph{$s_d(2)=2$ is equivalent to strictly restricted Lemma~F in dimension $d$}. Restricted Lemma~F implies it; by continuity the two can differ only at matrices with $\max_iw_i=2$ that are not limits of matrices with all $w_i<2$. The induction of \cref{sec:proved} uses the closed condition $w_i\le2$, because the polar factor of a minor satisfies only that.
+
+\subsection{The value of a column, and frames}
+Fix $j$ and write $x_i=\abs{R_{ij}}$, $S=\norm{x}_1$. The \emph{value} of column $j$ is
+\[
+V_j(R)=\sum_i x_i\,\bigl(w_i-x_i\bigr)=\sum_i x_i\,\norm{\text{row $i$ without column $j$}}_1
+\qquad\text{(\lean{FacetStep}{colValue})}.
+\]
+
+\begin{lemma}[\status{Lean}]\label{lem:value}
+$F_j(R)=2S-1-V_j(R)$ for orthogonal $R$. So $F_j(R)\le1$ if and only if $V_j(R)\ge 2(S-1)$.
+\end{lemma}
+\leanbox{\lean{FacetStep}{Fcol_eq_colValue}.}
+\begin{proof}
+$x_i(2-w_i)=2x_i-x_i(w_i-x_i)-x_i^2$, and $\sum_ix_i^2=1$.
+\end{proof}
+
+Changing the signs of rows does not change $F_j$, $V_j$ or orthogonality, so we may take column $j$ equal to $v=x\ge0$. The other columns then form an orthonormal basis of $v^\perp$, a \emph{frame}: a $d\times(d-1)$ matrix $C$ with $C^\top C=I$ and $C^\top v=0$. Its rows $C_i$ have Gram matrix $I-vv^\top$. Every frame arises this way, and
+\[
+\Val_v(C)=\sum_i v_i\,\norm{C_i}_1=V_j(R).
+\]
+\begin{corollary}[frame form]\label{cor:frame}
+Lemma~F in dimension $d$ holds if and only if $\Val_v(C)\ge 2(\norm v_1-1)$ for every unit $v\ge0$ in $\R^d$ and every frame $C$ of $v^\perp$. Restricted Lemma~F is the same statement for the frames with $v_i+\norm{C_i}_1\le 2$ for all $i$.
+\end{corollary}
+
+\subsection{The largest cube in a simplex with vertices on orthogonal axes}\label{sec:simplex}
+For a unit $v>0$ and $\lambda>0$ let
+\[
+\Delta_\lambda(v)=\{\xi\in\R^d:\ \xi\ge0,\ \langle v,\xi\rangle=\lambda\},
+\]
+the $(d-1)$-simplex with vertices $(\lambda/v_i)e_i$. A unit $(d-1)$-cube in its hyperplane is $\{\xi_0+\sum_kt_kf_k:\ t\in[0,1]^{d-1}\}$, with edge directions the columns $f_k$ of a frame $C$ of $v^\perp$.
+
+\begin{theorem}[\status{proof}]\label{thm:simplex}
+A unit $(d-1)$-cube with frame $C$ fits in $\Delta_\lambda(v)$ by a translation if and only if $\lambda\ge\frac12\Val_v(C)$. It fits in the relative interior if and only if $\lambda>\frac12\Val_v(C)$.
+\end{theorem}
+\begin{proof}
+Over the cube, coordinate $i$ ranges over $[\xi_{0i}-N_i,\ \xi_{0i}+P_i]$, where $N_i=\sum_k(C_{ik})^-$ and $P_i=\sum_k(C_{ik})^+$. So the cube lies in $\Delta_\lambda(v)$ if and only if $\xi_{0i}\ge N_i$ for all $i$ and $\langle v,\xi_0\rangle=\lambda$. Such a $\xi_0$ exists if and only if $\lambda\ge\langle v,N\rangle$. Since $\sum_iv_iC_{ik}=0$, the positive and negative parts of $v_iC_{ik}$ have equal sums, so $\langle v,N\rangle=\frac12\sum_{i,k}v_i\abs{C_{ik}}=\frac12\Val_v(C)$. The strict version is the same with strict inequalities.
+\end{proof}
+
+By scaling, the largest cube in $\Delta_\lambda(v)$ has side $2\lambda/\min_C\Val_v(C)$, attained since the frames form a compact set. By continuity it suffices to take $v>0$. Write the vertices as $t_ie_i$, so $v_i=\lambda/t_i$, $\lambda=\delta=(\sum_it_i^{-2})^{-1/2}$ is the distance from the origin to the simplex, and $\norm v_1=\delta\sum_i1/t_i$. \Cref{cor:frame} becomes:
+
+\begin{corollary}[\status{proof}]\label{cor:simplex}
+Lemma~F in dimension $d$ is equivalent to the following statement: for all $t_1,\dots,t_d>0$, every $(d-1)$-cube inside the simplex with vertices $t_1e_1,\dots,t_de_d$ has side at most
+\[
+\frac{1}{\sum_i 1/t_i-1/\delta},\qquad \delta=\Bigl(\sum_it_i^{-2}\Bigr)^{-1/2}.
+\]
+\end{corollary}
+
+The simplices with vertices on mutually orthogonal rays from a point are exactly the orthocentric simplices whose orthocentre lies inside: their squared edge lengths have the form $\lambda_a+\lambda_b$ with all $\lambda_a>0$~\cite{ehm}. In the plane these are the acute triangles. For the regular simplex ($v$ uniform) \cref{cor:simplex} gives side at most $1/(\sqrt2(d-\sqrt d))$ for unit edge. The face-on-face cube of \cref{sec:helmert} is smaller (\cref{tab:regular}); it is a lower bound for the largest cube, and conjecturally equal to it. Numerically Lemma~F is tight only at axis-aligned columns, so the bound of \cref{cor:simplex} is reached only in the limit of a degenerate simplex.
+
+\begin{remark}[the restricted lemma]
+The cubes of the restricted lemma are those whose frame rows satisfy $v_i+\norm{C_i}_1\le2$. Geometrically: the cube's edge directions are not too far from the coordinate directions. We do not use this form.
+\end{remark}
+
+\subsection{Chords and mixed volumes}
+\begin{proposition}[chords; \status{proof}]\label{prop:chords}
+Let $\Delta$ be an $n$-simplex and $f_1,\dots,f_n$ orthonormal. A unit cube with edge directions $f_k$ fits in $\Delta$ by a translation if and only if
+\[
+\sum_{k=1}^n\frac{1}{L_\Delta(f_k)}\le 1,
+\]
+where $L_\Delta(f)$ is the length of the longest chord of $\Delta$ in direction~$f$.
+\end{proposition}
+\begin{proof}
+Let $\Delta=\{y:\langle u_a,y\rangle\le b_a\}$ with unit facet normals $u_a$ and facet areas $\omega_a$, so $\sum_a\omega_au_a=0$ and $\sum_a\omega_ab_a=n\vol\Delta$ (origin inside). A zonotope $Z=\{y_0+\sum_kt_kz_k: t\in[0,1]^m\}$ fits if and only if $\langle u_a,y_0\rangle\le b_a-\sum_k\langle u_a,z_k\rangle^+$ for all $a$. These are $n+1$ inequalities in $y_0\in\R^n$ whose normals have the single linear relation $\sum_a\omega_au_a=0$. By Farkas' lemma they are solvable if and only if
+\[
+\textstyle\sum_a\omega_a\sum_k\langle u_a,z_k\rangle^+\le n\vol\Delta .
+\]
+For a single segment $z_1=Lf$ this says that the longest chord in direction $f$ has length $L_\Delta(f)=n\vol\Delta/\sum_a\omega_a\langle u_a,f\rangle^+$. For the cube, $z_k=f_k$, the condition is therefore $\sum_kn\vol\Delta/L_\Delta(f_k)\le n\vol\Delta$.
+\end{proof}
+
+The same computation says that a unit cube $\square$ fits if and only if the mixed volume satisfies $V(\Delta[n-1],\square)\le\vol\Delta$, since $nV(\Delta[n-1],\square)=\sum_a\omega_ah_\square(u_a)$ with $h_\square$ the support function of $\square$. With $\Delta=\Delta_{S-1}(v)$ (so $n=d-1$), Lemma~F says $\sum_k1/L_k\ge1$ for every frame, and also $V(\Delta[n-1],\square)\ge\vol\Delta$ for every unit cube~$\square$. The script \code{evidence/forms_check.py} checks \cref{thm:simplex} and \cref{prop:chords} against linear programs on 300 random instances each.
+
+\begin{proposition}[the average over the columns; \status{proof}]\label{prop:average}
+For every orthogonal $R$, $\sum_{j}\bigl(1-F_j(R)\bigr)=\sum_i(w_i-1)^2$.
+\end{proposition}
+\begin{proof}
+$\sum_jF_j=\sum_iw_i(2-w_i)$ and $d=\sum_i1$.
+\end{proof}
+So Lemma~F holds on average over the columns, with room $\sum_i(w_i-1)^2$. The difficulty is that one column can take more than its share.
+
+%===========================================================================
+\section{What is proved in every dimension}\label{sec:proved}
+
+\begin{summarybox}
+\textbf{This section.} Reductions from dimension $d-1$ to dimension $d$ that hold in every dimension, all in Lean: the near-axis step, a bound for the remaining case, the off-column step, the pivot inequality and its concentrated case, and the aligned step. Consequences: $s_d(n)=2$ for $d\le4$ without computation; the induction reduced to an explicit remaining case; and every dimension reduced to the facet lemma (\cref{thm:mainB}).\\
+\textbf{Lean.} \leanfile{LemmaFr}, \leanfile{OffColumn}, \leanfile{PivotStep}, \leanfile{FacetStep}.
+\end{summarybox}
+
+\subsection{Block form and the polar factor}
+We use Hosono's block form and polar factor as in Paper~I~\cite[\S5]{cubecentre}. Around an entry $c=R_{pq}>0$,
+\[
+R\simeq\begin{pmatrix}c&r^\top\\x&M\end{pmatrix},\qquad Q=M-\frac{1}{1+c}\,x\,r^\top
+\]
+(\lean{NearAxis}{BlockOrth}, \lean{NearAxis}{polarQ}). Here $Q$ is orthogonal when $x\ne0$ (\lean{NearAxis}{polarQ_orth}), $Q^\top x=-r$ (\lean{NearAxis}{polarQ_transpose_x}), and the rows move by a rank-one term, $M_i=Q_i+\frac1{1+c}x_i\,r^\top$ in the convention of \lean{NearAxis}{polarQ_entry}. Inside a block form, $x$ denotes the rest of the pivot column; elsewhere, as in \cref{sec:forms}, $x_i=\abs{R_{ij}}$ and $S=\norm x_1$. When the pivot is in column~$j$ ($q=j$), $F_j(R)$ is compared with $F$ of all the columns of $Q$ (the near step). When $q\ne j$, column $j$ survives in $Q$ with entries $Q_{ij}=M_{ij}-\frac{1}{1+c}x_ir_j$, and $F_j(R)$ is compared with $F_j(Q)$ (the off-column, pivot and aligned steps).
+
+\subsection{The near step and the bound for the remaining case}
+
+\begin{theorem}[near step in every dimension; \status{Lean}]\label{thm:near}
+Assume restricted Lemma~F in dimension $d-1$. Let $R$ be orthogonal of size $d$ with all rows of $\ell^1$ norm at most $2$, and let $R_{i_0j}\ne0$ be an entry whose row has $\norm{R_{i_0}}_1-\abs{R_{i_0j}}\le 1$. Then $F_j(R)\le1$.
+\end{theorem}
+\leanbox{\lean{LemmaFr}{near_step}, \lean{LemmaFr}{step_at}; Hosono's \lean{NearAxis}{near_identity} and \lean{NearAxis}{lemmaK}.}
+\begin{proof}
+Paper~I proves the step for $d-1\le4$, where every unit row has $\ell^1$ norm at most $2$. In general the rows of $Q$ satisfy $\norm{Q_i}_1\le\norm{M_i}_1+\frac{1}{1+c}\abs{x_i}\norm r_1\le 2$, because $\norm r_1\le1\le 1+c$ and the row $i$ of $R$ has norm at most~$2$ (\lean{LemmaFr}{polar_row_le}, \lean{LemmaFr}{coef_le_one}). So Lemma~K applies to $Q$ with the restricted hypothesis, and Hosono's identity gives $1-F_j\ge K(Q,x)+2(1-c)(1-\norm r_1)\ge0$.
+\end{proof}
+
+\begin{theorem}[remaining bound; \status{Lean}]\label{thm:remaining}
+If every row $i$ with $R_{ij}\ne0$ has $w_i-\abs{R_{ij}}>1$, then $F_j(R)\le\norm{x}_1-1$.
+\end{theorem}
+\leanbox{\lean{LemmaFr}{remaining_bound}.}
+\begin{proof}
+Each term $x_i(2-w_i)\le x_i(1-x_i)$, and $\sum_ix_i(1-x_i)=S-1$.
+\end{proof}
+
+\begin{corollary}[$d\le4$ without computation; \status{Lean}]\label{cor:le4}
+Restricted Lemma~F, the cube centre lemma, and $s_d(n)=2$ for $2\le n\le2^d$ hold for every $d\le4$.
+\end{corollary}
+\leanbox{\lean{LemmaFr}{lemmaFr_le_four}, \lean{LemmaFr}{centre_le_four}, \lean{LemmaFr}{col_l1_le_two}, \lean{Cubes}{cube_plateau_of_centre_lemma}; unrestricted: \lean{FacetStep}{lemmaF_le_four}.}
+\begin{proof}
+Induction on $d$. If some entry of column $j$ qualifies, use \cref{thm:near}. Otherwise \cref{thm:remaining} gives $F_j\le S-1\le\sqrt d-1\le1$. For $d\le4$ every unit row has $\ell^1$ norm at most $\sqrt d\le2$ (\lean{NearAxis}{rowL1_le_two}), so this is Lemma~F itself.
+\end{proof}
+
+This is the third proof for $d=3,4$, after Hosono's and Paper~I's, and the shortest: it uses no case split and no certificate.
+
+\begin{theorem}[induction step; \status{Lean}]\label{thm:succ}
+Restricted Lemma~F in dimension $d-1$, together with the statement $F_j(R)\le1$ for the matrices of the \emph{remaining case}
+\[
+\mathrm{RC}(d):\quad w_i\le2\ \forall i,\qquad \norm{x}_1>2,\qquad w_i-x_i>1\text{ whenever }x_i\ne0,
+\]
+gives restricted Lemma~F in dimension $d$.
+\end{theorem}
+\leanbox{\lean{LemmaFr}{RemainingCase}, \lean{LemmaFr}{lemmaFr_succ}.}
+
+\subsection{The off-column step}
+The extremal matrices of the remaining case include \emph{sinks}: a row where column $j$ is tiny and some other entry is large. For them we pivot outside column~$j$.
+
+\begin{theorem}[off-column step; \status{Lean}]\label{thm:offcol}
+Assume restricted Lemma~F in dimension $d-1$. Let $R$ be orthogonal with rows of $\ell^1$ norm at most~$2$, let $p$ be a row where $\abs{R_{pj}}$ is smallest, and let $q\ne j$ be a column with $R_{pq}^2\ge3/4$. Then $F_j(R)\le1$. The proof compares $F_j(R)$ term by term with $F_j(Q)$.
+\end{theorem}
+\leanbox{\lean{OffColumn}{offcol_step} (block form), \lean{OffColumn}{offcol_at}, \lean{OffColumn}{term_bound}; induction step \lean{OffColumn}{lemmaFr_succ2}.}
+\begin{proof}[Idea]
+A term-by-term comparison of $\abs{M_{ij}}(2-\abs{x_i}-\norm{M_i}_1)$ with $\abs{Q_{ij}}(2-\norm{Q_i}_1)$, using the triangle inequality for the rows of~$Q$. The error terms add up to $-c\,r_j$ by the orthogonality of columns $q$ and $j$, $c\,r_j+\sum_ix_iM_{ij}=0$. The bound $R_{pq}^2\ge3/4$ makes $\norm r_1\le 1+c$ and $\norm r_2^2\le1/4$, and the minimality of row $p$ controls the signs.
+\end{proof}
+
+\subsection{The pivot inequality}
+Normalise the signs so that column $j$ is nonnegative and the pivot $c=R_{pq}$ is positive (\lean{PivotStep}{flipM}). In the block form at $(p,q)$, $x$ is the rest of the pivot column~$q$ and $y=M_{\cdot j}$ the rest of column~$j$. Put $\nu=R_{pj}$, $a=1/(1+c)$, $L=\norm r_1$, $\rho=L-\nu$ (the part of row $p$ outside columns $j$ and $q$), $\kappa_1=1+c-\rho$ and $G_i=2-w_i$ for the rows $i\ne p$, and define
+\[
+\Xi=\nu\bigl(c(c+L)-1\bigr)+\sum_i\Bigl(2\kappa_1\max(x_i,0)\,(y_i-a\nu x_i)-\nu\,x_iG_i\Bigr)
+\qquad\text{(\lean{PivotStep}{Xi})}.
+\]
+
+\begin{theorem}[pivot inequality; \status{Lean}]\label{thm:pivot}
+Let $x\ne0$. If $a\nu x_i\le y_i$ for all $i$, then $F_j(R)\le F_j(Q)-a\,\Xi$. In particular, if the rows of $R$ have $\ell^1$ norm at most $2$, then restricted Lemma~F in dimension $d-1$, $\Xi\ge0$ and an admissible pivot ($\norm r_1\le1+c$) give $F_j(R)\le1$.
+\end{theorem}
+\leanbox{\lean{PivotStep}{pivot_bound}, \lean{PivotStep}{pivot_step}, \lean{PivotStep}{pivot_at_gen}.}
+
+The only estimate in the proof is the triangle inequality for the rows of~$Q$; the rest is the orthogonality of columns $q$ and $j$ and $\norm{\text{column }q}_2=1$.
+
+\begin{theorem}[concentrated pivot; \status{Lean}]\label{thm:caseA}
+Let $R$ be orthogonal with rows of $\ell^1$ norm at most $2$, let $p$ be a row where column $j$ is smallest, and $c=\abs{R_{pq}}$ the largest entry of row~$p$, with $q\ne j$. If row $p$ is concentrated, $\norm{R_p}_1-c-\nu\le c+\nu/2$, then $\Xi\ge0$, so restricted Lemma~F in dimension $d-1$ gives $F_j(R)\le1$. The largest entry of a smallest row can always be taken outside column~$j$; Lean states this for $d\ge5$, and it holds for $d\ge2$ because $\nu^2\le1/d\le\max_{k\ne j}R_{pk}^2$.
+\end{theorem}
+\leanbox{\lean{PivotStep}{pivot_caseA}, \lean{PivotStep}{caseA_ok}, \lean{PivotStep}{pivot_at}, \lean{PivotStep}{exists_pivot}.}
+\begin{proof}[Idea]
+Two facts. First, $c(c+L)\ge c^2+\norm r_2^2=1$, because $c$ is the largest entry of a unit row. Second, every row with $x_i>0$ has $cG_i\le2c-2cx_i-(c+\nu)y_i$, from its orthogonality to row~$p$.
+\end{proof}
+
+\begin{theorem}[the induction with every reduction; \status{Lean}]\label{thm:succ4}
+Restricted Lemma~F in dimension $d-1$ gives restricted Lemma~F in dimension $d$, provided $F_j(R)\le1$ for the matrices of the case $\mathrm{RC4}(d)$: the matrices of $\mathrm{RC}(d)$ in which every pair ($p$ a row where column $j$ is smallest, $q\ne j$ a column holding the largest entry of row $p$) has a spread row, $\rho>c+\nu/2$, and $c^2<3/4$.
+\end{theorem}
+\leanbox{\lean{PivotStep}{RemainingCase4}, \lean{PivotStep}{lemmaFr_succ4}.}
+
+\Cref{sec:pivotfail} shows that $\Xi\ge0$ fails at spread pivots, even inside $\mathrm{RC4}$, so this branch needs a different argument there. \Cref{sec:rc} gives the largest values of $F_j$ found on $\mathrm{RC}(d)$ and $\mathrm{RC4}(d)$.
+
+\subsection{The aligned step and the facet lemma}
+Call a row $p$ \emph{aligned} (for column $j$) if it has at most one nonzero entry outside column~$j$. For the cube of \cref{thm:simplex}, row $p$ of the frame is aligned exactly when the facet $\{\xi_p=0\}$ of the simplex is parallel to a pair of facets of the cube.
+
+\begin{theorem}[aligned step; \status{Lean}]\label{thm:aligned}
+Assume Lemma~F in dimension $d-1$. If row $p$ of an orthogonal $d\times d$ matrix $R$ has no nonzero entry outside the columns $j$ and $q\ne j$, then
+\[
+F_j(R)\le 1-2\bigl(1-\abs{R_{pj}}\bigr)\bigl(1-\abs{R_{pq}}\bigr)\le1.
+\]
+The same holds with restricted Lemma~F in dimension $d-1$ when the rows of $R$ have $\ell^1$ norm at most~$2$.
+\end{theorem}
+\leanbox{\lean{FacetStep}{aligned_step} (block form), \lean{FacetStep}{aligned_at}, \lean{FacetStep}{Fcol_le_one_of_axis_row}; restricted: \lean{FacetStep}{aligned_step_r}, \lean{FacetStep}{aligned_at_r}.}
+\begin{proof}
+If $R_{pq}=0$, row $p$ is $\pm e_j$ and $F_j(R)=1$. Otherwise flip the sign of column $q$ so that $c=R_{pq}>0$, and take the block form at $(p,q)$. Then $r=\nu e_j$ with $\nu=R_{pj}$, so $c^2+\nu^2=1$ and $\norm x_2^2=1-c^2=\nu^2$. If $\nu=0$, then $x=0$, $M$ is orthogonal and $F_j(R)=F_j(M)\le1$; let $\nu\ne0$. Since $Q^\top x=-r=-\nu e_j$ and $Q$ is orthogonal, $x=-\nu\,Q_{\cdot j}$. The polar factor changes only column~$j$: $Q_{ik}=M_{ik}$ for $k\ne j$, and $M_{ij}=Q_{ij}+\frac{\nu}{1+c}x_i=(1-\frac{\nu^2}{1+c})Q_{ij}=c\,Q_{ij}$. So with $u_i=\abs{Q_{ij}}$, a unit vector, the $\ell^1$ norms are $\norm{M_i}_1=\norm{Q_i}_1-(1-c)u_i$, and
+\[
+F_j(R)=\abs\nu(2-c-\abs\nu)+\sum_icu_i\bigl(2-\abs\nu u_i-\norm{Q_i}_1+(1-c)u_i\bigr)
+=\abs\nu(2-c-\abs\nu)+c\,F_j(Q)+c(1-c-\abs\nu).
+\]
+With $F_j(Q)\le1$ and $c^2+\nu^2=1$ this is at most $2\abs\nu+2c-1-2c\abs\nu=1-2(1-\abs\nu)(1-c)$. For the restricted version, the rows of $R$ other than $p$ have $w_i=\abs{x_i}+\norm{M_i}_1=\norm{Q_i}_1+(\abs\nu+c-1)u_i$, and $\abs\nu+c\ge\nu^2+c^2=1$, so $\norm{Q_i}_1\le w_i\le2$ and restricted Lemma~F applies to~$Q$.
+\end{proof}
+
+Unlike the pivot inequality, this step loses nothing: when row $p$ is aligned, the polar factor is the minor with column $j$ rescaled, and the computation is an identity. It also never lengthens a row.
+
+\begin{definition}[facet lemma; \lean{FacetStep}{FacetLemma}]\label{def:facet}
+The \emph{facet lemma in dimension $d$}: for every orthogonal $d\times d$ matrix $R$ and column $j$ there is an orthogonal $R'$ with $\abs{R'_{ij}}=\abs{R_{ij}}$ for all~$i$, $V_j(R')\le V_j(R)$, and an aligned row. Equivalently, by \cref{thm:simplex}, compactness and continuity: for every unit $v>0$, some largest cube in $\Delta_1(v)$ has a pair of facets parallel to a facet of the simplex. The \emph{restricted facet lemma} (\lean{FacetStep}{FacetLemmaR}) is the same statement for matrices $R$ whose rows have $\ell^1$ norm at most $2$, with $R'$ of the same kind.
+\end{definition}
+
+\begin{theorem}[Main Theorem B; \status{Lean}]\label{thm:mainB}
+If the facet lemma holds in every dimension $d\ge6$, then Lemma~F holds in every dimension, every unit $d$-cube inside a cube of side $s<2$ contains the centre, and $s_d(n)=2$ for every $d\ge1$ and every $2\le n\le2^d$. If the restricted facet lemma holds in every dimension $d\ge6$, then restricted Lemma~F holds in every dimension $d\ge5$, and the same conclusions about cubes follow.
+\end{theorem}
+\leanbox{\lean{FacetStep}{lemmaF_succ_of_facet}, \lean{FacetStep}{lemmaF_of_facet_from}, \lean{FacetStep}{lemmaF_of_facet}, \lean{FacetStep}{lemmaF_all_of_facet}, \lean{FacetStep}{centre_of_facet}, \lean{FacetStep}{cube_plateau_of_facet}; restricted: \lean{FacetStep}{lemmaFr_succ_of_facetR}, \lean{FacetStep}{lemmaFr_of_facetR}, \lean{FacetStep}{cube_plateau_of_facetR}.}
+\begin{proof}
+Lemma~F in dimension $5$ is Paper~I's \lean{LemmaF5}{lemmaF5}. If Lemma~F holds in dimension $d-1$ and the facet lemma in dimension $d$, take $R'$ as in \cref{def:facet}. \Cref{thm:aligned} gives $F_j(R')\le1$, and by \cref{lem:value} $F_j(R)=2S-1-V_j(R)\le 2S-1-V_j(R')=F_j(R')$. Dimensions $d\le4$ are \cref{cor:le4}. The restricted version is the same argument with the restricted aligned step, starting from \lean{PivotStep}{lemmaFr_five}.
+\end{proof}
+
+The facet lemma is trivial for $d=2$ (\lean{FacetStep}{facetLemma_two}) and holds for $d=3$ (\cref{cor:facet3}). It follows from Conjecture~H (\cref{prop:Himplies}). It is open for $d\ge4$; numerically it holds in every test (\cref{sec:numH}). Neither form obviously implies the other: the restricted form is asked for fewer matrices $R$, but it also asks more of $R'$.
+
+%===========================================================================
+\section{The Helmert conjecture and the facet lemma}\label{sec:helmert}
+
+\begin{summarybox}
+\textbf{This section.} The recursive face-on-face cube and its value; the Helmert conjecture and what it implies; the structure of minimisers; the facet lemma for $d=3$; regular simplices, and Croft's theorem as a check.\\
+\textbf{Scripts.} \codepath{evidence/frames.py}, \codepath{evidence/forms_check.py}, \codepath{star.py}, \codepath{rules.py}, \codepath{flag.py}, \codepath{locmin.py}.
+\end{summarybox}
+
+\subsection{The Helmert frame}
+Sort $v_1\ge v_2\ge\dots\ge v_d\ge0$ and let $A_k=v_1^2+\dots+v_{k-1}^2$. The vectors
+\[
+b_k\ \propto\ A_k\,e_k-v_k\,(v_1,\dots,v_{k-1},0,\dots,0),\qquad k=2,\dots,d,
+\]
+form a frame of $v^\perp$, the \emph{Helmert frame} (for uniform $v$ it is the classical Helmert basis of the sum-zero hyperplane). Its value is
+\[
+H(v)=\Val_v(b_2,\dots,b_d)=2\sum_{k=2}^dv_k\sqrt{A_k/A_{k+1}},\qquad A_{d+1}=1.
+\]
+Row $d$ (the smallest entry of $v$) is aligned: it meets only $b_d$. Deleting it gives the Helmert frame of $v'=(v_1,\dots,v_{d-1})/\mu$, $\mu=\sqrt{1-v_d^2}$, and
+\begin{equation}\label{eq:Hrec}
+H(v)=\mu\,H(v')+2v_d\,\mu .
+\end{equation}
+Geometrically: the Helmert cube stands on the facet of the simplex opposite its farthest vertex, and the facet of the cube on top of it is again a Helmert cube in a smaller simplex, one dimension down.
+
+\begin{proposition}[\status{proof}]\label{prop:Htele}
+$H(v)\ge2(\norm v_1-1)$, with equality only when $v$ has a single nonzero entry.
+\end{proposition}
+\begin{proof}
+Put $\alpha=\sqrt{A_k}$, $\beta=v_k$, $r=\sqrt{\alpha^2+\beta^2}=\sqrt{A_{k+1}}$. Then $\beta\alpha/r\ge\alpha+\beta-r$, because $r^2-(\alpha+\beta)r+\alpha\beta=(r-\alpha)(r-\beta)\ge0$. Summing over $k\ge2$, $\frac12H(v)\ge\sum_{k\ge2}v_k-(\sqrt{A_{d+1}}-\sqrt{A_2})=\norm v_1-1$. Equality in every step needs $r=\alpha$ or $r=\beta$, so $v_k=0$ or $A_k=0$ for each~$k$.
+\end{proof}
+
+So for every $v$ that is not axis-aligned, the Helmert cube is strictly smaller than the bound of \cref{cor:simplex}.
+
+\begin{conjecture}[H]\label{conj:H}
+For every unit $v\ge0$, the Helmert frame minimises $\Val_v$ over all frames of $v^\perp$. Equivalently (for $v>0$), the largest $(d-1)$-cube in $\Delta_1(v)$ has side $2/H(v)$, attained by the recursive face-on-face cube.
+\end{conjecture}
+
+\begin{proposition}[\status{proof}]\label{prop:Himplies}
+Conjecture~H in dimension $d$ implies Lemma~F in dimension $d$, and so $s_d(2)=2$. It also implies the facet lemma in dimension $d$.
+\end{proposition}
+\begin{proof}
+By \cref{prop:Htele}, $\Val_v(C)\ge H(v)\ge2(\norm v_1-1)$ for every frame, which is Lemma~F by \cref{cor:frame}. For the facet lemma, given $R$ and $j$, let $R'$ have column $j$ equal to $v=\abs{\text{column }j}$ and the Helmert frame as its other columns. It is orthogonal, its row at the smallest entry of $v$ is aligned, and $V_j(R')=H(v)\le\Val_v(C)=V_j(R)$, where $C$ is the frame of the row-normalised $R$.
+\end{proof}
+
+So Conjecture~H settles each dimension on its own, without induction. The facet lemma is weaker, and needs the induction of \cref{thm:mainB}. The chain of \cref{fig:map} is: Conjecture~H $\Rightarrow$ Lemma~F $\Rightarrow$ restricted Lemma~F $\Rightarrow$ $s_d(2)=2$, and Conjecture~H $\Rightarrow$ facet lemma, which with Lemma~F one dimension down gives Lemma~F.
+
+\subsection{Minimisers and the facet lemma in dimension 3}
+\begin{proposition}[\status{proof}]\label{prop:givens}
+Rotate two frame vectors $f_k,f_l$ by an angle $\theta$ in their plane. Then $\theta\mapsto\Val_v$ is a constant plus a sum of functions $v_i\varrho_i\bigl(\abs{\cos(\theta+\alpha_i)}+\abs{\sin(\theta+\alpha_i)}\bigr)$, one for each row~$i$. Each is concave between consecutive kinks, and the kinks are the angles where one of the two rotated entries of row $i$ vanishes. So at a local minimum of $\Val_v$ either some row has a kink there, meaning exactly one of its two entries in columns $k,l$ is zero, or $\Val_v$ is constant along the rotation up to the next kink.
+\end{proposition}
+\begin{proof}
+Write row $i$ restricted to columns $k,l$ as $\varrho_i(\cos\alpha_i,\sin\alpha_i)$; the rotation turns it into $\varrho_i(\cos(\theta+\alpha_i),\sin(\theta+\alpha_i))$, and the other entries do not change. The function $\abs{\cos t}+\abs{\sin t}$ is concave on each interval between consecutive multiples of $\pi/2$. A sum of concave functions has a local minimum inside an interval only if it is constant near that point.
+\end{proof}
+
+\begin{corollary}[facet lemma for $d=3$; \status{proof}]\label{cor:facet3}
+For $d=3$ some minimiser of $\Val_v$ has a zero entry, hence an aligned row (rows have only two entries). With \cref{thm:aligned} this proves Lemma~F in dimension~$3$.
+\end{corollary}
+\begin{proof}
+For $d=3$ the frames of $v^\perp$ are one rotation family (up to sign changes, which do not change $\Val_v$). Its minimum is attained, and by \cref{prop:givens} it can be moved to a kink.
+\end{proof}
+
+\begin{corollary}[Conjecture~H for $d=3$; \status{proof}, \status{literature}]\label{cor:H3}
+Conjecture~H holds for $d=3$: the largest square in an acute triangle stands on its shortest side.
+\end{corollary}
+\begin{proof}
+By \cref{cor:facet3} some largest square has a side parallel to a side of the triangle; pushed against that side, it is one of the three inscribed squares with a side on a side of the triangle. Among these, the one on the shortest side is the largest~\cite{baileydetemple}. In $\Delta_1(v)$ the shortest side is the one joining the two vertices nearest the origin, so it is opposite the vertex $e_p/v_p$ with $v_p$ smallest, and the square on it is the Helmert square.
+\end{proof}
+
+This is Paper~I's three-dimensional proof~\cite[\S4]{cubecentre} read geometrically. For $d\ge4$, \cref{prop:givens} applies to every pair of columns and gives zero entries, but not a full aligned row. The local minima in \cref{sec:local} show that no local argument can give more.
+
+\subsection{The frame step}\label{sec:framestep}
+When no row is aligned, the aligned step has a lossy analogue. Let $q$ be a column holding the largest entry of row~$p$ of the frame. Remove row $p$ ($\nu=v_p$, $\mu=\sqrt{1-\nu^2}$) by rotating $\R^{d-1}$ in the plane of $C_p$ and $e_q$ so that $C_p$ becomes $\mu\,e_q$; then delete row $p$ and column $q$. This gives a frame $C''$ for $v'=v_{\ne p}/\mu$.
+
+\begin{conjecture}[frame step; \status{numerical}]\label{conj:star}
+If $\norm{C_p}_1\le\mu+2\abs{C_{pq}}$, then $\Val_v(C)\ge\mu\,\Val_{v'}(C'')+2v_p\abs{C_{pq}}$.
+\end{conjecture}
+
+For an aligned row, $\abs{C_{pq}}=\mu$ and this is the identity behind \cref{thm:aligned}. A derivation sketch: write $C_i=s_i+\beta_i\hat u$ with $\hat u=C_p/\mu$ and $\beta_i=-\nu v_i/\mu$; the triangle inequality in each row gives a bound whose first-order term cancels by $\sum_iv_is_{iq}=0$. The script \code{star.py} checked it on $97{,}617$ cases inside the domain ($d=3$--$10$, random frames and perturbed Helmert frames), with smallest margin $6\cdot10^{-10}$; outside the domain it fails. With Lemma~F for $v'$ it closes the induction when $v_p(\mu-\abs{C_{pq}})\le(1-\mu)(1-v_p)$. In an adversarial search (\code{rules.py}, $d=5,6,8$), the rule ``remove the row that maximises the right-hand side'' always closed the induction. The rule ``largest $v_p$'' failed once, slightly, next to an axis-aligned $v$. The rules ``smallest $v_p$'' and ``most concentrated row'' fail, in line with \cref{sec:pivotfail}.
+
+A candidate global mechanism (\code{flag.py}): with $v$ sorted decreasingly and $\beta_k(f)=\sum_{i\ge k}\bigl(\sgn(f_k)\,v_if_i\bigr)^+$ for a vector $f$, numerically $\sum_j\max_{k\ge2}\beta_k(f_j)\ge H(v)/2$ for every frame $(f_j)$, with equality at the Helmert frame ($d=3$--$7$). This is slightly stronger than Conjecture~H, and not proved.
+
+\subsection{Regular simplices}\label{sec:regular}
+For uniform $v$ the simplex is regular, and Conjecture~H becomes explicit. A regular $n$-simplex of unit edge is $\Delta_\lambda(v)$ with $d=n+1$, $v=\one/\sqrt d$ and $\lambda=1/\sqrt{2d}$, and $H(v)=\frac2{\sqrt d}\sum_{k=2}^{d}\sqrt{1-1/k}$.
+
+Let $\kappa_n$ be the side of the largest $n$-cube in a regular $n$-simplex of unit edge. The face-on-face cube gives $\kappa_n\ge\sigma_n$ with
+\[
+\sigma_n=\frac{1}{\sqrt2\,\sum_{k=2}^{n+1}\sqrt{1-1/k}},
+\]
+and Lemma~F in dimension $n+1$, known for $n\le4$ in Lean and $n=5$ by Hosono, gives $\kappa_n\le1/(\sqrt2(n+1-\sqrt{n+1}))$.
+
+\begin{conjecture}[the largest cube in a regular simplex]\label{conj:regular}
+$\kappa_n=\sigma_n$ for every $n$.
+\end{conjecture}
+
+\begin{table}[t]
+\centering\small
+\input{tab_regular.tex}
+\caption{The largest $n$-cube in a regular $n$-simplex of unit edge: the side $\sigma_n$ of the face-on-face cube (a lower bound for $\kappa_n$, and equal to it by \cref{conj:regular}), the upper bound from Lemma~F (\cref{cor:simplex}), and the volume bound $\vol(\Delta)^{1/n}$. $\kappa_n=\sigma_n$ is classical for $n=2$ and Croft's theorem for $n=3$. For $n\le\frameslastn$ no frame found numerically beats $\sigma_n$ (\cref{sec:numH}).}
+\label{tab:regular}
+\end{table}
+
+Two cases are known.
+\begin{itemize}
+\item $n=2$: $\kappa_2=\sigma_2=2\sqrt3-3\approx0.4641$, the largest square in an equilateral triangle, with a side on a side of the triangle. This is the case of \cref{cor:H3}; Conway and Guy~\cite{conwayguy} discuss the placements of the largest square.
+\item $n=3$ \status{literature}: Croft~\cite{croft} determined the largest cube in a regular tetrahedron, and Firsching~\cite{firsching} confirmed it numerically. For edge~$1$ its side is $1/(1+\frac23\sqrt3+\frac12\sqrt6)=0.29590654$. This is exactly $\sigma_3$: with $H=\sqrt{1/2}+\sqrt{2/3}+\sqrt{3/4}$, the side is $1/(\sqrt2H)=1/(1+\sqrt6/2+2/\sqrt3)$. \textbf{So Conjecture~H holds for the regular tetrahedron, and the face-on-face cube is optimal there.} Croft's paper solves this case completely, so it is the first place to look for a method for the facet lemma in dimension~$4$ (\cref{sec:open}). We have not read his proof: the paper is behind a paywall.
+\end{itemize}
+Asymptotically $\sigma_n\sim1/(\sqrt2\,n)$, while the volume bound is about $e/(\sqrt2\,n)$. We found no result on the largest cube in a regular simplex for $n\ge4$.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\textwidth]{fig_simplex.pdf}
+\caption{Left: the cube of \cref{thm:simplex} for $d=3$: a square in an acute triangle with vertices on the three axes, standing on a side (the Helmert square). Right: the face-on-face cube in a regular tetrahedron, which is the largest cube there by Croft's theorem; its top face is the largest square in the cross-section.}
+\label{fig:simplex}
+\end{figure}
+
+\paragraph{Cubes in a tetrahedron in the catalogue.} The catalogue's record for two unit cubes in a regular tetrahedron (\code{cubintet}, $n=2$) is $2+\sqrt{72\sqrt2+102}/6\approx4.37945$. Since $\sqrt{72\sqrt2+102}/6=\sqrt6/2+2/\sqrt3$, this is exactly $1/\sigma_3+1$, Croft's optimum for one cube plus one. Whether $s_{\mathrm{cubintet}}(2)=1/\sigma_3+1$ is an open lower-bound problem of the same kind as \cref{conj:two}.
+
+%===========================================================================
+\section{Routes that fail}\label{sec:failed}
+
+\begin{summarybox}
+\textbf{This section.} Every route to all dimensions that we tried and that does not work, with the reason and, where possible, a counterexample verified at 50--60 digits. None of the counterexamples violates Lemma~F. Those inside the remaining case of the induction have $F_j$ far below~$1$; those next to the equality set have $F_j$ close to $1$ but lie where the near step applies. They refute methods, not the conjecture.\\
+\textbf{Data.} \codepath{pivot_counterexamples.json}, \codepath{exact_pivot_counterexample_d9.json}, \codepath{fplus_counterexample_d8.json}, with the verifiers \codepath{verify_pivot_cex.py} and \codepath{verify_exact_pivot_cex.py}.
+\end{summarybox}
+
+\subsection{The unrestricted near-axis step}
+\emph{Idea.} Hosono's near-axis step for Lemma~F itself, in every dimension. \emph{What fails.} Lemma~K needs $\norm{Q_i}_1\le2$ for the rows of the polar factor, and a unit vector in $\R^m$ has $\ell^1$ norm up to $\sqrt m>2$ for $m\ge5$. \emph{Repair.} Restrict to rows of norm at most~$2$ (\cref{thm:near}); then $\norm{Q_i}_1\le2$ is inherited. The restriction is harmless, since only restricted Lemma~F is needed.
+
+\subsection{Single-pivot inductions}\label{sec:pivotfail}
+\emph{Idea.} In the remaining case, pivot at the row $p$ where column $j$ is smallest and the largest entry $q$ of that row. If $\Xi\ge0$ there (``the pivot conjecture''), \cref{thm:pivot,thm:succ4} prove restricted Lemma~F in every dimension. \Cref{thm:caseA} proves it when row $p$ is concentrated.
+
+\emph{What fails.} $\Xi\ge0$ is false at spread pivots. \Cref{tab:pivotcex} lists two counterexamples. In both, row $p$ is the unique smallest row of column $j$, column $q$ holds the unique largest entry of row~$p$, the pivot is admissible, and every row of $R$ and of $Q$ has $\ell^1$ norm below~$2$. Both lie near the equality case $[1]\oplus R'$ of Lemma~F, where row $p$ of $R'$ is the flat row $\frac12(1,1,1,1)$. There the near step applies anyway, but the pivot inequality does not. The mechanism: rows whose entries have mixed signs relative to row $p$ shrink under the pivot, while the triangle inequality in \cref{thm:pivot} assumes they grow. Random and optimised tests had never sampled these neighbourhoods.
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{c c c c c c}
+\toprule
+$d$ & $\nu$ & $c$ & $\Xi$ & $F_j(Q)-F_j(R)$ & $\max_i w_i$ \\
+\midrule
+5 & $0.0051321409$ & $0.5265171977$ & $-2.5114\cdot10^{-4}$ & $+9.18\cdot10^{-3}$ & $1.999954$ \\
+6 & $0.0029999302$ & $0.5185861643$ & $-8.9918\cdot10^{-4}$ & $+4.72\cdot10^{-3}$ & $1.999997$ \\
+\bottomrule
+\end{tabular}
+\caption{Counterexamples to $\Xi\ge0$ (\code{pivot_counterexamples.json}, verified with 50-digit polar factors by \code{verify_pivot_cex.py}; orthogonality error at most $1.3\cdot10^{-51}$). Here $F_j(R)=0.929$ and $0.990$; both matrices lie next to the equality set, outside $\mathrm{RC}(d)$.}
+\label{tab:pivotcex}
+\end{table}
+
+\emph{Inside the remaining case it still fails.} Take the direct sum of the $4\times4$ block containing the flat row and the row $(\frac{\sqrt3}2,-\frac1{2\sqrt3},-\frac1{2\sqrt3},-\frac1{2\sqrt3})$ with a $b\times b$ block carrying column $j$, $b\ge5$, so that $S>2$ and every rest exceeds~$1$. Reshape the flat row at order $\sqrt\nu$ and mix in column $j$ at order $\nu$ (\code{blockrc3.py}). Then every hypothesis of $\mathrm{RC4}$ holds, and in $d=9,10$ about $16\%$ of the samples have $\Xi<0$, with $\Xi/\nu$ down to $-0.62$.
+
+\emph{The exact pivot inequality fails too.} Even the exact comparison $F_j(R)\le F_j(Q)$, without the triangle inequality, fails in $d=9$ (\code{exact_pivot_counterexample_d9.json}, verified at 60 digits by \code{verify_exact_pivot_cex.py}). The matrix lies strictly inside the remaining case: every row has $w_i<2$ ($\max w_i-2=-1.4\cdot10^{-5}$), $\min_i(w_i-x_i)-1=0.087$, $S-2=0.072$, row $p$ is the unique smallest row (gap $10^{-8}$) and $q$ its unique largest entry (gap $5\cdot10^{-4}$), the pivot is admissible, and every row of $Q$ has norm below~$2$. It even lies in $\mathrm{RC4}(9)$: $\rho=1.498>c+\nu/2$ and $c^2=0.2515$. Yet $F_j(Q)-F_j(R)=-1.26\cdot10^{-8}$, with $F_j(R)=0.3166$. The effect is first order in $\nu=1.6\cdot10^{-7}$, so it is not rounding.
+
+\emph{Conclusion.} No rule of the form ``pivot at the smallest row of column $j$, at the largest entry of that row'' carries the induction through every dimension. Inside the remaining case the counterexamples have $F_j$ far below~$1$ ($0.32$ in $d=9$, and $0.2$--$0.4$ for the block construction), so a proof there has to treat spread configurations by a direct bound, or carry a quantitative hypothesis with room below~$1$.
+
+\subsection{Averaging over pivot columns}
+\emph{Idea.} \Cref{thm:pivot} needs no maximality: any column $q\ne j$ with $R_{pq}\ne0$ gives $F_j(R)\le F_j(Q^{(q)})-a_q\Xi_q$. Such a pivot is admissible when $c_q=\abs{R_{pq}}\ge(w_p-1)/2$. Average $\Xi_q$ with weights $c_q$. By row orthogonality, $\sum_qR_{pq}R_{iq}=-\nu y_i$, the terms $-\nu x_iG_i$ combine into $+\nu^2y_iG_i\ge0$. The constants combine to $\nu^2(1-\nu w_p)\ge0$, and the $\kappa_1$-terms are nonnegative for admissible~$q$. In closed form, $\sum_qc_q\Xi_q=\nu^2(1-2\nu+F_j(R))+(\kappa_1\text{-terms})$. So \emph{if every nonzero entry of row $p$ outside column $j$ is an admissible pivot, some admissible $q$ has $\Xi_q\ge0$}.
+
+\emph{What fails.} Generic rows have small entries, $0<c_q<(w_p-1)/2$. Leaving them out of the average leaves a cross term that, by restricted Lemma~F applied to $Q$, costs only $O(\norm{\text{small part of row }p}_2^2)$. We could not absorb this quadratic cost when $\nu$ is tiny. In random tests the average over admissible pivots was always nonnegative (\code{avgq.py}, \code{avgq2.py}, $d=5$--$10$).
+
+\emph{A stress test.} A heuristic count suggested that many rows with $y_i\approx\nu$, a small positive entry in column $q$ and $G_i\approx1$ could pile up deficits of order $\sqrt n$ against the fixed surplus. Explicit constructions (\code{construct3.py}, \code{construct4.py}) show why this does not happen. To share the pivot direction, the parts of those rows outside the pivot block must form a simplex, which forces each to have $\ell^1$ norm about~$2$ and kills the slack $G_i$. Every feasible structured instance had $\Xi/\nu\ge1.1$. The protection is a global orthogonality effect, not a row-by-row one, which explains why per-row bounds fail.
+
+\subsection{The positive-part strengthening}
+\emph{Idea.} Replace $2-w_i$ by $(2-w_i)^+$, so that rows of norm above $2$ cannot help: $\sum_ix_i(2-w_i)^+\le1$ for all orthogonal $R$. This would remove the restriction. \emph{What fails.} It is false: an $8\times8$ orthogonal matrix has $\sum_ix_i(2-w_i)^+=1.0112$ (\code{fplus_counterexample_d8.json}; double precision, orthogonality error $7\cdot10^{-16}$, so the excess $0.011$ is far above rounding). So the restriction to rows of norm at most~$2$ cannot be replaced by truncation. Lemma~F itself is not affected, since there the rows of norm above $2$ contribute negatively.
+
+\subsection{Convex relaxations, and Hosono's spectral bound}\label{sec:relax}
+\emph{Idea.} By \cref{cor:frame}, $\Val_v(C)=\sum_kg(f_k)$ with $g(f)=\sum_iv_i\abs{f_i}$, over orthonormal bases $(f_k)$ of $v^\perp$. Relax the basis to an isotropic measure: any finite measure $\mu$ on $v^\perp$ with $\int ff^\top\,d\mu(f)=I-vv^\top$. A lower bound for $\int g\,d\mu$ over all such $\mu$ would prove Lemma~F, and is a convex problem.
+
+\begin{proposition}[\status{proof}]\label{prop:relax}
+For uniform $v$ the relaxation fails from $d=6$ on: the measure with mass $2/d$ on each $(e_a-e_b)/\sqrt2$ is isotropic and has $\int g\,d\mu=(d-1)\sqrt{2/d}$, while Lemma~F needs $2(\sqrt d-1)$. The difference
+\[
+q_d=(d-1)\sqrt{2/d}-2(\sqrt d-1)
+\]
+is $0.0577$ for $d=5$ and $-0.0122$ for $d=6$, and decreases from there.
+\end{proposition}
+\begin{proof}
+$\sum_{a<b}(e_a-e_b)(e_a-e_b)^\top=dI-\one\one^\top$, so the weights $2/d$ give $I-\frac1d\one\one^\top$. Each vector has $g=\sqrt2/\sqrt d$, and there are $d(d-1)/2$ of them.
+\end{proof}
+
+Hosono's spectral bound~\cite{hosono} is $1-F\ge\sqrt2\tr\sqrt{\operatorname{diag}(p)-pp^\top}-2\sum_i\sqrt{p_i}+2$ for the squared column~$p$. It uses only $\norm z_1\ge\sqrt2\norm z_2$ for zero-sum vectors and the triangle inequality for the nuclear norm. At the uniform column it equals $q_d$ exactly, so it is a relaxation of this kind, and it fails for the same reason. This is consistent with Hosono's remark that the spectral bound alone fails in dimension~$6$, where his proof adds missing-edge corrections and $2.8$ million certificates~\cite{hosono}. It also shows that no proof that sees only the second moments of the frame can work for $d\ge6$. A proof must use that the frame is an orthonormal \emph{basis}. The induction of \cref{sec:proved} does.
+
+\subsection{Certificates dimension by dimension}
+\emph{Idea.} Extend Hosono's computer-assisted method to $d=7$ and beyond. \emph{Why we did not.} His spectral certificates have $5$, $557$ and $21{,}502$ simplices for $d=3,4,5$. In $d=6$ the spectral bound alone fails ($q_6<0$, \cref{prop:relax}), and the proof needs a cap of $818{,}303$ simplices and a strip of $2{,}000{,}762$, with five kinds of lower bounds, missing-edge corrections and a separate near-axis tree of $7{,}893$ cells~\cite{hosono}. In $d=7$ the spectral bound is more negative at the uniform column ($q_7=-0.084$), so more corrections are needed. The certificates grew by factors between $39$ and $130$ per dimension, so a rough extrapolation gives $10^8$ cells or more. A certificate settles one dimension and says nothing about the next. We set this route aside in favour of reductions valid in every dimension.
+
+\subsection{A quantitative band hypothesis}
+\emph{Idea.} Carry a stronger hypothesis with room below~$1$. Numerically $F_j(R)\le1-\varphi(m)$ with $\varphi(m)=(m+\sqrt{1-m^2}-1)^2$, $m$ the largest entry of column $j$, $m\ge1/\sqrt2$. This is the value of the plane rotations, and it has no violation in $d=3$--$8$ (\code{bandind.py}). \emph{What fails.} Combined with the near step, which applies the hypothesis to every column of~$Q$, the inductive inequality fails in about $1\%$ of the cases. The losses are in the triangle inequality and in the cross term of Lemma~K.
+
+\subsection{Local arguments for the facet lemma}\label{sec:local}
+\emph{Idea.} Prove the facet lemma from first- or second-order conditions at a minimiser, as \cref{prop:givens} does for $d=3$. \emph{What fails.} In $d=4$ (\code{locmin.py}: 12 random $v$, 40 local descents each), every $v$ has between $3$ and $15$ distinct local minima of $\Val_v$. Most instances have local minima with no aligned row: three or four zero entries spread over different rows. Their excess over the Helmert value is sometimes tiny, $7\cdot10^{-4}$ or $4\cdot10^{-3}$. The global minimum always equals the Helmert value to six digits and has an aligned row, apart from one numerical tie next to an axis-aligned~$v$. So the facet lemma is true numerically in $d=4$ but is not a local statement. A proof has to compare non-aligned configurations with the Helmert configuration globally. A proof in $d=4$ would also not lift by itself: the induction needs an aligned minimiser in each dimension, and Lemma~F one dimension down says nothing about where the minimiser one dimension up sits.
+
+\subsection{Pairwise bounds}
+\emph{Idea.} Use only the pairwise inequalities $\langle\abs{C_i},\abs{C_l}\rangle\ge v_iv_l$ for the rows of a frame, which follow from $\langle C_i,C_l\rangle=-v_iv_l$, together with $\norm{C_i}_2^2=1-v_i^2$. \emph{What fails.} The resulting linear relaxation of $\min\Val_v$ is below $2(S-1)$ (\code{lp.py}). Pairwise information is too weak, in line with \cref{sec:relax}.
+
+%===========================================================================
+\section{Numerical evidence in dimensions 3 to \texorpdfstring{\maxdim}{32}}\label{sec:numerics}
+
+\begin{summarybox}
+\textbf{This section.} A systematic search, in the style of Hosono's far-region search, for large values of $F_j$ in dimensions $3$ to $\maxdim$: over all restricted matrices, away from the axes, in the remaining case of the induction, and without the restriction. Then tests of Conjecture~H and the facet lemma up to $d=\frameslast$.\\
+\textbf{Scripts and data.} \codepath{evidence/search.py}, \codepath{evidence/frames.py}, \codepath{evidence/analysis.py}, \codepath{evidence/nearid.py}, \codepath{evidence/run_all.py}; results in \codepath{evidence/*.jsonl}.
+\end{summarybox}
+
+\subsection{Method}
+All searches are batched multi-start optimisations on $SO(d)$ in double precision (PyTorch). A matrix is $R=R_0\exp(A-A^\top)$ with Adam steps on $A$. Every $200$ steps $R_0\gets R$ and $A\gets0$, with a re-orthonormalisation. The absolute values are smoothed to $\sqrt{t^2+\varepsilon^2}-\varepsilon$ with $\varepsilon$ annealed from $10^{-2}$ to $10^{-9}$, and the step size from $2\cdot10^{-2}$ to $6\cdot10^{-6}$. Constraints enter as quadratic plus linear penalties whose weight grows from $10$ to $10^6$; there are $6000$ steps. The starts mix six families: Haar matrices; signed permutations times $\exp$ of a small skew matrix (near the equality set); $[1]\oplus R'$ with $R'$ containing the flat row $\frac12(1,1,1,1)$ (the neighbourhoods that refute the pivot inequality); near-uniform columns; sink columns with one large entry; and Hadamard matrices where they exist. At the end every value is recomputed exactly in double precision. A point counts only if it is orthogonal to $10^{-10}$, its rows have norm at most $2+10^{-9}$, and its region constraint holds to $10^{-7}$.
+
+\emph{Validation against Hosono.} In $d=4$, Hosono reports that the largest value of $F_1$ in his far region $c^2\le2/3$ is about $0.845$, near the boundary~\cite{hosono}. Our search finds $\farHosonoFour$ there. The exact value of the plane rotation at $c^2=2/3$ is $1-(\sqrt{2/3}+\sqrt{1/3}-1)^2=0.844885$.
+
+\subsection{The search for a counterexample}
+\Cref{tab:global} gives, for each $d$, the largest $F_j$ found over restricted $O(d)$ and over all of $O(d)$. In every dimension it is $1$ up to the optimiser's tolerance, attained at a column within $10^{-6}$ of a coordinate axis, and no start exceeded~$1$. The global search therefore only confirms the equality set. The informative numbers are those away from it.
+
+\begin{table}[t]
+\centering\small
+\input{tab_global.tex}
+\caption{Largest $F_j$ found, restricted (rows $\le2$) and unrestricted, with the number of optimised starts. The column of the maximiser is within $10^{-6}$ of an axis in every case. No start gave $F_j>1$.}
+\label{tab:global}
+\end{table}
+
+\subsection{Away from the axes: Hosono's far region}\label{sec:far}
+For $\tau<1$ let $\Phi_d(\tau)$ be the supremum of $F_j$ over restricted matrices whose column $j$ has every squared entry at most~$\tau$. Hosono's far region in dimension $d$ is $\tau_d=1-1/(d-1)$, the complement of the region where the near-axis step applies in his setting. \Cref{tab:far} gives our values of $\Phi_d(\tau_d)$ and $\Phi_d(1/2)$, and \cref{fig:profile} the whole profile. The striking fact is that \textbf{the profile does not depend on the dimension}:
+\begin{itemize}
+\item For $\tau\ge1/2$ the best value found is the plane rotation at the boundary of the region, $1-(\sqrt\tau+\sqrt{1-\tau}-1)^2$, to within $\profilegap$ (and never above it), in every dimension.
+\item For $\tau<1/2$ the best values found are $\farlow$ ($\tau=0.4$), $\farlowthree$ ($\tau=0.3$) and $\farlowtwo$ ($\tau=0.2$), the same in every dimension where $\tau$ is admissible ($\tau\ge1/d$); across dimensions they differ by at most $\farspread$. For $\tau=0.4$ and $0.3$ the maximisers found in every dimension are a block of size $3$, respectively $4$, carrying column~$j$, in direct sum with (up to optimiser noise) a signed permutation; for $\tau=0.2$ they use $6$ to $8$ rows and reach the same value. For example, for $\tau=0.4$ the block is the $3\times3$ matrix with column $(\sqrt{0.2},\sqrt{0.4},\sqrt{0.4})$ and rows $(\sqrt{0.2},\sqrt{0.8},0)$, $(\sqrt{0.4},\sqrt{0.1},\sqrt{0.5})$ up to signs, and in $d=9$ the search finds exactly this block plus the identity.
+\item Hosono's far region $\tau_d=1-1/(d-1)$ approaches the axis as $d$ grows, so $\Phi_d(\tau_d)$ approaches~$1$; this is the plane rotation again, not a new configuration.
+\end{itemize}
+So in this search no new extremal configuration appears as the dimension grows: every large value of $F_j$ away from the axes comes from a configuration that already exists in dimension $\le6$.
+
+\begin{table}[t]
+\centering\small
+\input{tab_far.tex}
+\caption{The supremum $\Phi_d(\tau)$ of $F_j$ over restricted matrices with every squared entry of column $j$ at most $\tau$: Hosono's far region $\tau_d=1-1/(d-1)$, and $\tau=1/2$. The last column is the plane-rotation value $1-\varphi(\sqrt\tau)$ at $\tau=1/2$, $1-(\sqrt2-1)^2$.}
+\label{tab:far}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{fig_profile.pdf}
+\caption{The far-region profile $\Phi_d(\tau)$: the largest $F_j$ found when every squared entry of column $j$ is at most~$\tau$, for several dimensions, and the value $1-(\sqrt\tau+\sqrt{1-\tau}-1)^2$ of the plane rotation at the boundary (dashed). The curves for the different dimensions coincide to within $\farspread$; the nested markers show each of them. Lemma~F says every curve stays below~$1$.}
+\label{fig:profile}
+\end{figure}
+
+\subsection{The remaining case}\label{sec:rc}
+The remaining case $\mathrm{RC}(d)$ of \cref{thm:succ} is where a counterexample would have to live: everything else is reduced to dimension $d-1$ in Lean. It is empty for $d\le4$, since there $\norm x_1\le\sqrt d\le2$. We search its closure: rows of norm at most $2$, $\norm x_1\ge2$, and $w_i-x_i\ge1$ in every row (rows with $x_i=0$ satisfy this automatically). \Cref{tab:rc} and \cref{fig:dims} give the results. They are not what we expected:
+\begin{itemize}
+\item The largest value found \emph{increases} with $d$, from $\rcfirst$ in $d=\rcfirstd$ to $\rcmax$ in $d=\rcdmax$. In every dimension $d(1-\max F_j)$ lies between $\rcscalemin$ and $\rcscalemax$: the room below~$1$ shrinks like $1.1/d$.
+\item The maximisers sit at the boundary $\norm x_1=2$ (within $\rcSmax$), where \cref{thm:remaining} already gives $F_j\le1$. They have one large entry, $\rcmaxcolmin$ in $d=5$ up to $\rcmaxcolmax$ in $d=24$, and $d-1$ entries of order $1/d$, and every row has rest just above~$1$. They are near-axis configurations that the near step just misses, because the row of the large entry has rest slightly above~$1$.
+\item Away from the boundary the values drop (the columns $\norm x_1\ge\sigma$ of \cref{tab:rc}).
+\item On the smaller case $\mathrm{RC4}(d)$ of \cref{thm:succ4} the largest value found is $\rcfourmax$ (up to $d=\rcfourdmax$).
+\end{itemize}
+So the bound $F_j\le\norm x_1-1$ of \cref{thm:remaining} is asymptotically sharp on the remaining case. A direct bound there cannot be a uniform constant below~$1$; it has to use $\norm x_1-2>0$ or the structure of the rows. This is the most useful negative information the numerics give for a proof.
+
+\begin{table}[t]
+\centering\small
+\input{tab_rc.tex}
+\caption{Largest $F_j$ found in the (closed) remaining case $\mathrm{RC}(d)$, with $\norm x_1-2$ and $\min_i(w_i-x_i)-1$ at the maximiser; in $\mathrm{RC4}(d)$; and in $\mathrm{RC}(d)$ with $\norm x_1\ge\sigma$. Starts: $1024$, $512$ and $256$ for $d\le10$, $11\le d\le16$ and $d=20,24$ (RC and RC4); $256$ or $128$ for each $\sigma$. The bound $F_j\le\norm x_1-1$ of \cref{thm:remaining} holds everywhere in $\mathrm{RC}$.}
+\label{tab:rc}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{fig_dims.pdf}
+\caption{Largest $F_j$ found, by dimension: in Hosono's far region $\tau_d=1-1/(d-1)$, in the far region $\tau=1/2$ (flat: the plane rotation), and in the remaining cases $\mathrm{RC}(d)$ and $\mathrm{RC4}(d)$ of the induction, where the values approach $1$ like $1-1.1/d$ at the boundary $\norm x_1=2$.}
+\label{fig:dims}
+\end{figure}
+
+\subsection{Conjecture H and the facet lemma}\label{sec:numH}
+For each $d\le\frameslast$ we took $11$ vectors $v$: uniform, three random, two sparse (cubes of Gaussians), three sinks $(c,t,\dots,t)$ with $c=0.9,0.7,0.5$, a geometric sequence, and two large entries. For each, we minimised $\Val_v$ over frames from $\framestarts$ starts, half random and half perturbed Helmert frames, with the same smoothing (\code{frames.py}). \Cref{tab:frames} summarises. \textbf{In no case is the best value found below the Helmert value}: the smallest difference is $\framesmingap$. The best frames also converge to the Helmert value: the largest difference is $\framesgap$, in dimensions where only $48$ starts were used. The best frame found has an aligned row (all but one entry of some row below $10^{-4}$) in $\framesaligned$ of the $\framescount$ cases, and in all cases for $d\le7$; in the others it is within $3\cdot10^{-4}$ of the Helmert value and not fully converged. For uniform $v$ these tests support \cref{conj:regular} for $n\le\frameslastn$.
+
+\begin{table}[t]
+\centering\small
+\input{tab_frames.tex}
+\caption{Conjecture H: for each $d$, the smallest and largest difference between the best value found and the Helmert value $H(v)$ over the $11$ vectors $v$, the smallest difference $H(v)-2(\norm v_1-1)$ (the room in Lemma~F), and the number of $v$ whose best frame found has an aligned row.}
+\label{tab:frames}
+\end{table}
+
+\subsection{Near the equality set}
+Lemma~F is tight on a large set: $F_j(R)=1$ whenever column $j$ is $\pm e_i$, for any $R=\pm e_i\oplus R'$. Near it, with $\theta$ the angle between column $j$ and the nearest axis, the smallest ratio $(1-F_j)/\theta^2$ that we found is that of a rotation in one coordinate plane, $(\cos\theta+\sin\theta-1)^2/\theta^2=1-\theta+O(\theta^2)$ (\code{nearid.py}, $d=3$--$10$, $\theta\approx10^{-3}$; minimum $\nearidmin$). So the inequality is non-degenerate to second order transversally to the equality set, in every dimension tested.
+
+\subsection{Earlier tests}
+The following runs were made during the work and are recorded in the notes \codepath{docs/LEMMA_F_ALL_D.md}:
+\begin{itemize}
+\item \code{cexsearch.py}: a first counterexample search in $d=7,9,12,16$, with no restricted matrix with $F>1$;
+\item \code{bandind.py}: the band profile $F_j\le1-\varphi(m)$ with no violation in $d=3$--$8$;
+\item \code{helmert.py}, \code{helmert2.py}, \code{uniform.py}: local optimisation never went below the Helmert value;
+\item \code{star.py}, \code{rules.py}, \code{flag.py}, \code{locmin.py}, \code{avgq.py}: see \cref{sec:framestep,sec:local} and \cref{sec:pivotfail};
+\item \code{regionW.py}: in spread configurations $F_j\lesssim0.5$.
+\end{itemize}
+
+%===========================================================================
+\section{The evidence, collected}\label{sec:evidence}
+
+\paragraph{Proofs.}
+\begin{itemize}
+\item $s_d(2)=2$ for $d\le5$ in Lean, and for $d=6$ by Hosono's computer-assisted proof.
+\item In every dimension, in Lean: the near step, the off-column step and the concentrated pivot reduce restricted Lemma~F in dimension $d$ to dimension $d-1$ outside the remaining case $\mathrm{RC4}(d)$ (\cref{thm:succ4}). The aligned step reduces Lemma~F in dimension $d$ to dimension $d-1$ for every matrix with an aligned row (\cref{thm:aligned}).
+\item The conjecture in every dimension follows from the facet lemma in dimensions $d\ge6$ (\cref{thm:mainB}, Lean), and the facet lemma follows from Conjecture~H (\cref{prop:Himplies}).
+\item The facet lemma and Conjecture~H hold in $d=3$ (\cref{cor:facet3,cor:H3}). Conjecture~H holds for the regular tetrahedron (Croft).
+\item Elementary facts in every dimension: Lemma~F holds on average over the columns (\cref{prop:average}). It holds for every orthogonal matrix that is, up to signed permutations, a direct sum of blocks of size at most $5$ (at most $6$ with Hosono's result), because $F_j$ of a direct sum is $F_j$ of the block containing column~$j$. And it holds whenever $\norm{\text{column }j}_1\le2$ and no entry admits the near step (\cref{thm:remaining}).
+\end{itemize}
+
+\paragraph{Structure.} The only maximisers found in any dimension are the equality set (columns on an axis). The inequality is non-degenerate to second order transversally to it, with the plane rotations as the worst direction. The extremal family, plane rotations, gives the same profile in every dimension. The Helmert frame has a closed form and a recursive geometric meaning that matches the two known cases.
+
+\paragraph{Numerics.} No counterexample in $d\le\maxdim$. Away from the axes the far-region profile does not depend on the dimension, and each of its values is already attained in dimension at most~$6$. In the remaining case, where a counterexample would have to live, the largest values found are below~$1$ in every dimension tested, but approach it like $1-1.1/d$ at the boundary $\norm x_1=2$, where \cref{thm:remaining} applies. No frame beats the Helmert frame in any test up to $d=\frameslast$.
+
+\paragraph{What failed.} Every refuted statement is a strengthening or a proof method: the pivot inequality, the exact pivot inequality, the positive-part strengthening, convex relaxations, local arguments. The counterexamples inside the remaining case have $F_j$ far below~$1$; the others lie next to the equality set, where the near step applies.
+
+\paragraph{What would change our view.} A counterexample must lie in $\mathrm{RC4}(d)$ for some $d\ge7$: rows of norm at most $2$, $\norm{\text{column }j}_1>2$, no entry admitting the near step, and a smallest row whose largest entry $c$ has $c^2<3/4$ and is spread, $\rho>c+\nu/2$. In the frame picture it is in particular a frame of $v^\perp$ whose cube fits strictly inside $\Delta_{S-1}(v)$, that is, with value below $2(S-1)$.
+
+%===========================================================================
+\section{Formalization}\label{sec:formal}
+
+\begin{table}[t]
+\centering\small
+\begin{tabularx}{\textwidth}{l r X}
+\toprule
+File & Lines & Content \\
+\midrule
+\leanfile{LemmaFr} & 200 & restricted Lemma F; near step in every dimension; remaining bound; $d\le4$; induction step \\
+\leanfile{OffColumn} & 306 & off-column step; second induction step \\
+\leanfile{PivotStep} & 647 & pivot inequality; concentrated pivot; sign normalisation; $\mathrm{RC4}$ induction step \\
+\leanfile{FacetStep} & 441 & value of a column; aligned step and its restricted form; both facet lemmas; Main Theorem B \\
+\bottomrule
+\end{tabularx}
+\caption{The Lean files of this paper, on top of those of Paper~I (\codepath{lean-optimality/PackingOptimality/}).}
+\label{tab:files}
+\end{table}
+
+\Cref{tab:files} lists the files. They build on Paper~I's \leanfile{NearAxis} (Hosono's file, MIT licence), \leanfile{LemmaF4}, \leanfile{LemmaF5} and \leanfile{CentreGeneral}. Every theorem cited is listed in \code{Axioms.lean} and depends only on \code{propext}, \code{Classical.choice} and \code{Quot.sound}. The repository contains no \code{sorry}, and its continuous integration builds the project and runs the axiom audit on every change. The Lean links point to commit \leancommitshort, the scripts and data to commit \evidencecommit.
+
+\paragraph{Not formalized.} \Cref{prop:converse} (the converse of \cref{thm:FtoS}, whose packing step is in Lean). The frame form \cref{cor:frame} (its identity, \cref{lem:value}, is in Lean). The cube-in-simplex form and its variants (\cref{thm:simplex,cor:simplex,prop:chords}). \Cref{prop:average,prop:Htele,prop:Himplies,prop:givens,cor:facet3,cor:H3,prop:relax}. All numerical statements. The facet lemma itself is a hypothesis of \cref{thm:mainB}: it is stated in Lean (\lean{FacetStep}{FacetLemma}, \lean{FacetStep}{FacetLemmaR}) but not proved for $d\ge3$.
+
+%===========================================================================
+\section{Open problems}\label{sec:open}
+\begin{enumerate}
+\item \textbf{The facet lemma for $d\ge4$} (\cref{def:facet}). By \cref{thm:mainB} it is the only missing piece for $d\ge6$. It needs a global argument (\cref{sec:local}). Croft's proof for the regular tetrahedron is the first thing to study; extending it to the orthocentric tetrahedra $\Delta(v)$, $v\in\R^4$, would give the facet lemma in $d=4$.
+\item \textbf{Conjecture~H}, and the frame-step inequality (\cref{conj:star}).
+\item \textbf{A direct bound in the remaining case.} Any proof of $F_j\le1$ on $\mathrm{RC}(d)$ (or on $\mathrm{RC4}(d)$), with restricted Lemma~F in dimension $d-1$, proves dimension~$d$ (\cref{thm:succ,thm:succ4}). Numerically the room below $1$ shrinks like $1.1/d$ at the boundary $\norm x_1=2$ (\cref{sec:rc}), so such a bound has to improve on $F_j\le\norm x_1-1$ by a term that uses $\norm x_1-2$ or the rows.
+\item \textbf{The largest cube in a regular simplex} (\cref{conj:regular}), open for $n\ge4$.
+\item \textbf{Dimension 6 in Lean.} Hosono's proof uses $2.8$ million certificates. A Lean proof through \cref{thm:succ4} needs only the remaining case in dimension~$6$.
+\item \textbf{Two cubes in a tetrahedron.} Is the catalogue's record $1/\sigma_3+1$ optimal?
+\end{enumerate}
+
+%===========================================================================
+\section*{Acknowledgements}
+Hiroaki Hosono (\code{wand125}) found the reduction to Lemma~F, posed the problem for general $d$, proved it with computer assistance up to dimension~$6$, and wrote the near-axis step in Lean; his file is used under the MIT licence. H.~T.~Croft's theorem on cubes in tetrahedra, and M.~Firsching's computations, provided the check of \cref{sec:regular}. AI coding and drafting tools, including Claude (Anthropic), assisted with the formalization, the numerical searches and the preparation of this manuscript under the author's direction. The Lean build is the evidence for the formal claims; the scripts and their outputs are the evidence for the numerical ones.
+
+\begin{thebibliography}{99}
+\bibitem{archive} A. Zarzuelo Urdiales and contributors. \emph{Polyhedra in Polyhedra: certified finite packings}. \url{https://github.com/alejandrozu/platonic-packing}, \url{https://polyhedrainpolyhedra.wiki}, 2026.
+\bibitem{cubecentre} A. Zarzuelo Urdiales. \emph{The cube centre lemma in dimensions three, four and five: side $2$ is optimal for $2$ to $2^d$ unit cubes, with proofs checked in Lean}. Polyhedra-in-Polyhedra, 2026. (Paper I of this series.)
+\bibitem{widthball} A. Zarzuelo Urdiales. \emph{Width, facet and ball bounds: thirty optimal packings of prisms, tetrahedra, octahedra and four-dimensional polytopes, with proofs checked in Lean}. Polyhedra-in-Polyhedra, 2026. (Paper II of this series.)
+\bibitem{patterns} A. Zarzuelo Urdiales. \emph{Deletion, arrows, windows and composition: structural patterns in certified polytope packings}. Polyhedra-in-Polyhedra, 2026. (Paper III of this series.)
+\bibitem{hosono} H. Hosono. \emph{square-packing}: computer-assisted optimality proofs for cube packings, problems \code{cubes-n-dim} and \code{cubes-in-cube}. \url{https://github.com/wand125/square-packing}, commit \code{ea1c454}, 2026.
+\bibitem{hosonoissue} H. Hosono. \emph{Theme: two unit hypercubes in a hypercube in $n$ dimensions --- $s_n(2)=2$}. Issue \#21, \url{https://github.com/wand125/square-packing/issues/21}, 2026.
+\bibitem{friedman} E. Friedman. Packing unit squares in squares: a survey and new results. \emph{Electron. J. Combin.}, Dynamic Survey DS7. See also \emph{Cubes in Cubes}, \url{https://erich-friedman.github.io/packing/cubincub/}.
+\bibitem{croft} H. T. Croft. On maximal regular polyhedra inscribed in a regular polyhedron. \emph{Proc. London Math. Soc.} (3) 41 (1980), 279--296.
+\bibitem{firsching} M. Firsching. Computing maximal copies of polytopes contained in a polytope. \emph{Experimental Mathematics}, \href{https://doi.org/10.1080/10586458.2014.956374}{doi:10.1080/10586458.2014.956374}; \url{https://arxiv.org/abs/1407.0683}.
+\bibitem{baileydetemple} H. Bailey and D. DeTemple. Squares inscribed in angles and triangles. \emph{Math. Mag.} 71 (1998), 278--284.
+\bibitem{conwayguy} J. H. Conway and R. K. Guy. \emph{The Book of Numbers}. Springer, 1996, p.~206.
+\bibitem{ehm} A. L. Edmonds, M. Hajja and H. Martini. Orthocentric simplices and their centers. \emph{Results Math.}, 2005; \url{https://arxiv.org/abs/math/0508080}.
+\bibitem{mathlib} The mathlib Community. The Lean mathematical library. In \emph{Proceedings of CPP 2020}, 367--381, 2020.
+\end{thebibliography}
+
+\end{document}

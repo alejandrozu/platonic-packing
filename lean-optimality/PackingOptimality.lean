@@ -9,6 +9,9 @@ import PackingOptimality.Tesseracts
 import PackingOptimality.LemmaF5Sphere
 import PackingOptimality.LemmaF5
 import PackingOptimality.Penteracts
+import PackingOptimality.LemmaFr
+import PackingOptimality.OffColumn
+import PackingOptimality.PivotStep
 import PackingOptimality.OctBands
 import PackingOptimality.OctInCube
 import PackingOptimality.FacetWidth
@@ -29,3 +32,4 @@ import PackingOptimality.PrismCube
 import PackingOptimality.TriPrismCube
 import PackingOptimality.PolyPrism
 import PackingOptimality.Relations
+import PackingOptimality.FacetStep
