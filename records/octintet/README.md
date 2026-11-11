@@ -18,12 +18,12 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 13 | [4.50000+](octintet_n13.json) | 4.500000326414 | 9/2 | 3.73251 | 0.5706 | ![](octintet_n13.png) |
 | 14 | [4.66666+](octintet_n14.json) | 4.666666994020 | 14/3 | 3.82586 | 0.5510 | ![](octintet_n14.png) |
 | 15 | [4.76470+](octintet_n15.json) | 4.764706711758 | 81/17 | 3.91487 | 0.5547 | ![](octintet_n15.png) |
-| 16 | [4.94145+](octintet_n16.json) | 4.941450428007 |  | 4.00000 | 0.5304 | ![](octintet_n16.png) |
+| 16 | [4.93596+](octintet_n16.json) | 4.935963240588 |  | 4.00000 | 0.5322 | ![](octintet_n16.png) |
 | 17 | [4.99642+](octintet_n17.json) | 4.996424445442 |  | 4.08166 | 0.5452 | ![](octintet_n17.png) |
 | 18 | [5.00000+](octintet_n18.json) | 5.000000900000 | 5 | 4.16017 | 0.5760 | ![](octintet_n18.png) |
 | 19 | [5.00000+](octintet_n19.json) | 5.000000900000 | 5 | 4.23582 | 0.6080 | ![](octintet_n19.png) |
 | 20 | [5.00000+](octintet_n20.json) | 5.000000900000 | 5 | 4.30887 | 0.6400 | ![](octintet_n20.png) |
-| 21 | [5.16500+](octintet_n21.json) | 5.165002019608 |  | 4.37952 | 0.6096 | ![](octintet_n21.png) |
+| 21 | [5.16435+](octintet_n21.json) | 5.164351366621 |  | 4.37952 | 0.6099 | ![](octintet_n21.png) |
 | 22 | [5.33182+](octintet_n22.json) | 5.331819519613 |  | 4.44796 | 0.5806 | ![](octintet_n22.png) |
 | 23 | [5.33333+](octintet_n23.json) | 5.333334333333 |  | 4.51436 | 0.6064 | ![](octintet_n23.png) |
 | 24 | [5.40000+](octintet_n24.json) | 5.400000402092 |  | 4.57886 | 0.6097 | ![](octintet_n24.png) |
@@ -39,13 +39,13 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 34 | [6.00000+](octintet_n34.json) | 6.000000666667 | 6 | 5.14256 | 0.6296 | ![](octintet_n34.png) |
 | 35 | [6.00000+](octintet_n35.json) | 6.000000666667 | 6 | 5.19249 | 0.6481 | ![](octintet_n35.png) |
 | 36 | [6.09801+](octintet_n36.json) | 6.098014173630 |  | 5.24148 | 0.6350 | ![](octintet_n36.png) |
-| 37 | [6.18196+](octintet_n37.json) | 6.181967465736 |  | 5.28957 | 0.6264 | ![](octintet_n37.png) |
+| 37 | [6.18099+](octintet_n37.json) | 6.180998269997 |  | 5.28957 | 0.6267 | ![](octintet_n37.png) |
 | 38 | [6.33316+](octintet_n38.json) | 6.333160168970 |  | 5.33680 | 0.5984 | ![](octintet_n38.png) |
 | 39 | [6.33333+](octintet_n39.json) | 6.333332988015 |  | 5.38321 | 0.6141 | ![](octintet_n39.png) |
 | 40 | [6.36363+](octintet_n40.json) | 6.363637672727 |  | 5.42884 | 0.6209 | ![](octintet_n40.png) |
 | 41 | [6.42318+](octintet_n41.json) | 6.423184444561 |  | 5.47370 | 0.6189 | ![](octintet_n41.png) |
-| 42 | [6.44444+](octintet_n42.json) | 6.444445777778 |  | 5.51785 | 0.6277 | ![](octintet_n42.png) |
-| 43 | [6.50000+](octintet_n43.json) | 6.500000000000 | 13/2 | 5.56130 | 0.6263 | ![](octintet_n43.png) |
+| 42 | [6.42857+](octintet_n42.json) | 6.428571871429 |  | 5.51785 | 0.6324 | ![](octintet_n42.png) |
+| 43 | [6.44444+](octintet_n43.json) | 6.444444888889 |  | 5.56130 | 0.6426 | ![](octintet_n43.png) |
 | 44 | [6.50000+](octintet_n44.json) | 6.500000000000 | 13/2 | 5.60408 | 0.6409 | ![](octintet_n44.png) |
 | 45 | [6.62500+](octintet_n45.json) | 6.625000014528 | 53/8 | 5.64622 | 0.6190 | ![](octintet_n45.png) |
 | 46 | [6.69596+](octintet_n46.json) | 6.695959784686 |  | 5.68773 | 0.6129 | ![](octintet_n46.png) |
@@ -59,21 +59,21 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 54 | [6.98382+](octintet_n54.json) | 6.983822261288 |  | 6.00000 | 0.6341 | ![](octintet_n54.png) |
 | 55 | [6.99518+](octintet_n55.json) | 6.995181755192 |  | 6.03681 | 0.6427 | ![](octintet_n55.png) |
 | 56 | [6.99564+](octintet_n56.json) | 6.995644810039 |  | 6.07318 | 0.6543 | ![](octintet_n56.png) |
-| 57 | [7.04727+](octintet_n57.json) | 7.047273404874 |  | 6.10911 | 0.6514 | ![](octintet_n57.png) |
-| 58 | [7.11645+](octintet_n58.json) | 7.116451216406 |  | 6.14463 | 0.6437 | ![](octintet_n58.png) |
+| 57 | [7.00000+](octintet_n57.json) | 7.000000500000 |  | 6.10911 | 0.6647 | ![](octintet_n57.png) |
+| 58 | [7.00000+](octintet_n58.json) | 7.000000500000 |  | 6.14463 | 0.6764 | ![](octintet_n58.png) |
 | 59 | [7.15311+](octintet_n59.json) | 7.153118641451 |  | 6.17975 | 0.6448 | ![](octintet_n59.png) |
 | 60 | [7.20138+](octintet_n60.json) | 7.201379813606 |  | 6.21447 | 0.6426 | ![](octintet_n60.png) |
 | 61 | [7.22893+](octintet_n61.json) | 7.228932890655 |  | 6.24880 | 0.6459 | ![](octintet_n61.png) |
 | 62 | [7.27769+](octintet_n62.json) | 7.277696388649 |  | 6.28276 | 0.6434 | ![](octintet_n62.png) |
-| 63 | [7.38622+](octintet_n63.json) | 7.386227328506 |  | 6.31636 | 0.6254 | ![](octintet_n63.png) |
+| 63 | [7.33333+](octintet_n63.json) | 7.333333866667 |  | 6.31636 | 0.6390 | ![](octintet_n63.png) |
 | 64 | [7.39186+](octintet_n64.json) | 7.391866460758 |  | 6.34960 | 0.6338 | ![](octintet_n64.png) |
-| 65 | [7.42528+](octintet_n65.json) | 7.425284791008 |  | 6.38250 | 0.6351 | ![](octintet_n65.png) |
-| 66 | [7.44174+](octintet_n66.json) | 7.441745363301 |  | 6.41507 | 0.6406 | ![](octintet_n66.png) |
-| 67 | [7.49535+](octintet_n67.json) | 7.495359116390 |  | 6.44731 | 0.6364 | ![](octintet_n67.png) |
-| 68 | [7.49985+](octintet_n68.json) | 7.499853260585 |  | 6.47922 | 0.6448 | ![](octintet_n68.png) |
-| 69 | [7.55555+](octintet_n69.json) | 7.555555555556 | 68/9 | 6.51083 | 0.6399 | ![](octintet_n69.png) |
-| 70 | [7.68005+](octintet_n70.json) | 7.680052090493 |  | 6.54213 | 0.6181 | ![](octintet_n70.png) |
-| 71 | [7.73500+](octintet_n71.json) | 7.735006348153 |  | 6.57314 | 0.6137 | ![](octintet_n71.png) |
+| 65 | [7.40000+](octintet_n65.json) | 7.400000540000 |  | 6.38250 | 0.6416 | ![](octintet_n65.png) |
+| 66 | [7.40000+](octintet_n66.json) | 7.400000540000 |  | 6.41507 | 0.6515 | ![](octintet_n66.png) |
+| 67 | [7.42647+](octintet_n67.json) | 7.426469830745 |  | 6.44731 | 0.6543 | ![](octintet_n67.png) |
+| 68 | [7.44444+](octintet_n68.json) | 7.444444988889 |  | 6.47922 | 0.6593 | ![](octintet_n68.png) |
+| 69 | [7.45454+](octintet_n69.json) | 7.454547090909 |  | 6.51083 | 0.6663 | ![](octintet_n69.png) |
+| 70 | [7.50000+](octintet_n70.json) | 7.500000550000 |  | 6.54213 | 0.6637 | ![](octintet_n70.png) |
+| 71 | [7.50000+](octintet_n71.json) | 7.500000550000 |  | 6.57314 | 0.6732 | ![](octintet_n71.png) |
 | 72 | [7.80152+](octintet_n72.json) | 7.801528388499 |  | 6.60385 | 0.6065 | ![](octintet_n72.png) |
 | 73 | [7.81332+](octintet_n73.json) | 7.813321363384 |  | 6.63429 | 0.6122 | ![](octintet_n73.png) |
 | 74 | [7.85208+](octintet_n74.json) | 7.852084006983 |  | 6.66444 | 0.6114 | ![](octintet_n74.png) |
@@ -87,19 +87,19 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 82 | [7.96868+](octintet_n82.json) | 7.968687214883 |  | 6.89643 | 0.6482 | ![](octintet_n82.png) |
 | 83 | [7.98180+](octintet_n83.json) | 7.981801573950 |  | 6.92436 | 0.6529 | ![](octintet_n83.png) |
 | 84 | [7.98858+](octintet_n84.json) | 7.988585672229 |  | 6.95205 | 0.6591 | ![](octintet_n84.png) |
-| 85 | [8.05037+](octintet_n85.json) | 8.050375550913 |  | 6.97953 | 0.6517 | ![](octintet_n85.png) |
-| 86 | [8.13830+](octintet_n86.json) | 8.138305757813 |  | 7.00680 | 0.6382 | ![](octintet_n86.png) |
-| 87 | [8.17828+](octintet_n87.json) | 8.178281103935 |  | 7.03385 | 0.6362 | ![](octintet_n87.png) |
-| 88 | [8.19904+](octintet_n88.json) | 8.199048268861 |  | 7.06070 | 0.6386 | ![](octintet_n88.png) |
-| 89 | [8.20311+](octintet_n89.json) | 8.203116965375 |  | 7.08734 | 0.6449 | ![](octintet_n89.png) |
+| 85 | [8.00000+](octintet_n85.json) | 8.000000600000 |  | 6.97953 | 0.6641 | ![](octintet_n85.png) |
+| 86 | [8.00000+](octintet_n86.json) | 8.000000600000 |  | 7.00680 | 0.6719 | ![](octintet_n86.png) |
+| 87 | [8.00000+](octintet_n87.json) | 8.000000600000 |  | 7.03385 | 0.6797 | ![](octintet_n87.png) |
+| 88 | [8.00000+](octintet_n88.json) | 8.000000600000 |  | 7.06070 | 0.6875 | ![](octintet_n88.png) |
+| 89 | [8.00000+](octintet_n89.json) | 8.000000600000 |  | 7.08734 | 0.6953 | ![](octintet_n89.png) |
 | 90 | [8.24964+](octintet_n90.json) | 8.249645295348 |  | 7.11379 | 0.6412 | ![](octintet_n90.png) |
 | 91 | [8.26888+](octintet_n91.json) | 8.268886410989 |  | 7.14004 | 0.6438 | ![](octintet_n91.png) |
 | 92 | [8.31285+](octintet_n92.json) | 8.312853404027 |  | 7.16610 | 0.6406 | ![](octintet_n92.png) |
 | 93 | [8.36074+](octintet_n93.json) | 8.360748169338 |  | 7.19197 | 0.6365 | ![](octintet_n93.png) |
 | 94 | [8.37190+](octintet_n94.json) | 8.371903588861 |  | 7.21765 | 0.6408 | ![](octintet_n94.png) |
-| 95 | [8.50752+](octintet_n95.json) | 8.507521024185 |  | 7.24316 | 0.6171 | ![](octintet_n95.png) |
-| 96 | [8.52869+](octintet_n96.json) | 8.528692924864 |  | 7.26848 | 0.6190 | ![](octintet_n96.png) |
-| 97 | [8.52869+](octintet_n97.json) | 8.528692924864 |  | 7.29363 | 0.6254 | ![](octintet_n97.png) |
-| 98 | [8.53924+](octintet_n98.json) | 8.539245666179 |  | 7.31861 | 0.6295 | ![](octintet_n98.png) |
-| 99 | [8.53924+](octintet_n99.json) | 8.539245666179 |  | 7.34342 | 0.6360 | ![](octintet_n99.png) |
-| 100 | [8.57882+](octintet_n100.json) | 8.578824766465 |  | 7.36806 | 0.6335 | ![](octintet_n100.png) |
+| 95 | [8.40417+](octintet_n95.json) | 8.404171141235 |  | 7.24316 | 0.6402 | ![](octintet_n95.png) |
+| 96 | [8.40417+](octintet_n96.json) | 8.404171141236 |  | 7.26848 | 0.6469 | ![](octintet_n96.png) |
+| 97 | [8.42641+](octintet_n97.json) | 8.426410165614 |  | 7.29363 | 0.6485 | ![](octintet_n97.png) |
+| 98 | [8.42903+](octintet_n98.json) | 8.429031299094 |  | 7.31861 | 0.6546 | ![](octintet_n98.png) |
+| 99 | [8.44019+](octintet_n99.json) | 8.440196198285 |  | 7.34342 | 0.6586 | ![](octintet_n99.png) |
+| 100 | [8.44444+](octintet_n100.json) | 8.444445088889 |  | 7.36806 | 0.6643 | ![](octintet_n100.png) |

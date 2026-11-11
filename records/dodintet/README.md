@@ -20,7 +20,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 15 | [13.16408+](dodintet_n15.json) | 13.164088563880 |  | 9.91717 | 0.4276 | ![](dodintet_n15.png) |
 | 16 | [13.22844+](dodintet_n16.json) | 13.228447146195 |  | 10.13283 | 0.4494 | ![](dodintet_n16.png) |
 | 17 | [13.42430+](dodintet_n17.json) | 13.424304506244 |  | 10.33968 | 0.4569 | ![](dodintet_n17.png) |
-| 18 | [13.47776+](dodintet_n18.json) | 13.477761237586 |  | 10.53856 | 0.4781 | ![](dodintet_n18.png) |
+| 18 | [13.47268+](dodintet_n18.json) | 13.472680908973 |  | 10.53856 | 0.4786 | ![](dodintet_n18.png) |
 | 19 | [13.55717+](dodintet_n19.json) | 13.557178624956 |  | 10.73022 | 0.4958 | ![](dodintet_n19.png) |
 | 20 | [13.62316+](dodintet_n20.json) | 13.623167316513 |  | 10.91526 | 0.5144 | ![](dodintet_n20.png) |
 | 21 | [14.34345+](dodintet_n21.json) | 14.343450150824 |  | 11.09423 | 0.4627 | ![](dodintet_n21.png) |

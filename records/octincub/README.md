@@ -13,7 +13,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 8 | [1.79133+](octincub_n08.json) | 1.791337179006 | 19√2/15 | 1.79133 (R. Walsh, June 2026 (Friedman's Packing Center)) | equal | 1.55654 | 0.6561 | ![](octincub_n08.png) |
 | 9 | [1.88561+](octincub_n09.json) | 1.885618083164 | (4√2)/3 | 1.88561 (R. Walsh, June 2026 (Friedman's Packing Center)) | equal | 1.61887 | 0.6328 | ![](octincub_n09.png) |
 | 10 | [2.14936+](octincub_n10.json) | 2.149365928974 | 1801√2/1185 | 2.14936 (R. Walsh, June 2026 (Friedman's Packing Center)) | equal | 1.67674 | 0.4747 | ![](octincub_n10.png) |
-| 11 | [2.19539+](octincub_n11.json) | 2.195398572604 |  | 2.19540 (R. Walsh, June 2026 (Friedman's Packing Center)) | equal | 1.73086 | 0.4901 | ![](octincub_n11.png) |
+| 11 | [2.19539+](octincub_n11.json) | 2.195398572604 | 163√2/105 | 2.19540 (R. Walsh, June 2026 (Friedman's Packing Center)) | equal | 1.73086 | 0.4901 | ![](octincub_n11.png) |
 | 12 | [2.29102+](octincub_n12.json) | 2.291026016941 |  | 2.25949 (H. Lin, July 2026 (Hyra-results; Friedman's Packing Center)) | behind +1.396% | 1.78180 | 0.4704 | ![](octincub_n12.png) |
 | 13 | [2.33663+](octincub_n13.json) | 2.336632396579 |  | 2.33667 (H. Lin, July 2026 (Hyra-results; Friedman's Packing Center)) | **better** -0.002% | 1.82998 | 0.4804 | ![](octincub_n13.png) |
 | 14 | [2.35702+](octincub_n14.json) | 2.357022886820 |  | 2.35702 (R. Walsh, June 2026 (Friedman's Packing Center)) | equal | 1.87575 | 0.5040 | ![](octincub_n14.png) |
