@@ -15,6 +15,7 @@ import claim, engine
 from engine import PID, NMIN, NMAX, _read, _path, FAM
 from records import closed_form
 import verify_general, certify_general
+import closed_forms_ext
 
 CLEAR = 1e-7
 SOL = json.load(open(os.path.join(ROOT, 'src', 'solids.json')))
@@ -117,6 +118,8 @@ def build_problem(p, log, deadline):
         if old and old.get('source') == src and os.path.exists(vtxt):
             rec = old; ver = 'VALID' in open(vtxt).read() and 'INVALID' not in open(vtxt).read()
             cert = cert_status(fn)
+            if closed_forms_ext.apply(rec, h, b['s'], b.get('src')):           # closed forms from others (13 Nov)
+                json.dump(rec, open(fn, 'w'), indent=1)
             if cert is None and time.time() < deadline:          # records built before the exact certifier existed
                 cert = certify(fn)
                 rec['certificate'] = 'exact certificate: certify_general.py (src/solids_exact.json)' if cert else 'exact certification FAILED'
@@ -137,6 +140,8 @@ def build_problem(p, log, deadline):
                               "Alejandro Zarzuelo's direction",
                     'certificate': 'pending',
                     'search': b.get('src', {})}
+            meta['closed_form_conjecture'], extra = closed_forms_ext.meta_of(meta['record_id'], h, b['s'], b.get('src'), cf)
+            meta.update(extra)
             try:
                 rec = claim.make_claim_fast({'piece': piece, 'container': container, 'C': b['C'], 'Q': b['Q']}, GAP=CLEAR, WALL=CLEAR, meta=meta)
             except Exception as e:
@@ -145,6 +150,8 @@ def build_problem(p, log, deadline):
                 rec = dict(prev); rec.update(meta)
                 rec['n'] = n; rec['pieces'] = prev['pieces'][:-1]; rec['derived_from'] = f'{p}_n{n + 1:02d} minus its last piece'
                 rec['s_tight'] = min(round(b['s'], 12), prev.get('s_tight', b['s'])); rec['record_id'] = f'{p}_n{n:02d}'
+                if rec.pop('closed_form_source', None): rec['closed_form_conjecture'] = cf   # bound to the archive packing, not this one
+                rec.pop('closed_form_confirmation', None)
             rec['density'] = n * SOL[piece]['volume'] / (SOL[container]['volume'] * rec['s_full'] ** 3)
             rec['date'] = time.strftime('%Y-%m-%d')
             json.dump(rec, open(fn, 'w'), indent=1)

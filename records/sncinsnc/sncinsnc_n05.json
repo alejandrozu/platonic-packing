@@ -3,86 +3,87 @@
  "piece": "snub_cube",
  "container": "snub_cube",
  "n": 5,
- "s": 2.29559,
- "s_plus": "2.29559+",
- "s_full": 2.2955979596006,
+ "s": 2.29491,
+ "s_plus": "2.29491+",
+ "s_full": 2.2949197072993,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 2.2852269747867394e-07,
-  "min_wall_gap": 1.0000008243693514e-07
+  "min_pair_gap": 6.856326954808595e-07,
+  "min_wall_gap": 1.0000003936028179e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
- "date": "2026-10-15",
+ "date": "2026-11-13",
  "pieces": [
   [
-   -1.480367630776476,
-   -0.4375933297602811,
-   -0.8048596155981561,
-   1.0,
-   0.0,
-   0.0,
-   0.0
+   -1.459144473158598,
+   -0.4170587660129798,
+   -0.81583362172578,
+   0.9998597609228581,
+   -0.010251267802677882,
+   0.008669668688547594,
+   -0.010010336685325113
   ],
   [
-   -0.8048596155981621,
-   -0.4375933297602933,
-   1.4803676307764655,
-   1.0,
-   0.0,
-   0.0,
-   0.0
+   -0.8158336196297866,
+   -0.41705876601297925,
+   1.4591444728217435,
+   0.9998597609228581,
+   -0.01001033668532533,
+   0.008669668688548175,
+   0.010251267802678186
   ],
   [
-   0.8048596155981569,
-   -0.43759332976031146,
-   -1.4803676307764702,
-   1.0,
-   0.0,
-   0.0,
-   0.0
+   0.8158336213889257,
+   -0.41705876601298025,
+   -1.4591444752545912,
+   0.9998597609228581,
+   0.010010336685325376,
+   0.008669668688548201,
+   -0.010251267802677884
   ],
   [
-   1.4803676307764726,
-   -0.4375933297602966,
-   0.8048596155981586,
-   1.0,
-   0.0,
-   0.0,
-   0.0
+   1.4591444749177374,
+   -0.41705876601297986,
+   0.8158336192929325,
+   0.9998597609228581,
+   0.010251267802678004,
+   0.008669668688547587,
+   0.010010336685325309
   ],
   [
-   0.0,
-   1.4803676307764655,
-   0.0,
-   1.0,
-   0.0,
-   0.0,
-   0.0
+   0.003810425839074284,
+   1.475905579224213,
+   0.005844537204581173,
+   0.9968773430478777,
+   0.003217768620077738,
+   0.07889987957612206,
+   0.00013373774797808952
   ]
  ],
  "record_id": "sncinsnc_n05",
  "title": "5 snub cubes in a snub cube",
  "family": "archimedean",
  "source": {
-  "hash": "5a93e227f7ba66be",
+  "hash": "7fdcd9265f8c185e",
   "clear": 1e-07,
   "cap": 2.3725329194203
  },
- "s_tight": 2.295597872082,
+ "s_tight": 2.294919624462,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.7099759466766968,
- "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/22)",
+ "found_by": "konoha-ily2 (Hirotaka Nakano) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/130; refinement of the packing by PingYou Ltd)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
   "move": "community",
-  "lineage": "PingYou Ltd",
-  "issue": "https://github.com/alejandrozu/platonic-packing/issues/22",
-  "submitted_by": "BuddenPing",
-  "record_file": "records/community/sncinsnc/sncinsnc_n05_submission_22_518b501b82a6.json"
+  "lineage": "konoha-ily2 (Hirotaka Nakano)",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/130",
+  "submitted_by": "konoha-ily2",
+  "record_file": "records/community/sncinsnc/sncinsnc_n05_submission_130_e62ee1089d7f.json",
+  "refines": "PingYou Ltd"
  },
- "density": 0.41331628212342375
+ "density": 0.4136828512601348
 }
