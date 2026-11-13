@@ -3,95 +3,96 @@
  "piece": "cuboctahedron",
  "container": "cuboctahedron",
  "n": 6,
- "s": 2.30547,
- "s_plus": "2.30547+",
- "s_full": 2.3054741645258,
+ "s": 2.29136,
+ "s_plus": "2.29136+",
+ "s_full": 2.2913623277297,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.000002014032055e-07,
-  "min_wall_gap": 1.0000001804399972e-07
+  "min_pair_gap": 4.244950005401303e-07,
+  "min_wall_gap": 1.0000003891619258e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
- "date": "2026-10-13",
+ "date": "2026-11-13",
  "pieces": [
   [
-   0.9231095337688551,
-   -0.9231095344000173,
-   1.2623241906320672e-09,
-   1.186504920376781e-16,
-   0.7071067811865475,
-   -0.7071067811865476,
-   2.569633211761568e-16
+   0.9131256934012402,
+   -0.9130241389154323,
+   1.0529767725843863e-05,
+   5.6046708643796846e-05,
+   0.7071056912334348,
+   -0.7071078670933496,
+   5.0781363825250655e-05
   ],
   [
-   -0.5871058118470984,
-   -0.43413630088924693,
-   0.789273105328146,
-   0.11999686674349351,
-   0.609498924266639,
-   0.7832285494267135,
-   -0.025784736812317462
+   -0.4784337895909809,
+   -0.5098987744139073,
+   0.8379293537700204,
+   0.03229373442919578,
+   -0.7227003584928325,
+   -0.690406624063637,
+   -1.0305379849652843e-16
   ],
   [
-   0.4341363002580852,
-   0.5871058112159383,
-   -0.7892731028034977,
-   0.6492576718810876,
-   0.7434698018122649,
-   -0.013974010802131375,
-   -0.15975561435794206
+   0.8379233670667686,
+   0.5098895222331057,
+   -0.4784490286027797,
+   0.7226846081654952,
+   0.6904246917009755,
+   7.504172572941304e-17,
+   0.03225991646452006
   ],
   [
-   0.7446001670656734,
-   0.50564795040754,
-   0.5959709513268223,
-   0.08678738583669982,
-   -0.9886373698069963,
-   -0.08678738583669941,
-   0.08678738583669923
+   -0.5867601323900764,
+   0.7064910682207138,
+   -0.5322168820368717,
+   0.534230278512855,
+   -0.4880824548137189,
+   0.4886056316666187,
+   -0.4874813468500678
   ],
   [
-   -0.9231095344000171,
-   0.9231095337688555,
-   1.2623243770889288e-09,
-   8.094395669136919e-17,
-   -0.7071067811865475,
-   -0.7071067811865476,
-   1.398658452892609e-17
+   5.624322892452566e-11,
+   0.9130882788590666,
+   0.9131309588493317,
+   1.3501118714509036e-15,
+   -0.7071281215227845,
+   -0.7070854402062442,
+   4.330250298357524e-11
   ],
   [
-   -0.5056479510387011,
-   -0.7446001676968351,
-   -0.5959709488021738,
-   0.4509249919851486,
-   0.45092499198514846,
-   -0.6244997636585471,
-   -0.4509249919851485
+   -0.532259820920538,
+   -0.7064874377146644,
+   -0.5867589159894343,
+   0.5111366039245224,
+   0.5117088664776381,
+   -0.4649102904300339,
+   -0.5106386490943846
   ]
  ],
  "record_id": "cboincbo_n06",
  "title": "6 cuboctahedra in a cuboctahedron",
  "family": "archimedean",
  "source": {
-  "hash": "5bb759f10dcca38c",
+  "hash": "c2e8fa476128904f",
   "clear": 1e-07,
   "cap": 2.3750002386488
  },
- "s_tight": 2.305473930347,
+ "s_tight": 2.291362186372,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.8171205928321397,
- "found_by": "Alejandro Zarzuelo",
+ "found_by": "konoha-ily2 (Hirotaka Nakano) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/130; refinement of the packing by Alejandro Zarzuelo)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "ascend",
-  "seed": 807065040,
-  "var": "base",
-  "raw": 2.3244386409280584,
-  "host": "actions"
+  "move": "community",
+  "lineage": "konoha-ily2 (Hirotaka Nakano)",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/130",
+  "submitted_by": "konoha-ily2",
+  "record_file": "records/community/cboincbo/cboincbo_n06_submission_130_bed90f0edd01.json",
+  "refines": "Alejandro Zarzuelo"
  },
- "density": 0.48963276378680376
+ "density": 0.49873511210842003
 }

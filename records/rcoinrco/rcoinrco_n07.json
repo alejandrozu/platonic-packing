@@ -3,109 +3,105 @@
  "piece": "rhombicuboctahedron",
  "container": "rhombicuboctahedron",
  "n": 7,
- "s": 2.53682,
- "s_plus": "2.53682+",
- "s_full": 2.5368282051162,
+ "s": 2.53322,
+ "s_plus": "2.53322+",
+ "s_full": 2.5332279218272,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000020264865468e-07,
-  "min_wall_gap": 1.0000011263500141e-07
+  "min_pair_gap": 7.24264067643877e-07,
+  "min_wall_gap": 1.0000004602161994e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
- "date": "2026-10-14",
+ "date": "2026-11-13",
  "pieces": [
   [
-   0.6319647752736334,
-   -0.9077761350738955,
-   1.6211924523047891,
-   0.45851608941202365,
-   -0.5401748236383284,
-   -0.4535787410697641,
-   0.5405927129615918
+   0.7152167170978327,
+   -0.8972459724648625,
+   1.627760718143475,
+   0.4581827474709522,
+   -0.5391260398846953,
+   -0.4567591628639183,
+   0.5392427562592458
   ],
   [
-   -1.2730294190308318,
-   -1.350500290020267,
-   0.021890432373126406,
-   0.008601760303821013,
-   -0.6984003750814627,
-   -0.008601760303821296,
-   0.7156038956891051
+   -1.2082068180280965,
+   -1.4091767449854873,
+   0.029707605288599035,
+   0.022274296355421733,
+   -0.6841304823966347,
+   -0.022274296355421722,
+   0.7286790751074782
   ],
   [
-   1.1132084410653715,
-   -1.467836361536345,
-   -0.7679080575349858,
-   0.05771833075955816,
-   0.7312711508774308,
-   0.061732519260379544,
-   0.6768309938636788
+   1.1585035488277635,
+   -1.4155044042926843,
+   -0.7685195906182233,
+   0.054672975718422424,
+   0.7313657855219202,
+   0.06119593301779511,
+   0.6770302883003678
   ],
   [
-   1.1241496839933458,
-   1.416107406215572,
-   0.8988255916027857,
-   0.5904003305454452,
-   -0.709469871722577,
-   0.2598060995005043,
-   -0.283867471669639
+   1.095177201300622,
+   1.4329769748752526,
+   0.9237850903224997,
+   0.5889416871560192,
+   -0.7111258795657637,
+   0.2680952696490024,
+   -0.2749047088237476
   ],
   [
-   -1.3383897251031636,
-   0.9469456094568042,
-   -1.097856982277212,
-   0.9281658264463135,
-   0.37166460427310255,
-   0.01494544940755244,
-   -0.012257817495632846
+   -1.3989670433749248,
+   0.7996302917423972,
+   -1.1647379655129402,
+   0.9994941362720926,
+   -0.012266421459443394,
+   0.02914790680969147,
+   0.003377275661904636
   ],
   [
-   -1.2780056956430992,
-   0.7831954339579544,
-   1.320282130791447,
-   0.5094067554124161,
-   0.5089842088614768,
-   -0.4792034617741032,
-   0.5018006326157501
+   -1.3000543309511474,
+   0.8081701911248286,
+   1.2742225459234535,
+   0.5168327374340314,
+   0.5146284591210073,
+   -0.44938850729160146,
+   0.5158405180803558
   ],
   [
-   1.0659215154543282,
-   0.8725442480241277,
-   -1.4569624550663014,
-   0.03600024765905574,
-   0.39646283723494874,
-   0.07634152258279685,
-   0.9141625527168795
+   1.0027543031479265,
+   0.9188213282537431,
+   -1.4373946229107297,
+   0.02634638187721043,
+   0.4078792815267257,
+   0.07771708083687837,
+   0.9093406486072293
   ]
  ],
  "record_id": "rcoinrco_n07",
  "title": "7 rhombicuboctahedra in a rhombicuboctahedron",
  "family": "archimedean",
  "source": {
-  "hash": "74f5f13ee787e8f5",
+  "hash": "38c04feb4d6ba967",
   "clear": 1e-07,
-  "cap": 2.6028079913319
+  "cap": 2.6002750602714
  },
- "s_tight": 2.536828059117,
+ "s_tight": 2.533227835456,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.912931182772389,
- "found_by": "Alejandro Zarzuelo",
+ "found_by": "konoha-ily2 (Hirotaka Nakano) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/130; refinement of the packing by Alejandro Zarzuelo)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
-  "move": "hop",
-  "seed": 2131297177,
-  "var": "gentle",
-  "minDiff": 0.03335397794938177,
-  "expand": 0.018756247772775948,
-  "rh": 0.08826468713759004,
-  "focus": 0,
-  "from": "pool",
-  "raw": 2.5464282367140916,
-  "host": "laptop"
+  "move": "community",
+  "lineage": "konoha-ily2 (Hirotaka Nakano)",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/130",
+  "submitted_by": "konoha-ily2",
+  "record_file": "records/community/rcoinrco/rcoinrco_n07_submission_130_5d06f79df7be.json",
+  "refines": "Alejandro Zarzuelo"
  },
- "density": 0.4287704698132987
+ "density": 0.4306012053574255
 }

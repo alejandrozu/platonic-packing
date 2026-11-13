@@ -3,86 +3,87 @@
  "piece": "deltoidal_hexecontahedron",
  "container": "deltoidal_hexecontahedron",
  "n": 5,
- "s": 2.35358,
- "s_plus": "2.35358+",
- "s_full": 2.3535895307316,
+ "s": 2.33893,
+ "s_plus": "2.33893+",
+ "s_full": 2.3389330668193,
  "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 8.486075975644041e-06,
-  "min_wall_gap": 1.0000019390332682e-07
+  "min_pair_gap": 2.5431803644302012e-06,
+  "min_wall_gap": 1.0000004380117389e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
- "date": "2026-10-15",
+ "date": "2026-11-13",
  "pieces": [
   [
-   0.1321506576058814,
-   2.624524599253633,
-   1.5715683470844026,
-   1.0,
-   0.0,
-   0.0,
-   0.0
+   -2.936047419118533,
+   -0.002624529350956088,
+   -0.0034379265552738256,
+   0.0345424771082864,
+   -0.27035308679261816,
+   0.954111637447989,
+   0.12404438327971135
   ],
   [
-   0.130629889573591,
-   -2.558896359029255,
-   -1.6536291995803853,
-   1.0,
-   0.0,
-   0.0,
-   0.0
+   0.045564555294607664,
+   -2.606333039144414,
+   -1.5945399193809808,
+   0.9999998720150637,
+   0.0001833035281803832,
+   -0.0003666088856573065,
+   -0.00029659332081050533
   ],
   [
-   -1.8922677510250459,
-   -1.1466709310279368,
-   1.857813194666075,
-   1.0,
-   0.0,
-   0.0,
-   0.0
+   1.0637613708365699,
+   1.4510049877277906,
+   -2.333005287807861,
+   0.8091167864795424,
+   -0.4996332056289282,
+   0.30934878531065946,
+   -0.00012123035664524695
   ],
   [
-   -2.0508415564113087,
-   1.0986545258066565,
-   -1.753532493856526,
-   1.0,
-   0.0,
-   0.0,
-   0.0
+   0.03506270869883148,
+   2.5836594818624565,
+   1.6290564415280147,
+   0.5002979719566978,
+   -9.557846752886619e-05,
+   -0.3087372032401664,
+   -0.8089395956783252
   ],
   [
-   2.4486663792063146,
-   -0.935307329755898,
-   1.5133590494569356,
-   1.0,
-   0.0,
-   0.0,
-   0.0
+   2.4222023852805994,
+   -0.9250859366416465,
+   1.4963060398921542,
+   0.9999998336032667,
+   0.0005224585565940427,
+   -0.00014485845489596488,
+   0.00019709521442754343
   ]
  ],
  "record_id": "dhcindhc_n05",
  "title": "5 deltoidal hexecontahedra in a deltoidal hexecontahedron",
  "family": "catalan",
  "source": {
-  "hash": "1140f81390e8e67a",
+  "hash": "962071b86b6c046c",
   "clear": 1e-07,
   "cap": 2.3585729386018
  },
- "s_tight": 2.353589483584,
+ "s_tight": 2.338933019509,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.7099759466766968,
- "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/23)",
+ "found_by": "konoha-ily2 (Hirotaka Nakano) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/130; refinement of the packing by PingYou Ltd)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
   "move": "community",
-  "lineage": "PingYou Ltd",
-  "issue": "https://github.com/alejandrozu/platonic-packing/issues/23",
-  "submitted_by": "BuddenPing",
-  "record_file": "records/community/dhcindhc/dhcindhc_n05_submission_23_17c514722b7a.json"
+  "lineage": "konoha-ily2 (Hirotaka Nakano)",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/130",
+  "submitted_by": "konoha-ily2",
+  "record_file": "records/community/dhcindhc/dhcindhc_n05_submission_130_19b3f86ae67c.json",
+  "refines": "PingYou Ltd"
  },
- "density": 0.3835110076143635
+ "density": 0.39076586828674886
 }

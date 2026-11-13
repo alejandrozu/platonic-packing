@@ -77,7 +77,7 @@ def lookup(record_id, src_hash, s, bsrc=None):
     if bsrc.get('move') == 'community' and bsrc.get('record_file'):
         try:
             r = json.load(open(os.path.join(ROOT, bsrc['record_file'])))
-            cf = r.get('closed_form_conjecture')
+            cf = r.get('closed_form_conjecture') or r.get('submitted_closed_form')   # since 28 Oct the runner stores it here
             v = float(value(cf, 30)) if isinstance(cf, str) and cf else None
             if v is not None and v <= s * (1 + 1e-9) and s - v <= 2e-6 * s:
                 return pretty(cf), {'name': bsrc.get('lineage'), 'issue': bsrc.get('issue'),

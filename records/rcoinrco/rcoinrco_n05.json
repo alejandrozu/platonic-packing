@@ -3,86 +3,87 @@
  "piece": "rhombicuboctahedron",
  "container": "rhombicuboctahedron",
  "n": 5,
- "s": 2.32888,
- "s_plus": "2.32888+",
- "s_full": 2.3288863986358,
+ "s": 2.32816,
+ "s_plus": "2.32816+",
+ "s_full": 2.3281646117103,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 1.0000292682917607e-07,
-  "min_wall_gap": 1.000000260376055e-07
+  "min_pair_gap": 7.242640683307078e-07,
+  "min_wall_gap": 1.000000846573812e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
- "date": "2026-10-28",
+ "date": "2026-11-13",
  "pieces": [
   [
-   -0.6019445447590187,
-   -0.5200078224002836,
-   1.5388097290162426,
-   0.5970460168504247,
-   -0.7029256640441343,
-   0.29479597130043705,
-   -0.2500537940047848
+   -0.5996481669986784,
+   -0.5236623031094292,
+   1.538393584498166,
+   0.5981068597793598,
+   -0.7027372011167012,
+   0.2936373239358641,
+   -0.24941077050384713
   ],
   [
-   1.0164428529300435,
-   1.1600095117776363,
-   0.8404773362569545,
-   0.0948632951491451,
-   -0.8762434360121615,
-   -0.3713510353565587,
-   -0.29205616689030783
+   1.0019923526003531,
+   1.1740888948627075,
+   0.8408298172008102,
+   0.10271252689546918,
+   -0.8770988607007957,
+   -0.3689144975158858,
+   -0.28991346794986117
   ],
   [
-   -1.6041076812244988,
-   0.6644431497650019,
-   -0.3981093052286126,
-   0.6532814768477759,
-   -0.6532814878832058,
-   0.2705980485229528,
-   -0.2705980519742582
+   -1.603236377644014,
+   0.6640822758937914,
+   -0.3954942482636683,
+   0.6532814824381882,
+   -0.6532814824381884,
+   0.2705980500730984,
+   -0.27059805007309856
   ],
   [
-   0.6644431647250183,
-   0.6644431646973362,
-   -1.6041076747080965,
-   0.7071067809291081,
-   3.831774698171328e-10,
-   0.707106781443987,
-   -1.0120829345473556e-10
+   0.6640822700855294,
+   0.6640822758937914,
+   -1.603236353060286,
+   0.7071067811865476,
+   5.5383777028622684e-17,
+   0.7071067811865475,
+   8.06640606437648e-17
   ],
   [
-   0.7679658403804819,
-   -1.460589090183074,
-   -0.32010148908319813,
-   0.42164733037152063,
-   -0.018956776875168998,
-   0.7838054126476549,
-   0.45552524025054225
+   0.6611769787041766,
+   -1.5629176366743085,
+   -0.44155064959723056,
+   0.4768236759031773,
+   0.5221486206993002,
+   -0.4768236759031773,
+   -0.5221486206993003
   ]
  ],
  "record_id": "rcoinrco_n05",
  "title": "5 rhombicuboctahedra in a rhombicuboctahedron",
  "family": "archimedean",
  "source": {
-  "hash": "4084562e8297eb54",
+  "hash": "47d8dff5d488693e",
   "clear": 1e-07,
-  "cap": 2.3656882432603
+  "cap": 2.3518695197314
  },
- "s_tight": 2.328886321653,
+ "s_tight": 2.328164515766,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.7099759466766968,
- "found_by": "PolyPack (Michael Sinko using Opus 5.5) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/101)",
+ "found_by": "konoha-ily2 (Hirotaka Nakano) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/130; refinement of the packing by PolyPack)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
   "move": "community",
-  "lineage": "PolyPack (Michael Sinko using Opus 5.5)",
-  "issue": "https://github.com/alejandrozu/platonic-packing/issues/101",
-  "submitted_by": "sinkomr",
-  "record_file": "records/community/rcoinrco/rcoinrco_n05_submission_101_784ffbba339d.json"
+  "lineage": "konoha-ily2 (Hirotaka Nakano)",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/130",
+  "submitted_by": "konoha-ily2",
+  "record_file": "records/community/rcoinrco/rcoinrco_n05_submission_130_1c9c05da8360.json",
+  "refines": "PolyPack"
  },
- "density": 0.39584493367289764
+ "density": 0.39621321212377625
 }

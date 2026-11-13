@@ -3,95 +3,96 @@
  "piece": "snub_dodecahedron",
  "container": "snub_dodecahedron",
  "n": 6,
- "s": 2.36783,
- "s_plus": "2.36783+",
- "s_full": 2.3678343961183,
+ "s": 2.3649,
+ "s_plus": "2.36490+",
+ "s_full": 2.3649024912684,
  "measure": "edge length of the container divided by the edge length of the pieces",
  "clearance": {
   "min_pair_gap_target": 1e-07,
   "wall_gap_target": 1e-07,
-  "min_pair_gap": 7.925643292209143e-06,
-  "min_wall_gap": 1.0000013705990796e-07
+  "min_pair_gap": 1.1884495710885353e-06,
+  "min_wall_gap": 1.0000004380117389e-07
  },
  "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
  "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
- "date": "2026-10-15",
+ "date": "2026-11-13",
  "pieces": [
   [
-   1.6880381266425146,
-   -0.23741410467155755,
-   -2.3965441355351667,
+   1.6776826549661397,
+   -0.22845573553624487,
+   -2.3939806169532227,
    1.0,
-   0.0,
-   0.0,
-   0.0
+   2.1251652115777455e-16,
+   -8.26395854384113e-17,
+   -8.02739635818258e-17
   ],
   [
-   -1.7398580171129883,
-   0.23741410467250768,
-   2.2608779009912197,
+   -1.7275472049122897,
+   0.2284557356313496,
+   2.263433499584777,
    1.0,
-   0.0,
-   0.0,
-   0.0
+   5.43314570705752e-16,
+   2.4975952085888885e-16,
+   -3.692829867312541e-17
   ],
   [
-   1.860156690966522,
-   1.9875173449205286,
-   0.8857946425057243,
+   1.8503827672834179,
+   1.9828265965525642,
+   0.8967858595729841,
    1.0,
-   0.0,
-   0.0,
-   0.0
+   2.449316433649644e-16,
+   3.53006576427078e-16,
+   1.0549495788195951e-16
   ],
   [
-   -1.527832490669535,
-   2.22493144959449,
-   -1.168190863145099,
+   -1.5305981875179748,
+   2.21128234164658,
+   -1.16852638057944,
    1.0,
-   0.0,
-   0.0,
-   0.0
+   -2.9146719442667314e-16,
+   5.297289335439553e-16,
+   -5.231910056637469e-16
   ],
   [
-   1.476012600197133,
-   -2.22493144959354,
-   1.032524628601152,
+   1.4807336221070346,
+   -2.2112823321839126,
+   1.037979269118017,
    1.0,
-   0.0,
-   0.0,
-   0.0
+   3.731847765432144e-16,
+   -3.75312319998723e-16,
+   6.246484742254948e-16
   ],
   [
-   -1.9119765814389245,
-   -1.9875173449195784,
-   -1.0214608770477425,
+   -1.900247332540484,
+   -1.982826606110331,
+   -1.0273329710931807,
    1.0,
-   0.0,
-   0.0,
-   0.0
+   7.313122211857286e-16,
+   5.775084410812134e-16,
+   9.236144309076405e-16
   ]
  ],
  "record_id": "sndinsnd_n06",
  "title": "6 snub dodecahedra in a snub dodecahedron",
  "family": "archimedean",
  "source": {
-  "hash": "4e6bc662832561ee",
+  "hash": "06a02c3016eb7f21",
   "clear": 1e-07,
   "cap": 2.5550944761184
  },
- "s_tight": 2.367834347974,
+ "s_tight": 2.364902443124,
  "closed_form_conjecture": null,
  "volume_lower_bound": 1.8171205928321397,
- "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/23)",
+ "found_by": "konoha-ily2 (Hirotaka Nakano) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/130; refinement of the packing by PingYou Ltd)",
  "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
  "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
  "search": {
   "move": "community",
-  "lineage": "PingYou Ltd",
-  "issue": "https://github.com/alejandrozu/platonic-packing/issues/23",
-  "submitted_by": "BuddenPing",
-  "record_file": "records/community/sndinsnd/sndinsnd_n06_submission_23_bf0022109f70.json"
+  "lineage": "konoha-ily2 (Hirotaka Nakano)",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/130",
+  "submitted_by": "konoha-ily2",
+  "record_file": "records/community/sndinsnd/sndinsnd_n06_submission_130_40a3454fed14.json",
+  "refines": "PingYou Ltd"
  },
- "density": 0.45195716457246443
+ "density": 0.4536402008284055
 }
