@@ -1,6 +1,6 @@
 # Which records are optimal?
 
-_7 November 2026._ A record gives an upper bound: its packing fits in a container of scale s. It is **optimal**
+_13 November 2026._ A record gives an upper bound: its packing fits in a container of scale s. It is **optimal**
 when no packing of the same n pieces fits in a smaller container. This file tracks which low-n records are
 proven optimal in Lean, which are proven elsewhere with computer assistance, and which have strong numerical
 evidence.
@@ -281,7 +281,9 @@ exact, because a piece can be translated independently along each axis.
   height 3, s₁ itself equals s(2). These are the next candidates; they need sector bounds for the 12-, 16- and
   10-gon.
 
-## 2. Proven with computer assistance elsewhere, not in Lean (27 records)
+## 2. Proven elsewhere, not in Lean (43 records)
+
+### Hiroaki Hosono: computer-assisted proofs (27 records)
 
 Hiroaki Hosono (wand125) has computer-assisted proofs of the following results. Each was checked by two
 independent checkers, and none has been peer reviewed. They are in
@@ -316,10 +318,64 @@ proves that implication (`cube_plateau_of_centre_lemma`). Status by dimension:
 **Numerical check here.** The maximum of the left side of Lemma F over all rotations is exactly 1, attained at
 axis-aligned placements, in every dimension d = 2–6 (`scripts/optimality/center_lemma.py`, `center_nd.py`).
 
+### Hirotaka Nakano: optimality certificates for 16 Platonic records (#131, 13 Nov 2026)
+
+Hirotaka Nakano (konoha-ily2) published certificates for the minimal container edge of the records below, in
+[konoha-ily2/packing-optimality-certificates](https://github.com/konoha-ily2/packing-optimality-certificates)
+(v0.2.0, read at commit `0755979`, [doi:10.5281/zenodo.24191316](https://doi.org/10.5281/zenodo.24191316)),
+and submitted them in [#131](https://github.com/alejandrozu/platonic-packing/issues/131).
+
+- **Upper bound:** an exact substitution of the optimal configuration.
+- **Lower bound for n = 2:** a symmetry reduction, then a tree of rotation boxes, each closed by a rational
+  certificate, and an exact local lemma at the optimum. A separate replay checker re-checks every box, and
+  Lean 4 (no Mathlib) re-checks the arithmetic.
+- **Lower bound for n = 3, 4:** monotonicity in n.
+- **Lower bound for n = 5:** inscribed balls and a pigeonhole argument.
+
+By the repository's own account, the arguments, code and reviews were written by Claude (Anthropic) and
+re-derived by a second Claude model, with no human review. The reductions are prose arguments, and Lean
+checks only the arithmetic. **The box certificates were read here, not re-run**, because this catalogue does
+not execute submitted code.
+
+| Records | Optimal edge | Lower bound | Status here |
+|---|---|---|---|
+| `cubinoct_n02` | 1 + √2 | box certificates | computer-assisted, not re-run |
+| `icoincub_n02` | 1 + 2√5/3 | box certificates | computer-assisted, not re-run |
+| `dodinico_n02` | 2 + 2√5/5 | box certificates | computer-assisted, not re-run |
+| `icoinoct_n02` | √(9/2 + 2√5) | box certificates | computer-assisted, not re-run |
+| `icoindod_n02` | √5 − 1 | box certificates | computer-assisted, not re-run |
+| `octindod_n02` | (2√5 + √10 − √2 − 4)/3 | box certificates | computer-assisted, not re-run |
+| `cubinico_n02` | (49√5 − 53)/38 | box certificates | computer-assisted, not re-run |
+| `cubintet_n02` | 2 + √6/2 + 2√3/3 | box certificates (tetrahedron reduction) | computer-assisted, not re-run |
+| `icointet_n02`–`n04` | 2√2 (1 + 2/√5) | box certificates for n = 2, then monotonicity | computer-assisted, not re-run |
+| `octintet_n02`–`n04` | 3 | box certificates for n = 2, then monotonicity | computer-assisted, not re-run |
+| `icointet_n05` | (5/3)√(3√5 + 7) | inscribed balls + pigeonhole | **proven; argument checked here** |
+| `octintet_n05` | 10/3 | inscribed balls + pigeonhole | **proven; argument checked here** |
+
+**What was checked here.**
+
+- **Upper bounds.** Each of the 16 records holds a packing that this catalogue's exact certifier certifies at
+  the claimed edge plus the clearance (relative gap at most 5 × 10⁻⁸). Each record's closed form equals the
+  claimed edge exactly (sympy).
+- **n = 5.** The lower bound L ≥ 20r/√6 (r the inradius of the piece) was re-derived by hand:
+  1. Inscribed balls of radius r are disjoint, so their centres are at least 2r apart.
+  2. The centres lie in the tetrahedron of edge L − 2√6 r.
+  3. Split that tetrahedron into its four nearest-vertex cells. Each cell has squared diameter 3/8 of the
+     squared edge; this was recomputed exactly with fractions.
+  4. Five centres in four cells put two of them in one cell, which gives the bound.
+
+  Both inradii (r² = 1/6 for the octahedron, (7 + 3√5)/24 for the icosahedron) were recomputed, and
+  20r/√6 equals 10/3 and (5/3)√(3√5 + 7). With the certified packings this settles `octintet_n05` and
+  `icointet_n05`. Neither is in Lean yet.
+- **n = 3, 4.** Removing pieces keeps a packing feasible, so these rest entirely on the n = 2 certificates.
+
 ## 3. n = 2: numerical evidence for 20 Platonic records
 
 Five of these records are now proven in Lean (section 1): `octincub_n02`, `tetincub_n02`, `tetinoct_n02`,
 `tetindod_n02` and `tetinico_n02`. The table keeps them so the numerical method can be compared with the proofs.
+Eight more now have external computer-assisted certificates (section 2, #131): `cubinoct_n02`, `icoincub_n02`,
+`dodinico_n02`, `icoinoct_n02`, `icoindod_n02`, `octindod_n02`, `cubinico_n02` and `cubintet_n02`. Every one
+of them agrees with the numerical value below.
 
 For n = 2 a stronger fact holds. Let s_c be the scale below which every placement of a single piece contains
 the container's centre in its interior. The common-point lemma gives s(2) ≥ s_c. When the container is
@@ -357,9 +413,10 @@ the worst placement.
 | 2 icosahedra in an octahedron (`icoinoct_n02`) | 2.9953525 | √(2√5 + 9/2) | Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre Pólik |
 
 The centre argument fails for tetrahedron containers with tetrahedra, octahedra, dodecahedra or icosahedra as
-pieces: a single piece can avoid the centroid at the record scale. The plateaus there, for example octahedra in
-a tetrahedron at s = 3 for n = 2–4 and icosahedra in a tetrahedron at s = 5.3582 for n = 2–4, need a different
-argument.
+pieces: a single piece can avoid the centroid at the record scale. Nakano's certificates (section 2, #131) use a
+different reduction for the tetrahedron. They cover the plateaus of octahedra in a tetrahedron at s = 3 and of
+icosahedra in a tetrahedron at s = 5.3582 for n = 2–4, and their end at n = 5. Tetrahedra and dodecahedra in a
+tetrahedron (n = 2) remain open.
 
 ## 4. Next targets
 
@@ -373,8 +430,10 @@ argument.
   centre with the opposite vertex towards a corner (the facet-width argument). Two steps are missing: that a
   tetrahedron of the second kind meets any tetrahedron containing the ball, and that two of the second kind
   point to opposite corners. Then three cannot fit. This is a plan, not yet a proof.
-- n = 2: certify s_c rigorously for one pair, for example 2 octahedra in a cube at √2. That needs a rigorous
-  global bound over all rotations.
+- n = 2: external computer-assisted certificates now cover ten pairs (section 2, #131). The next step is a
+  Lean proof of one of them: Lean already re-checks their arithmetic, and what is missing is the reduction,
+  which is now a prose argument. Another next step is `octintet_n05` / `icointet_n05` in Lean, a short
+  argument with inscribed balls.
 - Plateaus starting above n = 2, which need new ideas:
   - octahedra in an octahedron, n = 3–6 (s = 2)
   - tetrahedra in a tetrahedron, n = 3–4 (2)
