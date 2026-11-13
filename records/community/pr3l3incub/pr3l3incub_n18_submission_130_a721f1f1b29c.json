@@ -1,0 +1,215 @@
+{
+ "problem": "min/prism3_l3_in_cube",
+ "piece": "prism3_l3",
+ "container": "cube",
+ "n": 18,
+ "s_full": 3.3759313238808,
+ "pieces": [
+  [
+   0.20040521184134794,
+   -0.19678234908974948,
+   0.09238493573302524,
+   0.6634691696948609,
+   3.616365097417521e-18,
+   8.275602755535435e-18,
+   -0.7482036225950873
+  ],
+  [
+   0.2694663254595543,
+   0.37642275898167765,
+   -0.018210135961223114,
+   0.7482036225950873,
+   9.07197959290025e-18,
+   3.1013948062605338e-18,
+   0.6634691696948609
+  ],
+  [
+   0.7642062918233993,
+   0.6879652485429139,
+   0.18796509854291396,
+   0.6634691696948609,
+   8.235878000218287e-18,
+   1.4235065564779205e-17,
+   -0.7482036225950873
+  ],
+  [
+   -0.8332674054416057,
+   -0.3526209102002184,
+   0.06887786208175961,
+   0.6634691696948609,
+   1.0486286417129429e-17,
+   1.475827543967013e-17,
+   -0.7482036225950874
+  ],
+  [
+   -0.7642062918233993,
+   0.22058419787120873,
+   0.18796509854291396,
+   0.7482036225950874,
+   9.549994906954844e-18,
+   -1.6185587410554042e-17,
+   0.6634691696948609
+  ],
+  [
+   -0.2934077597244209,
+   0.5881753036474393,
+   0.1729857351330929,
+   0.6634691696948609,
+   7.985340020179887e-18,
+   1.4849567320587575e-17,
+   -0.7482036225950873
+  ],
+  [
+   -0.25615803148778654,
+   -1.0259934607899897,
+   0.05694422676431558,
+   0.6757215714036195,
+   -1.3080675343044608e-17,
+   2.4646035152510808e-18,
+   -0.7371569425433251
+  ],
+  [
+   -0.7388147272453357,
+   -1.3569795046664517,
+   0.1879650985429139,
+   0.7371569425433251,
+   3.424570585128423e-18,
+   1.0124170240333807e-17,
+   0.6757215714036195
+  ],
+  [
+   0.7164805838699851,
+   -1.0622579344420893,
+   0.08185414018495134,
+   0.6757215714036195,
+   1.6593865848786535e-17,
+   2.781902970141032e-17,
+   -0.7371569425433251
+  ],
+  [
+   0.21689774967588546,
+   -1.356979504666452,
+   0.061883891069560285,
+   0.7371569425433251,
+   5.541848208047714e-18,
+   1.4870594039974656e-17,
+   0.6757215714036195
+  ],
+  [
+   1.3992903273455608,
+   1.187965398542914,
+   0.187965098542914,
+   0.8660254037844387,
+   1.7659036753315682e-17,
+   -7.073091596898124e-18,
+   0.5
+  ],
+  [
+   0.17967633732629176,
+   1.3992903273455606,
+   0.0811215419537317,
+   0.7071067811865476,
+   2.081719899736235e-18,
+   2.7315143632008064e-17,
+   -0.7071067811865476
+  ],
+  [
+   1.2149097673792417,
+   -1.3569795046664517,
+   0.04946608422014484,
+   0.7371569425433251,
+   4.1487769100311636e-18,
+   -4.2451738874999977e-19,
+   0.6757215714036195
+  ],
+  [
+   -0.8203239626737082,
+   1.3992903273455608,
+   0.18796509854291388,
+   0.7071067811865476,
+   1.717418299093001e-17,
+   1.582620032898457e-18,
+   -0.7071067811865475
+  ],
+  [
+   1.2260859201831567,
+   0.34155401570019017,
+   0.1363561607673988,
+   0.7482036225950873,
+   7.514116616236853e-18,
+   -8.87031415624736e-18,
+   0.6634691696948609
+  ],
+  [
+   1.1570248065649502,
+   -0.23165109237123696,
+   0.1791488465355114,
+   0.6634691696948609,
+   1.2612746420653301e-17,
+   1.9931148720338174e-17,
+   -0.7482036225950873
+  ],
+  [
+   -1.2260859201831567,
+   0.5669954307139324,
+   0.11727232837796328,
+   0.6634691696948609,
+   7.263642367037481e-18,
+   1.7300769658516658e-17,
+   -0.7482036225950874
+  ],
+  [
+   -1.3992903273455608,
+   -0.9722384178142387,
+   0.1372716752271385,
+   0.5,
+   7.831695434736489e-18,
+   5.902035801980209e-18,
+   -0.8660254037844387
+  ]
+ ],
+ "s": 3.37593,
+ "s_plus": "3.37593+",
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap": 1.732051e-07,
+  "min_wall_gap": 2e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-11-13",
+ "record_id": "pr3l3incub_n18_submission_130_a721f1f1b29c",
+ "title": "18 prism3 l3s in a cube",
+ "family": "prisms",
+ "source": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/130",
+  "submitted_by": "konoha-ily2"
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.85955287899081,
+ "density": 0.6077340731117202,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/130",
+  "submitted_by": "konoha-ily2",
+  "credit": "konoha-ily2 (Hirotaka Nakano)",
+  "kind": "construction",
+  "replayed_on": "2026-11-13",
+  "witness_sha256": "f6733bf7b7d41e9e2a0b7c0b30e166488269f25f1877816a6a544d64e99fddf6",
+  "method": "Batch of 292 witnesses in 44 of the new problems (prisms and antiprisms 218, Archimedean 51, Catalan 23; `MANIFEST.json` + `records/<record_id>.json` + `SUMMARY.tsv`), each below the current `records/SUMMARY_families.csv` entry (main at a9a1af36, checked 2026-11-12). Every record passes `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED) locally, run on the files extracted from the archive. The changes against the current records: median -1.19 %, largest -7.15 %; 160 records improve by \u2265 1 %, 267 by \u2265 0.1 %.\n\n**Other values compared.** Each record is also at least 1e-4 (relative) below the value in `state/best` at the same commit and below PolyPack's published value (https://github.com/sinkomr/PolyPack, `data/polyhedra/records.json`, fetched 2026-11-12; 292 of these records have a PolyPack value, listed in `SUMMARY.tsv` as `polypack_s`). There were no open submissions for these problems.\n\n**How the records were made.** `found_by`, `credit` and `method` identify where each record starts; `method` or `refinement` gives the steps.\n\n- *Constructions* (219): structured packings with all pieces in a few fixed orientations. For prisms in a cube (139), the prisms are axis-parallel and stacked in up to three slabs, each layer filled with rows of the cross-section. For a solid in itself (80), all pieces are translates on a lattice generated by face-to-face contacts, or (prisms) layers of a planar packing of the cross-section; for most, the positions were then optimised by a translational linear program with the orientations fixed. 216 of them carry the exact value of the construction in `closed_form_conjecture` (with `closed_form_note`); these are upper bounds from the construction, not optimality claims.\n- *Refinements of catalogue records* (61): a contact-preserving descent (sequential linear programming with the contacts as inequalities) started from the catalogue record named in `refinement`; for some, a randomised multi-start search from perturbed copies of ",
+  "archive": "https://github.com/user-attachments/files/34739935/platonic_families_292.zip",
+  "archive_sha256": "80791c84c1d0e0d866df539ec8d130a71155a7512ba6096e9dad353e5dad5469"
+ },
+ "refined_by": "konoha-ily2 (Hirotaka Nakano)",
+ "refinement_credit": "computed with Claude (Anthropic)",
+ "refinement": "starting from pr3l3incub_n18 (catalogue at 294b96ac): contact-preserving descent (sequential linear programming with the contacts as inequalities; rigidity analysis: https://doi.org/10.5281/zenodo.23630728)",
+ "previous_record": {
+  "s_full": 3.4556572922465,
+  "found_by": "Alejandro Zarzuelo",
+  "date": "2026-10-14"
+ },
+ "case_id": "pr3l3incub_n18"
+}

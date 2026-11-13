@@ -1,0 +1,152 @@
+{
+ "problem": "min/disdyakis_dodecahedron_in_disdyakis_dodecahedron",
+ "piece": "disdyakis_dodecahedron",
+ "container": "disdyakis_dodecahedron",
+ "n": 11,
+ "s_full": 2.8514758926617,
+ "pieces": [
+  [
+   -2.025705040147734,
+   2.7274182219472096,
+   2.552071876587395,
+   0.6982314251804707,
+   -0.6648923125901011,
+   -0.23490562839007698,
+   -0.12333059352690683
+  ],
+  [
+   -2.5067779994693273,
+   -2.5943726879329483,
+   -2.539112017843222,
+   0.9845690376604935,
+   0.09338376271497165,
+   0.10139370171826796,
+   0.1078081638529782
+  ],
+  [
+   0.3090471636212925,
+   -4.647395612373686,
+   0.27164341267042214,
+   0.31654883065477785,
+   -0.627150711679709,
+   -0.6263048523058957,
+   0.3379660554387339
+  ],
+  [
+   3.266551571002456,
+   -1.7817283854509374,
+   -1.792287729019063,
+   0.21656885618399052,
+   0.033043548274446596,
+   0.33435255096493066,
+   -0.916632110561176
+  ],
+  [
+   -2.115684062799164,
+   -2.0489452552677427,
+   3.0827361851757407,
+   0.660946619641982,
+   0.25815585488215576,
+   0.6522824645503575,
+   -0.26651961844114225
+  ],
+  [
+   0.2514618625659937,
+   0.177469168423063,
+   -4.713480421784224,
+   0.3357279029414647,
+   0.3465694853568204,
+   -0.6428311966322552,
+   -0.5949322815601606
+  ],
+  [
+   2.5300166933939616,
+   2.831658359813649,
+   -1.9428567179171092,
+   0.7142097037168348,
+   -0.29771774504889903,
+   -0.38497122309325316,
+   0.5030564588490983
+  ],
+  [
+   -4.764687827580212,
+   0.1940233615622274,
+   0.12699469327657728,
+   0.016513666257924102,
+   0.027074392212677007,
+   0.9577374038396228,
+   -0.2858904360057805
+  ],
+  [
+   2.584100680448907,
+   -1.8237416916212053,
+   2.8468188483466292,
+   0.1360025771548638,
+   0.9651946559442008,
+   -0.2162304996486114,
+   -0.05609764848639432
+  ],
+  [
+   2.4903769163145357,
+   2.6552458346301213,
+   2.5185694334014745,
+   0.8062285903507217,
+   0.30271202522429796,
+   -0.5079007264857036,
+   0.019943468128352654
+  ],
+  [
+   -2.050875644338495,
+   3.0904958461479417,
+   -2.009398024158069,
+   0.30664348524269286,
+   -0.918063855203141,
+   0.2483628248717297,
+   -0.0380057620564983
+  ]
+ ],
+ "s": 2.85147,
+ "s_plus": "2.85147+",
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap": 1.327788e-06,
+  "min_wall_gap": 2.000001e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-11-13",
+ "record_id": "ddoinddo_n11_submission_130_35416fef2a0d",
+ "title": "11 disdyakis dodecahedra in a disdyakis dodecahedron",
+ "family": "catalan",
+ "source": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/130",
+  "submitted_by": "konoha-ily2"
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.2239800905693152,
+ "density": 0.4744424854458562,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/130",
+  "submitted_by": "konoha-ily2",
+  "credit": "konoha-ily2 (Hirotaka Nakano)",
+  "kind": "construction",
+  "replayed_on": "2026-11-13",
+  "witness_sha256": "d2a9625414165642a89a8607d6e45fc19bb86085702d039766c1790c58abd2d0",
+  "method": "Batch of 292 witnesses in 44 of the new problems (prisms and antiprisms 218, Archimedean 51, Catalan 23; `MANIFEST.json` + `records/<record_id>.json` + `SUMMARY.tsv`), each below the current `records/SUMMARY_families.csv` entry (main at a9a1af36, checked 2026-11-12). Every record passes `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED) locally, run on the files extracted from the archive. The changes against the current records: median -1.19 %, largest -7.15 %; 160 records improve by \u2265 1 %, 267 by \u2265 0.1 %.\n\n**Other values compared.** Each record is also at least 1e-4 (relative) below the value in `state/best` at the same commit and below PolyPack's published value (https://github.com/sinkomr/PolyPack, `data/polyhedra/records.json`, fetched 2026-11-12; 292 of these records have a PolyPack value, listed in `SUMMARY.tsv` as `polypack_s`). There were no open submissions for these problems.\n\n**How the records were made.** `found_by`, `credit` and `method` identify where each record starts; `method` or `refinement` gives the steps.\n\n- *Constructions* (219): structured packings with all pieces in a few fixed orientations. For prisms in a cube (139), the prisms are axis-parallel and stacked in up to three slabs, each layer filled with rows of the cross-section. For a solid in itself (80), all pieces are translates on a lattice generated by face-to-face contacts, or (prisms) layers of a planar packing of the cross-section; for most, the positions were then optimised by a translational linear program with the orientations fixed. 216 of them carry the exact value of the construction in `closed_form_conjecture` (with `closed_form_note`); these are upper bounds from the construction, not optimality claims.\n- *Refinements of catalogue records* (61): a contact-preserving descent (sequential linear programming with the contacts as inequalities) started from the catalogue record named in `refinement`; for some, a randomised multi-start search from perturbed copies of ",
+  "archive": "https://github.com/user-attachments/files/34739935/platonic_families_292.zip",
+  "archive_sha256": "80791c84c1d0e0d866df539ec8d130a71155a7512ba6096e9dad353e5dad5469"
+ },
+ "refined_by": "konoha-ily2 (Hirotaka Nakano)",
+ "refinement_credit": "computed with Claude (Anthropic)",
+ "refinement": "starting from ddoinddo_n11 (catalogue at 294b96ac): randomised multi-start search started from perturbed copies of that configuration; contact-preserving descent (sequential linear programming with the contacts as inequalities; rigidity analysis: https://doi.org/10.5281/zenodo.23630728)",
+ "previous_record": {
+  "s_full": 2.8616113763125,
+  "found_by": "Alejandro Zarzuelo",
+  "date": "2026-10-15"
+ },
+ "case_id": "ddoinddo_n11"
+}

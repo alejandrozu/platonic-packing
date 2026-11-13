@@ -1,0 +1,158 @@
+{
+ "problem": "min/truncated_icosidodecahedron_in_truncated_icosidodecahedron",
+ "piece": "truncated_icosidodecahedron",
+ "container": "truncated_icosidodecahedron",
+ "n": 12,
+ "s_full": 2.828302478239,
+ "pieces": [
+  [
+   3.467998904623949,
+   5.723174749151126,
+   -2.081081709736857,
+   0.6853786334672586,
+   -0.1651972241882902,
+   0.15040289972834678,
+   0.6929947020140187
+  ],
+  [
+   -2.412846241880309,
+   3.5033613708555102,
+   -5.501841586840129,
+   0.2883349911328354,
+   0.399257551856278,
+   -0.8530327488912115,
+   -0.17093153964099753
+  ],
+  [
+   -3.270228522450269,
+   0.47874919461442983,
+   5.3744908063012025,
+   -0.8085967030498484,
+   8.155211242548018e-07,
+   0.4997357957044481,
+   0.31055393618084476
+  ],
+  [
+   2.980757103542168,
+   4.075516582391952,
+   4.747488630980294,
+   -0.30779009419400777,
+   -0.7492215477844676,
+   0.4887068124005729,
+   0.3241396662760251
+  ],
+  [
+   6.836247350563177,
+   -0.22442504747448286,
+   0.9781358393742854,
+   0.9225515827590633,
+   -0.012348214760438937,
+   0.38203499967204746,
+   -0.052300822675321774
+  ],
+  [
+   -2.614468960586173,
+   -3.863330202772653,
+   -4.930412750940104,
+   -0.38596749603320457,
+   0.6050716040226911,
+   0.4663477853951866,
+   -0.5171396848805854
+  ],
+  [
+   -3.4292584216605184,
+   -5.6830385091102595,
+   2.1327256401989696,
+   0.006472851898757925,
+   -0.009452432127807829,
+   0.8477664351115539,
+   0.530246004429466
+  ],
+  [
+   -6.881977511319094,
+   0.31271033472662046,
+   -0.8393627766563266,
+   0.918302259787327,
+   -0.002372332990027424,
+   0.3956315348412189,
+   0.00295884645268804
+  ],
+  [
+   3.0435997572508753,
+   -6.183364535503279,
+   -0.9458842555083752,
+   -0.11117075410234753,
+   0.6410275114599608,
+   -0.759292141767807,
+   0.01363348005106218
+  ],
+  [
+   3.343651683274899,
+   -0.41396658417960647,
+   -5.3286604485028,
+   0.49924621681327613,
+   0.30715436487997483,
+   -0.8101818687199723,
+   -0.003527004182867924
+  ],
+  [
+   2.6545501187746505,
+   -3.4890257963541496,
+   5.3788095420256425,
+   0.09148835632833534,
+   0.8719710427999924,
+   0.43857304469257113,
+   0.1971963452239714
+  ],
+  [
+   -2.872573147348714,
+   6.264586485989312,
+   0.9937709495731422,
+   -0.76346163357431,
+   -0.44583819792205653,
+   -0.28260556497751166,
+   0.3724394965942846
+  ]
+ ],
+ "s": 2.8283,
+ "s_plus": "2.82830+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 6.005503e-06,
+  "min_wall_gap": 1.824187e-06
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "randomised multi-start search from random initial placements",
+ "date": "2026-11-13",
+ "record_id": "tidintid_n12_submission_130_f1c5ad5df479",
+ "title": "12 truncated icosidodecahedra in a truncated icosidodecahedron",
+ "family": "archimedean",
+ "source": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/130",
+  "submitted_by": "konoha-ily2"
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.2894284851066637,
+ "density": 0.5304002057303643,
+ "found_by": "konoha-ily2 (Hirotaka Nakano)",
+ "credit": "konoha-ily2 (Hirotaka Nakano), computed with Claude (Anthropic)",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/130",
+  "submitted_by": "konoha-ily2",
+  "credit": "konoha-ily2 (Hirotaka Nakano)",
+  "kind": "construction",
+  "replayed_on": "2026-11-13",
+  "witness_sha256": "ee55fb677276477b48a9371fdddb62d76ca842c4218b58adb1e43c8cd412d125",
+  "method": "Batch of 292 witnesses in 44 of the new problems (prisms and antiprisms 218, Archimedean 51, Catalan 23; `MANIFEST.json` + `records/<record_id>.json` + `SUMMARY.tsv`), each below the current `records/SUMMARY_families.csv` entry (main at a9a1af36, checked 2026-11-12). Every record passes `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED) locally, run on the files extracted from the archive. The changes against the current records: median -1.19 %, largest -7.15 %; 160 records improve by \u2265 1 %, 267 by \u2265 0.1 %.\n\n**Other values compared.** Each record is also at least 1e-4 (relative) below the value in `state/best` at the same commit and below PolyPack's published value (https://github.com/sinkomr/PolyPack, `data/polyhedra/records.json`, fetched 2026-11-12; 292 of these records have a PolyPack value, listed in `SUMMARY.tsv` as `polypack_s`). There were no open submissions for these problems.\n\n**How the records were made.** `found_by`, `credit` and `method` identify where each record starts; `method` or `refinement` gives the steps.\n\n- *Constructions* (219): structured packings with all pieces in a few fixed orientations. For prisms in a cube (139), the prisms are axis-parallel and stacked in up to three slabs, each layer filled with rows of the cross-section. For a solid in itself (80), all pieces are translates on a lattice generated by face-to-face contacts, or (prisms) layers of a planar packing of the cross-section; for most, the positions were then optimised by a translational linear program with the orientations fixed. 216 of them carry the exact value of the construction in `closed_form_conjecture` (with `closed_form_note`); these are upper bounds from the construction, not optimality claims.\n- *Refinements of catalogue records* (61): a contact-preserving descent (sequential linear programming with the contacts as inequalities) started from the catalogue record named in `refinement`; for some, a randomised multi-start search from perturbed copies of ",
+  "archive": "https://github.com/user-attachments/files/34739935/platonic_families_292.zip",
+  "archive_sha256": "80791c84c1d0e0d866df539ec8d130a71155a7512ba6096e9dad353e5dad5469"
+ },
+ "previous_record": {
+  "s_full": 2.8558893050286,
+  "found_by": "Alejandro Zarzuelo",
+  "date": "2026-10-13"
+ },
+ "case_id": "tidintid_n12"
+}

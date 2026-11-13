@@ -1,0 +1,152 @@
+{
+ "problem": "min/antiprism12_in_cube",
+ "piece": "antiprism12",
+ "container": "cube",
+ "n": 11,
+ "s_full": 5.5576907285985,
+ "pieces": [
+  [
+   0.8635203253448186,
+   -0.8635203253448189,
+   2.3470851311298286,
+   -3.9870398981225267e-17,
+   -0.8314696123025451,
+   -0.5555702330196023,
+   -6.946674607736188e-17
+  ],
+  [
+   0.8635203253448189,
+   -0.8635203253448184,
+   1.4835648058350013,
+   6.073076070627853e-17,
+   -0.8314696123025453,
+   -0.5555702330196022,
+   -6.637122319063105e-17
+  ],
+  [
+   2.3470851311298286,
+   -0.863520325344819,
+   -0.8635203253448193,
+   0.46622789700423034,
+   0.5316310262343733,
+   -0.4662278970042303,
+   -0.5316310262343734
+  ],
+  [
+   1.483564805835001,
+   -0.8635203253448192,
+   -0.8635203253448192,
+   0.4662278970042302,
+   0.5316310262343734,
+   -0.46622789700423023,
+   -0.5316310262343733
+  ],
+  [
+   0.8635203253448188,
+   1.4835648058350013,
+   0.8635203253448183,
+   0.1379496896414713,
+   -0.13794968964147108,
+   -0.6935199226610739,
+   -0.6935199226610739
+  ],
+  [
+   0.863520325344819,
+   2.347085131129829,
+   0.8635203253448193,
+   0.13794968964147158,
+   -0.13794968964147164,
+   -0.6935199226610738,
+   -0.6935199226610738
+  ],
+  [
+   -0.863520325344819,
+   0.8635203253448194,
+   -2.3470851311298286,
+   0.19509032201612833,
+   -1.0195509925186186e-17,
+   7.790511089038188e-18,
+   -0.9807852804032305
+  ],
+  [
+   -0.8635203253448194,
+   0.8635203253448195,
+   -1.483564805835002,
+   0.19509032201612844,
+   -1.7412132598882274e-16,
+   -1.391312186005586e-16,
+   -0.9807852804032304
+  ],
+  [
+   -1.483564805835002,
+   0.8635203253448193,
+   0.8635203253448195,
+   0.13794968964147136,
+   0.6935199226610737,
+   -0.1379496896414714,
+   -0.693519922661074
+  ],
+  [
+   -2.3470851311298286,
+   0.8635203253448196,
+   0.8635203253448195,
+   0.13794968964147133,
+   0.6935199226610738,
+   -0.13794968964147128,
+   -0.6935199226610738
+  ],
+  [
+   -0.8635203253448194,
+   -2.3470851311298286,
+   -0.8635203253448195,
+   0.6341847973991337,
+   -0.6341847973991337,
+   0.31274533209597205,
+   0.31274533209597205
+  ]
+ ],
+ "s": 5.55769,
+ "s_plus": "5.55769+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 2.58956e-07,
+  "min_wall_gap": 2e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-11-13",
+ "record_id": "ap12incub_n11_submission_130_1aceeba72178",
+ "title": "11 dodecagonal antiprisms in a cube",
+ "family": "prisms",
+ "source": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/130",
+  "submitted_by": "konoha-ily2"
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 4.756311542167734,
+ "density": 0.6267982183763615,
+ "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/87)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/130",
+  "submitted_by": "konoha-ily2",
+  "credit": "konoha-ily2 (Hirotaka Nakano)",
+  "kind": "construction",
+  "replayed_on": "2026-11-13",
+  "witness_sha256": "0cd2a3089aa386e33d82576efde5ecc90e762042202d3ce479b47b9ce7f94d06",
+  "method": "Batch of 292 witnesses in 44 of the new problems (prisms and antiprisms 218, Archimedean 51, Catalan 23; `MANIFEST.json` + `records/<record_id>.json` + `SUMMARY.tsv`), each below the current `records/SUMMARY_families.csv` entry (main at a9a1af36, checked 2026-11-12). Every record passes `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED) locally, run on the files extracted from the archive. The changes against the current records: median -1.19 %, largest -7.15 %; 160 records improve by \u2265 1 %, 267 by \u2265 0.1 %.\n\n**Other values compared.** Each record is also at least 1e-4 (relative) below the value in `state/best` at the same commit and below PolyPack's published value (https://github.com/sinkomr/PolyPack, `data/polyhedra/records.json`, fetched 2026-11-12; 292 of these records have a PolyPack value, listed in `SUMMARY.tsv` as `polypack_s`). There were no open submissions for these problems.\n\n**How the records were made.** `found_by`, `credit` and `method` identify where each record starts; `method` or `refinement` gives the steps.\n\n- *Constructions* (219): structured packings with all pieces in a few fixed orientations. For prisms in a cube (139), the prisms are axis-parallel and stacked in up to three slabs, each layer filled with rows of the cross-section. For a solid in itself (80), all pieces are translates on a lattice generated by face-to-face contacts, or (prisms) layers of a planar packing of the cross-section; for most, the positions were then optimised by a translational linear program with the orientations fixed. 216 of them carry the exact value of the construction in `closed_form_conjecture` (with `closed_form_note`); these are upper bounds from the construction, not optimality claims.\n- *Refinements of catalogue records* (61): a contact-preserving descent (sequential linear programming with the contacts as inequalities) started from the catalogue record named in `refinement`; for some, a randomised multi-start search from perturbed copies of ",
+  "archive": "https://github.com/user-attachments/files/34739935/platonic_families_292.zip",
+  "archive_sha256": "80791c84c1d0e0d866df539ec8d130a71155a7512ba6096e9dad353e5dad5469"
+ },
+ "refined_by": "konoha-ily2 (Hirotaka Nakano)",
+ "refinement_credit": "computed with Claude (Anthropic)",
+ "refinement": "starting from ap12incub_n11 (catalogue at 294b96ac): contact-preserving descent (sequential linear programming with the contacts as inequalities; rigidity analysis: https://doi.org/10.5281/zenodo.23630728)",
+ "previous_record": {
+  "s_full": 5.7223370845437005,
+  "found_by": "PingYou Ltd",
+  "date": "2026-10-15"
+ },
+ "case_id": "ap12incub_n11"
+}

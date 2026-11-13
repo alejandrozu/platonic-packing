@@ -1,0 +1,143 @@
+{
+ "problem": "min/pentakis_dodecahedron_in_pentakis_dodecahedron",
+ "piece": "pentakis_dodecahedron",
+ "container": "pentakis_dodecahedron",
+ "n": 10,
+ "s_full": 2.775319907147,
+ "pieces": [
+  [
+   -3.875861007008159,
+   -0.04255247057022155,
+   -2.09277271351484,
+   1.0009993703365831,
+   -0.03760726999095946,
+   -0.0018125484258808993,
+   -0.0076765635200110776
+  ],
+  [
+   -2.5088476041822707,
+   3.350964297216442,
+   0.9942617484823351,
+   0.9994221019811571,
+   -0.01915264809055726,
+   0.01713163319871416,
+   0.005293777136758393
+  ],
+  [
+   -1.6530260294230685,
+   0.013143662298285681,
+   4.292174614655903,
+   0.9958484645331624,
+   -0.008522129624621998,
+   0.00036119373928789706,
+   0.01355359712450778
+  ],
+  [
+   2.9701701101395965,
+   0.05678964625119031,
+   3.108552178614439,
+   1.0004471707468654,
+   0.017682468930956284,
+   0.005464183264061053,
+   0.01976960280879739
+  ],
+  [
+   -0.02365817152758255,
+   -2.4181613620885454,
+   -3.733468462663737,
+   0.9982389886442172,
+   -0.00564722057188155,
+   -0.04016513015646756,
+   -0.03843072716218111
+  ],
+  [
+   -0.07695382705081953,
+   2.385397346764039,
+   -3.7528868948463705,
+   0.9976918305555557,
+   -0.004463266542446274,
+   0.0484025484605772,
+   -0.05131049568399018
+  ],
+  [
+   2.211249586193502,
+   3.8029766151222852,
+   0.236795300638943,
+   0.9995678290735001,
+   0.012711532151804655,
+   0.026923457944050645,
+   0.010283845343039303
+  ],
+  [
+   2.272377326350733,
+   -3.758978960017581,
+   0.2764246138317852,
+   0.9995897725971199,
+   0.01295290079529776,
+   -0.027434686560952694,
+   0.010479117225181245
+  ],
+  [
+   3.8343455549627934,
+   0.0236594938029635,
+   -2.2536087721171483,
+   0.9975612906799857,
+   0.06067257312315998,
+   -0.005470993704647074,
+   -0.02192674237923379
+  ],
+  [
+   -2.4326289416109,
+   -3.3917582373896615,
+   1.0397128936817488,
+   0.9993313200044722,
+   -0.011096898404428198,
+   -0.023487556764459006,
+   0.00896686463768212
+  ]
+ ],
+ "s": 2.77531,
+ "s_plus": "2.77531+",
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap": 1.4272e-06,
+  "min_wall_gap": 1.185795e-06
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-11-13",
+ "record_id": "pkdinpkd_n10_submission_130_3edbc6ae8146",
+ "title": "10 pentakis dodecahedra in a pentakis dodecahedron",
+ "family": "catalan",
+ "source": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/130",
+  "submitted_by": "konoha-ily2"
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.154434690031884,
+ "density": 0.4678006785911318,
+ "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/39)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/130",
+  "submitted_by": "konoha-ily2",
+  "credit": "konoha-ily2 (Hirotaka Nakano)",
+  "kind": "construction",
+  "replayed_on": "2026-11-13",
+  "witness_sha256": "021a890802c1f8bc051f48ae69f90615af505b30fa7040798b48aa1549318b3d",
+  "method": "Batch of 292 witnesses in 44 of the new problems (prisms and antiprisms 218, Archimedean 51, Catalan 23; `MANIFEST.json` + `records/<record_id>.json` + `SUMMARY.tsv`), each below the current `records/SUMMARY_families.csv` entry (main at a9a1af36, checked 2026-11-12). Every record passes `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED) locally, run on the files extracted from the archive. The changes against the current records: median -1.19 %, largest -7.15 %; 160 records improve by \u2265 1 %, 267 by \u2265 0.1 %.\n\n**Other values compared.** Each record is also at least 1e-4 (relative) below the value in `state/best` at the same commit and below PolyPack's published value (https://github.com/sinkomr/PolyPack, `data/polyhedra/records.json`, fetched 2026-11-12; 292 of these records have a PolyPack value, listed in `SUMMARY.tsv` as `polypack_s`). There were no open submissions for these problems.\n\n**How the records were made.** `found_by`, `credit` and `method` identify where each record starts; `method` or `refinement` gives the steps.\n\n- *Constructions* (219): structured packings with all pieces in a few fixed orientations. For prisms in a cube (139), the prisms are axis-parallel and stacked in up to three slabs, each layer filled with rows of the cross-section. For a solid in itself (80), all pieces are translates on a lattice generated by face-to-face contacts, or (prisms) layers of a planar packing of the cross-section; for most, the positions were then optimised by a translational linear program with the orientations fixed. 216 of them carry the exact value of the construction in `closed_form_conjecture` (with `closed_form_note`); these are upper bounds from the construction, not optimality claims.\n- *Refinements of catalogue records* (61): a contact-preserving descent (sequential linear programming with the contacts as inequalities) started from the catalogue record named in `refinement`; for some, a randomised multi-start search from perturbed copies of ",
+  "archive": "https://github.com/user-attachments/files/34739935/platonic_families_292.zip",
+  "archive_sha256": "80791c84c1d0e0d866df539ec8d130a71155a7512ba6096e9dad353e5dad5469"
+ },
+ "refined_by": "konoha-ily2 (Hirotaka Nakano)",
+ "refinement_credit": "computed with Claude (Anthropic)",
+ "refinement": "starting from pkdinpkd_n10 (catalogue at 294b96ac): randomised multi-start search started from perturbed copies of that configuration",
+ "previous_record": {
+  "s_full": 2.777437913336,
+  "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/39)",
+  "date": "2026-10-15"
+ },
+ "case_id": "pkdinpkd_n10"
+}
