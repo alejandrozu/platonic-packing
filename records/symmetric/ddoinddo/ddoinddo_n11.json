@@ -1,0 +1,184 @@
+{
+ "problem": "min/disdyakis_dodecahedron_in_disdyakis_dodecahedron",
+ "piece": "disdyakis_dodecahedron",
+ "container": "disdyakis_dodecahedron",
+ "n": 11,
+ "s": 2.85147,
+ "s_plus": "2.85147+",
+ "s_full": 2.8514758642802,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.3277881748090248e-06,
+  "min_wall_gap": 1.0000002692578391e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-11-13",
+ "pieces": [
+  [
+   -2.025705029337157,
+   2.7274181738627883,
+   2.5520718845777854,
+   0.6982314251804707,
+   -0.6648923125901013,
+   -0.23490562839007703,
+   -0.12333059352690685
+  ],
+  [
+   -2.50677798865875,
+   -2.5943727360173696,
+   -2.5391120098528317,
+   0.9845690376604935,
+   0.09338376271497167,
+   0.10139370171826799,
+   0.10780816385297823
+  ],
+  [
+   0.30904717443186935,
+   -4.647395660458108,
+   0.2716434206608131,
+   0.3165488306547779,
+   -0.6271507116797089,
+   -0.6263048523058958,
+   0.337966055438734
+  ],
+  [
+   3.2665515818130335,
+   -1.7870080772820154,
+   -1.7870080772820154,
+   0.19697887241457754,
+   0.08159132045507755,
+   0.3738842947131145,
+   -0.9026365350547004
+  ],
+  [
+   -2.115684051988587,
+   -2.048945303352164,
+   3.0827361931661312,
+   0.6609466196419821,
+   0.25815585488215576,
+   0.6522824645503577,
+   -0.26651961844114225
+  ],
+  [
+   0.2514618733765706,
+   0.17746912033864176,
+   -4.7134804137938335,
+   0.33572790294146465,
+   0.34656948535682036,
+   -0.6428311966322553,
+   -0.5949322815601605
+  ],
+  [
+   2.5300167042045385,
+   2.8316583117292278,
+   -1.9428567099267184,
+   0.7142097037168348,
+   -0.29771774504889903,
+   -0.38497122309325316,
+   0.5030564588490983
+  ],
+  [
+   -4.7646878167696345,
+   0.19402331347780616,
+   0.1269947012669682,
+   0.016513666257924105,
+   0.027074392212677014,
+   0.9577374038396228,
+   -0.28589043600578057
+  ],
+  [
+   2.5841006912594837,
+   -1.8237417397056266,
+   2.8468188563370194,
+   0.1360025771548638,
+   0.9651946559442008,
+   -0.2162304996486114,
+   -0.05609764848639432
+  ],
+  [
+   2.490376927125113,
+   2.6552457865457,
+   2.518569441391865,
+   0.8062285903507217,
+   0.302712025224298,
+   -0.5079007264857036,
+   0.01994346812835266
+  ],
+  [
+   -2.030136824847798,
+   3.09049579806352,
+   -2.030136824847798,
+   0.27794024788672206,
+   -0.9195098896745674,
+   0.27794024788672195,
+   7.546296110380107e-18
+  ]
+ ],
+ "record_id": "ddoinddo_n11",
+ "title": "11 disdyakis dodecahedra in a disdyakis dodecahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "a28ee25bc36597f4",
+  "clear": 1e-07,
+  "cap": 2.8662862427759
+ },
+ "s_tight": 2.851475814955,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.2239800905693152,
+ "found_by": "konoha-ily2 (Hirotaka Nakano) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/130; refinement of the packing by Alejandro Zarzuelo)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "community",
+  "lineage": "konoha-ily2 (Hirotaka Nakano)",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/130",
+  "submitted_by": "konoha-ily2",
+  "record_file": "records/community/ddoinddo/ddoinddo_n11_submission_130_35416fef2a0d.json",
+  "refines": "Alejandro Zarzuelo"
+ },
+ "density": 0.4744424996126142,
+ "symmetrized": {
+  "from": "records/ddoinddo/ddoinddo_n11.json",
+  "from_source_hash": "a28ee25bc36597f4",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 0,
+   "stabilizer_sum": 0,
+   "stabilizers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 2,
+   "stabilizer_sum": 2,
+   "stabilizers": [
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

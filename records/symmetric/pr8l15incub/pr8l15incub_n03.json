@@ -1,0 +1,95 @@
+{
+ "problem": "min/prism8_l15_in_cube",
+ "piece": "prism8_l15",
+ "container": "cube",
+ "n": 3,
+ "s": 3.91421,
+ "s_plus": "3.91421+",
+ "s_full": 3.9142138623735,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000002020079549e-07,
+  "min_wall_gap": 9.999999983634211e-08
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.6496959047758037,
+   -1.2071065968258494,
+   0.6496959047758037,
+   0.5879378104127846,
+   0.5879377920065716,
+   -0.3928474329264094,
+   0.3928475254606911
+  ],
+  [
+   0.7500000500001326,
+   0.8894788131908352,
+   0.6615847627936883,
+   0.5794415789977087,
+   -0.5963129821756363,
+   0.3984435962037296,
+   0.38717048500845286
+  ],
+  [
+   -1.2071068311866981,
+   0.558552932568711,
+   -0.6412058050763962,
+   0.620867952515844,
+   -0.33841244885316496,
+   0.6208679525158396,
+   -0.338412448853137
+  ]
+ ],
+ "record_id": "pr8l15incub_n03",
+ "title": "3 octagonal prisms of height 1.5 in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "1044e9fa0ef07a0e",
+  "clear": 1e-07,
+  "cap": 3.9142138857296
+ },
+ "s_tight": 3.914213562372,
+ "closed_form_conjecture": "(5 + 2\u221a2)/2",
+ "volume_lower_bound": 2.790440275211126,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "ascend",
+  "seed": 998222166,
+  "var": "base",
+  "raw": 3.914213628989144,
+  "host": "actions"
+ },
+ "density": 0.3623135219803196,
+ "symmetrized": {
+  "from": "records/pr8l15incub/pr8l15incub_n03.json",
+  "from_source_hash": "1044e9fa0ef07a0e",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 0,
+   "stabilizer_sum": 0,
+   "stabilizers": [
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 1,
+   "stabilizer_sum": 1,
+   "stabilizers": [
+    2,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

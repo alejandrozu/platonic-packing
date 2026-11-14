@@ -1,0 +1,195 @@
+{
+ "problem": "min/prism5_l2_in_cube",
+ "piece": "prism5_l2",
+ "container": "cube",
+ "n": 12,
+ "s": 4.0,
+ "s_plus": "4.00000+",
+ "s_full": 4.0000004067926,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020012057576e-07,
+  "min_wall_gap": 1.0000003269894364e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   1.0000000642524107,
+   -0.469585050006015,
+   1.3111732173706374,
+   0.21893597581062366,
+   -0.6723593075847542,
+   0.21893597581062335,
+   -0.6723593075847544
+  ],
+  [
+   -1.0000000642524107,
+   0.46582176971713124,
+   -1.3118091431606798,
+   0.2185080122244104,
+   -0.6724985119639575,
+   -0.2185080122244105,
+   0.6724985119639574
+  ],
+  [
+   1.0000000642524103,
+   0.3158759948648325,
+   -0.01612985261176983,
+   0.5901624745135178,
+   0.3894974373164496,
+   0.5901624745135177,
+   0.38949743731644965
+  ],
+  [
+   -1.0000000642524107,
+   -0.31809739772033657,
+   0.017547806025270802,
+   0.5878525181494083,
+   0.3929750843315634,
+   -0.5878525181494086,
+   -0.3929750843315634
+  ],
+  [
+   1.0000000642524107,
+   1.2364736875283309,
+   -1.2364736875283309,
+   0.055478958634923664,
+   -0.7049270069651075,
+   0.055478958634923636,
+   -0.7049270069651074
+  ],
+  [
+   -1.0000000642524112,
+   -1.2352371085103155,
+   1.2352371085103155,
+   0.055478958634923754,
+   -0.7049270069651074,
+   -0.05547895863492351,
+   0.7049270069651075
+  ],
+  [
+   1.0000000642524105,
+   -0.47403853863790774,
+   -1.2289901650205866,
+   0.3595983154751657,
+   -0.6088423864247816,
+   0.35959831547516624,
+   -0.6088423864247817
+  ],
+  [
+   -1.0000000642524107,
+   0.4707672670686233,
+   1.2292627606799955,
+   0.3595983154751656,
+   -0.6088423864247816,
+   -0.35959831547516585,
+   0.6088423864247817
+  ],
+  [
+   -1.0000000642524112,
+   -1.2405389886308265,
+   -1.2405389886308265,
+   0.16507079981907205,
+   -0.6875693645350203,
+   -0.16507079981907138,
+   0.6875693645350208
+  ],
+  [
+   1.0000000642524107,
+   1.2403515786941397,
+   1.2403515786941397,
+   0.1650707998190719,
+   -0.6875693645350205,
+   0.1650707998190715,
+   -0.6875693645350206
+  ],
+  [
+   1.000000064252411,
+   -1.1884448796576619,
+   0.1275964658873612,
+   0.0034661930443105576,
+   -0.7070982856051765,
+   0.0034661930443106656,
+   -0.7070982856051764
+  ],
+  [
+   -1.0000000642524107,
+   1.187521980781397,
+   -0.12904932850110315,
+   0.00416155927145137,
+   -0.7070945349982776,
+   -0.004161559271451511,
+   0.7070945349982773
+  ]
+ ],
+ "record_id": "pr5l2incub_n12",
+ "title": "12 pentagonal prisms of height 2 in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "2b64fb58afa6d622",
+  "clear": 1e-07,
+  "cap": 4.1818621478424
+ },
+ "s_tight": 4.0,
+ "closed_form_conjecture": "4",
+ "volume_lower_bound": 3.4563687614142378,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "symfresh",
+  "seed": 1248316611,
+  "var": "base",
+  "sym": "C2i+0",
+  "raw": 4.00000003221159,
+  "host": "laptop"
+ },
+ "density": 0.6451788283803629,
+ "symmetrized": {
+  "from": "records/pr5l2incub/pr5l2incub_n12.json",
+  "from_source_hash": "2b64fb58afa6d622",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 0,
+   "stabilizer_sum": 0,
+   "stabilizers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 4,
+   "stabilizer_sum": 4,
+   "stabilizers": [
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

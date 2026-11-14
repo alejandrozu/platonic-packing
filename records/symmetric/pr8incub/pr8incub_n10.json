@@ -1,0 +1,172 @@
+{
+ "problem": "min/prism8_in_cube",
+ "piece": "prism8",
+ "container": "cube",
+ "n": 10,
+ "s": 4.41421,
+ "s_plus": "4.41421+",
+ "s_full": 4.414214174506,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020100875417e-07,
+  "min_wall_gap": 1.0000001626764288e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-15",
+ "pieces": [
+  [
+   0.978296142489006,
+   -1.000000064644793,
+   1.707106916542162,
+   0.8314696123025452,
+   2.6606264257630207e-16,
+   -1.1560638799000164e-17,
+   -0.5555702330196023
+  ],
+  [
+   0.9898622535296454,
+   1.0000001353556147,
+   -1.706912698462327,
+   0.1950903215250957,
+   6.958672796382586e-05,
+   -1.3841660797484785e-05,
+   -0.9807852779346409
+  ],
+  [
+   1.0000001353556147,
+   -1.0000000646447929,
+   0.7071068165419594,
+   1.6568135629347259e-16,
+   0.5555702330196023,
+   -0.8314696123025452,
+   2.786818492908154e-16
+  ],
+  [
+   -1.7071069165413555,
+   0.9996051234088689,
+   -0.9948110832230128,
+   0.1380690594809997,
+   -0.6934961678438896,
+   -0.13806905948053602,
+   0.6934961678437973
+  ],
+  [
+   0.7200953699286516,
+   1.7071069872529836,
+   0.05066068989627834,
+   0.6842219275718764,
+   -0.6842219275718765,
+   0.17843865564901004,
+   0.1784386556490099
+  ],
+  [
+   1.0000001353556143,
+   -0.7071068165419585,
+   -1.000000135355614,
+   0.1379496896414714,
+   0.1379496896414716,
+   0.6935199226610739,
+   -0.6935199226610737
+  ],
+  [
+   -0.9866933177083791,
+   0.9866933177083791,
+   1.6970527917733502,
+   0.0014691972428338732,
+   0.5555696096845535,
+   0.8314686794157189,
+   -0.00029224150171975265
+  ],
+  [
+   1.0000001353549435,
+   -1.7071069165421617,
+   -1.000000135355614,
+   0.6935199226610735,
+   0.693519922661074,
+   0.1379496896414719,
+   -0.1379496896414716
+  ],
+  [
+   0.9945382324961216,
+   0.7071068872527798,
+   0.192941238596123,
+   0.6929157356051087,
+   0.6929157356051089,
+   0.14095312465791987,
+   -0.14095312465791984
+  ],
+  [
+   -0.7071068165424708,
+   -0.9669241629613533,
+   -0.9724062958748576,
+   0.15318164936862477,
+   0.6903154223229049,
+   0.1531816493681592,
+   0.6903154223228014
+  ]
+ ],
+ "record_id": "pr8incub_n10",
+ "title": "10 prism8s in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "8295e31864751a88",
+  "clear": 1e-07,
+  "cap": 4.4142142131787
+ },
+ "s_tight": 4.414213562373,
+ "closed_form_conjecture": "3 + \u221a2",
+ "volume_lower_bound": 3.6414014460127917,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "tighten",
+  "seed": 71374933,
+  "var": "base",
+  "raw": 4.454653676892978,
+  "host": "actions"
+ },
+ "density": 0.5613651890832577,
+ "symmetrized": {
+  "from": "records/pr8incub/pr8incub_n10.json",
+  "from_source_hash": "8295e31864751a88",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 3,
+   "stabilizer_sum": 3,
+   "stabilizers": [
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 4,
+   "stabilizer_sum": 4,
+   "stabilizers": [
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

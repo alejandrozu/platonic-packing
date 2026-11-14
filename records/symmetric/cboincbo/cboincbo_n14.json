@@ -1,0 +1,214 @@
+{
+ "problem": "min/cuboctahedron_in_cuboctahedron",
+ "piece": "cuboctahedron",
+ "container": "cuboctahedron",
+ "n": 14,
+ "s": 3.0,
+ "s_plus": "3.00000+",
+ "s_full": 3.0000002828431,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020145284338e-07,
+  "min_wall_gap": 1.0000006600563438e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   1.4010979375497736,
+   0.030141954280936155,
+   -1.3883798377278427,
+   0.49670080809081246,
+   -0.5076345913358162,
+   -0.4938553508766554,
+   -0.501699433258349
+  ],
+  [
+   -1.4142136623732975,
+   1.0876166411528707,
+   -0.04109237660942798,
+   0.895401779425242,
+   -0.44525908570416645,
+   1.3831851756634887e-16,
+   -6.745275297577651e-16
+  ],
+  [
+   0.041675301173165064,
+   -1.321924139466649,
+   -1.3112946576165962,
+   0.37494319211608623,
+   -0.5520717003765421,
+   0.5326721821120465,
+   -0.5204755390343953
+  ],
+  [
+   0.015813314630649777,
+   1.3707222877783436,
+   -1.4142136623732993,
+   0.7183695482523055,
+   1.7253273863783248e-15,
+   -1.3783747106625273e-15,
+   0.6956616937447243
+  ],
+  [
+   -1.2119173974398436,
+   -1.1476396946127125,
+   -0.042566685475060345,
+   0.44986587495707236,
+   0.8760463422365451,
+   0.13635247162543293,
+   -0.10757092676329127
+  ],
+  [
+   1.4142136623733008,
+   1.0915582287069792,
+   -0.02684935965508663,
+   0.27763891141209324,
+   0.6503204093905615,
+   0.6503204093905622,
+   -0.2776389114120933
+  ],
+  [
+   0.041840029848158614,
+   -1.4142136623732948,
+   1.2442233904510338,
+   0.5424990581631668,
+   0.4535358551339436,
+   0.453535855133943,
+   0.5424990581631662
+  ],
+  [
+   0.12394776089338518,
+   -0.12997549599808092,
+   -0.15813050358183814,
+   0.12804360213960672,
+   0.36216212384914753,
+   0.8698612334478737,
+   -0.30949130285798454
+  ],
+  [
+   -1.1177043348720126,
+   7.385508283423916e-35,
+   -1.413990832552165,
+   1.8882654481076457e-05,
+   -0.3826834322851608,
+   -0.9238795323183208,
+   7.821451579672145e-06
+  ],
+  [
+   2.9217172308603224e-15,
+   1.414213662373303,
+   1.4142136623733,
+   2.625235674253462e-16,
+   0.7071067811865476,
+   -0.7071067811865475,
+   -7.630029018046654e-17
+  ],
+  [
+   1.2475039334848335,
+   -1.2341707141535256,
+   0.01018191267508848,
+   0.742994681876576,
+   0.3882187738857115,
+   0.5446137676597591,
+   0.02531660287721311
+  ],
+  [
+   1.4142136623733006,
+   -0.00028390458126777303,
+   1.120394659314679,
+   0.41834765183446637,
+   -0.9082869822939159,
+   2.0278900020482803e-16,
+   7.09525980971138e-16
+  ],
+  [
+   2.9217172308603224e-15,
+   4.378393890774295e-15,
+   1.4142136623733002,
+   7.633645161924491e-16,
+   -0.7071067811865475,
+   -0.7071067811865476,
+   -1.0050468881998912e-15
+  ],
+  [
+   2.9217172308603224e-15,
+   1.4130685724320513,
+   5.220118275753e-16,
+   0.49999999999999917,
+   0.5000000000000012,
+   0.49999999999999895,
+   0.5000000000000008
+  ]
+ ],
+ "record_id": "cboincbo_n14",
+ "title": "14 cuboctahedra in a cuboctahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "66fc6bcf526ab0ff",
+  "clear": 1e-07,
+  "cap": 3.0000002828431
+ },
+ "s_tight": 3.0,
+ "closed_form_conjecture": "3",
+ "volume_lower_bound": 2.4101422641752297,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "monotone",
+  "from_n": 15,
+  "removed": 10
+ },
+ "density": 0.5185183718591609,
+ "symmetrized": {
+  "from": "records/cboincbo/cboincbo_n14.json",
+  "from_source_hash": "66fc6bcf526ab0ff",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 3,
+   "stabilizer_sum": 17,
+   "stabilizers": [
+    8,
+    8,
+    4,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 4,
+   "stabilizer_sum": 18,
+   "stabilizers": [
+    8,
+    8,
+    4,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

@@ -1,0 +1,93 @@
+{
+ "problem": "min/prism8_in_prism8",
+ "piece": "prism8",
+ "container": "prism8",
+ "n": 3,
+ "s": 2.0,
+ "s_plus": "2.00000+",
+ "s_full": 2.0000003000003,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020099951781e-07,
+  "min_wall_gap": 1.0000003669574653e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-12",
+ "pieces": [
+  [
+   1.024063892090745,
+   0.682013303165491,
+   -0.5000000500001058,
+   1.9610949284849074e-15,
+   0.7071067811865374,
+   -0.7071067811865579,
+   -2.0184258273720494e-15
+  ],
+  [
+   -1.1152213973902965,
+   -0.46193982784773574,
+   -0.4980000500000984,
+   4.588036795969144e-15,
+   -2.6799933598806036e-17,
+   -1.0,
+   1.8906446924175962e-15
+  ],
+  [
+   1.294136643684242,
+   0.030000003441020075,
+   0.5000000500001011,
+   6.846290053089253e-17,
+   -0.9238795325112881,
+   -0.38268343236508656,
+   5.1266781724035805e-15
+  ]
+ ],
+ "record_id": "pr8inpr8_n03",
+ "title": "3 prism8s in a prism8",
+ "family": "prisms",
+ "source": {
+  "hash": "c1ffb61073023544",
+  "clear": 1e-07,
+  "cap": 2.0000003000003
+ },
+ "s_tight": 2.0,
+ "closed_form_conjecture": "2",
+ "volume_lower_bound": 1.4422495703074083,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "monotone",
+  "from_n": 4,
+  "removed": 2
+ },
+ "density": 0.3749998312498818,
+ "symmetrized": {
+  "from": "records/pr8inpr8/pr8inpr8_n03.json",
+  "from_source_hash": "c1ffb61073023544",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 0,
+   "stabilizer_sum": 0,
+   "stabilizers": [
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 1,
+   "stabilizer_sum": 1,
+   "stabilizers": [
+    2,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

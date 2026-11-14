@@ -1,0 +1,249 @@
+{
+ "problem": "min/prism3_l2_in_cube",
+ "piece": "prism3_l2",
+ "container": "cube",
+ "n": 17,
+ "s": 2.86602,
+ "s_plus": "2.86602+",
+ "s_full": 2.8660260501953,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000014255551193e-07,
+  "min_wall_gap": 1.000000307005422e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-15",
+ "pieces": [
+  [
+   -0.6160255720859494,
+   6.160262836995254e-08,
+   -1.1443377039001423,
+   0.5,
+   -0.5,
+   -0.5,
+   -0.5
+  ],
+  [
+   -0.11602548548328523,
+   6.160262836995254e-08,
+   -0.8556625193052578,
+   0.5,
+   -0.5,
+   0.5,
+   0.5
+  ],
+  [
+   0.383974601119379,
+   6.160262836995254e-08,
+   -1.1443377039001423,
+   0.5,
+   -0.5,
+   -0.5,
+   -0.5
+  ],
+  [
+   0.8839746877220432,
+   6.160262836995254e-08,
+   -0.8556625193052578,
+   0.5,
+   -0.5,
+   0.5,
+   0.5
+  ],
+  [
+   0.8839746877220432,
+   -1.1443377039001421,
+   0.43301283849495514,
+   0.7071067811865475,
+   0.0,
+   0.0,
+   0.7071067811865478
+  ],
+  [
+   0.383974601119379,
+   -0.8556625193052578,
+   0.43301283849495514,
+   0.7071067811865475,
+   0.0,
+   0.0,
+   -0.7071067811865478
+  ],
+  [
+   -0.11602548548328523,
+   -1.1443377039001421,
+   0.43301283849495514,
+   0.7071067811865475,
+   0.0,
+   0.0,
+   0.7071067811865478
+  ],
+  [
+   -0.6160255720859494,
+   -0.8556625193052578,
+   0.43301283849495514,
+   0.7071067811865475,
+   0.0,
+   0.0,
+   -0.7071067811865478
+  ],
+  [
+   -1.0263885882640482,
+   0.0,
+   0.43301283849495514,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -0.587713403669164,
+   0.43301283849495514,
+   0.43301283849495514,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  [
+   -0.8763885882640483,
+   0.9330129250976194,
+   0.43301283849495514,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -0.010363034479395291,
+   -0.0669872481077092,
+   0.43301283849495514,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.2783121501154891,
+   0.43301283849495514,
+   0.43301283849495514,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  [
+   -0.010363034479395291,
+   0.9330129250976194,
+   0.43301283849495514,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.8556625193052579,
+   -0.0669872481077092,
+   0.43301283849495514,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   1.1443377039001421,
+   0.43301283849495514,
+   0.43301283849495514,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  [
+   0.8556625193052579,
+   0.9330129250976194,
+   0.43301283849495514,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ]
+ ],
+ "record_id": "pr3l2incub_n17",
+ "title": "17 triangular prisms of height 2 in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "19de886e59ce94f0",
+  "clear": 1e-07,
+  "cap": 3.0000005464107
+ },
+ "s_tight": 2.866025661519,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.450905225087608,
+ "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/52)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "community",
+  "lineage": "PingYou Ltd",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/52",
+  "submitted_by": "BuddenPing",
+  "record_file": "records/community/pr3l2incub/pr3l2incub_n17_submission_52_7f9a8c29cad3.json"
+ },
+ "density": 0.6253730367860774,
+ "symmetrized": {
+  "from": "records/pr3l2incub/pr3l2incub_n17.json",
+  "from_source_hash": "19de886e59ce94f0",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 4,
+   "stabilizer_sum": 4,
+   "stabilizers": [
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 5,
+   "stabilizer_sum": 5,
+   "stabilizers": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

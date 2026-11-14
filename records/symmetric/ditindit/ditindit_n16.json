@@ -1,0 +1,238 @@
+{
+ "problem": "min/deltoidal_icositetrahedron_in_deltoidal_icositetrahedron",
+ "piece": "deltoidal_icositetrahedron",
+ "container": "deltoidal_icositetrahedron",
+ "n": 16,
+ "s": 3.16017,
+ "s_plus": "3.16017+",
+ "s_full": 3.1601769623099,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000017812428208e-07,
+  "min_wall_gap": 1.0000006067656386e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-15",
+ "pieces": [
+  [
+   -5.941489101893209e-19,
+   0.09382939613090663,
+   8.629961481712562e-19,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   2.250421495118569,
+   2.3259661584706326e-13,
+   -1.9423071074781604,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -1.5832329238730143,
+   0.2537418817483455,
+   2.294051563104292,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   1.3549907434461559,
+   -2.4904882297389084,
+   0.007743997438485469,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -1.8137162860621054,
+   1.7680630841648912,
+   -1.2285436617765928,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.7301844209656199,
+   2.305523036557396,
+   -1.0790957978639435,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -1.4208429013550579,
+   -2.438547619648634,
+   -0.06728756484494441,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.29558267263974597,
+   -1.9099435445269999,
+   -2.1413925700097183,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -0.8116720722711886,
+   2.2655483720174283,
+   1.0941155238427271,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -1.9548388224786233,
+   -0.7010679820871365,
+   -1.9548388224796496,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.9957616236796868,
+   2.3259661584706326e-13,
+   2.6424934719107527,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   2.6547871287555136,
+   -0.4224333155320379,
+   0.5436487950612675,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -2.991193948844435,
+   2.3259661584706326e-13,
+   0.15392420306124205,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.00519080631389421,
+   0.5078075803527268,
+   -2.842460552097088,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -0.09752688154397894,
+   -2.1477850819705937,
+   2.092566446549408,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   1.8389301853796491,
+   1.8389301853796818,
+   1.0968048228699214,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ]
+ ],
+ "record_id": "ditindit_n16",
+ "title": "16 deltoidal icositetrahedra in a deltoidal icositetrahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "9d8ad913ea2a4099",
+  "clear": 1e-07,
+  "cap": 3.1949322439613
+ },
+ "s_tight": 3.160176813513,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.5198420997897464,
+ "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/26)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "community",
+  "lineage": "PingYou Ltd",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/26",
+  "submitted_by": "BuddenPing",
+  "record_file": "records/community/ditindit/ditindit_n16_submission_26_f6159569ddf7.json"
+ },
+ "density": 0.5069741017555366,
+ "symmetrized": {
+  "from": "records/ditindit/ditindit_n16.json",
+  "from_source_hash": "9d8ad913ea2a4099",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 6,
+   "stabilizer_sum": 6,
+   "stabilizers": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 6,
+   "stabilizer_sum": 12,
+   "stabilizers": [
+    8,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

@@ -1,0 +1,118 @@
+{
+ "problem": "min/deltoidal_hexecontahedron_in_deltoidal_hexecontahedron",
+ "piece": "deltoidal_hexecontahedron",
+ "container": "deltoidal_hexecontahedron",
+ "n": 5,
+ "s": 2.33893,
+ "s_plus": "2.33893+",
+ "s_full": 2.3389330668193,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 2.5536802052972263e-06,
+  "min_wall_gap": 1.0000004380117389e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-11-13",
+ "pieces": [
+  [
+   -2.936047419118533,
+   -0.002624529350956088,
+   -0.0034379265552738256,
+   0.0345424771082864,
+   -0.27035308679261816,
+   0.954111637447989,
+   0.12404438327971135
+  ],
+  [
+   0.045564555294607664,
+   -2.606333039144414,
+   -1.5945399193809808,
+   0.9999998720150636,
+   0.00018330352818038322,
+   -0.00036660888565730654,
+   -0.0002965933208105054
+  ],
+  [
+   0.9251799609601273,
+   1.4969726225437876,
+   -2.422152583503914,
+   0.8090169943749475,
+   -0.5000000000000001,
+   0.3090169943749475,
+   0.0
+  ],
+  [
+   0.03978128454777075,
+   2.5912942979645344,
+   1.6167030495769974,
+   0.5000000002627525,
+   2.627524862970695e-10,
+   -0.3090169946376999,
+   -0.8090169941121951
+  ],
+  [
+   2.4221525835039155,
+   -0.925179960960128,
+   1.4969726225437876,
+   1.0,
+   7.892860272932161e-26,
+   -1.5515838438085447e-17,
+   -6.245004497730785e-17
+  ]
+ ],
+ "record_id": "dhcindhc_n05",
+ "title": "5 deltoidal hexecontahedra in a deltoidal hexecontahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "962071b86b6c046c",
+  "clear": 1e-07,
+  "cap": 2.3585729386018
+ },
+ "s_tight": 2.338933019509,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.7099759466766968,
+ "found_by": "konoha-ily2 (Hirotaka Nakano) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/130; refinement of the packing by PingYou Ltd)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "community",
+  "lineage": "konoha-ily2 (Hirotaka Nakano)",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/130",
+  "submitted_by": "konoha-ily2",
+  "record_file": "records/community/dhcindhc/dhcindhc_n05_submission_130_19b3f86ae67c.json",
+  "refines": "PingYou Ltd"
+ },
+ "density": 0.39076586828674886,
+ "symmetrized": {
+  "from": "records/dhcindhc/dhcindhc_n05.json",
+  "from_source_hash": "962071b86b6c046c",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 0,
+   "stabilizer_sum": 0,
+   "stabilizers": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 3,
+   "stabilizer_sum": 7,
+   "stabilizers": [
+    4,
+    4,
+    2,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

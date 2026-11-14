@@ -1,0 +1,139 @@
+{
+ "problem": "min/icosidodecahedron_in_icosidodecahedron",
+ "piece": "icosidodecahedron",
+ "container": "icosidodecahedron",
+ "n": 7,
+ "s": 2.5,
+ "s_plus": "2.50000+",
+ "s_full": 2.5000001271451,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020256306641e-07,
+  "min_wall_gap": 1.0000000028043132e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -1.6180340475285657,
+   -1.309017041927896,
+   -0.6909830307265009,
+   0.5000000000000119,
+   0.30901699437494556,
+   -0.8090169943749408,
+   -4.052314039881725e-15
+  ],
+  [
+   -1.02254252308356,
+   1.4635255447280948,
+   -1.4409830579720486,
+   0.8090169943749472,
+   0.3090169943749513,
+   4.11693338586635e-16,
+   -0.49999999999999795
+  ],
+  [
+   0.7531846807949598,
+   1.6038637176839645,
+   1.2789332391093904,
+   0.29567618250058497,
+   0.008219269189101161,
+   0.8139874661822999,
+   -0.49993243904951506
+  ],
+  [
+   -1.9635255628918413,
+   0.7500000272454291,
+   1.2135255356464374,
+   3.0722747719774124e-15,
+   -2.403004486783753e-15,
+   -1.0,
+   1.8513977884202607e-15
+  ],
+  [
+   1.213525535646439,
+   -1.9635255628918333,
+   -0.5590170146824784,
+   0.499999999999997,
+   -8.199558993517155e-15,
+   -0.3090169943749549,
+   0.8090169943749465
+  ],
+  [
+   0.05901699651888861,
+   -1.2135255356464347,
+   1.9635255628918487,
+   1.784004467208756e-15,
+   0.3090169943749383,
+   -0.5000000000000091,
+   -0.8090169943749453
+  ],
+  [
+   1.8090170600915205,
+   0.8090170237643046,
+   -1.309017041927884,
+   0.30901699437496055,
+   -3.499393377986435e-15,
+   0.8090169943749387,
+   -0.5000000000000061
+  ]
+ ],
+ "record_id": "idoinido_n07",
+ "title": "7 icosidodecahedra in a icosidodecahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "a432a9e3bd83dcdc",
+  "clear": 1e-07,
+  "cap": 2.5787861025302
+ },
+ "s_tight": 2.5,
+ "closed_form_conjecture": "5/2",
+ "volume_lower_bound": 1.912931182772389,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "ascend",
+  "seed": 14179434,
+  "var": "base",
+  "raw": 2.5175057199028874,
+  "host": "laptop"
+ },
+ "density": 0.4479999316468013,
+ "symmetrized": {
+  "from": "records/idoinido/idoinido_n07.json",
+  "from_source_hash": "a432a9e3bd83dcdc",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 1,
+   "stabilizer_sum": 3,
+   "stabilizers": [
+    4,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 2,
+   "stabilizer_sum": 4,
+   "stabilizers": [
+    4,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

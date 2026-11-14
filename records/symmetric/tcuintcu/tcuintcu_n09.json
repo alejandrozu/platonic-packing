@@ -1,0 +1,161 @@
+{
+ "problem": "min/truncated_cube_in_truncated_cube",
+ "piece": "truncated_cube",
+ "container": "truncated_cube",
+ "n": 9,
+ "s": 2.7071,
+ "s_plus": "2.70710+",
+ "s_full": 2.7071069226081,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020256306641e-07,
+  "min_wall_gap": 1.0000009176280855e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -1.8054990163668287,
+   1.0577021436364664,
+   -1.8054990163668287,
+   0.023315342346635383,
+   0.6830222466450014,
+   0.7296529313382721,
+   -0.02331534234663534
+  ],
+  [
+   0.5851386479732948,
+   -2.060660242490643,
+   2.060660242490643,
+   0.7071067811865472,
+   -3.9801801780682604e-17,
+   -0.707106781186548,
+   -5.670972028178611e-17
+  ],
+  [
+   -1.8889976087673326,
+   -0.9410440948924285,
+   1.8889976087673326,
+   0.7070882323123088,
+   1.4352002862893163e-16,
+   0.707088232312309,
+   0.007243165807069997
+  ],
+  [
+   0.6263908994908147,
+   2.060660242490644,
+   -2.0606602424906426,
+   0.5,
+   0.5,
+   -0.5000000000000001,
+   0.5000000000000001
+  ],
+  [
+   -2.0437189168524137,
+   1.6071729202959788,
+   0.9357276651851565,
+   0.03128305780164132,
+   0.9994857116088752,
+   -0.000175275241922709,
+   -0.007046407798948046
+  ],
+  [
+   -1.8623140678929235,
+   -1.8623140678929235,
+   -0.9483661459324823,
+   0.49978785375995793,
+   0.49978785375995727,
+   0.4791916777063718,
+   0.5203840298135438
+  ],
+  [
+   0.44678765159588363,
+   2.060660242490644,
+   2.060660242490643,
+   0.7071067811865472,
+   1.9457900420960294e-16,
+   0.707106781186548,
+   -6.226725653564311e-17
+  ],
+  [
+   0.6292494682876874,
+   -2.0606602424906426,
+   -2.060660242490643,
+   0.4999999999999999,
+   -0.5,
+   -0.5,
+   -0.5000000000000001
+  ],
+  [
+   1.7995057129988932,
+   -5.025546131678037e-16,
+   -3.530531072347403e-16,
+   0.6532814824381885,
+   0.2705980500730983,
+   -0.2705980500730981,
+   0.6532814824381883
+  ]
+ ],
+ "record_id": "tcuintcu_n09",
+ "title": "9 truncated cubes in a truncated cube",
+ "family": "archimedean",
+ "source": {
+  "hash": "17a3e4cdcf2927e2",
+  "clear": 1e-07,
+  "cap": 2.8153110596676
+ },
+ "s_tight": 2.707106781187,
+ "closed_form_conjecture": "(4 + \u221a2)/2",
+ "volume_lower_bound": 2.080083823051904,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "ascend",
+  "seed": 1759128774,
+  "var": "base",
+  "raw": 2.7071073950854205,
+  "host": "actions"
+ },
+ "density": 0.4536556050888379,
+ "symmetrized": {
+  "from": "records/tcuintcu/tcuintcu_n09.json",
+  "from_source_hash": "17a3e4cdcf2927e2",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 5,
+   "stabilizer_sum": 11,
+   "stabilizers": [
+    8,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 8,
+   "stabilizer_sum": 14,
+   "stabilizers": [
+    8,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

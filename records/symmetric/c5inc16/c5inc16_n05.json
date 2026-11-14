@@ -1,0 +1,257 @@
+{
+ "problem": "c5inc16",
+ "piece": "c5",
+ "container": "c16",
+ "dim": 4,
+ "n": 5,
+ "s": 1.31177,
+ "s_plus": "1.31177+",
+ "s_full": 1.3117739294339,
+ "mu": "2",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000028847130878e-07,
+  "min_wall_gap": 1.0000002735845643e-07
+ },
+ "density": 0.23599295720412689,
+ "format": "per piece [c_1..c_4, S_12, S_13, ..., S_34, D_1..D_4]: the piece polytope of src/polytopes_nd.json (exact vertex coordinates V) placed as c + R V with R = diag(D) (I - S)^-1 (I + S), S skew-symmetric (upper triangle row by row, exact rationals), D = +-1 with determinant 1; container = s_full x mu x the container polytope of src/polytopes_nd.json, centred at the origin; planes [i, j, u_1..u_4, t]: u.x < t on piece i, u.x > t on piece j",
+ "method": "d-dimensional soft-to-rigid homotopy (inscribed balls hardened into the polytope under inward pressure), basin hopping, sequential-LP tightening with per-pair separating hyperplanes (src/ndsim.py, src/ndslp.py)",
+ "date": "2026-10-16",
+ "container_center": [
+  0,
+  0,
+  0,
+  0
+ ],
+ "pieces": [
+  [
+   -0.24098506788546512,
+   -0.31402035710509274,
+   -0.798284779277459,
+   -7.183422525581057e-09,
+   -0.8125800669521936,
+   0.09115932712279573,
+   -0.6302614127065453,
+   0.09333896359555638,
+   -0.8133220728088872,
+   -0.09333896359555638,
+   1,
+   1,
+   -1,
+   -1
+  ],
+  [
+   0.16311180266780625,
+   0.23403839895620496,
+   0.8575855597872879,
+   0.0,
+   -0.7668672722494989,
+   0.06642220631448481,
+   -0.6340228596205861,
+   0.10927271010007189,
+   -0.7814545797998562,
+   -0.10927271010007189,
+   -1,
+   -1,
+   1,
+   1
+  ],
+  [
+   -0.28044146734135106,
+   0.8280722292354948,
+   -0.2287720019988673,
+   7.146203885319887e-09,
+   0.0,
+   -0.09643010837419297,
+   -0.10607306688211793,
+   -0.09643010837419297,
+   -0.10607306688211793,
+   -0.7942141451753741,
+   -1,
+   1,
+   1,
+   -1
+  ],
+  [
+   0.17681983214548636,
+   -0.8591079109908022,
+   0.23556086902942847,
+   5.450450861145387e-09,
+   0.02201403038634453,
+   -0.11019435972087877,
+   -0.06616629894813286,
+   -0.09726644142989471,
+   -0.09726644142989471,
+   -0.8054671171402106,
+   1,
+   -1,
+   -1,
+   1
+  ],
+  [
+   0.8501354486474608,
+   0.22273338327477724,
+   -0.25657954190086885,
+   -7.131526056937965e-09,
+   0.8337052563077805,
+   -0.3557436971353809,
+   -0.8410674165521641,
+   0.018133468631674532,
+   -0.6942844750642507,
+   0.7199290832186307,
+   -1,
+   -1,
+   1,
+   1
+  ]
+ ],
+ "planes": [
+  [
+   0,
+   1,
+   -0.09118227179754967,
+   -0.13083140925459702,
+   0.9872025808628564,
+   -3.8838834370835684e-09,
+   0.055539279552420925
+  ],
+  [
+   0,
+   2,
+   -0.18202122200017357,
+   0.9678432471608858,
+   0.17363099857652742,
+   -5.424737992143491e-09,
+   0.20559263626203345
+  ],
+  [
+   0,
+   3,
+   -0.1294811087101948,
+   -0.1375703109049482,
+   0.9819923889953088,
+   -3.991885932919104e-09,
+   -0.2592099152742122
+  ],
+  [
+   0,
+   4,
+   0.9829844655644706,
+   -0.1245117132895075,
+   0.135049523185387,
+   3.985860530519858e-09,
+   0.3260723369352884
+  ],
+  [
+   1,
+   2,
+   0.09118227179754967,
+   0.13083140925459702,
+   -0.9872025808628564,
+   3.8838834370835684e-09,
+   -0.3539044512391332
+  ],
+  [
+   1,
+   3,
+   0.12335145018170124,
+   -0.9753077159315922,
+   -0.18319191844182114,
+   -0.0,
+   0.240757651501163
+  ],
+  [
+   1,
+   4,
+   0.12148702628996944,
+   -0.16164699274617078,
+   -0.9793422038181347,
+   5.174626949155936e-09,
+   -0.26203857071395115
+  ],
+  [
+   2,
+   3,
+   -0.09884528488095157,
+   -0.986351529807564,
+   -0.1316824563223804,
+   4.177422852080781e-09,
+   0.03144664392344074
+  ],
+  [
+   2,
+   4,
+   0.9707178200272324,
+   -0.16778554572510984,
+   -0.1719154574995514,
+   5.371134648157749e-09,
+   0.22933809847910686
+  ],
+  [
+   3,
+   4,
+   0.09884528901989142,
+   0.9863515289252405,
+   0.13168245982450344,
+   3.0473756851279177e-09,
+   -0.35167161804551256
+  ]
+ ],
+ "record_id": "c5inc16_n05",
+ "title": "5 5-cells in a 16-cell",
+ "family": "4d",
+ "closed_form_conjecture": null,
+ "kind": "mixed",
+ "source": {
+  "hash": "613c6f5b1a60bc0f",
+  "clear": 1e-07,
+  "cap": 1.316740076633
+ },
+ "s_tight": 1.311773464863,
+ "volume_lower_bound": 0.9142895499897872,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to regular polytopes of dimensions 4-6, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "perturb",
+  "seed": 1613032406,
+  "expand": 0.0055,
+  "sigma": 0.0033,
+  "raw": 1.3190141380064775,
+  "host": "actions-38824350850-j11"
+ },
+ "symmetrized": {
+  "from": "records/c5inc16/c5inc16_n05.json",
+  "from_source_hash": "613c6f5b1a60bc0f",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 3,
+   "stabilizer_sum": 3,
+   "stabilizers": [
+    2,
+    2,
+    2,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 4,
+   "stabilizer_sum": 4,
+   "stabilizers": [
+    2,
+    2,
+    2,
+    2,
+    1
+   ]
+  },
+  "moved_pieces": [
+   1
+  ],
+  "method": "scripts/symmetrize_nd.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

@@ -1,0 +1,183 @@
+{
+ "problem": "min/tetrakis_hexahedron_in_tetrakis_hexahedron",
+ "piece": "tetrakis_hexahedron",
+ "container": "tetrakis_hexahedron",
+ "n": 11,
+ "s": 2.7619,
+ "s_plus": "2.76190+",
+ "s_full": 2.7619048940856,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000001740025791e-07,
+  "min_wall_gap": 1.000001255135885e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-15",
+ "pieces": [
+  [
+   -2.575889079116314,
+   -0.454568661020323,
+   0.15152288700642047,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   2.575889079115253,
+   0.45456866101979293,
+   0.15152288700642047,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -1.0606602090483932,
+   -1.0606602090481276,
+   -2.2728433051026764,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.4545686610195277,
+   2.5758890791155187,
+   0.15152288700642047,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -1.868782270103517,
+   1.868782270103517,
+   -1.8687822701035166,
+   1.0,
+   -7.51713885452644e-18,
+   -2.5362498172529148e-17,
+   -2.7023971673781812e-17
+  ],
+  [
+   -0.4545686610205884,
+   -2.575889079116049,
+   0.15152288700642047,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.7576144350339605,
+   0.7576144350342259,
+   2.4243661921088315,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   1.8687822730840518,
+   -1.8687822730848471,
+   1.8687822730843167,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   1.0606602090473323,
+   1.0606602090475976,
+   -2.2728433051026764,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -1.8687822730851127,
+   1.868782273084317,
+   1.8687822730843167,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   1.868782270103517,
+   -1.868782270103517,
+   -1.8687822701035166,
+   1.0,
+   -7.471065278110839e-18,
+   2.4476745305873827e-17,
+   -2.946116580963184e-17
+  ]
+ ],
+ "record_id": "kthinkth_n11",
+ "title": "11 tetrakis hexahedra in a tetrakis hexahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "f024e6ede2623a19",
+  "clear": 1e-07,
+  "cap": 2.8095239433772
+ },
+ "s_tight": 2.761904779577,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.2239800905693152,
+ "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/24)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "community",
+  "lineage": "PingYou Ltd",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/24",
+  "submitted_by": "BuddenPing",
+  "record_file": "records/community/kthinkth/kthinkth_n11_submission_24_1ebfb66faf49.json"
+ },
+ "density": 0.5221154279275358,
+ "symmetrized": {
+  "from": "records/kthinkth/kthinkth_n11.json",
+  "from_source_hash": "f024e6ede2623a19",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 6,
+   "stabilizer_sum": 14,
+   "stabilizers": [
+    6,
+    6,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 2,
+   "symmetric_pieces": 7,
+   "stabilizer_sum": 23,
+   "stabilizers": [
+    6,
+    6,
+    6,
+    6,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

@@ -1,0 +1,190 @@
+{
+ "problem": "min/triakis_tetrahedron_in_triakis_tetrahedron",
+ "piece": "triakis_tetrahedron",
+ "container": "triakis_tetrahedron",
+ "n": 11,
+ "s": 2.69628,
+ "s_plus": "2.69628+",
+ "s_full": 2.6962805376682,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020202530213e-07,
+  "min_wall_gap": 1.0000002781396233e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-15",
+ "pieces": [
+  [
+   1.5509501340744032,
+   -1.6663577788502553,
+   1.6768157687511602,
+   0.5527873982728868,
+   0.5395718520632665,
+   0.5114756808445506,
+   0.37640528247663146
+  ],
+  [
+   -1.7991770924495956,
+   -1.7991770912942187,
+   -1.7991770901388386,
+   0.5773502691896251,
+   0.577350269189626,
+   2.8844440295753475e-16,
+   -0.5773502691896263
+  ],
+  [
+   1.7991770936049745,
+   1.7991770947603511,
+   -1.799177090138838,
+   9.614813431917817e-17,
+   -0.5773502691896257,
+   -0.577350269189626,
+   0.5773502691896257
+  ],
+  [
+   0.21428117789969853,
+   1.773377026777175,
+   -0.13688097048403491,
+   0.27624913036330273,
+   0.8711469370084657,
+   0.2974489033225816,
+   0.27624913036330273
+  ],
+  [
+   -1.080391406622039,
+   -1.07953114331118,
+   1.0681025367764267,
+   0.5002430576815797,
+   -0.5012037608800853,
+   0.5017492679697563,
+   0.4967890351173785
+  ],
+  [
+   0.17512364007183218,
+   0.24891242672457004,
+   -1.774580828306385,
+   0.49115768596266296,
+   0.5028226933114389,
+   0.49115768596266274,
+   -0.5144877006602151
+  ],
+  [
+   0.17123994244483398,
+   0.46280620716590676,
+   1.4975574572750123,
+   0.12568023935745795,
+   -0.3838042116350946,
+   0.8608016876959219,
+   0.3097083451024016
+  ],
+  [
+   -1.4596779321429263,
+   0.6522289756342414,
+   -0.09982722675825348,
+   0.3941341878101095,
+   0.7791960694930499,
+   0.05023005230070848,
+   -0.48475629870246734
+  ],
+  [
+   1.692719362886474,
+   0.09142212010446936,
+   -0.05791493492167749,
+   0.7703015138558398,
+   0.3816942944096745,
+   -0.34264505619280156,
+   0.3788659510079181
+  ],
+  [
+   -1.799177091493594,
+   1.799177091493594,
+   1.7991770914935936,
+   0.5,
+   -0.5000000000000001,
+   0.5,
+   0.49999999999999994
+  ],
+  [
+   -0.037264638792608135,
+   -1.5395376254462696,
+   -0.6008910744332493,
+   0.12342486594286066,
+   0.11609296018327113,
+   0.937250087709642,
+   -0.3047146208358584
+  ]
+ ],
+ "record_id": "kttinktt_n11",
+ "title": "11 triakis tetrahedra in a triakis tetrahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "7ab32d5154a2cc6b",
+  "clear": 1e-07,
+  "cap": 2.7777780597871
+ },
+ "s_tight": 2.696280343871,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.2239800905693152,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "reinsert",
+  "seed": 962092409,
+  "var": "base",
+  "expand": 0.026418341436962207,
+  "rh": 0.2492842112206388,
+  "remove": [
+   10,
+   0
+  ],
+  "from": "best",
+  "raw": 2.7454841260225105,
+  "host": "actions"
+ },
+ "density": 0.5611738877733562,
+ "symmetrized": {
+  "from": "records/kttinktt/kttinktt_n11.json",
+  "from_source_hash": "7ab32d5154a2cc6b",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 2,
+   "stabilizer_sum": 10,
+   "stabilizers": [
+    6,
+    6,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 3,
+   "stabilizer_sum": 15,
+   "stabilizers": [
+    6,
+    6,
+    6,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

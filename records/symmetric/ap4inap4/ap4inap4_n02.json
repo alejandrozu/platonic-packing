@@ -1,0 +1,89 @@
+{
+ "problem": "min/antiprism4_in_antiprism4",
+ "piece": "antiprism4",
+ "container": "antiprism4",
+ "n": 2,
+ "s": 1.66419,
+ "s_plus": "1.66419+",
+ "s_full": 1.6641975940264,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.6471363405456443e-07,
+  "min_wall_gap": 1.0399999994525899e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-11-06",
+ "pieces": [
+  [
+   -0.38844356959528703,
+   0.1608985947429851,
+   5.131981722038999e-19,
+   0.7042715683955951,
+   0.3279557112521187,
+   0.6264543490607412,
+   0.06325786867741139
+  ],
+  [
+   0.3884435695952869,
+   -0.16089859474298504,
+   -5.131981722038998e-19,
+   0.5427252697146148,
+   0.211070410969427,
+   -0.674869825679884,
+   -0.4532651339042072
+  ]
+ ],
+ "record_id": "ap4inap4_n02",
+ "title": "2 antiprism4s in a antiprism4",
+ "family": "prisms",
+ "source": {
+  "hash": "fd0fb12d5f5f84d9",
+  "clear": 1e-07,
+  "cap": 1.9726494315757
+ },
+ "s_tight": 1.664197290498,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.2599210498948732,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "hop",
+  "seed": 1142898208,
+  "var": "gentle",
+  "minDiff": 0.03015373291578934,
+  "expand": 0.027103745012608677,
+  "rh": 0.16925308222874436,
+  "focus": 0,
+  "from": "best",
+  "raw": 1.6641973171642273,
+  "host": "laptop"
+ },
+ "density": 0.43392565355975027,
+ "symmetrized": {
+  "from": "records/ap4inap4/ap4inap4_n02.json",
+  "from_source_hash": "fd0fb12d5f5f84d9",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 2,
+   "symmetric_pieces": 0,
+   "stabilizer_sum": 0,
+   "stabilizers": [
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 4,
+   "symmetric_pieces": 2,
+   "stabilizer_sum": 2,
+   "stabilizers": [
+    2,
+    2
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

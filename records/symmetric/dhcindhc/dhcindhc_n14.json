@@ -1,0 +1,221 @@
+{
+ "problem": "min/deltoidal_hexecontahedron_in_deltoidal_hexecontahedron",
+ "piece": "deltoidal_hexecontahedron",
+ "container": "deltoidal_hexecontahedron",
+ "n": 14,
+ "s": 3.07446,
+ "s_plus": "3.07446+",
+ "s_full": 3.0744656539108,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020306266677e-07,
+  "min_wall_gap": 1.0000007755195384e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -4.098627919071096,
+   -2.2566187905732926,
+   -0.003061367963361847,
+   0.07174773619365324,
+   0.30731381106868266,
+   0.8985082990531286,
+   -0.30511198011579566
+  ],
+  [
+   2.322666503439539,
+   -0.38892965326567114,
+   3.998525092419851,
+   0.5720614028176881,
+   0.7071067811865581,
+   0.3535533905933109,
+   -0.2185080122243068
+  ],
+  [
+   3.5229450128364075,
+   0.02760494405699579,
+   -2.601609960584179,
+   0.22220852987315914,
+   0.580767926318097,
+   0.6718963918111734,
+   -0.4023521140529932
+  ],
+  [
+   3.446282259649208,
+   -2.8647905024375344,
+   0.6162402620267192,
+   0.42071901717240684,
+   -0.28724425842824514,
+   0.062197196604163243,
+   0.8582643842803189
+  ],
+  [
+   -1.5332864551730867,
+   -2.249045967713908,
+   3.7070888093793926,
+   0.23613884981098476,
+   -0.6808368298364805,
+   0.5863923925792826,
+   0.3699237984684159
+  ],
+  [
+   0.06179251859579316,
+   3.157708775851838,
+   3.1460819314137627,
+   0.3452599099603727,
+   -0.9316403080795992,
+   -0.0869963153875096,
+   -0.07261936411524061
+  ],
+  [
+   0.030348131178908323,
+   4.352417987100854,
+   -1.0105603320436185,
+   0.373641671739813,
+   -0.08704812321951842,
+   0.4118289704361072,
+   -0.8265660436365465
+  ],
+  [
+   -1.543897268763832,
+   -2.460610429624614,
+   -3.5098243281073485,
+   0.08430528065106589,
+   -0.5951410242680922,
+   -0.7913181813589915,
+   -0.11187187643983353
+  ],
+  [
+   0.0,
+   0.0,
+   0.0,
+   0.20169773483046108,
+   -0.5756328354141381,
+   -0.40334196750053875,
+   -0.6821144477359611
+  ],
+  [
+   -0.46438951829864794,
+   -4.4521864516033895,
+   0.1489934934931799,
+   0.5033663837560431,
+   0.1296784610029208,
+   -0.4512537675812014,
+   -0.7253797748076858
+  ],
+  [
+   -3.732032014456178,
+   1.7054141402811898,
+   -1.8276079465049138,
+   0.0766239747125863,
+   0.2549728291791791,
+   -0.9532109952265341,
+   -0.14320063358397048
+  ],
+  [
+   3.6241970796862786,
+   2.445424801458739,
+   0.9389585824038106,
+   0.7615319908213151,
+   -0.5557791295223334,
+   -0.3320978699587544,
+   -0.02982601066150685
+  ],
+  [
+   -3.675492430152802,
+   1.2501360304774365,
+   2.417309768380301,
+   0.06710197623582627,
+   -0.8287244511963948,
+   -0.45858229149057167,
+   0.31371227375692085
+  ],
+  [
+   -0.17213028363532124,
+   1.54758325888183,
+   -4.219428421947184,
+   0.5009033843655191,
+   0.8344614815818202,
+   0.17367261281839166,
+   -0.15035843456313208
+  ]
+ ],
+ "record_id": "dhcindhc_n14",
+ "title": "14 deltoidal hexecontahedra in a deltoidal hexecontahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "737c8bcb43564e0b",
+  "clear": 1e-07,
+  "cap": 3.1249577443512
+ },
+ "s_tight": 3.074465557705,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.4101422641752297,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "hop",
+  "seed": 699378159,
+  "var": "gentle",
+  "minDiff": 0.035290831268801066,
+  "expand": 0.012189461571867177,
+  "rh": 0.15595610068049492,
+  "focus": 0,
+  "from": "best",
+  "raw": 3.08398295312454,
+  "host": "laptop"
+ },
+ "density": 0.4817470883527793,
+ "symmetrized": {
+  "from": "records/dhcindhc/dhcindhc_n14.json",
+  "from_source_hash": "737c8bcb43564e0b",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 1,
+   "stabilizer_sum": 1,
+   "stabilizers": [
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 2,
+   "stabilizer_sum": 6,
+   "stabilizers": [
+    6,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

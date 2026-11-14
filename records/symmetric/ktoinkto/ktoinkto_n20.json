@@ -1,0 +1,282 @@
+{
+ "problem": "min/triakis_octahedron_in_triakis_octahedron",
+ "piece": "triakis_octahedron",
+ "container": "triakis_octahedron",
+ "n": 20,
+ "s": 3.25138,
+ "s_plus": "3.25138+",
+ "s_full": 3.2513849380594,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 3.2766282220819676e-07,
+  "min_wall_gap": 1.0000002514942707e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-15",
+ "pieces": [
+  [
+   -2.2556901394198756,
+   -3.021110100423582,
+   0.3827099805018636,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.0,
+   0.5240553466864349,
+   0.0,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -0.923943625383104,
+   2.0315038232974425,
+   3.0211101004235807,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -1.2532624320105126,
+   1.607674146789741,
+   -3.3085314608816896,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -0.44141196468862165,
+   4.021887950589038,
+   -1.2305971312660553,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -0.3827099805018453,
+   -2.2556901394198787,
+   3.0211101004235945,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -0.15852366437941298,
+   -3.021110100423582,
+   -2.3485511520562583,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -3.0211101004235754,
+   2.348551152056264,
+   0.1585236643794137,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.0,
+   -5.435323904222873,
+   0.0,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   2.031503823297439,
+   -3.021110100423582,
+   0.9239436253831166,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.0,
+   0.0,
+   5.435323904222874,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -3.0211101004235834,
+   -0.3827099805018433,
+   2.2556901394198836,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -5.435323904222869,
+   1.0890410178381333e-14,
+   0.0,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -3.0211101004235834,
+   -0.9239436253830993,
+   -2.0315038232974447,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   1.607674146789742,
+   3.308531460881688,
+   1.2532624320105137,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   4.0218879505890595,
+   1.230597131266081,
+   0.44141196468857224,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   2.251384877019796,
+   2.2513848770197944,
+   -2.251384877019799,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   1.2305971312660553,
+   -0.4414119646886257,
+   -4.021887950589036,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   3.3085314608816816,
+   -1.2532624320105217,
+   -1.6076741467897462,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   2.348551152056256,
+   -0.15852366437941587,
+   3.021110100423583,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ]
+ ],
+ "record_id": "ktoinkto_n20",
+ "title": "20 triakis octahedra in a triakis octahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "2644ed83e72ea887",
+  "clear": 1e-07,
+  "cap": 3.3178864546453
+ },
+ "s_tight": 3.25138487702,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.7144176165949063,
+ "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/71)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "community",
+  "lineage": "PingYou Ltd",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/71",
+  "submitted_by": "BuddenPing",
+  "record_file": "records/community/ktoinkto/ktoinkto_n20_submission_71_0db0320007c1.json"
+ },
+ "density": 0.58186847339276,
+ "symmetrized": {
+  "from": "records/ktoinkto/ktoinkto_n20.json",
+  "from_source_hash": "2644ed83e72ea887",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 4,
+   "stabilizer_sum": 26,
+   "stabilizers": [
+    8,
+    8,
+    8,
+    6,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 5,
+   "stabilizer_sum": 33,
+   "stabilizers": [
+    8,
+    8,
+    8,
+    8,
+    6,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

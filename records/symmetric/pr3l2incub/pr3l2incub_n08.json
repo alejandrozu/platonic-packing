@@ -1,0 +1,151 @@
+{
+ "problem": "min/prism3_l2_in_cube",
+ "piece": "prism3_l2",
+ "container": "cube",
+ "n": 8,
+ "s": 2.21891,
+ "s_plus": "2.21891+",
+ "s_full": 2.2189117792228,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.732050806391161e-07,
+  "min_wall_gap": 1.0000004468935231e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-11-13",
+ "pieces": [
+  [
+   -0.04524500857551762,
+   0.0,
+   0.109455639611355,
+   0.6123724356957945,
+   -0.6123724356957946,
+   0.3535533905932738,
+   0.3535533905932738
+  ],
+  [
+   -0.33392022977287084,
+   -0.10945578961135505,
+   0.609455789611355,
+   0.35355339059327373,
+   -0.35355339059327373,
+   -0.6123724356957946,
+   -0.6123724356957946
+  ],
+  [
+   0.8207806550165422,
+   -0.1094557896113551,
+   -0.39054451038864496,
+   0.6123724356957945,
+   -0.6123724356957947,
+   0.3535533905932738,
+   0.3535533905932738
+  ],
+  [
+   0.532105433819189,
+   0.0,
+   0.10945563961135507,
+   0.3535533905932738,
+   -0.3535533905932738,
+   -0.6123724356957946,
+   -0.6123724356957945
+  ],
+  [
+   -0.8207806550165422,
+   -0.10945578961135512,
+   -0.10945551281643572,
+   0.35355339059327373,
+   -0.35355339059327373,
+   -0.6123724356957946,
+   -0.6123724356957946
+  ],
+  [
+   0.8207806550165422,
+   -0.10945578961135508,
+   0.6094557896113552,
+   0.6123724356957945,
+   -0.6123724356957947,
+   0.3535533905932738,
+   0.3535533905932738
+  ],
+  [
+   0.0452450085755176,
+   0.0,
+   -0.6094556628164357,
+   0.3535533905932738,
+   -0.3535533905932738,
+   -0.6123724356957946,
+   -0.6123724356957945
+  ],
+  [
+   -0.5321054338191891,
+   0.0,
+   -0.6094556628164357,
+   0.6123724356957945,
+   -0.6123724356957946,
+   0.3535533905932738,
+   0.3535533905932738
+  ]
+ ],
+ "record_id": "pr3l2incub_n08",
+ "title": "8 triangular prisms of height 2 in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "513969eaaadb6767",
+  "clear": 1e-07,
+  "cap": 2.3801400130763
+ },
+ "s_tight": 2.218911579223,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.906368585993873,
+ "found_by": "konoha-ily2 (Hirotaka Nakano) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/130; refinement of the packing by Alejandro Zarzuelo)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "community",
+  "lineage": "konoha-ily2 (Hirotaka Nakano)",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/130",
+  "submitted_by": "konoha-ily2",
+  "record_file": "records/community/pr3l2incub/pr3l2incub_n08_submission_130_7b8d251db5ae.json",
+  "refines": "Alejandro Zarzuelo"
+ },
+ "density": 0.6341624335422777,
+ "symmetrized": {
+  "from": "records/pr3l2incub/pr3l2incub_n08.json",
+  "from_source_hash": "513969eaaadb6767",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 0,
+   "stabilizer_sum": 0,
+   "stabilizers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 4,
+   "stabilizer_sum": 4,
+   "stabilizers": [
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

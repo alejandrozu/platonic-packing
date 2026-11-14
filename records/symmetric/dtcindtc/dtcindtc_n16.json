@@ -1,0 +1,238 @@
+{
+ "problem": "min/disdyakis_triacontahedron_in_disdyakis_triacontahedron",
+ "piece": "disdyakis_triacontahedron",
+ "container": "disdyakis_triacontahedron",
+ "n": 16,
+ "s": 3.1777,
+ "s_plus": "3.17770+",
+ "s_full": 3.1777095320918,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.4950317082207398e-05,
+  "min_wall_gap": 1.0000025696399462e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-15",
+ "pieces": [
+  [
+   0.26889089721816,
+   0.7039655081825976,
+   1.8770213787661584e-17,
+   1.0,
+   0.0,
+   0.0,
+   -6.264679032586465e-17
+  ],
+  [
+   -2.2874247374156944,
+   -6.6139977503314595,
+   4.356344463647003,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   4.988579875952423,
+   4.719231401858115,
+   4.8221133641458245,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -7.706280188924345,
+   3.878061087550268,
+   0.4222471483810632,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   4.919084447197096,
+   -4.919888653322988,
+   -4.6768195713615075,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   8.211830232921866,
+   0.2477114268202967,
+   -0.27505814832539305,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   4.999373708815443,
+   -5.7823709432653585,
+   2.8029905136086395,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -2.2401449034725753,
+   -7.135724570193874,
+   -3.5544611053478876,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   4.450528191782182,
+   6.452742007769148,
+   -2.479863936940552,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -7.769845613666723,
+   -3.6820768775254837,
+   0.1432618626621153,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -5.283161719028677,
+   -0.8360486416042695,
+   -6.359531469482562,
+   1.0,
+   -1.0863367859031849e-16,
+   -5.602395563627382e-17,
+   -9.677462756758725e-17
+  ],
+  [
+   1.7366607429512089,
+   -1.3047352093629876,
+   7.874761101365408,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -2.7906868332895036,
+   6.056139142626702,
+   -4.80884734910255,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -5.524422171686111,
+   -0.16565171201100867,
+   6.436713893327722,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   2.3940747923353842,
+   1.4854285203083903,
+   -7.762596739616388,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -1.4883510004618805,
+   7.76131632326683,
+   2.394637268249606,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ]
+ ],
+ "record_id": "dtcindtc_n16",
+ "title": "16 disdyakis triacontahedra in a disdyakis triacontahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "0e788a590723bbe1",
+  "clear": 1e-07,
+  "cap": 3.2349931623804
+ },
+ "s_tight": 3.17770950533,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.5198420997897464,
+ "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/55)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "community",
+  "lineage": "PingYou Ltd",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/55",
+  "submitted_by": "BuddenPing",
+  "record_file": "records/community/dtcindtc/dtcindtc_n16_submission_55_460f6c2ccadd.json"
+ },
+ "density": 0.4986288384125326,
+ "symmetrized": {
+  "from": "records/dtcindtc/dtcindtc_n16.json",
+  "from_source_hash": "0e788a590723bbe1",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 4,
+   "stabilizer_sum": 4,
+   "stabilizers": [
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 6,
+   "stabilizer_sum": 10,
+   "stabilizers": [
+    6,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

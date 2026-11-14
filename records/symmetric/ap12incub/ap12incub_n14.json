@@ -1,0 +1,215 @@
+{
+ "problem": "min/antiprism12_in_cube",
+ "piece": "antiprism12",
+ "container": "cube",
+ "n": 14,
+ "s": 6.4212,
+ "s_plus": "6.42120+",
+ "s_full": 6.4212098303965,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020078670957e-07,
+  "min_wall_gap": 1.000000353634789e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -1.2952802495084943,
+   1.051804449360514,
+   -1.2950272651488612,
+   0.1379496896414569,
+   0.13794968964148643,
+   0.6935199226611468,
+   -0.6935199226610007
+  ],
+  [
+   1.0518044493508272,
+   1.2559343243338856,
+   -1.2952802495084919,
+   0.13794968964147183,
+   -0.6935199226610739,
+   -0.1379496896414716,
+   0.6935199226610737
+  ],
+  [
+   1.2514103736990483,
+   1.2952802495084925,
+   1.0518044493508283,
+   6.505580708305151e-17,
+   -0.8314696123025452,
+   -0.5555702330196024,
+   1.611491120455148e-17
+  ],
+  [
+   2.778844782028817,
+   1.0487357412051461,
+   -1.2952802495084916,
+   0.5316310262343731,
+   -0.4662278970042311,
+   0.5316310262343723,
+   -0.46622789700423073
+  ],
+  [
+   1.0856044906578517,
+   1.2952802495084925,
+   2.778844782028819,
+   0.06540312923014281,
+   -5.995703150397756e-17,
+   -5.793072050602072e-17,
+   0.9978589232386036
+  ],
+  [
+   1.295280249508493,
+   -2.778844782028819,
+   1.0979836317185543,
+   0.531631026234373,
+   0.5316310262343731,
+   0.4662278970042306,
+   -0.4662278970042306
+  ],
+  [
+   -2.7774305684664458,
+   -1.1596245427987029,
+   1.1596245427987029,
+   0.5000000000000003,
+   -0.5000000000000003,
+   -0.49999999999999983,
+   0.4999999999999996
+  ],
+  [
+   -1.0862405511568192,
+   -1.2952802495084939,
+   -2.778844782028817,
+   6.886787789779518e-17,
+   -0.9978589232386036,
+   0.0654031292301429,
+   -4.933680557069718e-18
+  ],
+  [
+   -1.9082535478779576,
+   -1.2770344992520293,
+   1.2770344992520293,
+   0.7010573846499774,
+   0.09229595564125712,
+   0.7010573846499785,
+   0.09229595564125757
+  ],
+  [
+   -1.2337210766125817,
+   -1.2952802495084947,
+   -1.9153246156898207,
+   0.7518398074789769,
+   -1.8906428664453702e-17,
+   8.059660716884784e-17,
+   0.6593458151000695
+  ],
+  [
+   -1.2952802495084947,
+   1.915324615705964,
+   -1.2715756100473048,
+   0.7055928112894431,
+   0.7055928112896035,
+   -0.04624699618945747,
+   0.046246996189448504
+  ],
+  [
+   1.915324615689821,
+   1.2318996070164971,
+   -1.2952802495084932,
+   0.7055928112895228,
+   0.04624699618945404,
+   -0.7055928112895237,
+   -0.04624699618945438
+  ],
+  [
+   1.2163300594051596,
+   1.2952802495084932,
+   1.9153246156898234,
+   1.1068784254555805e-16,
+   -0.6593458151000691,
+   0.7518398074789773,
+   7.26933369414838e-17
+  ],
+  [
+   1.2639332767802796,
+   -1.9139104021274502,
+   1.2639332767802796,
+   0.09229595564125669,
+   -0.09229595564125785,
+   0.7010573846499781,
+   0.7010573846499777
+  ]
+ ],
+ "record_id": "ap12incub_n14",
+ "title": "14 antiprism12s in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "1d89fa7af1c67dcc",
+  "clear": 1e-07,
+  "cap": 6.4212098303972
+ },
+ "s_tight": 6.421208986787,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 5.154446983573678,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "tighten",
+  "seed": 87946914,
+  "var": "base",
+  "raw": 6.421208986829728
+ },
+ "density": 0.5172442188929484,
+ "symmetrized": {
+  "from": "records/ap12incub/ap12incub_n14.json",
+  "from_source_hash": "1d89fa7af1c67dcc",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 0,
+   "stabilizer_sum": 0,
+   "stabilizers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 3,
+   "stabilizer_sum": 3,
+   "stabilizers": [
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}
