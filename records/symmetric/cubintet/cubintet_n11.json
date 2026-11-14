@@ -1,0 +1,184 @@
+{
+ "problem": "min/cubes_in_tetrahedron",
+ "piece": "cube",
+ "container": "tetrahedron",
+ "n": 11,
+ "s": 6.1731,
+ "s_plus": "6.17310+",
+ "s_full": 6.1731052860074,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000019123879156e-07,
+  "min_wall_gap": 1.0000000427723421e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-28",
+ "pieces": [
+  [
+   -0.7784918615135767,
+   1.0474942893815284,
+   -1.047494289710597,
+   0.8804762392169585,
+   -0.3647051996309248,
+   -0.11591689595954241,
+   -0.2798481423337187
+  ],
+  [
+   0.770305722826898,
+   1.037543357399541,
+   1.037543357399541,
+   0.17591989714448242,
+   -0.4247082015774893,
+   -0.8204732378975493,
+   -0.3398511427013318
+  ],
+  [
+   1.1969235526253672,
+   0.05978658495638286,
+   -0.05978658495638286,
+   0.3647051996309812,
+   0.8804762392171017,
+   -0.2798481423332714,
+   0.1159168959593573
+  ],
+  [
+   -0.13626327119954762,
+   0.01669009921788565,
+   -1.1969235521528263,
+   0.1759198966061614,
+   -0.3398511429799872,
+   -0.8204732385702832,
+   0.4247082002778673
+  ],
+  [
+   -0.20852187223589566,
+   -1.1969235539189056,
+   0.32809504035342235,
+   0.11591689595929308,
+   -0.8804762392171501,
+   0.27984814233312044,
+   -0.3647051996310006
+  ],
+  [
+   -4.30119355757097e-09,
+   -7.284347819380699e-09,
+   -4.396311502341543e-09,
+   0.7071067828433775,
+   2.4275996992750404e-09,
+   5.949796840885939e-10,
+   0.7071067795297178
+  ],
+  [
+   0.967707701913519,
+   -1.1686392763666014,
+   -0.967707701913519,
+   0.49999999999999983,
+   0.7071067811865478,
+   -0.49999999999999983,
+   -3.925231146709436e-17
+  ],
+  [
+   0.05978658449160497,
+   1.1969235495075239,
+   -0.05978658449160498,
+   0.11591689596520194,
+   0.3647051996291235,
+   0.2798481423473816,
+   -0.880476239212617
+  ],
+  [
+   -1.1969235555777806,
+   -0.07809501522649866,
+   -0.04147815333021411,
+   0.8204732390484745,
+   -0.3398511430435682,
+   -0.4247081997887573,
+   0.17591989543391087
+  ],
+  [
+   -0.9754153103794285,
+   -0.9754153077525981,
+   0.9754153060046457,
+   0.27059804482716965,
+   -0.6532814802652868,
+   -0.6532814846111066,
+   0.2705980553189872
+  ],
+  [
+   0.05978658547694424,
+   -0.05978658547694424,
+   1.1969235510836662,
+   0.11591689595929465,
+   -0.36470519963100095,
+   0.8804762392171498,
+   -0.2798481423331202
+  ]
+ ],
+ "record_id": "cubintet_n11",
+ "title": "11 unit cubes in a tetrahedron",
+ "source": {
+  "hash": "abc151a4b7029b45",
+  "clear": 1e-07,
+  "cap": 6.3794461999987
+ },
+ "s_tight": 6.173104796109,
+ "closed_form_conjecture": "\u221a6\u00b7(3 + \u221a(4\u221a6 + 11))/3",
+ "volume_lower_bound": 4.5361385512573955,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/cubintet/cubintet_n11_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l1/m3/n11/platonic_n11_m3_l1.html"
+ },
+ "density": 0.3967782711959081,
+ "symmetrized": {
+  "from": "records/cubintet/cubintet_n11.json",
+  "from_source_hash": "abc151a4b7029b45",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 3,
+   "stabilizer_sum": 25,
+   "stabilizers": [
+    24,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 8,
+   "stabilizer_sum": 30,
+   "stabilizers": [
+    24,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

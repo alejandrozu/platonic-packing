@@ -1,0 +1,216 @@
+{
+ "problem": "min/dodecahedra_in_dodecahedron",
+ "piece": "dodecahedron",
+ "container": "dodecahedron",
+ "n": 14,
+ "s": 2.99979,
+ "s_plus": "2.99979+",
+ "s_full": 2.9997984509722,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 6.681098185801204e-07,
+  "min_wall_gap": 1.0000006911425885e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-11-06",
+ "pieces": [
+  [
+   1.302287222170514,
+   2.1152160001320346,
+   0.8131495178358398,
+   0.808154423123829,
+   -0.5005277681867285,
+   0.3104040395901649,
+   0.002777384653064046
+  ],
+  [
+   2.6177700374158954,
+   1.0214829843834924e-09,
+   0.9998991801930989,
+   0.5000000000000002,
+   -5.551115123125783e-17,
+   0.3090169943749473,
+   -0.8090169943749475
+  ],
+  [
+   -0.4293476311080979,
+   0.6866437542673404,
+   -2.349994289262289,
+   0.4959373284881715,
+   -0.5028282523486467,
+   -0.49915232407162813,
+   -0.5020526588176919
+  ],
+  [
+   0.31741529957221304,
+   0.4786524492853819,
+   2.411257447835997,
+   0.49464771980775724,
+   0.5000771849860054,
+   -0.49922482938707613,
+   0.5059851895746593
+  ],
+  [
+   2.1176062721313933,
+   -0.809281971149964,
+   -1.3090173870800457,
+   0.4999999999999997,
+   0.5000000000000001,
+   -0.4999999999999999,
+   0.5000000000000002
+  ],
+  [
+   -0.001134758632217727,
+   0.00306724320719243,
+   0.007349496266006343,
+   0.3127719548151445,
+   0.8056313476307082,
+   0.5030699252744927,
+   0.007244741552242202
+  ],
+  [
+   -2.2322808464528556,
+   0.6059060977066942,
+   -0.584139613341954,
+   0.802554400415643,
+   -0.5108775626489298,
+   0.30806770933917244,
+   0.0021992766746863324
+  ],
+  [
+   -1.5995444236956013,
+   1.599296178013751,
+   1.6246587336578884,
+   0.005882892304837182,
+   0.0008936745082433849,
+   -0.006777333863809461,
+   -0.9999593295078063
+  ],
+  [
+   -0.6169430397809238,
+   2.236022999093363,
+   -0.6130196949964287,
+   0.31144233694414825,
+   0.8086131598581872,
+   -0.49913818141819666,
+   -0.0030829066578283307
+  ],
+  [
+   0.993971793015083,
+   -1.625886879984737,
+   1.6004053609174835,
+   0.001400727184023856,
+   0.8134993215738192,
+   -0.3048941143897474,
+   -0.4952337536686929
+  ],
+  [
+   1.617870857222796,
+   1.6178708598970735,
+   -1.6178708588755906,
+   6.073307280006078e-17,
+   -1.0,
+   2.9642570383827526e-17,
+   -5.317429521079039e-17
+  ],
+  [
+   0.36961881227510696,
+   -2.2305162837428156,
+   -0.6265897367355051,
+   0.49919364603359445,
+   -0.80771228625034,
+   -3.436319601436201e-17,
+   -0.3136982091117757
+  ],
+  [
+   -1.7386339635338586,
+   -1.4224720526043462,
+   -1.5210262958273135,
+   0.5091077823008651,
+   0.3033334221704538,
+   0.8054497003946317,
+   -0.006991504076687019
+  ],
+  [
+   -1.6178708566007827,
+   -1.6178708566007816,
+   1.6178708566007822,
+   1.7153889107776457e-17,
+   -0.30901699437494734,
+   0.49999999999999994,
+   -0.8090169943749476
+  ]
+ ],
+ "record_id": "dodindod_n14",
+ "title": "14 unit dodecahedra in a dodecahedron",
+ "source": {
+  "hash": "a2c58267952b022b",
+  "clear": 1e-07,
+  "cap": 3.0374364079347
+ },
+ "s_tight": 2.999798360814,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.4101422641752297,
+ "found_by": "konoha-ily2 (Hirotaka Nakano) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/105; refinement of the packing by Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "community",
+  "lineage": "konoha-ily2 (Hirotaka Nakano)",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/105",
+  "submitted_by": "konoha-ily2",
+  "record_file": "records/community/dodindod/dodindod_n14_submission_105_104bccb3bd1f.json",
+  "refines": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik"
+ },
+ "density": 0.5186230394655711,
+ "symmetrized": {
+  "from": "records/dodindod/dodindod_n14.json",
+  "from_source_hash": "a2c58267952b022b",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 3,
+   "stabilizer_sum": 11,
+   "stabilizers": [
+    6,
+    6,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 4,
+   "stabilizer_sum": 16,
+   "stabilizers": [
+    6,
+    6,
+    6,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

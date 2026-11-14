@@ -1,0 +1,216 @@
+{
+ "problem": "min/octahedra_in_icosahedron",
+ "piece": "octahedron",
+ "container": "icosahedron",
+ "n": 14,
+ "s": 1.79967,
+ "s_plus": "1.79967+",
+ "s_full": 1.7996784331706,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000910524721185e-07,
+  "min_wall_gap": 1.0000002692578391e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-11-11",
+ "pieces": [
+  [
+   0.9359243836433158,
+   -0.21737515688693515,
+   -0.20842741549637234,
+   0.2362823118215422,
+   0.35496883235006205,
+   -0.5470076565142311,
+   0.7203821353247942
+  ],
+  [
+   -0.8701884563192916,
+   0.1598825311177809,
+   -0.46188067973530056,
+   0.20002266995304246,
+   -0.24295746712247773,
+   0.7744244047302324,
+   0.5488437318877857
+  ],
+  [
+   -0.005742130679001765,
+   0.8077934608897884,
+   -0.5528262678261654,
+   0.23628231183827858,
+   0.7203821353048296,
+   0.35496883234380805,
+   -0.5470076565373525
+  ],
+  [
+   0.6928480835983173,
+   0.15509007660648844,
+   0.6603493580460483,
+   0.8379171991483328,
+   0.06524403034489784,
+   0.5418715727013381,
+   -0.0036307814511132323
+  ],
+  [
+   -0.3965409218291244,
+   -0.8494915143461844,
+   0.2366340034764781,
+   0.3617992928846518,
+   0.08551795783337626,
+   0.6350698391108518,
+   0.6771072662495152
+  ],
+  [
+   0.32779169756720133,
+   0.00029989823633957426,
+   -0.8937490180228289,
+   0.06220175197976781,
+   0.5181117807134985,
+   -0.2964517353590256,
+   -0.7998796742880503
+  ],
+  [
+   -0.38944520266098726,
+   -0.5737462222386505,
+   -0.6855112739955039,
+   0.7832899683661613,
+   -1.7386700758759498e-11,
+   0.591251144150231,
+   -0.19203882419443472
+  ],
+  [
+   -0.6478601983621839,
+   0.6722025688222346,
+   0.18052627521471754,
+   0.5761989731036605,
+   0.62280180382628,
+   -0.433144393388358,
+   -0.30413581015929436
+  ],
+  [
+   -0.009633082206125446,
+   -0.45816891776235985,
+   0.9038520367785157,
+   0.9422594773818183,
+   0.33088187920536305,
+   -0.010516323225600793,
+   0.05053381287301742
+  ],
+  [
+   0.42365232272490766,
+   -0.9338902032393988,
+   0.028926022031792505,
+   0.7198205032953471,
+   -0.5416793062407035,
+   -0.431427563878225,
+   0.04808564601129579
+  ],
+  [
+   -0.8140512635952275,
+   -0.05381007361895919,
+   0.6082154398876363,
+   0.06811908859898652,
+   -0.8219635394526578,
+   0.17488580007345747,
+   -0.5377273347260386
+  ],
+  [
+   -0.0417015843320291,
+   0.518270247609755,
+   0.8621133180740531,
+   0.0822508473274692,
+   0.17742177416068483,
+   -0.9425719251316841,
+   0.27076646417372185
+  ],
+  [
+   0.04626637509209541,
+   -0.0,
+   -0.12112694252735735,
+   0.47653253377681937,
+   0.8422774866696987,
+   0.25048972167529077,
+   -0.027208069329806794
+  ],
+  [
+   0.6164931925740131,
+   0.8020560863586151,
+   0.11065276093037708,
+   0.21063051301269411,
+   0.006649528895875215,
+   0.0713136422040996,
+   0.9749384263578177
+  ]
+ ],
+ "record_id": "octinico_n14",
+ "title": "14 unit octahedra in an icosahedron",
+ "source": {
+  "hash": "0b10cd893fe6420d",
+  "clear": 1e-07,
+  "cap": 1.8390928375733
+ },
+ "s_tight": 1.799678300854,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.446247367501807,
+ "found_by": "PolyPack (Michael Sinko using Opus 5.5) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/102; search started from the packing of Berthold, Kamp, Mexi, Pokutta and P\u00f3lik)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "community",
+  "lineage": "PolyPack (Michael Sinko using Opus 5.5)",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/102",
+  "submitted_by": "sinkomr",
+  "record_file": "records/community/octinico/octinico_n14_submission_102_5114798f32e2.json",
+  "started_from": "Berthold, Kamp, Mexi, Pokutta and P\u00f3lik"
+ },
+ "density": 0.518970901319238,
+ "symmetrized": {
+  "from": "records/octinico/octinico_n14.json",
+  "from_source_hash": "0b10cd893fe6420d",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 0,
+   "stabilizer_sum": 0,
+   "stabilizers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 1,
+   "stabilizer_sum": 2,
+   "stabilizers": [
+    3,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

@@ -1,0 +1,202 @@
+{
+ "problem": "min/cubes_in_octahedron",
+ "piece": "cube",
+ "container": "octahedron",
+ "n": 13,
+ "s": 3.79737,
+ "s_plus": "3.79737+",
+ "s_full": 3.7973743487276,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000000016940902e-07,
+  "min_wall_gap": 1.0000000227883277e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-11-11",
+ "pieces": [
+  [
+   1.3156077425622457,
+   -0.17263843573215917,
+   -0.3308773620365639,
+   0.14987122144954684,
+   -0.7983810403009118,
+   -0.43458426385041615,
+   0.3889252487083434
+  ],
+  [
+   -1.397691014747088,
+   0.14510000559305583,
+   0.276332555359468,
+   0.3569226004659153,
+   0.09181591479443064,
+   0.8833147640480572,
+   -0.2897086858929771
+  ],
+  [
+   -0.012207668440759687,
+   0.0,
+   1.449880272762435,
+   0.26397178974924784,
+   0.6505090717213041,
+   0.6559869619257527,
+   -0.27719658657401847
+  ],
+  [
+   -0.008097941925921311,
+   -1.4642682883020737,
+   0.0,
+   0.6547851884086554,
+   0.2699737576828465,
+   0.2712209054798874,
+   -0.6517743072827552
+  ],
+  [
+   -0.3761435838247586,
+   0.7298315110569099,
+   0.7131484808179437,
+   0.4303360150541588,
+   0.1616656412243923,
+   -0.3670105558957228,
+   0.8086893015589643
+  ],
+  [
+   0.8211401734431975,
+   0.41397579299458265,
+   0.40716439813296595,
+   0.32627074459919414,
+   0.13514576741856446,
+   0.35802546132302954,
+   -0.8643499244009724
+  ],
+  [
+   0.11748332861726078,
+   -0.8452621061791505,
+   0.8452621061791505,
+   0.17732253530516984,
+   0.42809446964812287,
+   0.8187114972015271,
+   -0.33912140581165473
+  ],
+  [
+   0.3598534560858886,
+   -0.7296350421225402,
+   -0.7296350421225402,
+   0.3398511429799873,
+   0.8204732385702831,
+   -0.17591989660616142,
+   -0.4247082002778676
+  ],
+  [
+   -0.821140191127546,
+   -0.4174610288537393,
+   -0.40367914458946624,
+   0.8643499244009651,
+   -0.3580254613230447,
+   -0.3262707445992011,
+   0.1351457674185536
+  ],
+  [
+   0.11955667949037017,
+   0.8497587148549303,
+   -0.8497587148549303,
+   0.17592520195294642,
+   0.4247210085180291,
+   -0.8204666084105446,
+   0.339848396677903
+  ],
+  [
+   -0.009314555333951402,
+   0.0,
+   -1.4620420789930788,
+   0.28071366448602536,
+   -0.6574062040118431,
+   -0.6489991052157371,
+   -0.26041713255225535
+  ],
+  [
+   0.0,
+   1.4458232398476198,
+   -0.014387329597715357,
+   0.6510009135142053,
+   0.2760395091353231,
+   0.6510009135142054,
+   0.2760395091353231
+  ],
+  [
+   -8.842161836095005e-09,
+   0.0014442717135890347,
+   -0.0014442628714571265,
+   0.48387048754782974,
+   -0.5156252042716821,
+   0.02245397553007816,
+   -0.7067501814523336
+  ]
+ ],
+ "record_id": "cubinoct_n13",
+ "title": "13 unit cubes in an octahedron",
+ "source": {
+  "hash": "e970d52e42c84be0",
+  "clear": 1e-07,
+  "cap": 3.9018083173414
+ },
+ "s_tight": 3.797373821506,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 3.021225927524171,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "ascend",
+  "seed": 1754904780,
+  "raw": 3.7973743187589024
+ },
+ "density": 0.5036158291614794,
+ "symmetrized": {
+  "from": "records/cubinoct/cubinoct_n13.json",
+  "from_source_hash": "e970d52e42c84be0",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 1,
+   "stabilizer_sum": 1,
+   "stabilizers": [
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 8,
+   "stabilizer_sum": 8,
+   "stabilizers": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

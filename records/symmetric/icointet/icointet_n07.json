@@ -1,0 +1,140 @@
+{
+ "problem": "min/icosahedra_in_tetrahedron",
+ "piece": "icosahedron",
+ "container": "tetrahedron",
+ "n": 7,
+ "s": 7.00065,
+ "s_plus": "7.00065+",
+ "s_full": 7.0006578938009,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020123079878e-07,
+  "min_wall_gap": 1.000000127149292e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   1.1645528604415332,
+   1.1645528604415332,
+   1.164552860441533,
+   0.8089259560066574,
+   -0.3088700299917425,
+   0.5002374545761923,
+   0.0007689673254294839
+  ],
+  [
+   0.003973127577408502,
+   0.007411549377275657,
+   -1.1064789676074045,
+   0.011050504435619295,
+   -0.7743949604344286,
+   0.5529537750385083,
+   0.30729864021199454
+  ],
+  [
+   -0.7945087982764291,
+   0.11432117877469468,
+   0.22934578064957256,
+   0.004277413458791741,
+   0.0016614781757669512,
+   -0.036087035779140256,
+   -0.999338115490973
+  ],
+  [
+   0.8562673098185432,
+   -0.10297073100285556,
+   0.19716792823697193,
+   0.0006976534619023812,
+   0.502971141011037,
+   -0.3162191500818654,
+   0.8043786382737954
+  ],
+  [
+   1.1660891669540263,
+   -1.1660891669590128,
+   -1.1660891669030207,
+   0.3090169944478637,
+   -0.5000000000892753,
+   -0.8090169942919208,
+   -3.842779930540238e-12
+  ],
+  [
+   -1.1660891670551163,
+   1.166089167050128,
+   -1.1660891670337832,
+   0.8090169943743021,
+   0.30901699444000624,
+   0.49999999996083566,
+   -4.26815864146609e-11
+  ],
+  [
+   -1.1658813823919982,
+   -1.1658813823919982,
+   1.165881382391998,
+   0.499928201120471,
+   -0.3091010524347775,
+   3.430725835148493e-17,
+   0.8090292535552487
+  ]
+ ],
+ "record_id": "icointet_n07",
+ "title": "7 unit icosahedra in a tetrahedron",
+ "source": {
+  "hash": "b21788980142e5d6",
+  "clear": 1e-07,
+  "cap": 7.0140400555026
+ },
+ "s_tight": 7.000657403903,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 5.06041468734898,
+ "found_by": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik (published packing, imported as a starting point; not improved yet)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "literature",
+  "lineage": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "issue": null,
+  "submitted_by": null,
+  "record_file": "records/external/icointet/icointet_n07_kamp.json",
+  "source": "Timo Berthold, Dominik Kamp, Gioni Mexi, Sebastian Pokutta and Imre P\u00f3lik",
+  "url": "https://github.com/DominikKamp/Packing/blob/27f71632d8655ae4b6a049410a401976748b94e3/platonic/l1/m4/n7/platonic_n7_m4_l1.html"
+ },
+ "density": 0.3776954535577253,
+ "symmetrized": {
+  "from": "records/icointet/icointet_n07.json",
+  "from_source_hash": "b21788980142e5d6",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 2,
+   "stabilizer_sum": 4,
+   "stabilizers": [
+    3,
+    3,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 4,
+   "stabilizer_sum": 8,
+   "stabilizers": [
+    3,
+    3,
+    3,
+    3,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}
