@@ -1,0 +1,176 @@
+{
+ "problem": "min/tetrahedron_in_tetrahedron",
+ "piece": "tetrahedron",
+ "container": "tetrahedron",
+ "n": 14,
+ "s_full": 2.9405671562372,
+ "pieces": [
+  [
+   -0.016687029394502513,
+   0.6216879388275595,
+   -0.01575231294820226,
+   0.547153806465391,
+   -0.49855780291713664,
+   -0.4997642358667912,
+   -0.4497760973744083
+  ],
+  [
+   0.6860937513514276,
+   0.6860937513514277,
+   0.6860937513514276,
+   0.5,
+   0.5,
+   0.5000000000000001,
+   -0.5000000000000001
+  ],
+  [
+   -0.6860937513514276,
+   -0.6860937513514276,
+   0.6860937513514275,
+   -4.592194189079244e-18,
+   3.9399548859198814e-17,
+   1.0,
+   -3.1941333443810587e-17
+  ],
+  [
+   0.6860937513514276,
+   -0.6860937513514277,
+   -0.6860937513514275,
+   0.5,
+   -0.5000000000000001,
+   -0.5,
+   0.5
+  ],
+  [
+   0.01564165127542087,
+   -0.6236249466526751,
+   -0.00862042424643444,
+   0.9982865714171353,
+   0.03633336209299773,
+   0.04557029681354628,
+   -0.005211158754567996
+  ],
+  [
+   0.43646036052888215,
+   -0.36154352102643256,
+   -0.30548564746986245,
+   0.1621580338350517,
+   -0.3473758066572418,
+   -0.883817930482222,
+   0.2681430341629316
+  ],
+  [
+   -0.30454593885977294,
+   0.3475616021869371,
+   -0.43672809210625535,
+   0.47778712382438177,
+   0.5728814989986007,
+   -0.6630277621150206,
+   0.06261340972578447
+  ],
+  [
+   -0.436142867084166,
+   -0.4199051146971117,
+   0.3140201167585949,
+   0.5047912022139934,
+   -0.012040308651661398,
+   -0.6878190252051962,
+   0.5214842871081521
+  ],
+  [
+   0.44861765374741275,
+   0.1383166731926377,
+   -0.08807305960475599,
+   0.2810997472242255,
+   0.8643983953778612,
+   0.294811449169029,
+   0.2947618625560508
+  ],
+  [
+   -0.6860937513514275,
+   0.6860937513514276,
+   -0.6860937513514276,
+   2.326683635477654e-17,
+   1.0,
+   -2.8074646279222866e-17,
+   -6.333630368861488e-17
+  ],
+  [
+   0.31678408484602616,
+   0.4363420565505798,
+   0.4363420565505797,
+   0.34558552400142245,
+   -0.8566053780201528,
+   0.16543433001730773,
+   -0.3455855240014225
+  ],
+  [
+   0.10672387650854581,
+   -0.10932302425671812,
+   0.44710686936389893,
+   0.5674010453023913,
+   0.5678364450605369,
+   0.5961910694872404,
+   -0.013192198998889041
+  ],
+  [
+   -0.45220894210862356,
+   0.12792019716861666,
+   0.10350958344824537,
+   0.8286792139979047,
+   -0.3240326915173425,
+   0.3211505427343282,
+   0.3242775108102444
+  ],
+  [
+   -0.09922099534948739,
+   -0.13335824257865894,
+   -0.45351451342328136,
+   0.2594192811963393,
+   0.2594192811963392,
+   0.8933671751473321,
+   -0.2594192811963393
+  ]
+ ],
+ "s": 2.94056,
+ "s_plus": "2.94056+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 1.496254e-07,
+  "min_wall_gap": 2e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "randomised multi-start search from random initial placements; contact-preserving descent (rigidity analysis: https://doi.org/10.5281/zenodo.23630728); centres expanded by 3e-7 and the container sized for a 2e-7 wall gap",
+ "date": "2026-11-14",
+ "record_id": "tetintet_n14_submission_136_449348872216",
+ "title": "14 tetrahedra in a tetrahedron",
+ "family": "platonic",
+ "source": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/136",
+  "submitted_by": "konoha-ily2"
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.4101422641752297,
+ "density": 0.5505981261997384,
+ "found_by": "konoha-ily2 (Hirotaka Nakano)",
+ "credit": "konoha-ily2 (Hirotaka Nakano), computed with Claude (Anthropic)",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/136",
+  "submitted_by": "konoha-ily2",
+  "credit": "konoha-ily2 (Hirotaka Nakano)",
+  "kind": "construction",
+  "replayed_on": "2026-11-14",
+  "witness_sha256": "4e6bd9b46a8bb8042d74c21bcf21e67b0b4a4691ace80340c81b9e0b37937b90",
+  "method": "Batch of 217 witnesses in 22 problems (`MANIFEST.json` + `records/<record_id>.json` + `SUMMARY.tsv`), each below the current `records/SUMMARY.csv` entry (main at 1a9535ed, checked 2026-11-14). Every record passes `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED) from that commit locally, run on the files extracted from the archive. The changes against the current records: median -0.06 %, largest -2.46 %; 5 records improve by \u2265 1 %, 80 by \u2265 0.1 %.\n\n**Relation to earlier submissions.** The public records were rebuilt after #108, #112, #123, #130 and #131 were merged (main 1a9535ed); every record here is below the value in that archive and below the values in open submissions.\n\n**Against PolyPack.** I also compared with PolyPack's published records (https://github.com/sinkomr/PolyPack, `data/polyhedra/records.json`, fetched 2026-11-14) and kept only records that are below both the archive and PolyPack (95 of these records have a PolyPack value; `SUMMARY.tsv` lists both values, `polypack_s`, `change_vs_best`).\n\n**How the records were made.** `found_by`, `credit` and `method` identify where each record starts; `method` or `refinement` gives the steps.\n\n- *Refinements of catalogue records* (126): a contact-preserving descent (sequential linear programming with the contacts as inequalities) started from the catalogue record named in `refinement` (for some, a randomised multi-start search from perturbed copies of that record comes first; `refinement` says so). `found_by`, `credit` and `method` are the catalogue record's own, copied verbatim; my part is in `refined_by` and `refinement_credit`. For 9 of them the start was the record for a different n and the first n pieces were kept (`derived_from`). Rigidity analysis and code: https://doi.org/10.5281/zenodo.23630728\n- *Layer-by-row and lattice constructions* (25): structured constructions with all pieces in one orientation. For cubes, the pieces are stacked in parallel layers and each layer is filled with rows",
+  "archive": "https://github.com/user-attachments/files/34847217/platonic_lattice_217.zip",
+  "archive_sha256": "6a3c17be4de8e1223250b349f3cef854659ba1fbc89326de8babdbfa92041ec5"
+ },
+ "previous_record": {
+  "s_full": 2.9430048869924352,
+  "found_by": "Alejandro Zarzuelo",
+  "date": "2026-10-13"
+ },
+ "case_id": "tetintet_n14"
+}
