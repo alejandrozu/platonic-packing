@@ -1,0 +1,237 @@
+{
+ "problem": "min/dodecahedra_in_octahedron",
+ "piece": "dodecahedron",
+ "container": "octahedron",
+ "n": 16,
+ "s": 7.99654,
+ "s_plus": "7.99654+",
+ "s_full": 7.9965488297019,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 6.681098180943978e-07,
+  "min_wall_gap": 1.0000003580756811e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-11-11",
+ "pieces": [
+  [
+   -0.2079201689358093,
+   1.5907247625840273,
+   1.5726196378082133,
+   0.2570165066106023,
+   0.38178850558251737,
+   0.12331946354807169,
+   0.879188467989069
+  ],
+  [
+   -0.18065347629038733,
+   3.460775347316771,
+   -0.08431798853897908,
+   0.04286230579734919,
+   -0.4099854971876377,
+   -0.1979071971091093,
+   -0.8893297791988956
+  ],
+  [
+   -0.02021132875878457,
+   -1.5913258220687432,
+   -1.7755941828909847,
+   0.4463145354752415,
+   0.5537731886115135,
+   -0.039966910755237124,
+   -0.7018128219427453
+  ],
+  [
+   -0.014048065100952032,
+   -3.4031478544429814,
+   0.02192593608775473,
+   0.4282263561985991,
+   -0.7033099425765539,
+   0.01946357210751951,
+   0.5670965366590158
+  ],
+  [
+   0.05215366534222256,
+   0.02697122869451869,
+   3.414475263948642,
+   0.16277590324381946,
+   0.19718891404424294,
+   0.8323790660575809,
+   -0.4916966828140295
+  ],
+  [
+   1.6821134263866517,
+   -1.696416025430225,
+   -0.0391568571810159,
+   0.19434212153770689,
+   0.6584126990596588,
+   -0.002989367661009116,
+   0.727127857528637
+  ],
+  [
+   -0.10089125423495025,
+   0.16968979434003273,
+   -3.4551657635711543,
+   0.626212758985609,
+   -0.2738565333573093,
+   0.2175555966934133,
+   0.6967996426294444
+  ],
+  [
+   -1.585245890387837,
+   -1.5539129949316934,
+   -0.18943061030152827,
+   0.8660911985641079,
+   -0.29446286137908906,
+   -0.10010379296048931,
+   0.3913526410708763
+  ],
+  [
+   -1.7757880703407876,
+   0.008324653971541956,
+   1.6037592041007673,
+   0.6201521446627112,
+   0.024011150362147744,
+   -0.16769288658548792,
+   -0.7659725046743865
+  ],
+  [
+   1.5591041586670429,
+   0.22185946443540833,
+   -1.607509365156562,
+   0.4331608356060851,
+   -0.57277137707903,
+   0.0867166579427701,
+   -0.690496097984099
+  ],
+  [
+   3.428334255017259,
+   0.047979889727500565,
+   -0.10608188622876678,
+   0.34926012521237126,
+   -0.6301015375475562,
+   0.6409788627417142,
+   -0.2648311062454393
+  ],
+  [
+   1.596075908676666,
+   1.7897357394307467,
+   0.00016768873008192733,
+   0.10129572833403885,
+   0.26580729874058673,
+   0.3627012511157827,
+   0.8874308185974583
+  ],
+  [
+   -3.4531894545597797,
+   0.10831338118176222,
+   -0.16424397640459557,
+   0.625360671630458,
+   0.699103451726881,
+   0.2750232710128154,
+   -0.21104642750559513
+  ],
+  [
+   1.7064616632153518,
+   0.030865757392454393,
+   1.674128343358575,
+   0.32814851301138587,
+   -0.8909193482431702,
+   -0.07848481790863218,
+   0.3040088842324022
+  ],
+  [
+   -0.03751221874760075,
+   -1.6874168817297641,
+   1.6966370930081998,
+   0.5840582973381936,
+   -0.8001517310616053,
+   0.05364306379234528,
+   0.12552105120854176
+  ],
+  [
+   -1.2491620472246578,
+   1.120317613989866,
+   -1.120317613989866,
+   0.7580071502369895,
+   0.31397684200394116,
+   0.5281842015650147,
+   0.21878105971943357
+  ]
+ ],
+ "record_id": "dodinoct_n16",
+ "title": "16 unit dodecahedra in an octahedron",
+ "source": {
+  "hash": "512d02498b37dd55",
+  "clear": 1e-07,
+  "cap": 8.008861257344
+ },
+ "s_tight": 7.996548575966,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 6.383280597957322,
+ "found_by": "konoha-ily2 (Hirotaka Nakano) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/123)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "community",
+  "lineage": "konoha-ily2 (Hirotaka Nakano)",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/123",
+  "submitted_by": "konoha-ily2",
+  "record_file": "records/community/dodinoct/dodinoct_n16_submission_123_dfc5443dee8f.json"
+ },
+ "density": 0.5086558298351194,
+ "symmetrized": {
+  "from": "records/dodinoct/dodinoct_n16.json",
+  "from_source_hash": "512d02498b37dd55",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 0,
+   "stabilizer_sum": 0,
+   "stabilizers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 1,
+   "stabilizer_sum": 1,
+   "stabilizers": [
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

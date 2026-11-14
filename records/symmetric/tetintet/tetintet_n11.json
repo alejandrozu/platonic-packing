@@ -1,0 +1,182 @@
+{
+ "problem": "min/tetrahedra_in_tetrahedron",
+ "piece": "tetrahedron",
+ "container": "tetrahedron",
+ "n": 11,
+ "s": 2.79826,
+ "s_plus": "2.79826+",
+ "s_full": 2.7982693120125,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.2247448690633211e-07,
+  "min_wall_gap": 1.0000001882115583e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-11-11",
+ "pieces": [
+  [
+   0.3972615905840905,
+   0.3881274639805481,
+   0.3972615905840903,
+   0.4030387132476519,
+   -0.8215116409829525,
+   -0.015434214487648677,
+   -0.40303871324765206
+  ],
+  [
+   -0.6357840323285693,
+   -0.6357840323285693,
+   0.6357840323285692,
+   0.5,
+   0.5000000000000001,
+   -0.5,
+   -0.4999999999999999
+  ],
+  [
+   0.6357840392567394,
+   0.6357840392567393,
+   0.6357840392567393,
+   0.5,
+   -0.5000000000000001,
+   -0.5000000000000001,
+   0.5
+  ],
+  [
+   -0.6357840392567393,
+   0.6357840392567393,
+   -0.6357840392567393,
+   0.5,
+   0.5000000000000001,
+   0.5,
+   -0.5000000000000001
+  ],
+  [
+   0.09075526762410097,
+   0.3181843856986258,
+   -0.22684438593401254,
+   0.3241183436386954,
+   0.32411834363869535,
+   -0.3241183436386953,
+   -0.8275517494095012
+  ],
+  [
+   -0.40206485705723893,
+   0.2802386927965075,
+   -0.10871668666535454,
+   0.3721652980675419,
+   -0.2989782920464435,
+   -0.38446068954837315,
+   0.7901233764364138
+  ],
+  [
+   -0.12890150036648945,
+   -0.33015086082814,
+   0.05897065304408417,
+   0.049137175213945734,
+   -0.25984364023663126,
+   -0.21070646502268545,
+   -0.9411002105186322
+  ],
+  [
+   -0.009130952241164829,
+   0.02081437322123212,
+   0.5184126048345381,
+   0.5946258717029713,
+   0.4847934077814707,
+   0.35406394886697107,
+   0.5348216007098416
+  ],
+  [
+   -0.08417099819323332,
+   -0.22002285287302797,
+   -0.33159018819047803,
+   0.25806166240558526,
+   0.8945459938926548,
+   -0.258061662405585,
+   0.25806166240558526
+  ],
+  [
+   0.400188132233227,
+   -0.21003215800002348,
+   -0.13159655439507323,
+   0.4249355334905742,
+   0.3122707519325076,
+   0.34507101073761504,
+   0.7764294993192288
+  ],
+  [
+   0.6357840392567392,
+   -0.6357840392567392,
+   -0.6357840392567394,
+   1.4743705047510752e-17,
+   1.0381576523558318e-16,
+   -1.0,
+   -1.6555058810647754e-16
+  ]
+ ],
+ "record_id": "tetintet_n11",
+ "title": "11 unit tetrahedra in a tetrahedron",
+ "source": {
+  "hash": "44158175f7abf222",
+  "clear": 1e-07,
+  "cap": 2.8576051607376
+ },
+ "s_tight": 2.798268822114,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.2239800905693157,
+ "found_by": "konoha-ily2 (Hirotaka Nakano) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/108)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "community",
+  "lineage": "konoha-ily2 (Hirotaka Nakano)",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/108",
+  "submitted_by": "konoha-ily2",
+  "record_file": "records/community/tetintet/tetintet_n11_submission_108_6a9335116a8a.json"
+ },
+ "density": 0.5020236258889241,
+ "symmetrized": {
+  "from": "records/tetintet/tetintet_n11.json",
+  "from_source_hash": "44158175f7abf222",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 4,
+   "stabilizer_sum": 16,
+   "stabilizers": [
+    6,
+    6,
+    6,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 5,
+   "stabilizer_sum": 21,
+   "stabilizers": [
+    6,
+    6,
+    6,
+    6,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

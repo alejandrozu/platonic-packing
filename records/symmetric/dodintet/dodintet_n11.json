@@ -1,0 +1,183 @@
+{
+ "problem": "min/dodecahedra_in_tetrahedron",
+ "piece": "dodecahedron",
+ "container": "tetrahedron",
+ "n": 11,
+ "s": 12.1109,
+ "s_plus": "12.11090+",
+ "s_full": 12.1109006939139,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000803687959525e-07,
+  "min_wall_gap": 1.000000082740371e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-28",
+ "pieces": [
+  [
+   -0.8696669255488628,
+   -1.6891324996555397,
+   0.2333373442695606,
+   0.42159788237257056,
+   -0.1919796304109469,
+   -0.03178478494923756,
+   -0.8856572556762413
+  ],
+  [
+   2.125219816354083,
+   2.1275182908065755,
+   2.2695224326365775,
+   0.8476715709099335,
+   0.21406964888225502,
+   -0.4851593451046342,
+   0.015732233031460326
+  ],
+  [
+   -2.273670240718193,
+   0.28504008291037036,
+   -0.3645527539013639,
+   0.7697409240952114,
+   0.5325529158585456,
+   -0.15346099042504968,
+   -0.3167586241941548
+  ],
+  [
+   -0.4278965741575934,
+   2.0904302403435655,
+   -0.30564363667754857,
+   0.6583568214550544,
+   0.6837438722362591,
+   -0.18347465683085337,
+   -0.2557296680554768
+  ],
+  [
+   -0.2205728216122546,
+   0.015770972374622307,
+   2.053883116102068,
+   0.8323649741047463,
+   0.4962204034954396,
+   -0.04359452824890327,
+   -0.24296785413956276
+  ],
+  [
+   -1.1494635860030376e-17,
+   -1.1490641138920046e-16,
+   -2.265726047776912,
+   0.11825568406654857,
+   -0.15234236600654993,
+   0.9387759587393577,
+   0.2854944763011695
+  ],
+  [
+   1.3240881658453802,
+   -1.1002477492506744,
+   -0.4347087900153891,
+   0.6642201587673111,
+   0.3314140849276453,
+   -0.5119690820773697,
+   -0.43227762375070394
+  ],
+  [
+   2.137562857077212,
+   -2.111598905484914,
+   -2.269610491700731,
+   0.7573612940588837,
+   -0.5772834131587096,
+   -0.058615956713662744,
+   -0.29951944973878675
+  ],
+  [
+   -2.090475311699013,
+   -2.169122174937316,
+   2.274536048600552,
+   0.47238711956074037,
+   -0.020115762336945005,
+   -0.8527857910629316,
+   0.22181559895525946
+  ],
+  [
+   1.4288282510749555,
+   1.0321576381257638,
+   0.41682781537569785,
+   0.0672901377458773,
+   -0.8795193065359914,
+   -0.4708966401736481,
+   -0.013197767453609755
+  ],
+  [
+   -2.1691221748636496,
+   2.0904753116027197,
+   -2.274536048473813,
+   0.31980414362060994,
+   0.7598579299557546,
+   -0.34825212752683576,
+   -0.44616330158303746
+  ]
+ ],
+ "record_id": "dodintet_n11",
+ "title": "11 unit dodecahedra in a tetrahedron",
+ "source": {
+  "hash": "4d54e5aef3e0c0c6",
+  "clear": 1e-07,
+  "cap": 12.3798000265093
+ },
+ "s_tight": 12.110900204016,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 8.943101647042928,
+ "found_by": "PolyPack (Michael Sinko using Opus 5.5) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/102; search started from the packing of Berthold, Kamp, Mexi, Pokutta and P\u00f3lik)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "community",
+  "lineage": "PolyPack (Michael Sinko using Opus 5.5)",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/102",
+  "submitted_by": "sinkomr",
+  "record_file": "records/community/dodintet/dodintet_n11_submission_102_8697a690b34a.json",
+  "started_from": "Berthold, Kamp, Mexi, Pokutta and P\u00f3lik"
+ },
+ "density": 0.4026569241930407,
+ "symmetrized": {
+  "from": "records/dodintet/dodintet_n11.json",
+  "from_source_hash": "4d54e5aef3e0c0c6",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 0,
+   "stabilizer_sum": 0,
+   "stabilizers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 1,
+   "stabilizer_sum": 3,
+   "stabilizers": [
+    4,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

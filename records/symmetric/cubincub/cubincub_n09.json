@@ -1,0 +1,158 @@
+{
+ "problem": "min/cubes_in_cube",
+ "piece": "cube",
+ "container": "cube",
+ "n": 9,
+ "s": 2.7071,
+ "s_plus": "2.70710+",
+ "s_full": 2.707107122608,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000000005838672e-07,
+  "min_wall_gap": 1.0000004713184296e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-10",
+ "pieces": [
+  [
+   -0.3291458290751207,
+   0.8535534613039524,
+   -0.8535534613039523,
+   0.7071067811865475,
+   0.7071067811865476,
+   -2.4895785379761125e-16,
+   -7.535401767651113e-17
+  ],
+  [
+   -0.7903406144941727,
+   3.191891195797325e-16,
+   6.418476861114186e-17,
+   0.2705980500730979,
+   0.6532814824381883,
+   0.27059805007309756,
+   0.6532814824381891
+  ],
+  [
+   0.8535534573039998,
+   -0.8535534573039998,
+   -0.8535534573039996,
+   9.229869957517039e-18,
+   -0.7071067811865475,
+   9.467427724007701e-17,
+   0.7071067811865477
+  ],
+  [
+   0.8535534573039996,
+   0.8535534573039996,
+   0.8535534573039995,
+   5.981921110658271e-18,
+   -3.6014666803510656e-18,
+   -0.7071067811865474,
+   -0.7071067811865477
+  ],
+  [
+   -0.2916575991503072,
+   -0.8535534613039523,
+   -0.8535534613039516,
+   0.49999999999999983,
+   -0.5000000000000002,
+   -0.5000000000000003,
+   0.49999999999999983
+  ],
+  [
+   0.45467173064880534,
+   -0.5697182329387622,
+   0.5697182329387622,
+   0.3683889663010104,
+   0.4922672860798192,
+   0.6161456058586265,
+   0.4922672860798172
+  ],
+  [
+   -0.7375569987541247,
+   0.8535534613039525,
+   0.8535534613039524,
+   1.1055673567266746e-17,
+   -0.7071067811865477,
+   0.7071067811865474,
+   -5.872112409313031e-17
+  ],
+  [
+   -0.7267954888677041,
+   -0.8535534613039519,
+   0.8535534613039525,
+   0.49999999999999994,
+   -0.49999999999999994,
+   0.5000000000000003,
+   -0.49999999999999994
+  ],
+  [
+   0.6716663261997485,
+   0.6716663261997485,
+   -0.6716663261997484,
+   0.4999999999999999,
+   -0.5000000000000001,
+   0.5,
+   0.5
+  ]
+ ],
+ "record_id": "cubincub_n09",
+ "title": "9 unit cubes in a cube",
+ "source": {
+  "hash": "81d81013ae73a864",
+  "clear": 1e-07,
+  "cap": 2.707107122608
+ },
+ "s_tight": 2.707106781187,
+ "closed_form_conjecture": "(4 + \u221a2)/2",
+ "volume_lower_bound": 2.080083823051904,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "import",
+  "mode": "improved",
+  "seed": 8
+ },
+ "density": 0.45365550454120745,
+ "symmetrized": {
+  "from": "records/cubincub/cubincub_n09.json",
+  "from_source_hash": "81d81013ae73a864",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 5,
+   "stabilizer_sum": 11,
+   "stabilizers": [
+    8,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 9,
+   "stabilizer_sum": 27,
+   "stabilizers": [
+    8,
+    6,
+    6,
+    6,
+    2,
+    2,
+    2,
+    2,
+    2
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

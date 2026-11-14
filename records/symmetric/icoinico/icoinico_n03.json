@@ -1,0 +1,92 @@
+{
+ "problem": "min/icosahedra_in_icosahedron",
+ "piece": "icosahedron",
+ "container": "icosahedron",
+ "n": 3,
+ "s": 2.0,
+ "s_plus": "2.00000+",
+ "s_full": 2.0000001984754,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0276479387633367e-07,
+  "min_wall_gap": 1.0000002714782852e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-09",
+ "pieces": [
+  [
+   -3.835151871831107e-16,
+   -0.5000000330792286,
+   0.8090170478982618,
+   0.4999999999999998,
+   0.5,
+   -0.5000000000000004,
+   -0.4999999999999998
+  ],
+  [
+   0.809017043616427,
+   -0.0,
+   -0.5000000304329081,
+   0.8090169943749475,
+   0.0,
+   -0.30901699437494745,
+   -0.5000000000000001
+  ],
+  [
+   -0.5000000330792289,
+   0.8090170478982605,
+   -1.3152971011131826e-15,
+   0.5000000000000001,
+   0.3090169943749472,
+   -2.775557561562891e-16,
+   0.8090169943749475
+  ]
+ ],
+ "record_id": "icoinico_n03",
+ "title": "3 unit icosahedra in an icosahedron",
+ "source": {
+  "hash": "b804e431bcbfe262",
+  "clear": 1e-07,
+  "cap": 2.1458982418782
+ },
+ "s_tight": 2.0,
+ "closed_form_conjecture": "2",
+ "volume_lower_bound": 1.4422495703074083,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "import",
+  "mode": "improved",
+  "seed": 3
+ },
+ "density": 0.3749998883576096,
+ "symmetrized": {
+  "from": "records/icoinico/icoinico_n03.json",
+  "from_source_hash": "b804e431bcbfe262",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 2,
+   "symmetric_pieces": 3,
+   "stabilizer_sum": 19,
+   "stabilizers": [
+    10,
+    10,
+    2
+   ]
+  },
+  "after": {
+   "packing_group": 6,
+   "symmetric_pieces": 3,
+   "stabilizer_sum": 27,
+   "stabilizers": [
+    10,
+    10,
+    10
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

@@ -1,0 +1,220 @@
+{
+ "problem": "min/octahedra_in_octahedron",
+ "piece": "octahedron",
+ "container": "octahedron",
+ "n": 14,
+ "s": 2.94311,
+ "s_plus": "2.94311+",
+ "s_full": 2.9431178819507,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000000005838672e-07,
+  "min_wall_gap": 1.0000001138266157e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-11-06",
+ "pieces": [
+  [
+   -3.9398929289463205e-16,
+   -5.024325403196008e-16,
+   1.3739916577670794,
+   0.5,
+   -0.4999999999999999,
+   0.5000000000000001,
+   -0.5
+  ],
+  [
+   -0.017600491413446242,
+   1.1037174696863152,
+   0.20562486058612056,
+   0.5263692921996905,
+   0.48516058531828626,
+   0.4215182615163688,
+   0.5566659050912253
+  ],
+  [
+   -0.10557693882401371,
+   0.685810897732357,
+   -0.5767835446095407,
+   0.7580505892901207,
+   -0.0036693838238463666,
+   0.6398771798953338,
+   0.12610723352944053
+  ],
+  [
+   0.6234592967076843,
+   -0.4566293602418782,
+   0.27574481723335614,
+   0.9974389071433148,
+   -0.03881325191870175,
+   0.05354952019243408,
+   -0.027232460032197762
+  ],
+  [
+   -0.6533232017121374,
+   -0.008992779754149438,
+   -0.5941624541335125,
+   0.14190392356540474,
+   -0.9879496566924949,
+   -0.05242110358731693,
+   -0.032722778253278906
+  ],
+  [
+   0.6533232017121434,
+   0.008992779754147308,
+   -0.5941624541335302,
+   0.7356532195420546,
+   -0.1234797250322084,
+   -0.07720272822790021,
+   -0.6615185838943217
+  ],
+  [
+   1.3739916577670794,
+   -5.024325403196008e-16,
+   6.354190824089372e-17,
+   0.7071067811865476,
+   -1.0804427032112019e-16,
+   2.7909002382998754e-19,
+   0.7071067811865475
+  ],
+  [
+   -1.3739916577670797,
+   -5.024325403196008e-16,
+   6.354190824089372e-17,
+   0.7071067811865476,
+   -0.7071067811865475,
+   -1.3865068319644871e-17,
+   6.893054490686867e-17
+  ],
+  [
+   0.10557693882400118,
+   -0.6858108977323584,
+   -0.5767835446095564,
+   0.4498668468459066,
+   0.4468514321841715,
+   0.6251939921548267,
+   0.45505613921513793
+  ],
+  [
+   0.017600491413443966,
+   -1.103717469686354,
+   0.20562486058609242,
+   0.04696946834671907,
+   0.9948570220627871,
+   -0.016672855455188762,
+   -0.08817817522811512
+  ],
+  [
+   -0.3901809231595102,
+   -0.3264466151474996,
+   0.6573641194600705,
+   0.9996716875123959,
+   0.01479320999782,
+   0.014793209997820543,
+   -0.014793209997820286
+  ],
+  [
+   0.39018092315955183,
+   0.3264466151474531,
+   0.6573641194600749,
+   0.7173350083051871,
+   0.6964142500952419,
+   -0.020920758209945288,
+   -5.731345313507828e-16
+  ],
+  [
+   -0.0,
+   -0.0,
+   -1.3739916508388967,
+   0.0,
+   0.0,
+   0.7071067811865475,
+   0.7071067811865476
+  ],
+  [
+   -0.6234592967076779,
+   0.456629360241845,
+   0.27574481723339067,
+   0.5585170696433349,
+   -0.49247135769242323,
+   0.4661542975321818,
+   0.4777350894186879
+  ]
+ ],
+ "record_id": "octinoct_n14",
+ "title": "14 unit octahedra in an octahedron",
+ "source": {
+  "hash": "82d323e50734a7b5",
+  "clear": 1e-07,
+  "cap": 2.9853307095224
+ },
+ "s_tight": 2.943117400701,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.4101422641752297,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "reinsert",
+  "seed": 1811352742,
+  "expand": 0.023082205958200024,
+  "rh": 0.17908793879659873,
+  "remove": [
+   10,
+   8
+  ],
+  "from": "best",
+  "raw": 2.9440948067331987
+ },
+ "density": 0.5491677982004983,
+ "symmetrized": {
+  "from": "records/octinoct/octinoct_n14.json",
+  "from_source_hash": "82d323e50734a7b5",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 3,
+   "stabilizer_sum": 21,
+   "stabilizers": [
+    8,
+    8,
+    8,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 2,
+   "symmetric_pieces": 4,
+   "stabilizer_sum": 28,
+   "stabilizers": [
+    8,
+    8,
+    8,
+    8,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

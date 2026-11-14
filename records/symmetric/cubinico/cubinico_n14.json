@@ -1,0 +1,215 @@
+{
+ "problem": "min/cubes_in_icosahedron",
+ "piece": "cube",
+ "container": "icosahedron",
+ "n": 14,
+ "s": 2.36994,
+ "s_plus": "2.36994+",
+ "s_full": 2.369947086141,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 2.9999999950902634e-07,
+  "min_wall_gap": 1.0000003314303285e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: unit-edge copy of the canonical piece solid (solids.py) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical unit-edge container solid, centred at the origin, canonical orientation",
+ "method": "soft-to-rigid homotopy (inscribed balls hardened into the solid under inward pressure), then SLSQP tightening with per-pair separating planes",
+ "date": "2026-11-11",
+ "pieces": [
+  [
+   0.07007963716677965,
+   0.7192002383602539,
+   -1.1383551651663428,
+   0.1105049706436888,
+   -0.7546310251909782,
+   0.29892895027396466,
+   0.5735522207875725
+  ],
+  [
+   0.1884358797795114,
+   -0.13562328242249108,
+   -0.01392003372701637,
+   0.4234068553617481,
+   0.7761807355929691,
+   -0.45665132051626434,
+   0.09868977656163387
+  ],
+  [
+   -1.1949786591765086,
+   0.3911054569998371,
+   -0.2798009250891883,
+   0.24938206399973428,
+   0.5340257202581318,
+   -0.428393195728636,
+   -0.6849119550069358
+  ],
+  [
+   0.6715131254797969,
+   1.149925786300343,
+   0.017022198636566947,
+   0.2426475132063586,
+   0.6655761081022012,
+   0.6332560984953967,
+   -0.3116365549429102
+  ],
+  [
+   -0.1655904178922379,
+   -0.8029631431617813,
+   1.0117831208354147,
+   0.17625467600164235,
+   -0.48398529260027096,
+   0.5614423047544275,
+   0.6476689464272801
+  ],
+  [
+   0.7334656408973395,
+   0.4799407396775968,
+   0.793210412992162,
+   0.9188588037345968,
+   0.3655286494979478,
+   0.030487021349449722,
+   -0.1454573708165743
+  ],
+  [
+   -1.1404267675781143,
+   -0.0025567588860695573,
+   0.7003338208491522,
+   0.05898038876991149,
+   0.7407829502906809,
+   0.341854557443507,
+   -0.5752368171929618
+  ],
+  [
+   -0.3281732165644254,
+   1.1832906632455285,
+   0.10078597659889058,
+   0.05134296509324034,
+   0.023379306458773175,
+   -0.29099695654915303,
+   0.9550592019576962
+  ],
+  [
+   0.8356364808822254,
+   -0.7541554065204821,
+   0.5254467591537985,
+   0.3308475206464273,
+   0.8864315625354398,
+   0.2137141562458277,
+   -0.2431157387813972
+  ],
+  [
+   -0.43656305715371735,
+   -0.18046962895571136,
+   -1.1934946769274013,
+   0.6328860098126579,
+   -0.6870091378263495,
+   0.3407041657286865,
+   -0.10674462319774183
+  ],
+  [
+   -0.4357898193810074,
+   0.6899028600085494,
+   0.9872406586192329,
+   0.21480107596366194,
+   0.4024757769613156,
+   0.4151979420386429,
+   0.7870733229192273
+  ],
+  [
+   -0.7434512811202414,
+   -1.118679262379681,
+   0.0963765074084861,
+   0.1904946444540842,
+   0.46137683484305686,
+   0.024878022483332533,
+   -0.8661548884015108
+  ],
+  [
+   1.049191184691579,
+   0.05112969246766971,
+   -0.6679656175244845,
+   0.7722654927121616,
+   0.3852059658036232,
+   -0.24106950440384606,
+   -0.4439683172500309
+  ],
+  [
+   0.12923770950504374,
+   -1.1998995144490057,
+   -0.4769919493775455,
+   0.5093392216822127,
+   0.7397807273313274,
+   -0.36212638726786756,
+   0.24932411108758104
+  ]
+ ],
+ "record_id": "cubinico_n14",
+ "title": "14 unit cubes in an icosahedron",
+ "source": {
+  "hash": "d63a368ea5290d45",
+  "clear": 1e-07,
+  "cap": 2.4148940565012
+ },
+ "s_tight": 2.369946952914,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.8582807743739411,
+ "found_by": "konoha-ily2 (Hirotaka Nakano) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/108)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Platonic solids, basin-hopping search and exact certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "community",
+  "lineage": "konoha-ily2 (Hirotaka Nakano)",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/108",
+  "submitted_by": "konoha-ily2",
+  "record_file": "records/community/cubinico/cubinico_n14_submission_108_16013dfcee9a.json"
+ },
+ "density": 0.48207882120260476,
+ "symmetrized": {
+  "from": "records/cubinico/cubinico_n14.json",
+  "from_source_hash": "d63a368ea5290d45",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 0,
+   "stabilizer_sum": 0,
+   "stabilizers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 1,
+   "stabilizer_sum": 1,
+   "stabilizers": [
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}
