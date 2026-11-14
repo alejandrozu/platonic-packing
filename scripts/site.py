@@ -86,6 +86,24 @@ def ptitle(piece, container):
     c = disp(container); return f"{plural(piece)[0].upper() + plural(piece)[1:]} in {'an' if c[0] in 'aeiou' else 'a'} {c}"
 
 
+def symmetric_version(f, r, nd=False):
+    """14 Nov 2026 (Alejandro): the more symmetric arrangement of a record (records/symmetric/, scripts/symmetrize.py) is
+    shown by default when it belongs to the current record (same source hash, s_full and n) and is certified; the
+    record file keeps the search's original arrangement, which is just as good (same container)."""
+    sf = os.path.join(ROOT, 'records', 'symmetric', os.path.basename(os.path.dirname(f)), os.path.basename(f))
+    if not os.path.exists(sf): return None
+    s = json.loads(Path(sf).read_text(encoding='utf-8')); sm = s.get('symmetrized') or {}
+    src = r.get('source') if isinstance(r.get('source'), dict) else {}
+    if s.get('s_full') != r.get('s_full') or s.get('n') != r.get('n') or not sm.get('from_source_hash') or sm.get('from_source_hash') != src.get('hash'):
+        return None
+    cert = Path(sf.replace('.json', '.certify.txt')).read_text(encoding='utf-8') if os.path.exists(sf.replace('.json', '.certify.txt')) else ''
+    vtxt = Path(sf.replace('.json', '.verify.txt')).read_text(encoding='utf-8') if os.path.exists(sf.replace('.json', '.verify.txt')) else ''
+    ok = 'CERTIFIED' in cert and 'NOT CERTIFIED' not in cert
+    ver = ok if nd else ('VALID' in vtxt and 'INVALID' not in vtxt)
+    if not (ok and ver): return None
+    return s, os.path.relpath(sf, ROOT).replace(os.sep, '/'), cert, vtxt
+
+
 def load():
     probs = {}
     files = glob.glob(os.path.join(ROOT, 'records', '*', '*_n[0-9][0-9].json')) + glob.glob(os.path.join(ROOT, 'records', '*', '*_n[0-9][0-9][0-9].json'))
@@ -118,6 +136,12 @@ def load():
                           'ver': 'VALID' in vtxt and 'INVALID' not in vtxt,
                           'cert': [l for l in cert.splitlines() if l.startswith(('(', 'containment:', 'disjointness:'))],
                           'p': viewer_pieces(r)})
+        main = os.path.dirname(os.path.dirname(f)) == os.path.join(ROOT, 'records') and os.path.basename(os.path.dirname(f)) == pid
+        sym = symmetric_version(f, r) if main else None
+        if sym:
+            s, sfile, scert, _ = sym; row = p['rows'][-1]
+            row.update(p=viewer_pieces(s), file=sfile, orig_file=row['file'],
+                       cert=[l for l in scert.splitlines() if l.startswith(('(', 'containment:', 'disjointness:'))])
     for p in probs.values():
         # One best entry per n, independently of who discovered it. Existing
         # project records remain intact and available as alternate constructions.
@@ -213,12 +237,20 @@ def load_nd():
             for q in r['pieces']:
                 R = nd_rotation([float(x) for x in q[d:d + m]], [int(x) for x in q[d + m:d + m + d]])
                 pcs.append([round(float(x), 7) for x in q[:d]] + [round(float(x), 7) for x in R.ravel()])
+            orig_file = None
+            sym = symmetric_version(f, r, nd=True)
+            if sym:
+                r_sym, sfile, cert, _ = sym; orig_file = 'records/' + os.path.relpath(f, ND_RECORDS).replace(os.sep, '/')
+                pcs = []
+                for q in r_sym['pieces']:
+                    R = nd_rotation([float(x) for x in q[d:d + m]], [int(x) for x in q[d + m:d + m + d]])
+                    pcs.append([round(float(x), 7) for x in q[:d]] + [round(float(x), 7) for x in R.ravel()])
             rows.append({'n': r['n'], 'id': r['record_id'], 's': r['s_plus'], 'sf': r['s_full'], 'st': r.get('s_tight'), 'cf': r.get('closed_form_conjecture'),
                          'den': round(r['density'], 4), 'vlb': round(r['volume_lower_bound'], 5), 'ref': None, 'cmp': None,
                          'move': (r.get('search') or {}).get('move'), 'derived': r.get('derived_from'), 'who': r.get('found_by'),
-                         'file': 'records/' + os.path.relpath(f, ND_RECORDS).replace(os.sep, '/'), 'ok': ok, 'ver': ok,
+                         'file': sfile if orig_file else 'records/' + os.path.relpath(f, ND_RECORDS).replace(os.sep, '/'), 'ok': ok, 'ver': ok,
                          'cert': [l for l in cert.splitlines() if l.startswith(('polytope check:', 'edge ratio', 'containment:', 'disjointness:'))],
-                         'p': pcs})
+                         'p': pcs, **({'orig_file': orig_file} if orig_file else {})})
         probs.append({'id': pid, 'piece': pc, 'container': cc, 'dim': d, 'family': f'{d}d', 'group': 'higher', 'kind': EN.KIND[pid],
                       'title': f'{nd_plural(ND_NAME[pc])[0].upper() + nd_plural(ND_NAME[pc])[1:]} in a {ND_NAME[cc]}', 'unit': 'edge', 'rows': rows,
                       'hasref': False, 'nmax': EN.nmax(pid), 'mu': float(parse(polytopes_nd.mu_of(pc, cc)))})

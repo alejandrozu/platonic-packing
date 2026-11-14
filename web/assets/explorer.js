@@ -492,6 +492,8 @@ if (typeof document !== 'undefined') (async () => {
       (packingPublicURL(r.refurl) && r.refurl !== r.source_url ? sourceLink(r.refurl, 'Published reference') : '') +
       (reference && packingPublicURL(reference.source_url) && reference.source_url !== r.source_url && reference.source_url !== r.refurl ?
         sourceLink(reference.source_url, `${reference.author_report ? 'Reported' : 'Published'} best source`) : '');
+    if (r.orig_file) $('links').insertAdjacentHTML('beforeend', `<p class="symnote">Other equally good arrangements exist (same container): ` +
+      `<a href="${D.repo}/blob/main/${r.orig_file}" target="_blank" rel="noopener">original</a>.</p>`);
     if ($('copy')) $('copy').onclick = copyCoords;
     if (choices.length > 1) {
       $('links').insertAdjacentHTML('beforeend', '<div class="construction-choice"><label for="construction-variant">Construction</label><select id="construction-variant">' +
