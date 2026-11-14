@@ -20,7 +20,7 @@ def draw(ax, fn, title):
     for a, b in sol_c['edges']:
         ax.plot(*zip(CV[a], CV[b]), color='#222222', lw=0.8)
     st = [geo.stabilizer(C[i], Rs[i]) for i in range(len(C))]
-    top = max(st + [2])
+    top = len(geo.G)                                    # fixed scale: the container's full group
     cmap = plt.get_cmap('viridis_r')
     view = np.array([1.0, -1.3, 0.8]); view /= np.linalg.norm(view)
     order = np.argsort(C @ view)                        # far pieces first
@@ -35,6 +35,7 @@ def draw(ax, fn, title):
     ax.view_init(elev=22, azim=-52); ax.set_axis_off()
     k = sum(x > 1 for x in st)
     ax.set_title(f'{title}\n{k} of {len(C)} pieces on a symmetric placement · s = {s:.7f}', fontsize=9)
+    return top
 
 
 if __name__ == '__main__':
@@ -42,4 +43,6 @@ if __name__ == '__main__':
     fig = plt.figure(figsize=(10, 5.2), dpi=150)
     draw(fig.add_subplot(1, 2, 1, projection='3d'), a, 'record')
     draw(fig.add_subplot(1, 2, 2, projection='3d'), b, 'symmetrized (same container)')
-    plt.tight_layout(); plt.savefig(out); print(out)
+    fig.text(0.5, 0.02, 'coloured: the container maps the piece onto itself (darker = more symmetries; darkest = the centre, then corner, '
+             'face, edge, mirror plane); grey: no symmetry. Same container size in both.', ha='center', fontsize=8, color='#333333')
+    plt.tight_layout(rect=(0, 0.04, 1, 1)); plt.savefig(out); print(out)

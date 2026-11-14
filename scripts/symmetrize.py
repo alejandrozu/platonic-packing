@@ -253,7 +253,52 @@ def write(r, geo, C, Rs, before, after, out, src_file):
     json.dump(rec, open(out, 'w'), indent=1)
 
 
+def summary():
+    """records/symmetric/SUMMARY.csv and README.md from the symmetrized records and their checker outputs"""
+    import csv
+    base = os.path.join(ROOT, 'records', 'symmetric'); rows = []
+    for fn in sorted(glob.glob(os.path.join(base, '*', '*_n[0-9]*.json'))):
+        r = json.load(open(fn)); sm = r['symmetrized']; b, a = sm['before'], sm['after']
+        orig = json.load(open(os.path.join(ROOT, sm['from'])))
+        def ok(ext, word):
+            try: x = open(fn.replace('.json', ext)).read()
+            except FileNotFoundError: return False
+            return (('\n' + word) in ('\n' + x)) and ('NOT ' + word) not in x and ('IN' + word) not in x
+        rows.append(dict(record_id=r['record_id'], problem=os.path.basename(os.path.dirname(fn)), n=r['n'], s_full=r['s_full'],
+                         s_full_record=orig['s_full'], symmetric_pieces_before=b['symmetric_pieces'], symmetric_pieces_after=a['symmetric_pieces'],
+                         packing_group_before=b['packing_group'], packing_group_after=a['packing_group'],
+                         verified=ok('.verify.txt', 'VALID'), certified=ok('.certify.txt', 'CERTIFIED'),
+                         file=os.path.relpath(fn, base)))
+    if not rows: return
+    with open(os.path.join(base, 'SUMMARY.csv'), 'w', newline='') as f:
+        w = csv.DictWriter(f, fieldnames=list(rows[0])); w.writeheader(); [w.writerow(x) for x in rows]
+    by = {}
+    for x in rows: by.setdefault(x['problem'], []).append(x)
+    lines = ['# Symmetrized packings', '',
+             'The same packings as the records, in **the same container** (identical `s_full`), with pieces moved onto symmetric',
+             'placements of the container: nested in a corner, centred on a face or an edge, or on a mirror plane. A placement',
+             'counts as symmetric when some symmetry of the container, other than the identity, maps the piece onto itself.',
+             '`packing group` = the number of container symmetries that map the whole packing onto itself. Made by',
+             '[`scripts/symmetrize.py`](../../scripts/symmetrize.py), checked by `verify.py` and `certify_exact.py` like the records.',
+             'See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).', '',
+             f"{len(rows)} packings; {sum(x['certified'] for x in rows)} certified exactly; "
+             f"{sum(x['symmetric_pieces_after'] - x['symmetric_pieces_before'] for x in rows)} more pieces on symmetric placements; "
+             f"{sum(x['packing_group_after'] > x['packing_group_before'] for x in rows)} with a larger packing group.", '',
+             '| problem | packings | symmetric pieces (before → after) | larger packing group |', '|---|---|---|---|']
+    for p, xs in sorted(by.items(), key=lambda kv: -sum(x['symmetric_pieces_after'] - x['symmetric_pieces_before'] for x in kv[1])):
+        lines.append(f"| {p} | {len(xs)} | {sum(x['symmetric_pieces_before'] for x in xs)} → {sum(x['symmetric_pieces_after'] for x in xs)} | "
+                     f"{', '.join(str(x['n']) + ' (' + str(x['packing_group_before']) + ' → ' + str(x['packing_group_after']) + ')' for x in xs if x['packing_group_after'] > x['packing_group_before']) or '–'} |")
+    lines += ['', '| record | s_full (unchanged) | symmetric pieces | packing group | certified |', '|---|---|---|---|---|']
+    for x in rows:
+        lines.append(f"| [{x['record_id']}]({x['file']}) | {x['s_full']} | {x['symmetric_pieces_before']} → {x['symmetric_pieces_after']} of {x['n']} | "
+                     f"{x['packing_group_before']} → {x['packing_group_after']} | {'yes' if x['certified'] and x['verified'] else '**no**'} |")
+    open(os.path.join(base, 'README.md'), 'w').write('\n'.join(lines) + '\n')
+    print(len(rows), 'rows')
+
+
 if __name__ == '__main__':
+    if sys.argv[1] == '--summary':
+        summary(); sys.exit()
     if sys.argv[1] == '--all':
         outdir = sys.argv[2]; probs = sys.argv[3:] or [f'{AB[a]}in{AB[b]}' for a in PLATONIC for b in PLATONIC]
         for p in probs:
