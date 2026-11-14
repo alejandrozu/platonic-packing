@@ -334,21 +334,23 @@ and submitted them in [#131](https://github.com/alejandrozu/platonic-packing/iss
 
 By the repository's own account, the arguments, code and reviews were written by Claude (Anthropic) and
 re-derived by a second Claude model, with no human review. The reductions are prose arguments, and Lean
-checks only the arithmetic. **The box certificates were read here, not re-run**, because this catalogue does
-not execute submitted code.
+checks only the arithmetic. On 14 November, at Alejandro Zarzuelo's request, the certificates were re-run here in an
+isolated sandbox: a separate user, no network and no access to credentials
+([run log](optimality_evidence/131_replay_2026-11-14.log)). They passed; see "What was checked here" below. What
+remains unchecked by anyone is the meaning of the reductions, which no human has reviewed.
 
 | Records | Optimal edge | Lower bound | Status here |
 |---|---|---|---|
-| `cubinoct_n02` | 1 + √2 | box certificates | computer-assisted, not re-run |
-| `icoincub_n02` | 1 + 2√5/3 | box certificates | computer-assisted, not re-run |
-| `dodinico_n02` | 2 + 2√5/5 | box certificates | computer-assisted, not re-run |
-| `icoinoct_n02` | √(9/2 + 2√5) | box certificates | computer-assisted, not re-run |
-| `icoindod_n02` | √5 − 1 | box certificates | computer-assisted, not re-run |
-| `octindod_n02` | (2√5 + √10 − √2 − 4)/3 | box certificates | computer-assisted, not re-run |
-| `cubinico_n02` | (49√5 − 53)/38 | box certificates | computer-assisted, not re-run |
-| `cubintet_n02` | 2 + √6/2 + 2√3/3 | box certificates (tetrahedron reduction) | computer-assisted, not re-run |
-| `icointet_n02`–`n04` | 2√2 (1 + 2/√5) | box certificates for n = 2, then monotonicity | computer-assisted, not re-run |
-| `octintet_n02`–`n04` | 3 | box certificates for n = 2, then monotonicity | computer-assisted, not re-run |
+| `cubinoct_n02` | 1 + √2 | box certificates | computer-assisted, re-run here |
+| `icoincub_n02` | 1 + 2√5/3 | box certificates | computer-assisted, re-run here |
+| `dodinico_n02` | 2 + 2√5/5 | box certificates | computer-assisted, re-run here |
+| `icoinoct_n02` | √(9/2 + 2√5) | box certificates | computer-assisted, re-run here |
+| `icoindod_n02` | √5 − 1 | box certificates | computer-assisted, re-run here |
+| `octindod_n02` | (2√5 + √10 − √2 − 4)/3 | box certificates | computer-assisted, re-run here |
+| `cubinico_n02` | (49√5 − 53)/38 | box certificates | computer-assisted, re-run here |
+| `cubintet_n02` | 2 + √6/2 + 2√3/3 | box certificates (tetrahedron reduction) | computer-assisted, re-run here |
+| `icointet_n02`–`n04` | 2√2 (1 + 2/√5) | box certificates for n = 2, then monotonicity | computer-assisted, re-run here |
+| `octintet_n02`–`n04` | 3 | box certificates for n = 2, then monotonicity | computer-assisted, re-run here |
 | `icointet_n05` | (5/3)√(3√5 + 7) | inscribed balls + pigeonhole | **proven; argument checked here** |
 | `octintet_n05` | 10/3 | inscribed balls + pigeonhole | **proven; argument checked here** |
 
@@ -368,6 +370,17 @@ not execute submitted code.
   20r/√6 equals 10/3 and (5/3)√(3√5 + 7). With the certified packings this settles `octintet_n05` and
   `icointet_n05`. Neither is in Lean yet.
 - **n = 3, 4.** Removing pieces keeps a packing feasible, so these rest entirely on the n = 2 certificates.
+- **The certificates, re-run (14 Nov, commit `0755979`, sandboxed).**
+  - `certificates/SHA256SUMS`: every file matches.
+  - `tests/replay_all.py`: every stored n = 2 certificate was replayed from its multipliers alone, with 0 failed
+    boxes and every coverage tree closed: about 137,000 accepted boxes over the nine cases that print a count,
+    from 426 for icoinoct to 85,522 for cubintet. The octintet replay prints only "all 3 passed". The local
+    stages and the n = 3–5 substitutions passed too.
+  - Lean 4 `build.py all` and `build.py plateau`: all modules built with no `sorry`. The n = 2 modules use
+    `native_decide`, which trusts the Lean compiler; the plateau uses `decide +kernel`.
+  - Injected errors: `build.py inject` rejected 63/63 corrupted certificates and built the 3 that are meant to
+    build; `build.py inject plateau` rejected 24/24.
+  - Not run: the randomized Python tests (`run_python_tests.py`, 1–25 minutes per case).
 
 ## 3. n = 2: numerical evidence for 20 Platonic records
 
