@@ -135,6 +135,8 @@ class ExternalRecordTests(unittest.TestCase):
         rows = [r for p in self.live_data['problems'] for r in p['rows']]
         visible = {r['file'] for r in rows if r['file']}
         visible.update(a['file'] for r in rows for a in r.get('alternatives', []))
+        # 14 Nov: a row may show its more symmetric arrangement (records/symmetric/); the record file stays linked as orig_file
+        visible.update(x['orig_file'] for r in rows for x in [r, *r.get('alternatives', [])] if x.get('orig_file'))
         original = {p.relative_to(ROOT).as_posix() for p in (ROOT / 'records').glob('*/*_n[0-9][0-9].json')}
         self.assertTrue(original)
         self.assertEqual(original - visible, set())
