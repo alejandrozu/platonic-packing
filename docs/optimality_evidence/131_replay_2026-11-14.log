@@ -1,0 +1,408 @@
+plateau_octintet_n3.json: OK
+plateau_octintet_n4.json: OK
+plateau_octintet_n5.json: OK
+sha fails: 0
+=== replay_all
+[cubinoct] d16_cover_far.py replay d16_far_t0.boxes.jsonl.gz: OK (1 s)
+    replay d16_far_t0.boxes.jsonl.gz: accepted 327 (failed 0), L 1, split limit 0, coverage tree OK, 0 s
+[cubinoct] d16_cover_far.py replay d16_far_t1.boxes.jsonl.gz: OK (1 s)
+    replay d16_far_t1.boxes.jsonl.gz: accepted 296 (failed 0), L 0, split limit 0, coverage tree OK, 0 s
+[cubinoct] d16_cover_check_roots.py: OK (1 s)
+    OK: far roots [('0', '1/2'), ('1/2', '1')] join to [0, 1], tmax = 1, L matches, limit = 0, lp_fail = 0. Local: all 4 faces closed. Evaluated 1499 boxes (accepted 623)
+[icoincub] d16d_far.py replay icoincub: OK (3 s)
+    replay d16d_icoincub_far: accepted 1081, discarded 218, L 8, split limit 0, failed 0, coverage tree of the 4 charts OK, 2 s
+[dodinico] d16d_far.py replay dodinico: OK (22 s)
+    replay d16d_dodinico_far: accepted 5558, discarded 1118, L 8, split limit 0, failed 0, coverage tree of the 4 charts OK, 19 s
+[icoinoct] d16d_far.py replay icoinoct: OK (2 s)
+    replay d16d_icoinoct_far: accepted 426, discarded 136, L 8, split limit 0, failed 0, coverage tree of the 4 charts OK, 1 s
+[icoindod] d16d_far.py replay icoindod: OK (6 s)
+    replay d16d_icoindod_far: accepted 892, discarded 208, L 8, split limit 0, failed 0, coverage tree of the 4 charts OK, 4 s
+[octindod] d16e_far.py replay octindod: OK (16 s)
+    replay d16e_octindod_far: accepted 1826, discarded 472, L 8, split limit 0, failed 0, coverage tree of the 4 charts OK, 13 s
+[cubinico] d30_claim.py cubinico d30_cubinico_local_r16_nolp.json d30_cubinico_far --out d30_cubinico_claim_replay.json: OK (39 s)
+    == claim check cubinico: passed. local 74 boxes {'single': 74}, far {'A': 4194, 'D': 789, 'L': 8, 'X': 0, 'bad': 0}, L 8 boxes, {'local_verify': 18.8, 'far_replay': 19.2, 'total': 38.0} s → d30_cubinico_claim_replay.json
+[icointet] d28_far.py replay --prob icointet: OK (34 s)
+    replay d28_icointet_far: n boxes ok 324, out 44; R leaves accepted 36574, discarded 20746, L 32; failed 0, coverage trees of n and R OK, k-sum 0 per pair, 34 s
+[cubintet] d28_far.py replay --prob cubintet: OK (119 s)
+    replay d28_cubintet_far: n boxes ok 316, out 44; R leaves accepted 85522, discarded 49803, L 33; failed 0, coverage trees of n and R OK, k-sum 0 per pair, 118 s
+[octintet] d31_far.py replay_all: OK (14 s)
+    replay_all: all 3 passed
+[plateau] d28_plateau_n34.py --inject --out .: OK (0 s)
+      inject n=4 normal set to 0: FAILED: zero normal
+[plateau] d31_plateau_n34.py --inject --out .: OK (0 s)
+      inject n=4 normal set to 0: FAILED: zero normal
+[plateau] plateau_n05_upper.py --out .: OK (0 s)
+      error version normal set to 0: FAILED: zero normal
+[plateau] plateau_end_check.py: OK (0 s)
+    overall: accepted
+== all replays passed
+
+real	4m17.380s
+user	4m16.608s
+sys	0m0.768s
+replay exit 0
+=== lean all
+PackLean.D16.IcoOct.Data: passed (4 s)
+PackLean.D16.IcoOct.Tok000: passed (2 s)
+PackLean.D16.IcoOct.Far: passed (1 s)
+PackLean.D16.IcoOct.Local: passed (1 s)
+PackLean.D16.IcoOct.Consts: passed (0 s)
+PackLean.D16.IcoCub.Data: passed (2 s)
+PackLean.D16.IcoCub.Tok000: passed (5 s)
+PackLean.D16.IcoCub.Far: passed (2 s)
+PackLean.D16.IcoCub.Local: passed (0 s)
+PackLean.D16.IcoCub.Consts: passed (0 s)
+PackLean.D16.DodIco.Data: passed (40 s)
+PackLean.D16.DodIco.Tok000: passed (7 s)
+PackLean.D16.DodIco.Tok001: passed (6 s)
+PackLean.D16.DodIco.Tok002: passed (7 s)
+PackLean.D16.DodIco.Tok003: passed (7 s)
+PackLean.D16.DodIco.Tok004: passed (3 s)
+PackLean.D16.DodIco.Far: passed (17 s)
+PackLean.D16.DodIco.Local: passed (1 s)
+PackLean.D16.DodIco.Consts: passed (1 s)
+PackLean.D16.CubOct.Data: passed (2 s)
+PackLean.D16.CubOct.CoverData: passed (1 s)
+PackLean.D16.CubOct.CoverTok0: passed (1 s)
+PackLean.D16.CubOct.CoverTok1: passed (1 s)
+PackLean.D16.CubOct.CoverFar: passed (1 s)
+PackLean.D16.CubOct.CoverLocal: passed (0 s)
+PackLean.D16.CubOct.Consts: passed (0 s)
+PackLean.D28.Ico.Data: passed (18 s)
+PackLean.D28.Ico.Far000: passed (4 s)
+PackLean.D28.Ico.Far001: passed (4 s)
+PackLean.D28.Ico.Far002: passed (4 s)
+PackLean.D28.Ico.Far003: passed (4 s)
+PackLean.D28.Ico.Far004: passed (5 s)
+PackLean.D28.Ico.Far005: passed (5 s)
+PackLean.D28.Ico.Far006: passed (4 s)
+PackLean.D28.Ico.Far007: passed (5 s)
+PackLean.D28.Ico.Far008: passed (5 s)
+PackLean.D28.Ico.Far009: passed (4 s)
+PackLean.D28.Ico.Far010: passed (4 s)
+PackLean.D28.Ico.Far011: passed (4 s)
+PackLean.D28.Ico.Far012: passed (4 s)
+PackLean.D28.Ico.Far013: passed (4 s)
+PackLean.D28.Ico.Far014: passed (3 s)
+PackLean.D28.Ico.Far015: passed (3 s)
+PackLean.D28.Ico.Far016: passed (3 s)
+PackLean.D28.Ico.Far017: passed (3 s)
+PackLean.D28.Ico.Far018: passed (4 s)
+PackLean.D28.Ico.Far019: passed (4 s)
+PackLean.D28.Ico.Far020: passed (4 s)
+PackLean.D28.Ico.Far021: passed (4 s)
+PackLean.D28.Ico.Far022: passed (4 s)
+PackLean.D28.Ico.Far023: passed (4 s)
+PackLean.D28.Ico.Far024: passed (4 s)
+PackLean.D28.Ico.Far: passed (1 s)
+PackLean.D28.Ico.Local: passed (7 s)
+PackLean.D28.Ico.Consts: passed (0 s)
+PackLean.D28.Cub.Data: passed (1 s)
+PackLean.D28.Cub.Far000: passed (4 s)
+PackLean.D28.Cub.Far001: passed (4 s)
+PackLean.D28.Cub.Far002: passed (5 s)
+PackLean.D28.Cub.Far003: passed (5 s)
+PackLean.D28.Cub.Far004: passed (3 s)
+PackLean.D28.Cub.Far005: passed (4 s)
+PackLean.D28.Cub.Far006: passed (5 s)
+PackLean.D28.Cub.Far007: passed (4 s)
+PackLean.D28.Cub.Far008: passed (4 s)
+PackLean.D28.Cub.Far009: passed (4 s)
+PackLean.D28.Cub.Far010: passed (4 s)
+PackLean.D28.Cub.Far011: passed (4 s)
+PackLean.D28.Cub.Far012: passed (4 s)
+PackLean.D28.Cub.Far013: passed (5 s)
+PackLean.D28.Cub.Far014: passed (5 s)
+PackLean.D28.Cub.Far015: passed (3 s)
+PackLean.D28.Cub.Far016: passed (3 s)
+PackLean.D28.Cub.Far017: passed (4 s)
+PackLean.D28.Cub.Far018: passed (4 s)
+PackLean.D28.Cub.Far019: passed (4 s)
+PackLean.D28.Cub.Far020: passed (5 s)
+PackLean.D28.Cub.Far021: passed (3 s)
+PackLean.D28.Cub.Far022: passed (3 s)
+PackLean.D28.Cub.Far023: passed (5 s)
+PackLean.D28.Cub.Far024: passed (4 s)
+PackLean.D28.Cub.Far025: passed (4 s)
+PackLean.D28.Cub.Far026: passed (4 s)
+PackLean.D28.Cub.Far027: passed (4 s)
+PackLean.D28.Cub.Far028: passed (5 s)
+PackLean.D28.Cub.Far029: passed (5 s)
+PackLean.D28.Cub.Far030: passed (5 s)
+PackLean.D28.Cub.Far031: passed (5 s)
+PackLean.D28.Cub.Far032: passed (5 s)
+PackLean.D28.Cub.Far033: passed (5 s)
+PackLean.D28.Cub.Far034: passed (5 s)
+PackLean.D28.Cub.Far035: passed (3 s)
+PackLean.D28.Cub.Far036: passed (5 s)
+PackLean.D28.Cub.Far037: passed (5 s)
+PackLean.D28.Cub.Far038: passed (5 s)
+PackLean.D28.Cub.Far039: passed (4 s)
+PackLean.D28.Cub.Far040: passed (4 s)
+PackLean.D28.Cub.Far041: passed (4 s)
+PackLean.D28.Cub.Far042: passed (4 s)
+PackLean.D28.Cub.Far043: passed (4 s)
+PackLean.D28.Cub.Far044: passed (4 s)
+PackLean.D28.Cub.Far045: passed (4 s)
+PackLean.D28.Cub.Far046: passed (4 s)
+PackLean.D28.Cub.Far047: passed (4 s)
+PackLean.D28.Cub.Far048: passed (3 s)
+PackLean.D28.Cub.Far049: passed (3 s)
+PackLean.D28.Cub.Far050: passed (4 s)
+PackLean.D28.Cub.Far051: passed (3 s)
+PackLean.D28.Cub.Far052: passed (3 s)
+PackLean.D28.Cub.Far053: passed (3 s)
+PackLean.D28.Cub.Far054: passed (4 s)
+PackLean.D28.Cub.Far055: passed (3 s)
+PackLean.D28.Cub.Far056: passed (3 s)
+PackLean.D28.Cub.Far057: passed (3 s)
+PackLean.D28.Cub.Far058: passed (3 s)
+PackLean.D28.Cub.Far059: passed (3 s)
+PackLean.D28.Cub.Far060: passed (3 s)
+PackLean.D28.Cub.Far061: passed (3 s)
+PackLean.D28.Cub.Far062: passed (3 s)
+PackLean.D28.Cub.Far063: passed (3 s)
+PackLean.D28.Cub.Far064: passed (3 s)
+PackLean.D28.Cub.Far065: passed (3 s)
+PackLean.D28.Cub.Far066: passed (3 s)
+PackLean.D28.Cub.Far067: passed (3 s)
+PackLean.D28.Cub.Far068: passed (2 s)
+PackLean.D28.Cub.Far: passed (2 s)
+PackLean.D28.Cub.Local: passed (10 s)
+PackLean.D28.Cub.Consts: passed (0 s)
+PackLean.D16.IcoDod.Data: passed (44 s)
+PackLean.D16.IcoDod.Tok000: passed (4 s)
+PackLean.D16.IcoDod.Far: passed (5 s)
+PackLean.D16.IcoDod.Local: passed (1 s)
+PackLean.D16.IcoDod.Consts: passed (0 s)
+PackLean.D16.OctDod.Data: passed (80 s)
+PackLean.D16.OctDod.Tok000: passed (6 s)
+PackLean.D16.OctDod.Tok001: passed (3 s)
+PackLean.D16.OctDod.Far: passed (21 s)
+PackLean.D16.OctDod.Local: passed (1 s)
+PackLean.D16.OctDod.Consts: passed (1 s)
+PackLean.D30.Data: passed (47 s)
+PackLean.D30.Tok000: passed (6 s)
+PackLean.D30.Tok001: passed (6 s)
+PackLean.D30.Tok002: passed (6 s)
+PackLean.D30.Tok003: passed (2 s)
+PackLean.D30.Far: passed (13 s)
+PackLean.D30.Local: passed (1 s)
+PackLean.D30.Consts: passed (1 s)
+PackLean.D31.Data: passed (2 s)
+PackLean.D31.Consts: passed (0 s)
+PackLean.D31.Far000: passed (3 s)
+PackLean.D31.Far001: passed (8 s)
+PackLean.D31.Far002: passed (12 s)
+PackLean.D31.Far003: passed (9 s)
+PackLean.D31.Far004: passed (8 s)
+PackLean.D31.Far005: passed (7 s)
+PackLean.D31.Far006: passed (7 s)
+PackLean.D31.Far007: passed (5 s)
+PackLean.D31.Far008: passed (5 s)
+PackLean.D31.Far009: passed (5 s)
+PackLean.D31.Far010: passed (4 s)
+PackLean.D31.Far011: passed (4 s)
+PackLean.D31.Far012: passed (5 s)
+PackLean.D31.Far013: passed (4 s)
+PackLean.D31.Far014: passed (4 s)
+PackLean.D31.Far015: passed (4 s)
+PackLean.D31.Far016: passed (4 s)
+PackLean.D31.Far017: passed (4 s)
+PackLean.D31.Far018: passed (4 s)
+PackLean.D31.Far019: passed (4 s)
+PackLean.D31.Far020: passed (3 s)
+PackLean.D31.Far021: passed (4 s)
+PackLean.D31.Far022: passed (4 s)
+PackLean.D31.Far023: passed (3 s)
+PackLean.D31.Far024: passed (4 s)
+PackLean.D31.Far025: passed (3 s)
+PackLean.D31.Far026: passed (1 s)
+PackLean.D31.Far: passed (4 s)
+PackLean.D31.LocJ00: passed (12 s)
+PackLean.D31.LocJ01: passed (12 s)
+PackLean.D31.LocJ02: passed (1 s)
+PackLean.D31.LocC00: passed (4 s)
+PackLean.D31.LocC01: passed (4 s)
+PackLean.D31.LocC02: passed (3 s)
+PackLean.D31.Local: passed (1 s)
+PackLean.D16.Axioms: passed (1 s)
+   info: PackLean/D16/Axioms.lean:15:0: 'PackLean.D16.IcoOct.far_ok' depends on axioms: [propext,
+   info: PackLean/D16/Axioms.lean:16:0: 'PackLean.D16.IcoOct.local_ok' depends on axioms: [propext,
+   info: PackLean/D16/Axioms.lean:17:0: 'PackLean.D16.IcoOct.consts_ok' depends on axioms: [propext,
+   info: PackLean/D16/Axioms.lean:18:0: 'PackLean.D16.DodIco.far_ok' depends on axioms: [propext,
+   info: PackLean/D16/Axioms.lean:19:0: 'PackLean.D16.DodIco.local_ok' depends on axioms: [propext,
+   info: PackLean/D16/Axioms.lean:20:0: 'PackLean.D16.DodIco.consts_ok' depends on axioms: [propext,
+   info: PackLean/D16/Axioms.lean:21:0: 'PackLean.D16.IcoCub.far_ok' depends on axioms: [propext,
+   info: PackLean/D16/Axioms.lean:22:0: 'PackLean.D16.IcoCub.local_ok' depends on axioms: [propext,
+   info: PackLean/D16/Axioms.lean:23:0: 'PackLean.D16.IcoCub.consts_ok' depends on axioms: [propext,
+   info: PackLean/D16/Axioms.lean:24:0: 'PackLean.D16.CubOct.consts_ok' depends on axioms: [propext,
+   info: PackLean/D16/Axioms.lean:25:0: 'PackLean.D16.CubOct.cover_far_ok' depends on axioms: [propext,
+   info: PackLean/D16/Axioms.lean:26:0: 'PackLean.D16.CubOct.cover_consts_ok' depends on axioms: [propext,
+   info: PackLean/D16/Axioms.lean:27:0: 'PackLean.D16.CubOct.cover_local_ok' depends on axioms: [propext,
+PackLean.D16.AxiomsB2: passed (1 s)
+   info: PackLean/D16/AxiomsB2.lean:9:0: 'PackLean.D16.IcoDod.far_ok' depends on axioms: [propext,
+   info: PackLean/D16/AxiomsB2.lean:10:0: 'PackLean.D16.IcoDod.local_ok' depends on axioms: [propext,
+   info: PackLean/D16/AxiomsB2.lean:11:0: 'PackLean.D16.IcoDod.consts_ok' depends on axioms: [propext,
+   info: PackLean/D16/AxiomsB2.lean:12:0: 'PackLean.D16.OctDod.far_ok' depends on axioms: [propext,
+   info: PackLean/D16/AxiomsB2.lean:13:0: 'PackLean.D16.OctDod.local_ok' depends on axioms: [propext,
+   info: PackLean/D16/AxiomsB2.lean:14:0: 'PackLean.D16.OctDod.consts_ok' depends on axioms: [propext,
+PackLean.D28.Ico.Axioms: passed (1 s)
+   info: PackLean/D28/Ico/Axioms.lean:8:0: 'PackLean.D28.Ico.far_all' depends on axioms: [propext,
+   info: PackLean/D28/Ico/Axioms.lean:9:0: 'PackLean.D28.Ico.consts_ok' depends on axioms: [propext,
+   info: PackLean/D28/Ico/Axioms.lean:10:0: 'PackLean.D28.Ico.local0_ok' depends on axioms: [propext,
+PackLean.D28.Cub.Axioms: passed (1 s)
+   info: PackLean/D28/Cub/Axioms.lean:8:0: 'PackLean.D28.Cub.far_all' depends on axioms: [propext,
+   info: PackLean/D28/Cub/Axioms.lean:9:0: 'PackLean.D28.Cub.consts_ok' depends on axioms: [propext,
+   info: PackLean/D28/Cub/Axioms.lean:10:0: 'PackLean.D28.Cub.local0_ok' depends on axioms: [propext,
+   info: PackLean/D28/Cub/Axioms.lean:11:0: 'PackLean.D28.Cub.local1_ok' depends on axioms: [propext,
+PackLean.D30.Axioms: passed (1 s)
+   info: PackLean/D30/Axioms.lean:6:0: 'PackLean.D30.far_ok' depends on axioms: [propext,
+   info: PackLean/D30/Axioms.lean:7:0: 'PackLean.D30.local_ok' depends on axioms: [propext,
+   info: PackLean/D30/Axioms.lean:8:0: 'PackLean.D30.consts_ok' depends on axioms: [propext,
+PackLean.D31.Axioms: passed (1 s)
+   info: PackLean/D31/Axioms.lean:8:0: 'PackLean.D31.Oct.far_all' depends on axioms: [propext,
+   info: PackLean/D31/Axioms.lean:9:0: 'PackLean.D31.Oct.localJ_all' depends on axioms: [propext,
+   info: PackLean/D31/Axioms.lean:10:0: 'PackLean.D31.Oct.localC_all' depends on axioms: [propext,
+   info: PackLean/D31/Axioms.lean:11:0: 'PackLean.D31.Oct.consts_ok' depends on axioms: [propext,
+   info: PackLean/D31/Axioms.lean:12:0: 'PackLean.D31.Oct.ident_ok' depends on axioms: [propext,
+== 190/190 as expected, 951 s total
+
+real	15m51.277s
+user	14m12.438s
+sys	0m26.769s
+lean all exit 0
+=== lean plateau
+PackLean.Plateau.Core: passed (1 s)
+PackLean.Plateau.Data: passed (1 s)
+PackLean.Plateau.Ico: passed (4 s)
+PackLean.Plateau.Oct: passed (1 s)
+PackLean.Plateau.N5Data: passed (1 s)
+PackLean.Plateau.N5: passed (3 s)
+PackLean.Plateau.N5EndCore: passed (1 s)
+PackLean.Plateau.N5End: passed (3 s)
+PackLean.Plateau.Axioms: passed (1 s)
+   info: PackLean/Plateau/Axioms.lean:7:0: 'PackLean.Plateau.ico_std_ok' depends on axioms: [propext, Classical.choice, Quot.sound]
+   info: PackLean/Plateau/Axioms.lean:8:0: 'PackLean.Plateau.ico_c_ok' does not depend on any axioms
+   info: PackLean/Plateau/Axioms.lean:9:0: 'PackLean.Plateau.ico_n2_ok' depends on axioms: [propext, Classical.choice, Quot.sound]
+   info: PackLean/Plateau/Axioms.lean:10:0: 'PackLean.Plateau.ico_n3_ok' depends on axioms: [propext, Classical.choice, Quot.sound]
+   info: PackLean/Plateau/Axioms.lean:11:0: 'PackLean.Plateau.ico_n4_ok' depends on axioms: [propext, Classical.choice, Quot.sound]
+   info: PackLean/Plateau/Axioms.lean:12:0: 'PackLean.Plateau.oct_std_ok' depends on axioms: [propext, Classical.choice, Quot.sound]
+   info: PackLean/Plateau/Axioms.lean:13:0: 'PackLean.Plateau.oct_c_ok' does not depend on any axioms
+   info: PackLean/Plateau/Axioms.lean:14:0: 'PackLean.Plateau.oct_n2_ok' depends on axioms: [propext, Classical.choice, Quot.sound]
+   info: PackLean/Plateau/Axioms.lean:15:0: 'PackLean.Plateau.oct_n3_ok' depends on axioms: [propext, Classical.choice, Quot.sound]
+   info: PackLean/Plateau/Axioms.lean:16:0: 'PackLean.Plateau.oct_n4_ok' depends on axioms: [propext, Classical.choice, Quot.sound]
+PackLean.Plateau.N5Axioms: passed (1 s)
+   info: PackLean/Plateau/N5Axioms.lean:8:0: 'PackLean.Plateau.ico_n5_c_ok' does not depend on any axioms
+   info: PackLean/Plateau/N5Axioms.lean:9:0: 'PackLean.Plateau.oct_n5_c_ok' does not depend on any axioms
+   info: PackLean/Plateau/N5Axioms.lean:10:0: 'PackLean.Plateau.ico_n5_ok' depends on axioms: [propext, Classical.choice, Quot.sound]
+   info: PackLean/Plateau/N5Axioms.lean:11:0: 'PackLean.Plateau.oct_n5_ok' depends on axioms: [propext, Classical.choice, Quot.sound]
+   info: PackLean/Plateau/N5Axioms.lean:12:0: 'PackLean.Plateau.End.tv_edges_ok' depends on axioms: [propext, Classical.choice, Quot.sound]
+   info: PackLean/Plateau/N5Axioms.lean:13:0: 'PackLean.Plateau.End.cells_ok' depends on axioms: [propext, Classical.choice, Quot.sound]
+   info: PackLean/Plateau/N5Axioms.lean:14:0: 'PackLean.Plateau.End.coef_ok' does not depend on any axioms
+   info: PackLean/Plateau/N5Axioms.lean:15:0: 'PackLean.Plateau.End.inrad_tet_ok' depends on axioms: [propext, Classical.choice, Quot.sound]
+   info: PackLean/Plateau/N5Axioms.lean:16:0: 'PackLean.Plateau.End.inrad_ico_ok' depends on axioms: [propext, Classical.choice, Quot.sound]
+   info: PackLean/Plateau/N5Axioms.lean:17:0: 'PackLean.Plateau.End.inrad_oct_ok' depends on axioms: [propext, Classical.choice, Quot.sound]
+   info: PackLean/Plateau/N5Axioms.lean:18:0: 'PackLean.Plateau.End.oct_lb_gt_plateau' depends on axioms: [propext, Classical.choice, Quot.sound]
+   info: PackLean/Plateau/N5Axioms.lean:19:0: 'PackLean.Plateau.End.ico_lb_gt_plateau' depends on axioms: [propext, Classical.choice, Quot.sound]
+   info: PackLean/Plateau/N5Axioms.lean:20:0: 'PackLean.Plateau.End.oct_lb_eq_n5' does not depend on any axioms
+   info: PackLean/Plateau/N5Axioms.lean:21:0: 'PackLean.Plateau.End.ico_lb_eq_n5' does not depend on any axioms
+== 10/10 as expected, 15 s total
+plateau exit 0
+=== lean inject
+PackLean.D16.Test.CubOctDrop.CoverFar: rejected as expected (5 s)
+PackLean.D16.Test.CubOctIdent.CoverLocal: rejected as expected (1 s)
+PackLean.D16.Test.CubOctLam.CoverFar: rejected as expected (5 s)
+PackLean.D16.Test.DodIcoDisc.Far: rejected as expected (112 s)
+PackLean.D16.Test.DodIcoDrop.Far: rejected as expected (117 s)
+PackLean.D16.Test.DodIcoIdent.Local: rejected as expected (58 s)
+PackLean.D16.Test.DodIcoLam.Far: rejected as expected (112 s)
+PackLean.D16.Test.IcoCubDisc.Far: rejected as expected (12 s)
+PackLean.D16.Test.IcoCubDrop.Far: rejected as expected (7 s)
+PackLean.D16.Test.IcoCubIdent.Local: rejected as expected (3 s)
+PackLean.D16.Test.IcoCubLam.Far: rejected as expected (8 s)
+PackLean.D16.Test.IcoDodDisc.Far: rejected as expected (47 s)
+PackLean.D16.Test.IcoDodDrop.Far: rejected as expected (44 s)
+PackLean.D16.Test.IcoDodIdent.Local: rejected as expected (40 s)
+PackLean.D16.Test.IcoDodLam.Far: rejected as expected (46 s)
+PackLean.D16.Test.IcoOctDisc.Far: rejected as expected (4 s)
+PackLean.D16.Test.IcoOctDrop.Far: rejected as expected (4 s)
+PackLean.D16.Test.IcoOctIdent.Local: rejected as expected (3 s)
+PackLean.D16.Test.IcoOctLam.Far: rejected as expected (4 s)
+PackLean.D16.Test.IcoOctSum.Far: rejected as expected (4 s)
+PackLean.D16.Test.IcoOctTsmall.Consts: rejected as expected (2 s)
+PackLean.D16.Test.OctDodDisc.Far: rejected as expected (90 s)
+PackLean.D16.Test.OctDodDrop.Far: rejected as expected (85 s)
+PackLean.D16.Test.OctDodIdent.Local: rejected as expected (73 s)
+PackLean.D16.Test.OctDodLam.Far: rejected as expected (83 s)
+PackLean.D16.Test.OctDodSum.Far: rejected as expected (82 s)
+PackLean.D16.Test.OctDodTsmall.Consts: rejected as expected (75 s)
+PackLean.D28.Test.CubIdent.Local: rejected as expected (10 s)
+PackLean.D28.Test.CubKval.Far000: rejected as expected (1 s)
+PackLean.D28.Test.Drop.Far000: rejected as expected (13 s)
+PackLean.D28.Test.Dropn.NtreeOnly: rejected as expected (16 s)
+PackLean.D28.Test.Ident.Local: rejected as expected (23 s)
+PackLean.D28.Test.Kpair.Far000: rejected as expected (12 s)
+PackLean.D28.Test.Kval.Far000: rejected as expected (13 s)
+PackLean.D30.Test.Disc.Far: rejected as expected (62 s)
+PackLean.D30.Test.Drop.Far: rejected as expected (62 s)
+PackLean.D30.Test.Ident.Local: rejected as expected (39 s)
+PackLean.D30.Test.Lam.Far: rejected as expected (63 s)
+PackLean.D30.Test.LocCand.Local: rejected as expected (38 s)
+PackLean.D30.Test.LocDrop.Local: rejected as expected (38 s)
+PackLean.D30.Test.RhoBig.Local: rejected as expected (40 s)
+PackLean.D30.Test.Sum.Far: rejected as expected (52 s)
+PackLean.D30.Test.Tsmall.Consts: rejected as expected (43 s)
+PackLean.D31.Test.FarA.Far000: rejected as expected (2 s)
+PackLean.D31.Test.FarD.Far000: rejected as expected (2 s)
+PackLean.D31.Test.FarDrop.Far000: rejected as expected (2 s)
+PackLean.D31.Test.FarL.Far000: rejected as expected (1 s)
+PackLean.D31.Test.FarOut.Far: rejected as expected (2 s)
+PackLean.D31.Test.LocCandC.Loc: rejected as expected (1 s)
+PackLean.D31.Test.LocCandJ.Loc: rejected as expected (1 s)
+PackLean.D31.Test.LocDrop.Loc: rejected as expected (1 s)
+PackLean.D31.Test.LocE.Loc: rejected as expected (1 s)
+PackLean.D31.Test.UJ.Far000: rejected as expected (2 s)
+PackLean.D31.Test.UJbig.LocJ00: rejected as expected (5 s)
+PackLean.D31.Test.UJbig.LocJ01: rejected as expected (6 s)
+PackLean.D31.Test.UJbig.LocJ10: rejected as expected (1 s)
+PackLean.D31.Test.UJbig.LocJ11: rejected as expected (0 s)
+PackLean.D31.Test.UJbig.LocJ20: rejected as expected (0 s)
+PackLean.D31.Test.UJbig.LocJ21: rejected as expected (0 s)
+PackLean.D31.Test.UJbig.LocJ30: rejected as expected (0 s)
+PackLean.D31.Test.UJbig.LocJ31: rejected as expected (0 s)
+PackLean.D31.Test.UJbig.LocJ40: rejected as expected (0 s)
+PackLean.D31.Test.UJbig.LocJ41: rejected as expected (0 s)
+== 63/63 as expected, 1681 s total
+expected to build (EXPECT_PASS):
+PackLean.D30.Test.RhoBig.Consts: passed (1 s)
+PackLean.D30.Test.RhoBig.Far: passed (38 s)
+PackLean.D31.Test.UJ.LocJ: passed (1 s)
+== 3/3 as expected, 40 s total
+inject exit 0
+PackLean.Plateau.Test.IcoN3Cont: rejected as expected (2 s)
+PackLean.Plateau.Test.IcoN3Plane: rejected as expected (2 s)
+PackLean.Plateau.Test.IcoN3Vert: rejected as expected (1 s)
+PackLean.Plateau.Test.IcoN4Cont: rejected as expected (2 s)
+PackLean.Plateau.Test.IcoN4Plane: rejected as expected (2 s)
+PackLean.Plateau.Test.IcoN4Vert: rejected as expected (0 s)
+PackLean.Plateau.Test.N5EndDrop: rejected as expected (1 s)
+PackLean.Plateau.Test.N5EndHigh: rejected as expected (0 s)
+PackLean.Plateau.Test.N5EndInrad: rejected as expected (2 s)
+PackLean.Plateau.Test.N5EndPlat: rejected as expected (0 s)
+PackLean.Plateau.Test.N5EndR08: rejected as expected (0 s)
+PackLean.Plateau.Test.N5EndSign: rejected as expected (0 s)
+PackLean.Plateau.Test.N5IcoCont: rejected as expected (3 s)
+PackLean.Plateau.Test.N5IcoPlane: rejected as expected (3 s)
+PackLean.Plateau.Test.N5IcoVert: rejected as expected (1 s)
+PackLean.Plateau.Test.N5OctCont: rejected as expected (1 s)
+PackLean.Plateau.Test.N5OctPlane: rejected as expected (1 s)
+PackLean.Plateau.Test.N5OctVert: rejected as expected (0 s)
+PackLean.Plateau.Test.OctN3Cont: rejected as expected (1 s)
+PackLean.Plateau.Test.OctN3Plane: rejected as expected (1 s)
+PackLean.Plateau.Test.OctN3Vert: rejected as expected (0 s)
+PackLean.Plateau.Test.OctN4Cont: rejected as expected (1 s)
+PackLean.Plateau.Test.OctN4Plane: rejected as expected (1 s)
+PackLean.Plateau.Test.OctN4Vert: rejected as expected (0 s)
+== 24/24 as expected, 27 s total
+inject plateau exit 0
