@@ -15,8 +15,9 @@ which satisfies h c* = c* and h R* = R* phi(h) exactly whenever phi is a homomor
 Symmetry is measured by the stabilizer of each piece (the container symmetries that map the piece onto itself) and
 by the symmetry group of the whole packing (container symmetries that permute the pieces).
 
-Usage: python3 scripts/symmetrize.py RECORD.json [OUT.json]       # one record
-       python3 scripts/symmetrize.py --all OUTDIR [problem ...]   # every Platonic record (n = 2..100)
+Usage: python3 scripts/symmetrize.py RECORD.json [OUT.json]            # one record
+       python3 scripts/symmetrize.py --all OUTDIR [problem ...]        # every Platonic record (n = 2..100)
+       python3 scripts/symmetrize.py --families OUTDIR [problem ...]   # every prism, Archimedean and Catalan record
 """
 import json, os, sys, math, itertools, time, glob
 import numpy as np
@@ -55,8 +56,8 @@ class Geo:
         pbi = Problem(piece, container)
         Vp = self.Vp
 
-        class U:
-            V = Vp; faxes = pbi.faxes; edirs = pbi.edirs; prune = False
+        class U:   # unit-edge copy of the problem; Gauss-map pruning of edge axes for solids with many edge directions
+            V = Vp; faxes = pbi.faxes; edirs = pbi.edirs; prune = pbi.prune; FNl = pbi.FNl; eface = pbi.eface
             @staticmethod
             def verts(c, Rm): return c + Vp @ Rm.T
         self.U = U
@@ -299,8 +300,11 @@ def summary():
 if __name__ == '__main__':
     if sys.argv[1] == '--summary':
         summary(); sys.exit()
-    if sys.argv[1] == '--all':
-        outdir = sys.argv[2]; probs = sys.argv[3:] or [f'{AB[a]}in{AB[b]}' for a in PLATONIC for b in PLATONIC]
+    if sys.argv[1] in ('--all', '--families'):
+        outdir = sys.argv[2]; probs = sys.argv[3:]
+        if not probs:
+            import engine
+            probs = [p for p in engine.PID if (engine.FAM[p] == 'platonic') == (sys.argv[1] == '--all')]
         for p in probs:
             for fn in sorted(glob.glob(os.path.join(ROOT, 'records', p, f'{p}_n[0-9][0-9].json')) +
                              glob.glob(os.path.join(ROOT, 'records', p, f'{p}_n100.json'))):
