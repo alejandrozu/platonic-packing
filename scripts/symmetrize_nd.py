@@ -79,7 +79,7 @@ class GeoND:
         from multiquad import parse
         self.mu = float(parse(rec['mu'])) if isinstance(rec['mu'], str) else float(rec['mu'])
         self.s = float(rec['s_full'])
-        self.circ = float(np.linalg.norm(self.V, axis=1).max())
+        self.circ = float(np.linalg.norm(self.V, axis=1).max()); self.rin = float(P['inradius'])
         self.G, self.refl = group(rec['container'])
         self.CV = np.array(Q['Vf'], float)
         if rec['container'] not in _SUB: _SUB[rec['container']] = self._subgroups(Q)      # per container, once
@@ -98,12 +98,18 @@ class GeoND:
 
     def legal_piece(self, i, c, R, C, Rs):
         if self.wall(c, R) < WALL * 1.01: return False
+        dist = np.linalg.norm(C - c, axis=1); dist[i] = np.inf
+        if dist.min() < 2 * self.rin * (1 - 1e-9): return False            # inscribed balls overlap
+        nb = np.flatnonzero(dist < 2 * self.circ * 1.001)
+        if not len(nb): return True
         C2 = C.copy(); C2[i] = c; R2 = list(Rs); R2[i] = R
-        nb = [j for j in range(len(C)) if j != i and np.linalg.norm(C2[j] - c) < 2 * self.circ * 1.001]
-        if not nb: return True
         pairs = np.array([(min(i, j), max(i, j)) for j in nb], np.int64)
-        g, _ = self.gaps(C2, R2, pairs)
-        return bool(g.min() >= GAP * 1.01)
+        sc = self.pb.scale
+        g, _, _ = ndsim.planes(self.pb, C2 * sc, np.asarray(R2), pairs, iters=200)   # fast tracker first
+        unsure = g / self.pb.edge < GAP * 1.01
+        if not unsure.any(): return True
+        g2, _ = self.gaps(C2, R2, pairs[unsure])                                    # max-gap LP for the rest
+        return bool(g2.min() >= GAP * 1.01)
 
     # -- symmetry
     def is_sym(self, M):
@@ -127,9 +133,9 @@ class GeoND:
     def packing_group(self, C, Rs):
         t = cKDTree(C); n = 0
         GC = np.einsum('gab,nb->gna', self.G, C)
-        for k in range(len(self.G)):
-            dd, idx = t.query(GC[k])
-            if dd.max() > TOL: continue
+        DD, IDX = t.query(GC.reshape(-1, self.d)); DD = DD.reshape(len(self.G), -1); IDX = IDX.reshape(len(self.G), -1)
+        for k in np.flatnonzero(DD.max(1) <= TOL):
+            idx = IDX[k]
             ok = True
             for i in range(len(C)):
                 M = Rs[idx[i]].T @ self.G[k] @ Rs[i]
@@ -193,7 +199,7 @@ class GeoND:
             hi = min([r / x for r, x in zip(rhs, a) if x > 1e-12] or [math.inf])
             lo = max([r / x for r, x in zip(rhs, a) if x < -1e-12] or [-math.inf])
             cand = [t for t in (hi, lo) if math.isfinite(t) and abs(t - t0) <= MOVE * self.eP]
-            cand += [t for t in sorted(np.linspace(t0 - MOVE * self.eP, t0 + MOVE * self.eP, 41), key=lambda t: abs(t - t0)) if lo <= t <= hi]
+            cand += [t for t in sorted(np.linspace(t0 - MOVE * self.eP, t0 + MOVE * self.eP, 21), key=lambda t: abs(t - t0)) if lo <= t <= hi]
             for t in cand: yield t * u
             return
         yield cs
@@ -282,10 +288,16 @@ def write(r, geo, C, Rs, before, after, moved, out, src_file):
 
 if __name__ == '__main__':
     if sys.argv[1] == '--all':
+        SKIP = set()
+        if os.environ.get('PP_SYM_SKIP'):          # resume: record ids already done (jsonl of earlier runs)
+            for l in open(os.environ['PP_SYM_SKIP']):
+                try: SKIP.add(json.loads(l)['record'])
+                except Exception: pass
         outdir = sys.argv[2]
         probs = sys.argv[3:] or sorted(os.path.basename(p) for p in glob.glob(os.path.join(ROOT, 'state', 'nd', 'best', '*')))
         for p in probs:
             for fn in sorted(glob.glob(os.path.join(ROOT, 'records', p, f'{p}_n[0-9][0-9].json'))):
+                if os.path.basename(fn)[:-5] in SKIP: continue
                 t0 = time.time()
                 try:
                     r, geo, C, Rs, b, a, moved = run(fn)
