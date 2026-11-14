@@ -281,7 +281,7 @@ exact, because a piece can be translated independently along each axis.
   height 3, s₁ itself equals s(2). These are the next candidates; they need sector bounds for the 12-, 16- and
   10-gon.
 
-## 2. Proven elsewhere, not in Lean (43 records)
+## 2. Proven elsewhere, not in Lean (47 records, and 2 more enclosed within 10⁻⁹)
 
 ### Hiroaki Hosono: computer-assisted proofs (27 records)
 
@@ -318,25 +318,30 @@ proves that implication (`cube_plateau_of_centre_lemma`). Status by dimension:
 **Numerical check here.** The maximum of the left side of Lemma F over all rotations is exactly 1, attained at
 axis-aligned placements, in every dimension d = 2–6 (`scripts/optimality/center_lemma.py`, `center_nd.py`).
 
-### Hirotaka Nakano: optimality certificates for 16 Platonic records (#131, 13 Nov 2026)
+### Hirotaka Nakano: optimality certificates for 22 Platonic records (#131, 13–14 Nov 2026)
 
 Hirotaka Nakano (konoha-ily2) published certificates for the minimal container edge of the records below, in
-[konoha-ily2/packing-optimality-certificates](https://github.com/konoha-ily2/packing-optimality-certificates)
-(v0.2.0, read at commit `0755979`, [doi:10.5281/zenodo.24191316](https://doi.org/10.5281/zenodo.24191316)),
-and submitted them in [#131](https://github.com/alejandrozu/platonic-packing/issues/131).
+[konoha-ily2/packing-optimality-certificates](https://github.com/konoha-ily2/packing-optimality-certificates),
+and submitted them in [#131](https://github.com/alejandrozu/platonic-packing/issues/131):
+- v0.2.0 (16 records), read at commit `0755979`, [doi:10.5281/zenodo.24191316](https://doi.org/10.5281/zenodo.24191316);
+- v0.3.0 (six more), read at commit `f257d7e`, [doi:10.5281/zenodo.24223156](https://doi.org/10.5281/zenodo.24223156).
 
 - **Upper bound:** an exact substitution of the optimal configuration.
 - **Lower bound for n = 2:** a symmetry reduction, then a tree of rotation boxes, each closed by a rational
   certificate, and an exact local lemma at the optimum. A separate replay checker re-checks every box, and
-  Lean 4 (no Mathlib) re-checks the arithmetic.
+  Lean 4 (no Mathlib) re-checks the arithmetic. For `tetintet_n02` and `dodintet_n02` the optimum is irrational
+  and not in closed form: the certificates enclose it in an interval narrower than 10⁻⁹.
 - **Lower bound for n = 3, 4:** monotonicity in n.
-- **Lower bound for n = 5:** inscribed balls and a pigeonhole argument.
+- **Lower bound for n = 5:** inscribed balls and a pigeonhole argument. For `tetintet_n05`: two of the five
+  centroids lie in one quarter cell of the container (pigeonhole), and a two-piece box certificate shows
+  s ≥ 2 for the problem restricted to that cell.
 
 By the repository's own account, the arguments, code and reviews were written by Claude (Anthropic) and
 re-derived by a second Claude model, with no human review. The reductions are prose arguments, and Lean
 checks only the arithmetic. On 14 November, at Alejandro Zarzuelo's request, the certificates were re-run here in an
-isolated sandbox: a separate user, no network and no access to credentials
-([run log](optimality_evidence/131_replay_2026-11-14.log)). They passed; see "What was checked here" below. What
+isolated sandbox: a separate user, no network and no access to credentials (run logs:
+[v0.2.0](optimality_evidence/131_replay_2026-11-14.log), [v0.3.0](optimality_evidence/131_v030_replay_2026-11-14.log)).
+They passed; see "What was checked here" below. What
 remains unchecked by anyone is the meaning of the reductions, which no human has reviewed.
 
 | Records | Optimal edge | Lower bound | Status here |
@@ -353,6 +358,12 @@ remains unchecked by anyone is the meaning of the reductions, which no human has
 | `octintet_n02`–`n04` | 3 | box certificates for n = 2, then monotonicity | computer-assisted, re-run here |
 | `icointet_n05` | (5/3)√(3√5 + 7) | inscribed balls + pigeonhole | **proven; argument checked here** |
 | `octintet_n05` | 10/3 | inscribed balls + pigeonhole | **proven; argument checked here** |
+| `octinico_n02` (v0.3.0) | 3√2 − √10 | box certificates (a curve of minimisers; paired-lifting lemma) | computer-assisted, re-run here |
+| `dodincub_n02` (v0.3.0) | (16 + 334√2 + 46√5 + 137√10)/267 | box certificates | computer-assisted, re-run here |
+| `dodinoct_n02` (v0.3.0) | (411√2 + 157√10)/228 | box certificates | computer-assisted, re-run here |
+| `tetintet_n02` (v0.3.0) | in [1.953564244, 1.953564244 + 5.6 × 10⁻¹⁰] | box certificates (enclosure) | computer-assisted, re-run here |
+| `dodintet_n02` (v0.3.0) | in [2√2 · 14986756529/(5 · 10⁹), + 3.9 × 10⁻¹⁰] ≈ 8.4777897357 | box certificates (enclosure) | computer-assisted, re-run here |
+| `tetintet_n05` (v0.3.0) | 2 | pigeonhole into a quarter cell + two-piece box certificate | computer-assisted, re-run here |
 
 **What was checked here.**
 
@@ -381,14 +392,39 @@ remains unchecked by anyone is the meaning of the reductions, which no human has
   - Injected errors: `build.py inject` rejected 63/63 corrupted certificates and built the 3 that are meant to
     build; `build.py inject plateau` rejected 24/24.
   - Not run: the randomized Python tests (`run_python_tests.py`, 1–25 minutes per case).
+- **The six v0.3.0 records, upper bounds.** Each record's packing is certified at the claimed value plus the
+  clearance. For `octinico_n02`, `dodincub_n02` and `dodinoct_n02` the relative gap is 1.5–6.1 × 10⁻⁸, and the
+  three closed forms equal the ones already on file exactly (sympy; Nakano's are the denested forms).
+  `tetintet_n05` is exactly 2. `tetintet_n02` lies 1.6 × 10⁻¹² above its enclosure, and `dodintet_n02` lies
+  1.1 × 10⁻⁷ above its own (relative 1.3 × 10⁻⁸), which is within the catalogue's clearance.
+- **The v0.3.0 certificates, re-run (14 Nov, commit `f257d7e`, same sandbox).**
+  - `certificates/SHA256SUMS`: all 77 files match.
+  - `tests/replay_all.py`, the six new cases: all passed, with 0 failed boxes.
+    - octinico: 676 accepted far boxes, 206 discarded, 44 handed to the local stage; the stored local record
+      re-checked.
+    - dodincub: 3,347 accepted, 449 discarded; 23 local boxes.
+    - dodinoct: 15,250 accepted, 727 discarded; 126 local boxes.
+    - tetintet: the local replay, the far replay and the upper-bound check (`d40_tests.py --only chain`).
+    - tetintet_n05: 777,383 accepted rotation leaves (286,744 discarded, 987 local), 594 position boxes, and
+      6,734 local leaves.
+    - dodintet: the whole chain (`d45_dodintet_tests.py --only chain`, 31 minutes).
+  - Lean 4 `build.py` for octinico (5 modules), dodincub (7), dodinoct (15), tetintet (77), tetintet_n05 (106)
+    and dodintet (55): all built, about 1.5 hours in all. `#print axioms` of every top-level theorem lists no
+    `sorryAx`, and the new checkers declare no axioms and use no `implemented_by` or `extern`. These modules use
+    `native_decide`, which trusts the Lean compiler.
+  - Injected errors: `build.py inject` for the five new groups rejected 91/91 corrupted certificates
+    (dodincub and dodinoct 18, octinico 18, tetintet 19, tetintet_n05 23, dodintet 13), each because
+    `native_decide` evaluated the statement to false. The 12 variants meant to build did build.
+  - Not run: the randomized Python tests.
 
 ## 3. n = 2: numerical evidence for 20 Platonic records
 
 Five of these records are now proven in Lean (section 1): `octincub_n02`, `tetincub_n02`, `tetinoct_n02`,
 `tetindod_n02` and `tetinico_n02`. The table keeps them so the numerical method can be compared with the proofs.
-Eight more now have external computer-assisted certificates (section 2, #131): `cubinoct_n02`, `icoincub_n02`,
-`dodinico_n02`, `icoinoct_n02`, `icoindod_n02`, `octindod_n02`, `cubinico_n02` and `cubintet_n02`. Every one
-of them agrees with the numerical value below.
+Eleven more now have external computer-assisted certificates (section 2, #131): `cubinoct_n02`, `icoincub_n02`,
+`dodinico_n02`, `icoinoct_n02`, `icoindod_n02`, `octindod_n02`, `cubinico_n02`, `cubintet_n02`, and since v0.3.0
+`octinico_n02`, `dodincub_n02` and `dodinoct_n02`. Every one of them agrees with the numerical value below.
+Four remain without a proof: `octinoct_n02`, `icoinico_n02`, `dodindod_n02` and `cubindod_n02`.
 
 For n = 2 a stronger fact holds. Let s_c be the scale below which every placement of a single piece contains
 the container's centre in its interior. The common-point lemma gives s(2) ≥ s_c. When the container is
@@ -428,8 +464,9 @@ the worst placement.
 The centre argument fails for tetrahedron containers with tetrahedra, octahedra, dodecahedra or icosahedra as
 pieces: a single piece can avoid the centroid at the record scale. Nakano's certificates (section 2, #131) use a
 different reduction for the tetrahedron. They cover the plateaus of octahedra in a tetrahedron at s = 3 and of
-icosahedra in a tetrahedron at s = 5.3582 for n = 2–4, and their end at n = 5. Tetrahedra and dodecahedra in a
-tetrahedron (n = 2) remain open.
+icosahedra in a tetrahedron at s = 5.3582 for n = 2–4, and their end at n = 5. Since v0.3.0 they also enclose the
+optimum for tetrahedra and dodecahedra in a tetrahedron (n = 2) in intervals narrower than 10⁻⁹, and settle
+5 tetrahedra in a tetrahedron at s = 2.
 
 ## 4. Next targets
 
@@ -443,13 +480,15 @@ tetrahedron (n = 2) remain open.
   centre with the opposite vertex towards a corner (the facet-width argument). Two steps are missing: that a
   tetrahedron of the second kind meets any tetrahedron containing the ball, and that two of the second kind
   point to opposite corners. Then three cannot fit. This is a plan, not yet a proof.
-- n = 2: external computer-assisted certificates now cover ten pairs (section 2, #131). The next step is a
+- n = 2: external computer-assisted certificates now cover fifteen pairs (section 2, #131); octahedra in an
+  octahedron, icosahedra in an icosahedron, dodecahedra in a dodecahedron and cubes in a dodecahedron remain.
+  The next step is a
   Lean proof of one of them: Lean already re-checks their arithmetic, and what is missing is the reduction,
   which is now a prose argument. Another next step is `octintet_n05` / `icointet_n05` in Lean, a short
   argument with inscribed balls.
 - Plateaus starting above n = 2, which need new ideas:
   - octahedra in an octahedron, n = 3–6 (s = 2)
-  - tetrahedra in a tetrahedron, n = 3–4 (2)
+  - tetrahedra in a tetrahedron, n = 3–4 (2; n = 5 is settled, section 2)
   - dodecahedra in a dodecahedron, n = 3–4 (2) and n = 5–6 (√5)
   - icosahedra in an octahedron, n = 4–6
   - dodecahedra in a cube, n = 3–4 (2 + √5)
