@@ -58,7 +58,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 53 | [4.45184+](icoinico_n53.json) | 4.451841883691 |  | 3.75629 | 0.6007 | ![](icoinico_n53.png) |
 | 54 | [4.46651+](icoinico_n54.json) | 4.466510878548 |  | 3.77976 | 0.6060 | ![](icoinico_n54.png) |
 | 55 | [4.47570+](icoinico_n55.json) | 4.475706986270 |  | 3.80295 | 0.6134 | ![](icoinico_n55.png) |
-| 56 | [4.52087+](icoinico_n56.json) | 4.520873581673 |  | 3.82586 | 0.6061 | ![](icoinico_n56.png) |
+| 56 | [4.52036+](icoinico_n56.json) | 4.520360300765 |  | 3.82586 | 0.6063 | ![](icoinico_n56.png) |
 | 57 | [4.59490+](icoinico_n57.json) | 4.594900127891 |  | 3.84850 | 0.5876 | ![](icoinico_n57.png) |
 | 58 | [4.61748+](icoinico_n58.json) | 4.617482076161 |  | 3.87088 | 0.5891 | ![](icoinico_n58.png) |
 | 59 | [4.67600+](icoinico_n59.json) | 4.676005107784 |  | 3.89300 | 0.5771 | ![](icoinico_n59.png) |

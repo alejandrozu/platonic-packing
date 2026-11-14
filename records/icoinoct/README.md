@@ -66,7 +66,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 61 | [8.00808+](icoinoct_n61.json) | 8.008085177076 |  | 6.56009 | 0.5497 | ![](icoinoct_n61.png) |
 | 62 | [8.20701+](icoinoct_n62.json) | 8.207014295135 |  | 6.59575 | 0.5191 | ![](icoinoct_n62.png) |
 | 63 | [8.22679+](icoinoct_n63.json) | 8.226791969959 |  | 6.63102 | 0.5237 | ![](icoinoct_n63.png) |
-| 64 | [8.24058+](icoinoct_n64.json) | 8.240585982860 |  | 6.66592 | 0.5293 | ![](icoinoct_n64.png) |
+| 64 | [8.23927+](icoinoct_n64.json) | 8.239277151733 |  | 6.66592 | 0.5296 | ![](icoinoct_n64.png) |
 | 65 | [8.26888+](icoinoct_n65.json) | 8.268887974722 |  | 6.70046 | 0.5321 | ![](icoinoct_n65.png) |
 | 66 | [8.47439+](icoinoct_n66.json) | 8.474391890718 | √(1595√5 + 3615)/10 | 6.73465 | 0.5019 | ![](icoinoct_n66.png) |
 | 67 | [8.47439+](icoinoct_n67.json) | 8.474391890718 | √(1595√5 + 3615)/10 | 6.76849 | 0.5095 | ![](icoinoct_n67.png) |
@@ -98,8 +98,8 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 93 | [9.25615+](icoinoct_n93.json) | 9.256150155585 | √(75√5/4 + 175/4) | 7.55025 | 0.5427 | ![](icoinoct_n93.png) |
 | 94 | [9.25615+](icoinoct_n94.json) | 9.256150155585 | √(75√5/4 + 175/4) | 7.57721 | 0.5486 | ![](icoinoct_n94.png) |
 | 95 | [9.25615+](icoinoct_n95.json) | 9.256150155585 | √(75√5/4 + 175/4) | 7.60399 | 0.5544 | ![](icoinoct_n95.png) |
-| 96 | [9.32760+](icoinoct_n96.json) | 9.327609206537 |  | 7.63057 | 0.5475 | ![](icoinoct_n96.png) |
+| 96 | [9.32301+](icoinoct_n96.json) | 9.323017470217 |  | 7.63057 | 0.5483 | ![](icoinoct_n96.png) |
 | 97 | [9.32760+](icoinoct_n97.json) | 9.327609206537 |  | 7.65698 | 0.5532 | ![](icoinoct_n97.png) |
 | 98 | [9.34515+](icoinoct_n98.json) | 9.345154288270 |  | 7.68320 | 0.5557 | ![](icoinoct_n98.png) |
-| 99 | [9.39523+](icoinoct_n99.json) | 9.395230409468 |  | 7.70924 | 0.5525 | ![](icoinoct_n99.png) |
+| 99 | [9.39246+](icoinoct_n99.json) | 9.392462653809 |  | 7.70924 | 0.5530 | ![](icoinoct_n99.png) |
 | 100 | [9.41510+](icoinoct_n100.json) | 9.415100528811 |  | 7.73511 | 0.5545 | ![](icoinoct_n100.png) |

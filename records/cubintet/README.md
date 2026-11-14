@@ -20,9 +20,9 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 15 | [6.53414+](cubintet_n15.json) | 6.534147173547 | 3 + √6/2 + 4√3/3 | 5.03021 | 0.4562 | ![](cubintet_n15.png) |
 | 16 | [6.68056+](cubintet_n16.json) | 6.680564844675 |  | 5.13959 | 0.4554 | ![](cubintet_n16.png) |
 | 17 | [6.73554+](cubintet_n17.json) | 6.735543992408 | 2 + 5√6/6 + 14√3/9 | 5.24451 | 0.4721 | ![](cubintet_n17.png) |
-| 18 | [6.74404+](cubintet_n18.json) | 6.744044605932 |  | 5.34539 | 0.4979 | ![](cubintet_n18.png) |
+| 18 | [6.74250+](cubintet_n18.json) | 6.742507634168 |  | 5.34539 | 0.4983 | ![](cubintet_n18.png) |
 | 19 | [6.75889+](cubintet_n19.json) | 6.758892112362 | 2 + √6 + 4√3/3 | 5.44260 | 0.5221 | ![](cubintet_n19.png) |
-| 20 | [6.79201+](cubintet_n20.json) | 6.792014996950 |  | 5.53646 | 0.5416 | ![](cubintet_n20.png) |
+| 20 | [6.78224+](cubintet_n20.json) | 6.782240230371 |  | 5.53646 | 0.5440 | ![](cubintet_n20.png) |
 | 21 | [7.26135+](cubintet_n21.json) | 7.261351424951 |  | 5.62724 | 0.4654 | ![](cubintet_n21.png) |
 | 22 | [7.37944+](cubintet_n22.json) | 7.379446872475 |  | 5.71518 | 0.4645 | ![](cubintet_n22.png) |
 | 23 | [7.53414+](cubintet_n23.json) | 7.534147290116 |  | 5.80049 | 0.4563 | ![](cubintet_n23.png) |
