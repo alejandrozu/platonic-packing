@@ -9,14 +9,14 @@ checked like the records: `verify.py` and `certify_exact.py` (Platonic), `verify
 (prisms, Archimedean, Catalan), `certify_nd.py` (4D-6D).
 See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 
-2917 packings; 2917 certified exactly; 8092 more pieces on symmetric placements; 36 with a larger packing group.
+2924 packings; 2924 certified exactly; 8099 more pieces on symmetric placements; 36 with a larger packing group.
 
 | family | packings | certified | symmetric pieces (before → after) | larger packing group |
 |---|---|---|---|---|
 | prisms and antiprisms | 1236 | 1236 | 4953 → 9245 | 7 |
 | 4D polytopes | 258 | 258 | 1159 → 1698 | 1 |
 | Archimedean | 373 | 373 | 1312 → 2268 | 6 |
-| Platonic | 586 | 586 | 3239 → 4687 | 13 |
+| Platonic | 593 | 593 | 3216 → 4671 | 13 |
 | Catalan | 384 | 384 | 1429 → 1990 | 4 |
 | 5D polytopes | 47 | 47 | 253 → 445 | 3 |
 | 6D polytopes | 33 | 33 | 201 → 305 | 2 |
@@ -25,12 +25,12 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 |---|---|---|---|---|
 | pr12inpr12 | prisms and antiprisms | 52 | 431 → 725 | – |
 | pr8incub | prisms and antiprisms | 45 | 474 → 725 | – |
-| cubintet | Platonic | 68 | 35 → 282 | – |
+| cubintet | Platonic | 67 | 35 → 281 | – |
 | pr12l2incub | prisms and antiprisms | 44 | 280 → 522 | – |
 | ap12inap12 | prisms and antiprisms | 58 | 26 → 267 | – |
 | tocintoc | Archimedean | 31 | 187 → 421 | – |
 | pr5l2incub | prisms and antiprisms | 56 | 98 → 325 | – |
-| dodindod | Platonic | 45 | 250 → 447 | – |
+| dodindod | Platonic | 46 | 251 → 456 | – |
 | pr8l3incub | prisms and antiprisms | 48 | 278 → 472 | – |
 | pr8l15incub | prisms and antiprisms | 32 | 263 → 446 | – |
 | ap8incub | prisms and antiprisms | 45 | 80 → 251 | 14 (1 → 4) |
@@ -38,7 +38,7 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | pr5inpr5 | prisms and antiprisms | 52 | 306 → 457 | 2 (1 → 2), 24 (1 → 2) |
 | pr12l15incub | prisms and antiprisms | 33 | 317 → 463 | 13 (1 → 4) |
 | pr6l15incub | prisms and antiprisms | 40 | 170 → 316 | – |
-| icoinico | Platonic | 46 | 143 → 285 | 3 (2 → 6) |
+| icoinico | Platonic | 46 | 144 → 284 | 3 (2 → 6) |
 | pr3inpr3 | prisms and antiprisms | 30 | 273 → 413 | – |
 | pr5incub | prisms and antiprisms | 38 | 14 → 153 | – |
 | pr12incub | prisms and antiprisms | 24 | 359 → 496 | – |
@@ -48,8 +48,8 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | cubincub | Platonic | 21 | 438 → 564 | 11 (1 → 3) |
 | c8inc5 | 4D polytopes | 28 | 21 → 145 | – |
 | ap6incub | prisms and antiprisms | 23 | 26 → 143 | – |
-| dodinico | Platonic | 30 | 0 → 111 | – |
 | tteintte | Archimedean | 31 | 414 → 521 | – |
+| dodinico | Platonic | 30 | 0 → 105 | – |
 | pr6l2incub | prisms and antiprisms | 45 | 41 → 146 | – |
 | pr8l2incub | prisms and antiprisms | 34 | 269 → 367 | – |
 | ridinrid | Archimedean | 47 | 91 → 186 | – |
@@ -61,26 +61,26 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | ktoinkto | Catalan | 40 | 309 → 394 | 44 (1 → 2) |
 | pr5l15incub | prisms and antiprisms | 38 | 4 → 89 | 30 (1 → 2) |
 | rdoinrdo | Catalan | 32 | 361 → 446 | – |
+| cubindod | Platonic | 33 | 108 → 191 | – |
 | c120inc16 | 4D polytopes | 26 | 164 → 244 | – |
 | octinoct | Platonic | 43 | 444 → 522 | 14 (1 → 2), 23 (1 → 2) |
 | rcoinrco | Archimedean | 36 | 131 → 208 | 17 (2 → 4) |
 | pr3incub | prisms and antiprisms | 32 | 92 → 165 | – |
-| cubinoct | Platonic | 39 | 609 → 679 | – |
 | dhcindhc | Catalan | 48 | 91 → 161 | – |
 | pr6l3incub | prisms and antiprisms | 24 | 137 → 207 | – |
 | sndinsnd | Archimedean | 25 | 7 → 76 | – |
 | hc6inop6 | 6D polytopes | 10 | 68 → 136 | 5 (1 → 2), 8 (1 → 2) |
 | ap5inap5 | prisms and antiprisms | 33 | 37 → 104 | – |
 | cboincbo | Archimedean | 29 | 260 → 327 | – |
-| cubindod | Platonic | 28 | 119 → 185 | – |
-| octintet | Platonic | 37 | 654 → 719 | 28 (1 → 3) |
 | pr6incub | prisms and antiprisms | 23 | 40 → 105 | – |
 | ap8inap8 | prisms and antiprisms | 34 | 31 → 95 | – |
+| cubinoct | Platonic | 42 | 610 → 674 | – |
+| octintet | Platonic | 36 | 640 → 704 | 28 (1 → 3) |
 | pkdinpkd | Catalan | 35 | 128 → 186 | – |
 | icointet | Platonic | 31 | 75 → 130 | – |
 | dtcindtc | Catalan | 41 | 28 → 77 | – |
 | pr3l15incub | prisms and antiprisms | 35 | 13 → 62 | – |
-| tetintet | Platonic | 36 | 280 → 329 | 18 (1 → 3) |
+| tetintet | Platonic | 37 | 283 → 332 | 18 (1 → 3) |
 | dodintet | Platonic | 29 | 5 → 53 | – |
 | idoinido | Archimedean | 38 | 9 → 57 | – |
 | pr3l2incub | prisms and antiprisms | 28 | 9 → 54 | – |
@@ -88,11 +88,11 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | ktiinkti | Catalan | 31 | 51 → 92 | 13 (1 → 6) |
 | rtcinrtc | Catalan | 36 | 130 → 171 | – |
 | c120inc5 | 4D polytopes | 21 | 14 → 52 | – |
-| octincub | Platonic | 24 | 31 → 68 | 7 (1 → 2), 11 (1 → 6) |
+| octincub | Platonic | 23 | 28 → 65 | 7 (1 → 2), 11 (1 → 6) |
 | tidintid | Archimedean | 32 | 0 → 36 | 4 (1 → 3) |
-| cubinico | Platonic | 19 | 27 → 62 | – |
 | icoinoct | Platonic | 21 | 83 → 118 | 4 (1 → 3) |
 | kthinkth | Catalan | 25 | 99 → 134 | 11 (1 → 2) |
+| cubinico | Platonic | 17 | 27 → 60 | – |
 | c24inc16 | 4D polytopes | 10 | 63 → 94 | – |
 | ditindit | Catalan | 30 | 96 → 127 | – |
 | ticintic | Archimedean | 25 | 10 → 39 | – |
@@ -106,12 +106,12 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | c24inc5 | 4D polytopes | 16 | 65 → 85 | – |
 | dodincub | Platonic | 6 | 0 → 20 | – |
 | c8inc16 | 4D polytopes | 14 | 63 → 82 | – |
+| icoindod | Platonic | 19 | 15 → 34 | 15 (6 → 24) |
 | sx6insx6 | 6D polytopes | 9 | 96 → 115 | – |
 | tcointco | Archimedean | 16 | 21 → 40 | 3 (1 → 2), 15 (1 → 4) |
-| dodinoct | Platonic | 15 | 1 → 19 | – |
 | c24inc120 | 4D polytopes | 15 | 2 → 19 | – |
 | ddoinddo | Catalan | 16 | 30 → 47 | – |
-| icoindod | Platonic | 17 | 15 → 32 | 15 (6 → 24) |
+| dodinoct | Platonic | 16 | 1 → 18 | – |
 | c24inc8 | 4D polytopes | 4 | 49 → 65 | – |
 | sx5insx5 | 5D polytopes | 10 | 94 → 110 | 4 (1 → 4), 9 (1 → 3) |
 | kttinktt | Catalan | 15 | 103 → 117 | 5 (1 → 3) |
@@ -124,30 +124,30 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | c600inc5 | 4D polytopes | 7 | 23 → 32 | – |
 | hc5inop5 | 5D polytopes | 7 | 42 → 51 | 16 (1 → 2) |
 | hc6insx6 | 6D polytopes | 8 | 8 → 17 | – |
+| octinico | Platonic | 9 | 1 → 10 | – |
 | c16inc16 | 4D polytopes | 7 | 46 → 54 | – |
-| icoincub | Platonic | 7 | 7 → 15 | – |
 | c24inc600 | 4D polytopes | 7 | 0 → 7 | – |
 | octindod | Platonic | 7 | 22 → 29 | 15 (1 → 6), 21 (1 → 6) |
-| octinico | Platonic | 7 | 1 → 8 | – |
 | c16inc120 | 4D polytopes | 6 | 0 → 6 | – |
 | c600inc16 | 4D polytopes | 4 | 12 → 18 | – |
+| icoincub | Platonic | 5 | 6 → 12 | – |
 | sx6inop6 | 6D polytopes | 4 | 24 → 30 | – |
 | c120inc24 | 4D polytopes | 3 | 41 → 46 | – |
 | c16inc600 | 4D polytopes | 5 | 0 → 5 | – |
 | c600inc600 | 4D polytopes | 5 | 0 → 5 | – |
+| tetinico | Platonic | 5 | 0 → 5 | 9 (1 → 2) |
 | c600inc8 | 4D polytopes | 4 | 14 → 18 | – |
 | op5insx5 | 5D polytopes | 3 | 1 → 5 | – |
-| tetincub | Platonic | 4 | 0 → 4 | – |
 | c5inc16 | 4D polytopes | 2 | 3 → 6 | – |
 | c600inc24 | 4D polytopes | 3 | 6 → 9 | – |
-| tetindod | Platonic | 3 | 0 → 3 | – |
-| tetinico | Platonic | 3 | 0 → 3 | 9 (1 → 2) |
+| tetincub | Platonic | 3 | 0 → 3 | – |
 | c120inc600 | 4D polytopes | 2 | 0 → 2 | – |
 | c24inc24 | 4D polytopes | 2 | 12 → 14 | – |
 | c8inc600 | 4D polytopes | 1 | 4 → 6 | – |
 | op6inop6 | 6D polytopes | 2 | 5 → 7 | – |
 | c120inc120 | 4D polytopes | 1 | 1 → 2 | – |
 | sx5inhc5 | 5D polytopes | 1 | 0 → 1 | – |
+| tetindod | Platonic | 1 | 0 → 1 | – |
 
 | record | s_full (unchanged) | symmetric pieces | packing group | certified |
 |---|---|---|---|---|
@@ -772,17 +772,20 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [cubindod_n24](cubindod/cubindod_n24.json) | 1.8464553022874 | 0 → 1 of 24 | 1 → 1 | yes |
 | [cubindod_n29](cubindod/cubindod_n29.json) | 1.8595187091458 | 3 → 5 of 29 | 1 → 1 | yes |
 | [cubindod_n30](cubindod/cubindod_n30.json) | 1.9021778453802 | 3 → 9 of 30 | 1 → 1 | yes |
+| [cubindod_n31](cubindod/cubindod_n31.json) | 1.9655586442416 | 3 → 7 of 31 | 1 → 1 | yes |
 | [cubindod_n43](cubindod/cubindod_n43.json) | 2.1458985819152 | 15 → 16 of 43 | 1 → 1 | yes |
 | [cubindod_n44](cubindod/cubindod_n44.json) | 2.1923540187428 | 0 → 2 of 44 | 1 → 1 | yes |
 | [cubindod_n45](cubindod/cubindod_n45.json) | 2.2040691765993 | 0 → 2 of 45 | 1 → 1 | yes |
-| [cubindod_n46](cubindod/cubindod_n46.json) | 2.2360685527156 | 14 → 16 of 46 | 1 → 1 | yes |
+| [cubindod_n46](cubindod/cubindod_n46.json) | 2.2080212181651 | 0 → 2 of 46 | 1 → 1 | yes |
 | [cubindod_n47](cubindod/cubindod_n47.json) | 2.2360685527156 | 15 → 17 of 47 | 1 → 1 | yes |
 | [cubindod_n48](cubindod/cubindod_n48.json) | 2.2360685527156 | 16 → 18 of 48 | 1 → 1 | yes |
 | [cubindod_n49](cubindod/cubindod_n49.json) | 2.2360685527156 | 17 → 19 of 49 | 1 → 1 | yes |
 | [cubindod_n53](cubindod/cubindod_n53.json) | 2.2917966594349 | 1 → 2 of 53 | 1 → 1 | yes |
 | [cubindod_n54](cubindod/cubindod_n54.json) | 2.2917966594349 | 1 → 2 of 54 | 1 → 1 | yes |
 | [cubindod_n55](cubindod/cubindod_n55.json) | 2.2977962922748 | 0 → 2 of 55 | 1 → 1 | yes |
-| [cubindod_n56](cubindod/cubindod_n56.json) | 2.3262385496326 | 0 → 1 of 56 | 1 → 1 | yes |
+| [cubindod_n56](cubindod/cubindod_n56.json) | 2.3241133482711 | 0 → 2 of 56 | 1 → 1 | yes |
+| [cubindod_n57](cubindod/cubindod_n57.json) | 2.3326550540769 | 0 → 1 of 57 | 1 → 1 | yes |
+| [cubindod_n64](cubindod/cubindod_n64.json) | 2.4071740134544 | 0 → 2 of 64 | 1 → 1 | yes |
 | [cubindod_n71](cubindod/cubindod_n71.json) | 2.4951453261604 | 0 → 1 of 71 | 1 → 1 | yes |
 | [cubindod_n72](cubindod/cubindod_n72.json) | 2.4951453263693 | 0 → 1 of 72 | 1 → 1 | yes |
 | [cubindod_n73](cubindod/cubindod_n73.json) | 2.5000006536806 | 0 → 1 of 73 | 1 → 1 | yes |
@@ -791,19 +794,20 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [cubindod_n76](cubindod/cubindod_n76.json) | 2.5278647077551 | 16 → 18 of 76 | 1 → 1 | yes |
 | [cubindod_n77](cubindod/cubindod_n77.json) | 2.5491509503932 | 3 → 6 of 77 | 1 → 1 | yes |
 | [cubindod_n78](cubindod/cubindod_n78.json) | 2.5623065836592 | 0 → 7 of 78 | 1 → 1 | yes |
-| [cubindod_n79](cubindod/cubindod_n79.json) | 2.5729496908991 | 0 → 6 of 79 | 1 → 1 | yes |
+| [cubindod_n79](cubindod/cubindod_n79.json) | 2.5693892006264 | 0 → 7 of 79 | 1 → 1 | yes |
 | [cubindod_n80](cubindod/cubindod_n80.json) | 2.5729496908991 | 0 → 6 of 80 | 1 → 1 | yes |
-| [cubindod_n88](cubindod/cubindod_n88.json) | 2.6631196615379 | 0 → 3 of 88 | 1 → 1 | yes |
+| [cubindod_n81](cubindod/cubindod_n81.json) | 2.6091433534117 | 0 → 5 of 81 | 1 → 1 | yes |
+| [cubindod_n88](cubindod/cubindod_n88.json) | 2.6539128039571 | 0 → 5 of 88 | 1 → 1 | yes |
 | [cubindod_n89](cubindod/cubindod_n89.json) | 2.6631196615379 | 0 → 3 of 89 | 1 → 1 | yes |
 | [cubindod_n90](cubindod/cubindod_n90.json) | 2.6709265599131 | 0 → 1 of 90 | 1 → 1 | yes |
+| [cubindod_n93](cubindod/cubindod_n93.json) | 2.7058090457582 | 0 → 1 of 93 | 1 → 1 | yes |
 | [cubinico_n14](cubinico/cubinico_n14.json) | 2.369947086141 | 0 → 1 of 14 | 1 → 1 | yes |
 | [cubinico_n22](cubinico/cubinico_n22.json) | 2.7676572795478 | 1 → 2 of 22 | 1 → 1 | yes |
 | [cubinico_n36](cubinico/cubinico_n36.json) | 3.1638276581486 | 1 → 3 of 36 | 1 → 1 | yes |
-| [cubinico_n41](cubinico/cubinico_n41.json) | 3.3279502308035 | 0 → 1 of 41 | 1 → 1 | yes |
 | [cubinico_n65](cubinico/cubinico_n65.json) | 3.7323367185216 | 0 → 1 of 65 | 1 → 1 | yes |
 | [cubinico_n75](cubinico/cubinico_n75.json) | 3.9295645965491 | 0 → 3 of 75 | 1 → 1 | yes |
 | [cubinico_n78](cubinico/cubinico_n78.json) | 3.9442729693643 | 0 → 3 of 78 | 1 → 1 | yes |
-| [cubinico_n79](cubinico/cubinico_n79.json) | 3.954260355214 | 0 → 2 of 79 | 1 → 1 | yes |
+| [cubinico_n80](cubinico/cubinico_n80.json) | 3.969491169965 | 0 → 2 of 80 | 1 → 1 | yes |
 | [cubinico_n83](cubinico/cubinico_n83.json) | 4.0344429975287 | 0 → 2 of 83 | 1 → 1 | yes |
 | [cubinico_n84](cubinico/cubinico_n84.json) | 4.0425735851676 | 0 → 2 of 84 | 1 → 1 | yes |
 | [cubinico_n85](cubinico/cubinico_n85.json) | 4.0475985614087 | 0 → 2 of 85 | 1 → 1 | yes |
@@ -813,9 +817,9 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [cubinico_n89](cubinico/cubinico_n89.json) | 4.1147610409255 | 0 → 2 of 89 | 1 → 1 | yes |
 | [cubinico_n90](cubinico/cubinico_n90.json) | 4.1151859202975 | 0 → 3 of 90 | 1 → 1 | yes |
 | [cubinico_n91](cubinico/cubinico_n91.json) | 4.1377685320346 | 0 → 1 of 91 | 1 → 1 | yes |
-| [cubinico_n92](cubinico/cubinico_n92.json) | 4.1429226729267 | 0 → 1 of 92 | 1 → 1 | yes |
 | [cubinico_n94](cubinico/cubinico_n94.json) | 4.1803410714295 | 6 → 7 of 94 | 1 → 1 | yes |
 | [cubinoct_n13](cubinoct/cubinoct_n13.json) | 3.7973743487276 | 1 → 8 of 13 | 1 → 1 | yes |
+| [cubinoct_n19](cubinoct/cubinoct_n19.json) | 4.1005584825906 | 2 → 3 of 19 | 1 → 1 | yes |
 | [cubinoct_n21](cubinoct/cubinoct_n21.json) | 4.470616060091 | 1 → 2 of 21 | 1 → 1 | yes |
 | [cubinoct_n23](cubinoct/cubinoct_n23.json) | 4.6213214627727 | 14 → 17 of 23 | 1 → 1 | yes |
 | [cubinoct_n30](cubinoct/cubinoct_n30.json) | 4.9142147694542 | 21 → 21 of 30 | 1 → 1 | yes |
@@ -834,8 +838,8 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [cubinoct_n58](cubinoct/cubinoct_n58.json) | 5.9142150694542 | 32 → 32 of 58 | 1 → 1 | yes |
 | [cubinoct_n59](cubinoct/cubinoct_n59.json) | 5.9142150694542 | 33 → 33 of 59 | 1 → 1 | yes |
 | [cubinoct_n60](cubinoct/cubinoct_n60.json) | 6.0354561755433 | 1 → 4 of 60 | 1 → 1 | yes |
-| [cubinoct_n61](cubinoct/cubinoct_n61.json) | 6.1198039387095 | 0 → 10 of 61 | 1 → 1 | yes |
-| [cubinoct_n62](cubinoct/cubinoct_n62.json) | 6.1213218876975 | 0 → 6 of 62 | 1 → 1 | yes |
+| [cubinoct_n61](cubinoct/cubinoct_n61.json) | 6.107508277405 | 0 → 3 of 61 | 1 → 1 | yes |
+| [cubinoct_n62](cubinoct/cubinoct_n62.json) | 6.1075082775437 | 0 → 3 of 62 | 1 → 1 | yes |
 | [cubinoct_n63](cubinoct/cubinoct_n63.json) | 6.1213219127727 | 45 → 45 of 63 | 1 → 1 | yes |
 | [cubinoct_n64](cubinoct/cubinoct_n64.json) | 6.1213219127727 | 46 → 46 of 64 | 1 → 1 | yes |
 | [cubinoct_n65](cubinoct/cubinoct_n65.json) | 6.1213219127727 | 46 → 46 of 65 | 1 → 1 | yes |
@@ -846,8 +850,10 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [cubinoct_n70](cubinoct/cubinoct_n70.json) | 6.1814866346178 | 0 → 2 of 70 | 1 → 1 | yes |
 | [cubinoct_n72](cubinoct/cubinoct_n72.json) | 6.2232042665066 | 1 → 3 of 72 | 1 → 1 | yes |
 | [cubinoct_n73](cubinoct/cubinoct_n73.json) | 6.2253014717606 | 0 → 3 of 73 | 1 → 1 | yes |
-| [cubinoct_n76](cubinoct/cubinoct_n76.json) | 6.2736234512417 | 1 → 3 of 76 | 1 → 1 | yes |
+| [cubinoct_n76](cubinoct/cubinoct_n76.json) | 6.272864446585 | 0 → 3 of 76 | 1 → 1 | yes |
 | [cubinoct_n77](cubinoct/cubinoct_n77.json) | 6.2861264970714 | 3 → 5 of 77 | 1 → 1 | yes |
+| [cubinoct_n80](cubinoct/cubinoct_n80.json) | 6.3520120619768 | 0 → 1 of 80 | 1 → 1 | yes |
+| [cubinoct_n83](cubinoct/cubinoct_n83.json) | 6.4121849716818 | 0 → 1 of 83 | 1 → 1 | yes |
 | [cubinoct_n89](cubinoct/cubinoct_n89.json) | 6.7611967936996 | 0 → 1 of 89 | 1 → 1 | yes |
 | [cubinoct_n90](cubinoct/cubinoct_n90.json) | 6.7939148383183 | 1 → 3 of 90 | 1 → 1 | yes |
 | [cubinoct_n91](cubinoct/cubinoct_n91.json) | 6.794275606937 | 0 → 2 of 91 | 1 → 1 | yes |
@@ -865,7 +871,6 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [cubintet_n15](cubintet/cubintet_n15.json) | 6.534147663445 | 0 → 3 of 15 | 1 → 1 | yes |
 | [cubintet_n16](cubintet/cubintet_n16.json) | 6.6805653345727 | 1 → 4 of 16 | 1 → 1 | yes |
 | [cubintet_n17](cubintet/cubintet_n17.json) | 6.7355444823056 | 0 → 4 of 17 | 1 → 1 | yes |
-| [cubintet_n18](cubintet/cubintet_n18.json) | 6.7440450958302 | 0 → 1 of 18 | 1 → 1 | yes |
 | [cubintet_n21](cubintet/cubintet_n21.json) | 7.2613519148494 | 0 → 1 of 21 | 1 → 1 | yes |
 | [cubintet_n22](cubintet/cubintet_n22.json) | 7.3794473623728 | 1 → 3 of 22 | 1 → 1 | yes |
 | [cubintet_n23](cubintet/cubintet_n23.json) | 7.5341477800141 | 0 → 4 of 23 | 1 → 1 | yes |
@@ -1057,17 +1062,18 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [dodindod_n75](dodindod/dodindod_n75.json) | 5.0000012898056 | 15 → 27 of 75 | 1 → 1 | yes |
 | [dodindod_n76](dodindod/dodindod_n76.json) | 5.0228568551469 | 14 → 19 of 76 | 1 → 1 | yes |
 | [dodindod_n77](dodindod/dodindod_n77.json) | 5.1708217343018 | 2 → 19 of 77 | 1 → 1 | yes |
+| [dodindod_n78](dodindod/dodindod_n78.json) | 5.1789246624649 | 0 → 1 of 78 | 1 → 1 | yes |
 | [dodindod_n87](dodindod/dodindod_n87.json) | 5.3807966083477 | 0 → 10 of 87 | 1 → 1 | yes |
 | [dodindod_n88](dodindod/dodindod_n88.json) | 5.3814187877587 | 0 → 8 of 88 | 1 → 1 | yes |
 | [dodindod_n89](dodindod/dodindod_n89.json) | 5.4014930343439 | 5 → 7 of 89 | 1 → 1 | yes |
-| [dodindod_n93](dodindod/dodindod_n93.json) | 5.4795841729982 | 3 → 3 of 93 | 1 → 1 | yes |
-| [dodindod_n94](dodindod/dodindod_n94.json) | 5.5488222360554 | 0 → 1 of 94 | 1 → 1 | yes |
-| [dodindod_n95](dodindod/dodindod_n95.json) | 5.567960595797 | 0 → 1 of 95 | 1 → 1 | yes |
-| [dodindod_n96](dodindod/dodindod_n96.json) | 5.5688576011497 | 0 → 1 of 96 | 1 → 1 | yes |
-| [dodindod_n97](dodindod/dodindod_n97.json) | 5.5798426768987 | 0 → 2 of 97 | 1 → 1 | yes |
+| [dodindod_n93](dodindod/dodindod_n93.json) | 5.4781747319682 | 3 → 4 of 93 | 1 → 1 | yes |
+| [dodindod_n94](dodindod/dodindod_n94.json) | 5.5475394527449 | 0 → 1 of 94 | 1 → 1 | yes |
+| [dodindod_n95](dodindod/dodindod_n95.json) | 5.5673678044024 | 0 → 1 of 95 | 1 → 1 | yes |
+| [dodindod_n96](dodindod/dodindod_n96.json) | 5.568289365134 | 0 → 1 of 96 | 1 → 1 | yes |
+| [dodindod_n97](dodindod/dodindod_n97.json) | 5.5786073719485 | 0 → 2 of 97 | 1 → 1 | yes |
 | [dodindod_n98](dodindod/dodindod_n98.json) | 5.5848756140866 | 0 → 2 of 98 | 1 → 1 | yes |
-| [dodindod_n99](dodindod/dodindod_n99.json) | 5.6180185774867 | 9 → 15 of 99 | 1 → 1 | yes |
-| [dodinico_n100](dodinico/dodinico_n100.json) | 8.3599277629683 | 0 → 6 of 100 | 1 → 1 | yes |
+| [dodindod_n99](dodindod/dodindod_n99.json) | 5.6053950255826 | 10 → 22 of 99 | 1 → 1 | yes |
+| [dodinico_n100](dodinico/dodinico_n100.json) | 8.3553837635818 | 0 → 5 of 100 | 1 → 1 | yes |
 | [dodinico_n14](dodinico/dodinico_n14.json) | 4.5969484612668 | 0 → 1 of 14 | 1 → 1 | yes |
 | [dodinico_n15](dodinico/dodinico_n15.json) | 4.674811474882 | 0 → 1 of 15 | 1 → 1 | yes |
 | [dodinico_n16](dodinico/dodinico_n16.json) | 4.7924542582544 | 0 → 2 of 16 | 1 → 1 | yes |
@@ -1094,24 +1100,25 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [dodinico_n82](dodinico/dodinico_n82.json) | 7.9776557856343 | 0 → 1 of 82 | 1 → 1 | yes |
 | [dodinico_n89](dodinico/dodinico_n89.json) | 8.1507280488392 | 0 → 1 of 89 | 1 → 1 | yes |
 | [dodinico_n94](dodinico/dodinico_n94.json) | 8.3121653260252 | 0 → 1 of 94 | 1 → 1 | yes |
-| [dodinico_n97](dodinico/dodinico_n97.json) | 8.3599277540033 | 0 → 7 of 97 | 1 → 1 | yes |
-| [dodinico_n98](dodinico/dodinico_n98.json) | 8.3599277568043 | 0 → 6 of 98 | 1 → 1 | yes |
-| [dodinico_n99](dodinico/dodinico_n99.json) | 8.3599277616784 | 0 → 6 of 99 | 1 → 1 | yes |
+| [dodinico_n97](dodinico/dodinico_n97.json) | 8.3362558164122 | 0 → 4 of 97 | 1 → 1 | yes |
+| [dodinico_n98](dodinico/dodinico_n98.json) | 8.3479853489844 | 0 → 4 of 98 | 1 → 1 | yes |
+| [dodinico_n99](dodinico/dodinico_n99.json) | 8.3553837635818 | 0 → 6 of 99 | 1 → 1 | yes |
 | [dodinoct_n100](dodinoct/dodinoct_n100.json) | 14.227670398077 | 0 → 2 of 100 | 1 → 1 | yes |
 | [dodinoct_n16](dodinoct/dodinoct_n16.json) | 7.9965488297019 | 0 → 1 of 16 | 1 → 1 | yes |
 | [dodinoct_n20](dodinoct/dodinoct_n20.json) | 8.6562142097137 | 0 → 1 of 20 | 1 → 1 | yes |
 | [dodinoct_n21](dodinoct/dodinoct_n21.json) | 8.8592521733323 | 0 → 1 of 21 | 1 → 1 | yes |
 | [dodinoct_n22](dodinoct/dodinoct_n22.json) | 8.9797718748232 | 0 → 1 of 22 | 1 → 1 | yes |
 | [dodinoct_n26](dodinoct/dodinoct_n26.json) | 9.5087060320163 | 1 → 2 of 26 | 1 → 1 | yes |
+| [dodinoct_n31](dodinoct/dodinoct_n31.json) | 10.1185284819591 | 0 → 1 of 31 | 1 → 1 | yes |
+| [dodinoct_n32](dodinoct/dodinoct_n32.json) | 10.1185284939867 | 0 → 1 of 32 | 1 → 1 | yes |
 | [dodinoct_n49](dodinoct/dodinoct_n49.json) | 11.4556728719709 | 0 → 1 of 49 | 1 → 1 | yes |
 | [dodinoct_n59](dodinoct/dodinoct_n59.json) | 12.2118877638984 | 0 → 1 of 59 | 1 → 1 | yes |
 | [dodinoct_n65](dodinoct/dodinoct_n65.json) | 12.516911681591 | 0 → 1 of 65 | 1 → 1 | yes |
 | [dodinoct_n88](dodinoct/dodinoct_n88.json) | 13.6976938776622 | 0 → 1 of 88 | 1 → 1 | yes |
 | [dodinoct_n89](dodinoct/dodinoct_n89.json) | 13.6990894001434 | 0 → 1 of 89 | 1 → 1 | yes |
 | [dodinoct_n90](dodinoct/dodinoct_n90.json) | 13.7339222300032 | 0 → 1 of 90 | 1 → 1 | yes |
-| [dodinoct_n94](dodinoct/dodinoct_n94.json) | 13.9877276028209 | 0 → 1 of 94 | 1 → 1 | yes |
-| [dodinoct_n98](dodinoct/dodinoct_n98.json) | 14.2193457281208 | 0 → 2 of 98 | 1 → 1 | yes |
-| [dodinoct_n99](dodinoct/dodinoct_n99.json) | 14.2193457281208 | 0 → 2 of 99 | 1 → 1 | yes |
+| [dodinoct_n98](dodinoct/dodinoct_n98.json) | 14.2168869849303 | 0 → 1 of 98 | 1 → 1 | yes |
+| [dodinoct_n99](dodinoct/dodinoct_n99.json) | 14.2168869849303 | 0 → 1 of 99 | 1 → 1 | yes |
 | [dodintet_n05](dodintet/dodintet_n05.json) | 9.8586193212528 | 0 → 1 of 5 | 1 → 1 | yes |
 | [dodintet_n100](dodintet/dodintet_n100.json) | 22.8385694341464 | 0 → 1 of 100 | 1 → 1 | yes |
 | [dodintet_n11](dodintet/dodintet_n11.json) | 12.1109006939139 | 0 → 1 of 11 | 1 → 1 | yes |
@@ -1230,9 +1237,7 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [icoincub_n19](icoincub/icoincub_n19.json) | 4.3920294014268 | 2 → 3 of 19 | 1 → 1 | yes |
 | [icoincub_n24](icoincub/icoincub_n24.json) | 4.6680170836887 | 0 → 1 of 24 | 1 → 1 | yes |
 | [icoincub_n28](icoincub/icoincub_n28.json) | 4.9171758409955 | 0 → 1 of 28 | 1 → 1 | yes |
-| [icoincub_n29](icoincub/icoincub_n29.json) | 4.9481485565424 | 1 → 2 of 29 | 1 → 1 | yes |
-| [icoincub_n92](icoincub/icoincub_n92.json) | 7.1089730414498 | 0 → 1 of 92 | 1 → 1 | yes |
-| [icoincub_n98](icoincub/icoincub_n98.json) | 7.2769999939377 | 0 → 1 of 98 | 1 → 1 | yes |
+| [icoincub_n98](icoincub/icoincub_n98.json) | 7.273729947402 | 0 → 1 of 98 | 1 → 1 | yes |
 | [icoindod_n15](icoindod/icoindod_n15.json) | 2.0000001715822 | 15 → 15 of 15 | 6 → 24 | yes |
 | [icoindod_n17](icoindod/icoindod_n17.json) | 2.090857531597 | 0 → 1 of 17 | 1 → 1 | yes |
 | [icoindod_n18](icoindod/icoindod_n18.json) | 2.1621585959791 | 0 → 1 of 18 | 1 → 1 | yes |
@@ -1246,10 +1251,12 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [icoindod_n69](icoindod/icoindod_n69.json) | 3.3232754595792 | 0 → 1 of 69 | 1 → 1 | yes |
 | [icoindod_n74](icoindod/icoindod_n74.json) | 3.4267640705973 | 0 → 1 of 74 | 1 → 1 | yes |
 | [icoindod_n75](icoindod/icoindod_n75.json) | 3.432118097748 | 0 → 1 of 75 | 1 → 1 | yes |
+| [icoindod_n77](icoindod/icoindod_n77.json) | 3.463931993328 | 0 → 1 of 77 | 1 → 1 | yes |
 | [icoindod_n81](icoindod/icoindod_n81.json) | 3.487899216186 | 0 → 1 of 81 | 1 → 1 | yes |
 | [icoindod_n82](icoindod/icoindod_n82.json) | 3.5000877753098 | 0 → 2 of 82 | 1 → 1 | yes |
 | [icoindod_n83](icoindod/icoindod_n83.json) | 3.5025761558062 | 0 → 1 of 83 | 1 → 1 | yes |
 | [icoindod_n94](icoindod/icoindod_n94.json) | 3.6387577325779 | 0 → 1 of 94 | 1 → 1 | yes |
+| [icoindod_n96](icoindod/icoindod_n96.json) | 3.6617996407671 | 0 → 1 of 96 | 1 → 1 | yes |
 | [icoinico_n03](icoinico/icoinico_n03.json) | 2.0000001984754 | 3 → 3 of 3 | 2 → 6 | yes |
 | [icoinico_n15](icoinico/icoinico_n15.json) | 3.0483212014219 | 0 → 1 of 15 | 1 → 1 | yes |
 | [icoinico_n16](icoinico/icoinico_n16.json) | 3.121305388046 | 0 → 1 of 16 | 1 → 1 | yes |
@@ -1268,7 +1275,7 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [icoinico_n53](icoinico/icoinico_n53.json) | 4.451842017929 | 4 → 6 of 53 | 1 → 1 | yes |
 | [icoinico_n54](icoinico/icoinico_n54.json) | 4.4665110108651 | 5 → 6 of 54 | 1 → 1 | yes |
 | [icoinico_n55](icoinico/icoinico_n55.json) | 4.4757071188427 | 2 → 3 of 55 | 1 → 1 | yes |
-| [icoinico_n56](icoinico/icoinico_n56.json) | 4.5208737137615 | 3 → 6 of 56 | 1 → 1 | yes |
+| [icoinico_n56](icoinico/icoinico_n56.json) | 4.5203604330824 | 4 → 5 of 56 | 1 → 1 | yes |
 | [icoinico_n57](icoinico/icoinico_n57.json) | 4.5949002626308 | 1 → 3 of 57 | 1 → 1 | yes |
 | [icoinico_n58](icoinico/icoinico_n58.json) | 4.6174822087329 | 2 → 3 of 58 | 1 → 1 | yes |
 | [icoinico_n64](icoinico/icoinico_n64.json) | 4.839352104167 | 0 → 1 of 64 | 1 → 1 | yes |
@@ -1320,6 +1327,7 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [icointet_n07](icointet/icointet_n07.json) | 7.0006578938009 | 2 → 4 of 7 | 1 → 1 | yes |
 | [icointet_n11](icointet/icointet_n11.json) | 7.8265561616295 | 5 → 8 of 11 | 1 → 1 | yes |
 | [icointet_n12](icointet/icointet_n12.json) | 7.9890593915644 | 5 → 6 of 12 | 1 → 1 | yes |
+| [icointet_n18](icointet/icointet_n18.json) | 8.6688354401094 | 3 → 4 of 18 | 1 → 1 | yes |
 | [icointet_n21](icointet/icointet_n21.json) | 9.3035306532628 | 4 → 6 of 21 | 1 → 1 | yes |
 | [icointet_n22](icointet/icointet_n22.json) | 9.570643821564 | 3 → 4 of 22 | 1 → 1 | yes |
 | [icointet_n23](icointet/icointet_n23.json) | 9.6154775802491 | 3 → 4 of 23 | 1 → 1 | yes |
@@ -1343,7 +1351,6 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [icointet_n78](icointet/icointet_n78.json) | 13.5800962235557 | 0 → 1 of 78 | 1 → 1 | yes |
 | [icointet_n85](icointet/icointet_n85.json) | 14.101435461757 | 2 → 3 of 85 | 1 → 1 | yes |
 | [icointet_n86](icointet/icointet_n86.json) | 14.207806609574 | 3 → 5 of 86 | 1 → 1 | yes |
-| [icointet_n92](icointet/icointet_n92.json) | 14.8076152399406 | 3 → 4 of 92 | 1 → 1 | yes |
 | [icointet_n95](icointet/icointet_n95.json) | 15.0805205461656 | 1 → 5 of 95 | 1 → 1 | yes |
 | [icointet_n96](icointet/icointet_n96.json) | 15.0850750798879 | 2 → 6 of 96 | 1 → 1 | yes |
 | [icointet_n97](icointet/icointet_n97.json) | 15.205096000534 | 3 → 7 of 97 | 1 → 1 | yes |
@@ -1508,9 +1515,8 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [octincub_n40](octincub/octincub_n40.json) | 3.2451838396462 | 0 → 1 of 40 | 1 → 1 | yes |
 | [octincub_n67](octincub/octincub_n67.json) | 3.7692777827201 | 1 → 2 of 67 | 1 → 1 | yes |
 | [octincub_n69](octincub/octincub_n69.json) | 3.7711207973141 | 1 → 2 of 69 | 1 → 1 | yes |
-| [octincub_n75](octincub/octincub_n75.json) | 3.873099317269 | 1 → 2 of 75 | 1 → 1 | yes |
-| [octincub_n76](octincub/octincub_n76.json) | 3.8751771104735 | 2 → 3 of 76 | 1 → 1 | yes |
-| [octincub_n82](octincub/octincub_n82.json) | 4.0390403655214 | 0 → 1 of 82 | 1 → 1 | yes |
+| [octincub_n75](octincub/octincub_n75.json) | 3.8728922272031 | 0 → 2 of 75 | 1 → 1 | yes |
+| [octincub_n76](octincub/octincub_n76.json) | 3.8728922477414 | 0 → 1 of 76 | 1 → 1 | yes |
 | [octincub_n85](octincub/octincub_n85.json) | 4.0824840844346 | 0 → 3 of 85 | 1 → 1 | yes |
 | [octincub_n86](octincub/octincub_n86.json) | 4.0824840844346 | 0 → 2 of 86 | 1 → 1 | yes |
 | [octincub_n87](octincub/octincub_n87.json) | 4.0824840844346 | 0 → 1 of 87 | 1 → 1 | yes |
@@ -1522,11 +1528,11 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [octincub_n96](octincub/octincub_n96.json) | 4.1141715214091 | 0 → 1 of 96 | 1 → 1 | yes |
 | [octincub_n97](octincub/octincub_n97.json) | 4.1150962213731 | 0 → 3 of 97 | 1 → 1 | yes |
 | [octindod_n15](octindod/octindod_n15.json) | 1.1736131424109 | 2 → 3 of 15 | 1 → 6 | yes |
-| [octindod_n18](octindod/octindod_n18.json) | 1.2588814728059 | 0 → 1 of 18 | 1 → 1 | yes |
 | [octindod_n19](octindod/octindod_n19.json) | 1.2709804329131 | 0 → 1 of 19 | 1 → 1 | yes |
 | [octindod_n20](octindod/octindod_n20.json) | 1.2785922888757 | 0 → 1 of 20 | 1 → 1 | yes |
 | [octindod_n21](octindod/octindod_n21.json) | 1.2794116861938 | 20 → 21 of 21 | 1 → 6 | yes |
 | [octindod_n59](octindod/octindod_n59.json) | 1.8659812576428 | 0 → 1 of 59 | 1 → 1 | yes |
+| [octindod_n69](octindod/octindod_n69.json) | 1.9656848950772 | 0 → 1 of 69 | 1 → 1 | yes |
 | [octindod_n71](octindod/octindod_n71.json) | 1.9901105297251 | 0 → 1 of 71 | 1 → 1 | yes |
 | [octinico_n03](octinico/octinico_n03.json) | 1.2939728123137 | 1 → 2 of 3 | 1 → 1 | yes |
 | [octinico_n14](octinico/octinico_n14.json) | 1.7996784331706 | 0 → 1 of 14 | 1 → 1 | yes |
@@ -1535,6 +1541,8 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [octinico_n19](octinico/octinico_n19.json) | 2.0130355910526 | 0 → 1 of 19 | 1 → 1 | yes |
 | [octinico_n20](octinico/octinico_n20.json) | 2.0529037828807 | 0 → 1 of 20 | 1 → 1 | yes |
 | [octinico_n65](octinico/octinico_n65.json) | 2.977543379339 | 0 → 1 of 65 | 1 → 1 | yes |
+| [octinico_n89](octinico/octinico_n89.json) | 3.2817227000903 | 0 → 1 of 89 | 1 → 1 | yes |
+| [octinico_n90](octinico/octinico_n90.json) | 3.2852062116914 | 0 → 1 of 90 | 1 → 1 | yes |
 | [octinoct_n100](octinoct/octinoct_n100.json) | 5.3333348783656 | 24 → 28 of 100 | 1 → 1 | yes |
 | [octinoct_n14](octinoct/octinoct_n14.json) | 2.9431178819507 | 3 → 4 of 14 | 1 → 2 | yes |
 | [octinoct_n20](octinoct/octinoct_n20.json) | 3.1665370473529 | 1 → 6 of 20 | 1 → 1 | yes |
@@ -1587,7 +1595,6 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [octintet_n28](octintet/octintet_n28.json) | 5.750001614898 | 25 → 25 of 28 | 1 → 3 | yes |
 | [octintet_n29](octintet/octintet_n29.json) | 5.8666683165648 | 21 → 23 of 29 | 1 → 1 | yes |
 | [octintet_n30](octintet/octintet_n30.json) | 5.9233804494195 | 12 → 13 of 30 | 1 → 1 | yes |
-| [octintet_n36](octintet/octintet_n36.json) | 6.0980146635279 | 14 → 15 of 36 | 1 → 1 | yes |
 | [octintet_n38](octintet/octintet_n38.json) | 6.3331606588677 | 13 → 15 of 38 | 1 → 1 | yes |
 | [octintet_n39](octintet/octintet_n39.json) | 6.3333334779134 | 11 → 13 of 39 | 1 → 1 | yes |
 | [octintet_n40](octintet/octintet_n40.json) | 6.3636381626253 | 21 → 22 of 40 | 1 → 1 | yes |
@@ -2904,15 +2911,14 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [tdointdo_n82](tdointdo/tdointdo_n82.json) | 5.2096021846983 | 1 → 2 of 82 | 1 → 1 | yes |
 | [tdointdo_n94](tdointdo/tdointdo_n94.json) | 5.4284523568312 | 0 → 1 of 94 | 1 → 1 | yes |
 | [tetincub_n10](tetincub/tetincub_n10.json) | 1.3673839032023 | 0 → 1 of 10 | 1 → 1 | yes |
-| [tetincub_n67](tetincub/tetincub_n67.json) | 2.5118855054011 | 0 → 1 of 67 | 1 → 1 | yes |
-| [tetincub_n68](tetincub/tetincub_n68.json) | 2.5118855054011 | 0 → 1 of 68 | 1 → 1 | yes |
+| [tetincub_n44](tetincub/tetincub_n44.json) | 2.1647810973995 | 0 → 1 of 44 | 1 → 1 | yes |
 | [tetincub_n84](tetincub/tetincub_n84.json) | 2.684480904894 | 0 → 1 of 84 | 1 → 1 | yes |
-| [tetindod_n33](tetindod/tetindod_n33.json) | 1.0336970728789 | 0 → 1 of 33 | 1 → 1 | yes |
-| [tetindod_n34](tetindod/tetindod_n34.json) | 1.0336970728789 | 0 → 1 of 34 | 1 → 1 | yes |
-| [tetindod_n90](tetindod/tetindod_n90.json) | 1.3806720065231 | 0 → 1 of 90 | 1 → 1 | yes |
+| [tetindod_n33](tetindod/tetindod_n33.json) | 1.0320345680884 | 0 → 1 of 33 | 1 → 1 | yes |
 | [tetinico_n09](tetinico/tetinico_n09.json) | 1.0327514477195 | 0 → 1 of 9 | 1 → 2 | yes |
+| [tetinico_n100](tetinico/tetinico_n100.json) | 2.0888888104912 | 0 → 1 of 100 | 1 → 1 | yes |
 | [tetinico_n51](tetinico/tetinico_n51.json) | 1.7317417949746 | 0 → 1 of 51 | 1 → 1 | yes |
 | [tetinico_n52](tetinico/tetinico_n52.json) | 1.7317417949746 | 0 → 1 of 52 | 1 → 1 | yes |
+| [tetinico_n99](tetinico/tetinico_n99.json) | 2.0888888086889 | 0 → 1 of 99 | 1 → 1 | yes |
 | [tetintet_n06](tetintet/tetintet_n06.json) | 2.2909952548622 | 2 → 4 of 6 | 1 → 1 | yes |
 | [tetintet_n07](tetintet/tetintet_n07.json) | 2.3819517201801 | 3 → 4 of 7 | 1 → 1 | yes |
 | [tetintet_n09](tetintet/tetintet_n09.json) | 2.6155637613174 | 4 → 4 of 9 | 1 → 1 | yes |
@@ -2925,7 +2931,6 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [tetintet_n20](tetintet/tetintet_n20.json) | 3.2432147815645 | 5 → 8 of 20 | 1 → 1 | yes |
 | [tetintet_n21](tetintet/tetintet_n21.json) | 3.2982721401368 | 8 → 8 of 21 | 1 → 1 | yes |
 | [tetintet_n34](tetintet/tetintet_n34.json) | 3.9275735823705 | 5 → 6 of 34 | 1 → 1 | yes |
-| [tetintet_n39](tetintet/tetintet_n39.json) | 4.0463043819657 | 9 → 9 of 39 | 1 → 1 | yes |
 | [tetintet_n40](tetintet/tetintet_n40.json) | 4.0550587183992 | 11 → 11 of 40 | 1 → 1 | yes |
 | [tetintet_n41](tetintet/tetintet_n41.json) | 4.0974290173479 | 11 → 12 of 41 | 1 → 1 | yes |
 | [tetintet_n42](tetintet/tetintet_n42.json) | 4.1219368829692 | 8 → 10 of 42 | 1 → 1 | yes |
@@ -2934,21 +2939,23 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [tetintet_n45](tetintet/tetintet_n45.json) | 4.2582233204036 | 8 → 9 of 45 | 1 → 1 | yes |
 | [tetintet_n46](tetintet/tetintet_n46.json) | 4.3106159846809 | 9 → 10 of 46 | 1 → 1 | yes |
 | [tetintet_n47](tetintet/tetintet_n47.json) | 4.327508062888 | 10 → 11 of 47 | 1 → 1 | yes |
-| [tetintet_n48](tetintet/tetintet_n48.json) | 4.3497994489817 | 7 → 9 of 48 | 1 → 1 | yes |
 | [tetintet_n49](tetintet/tetintet_n49.json) | 4.3941228317074 | 10 → 12 of 49 | 1 → 1 | yes |
-| [tetintet_n52](tetintet/tetintet_n52.json) | 4.5795370719116 | 9 → 11 of 52 | 1 → 1 | yes |
-| [tetintet_n54](tetintet/tetintet_n54.json) | 4.6002841822417 | 11 → 11 of 54 | 1 → 1 | yes |
+| [tetintet_n51](tetintet/tetintet_n51.json) | 4.543199431045 | 7 → 8 of 51 | 1 → 1 | yes |
+| [tetintet_n52](tetintet/tetintet_n52.json) | 4.543199431045 | 7 → 8 of 52 | 1 → 1 | yes |
+| [tetintet_n53](tetintet/tetintet_n53.json) | 4.543199431045 | 8 → 9 of 53 | 1 → 1 | yes |
+| [tetintet_n54](tetintet/tetintet_n54.json) | 4.598724497204 | 11 → 11 of 54 | 1 → 1 | yes |
 | [tetintet_n55](tetintet/tetintet_n55.json) | 4.6073807936834 | 12 → 13 of 55 | 1 → 1 | yes |
 | [tetintet_n56](tetintet/tetintet_n56.json) | 4.6283925665656 | 8 → 9 of 56 | 1 → 1 | yes |
 | [tetintet_n66](tetintet/tetintet_n66.json) | 4.8650175456334 | 12 → 14 of 66 | 1 → 1 | yes |
 | [tetintet_n67](tetintet/tetintet_n67.json) | 4.9341515435552 | 9 → 10 of 67 | 1 → 1 | yes |
 | [tetintet_n68](tetintet/tetintet_n68.json) | 4.9547468351774 | 10 → 10 of 68 | 1 → 1 | yes |
-| [tetintet_n69](tetintet/tetintet_n69.json) | 4.9848743089912 | 10 → 11 of 69 | 1 → 1 | yes |
-| [tetintet_n70](tetintet/tetintet_n70.json) | 4.988518158228 | 11 → 12 of 70 | 1 → 1 | yes |
-| [tetintet_n71](tetintet/tetintet_n71.json) | 5.0814821701682 | 7 → 8 of 71 | 1 → 1 | yes |
-| [tetintet_n72](tetintet/tetintet_n72.json) | 5.0814821701682 | 7 → 8 of 72 | 1 → 1 | yes |
+| [tetintet_n69](tetintet/tetintet_n69.json) | 4.9816568442694 | 10 → 11 of 69 | 1 → 1 | yes |
+| [tetintet_n70](tetintet/tetintet_n70.json) | 4.9816568442694 | 11 → 12 of 70 | 1 → 1 | yes |
+| [tetintet_n71](tetintet/tetintet_n71.json) | 5.0776759303467 | 6 → 7 of 71 | 1 → 1 | yes |
+| [tetintet_n72](tetintet/tetintet_n72.json) | 5.0776759303467 | 7 → 8 of 72 | 1 → 1 | yes |
 | [tetintet_n73](tetintet/tetintet_n73.json) | 5.109863891544 | 8 → 9 of 73 | 1 → 1 | yes |
 | [tetintet_n86](tetintet/tetintet_n86.json) | 5.40581710691 | 13 → 14 of 86 | 1 → 1 | yes |
+| [tetintet_n94](tetintet/tetintet_n94.json) | 5.6037777381962 | 7 → 8 of 94 | 1 → 1 | yes |
 | [ticintic_n05](ticintic/ticintic_n05.json) | 2.3416439906077 | 0 → 1 of 5 | 1 → 1 | yes |
 | [ticintic_n06](ticintic/ticintic_n06.json) | 2.3416624016727 | 2 → 4 of 6 | 1 → 1 | yes |
 | [ticintic_n14](ticintic/ticintic_n14.json) | 3.0624827975193 | 0 → 1 of 14 | 1 → 1 | yes |

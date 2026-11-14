@@ -51,8 +51,8 @@ from PR #2; the frozen inputs are commit `e15b496ae7`).
 
 ## More symmetric packings in the same container
 
-[docs/SYMMETRY.md](docs/SYMMETRY.md): 2,917 packings in which pieces were moved onto symmetric placements (nested in a
-corner, centred on a face or an edge, or on a mirror plane) without enlarging the container: 586 Platonic, 1,993
+[docs/SYMMETRY.md](docs/SYMMETRY.md): 2,924 packings in which pieces were moved onto symmetric placements (nested in a
+corner, centred on a face or an edge, or on a mirror plane) without enlarging the container: 593 Platonic, 1,993
 prism, Archimedean and Catalan, and 338 in 4D–6D. Each one is certified exactly. They are kept in
 [records/symmetric/](records/symmetric/README.md), and the records themselves are unchanged.
 
