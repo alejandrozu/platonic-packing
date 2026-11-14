@@ -1,0 +1,232 @@
+{
+ "problem": "min/icosidodecahedron_in_icosidodecahedron",
+ "piece": "icosidodecahedron",
+ "container": "icosidodecahedron",
+ "n": 15,
+ "s": 3.0409,
+ "s_plus": "3.04090+",
+ "s_full": 3.040906577493,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020277123323e-07,
+  "min_wall_gap": 1.0000013173083744e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   -0.8901832011796523,
+   1.6355047128557618,
+   -2.4766368128968055,
+   0.4450806196397375,
+   -0.7160583236306429,
+   0.34430155846736105,
+   0.4130619275814792
+  ],
+  [
+   -2.998309652243124,
+   0.07664529668343088,
+   -1.174476236578764,
+   0.10153928087811938,
+   0.6044943895880773,
+   -0.30018008882045055,
+   -0.7308681287831881
+  ],
+  [
+   1.1652601112242278,
+   -2.9543660764430273,
+   0.13944345368378525,
+   0.8702058168763596,
+   0.2641693788204047,
+   -0.2731723030620888,
+   -0.31358135851473
+  ],
+  [
+   -2.5694437336032006,
+   0.8851944917654592,
+   1.5375186732584847,
+   0.01663184991534281,
+   0.12868612065018653,
+   0.872449277005349,
+   0.4711640085715834
+  ],
+  [
+   1.0224264557408889,
+   -1.3923099013160802,
+   2.5114943621260126,
+   0.666959433818975,
+   0.7331035168387663,
+   0.13313130576274473,
+   0.0006345584383011197
+  ],
+  [
+   -0.019861704185056134,
+   -1.0298928699125898,
+   -3.0157141141540564,
+   0.2774633667052811,
+   0.21242440189198303,
+   0.08112982380198777,
+   0.9334387528420183
+  ],
+  [
+   1.6003723152912603,
+   2.467702819221515,
+   1.0618902906443364,
+   0.9181047032995806,
+   0.3218077385689455,
+   -0.12158064067717872,
+   -0.19682906540665454
+  ],
+  [
+   -0.14242218791175132,
+   1.2202921665303177,
+   2.9481598212062914,
+   0.9267239587513068,
+   -0.11586570540729073,
+   -0.19907266327749013,
+   0.2968634657925834
+  ],
+  [
+   2.4709794389810447,
+   -1.0449285161991368,
+   -1.5906987131126173,
+   0.543128760714012,
+   -0.489616096308356,
+   0.21281126918890114,
+   -0.6480729829480915
+  ],
+  [
+   1.8703235277091732,
+   1.7533472140661548,
+   -1.7050075227694625,
+   0.6379461400529413,
+   -0.5662099373995102,
+   -0.5145531276290591,
+   0.08755631347166842
+  ],
+  [
+   -1.4648708862167104,
+   -2.5405313828059293,
+   -0.9454820040120436,
+   0.9398172514587693,
+   -0.14000238421327152,
+   -0.28797591348030965,
+   0.1192171947760269
+  ],
+  [
+   -1.0665787523247745,
+   2.98327662770924,
+   0.08772639846973848,
+   0.2539171074069503,
+   -0.2660142512694068,
+   -0.9097272939284652,
+   0.1927661053433826
+  ],
+  [
+   3.0336282334825655,
+   -0.009183503773143139,
+   0.9719767857888068,
+   0.4677082506485248,
+   0.6573551478114167,
+   0.1851431678571784,
+   0.5611196033974716
+  ],
+  [
+   -1.6860843018035157,
+   -1.8732646997054854,
+   1.8900570494247557,
+   0.6670952365043876,
+   -0.49768059792972463,
+   0.5231122878639399,
+   0.18344345767353357
+  ],
+  [
+   -0.05653437704754122,
+   -0.056534377047541204,
+   -0.056534377047541204,
+   0.11026408970826798,
+   -0.7557613140761709,
+   -6.426930887131273e-17,
+   -0.6454972243679027
+  ]
+ ],
+ "record_id": "idoinido_n15",
+ "title": "15 icosidodecahedra in a icosidodecahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "271cb53468886f40",
+  "clear": 1e-07,
+  "cap": 3.1183082382965
+ },
+ "s_tight": 3.040906429002,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.46621207433047,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "hop",
+  "seed": 511430826,
+  "var": "gentle",
+  "minDiff": 0.06232946957176014,
+  "expand": 0.008916614372388176,
+  "rh": 0.18592449117678242,
+  "focus": 3,
+  "from": "best",
+  "raw": 3.0422774697443766,
+  "host": "laptop"
+ },
+ "density": 0.5334356358378093,
+ "symmetrized": {
+  "from": "records/idoinido/idoinido_n15.json",
+  "from_source_hash": "271cb53468886f40",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 0,
+   "stabilizer_sum": 0,
+   "stabilizers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 1,
+   "stabilizer_sum": 5,
+   "stabilizers": [
+    6,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

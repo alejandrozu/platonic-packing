@@ -1,0 +1,162 @@
+{
+ "problem": "min/prism6_l2_in_cube",
+ "piece": "prism6_l2",
+ "container": "cube",
+ "n": 9,
+ "s": 4.43782,
+ "s_plus": "4.43782+",
+ "s_full": 4.4378225451972,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020178591029e-07,
+  "min_wall_gap": 1.0000001804399972e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-14",
+ "pieces": [
+  [
+   1.2189111571284923,
+   -1.352885753344054,
+   1.2189111571284923,
+   1.755834996230913e-16,
+   -1.2666129236404328e-16,
+   -4.8911166642876164e-17,
+   -1.0
+  ],
+  [
+   1.2189111571284919,
+   1.3528857688141296,
+   1.2189111571284923,
+   0.5000000000000111,
+   2.328793598194121e-17,
+   -6.894503822075341e-17,
+   -0.8660254037844323
+  ],
+  [
+   -1.218911157128493,
+   1.35288576881412,
+   1.1802382031325092,
+   1.0,
+   -9.398891865068022e-17,
+   -4.3525849419558275e-17,
+   -2.2947661275779156e-14
+  ],
+  [
+   -1.218911157128492,
+   -1.3528857533440364,
+   1.180017145737125,
+   0.8660254037844318,
+   1.0947248933229327e-16,
+   6.285370538910786e-17,
+   0.5000000000000119
+  ],
+  [
+   1.1271156669754778,
+   1.1887876216826752,
+   -1.301598845467223,
+   0.6140696422912787,
+   -0.6119201898967266,
+   0.3587811723105293,
+   0.34604656624289376
+  ],
+  [
+   -1.1821209646539232,
+   1.0425476453251696,
+   -1.0425476453251696,
+   0.2752955453465775,
+   -0.6646222392366048,
+   -0.2658175541965895,
+   0.6417403444582513
+  ],
+  [
+   -1.0594515177200279,
+   -1.1636789533850747,
+   -1.1342385629174039,
+   0.18567679037925813,
+   0.19516370775747002,
+   0.6670688319005029,
+   -0.6945893968350744
+  ],
+  [
+   0.8417123575315475,
+   -1.0457903617384903,
+   -1.084414711805637,
+   0.6951316357915647,
+   -0.1546386434360889,
+   0.6760595965308779,
+   -0.18926785468350474
+  ],
+  [
+   3.563114144276545e-15,
+   7.735049364531606e-09,
+   1.0326229151718316,
+   0.8660254037844456,
+   -2.590940236294629e-15,
+   -4.44693496409428e-15,
+   -0.499999999999988
+  ]
+ ],
+ "record_id": "pr6l2incub_n09",
+ "title": "9 hexagonal prisms of height 2 in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "3c3dc0780a73881e",
+  "clear": 1e-07,
+  "cap": 4.6626071323214
+ },
+ "s_tight": 4.437822173509,
+ "closed_form_conjecture": "(21 - 7\u221a3)/2",
+ "volume_lower_bound": 3.6028108655280078,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "symfresh",
+  "seed": 656206562,
+  "var": "base",
+  "sym": "C4+1",
+  "raw": 4.522622007914653,
+  "host": "laptop"
+ },
+ "density": 0.535074919807767,
+ "symmetrized": {
+  "from": "records/pr6l2incub/pr6l2incub_n09.json",
+  "from_source_hash": "3c3dc0780a73881e",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 1,
+   "stabilizer_sum": 3,
+   "stabilizers": [
+    4,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 2,
+   "stabilizer_sum": 4,
+   "stabilizers": [
+    4,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

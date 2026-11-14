@@ -1,0 +1,260 @@
+{
+ "problem": "min/rhombicuboctahedron_in_rhombicuboctahedron",
+ "piece": "rhombicuboctahedron",
+ "container": "rhombicuboctahedron",
+ "n": 18,
+ "s": 3.24853,
+ "s_plus": "3.24853+",
+ "s_full": 3.2485327240685,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 4.835669359160022e-06,
+  "min_wall_gap": 1.000000353634789e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-15",
+ "pieces": [
+  [
+   -6.362237909515776e-18,
+   0.2723863080971839,
+   0.0,
+   1.0,
+   0.0,
+   0.0,
+   1.6207457031869402e-34
+  ],
+  [
+   -1.6171605266914848,
+   1.6656887613169162,
+   1.5242671218129389,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   1.605492392400902,
+   -1.467305968537977,
+   1.8899532792298472,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   2.294806903892607,
+   1.519414298350253,
+   -1.148530437925866,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -2.7099331367707467,
+   -0.8512053284283629,
+   0.8512053284283629,
+   1.0,
+   -6.700788708272329e-17,
+   -1.8617597495803287e-17,
+   -1.8617597495803287e-17
+  ],
+  [
+   -2.7142189989427106,
+   1.1242663206129364,
+   -0.7928948069786219,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -0.7275007350544865,
+   -2.548533242125875,
+   1.2899520774298434,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   1.119413497150322,
+   -2.714218998942782,
+   -0.27735409140813394,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.44627506386673665,
+   1.1242663206129364,
+   -2.7142189989427816,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.9763742498252824,
+   -1.2899520774298434,
+   -2.267307570937982,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -1.124266320612865,
+   -0.5585797625955269,
+   2.7142189989427816,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -0.708434320749035,
+   2.7142189989427816,
+   -0.8899512762298412,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   2.714218998942853,
+   -0.8948040996925272,
+   -0.5909319190127666,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.6071079972214578,
+   1.1242663206129364,
+   2.7142189989427816,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.9258835278335685,
+   2.7142189989427816,
+   0.8899512762298412,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   2.572797359438876,
+   0.9469124295048029,
+   1.2656879601169138,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -1.2948049008924578,
+   -2.5436804186631887,
+   -1.1242663206129364,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -1.4378441482174973,
+   -0.4058348683456156,
+   -2.4006411713381492,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ]
+ ],
+ "record_id": "rcoinrco_n18",
+ "title": "18 rhombicuboctahedra in a rhombicuboctahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "afff19ff445535a9",
+  "clear": 1e-07,
+  "cap": 3.2630527119517
+ },
+ "s_tight": 3.248532641226,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.6207413942088964,
+ "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/20)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "community",
+  "lineage": "PingYou Ltd",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/20",
+  "submitted_by": "BuddenPing",
+  "record_file": "records/community/rcoinrco/rcoinrco_n18_submission_20_1589230a63e5.json"
+ },
+ "density": 0.5250622159988064,
+ "symmetrized": {
+  "from": "records/rcoinrco/rcoinrco_n18.json",
+  "from_source_hash": "afff19ff445535a9",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 1,
+   "stabilizer_sum": 1,
+   "stabilizers": [
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 2,
+   "stabilizer_sum": 8,
+   "stabilizers": [
+    8,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

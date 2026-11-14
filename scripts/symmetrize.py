@@ -256,7 +256,9 @@ def write(r, geo, C, Rs, before, after, out, src_file):
 
 def summary():
     """records/symmetric/SUMMARY.csv and README.md from the symmetrized records and their checker outputs"""
-    import csv
+    import csv, engine
+    global FAMS
+    FAMS = {p: {'platonic': 'Platonic', 'prisms': 'prisms and antiprisms', 'archimedean': 'Archimedean', 'catalan': 'Catalan'}.get(engine.FAM[p], engine.FAM[p]) for p in engine.PID}
     base = os.path.join(ROOT, 'records', 'symmetric'); rows = []
     for fn in sorted(glob.glob(os.path.join(base, '*', '*_n[0-9]*.json'))):
         r = json.load(open(fn)); sm = r['symmetrized']; b, a = sm['before'], sm['after']
@@ -265,10 +267,13 @@ def summary():
             try: x = open(fn.replace('.json', ext)).read()
             except FileNotFoundError: return False
             return (('\n' + word) in ('\n' + x)) and ('NOT ' + word) not in x and ('IN' + word) not in x
-        rows.append(dict(record_id=r['record_id'], problem=os.path.basename(os.path.dirname(fn)), n=r['n'], s_full=r['s_full'],
+        prob = os.path.basename(os.path.dirname(fn))
+        fam = f"{r['dim']}D polytopes" if 'dim' in r else FAMS.get(prob, '?')
+        rows.append(dict(record_id=r.get('record_id', os.path.basename(fn)[:-5]), family=fam, problem=prob, n=r['n'], s_full=r['s_full'],
                          s_full_record=orig['s_full'], symmetric_pieces_before=b['symmetric_pieces'], symmetric_pieces_after=a['symmetric_pieces'],
                          packing_group_before=b['packing_group'], packing_group_after=a['packing_group'],
-                         verified=ok('.verify.txt', 'VALID'), certified=ok('.certify.txt', 'CERTIFIED'),
+                         verified=ok('.verify.txt', 'VALID') if 'dim' not in r else ok('.certify.txt', 'CERTIFIED'),
+                         certified=ok('.certify.txt', 'CERTIFIED'),
                          file=os.path.relpath(fn, base)))
     if not rows: return
     with open(os.path.join(base, 'SUMMARY.csv'), 'w', newline='') as f:
@@ -280,14 +285,22 @@ def summary():
              'placements of the container: nested in a corner, centred on a face or an edge, or on a mirror plane. A placement',
              'counts as symmetric when some symmetry of the container, other than the identity, maps the piece onto itself.',
              '`packing group` = the number of container symmetries that map the whole packing onto itself. Made by',
-             '[`scripts/symmetrize.py`](../../scripts/symmetrize.py), checked by `verify.py` and `certify_exact.py` like the records.',
+             '[`scripts/symmetrize.py`](../../scripts/symmetrize.py) (3D) and [`scripts/symmetrize_nd.py`](../../scripts/symmetrize_nd.py) (4D-6D),',
+             'checked like the records: `verify.py` and `certify_exact.py` (Platonic), `verify_general.py` and `certify_general.py`',
+             '(prisms, Archimedean, Catalan), `certify_nd.py` (4D-6D).',
              'See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).', '',
              f"{len(rows)} packings; {sum(x['certified'] for x in rows)} certified exactly; "
              f"{sum(x['symmetric_pieces_after'] - x['symmetric_pieces_before'] for x in rows)} more pieces on symmetric placements; "
              f"{sum(x['packing_group_after'] > x['packing_group_before'] for x in rows)} with a larger packing group.", '',
-             '| problem | packings | symmetric pieces (before → after) | larger packing group |', '|---|---|---|---|']
+             '| family | packings | certified | symmetric pieces (before → after) | larger packing group |', '|---|---|---|---|---|']
+    byf = {}
+    for x in rows: byf.setdefault(x['family'], []).append(x)
+    for fam, xs in byf.items():
+        lines.append(f"| {fam} | {len(xs)} | {sum(x['certified'] for x in xs)} | {sum(x['symmetric_pieces_before'] for x in xs)} → "
+                     f"{sum(x['symmetric_pieces_after'] for x in xs)} | {sum(x['packing_group_after'] > x['packing_group_before'] for x in xs)} |")
+    lines += ['', '| problem | family | packings | symmetric pieces (before → after) | larger packing group |', '|---|---|---|---|---|']
     for p, xs in sorted(by.items(), key=lambda kv: -sum(x['symmetric_pieces_after'] - x['symmetric_pieces_before'] for x in kv[1])):
-        lines.append(f"| {p} | {len(xs)} | {sum(x['symmetric_pieces_before'] for x in xs)} → {sum(x['symmetric_pieces_after'] for x in xs)} | "
+        lines.append(f"| {p} | {xs[0]['family']} | {len(xs)} | {sum(x['symmetric_pieces_before'] for x in xs)} → {sum(x['symmetric_pieces_after'] for x in xs)} | "
                      f"{', '.join(str(x['n']) + ' (' + str(x['packing_group_before']) + ' → ' + str(x['packing_group_after']) + ')' for x in xs if x['packing_group_after'] > x['packing_group_before']) or '–'} |")
     lines += ['', '| record | s_full (unchanged) | symmetric pieces | packing group | certified |', '|---|---|---|---|---|']
     for x in rows:

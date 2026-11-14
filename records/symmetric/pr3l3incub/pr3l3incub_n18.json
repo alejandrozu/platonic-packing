@@ -1,0 +1,261 @@
+{
+ "problem": "min/prism3_l3_in_cube",
+ "piece": "prism3_l3",
+ "container": "cube",
+ "n": 18,
+ "s": 3.37593,
+ "s_plus": "3.37593+",
+ "s_full": 3.3759311238808,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.7320508038931592e-07,
+  "min_wall_gap": 1.000000262596501e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-11-13",
+ "pieces": [
+  [
+   0.20040521184134794,
+   -0.1967823617829926,
+   0.0,
+   0.6634691696948609,
+   0.0,
+   0.0,
+   -0.7482036225950873
+  ],
+  [
+   0.2694663254595543,
+   0.37642274628843453,
+   0.0,
+   0.7482036225950873,
+   0.0,
+   0.0,
+   0.6634691696948609
+  ],
+  [
+   0.7642062918233993,
+   0.6879652358496707,
+   0.0,
+   0.6634691696948609,
+   0.0,
+   0.0,
+   -0.7482036225950873
+  ],
+  [
+   -0.8332674054416057,
+   -0.35262092289346153,
+   0.0,
+   0.6634691696948609,
+   0.0,
+   0.0,
+   -0.7482036225950874
+  ],
+  [
+   -0.7642062918233993,
+   0.22058418517796563,
+   0.0,
+   0.7482036225950874,
+   0.0,
+   0.0,
+   0.6634691696948609
+  ],
+  [
+   -0.29340775972442085,
+   0.5881752909541962,
+   0.0,
+   0.6634691696948609,
+   0.0,
+   0.0,
+   -0.7482036225950873
+  ],
+  [
+   -0.2561580314877865,
+   -1.0259934734832328,
+   0.0,
+   0.6757215714036195,
+   0.0,
+   0.0,
+   -0.7371569425433251
+  ],
+  [
+   -0.7388147272453357,
+   -1.3569795173596948,
+   0.18796546194037364,
+   0.7371569425433251,
+   3.4245705851284235e-18,
+   1.0124170240333807e-17,
+   0.6757215714036195
+  ],
+  [
+   0.7164805838699851,
+   -1.0622579471353324,
+   0.0,
+   0.6757215714036195,
+   0.0,
+   0.0,
+   -0.7371569425433251
+  ],
+  [
+   0.21689774967588546,
+   -1.356979517359695,
+   0.06188425446702002,
+   0.7371569425433251,
+   5.541848208047712e-18,
+   1.4870594039974656e-17,
+   0.6757215714036195
+  ],
+  [
+   1.3992903273455608,
+   1.1879653858496708,
+   0.18796546194037372,
+   0.8660254037844386,
+   1.7659036753315686e-17,
+   -7.073091596898124e-18,
+   0.5000000000000001
+  ],
+  [
+   0.17967633732629176,
+   1.3992903146523175,
+   0.0,
+   0.7071067811865475,
+   0.0,
+   0.0,
+   -0.7071067811865476
+  ],
+  [
+   1.2149097673792417,
+   -1.3569795173596948,
+   0.049466447617604575,
+   0.7371569425433251,
+   4.1487769100311636e-18,
+   -4.2451738874999973e-19,
+   0.6757215714036195
+  ],
+  [
+   -0.8203239626737082,
+   1.3992903146523177,
+   0.0,
+   0.7071067811865476,
+   0.0,
+   0.0,
+   -0.7071067811865475
+  ],
+  [
+   1.2260859201831567,
+   0.341554003006947,
+   0.0,
+   0.7482036225950873,
+   0.0,
+   0.0,
+   0.6634691696948609
+  ],
+  [
+   1.1570248065649502,
+   -0.23165110506448006,
+   0.0,
+   0.6634691696948609,
+   0.0,
+   0.0,
+   -0.7482036225950873
+  ],
+  [
+   -1.2260859201831567,
+   0.5669954180206893,
+   0.0,
+   0.6634691696948609,
+   0.0,
+   0.0,
+   -0.7482036225950874
+  ],
+  [
+   -1.3992903273455608,
+   -0.9722384305074818,
+   0.13727203862459825,
+   0.5000000000000001,
+   7.831695434736489e-18,
+   5.90203580198021e-18,
+   -0.8660254037844386
+  ]
+ ],
+ "record_id": "pr3l3incub_n18",
+ "title": "18 triangular prisms of height 3 in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "9d7da2a23ae857ea",
+  "clear": 1e-07,
+  "cap": 3.4055272775095
+ },
+ "s_tight": 3.375930923881,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.85955287899081,
+ "found_by": "konoha-ily2 (Hirotaka Nakano) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/130; refinement of the packing by Alejandro Zarzuelo)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "community",
+  "lineage": "konoha-ily2 (Hirotaka Nakano)",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/130",
+  "submitted_by": "konoha-ily2",
+  "record_file": "records/community/pr3l3incub/pr3l3incub_n18_submission_130_a721f1f1b29c.json",
+  "refines": "Alejandro Zarzuelo"
+ },
+ "density": 0.6077341811235404,
+ "symmetrized": {
+  "from": "records/pr3l3incub/pr3l3incub_n18.json",
+  "from_source_hash": "9d7da2a23ae857ea",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 0,
+   "stabilizer_sum": 0,
+   "stabilizers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 13,
+   "stabilizer_sum": 13,
+   "stabilizers": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

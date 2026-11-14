@@ -1,0 +1,140 @@
+{
+ "problem": "min/antiprism12_in_cube",
+ "piece": "antiprism12",
+ "container": "cube",
+ "n": 7,
+ "s": 4.69417,
+ "s_plus": "4.69417+",
+ "s_full": 4.6941702033037,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 2.5905601908071674e-07,
+  "min_wall_gap": 1.0000003847210337e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-11-13",
+ "pieces": [
+  [
+   -0.4317601626974055,
+   -1.9153249684824154,
+   0.43176060776671255,
+   0.6935199226610738,
+   -0.6935199226610738,
+   0.1379496896414715,
+   0.13794968964147147
+  ],
+  [
+   -0.4317601626974055,
+   -0.9649982565135325,
+   0.43176060776671266,
+   0.046246996189454145,
+   -0.046246996189454444,
+   0.7055928112895233,
+   0.7055928112895231
+  ],
+  [
+   1.9153249684824154,
+   -0.4317601626974056,
+   0.4317606077667128,
+   0.6695807158758446,
+   0.2272920256568436,
+   -0.669580715875845,
+   -0.2272920256568436
+  ],
+  [
+   -0.43176060376675296,
+   0.0,
+   0.43176060376675296,
+   0.6341847973991336,
+   -0.6341847973991338,
+   0.31274533209597233,
+   0.3127453320959719
+  ],
+  [
+   -0.4317601626974054,
+   -0.4317601626974055,
+   -1.9153245234131082,
+   0.06540312923014312,
+   7.105319976051378e-19,
+   -7.155581158414294e-18,
+   0.9978589232386036
+  ],
+  [
+   -0.4317601626974055,
+   1.0518046430876042,
+   0.43176060776671266,
+   0.39284747919355095,
+   0.39284747919355106,
+   -0.5879378012096794,
+   0.5879378012096795
+  ],
+  [
+   0.4245895982064159,
+   1.9153249684824154,
+   -0.4245891531371092,
+   0.6658062945119227,
+   0.6658062945119227,
+   -0.23812177176458016,
+   0.23812177176458016
+  ]
+ ],
+ "record_id": "ap12incub_n07",
+ "title": "7 antiprism12s in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "8cec278de48a2dda",
+  "clear": 1e-07,
+  "cap": 5.4992753014457
+ },
+ "s_tight": 4.694170003304,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 4.0910872820195845,
+ "found_by": "konoha-ily2 (Hirotaka Nakano) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/130; refinement of the packing by PingYou Ltd)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "community",
+  "lineage": "konoha-ily2 (Hirotaka Nakano)",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/130",
+  "submitted_by": "konoha-ily2",
+  "record_file": "records/community/ap12incub/ap12incub_n07_submission_130_97d61ab80174.json",
+  "refines": "PingYou Ltd"
+ },
+ "density": 0.6619721800398659,
+ "symmetrized": {
+  "from": "records/ap12incub/ap12incub_n07.json",
+  "from_source_hash": "8cec278de48a2dda",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 0,
+   "stabilizer_sum": 0,
+   "stabilizers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 1,
+   "stabilizer_sum": 1,
+   "stabilizers": [
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

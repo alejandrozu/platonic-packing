@@ -1,0 +1,117 @@
+{
+ "problem": "min/truncated_icosahedron_in_truncated_icosahedron",
+ "piece": "truncated_icosahedron",
+ "container": "truncated_icosahedron",
+ "n": 5,
+ "s": 2.34164,
+ "s_plus": "2.34164+",
+ "s_full": 2.3416439906077,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 4.5345045481475933e-07,
+  "min_wall_gap": 1.0000013794808638e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-15",
+ "pieces": [
+  [
+   0.6708196094878934,
+   -2.42704377170228,
+   -2.170810776838793,
+   0.8090169943608768,
+   0.3090199432919186,
+   -0.4999981774570641,
+   -4.771456585426938e-06
+  ],
+  [
+   0.6708125165251855,
+   2.4270566996198086,
+   -2.170825506241365,
+   1.0,
+   -9.907771515557643e-17,
+   1.6274425552654412e-16,
+   -2.263564111939649e-16
+  ],
+  [
+   3.2562158175331275,
+   4.103990008431499e-05,
+   0.6708582848875189,
+   0.8090169943749476,
+   3.430777821555291e-17,
+   0.3090169943749474,
+   0.4999999999999998
+  ],
+  [
+   -0.6708320361891702,
+   -2.4270303545109115,
+   2.1708417884141,
+   0.49999999999999994,
+   -0.5000000000000003,
+   -0.49999999999999994,
+   -0.49999999999999994
+  ],
+  [
+   -3.25623751396429,
+   1.951472025680199e-06,
+   -0.6708231794767564,
+   0.3090169943749477,
+   -3.430777821555289e-17,
+   -0.49999999999999933,
+   0.8090169943749479
+  ]
+ ],
+ "record_id": "ticintic_n05",
+ "title": "5 truncated icosahedra in a truncated icosahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "3139761181dcac3d",
+  "clear": 1e-07,
+  "cap": 2.3416624016727
+ },
+ "s_tight": 2.341643946535,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 1.7099759466766968,
+ "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/20)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "community",
+  "lineage": "PingYou Ltd",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/20",
+  "submitted_by": "BuddenPing",
+  "record_file": "records/community/ticintic/ticintic_n05_submission_20_93fa8c5bc6f0.json"
+ },
+ "density": 0.38941026866886225,
+ "symmetrized": {
+  "from": "records/ticintic/ticintic_n05.json",
+  "from_source_hash": "3139761181dcac3d",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 0,
+   "stabilizer_sum": 0,
+   "stabilizers": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 1,
+   "stabilizer_sum": 1,
+   "stabilizers": [
+    2,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

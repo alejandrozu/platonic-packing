@@ -1,0 +1,94 @@
+{
+ "problem": "min/prism6_l15_in_cube",
+ "piece": "prism6_l15",
+ "container": "cube",
+ "n": 3,
+ "s": 3.15659,
+ "s_plus": "3.15659+",
+ "s_full": 3.1565967946806,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.0000020193960024e-07,
+  "min_wall_gap": 1.0000002559351628e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-14",
+ "pieces": [
+  [
+   0.6123724710512053,
+   0.7970254501546109,
+   0.6123724710512045,
+   0.09229595564125792,
+   -0.09229595564125789,
+   0.7010573846499779,
+   0.7010573846499779
+  ],
+  [
+   0.5390576525760867,
+   -0.8227399679725269,
+   -0.5390576525760867,
+   0.09335113983648959,
+   0.09124021655976634,
+   0.7024307816473612,
+   -0.6996797728730141
+  ],
+  [
+   -0.6123724710512056,
+   0.7136419094176233,
+   -0.6123724710512054,
+   0.5609855267969306,
+   -0.5609855267969308,
+   -0.43045933457687996,
+   -0.43045933457687996
+  ]
+ ],
+ "record_id": "pr6l15incub_n03",
+ "title": "3 hexagonal prisms of height 1.5 in a cube",
+ "family": "prisms",
+ "source": {
+  "hash": "4d294b45b7740c82",
+  "clear": 1e-07,
+  "cap": 3.1565967946806
+ },
+ "s_tight": 3.15659652397,
+ "closed_form_conjecture": "(\u221a2 + 2\u221a6)/2",
+ "volume_lower_bound": 2.269628624134352,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "ascend",
+  "seed": 307088369,
+  "var": "base",
+  "raw": 3.1569910497658724
+ },
+ "density": 0.37171241508150105,
+ "symmetrized": {
+  "from": "records/pr6l15incub/pr6l15incub_n03.json",
+  "from_source_hash": "4d294b45b7740c82",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 2,
+   "stabilizer_sum": 2,
+   "stabilizers": [
+    2,
+    2,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 3,
+   "stabilizer_sum": 3,
+   "stabilizers": [
+    2,
+    2,
+    2
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

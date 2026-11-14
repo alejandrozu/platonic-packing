@@ -1,0 +1,238 @@
+{
+ "problem": "min/pentakis_dodecahedron_in_pentakis_dodecahedron",
+ "piece": "pentakis_dodecahedron",
+ "container": "pentakis_dodecahedron",
+ "n": 16,
+ "s": 3.15822,
+ "s_plus": "3.15822+",
+ "s_full": 3.1582201158773,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 9.51089599998678e-06,
+  "min_wall_gap": 1.000002294304636e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-15",
+ "pieces": [
+  [
+   -2.7077200447556824,
+   3.213640772901389,
+   -3.4274741063267196,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -4.860413318339962,
+   -0.7234221874573115,
+   -1.833378942595723,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -4.646507505852241,
+   -4.119850756427966e-12,
+   2.871699567595012,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -2.8716995675960617,
+   -4.646507505853794,
+   1.5166463056816176e-12,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -2.950590254526565,
+   4.1369911308900855,
+   1.2364169356386492,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -0.7234221874557578,
+   1.8333789425931195,
+   4.860413318338914,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   1.8333789425946734,
+   -4.860413318341517,
+   0.7234221874547083,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   4.812288614971554,
+   1.4790080008654682,
+   -1.3240269362690722,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   4.136991130891639,
+   -1.2364169356412529,
+   2.9505902545255154,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -0.17652774776094593,
+   0.2856278958346787,
+   -2.6029090192355764e-17,
+   1.0,
+   -2.7755575615628892e-18,
+   2.7910885484717145e-33,
+   -1.1741720804829694e-16
+  ],
+  [
+   -1.2364169356396988,
+   -2.9505902545281186,
+   -4.136991130892688,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   1.3240269362680226,
+   4.81228861497,
+   -1.479008000868072,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   3.2136407729029424,
+   3.4274741063241168,
+   2.707720044754633,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   3.42747410632567,
+   -2.707720044757236,
+   -3.2136407729039917,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   1.479008000867022,
+   1.3240269362664687,
+   -4.812288614972603,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -2.566102411189135e-12,
+   -2.871699567597615,
+   4.646507505851192,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ]
+ ],
+ "record_id": "pkdinpkd_n16",
+ "title": "16 pentakis dodecahedra in a pentakis dodecahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "cfea6170c3dd4584",
+  "clear": 1e-07,
+  "cap": 3.2280032194138
+ },
+ "s_tight": 3.15822007381,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.5198420997897464,
+ "found_by": "PingYou Ltd (community contribution, https://github.com/alejandrozu/platonic-packing/issues/74)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "community",
+  "lineage": "PingYou Ltd",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/74",
+  "submitted_by": "BuddenPing",
+  "record_file": "records/community/pkdinpkd/pkdinpkd_n16_submission_74_7e57a1f07046.json"
+ },
+ "density": 0.5079170556130836,
+ "symmetrized": {
+  "from": "records/pkdinpkd/pkdinpkd_n16.json",
+  "from_source_hash": "cfea6170c3dd4584",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 6,
+   "stabilizer_sum": 30,
+   "stabilizers": [
+    10,
+    10,
+    10,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 7,
+   "stabilizer_sum": 39,
+   "stabilizers": [
+    10,
+    10,
+    10,
+    10,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

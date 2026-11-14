@@ -1,0 +1,205 @@
+{
+ "problem": "min/triakis_icosahedron_in_triakis_icosahedron",
+ "piece": "triakis_icosahedron",
+ "container": "triakis_icosahedron",
+ "n": 13,
+ "s": 2.85087,
+ "s_plus": "2.85087+",
+ "s_full": 2.8508724590576,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000002067819139e-07,
+  "min_wall_gap": 1.0000010419730643e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-14",
+ "pieces": [
+  [
+   9.040850660977074e-16,
+   -5.417597945416811,
+   3.348259667649187,
+   5.421024297618256e-21,
+   2.710512148809127e-21,
+   -1.1389263558101596e-16,
+   1.0
+  ],
+  [
+   5.417597949343536,
+   -3.3482596701513154,
+   8.814195267452848e-11,
+   0.30901699437494706,
+   -0.8090169943749477,
+   -0.4999999999999999,
+   4.1169333858663483e-16
+  ],
+  [
+   -3.366822209073395e-11,
+   -5.417597949431671,
+   -3.3482596700087055,
+   0.5000000000000017,
+   0.49999999999999944,
+   0.4999999999999988,
+   0.5000000000000003
+  ],
+  [
+   3.3482596676491863,
+   0.0,
+   -5.417597945416811,
+   3.430777821555291e-17,
+   0.3090169943749475,
+   0.5000000000000001,
+   -0.8090169943749475
+  ],
+  [
+   3.3482596700631784,
+   -5.4470252725023914e-11,
+   5.417597949465342,
+   0.8090169943749475,
+   0.4999999999999999,
+   0.30901699437494756,
+   -3.087700039399762e-16
+  ],
+  [
+   -3.3482596676491867,
+   -0.0,
+   5.417597945416812,
+   6.861555643110582e-17,
+   -0.8090169943749475,
+   -0.3090169943749475,
+   0.5
+  ],
+  [
+   -5.417597949410867,
+   3.348259670042372,
+   8.813755723602802e-11,
+   0.8090169943749473,
+   0.3090169943749477,
+   -2.744622257244233e-16,
+   0.5
+  ],
+  [
+   -3.3482596701305085,
+   -5.447100494061741e-11,
+   -5.417597949289063,
+   0.49999999999999967,
+   -6.175400078799523e-16,
+   -0.30901699437494773,
+   -0.8090169943749476
+  ],
+  [
+   -5.417597945416814,
+   -3.3482596676491894,
+   -2.017405789208925e-16,
+   0.8090169943749477,
+   -0.30901699437494745,
+   -6.861555643110583e-17,
+   0.4999999999999998
+  ],
+  [
+   -9.040850660977076e-16,
+   5.417597945416812,
+   -3.348259667649188,
+   0.8090169943749475,
+   0.5,
+   -0.3090169943749474,
+   -1.7153889107776454e-17
+  ],
+  [
+   -3.3667961511396476e-11,
+   5.417597949322731,
+   3.348259670184983,
+   0.30901699437494773,
+   0.49999999999999967,
+   2.0584666929331744e-16,
+   -0.8090169943749476
+  ],
+  [
+   5.417597945416811,
+   3.348259667649188,
+   2.017405789208924e-16,
+   0.3090169943749474,
+   1.7153889107776454e-17,
+   0.8090169943749475,
+   -0.5
+  ],
+  [
+   -3.366562912299284e-11,
+   -5.4471318269283555e-11,
+   8.813794012811574e-11,
+   0.35536412281843466,
+   -0.5382371486625492,
+   0.7247670551396879,
+   0.24234237722123253
+  ]
+ ],
+ "record_id": "ktiinkti_n13",
+ "title": "13 triakis icosahedra in a triakis icosahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "3f45e5b83b08063a",
+  "clear": 1e-07,
+  "cap": 3.029985273685
+ },
+ "s_tight": 2.850872394875,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.3513346877207573,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "ascend",
+  "seed": 715516523,
+  "var": "base",
+  "raw": 2.8510872316156886,
+  "host": "laptop"
+ },
+ "density": 0.5610608777859096,
+ "symmetrized": {
+  "from": "records/ktiinkti/ktiinkti_n13.json",
+  "from_source_hash": "3f45e5b83b08063a",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 7,
+   "stabilizer_sum": 59,
+   "stabilizers": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    6,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 6,
+   "symmetric_pieces": 13,
+   "stabilizer_sum": 113,
+   "stabilizers": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    6
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

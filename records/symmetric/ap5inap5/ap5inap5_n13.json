@@ -1,0 +1,210 @@
+{
+ "problem": "min/antiprism5_in_antiprism5",
+ "piece": "antiprism5",
+ "container": "antiprism5",
+ "n": 13,
+ "s": 2.86476,
+ "s_plus": "2.86476+",
+ "s_full": 2.8647682199777,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000002009740597e-07,
+  "min_wall_gap": 1.0000002270693642e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-14",
+ "pieces": [
+  [
+   -1.2322252685378299,
+   0.7719956317017093,
+   0.42532545743312883,
+   0.35282931645209636,
+   0.7591657735668955,
+   0.03698472741871182,
+   -0.5457205618577032
+  ],
+  [
+   -1.3968889508691675,
+   -0.2606556905920924,
+   -0.7931331903425731,
+   9.29592313266134e-17,
+   0.5877852522924731,
+   0.8090169943749475,
+   1.8039208946146113e-16
+  ],
+  [
+   -1.4473398771925856,
+   -0.7594018268096134,
+   0.4253254574331289,
+   0.27892816144563554,
+   -0.6661948583937152,
+   0.06596541936389708,
+   -0.6884998582792016
+  ],
+  [
+   0.8755865988290681,
+   1.3073103251815006,
+   -0.4020001769364632,
+   0.13276723651806194,
+   -0.006382195595725062,
+   0.6848701509742872,
+   0.7164391145039418
+  ],
+  [
+   0.07943635928194046,
+   0.10629969396662373,
+   -0.4261493018558964,
+   0.7488914616469219,
+   0.16210650765876117,
+   0.6337020021253158,
+   -0.106324180454793
+  ],
+  [
+   1.3764921160581627,
+   0.35340685363547286,
+   0.32831343836364474,
+   0.7366054244934734,
+   0.6573837126033263,
+   -0.12654517100997478,
+   0.09615312113869963
+  ],
+  [
+   1.2475434283319329,
+   -0.4854890109456983,
+   0.4253254574331291,
+   0.6650376618202043,
+   -0.7417499730468783,
+   -0.0404963156704265,
+   -0.0767589360452073
+  ],
+  [
+   0.5474774661460651,
+   -1.5237166462829705,
+   0.42532545743422434,
+   0.5537024558781801,
+   -0.5017634671969611,
+   -0.5477831661215747,
+   -0.3762719977021669
+  ],
+  [
+   -0.05955653365259451,
+   1.2132443022556694,
+   0.6463385150171173,
+   0.07750993957416633,
+   -0.8607240982178703,
+   0.49574866366631554,
+   -0.08590400739957062
+  ],
+  [
+   1.2029355973458615,
+   -0.873983869923301,
+   -0.7931331903425726,
+   0.8090169943749476,
+   3.649195690452555e-16,
+   1.9197012336767846e-16,
+   0.5877852522924731
+  ],
+  [
+   -0.7522514493980856,
+   1.1479230672111647,
+   -0.7931331903425733,
+   0.8090169943749475,
+   -1.3175556673646203e-16,
+   6.237554714062954e-17,
+   -0.5877852522924731
+  ],
+  [
+   -0.3600330156673142,
+   -1.450314364156662,
+   -0.602025287174526,
+   0.1276592780524788,
+   -0.6644531603158274,
+   -0.7320186086972801,
+   0.07971112214947065
+  ],
+  [
+   -0.3135057495504723,
+   -0.40868931604963904,
+   0.7931331968565893,
+   1.2751882119201477e-16,
+   0.09853632883820626,
+   0.9951334543160977,
+   -2.8781392399507475e-16
+  ]
+ ],
+ "record_id": "ap5inap5_n13",
+ "title": "13 antiprism5s in a antiprism5",
+ "family": "prisms",
+ "source": {
+  "hash": "ab6d169d01744d5f",
+  "clear": 1e-07,
+  "cap": 2.8931501251433
+ },
+ "s_tight": 2.864767757989,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.3513346877207573,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "hop",
+  "seed": 1048595741,
+  "var": "gentle",
+  "minDiff": 0.08542828553664847,
+  "expand": 0.005380338905253036,
+  "rh": 0.10179986123285156,
+  "focus": 3,
+  "from": "best",
+  "raw": 2.8677869840098213,
+  "host": "laptop"
+ },
+ "density": 0.5529360192972123,
+ "symmetrized": {
+  "from": "records/ap5inap5/ap5inap5_n13.json",
+  "from_source_hash": "ab6d169d01744d5f",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 0,
+   "stabilizer_sum": 0,
+   "stabilizers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 1,
+   "stabilizer_sum": 1,
+   "stabilizers": [
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

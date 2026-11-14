@@ -1,0 +1,221 @@
+{
+ "problem": "min/snub_dodecahedron_in_snub_dodecahedron",
+ "piece": "snub_dodecahedron",
+ "container": "snub_dodecahedron",
+ "n": 14,
+ "s": 3.02527,
+ "s_plus": "3.02527+",
+ "s_full": 3.0252791804443,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000002041728898e-07,
+  "min_wall_gap": 1.0000019834421892e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-14",
+ "pieces": [
+  [
+   -3.7833602198449223,
+   -1.7324834520175818,
+   -0.7778233389794099,
+   0.05080433477912975,
+   0.03799341468221374,
+   -0.9259736634835174,
+   0.37222062616591955
+  ],
+  [
+   3.5183145258093185,
+   2.393060988275718,
+   0.029790415047685752,
+   0.2324856037789347,
+   0.6053964586551731,
+   0.3027689478384892,
+   -0.6984100057330892
+  ],
+  [
+   3.2425581881349905,
+   -1.8611928275793541,
+   -2.106952704924278,
+   0.14069794598257937,
+   0.34574315558813357,
+   0.7139107670966313,
+   -0.5924501455681673
+  ],
+  [
+   1.769994616823214,
+   1.5955716971842426,
+   -3.5590603995805608,
+   0.2715473635249013,
+   -0.646901282079333,
+   -0.1578666154656848,
+   -0.6948804878021834
+  ],
+  [
+   -2.1290338106290827,
+   0.5103018937887026,
+   -3.6771334903691324,
+   0.4539247528358426,
+   0.5706456991003342,
+   -0.06226401047581766,
+   -0.6814976139801792
+  ],
+  [
+   -0.55102971703255,
+   -3.6004391037590078,
+   -2.297197486987423,
+   0.499536951118989,
+   -0.02113186523351093,
+   0.8633655023931578,
+   0.06794327057117576
+  ],
+  [
+   -3.692964303095806,
+   2.029672780974879,
+   0.7577066154519895,
+   0.026989452850298207,
+   0.2261275270876145,
+   -0.9660252469625256,
+   -0.12220119949932355
+  ],
+  [
+   -1.6371932260757855,
+   0.3360924737020067,
+   3.9162382889186578,
+   0.4185462378184789,
+   0.24858617814672776,
+   -0.3087858305458855,
+   0.8171139881904412
+  ],
+  [
+   0.011690105739822895,
+   0.011690105739822904,
+   0.011690105739822895,
+   0.3776417307099086,
+   -0.3064321495047701,
+   -0.8004226394986041,
+   0.3504420910141913
+  ],
+  [
+   -1.0754096288151946,
+   3.8140073225638274,
+   -1.678725240200003,
+   0.5723112056837262,
+   0.2100390281759169,
+   -0.633662232821393,
+   -0.47625168260864215
+  ],
+  [
+   -1.4213313978429185,
+   -3.4281380878025387,
+   2.094824770481816,
+   0.24687073921243619,
+   -0.45496540683380693,
+   -0.8078356945245407,
+   -0.28189148152668053
+  ],
+  [
+   -0.2262036373727176,
+   3.6550086858786406,
+   2.2134369313217848,
+   0.15833476973979288,
+   0.7321853071039063,
+   0.6438797455133265,
+   0.15573583425242626
+  ],
+  [
+   2.3450207347763405,
+   0.8494194118673573,
+   3.4938844220834957,
+   0.6960924343943943,
+   0.3044372614393936,
+   -0.6051511290164866,
+   0.23783479071876729
+  ],
+  [
+   2.6111486936164914,
+   -2.87377588064406,
+   1.7747784005117166,
+   0.3738079107265126,
+   0.42615067841624205,
+   -0.43191693127464414,
+   -0.7015062434803776
+  ]
+ ],
+ "record_id": "sndinsnd_n14",
+ "title": "14 snub dodecahedra in a snub dodecahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "ec9fb7f23eb4c663",
+  "clear": 1e-07,
+  "cap": 3.0675836695205
+ },
+ "s_tight": 3.025279079537,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.4101422641752297,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "hop",
+  "seed": 1105127502,
+  "var": "gentle",
+  "minDiff": 0.026385083235769567,
+  "expand": 0.020382406470913918,
+  "rh": 0.14820694079105773,
+  "focus": 4,
+  "from": "best",
+  "raw": 3.0260602851091942,
+  "host": "laptop"
+ },
+ "density": 0.505628633405988,
+ "symmetrized": {
+  "from": "records/sndinsnd/sndinsnd_n14.json",
+  "from_source_hash": "ec9fb7f23eb4c663",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 0,
+   "stabilizer_sum": 0,
+   "stabilizers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 1,
+   "stabilizer_sum": 2,
+   "stabilizers": [
+    3,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

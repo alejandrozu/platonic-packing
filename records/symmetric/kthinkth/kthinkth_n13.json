@@ -1,0 +1,210 @@
+{
+ "problem": "min/tetrakis_hexahedron_in_tetrakis_hexahedron",
+ "piece": "tetrakis_hexahedron",
+ "container": "tetrakis_hexahedron",
+ "n": 13,
+ "s": 2.92589,
+ "s_plus": "2.92589+",
+ "s_full": 2.9258912258609,
+ "measure": "linear size of the container divided by the linear size of the pieces (same canonical solid)",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000002018674423e-07,
+  "min_wall_gap": 1.0000010597366327e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-13",
+ "pieces": [
+  [
+   0.9319746668586866,
+   2.5820579627329043,
+   -0.9349173345418169,
+   0.9994832168823876,
+   -0.009250830933651094,
+   -0.030632557469957192,
+   0.003060673181002808
+  ],
+  [
+   -1.5606614243050534,
+   -2.208002828970016,
+   1.5018815115062862,
+   0.051182391086546056,
+   0.8786762091123173,
+   -0.11929713076887304,
+   -0.459430818484117
+  ],
+  [
+   2.0427160409338483,
+   2.042716040933848,
+   2.0427160409338487,
+   0.40824829046386296,
+   0.4082482904638631,
+   -6.798699777552592e-17,
+   0.8164965809277261
+  ],
+  [
+   1.7701274240557066,
+   -2.0977676314924367,
+   -1.6034071955907074,
+   0.3847793215099083,
+   -0.0527098093340768,
+   -0.30153389972699496,
+   0.8707719891302032
+  ],
+  [
+   -1.144871499460593,
+   2.4674008135103853,
+   1.17986544889104,
+   0.40382085357353303,
+   -0.820843123771171,
+   0.0026739718757546643,
+   0.40390362000251634
+  ],
+  [
+   -2.0427160409338483,
+   -2.042716040933848,
+   -2.0427160409338487,
+   0.7071067811865476,
+   -7.466811452801441e-17,
+   4.401813436120574e-17,
+   0.7071067811865475
+  ],
+  [
+   -2.042716040933849,
+   2.042716040933849,
+   -2.0427160409338487,
+   0.8660254037844386,
+   0.28867513459481287,
+   -0.2886751345948129,
+   0.2886751345948129
+  ],
+  [
+   -0.01643803541125161,
+   -0.3307844449712635,
+   -0.06162693306886315,
+   0.36359112979326935,
+   -0.9089660811088558,
+   -0.19307105221735407,
+   -0.06561800457913128
+  ],
+  [
+   1.663086324255037,
+   -2.1146924015337496,
+   1.663086324255037,
+   0.5223456706692151,
+   -0.15151408181777792,
+   0.1515140818177778,
+   0.825373834304771
+  ],
+  [
+   0.3206588538674824,
+   0.3440565522554236,
+   -2.8920457838465965,
+   0.9998606484460639,
+   -4.483616467780277e-14,
+   -0.007465704106331768,
+   0.014931408212664804
+  ],
+  [
+   -2.8338482763338915,
+   0.2590929141658644,
+   0.3020682019845173,
+   0.7968126390157385,
+   0.3353713830320716,
+   -0.18450012992551462,
+   0.4675204335699117
+  ],
+  [
+   2.833647254465232,
+   0.2702946707110416,
+   -0.2912017046485603,
+   0.37106410064832174,
+   -0.8926464559974672,
+   -0.09366990821874831,
+   0.23815895133188966
+  ],
+  [
+   -0.3467325180071205,
+   0.3294143195744957,
+   2.881293531693574,
+   0.8179969389163282,
+   -0.008691120580403833,
+   -0.40588600151425913,
+   0.4075070872038188
+  ]
+ ],
+ "record_id": "kthinkth_n13",
+ "title": "13 tetrakis hexahedra in a tetrakis hexahedron",
+ "family": "catalan",
+ "source": {
+  "hash": "0b69165e32d1877c",
+  "clear": 1e-07,
+  "cap": 2.9568067555438
+ },
+ "s_tight": 2.925891084792,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.3513346877207573,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "hop",
+  "seed": 681995819,
+  "var": "gentle",
+  "minDiff": 0.029835164793903586,
+  "expand": 0.01633502170053052,
+  "rh": 0.1641834976497051,
+  "focus": 0,
+  "from": "best",
+  "raw": 2.92790447630687,
+  "host": "actions"
+ },
+ "density": 0.5190017504074541,
+ "symmetrized": {
+  "from": "records/kthinkth/kthinkth_n13.json",
+  "from_source_hash": "0b69165e32d1877c",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 1,
+   "stabilizer_sum": 1,
+   "stabilizers": [
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 4,
+   "stabilizer_sum": 16,
+   "stabilizers": [
+    6,
+    6,
+    6,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

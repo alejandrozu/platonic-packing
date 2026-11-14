@@ -1,0 +1,260 @@
+{
+ "problem": "min/truncated_octahedron_in_truncated_octahedron",
+ "piece": "truncated_octahedron",
+ "container": "truncated_octahedron",
+ "n": 18,
+ "s": 3.26315,
+ "s_plus": "3.26315+",
+ "s_full": 3.2631582027023,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 2.4494897221671863e-07,
+  "min_wall_gap": 1.0000001182675078e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-11-13",
+ "pieces": [
+  [
+   -0.18608075049926953,
+   -0.18608075049926953,
+   -0.1860807504992695,
+   1.0,
+   -5.852218927378986e-17,
+   1.045622566313725e-17,
+   -1.0092778334738227e-17
+  ],
+  [
+   -1.228132953295181,
+   3.2005889085874446,
+   0.14886460039941662,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   1.5630783041938696,
+   0.5582422514978095,
+   1.5630783041938665,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -2.1213205556916748,
+   1.1909168031953266,
+   1.4886460039941594,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.18608075049926667,
+   -0.7815391520969314,
+   3.088940458287877,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -2.121320555691678,
+   1.3397814035947448,
+   -1.3397814035947413,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   2.121320555691677,
+   0.5954584015976634,
+   -2.0841044055918254,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   3.2005889085874446,
+   -0.9304037524963481,
+   -0.44659380119825015,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -3.2005889085874437,
+   -0.48380995129810034,
+   6.798699777552591e-17,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   1.1909168031953263,
+   -2.2701851560910926,
+   1.339781403594744,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -1.6375106043935765,
+   -1.637510604393576,
+   1.5258621540940114,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.1860807504992696,
+   -0.5954584015976643,
+   -3.2005889085874446,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -1.6375106043935757,
+   -1.4886460039941576,
+   -1.674726754493429,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   1.1909168031953272,
+   -2.1213205556916757,
+   -1.488646003994159,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   4.419154855409184e-16,
+   2.046888255491971,
+   2.7539951073891906,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   -0.6326745516975173,
+   -3.2005889085874437,
+   -0.14886460039941662,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   1.6002944542937219,
+   2.7539951073891946,
+   -0.44659380119824993,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   2.1245936804851845e-16,
+   2.232969005991239,
+   -2.5679143568899265,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ]
+ ],
+ "record_id": "tocintoc_n18",
+ "title": "18 truncated octahedra in a truncated octahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "d7d66918461b617c",
+  "clear": 1e-07,
+  "cap": 3.300749598
+ },
+ "s_tight": 3.263158121053,
+ "closed_form_conjecture": "62/19",
+ "volume_lower_bound": 2.6207413942088964,
+ "found_by": "konoha-ily2 (Hirotaka Nakano) (community contribution, https://github.com/alejandrozu/platonic-packing/issues/130)",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "community",
+  "lineage": "konoha-ily2 (Hirotaka Nakano)",
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/130",
+  "submitted_by": "konoha-ily2",
+  "record_file": "records/community/tocintoc/tocintoc_n18_submission_130_144412e4607f.json"
+ },
+ "density": 0.5180338233202482,
+ "symmetrized": {
+  "from": "records/tocintoc/tocintoc_n18.json",
+  "from_source_hash": "d7d66918461b617c",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 7,
+   "stabilizer_sum": 7,
+   "stabilizers": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 7,
+   "stabilizer_sum": 11,
+   "stabilizers": [
+    6,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}

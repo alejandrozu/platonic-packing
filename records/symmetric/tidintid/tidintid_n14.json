@@ -1,0 +1,221 @@
+{
+ "problem": "min/truncated_icosidodecahedron_in_truncated_icosidodecahedron",
+ "piece": "truncated_icosidodecahedron",
+ "container": "truncated_icosidodecahedron",
+ "n": 14,
+ "s": 2.96773,
+ "s_plus": "2.96773+",
+ "s_full": 2.9677337299607,
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap_target": 1e-07,
+  "wall_gap_target": 1e-07,
+  "min_pair_gap": 1.000002065598693e-07,
+  "min_wall_gap": 1.0000030670198612e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per piece: a copy of the canonical piece solid (src/solids.json, 50-digit coordinates in src/solids_hp.json) rotated by the scalar-first quaternion q and centred at (x, y, z); container = s_full x canonical container solid, centred at the origin, canonical orientation",
+ "method": "generalized soft-to-rigid homotopy (r-rounding of the solid hardened under inward pressure), basin hopping, then sequential-LP / SLSQP tightening with per-pair separating planes",
+ "date": "2026-10-14",
+ "pieces": [
+  [
+   3.4024369111122867,
+   6.320182661720904,
+   -2.199672552579805,
+   0.3701684945821749,
+   -0.4447366486236637,
+   -0.7707679887429907,
+   -0.26664828242245164
+  ],
+  [
+   0.41794274389777325,
+   -7.439868113505339,
+   0.22566901401208736,
+   0.305145961451743,
+   -0.9249484076401535,
+   0.12297023898190527,
+   0.19035415871046527
+  ],
+  [
+   4.361202694455813,
+   -3.613646228731274,
+   4.851278393796887,
+   0.2891896098985295,
+   0.29107688358798023,
+   0.6778866077181417,
+   0.6100109543638016
+  ],
+  [
+   -1.332755640218436,
+   2.624071460972312,
+   6.708823143430635,
+   0.32158662746321737,
+   -0.9177684882030741,
+   0.09564301132890839,
+   -0.21245107079564485
+  ],
+  [
+   -5.001752271055932,
+   -4.2593989833971495,
+   -3.3438926611084447,
+   0.28422165289299095,
+   -0.1292852389705413,
+   0.5918059267822716,
+   0.7431481171586745
+  ],
+  [
+   2.705081920943178,
+   -4.192857897516724,
+   -5.4382489588028555,
+   0.5678506189479691,
+   -0.050320634584222826,
+   0.5128493969321102,
+   -0.6418714858613215
+  ],
+  [
+   -2.8720567964658805,
+   6.837619218538641,
+   1.0864072376387597,
+   0.37114469364812347,
+   -0.4562422124512889,
+   -0.7381512827623348,
+   -0.33049560316396537
+  ],
+  [
+   -6.901101522361388,
+   0.6489203158184632,
+   2.8010711740339644,
+   0.29483450840051834,
+   -0.4846696297890293,
+   0.3880273274178308,
+   0.7263626888775094
+  ],
+  [
+   0.04354715183854742,
+   0.0704607717880222,
+   0.1140079236265696,
+   0.2185080122244106,
+   0.9256147934109581,
+   0.21850801222441055,
+   -0.2185080122244105
+  ],
+  [
+   -5.771314604325705,
+   2.6946059125460606,
+   -3.88249148334673,
+   0.2184185693272305,
+   0.33025204293870647,
+   0.907774795195262,
+   0.13846240614714383
+  ],
+  [
+   5.124795572442844,
+   3.4860557338357627,
+   4.089171147584723,
+   0.5511786574688151,
+   0.6568137185210128,
+   0.4573236709329838,
+   -0.23590864061719855
+  ],
+  [
+   -2.5834143102948093,
+   -4.090407260280542,
+   5.646347287222167,
+   0.27291944229570525,
+   0.7943050002330655,
+   0.25856079612129,
+   0.4772220230991817
+  ],
+  [
+   7.2222438853427136,
+   -0.5670949089964074,
+   -1.1610505945182041,
+   0.18184145719444558,
+   0.28865958956754045,
+   -0.21453781679113748,
+   0.9151955260831381
+  ],
+  [
+   0.4966752114399646,
+   2.1604938325128,
+   -7.145780288800384,
+   0.947272388313294,
+   0.15977251144638027,
+   0.2589308812188945,
+   0.10051152011859722
+  ]
+ ],
+ "record_id": "tidintid_n14",
+ "title": "14 truncated icosidodecahedra in a truncated icosidodecahedron",
+ "family": "archimedean",
+ "source": {
+  "hash": "e3517814675a7aa1",
+  "clear": 1e-07,
+  "cap": 3.043595239045
+ },
+ "s_tight": 2.967733672312,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 2.4101422641752297,
+ "found_by": "Alejandro Zarzuelo",
+ "credit": "soft-to-rigid method by Yohei Nakajima (2026); generalization to Archimedean, Catalan, prism and antiprism solids, basin-hopping search and certification developed with Claude (Anthropic) under Alejandro Zarzuelo's direction",
+ "search": {
+  "move": "hop",
+  "seed": 1735723994,
+  "var": "gentle",
+  "minDiff": 0.08749379930559202,
+  "expand": 0.014308613824325682,
+  "rh": 0.17577106325508743,
+  "focus": 0,
+  "from": "best",
+  "raw": 2.971240656813935,
+  "host": "laptop"
+ },
+ "density": 0.5356156246513717,
+ "symmetrized": {
+  "from": "records/tidintid/tidintid_n14.json",
+  "from_source_hash": "e3517814675a7aa1",
+  "container": "unchanged (same s_full)",
+  "before": {
+   "packing_group": 1,
+   "symmetric_pieces": 0,
+   "stabilizer_sum": 0,
+   "stabilizers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "after": {
+   "packing_group": 1,
+   "symmetric_pieces": 1,
+   "stabilizer_sum": 3,
+   "stabilizers": [
+    4,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "method": "scripts/symmetrize.py: pieces moved one at a time onto symmetric placements of the container, each move kept only if the packing stays legal with the same clearances"
+ }
+}
