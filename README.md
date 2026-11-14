@@ -49,6 +49,13 @@ containers.
 data and figures, STL models, the reproducibility archive, and the offsite Wikipedia-style reference draft (merged
 from PR #2; the frozen inputs are commit `e15b496ae7`).
 
+## More symmetric packings in the same container
+
+[docs/SYMMETRY.md](docs/SYMMETRY.md): 586 Platonic packings where pieces were moved onto symmetric placements (nested
+in a corner, centred on a face or an edge, or on a mirror plane) without enlarging the container. Each one is
+certified exactly. They are kept in [records/symmetric/](records/symmetric/README.md), and the records themselves are
+unchanged.
+
 ## Generalization paper and Lean evidence
 
 [The manuscript](docs/research-2026-10-16-generalization/manuscript.pdf) and [source/evidence guide](docs/research-2026-10-16-generalization/README.md) describe the arbitrary-dimensional geometric generalization and computational cost bounds. Lean verifies **532 source-bound witnesses across all 140 families of the frozen catalogue**: all 402 selected rational certificates, plus one two-piece witness from each of the other 130 families. The package retains immutable input hashes, numerical proof sources, logs and separate construction/refinement attribution. These are feasibility proofs for the selected frozen witnesses; global optimality and the entire changing live archive remain outside that claim.

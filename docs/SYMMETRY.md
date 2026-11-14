@@ -46,8 +46,9 @@ to where it was, within 0.35 edge lengths. On a mirror plane it is placed at the
   - 11 octahedra in a cube and 15 and 21 octahedra in a dodecahedron: 1 → 6
   - 18 tetrahedra in a tetrahedron, 11 cubes in a cube and 28 octahedra in a tetrahedron: 1 → 3
 
-All 586 symmetrized packings fit the record's container. The exact certificates are listed in
-[records/symmetric/README.md](../records/symmetric/README.md).
+All 586 symmetrized packings use the record's container (identical `s_full` and n). All 586 are VALID
+(`verify.py`) and CERTIFIED in exact arithmetic (`certify_exact.py`). Their checker outputs sit next to each file in
+[records/symmetric/](../records/symmetric/README.md).
 
 | problem | packings changed | pieces on symmetric placements (all n) | pieces (all n) |
 |---|---|---|---|
