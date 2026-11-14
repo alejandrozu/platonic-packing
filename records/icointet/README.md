@@ -19,8 +19,8 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 14 | [8.35360+](icointet_n14.json) | 8.353601948202 |  | 6.37572 | 0.4446 | ![](icointet_n14.png) |
 | 15 | [8.50332+](icointet_n15.json) | 8.503325413475 |  | 6.52405 | 0.4516 | ![](icointet_n15.png) |
 | 16 | [8.63470+](icointet_n16.json) | 8.634709435030 |  | 6.66592 | 0.4601 | ![](icointet_n16.png) |
-| 17 | [8.66983+](icointet_n17.json) | 8.669830404829 |  | 6.80200 | 0.4829 | ![](icointet_n17.png) |
-| 18 | [8.66983+](icointet_n18.json) | 8.669830404829 |  | 6.93284 | 0.5113 | ![](icointet_n18.png) |
+| 17 | [8.66883+](icointet_n17.json) | 8.668834950208 |  | 6.80200 | 0.4831 | ![](icointet_n17.png) |
+| 18 | [8.66883+](icointet_n18.json) | 8.668834950211 |  | 6.93284 | 0.5115 | ![](icointet_n18.png) |
 | 19 | [8.66983+](icointet_n19.json) | 8.669830404829 |  | 7.05892 | 0.5397 | ![](icointet_n19.png) |
 | 20 | [8.66983+](icointet_n20.json) | 8.669830404829 |  | 7.18064 | 0.5681 | ![](icointet_n20.png) |
 | 21 | [9.30353+](icointet_n21.json) | 9.303530163365 |  | 7.29838 | 0.4828 | ![](icointet_n21.png) |
@@ -94,9 +94,9 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 89 | [14.71485+](icointet_n89.json) | 14.714855171798 |  | 11.81091 | 0.5171 | ![](icointet_n89.png) |
 | 90 | [14.71669+](icointet_n90.json) | 14.716691561400 |  | 11.85498 | 0.5227 | ![](icointet_n90.png) |
 | 91 | [14.72998+](icointet_n91.json) | 14.729981301829 |  | 11.89873 | 0.5271 | ![](icointet_n91.png) |
-| 92 | [14.80761+](icointet_n92.json) | 14.807614750043 |  | 11.94215 | 0.5246 | ![](icointet_n92.png) |
-| 93 | [14.80761+](icointet_n93.json) | 14.807614750043 |  | 11.98527 | 0.5303 | ![](icointet_n93.png) |
-| 94 | [14.80761+](icointet_n94.json) | 14.807614750043 |  | 12.02807 | 0.5360 | ![](icointet_n94.png) |
+| 92 | [14.79454+](icointet_n92.json) | 14.794542523693 |  | 11.94215 | 0.5259 | ![](icointet_n92.png) |
+| 93 | [14.79454+](icointet_n93.json) | 14.794542523693 |  | 11.98527 | 0.5317 | ![](icointet_n93.png) |
+| 94 | [14.80316+](icointet_n94.json) | 14.803163933772 |  | 12.02807 | 0.5364 | ![](icointet_n94.png) |
 | 95 | [15.08052+](icointet_n95.json) | 15.080520056268 |  | 12.07058 | 0.5128 | ![](icointet_n95.png) |
 | 96 | [15.08507+](icointet_n96.json) | 15.085074589990 |  | 12.11278 | 0.5177 | ![](icointet_n96.png) |
 | 97 | [15.20509+](icointet_n97.json) | 15.205095510636 |  | 12.15469 | 0.5108 | ![](icointet_n97.png) |

@@ -33,8 +33,8 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 28 | [9.72164+](dodinoct_n28.json) | 9.721645894504 |  | 7.69231 | 0.4954 | ![](dodinoct_n28.png) |
 | 29 | [9.91052+](dodinoct_n29.json) | 9.910529255180 |  | 7.78281 | 0.4843 | ![](dodinoct_n29.png) |
 | 30 | [9.94502+](dodinoct_n30.json) | 9.945020124044 |  | 7.87126 | 0.4958 | ![](dodinoct_n30.png) |
-| 31 | [10.12263+](dodinoct_n31.json) | 10.122630800109 |  | 7.95777 | 0.4858 | ![](dodinoct_n31.png) |
-| 32 | [10.12263+](dodinoct_n32.json) | 10.122630825107 |  | 8.04243 | 0.5015 | ![](dodinoct_n32.png) |
+| 31 | [10.11852+](dodinoct_n31.json) | 10.118528314270 |  | 7.95777 | 0.4864 | ![](dodinoct_n31.png) |
+| 32 | [10.11852+](dodinoct_n32.json) | 10.118528338325 |  | 8.04243 | 0.5021 | ![](dodinoct_n32.png) |
 | 33 | [10.28517+](dodinoct_n33.json) | 10.285176115584 |  | 8.12535 | 0.4930 | ![](dodinoct_n33.png) |
 | 34 | [10.28636+](dodinoct_n34.json) | 10.286364675392 |  | 8.20661 | 0.5078 | ![](dodinoct_n34.png) |
 | 35 | [10.29710+](dodinoct_n35.json) | 10.297107310139 | 9√(√5 + 3)/2 | 8.28629 | 0.5211 | ![](dodinoct_n35.png) |
@@ -63,10 +63,10 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 58 | [12.08700+](dodinoct_n58.json) | 12.087002345267 |  | 9.80573 | 0.5339 | ![](dodinoct_n58.png) |
 | 59 | [12.21188+](dodinoct_n59.json) | 12.211887535852 |  | 9.86176 | 0.5266 | ![](dodinoct_n59.png) |
 | 60 | [12.22597+](dodinoct_n60.json) | 12.225975865733 |  | 9.91717 | 0.5337 | ![](dodinoct_n60.png) |
-| 61 | [12.27176+](dodinoct_n61.json) | 12.271764577679 |  | 9.97196 | 0.5366 | ![](dodinoct_n61.png) |
+| 61 | [12.26638+](dodinoct_n61.json) | 12.266387346050 |  | 9.97196 | 0.5373 | ![](dodinoct_n61.png) |
 | 62 | [12.32290+](dodinoct_n62.json) | 12.322900396780 |  | 10.02616 | 0.5386 | ![](dodinoct_n62.png) |
 | 63 | [12.38964+](dodinoct_n63.json) | 12.389645407094 |  | 10.07977 | 0.5385 | ![](dodinoct_n63.png) |
-| 64 | [12.41879+](dodinoct_n64.json) | 12.418797199907 |  | 10.13283 | 0.5432 | ![](dodinoct_n64.png) |
+| 64 | [12.39914+](dodinoct_n64.json) | 12.399146487532 |  | 10.13283 | 0.5458 | ![](dodinoct_n64.png) |
 | 65 | [12.51691+](dodinoct_n65.json) | 12.516911437689 |  | 10.18533 | 0.5388 | ![](dodinoct_n65.png) |
 | 66 | [12.53928+](dodinoct_n66.json) | 12.539288710114 |  | 10.23730 | 0.5442 | ![](dodinoct_n66.png) |
 | 67 | [12.58535+](dodinoct_n67.json) | 12.585353607884 | 11√(√5 + 3)/2 | 10.28874 | 0.5464 | ![](dodinoct_n67.png) |
@@ -96,10 +96,10 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 91 | [13.83108+](dodinoct_n91.json) | 13.831081732002 |  | 11.39421 | 0.5591 | ![](dodinoct_n91.png) |
 | 92 | [13.84632+](dodinoct_n92.json) | 13.846320752754 |  | 11.43580 | 0.5634 | ![](dodinoct_n92.png) |
 | 93 | [13.96305+](dodinoct_n93.json) | 13.963055941812 |  | 11.47708 | 0.5553 | ![](dodinoct_n93.png) |
-| 94 | [13.98772+](dodinoct_n94.json) | 13.987727251638 |  | 11.51807 | 0.5583 | ![](dodinoct_n94.png) |
-| 95 | [14.03192+](dodinoct_n95.json) | 14.031925314152 |  | 11.55877 | 0.5590 | ![](dodinoct_n95.png) |
-| 96 | [14.07222+](dodinoct_n96.json) | 14.072222135477 |  | 11.59919 | 0.5600 | ![](dodinoct_n96.png) |
-| 97 | [14.09890+](dodinoct_n97.json) | 14.098907728490 |  | 11.63933 | 0.5626 | ![](dodinoct_n97.png) |
-| 98 | [14.21934+](dodinoct_n98.json) | 14.219345518473 |  | 11.67919 | 0.5541 | ![](dodinoct_n98.png) |
-| 99 | [14.21934+](dodinoct_n99.json) | 14.219345518473 |  | 11.71878 | 0.5598 | ![](dodinoct_n99.png) |
+| 94 | [13.98217+](dodinoct_n94.json) | 13.982179540328 |  | 11.51807 | 0.5590 | ![](dodinoct_n94.png) |
+| 95 | [14.03008+](dodinoct_n95.json) | 14.030085319784 |  | 11.55877 | 0.5592 | ![](dodinoct_n95.png) |
+| 96 | [14.07081+](dodinoct_n96.json) | 14.070813726644 |  | 11.59919 | 0.5602 | ![](dodinoct_n96.png) |
+| 97 | [14.09530+](dodinoct_n97.json) | 14.095308599452 |  | 11.63933 | 0.5631 | ![](dodinoct_n97.png) |
+| 98 | [14.21688+](dodinoct_n98.json) | 14.216886771209 |  | 11.67919 | 0.5544 | ![](dodinoct_n98.png) |
+| 99 | [14.21688+](dodinoct_n99.json) | 14.216886771209 |  | 11.71878 | 0.5601 | ![](dodinoct_n99.png) |
 | 100 | [14.22767+](dodinoct_n100.json) | 14.227670015371 |  | 11.75810 | 0.5644 | ![](dodinoct_n100.png) |
