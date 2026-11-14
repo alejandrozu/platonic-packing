@@ -83,6 +83,37 @@ container is the same size on both sides.
 - 11 octahedra in a cube: packing group 1 → 6.
   ![](symmetry/octincub_n11.png)
 
+## Prisms, antiprisms, Archimedean and Catalan records (6,039 records, 61 problems)
+
+The same tool (`symmetrize.py --families`) on every family record; checked by `verify_general.py` and
+`certify_general.py`, like those records.
+
+- 1,993 packings changed, with 6,006 piece moves.
+- Pieces on symmetric placements, over all records: 40,599 → 46,408 of 307,989.
+- All 1,993 are VALID and CERTIFIED in the record's container.
+- The packing group grew in 17 records, for example:
+  - 13 triakis icosahedra in a triakis icosahedron: 1 → 6
+  - 14 square antiprisms in a cube, 13 dodecagonal prisms of height 1.5 in a cube, 15 truncated cuboctahedra in a
+    truncated cuboctahedron and 5 snub cubes in a snub cube: 1 → 4
+  - 17 rhombicuboctahedra in a rhombicuboctahedron: 2 → 4
+
+| family | records | packings changed | pieces on symmetric placements (all n) | pieces (all n) |
+|---|---|---|---|---|
+| prisms and antiprisms | 3,465 | 1,236 | 23,417 → 27,709 | 176,715 |
+| Archimedean | 1,287 | 373 | 11,276 → 12,232 | 65,637 |
+| Catalan | 1,287 | 384 | 5,906 → 6,467 | 65,637 |
+
+**Examples.**
+
+- 90 truncated octahedra in a truncated octahedron: 1 → 60 pieces on symmetric placements.
+  ![](symmetry/tocintoc_n90.png)
+- 76 dodecagonal prisms in a cube: 0 → 29.
+  ![](symmetry/pr12incub_n76.png)
+- 13 triakis icosahedra in a triakis icosahedron: packing group 1 → 6.
+  ![](symmetry/ktiinkti_n13.png)
+
+<!-- ND -->
+
 ## What does not move: jammed packings
 
 20 icosahedra in an icosahedron shows the limit.
@@ -104,6 +135,8 @@ fixed subspace of the conjugation action).
 
 ```bash
 python3 scripts/symmetrize.py --all OUTDIR            # all Platonic records (about 30 minutes)
+python3 scripts/symmetrize.py --families OUTDIR       # prisms, Archimedean, Catalan (about 3 hours)
+python3 scripts/symmetrize_nd.py --all OUTDIR         # 4D-6D records; check with certify_nd.py
 python3 scripts/symmetrize.py records/icoinico/icoinico_n96.json out.json
 python3 verify.py out.json && python3 certify_exact.py out.json
 python3 scripts/symmetrize.py --summary               # records/symmetric/SUMMARY.csv and README.md
