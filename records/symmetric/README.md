@@ -9,14 +9,17 @@ checked like the records: `verify.py` and `certify_exact.py` (Platonic), `verify
 (prisms, Archimedean, Catalan), `certify_nd.py` (4D-6D).
 See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 
-2579 packings; 2579 certified exactly; 7257 more pieces on symmetric placements; 30 with a larger packing group.
+2917 packings; 2917 certified exactly; 8092 more pieces on symmetric placements; 36 with a larger packing group.
 
 | family | packings | certified | symmetric pieces (before → after) | larger packing group |
 |---|---|---|---|---|
 | prisms and antiprisms | 1236 | 1236 | 4953 → 9245 | 7 |
+| 4D polytopes | 258 | 258 | 1159 → 1698 | 1 |
 | Archimedean | 373 | 373 | 1312 → 2268 | 6 |
 | Platonic | 586 | 586 | 3239 → 4687 | 13 |
 | Catalan | 384 | 384 | 1429 → 1990 | 4 |
+| 5D polytopes | 47 | 47 | 253 → 445 | 3 |
+| 6D polytopes | 33 | 33 | 201 → 305 | 2 |
 
 | problem | family | packings | symmetric pieces (before → after) | larger packing group |
 |---|---|---|---|---|
@@ -31,6 +34,7 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | pr8l3incub | prisms and antiprisms | 48 | 278 → 472 | – |
 | pr8l15incub | prisms and antiprisms | 32 | 263 → 446 | – |
 | ap8incub | prisms and antiprisms | 45 | 80 → 251 | 14 (1 → 4) |
+| hc5insx5 | 5D polytopes | 19 | 21 → 173 | – |
 | pr5inpr5 | prisms and antiprisms | 52 | 306 → 457 | 2 (1 → 2), 24 (1 → 2) |
 | pr12l15incub | prisms and antiprisms | 33 | 317 → 463 | 13 (1 → 4) |
 | pr6l15incub | prisms and antiprisms | 40 | 170 → 316 | – |
@@ -42,6 +46,7 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | tcuintcu | Archimedean | 30 | 154 → 288 | – |
 | ap12incub | prisms and antiprisms | 40 | 0 → 130 | – |
 | cubincub | Platonic | 21 | 438 → 564 | 11 (1 → 3) |
+| c8inc5 | 4D polytopes | 28 | 21 → 145 | – |
 | ap6incub | prisms and antiprisms | 23 | 26 → 143 | – |
 | dodinico | Platonic | 30 | 0 → 111 | – |
 | tteintte | Archimedean | 31 | 414 → 521 | – |
@@ -56,6 +61,7 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | ktoinkto | Catalan | 40 | 309 → 394 | 44 (1 → 2) |
 | pr5l15incub | prisms and antiprisms | 38 | 4 → 89 | 30 (1 → 2) |
 | rdoinrdo | Catalan | 32 | 361 → 446 | – |
+| c120inc16 | 4D polytopes | 26 | 164 → 244 | – |
 | octinoct | Platonic | 43 | 444 → 522 | 14 (1 → 2), 23 (1 → 2) |
 | rcoinrco | Archimedean | 36 | 131 → 208 | 17 (2 → 4) |
 | pr3incub | prisms and antiprisms | 32 | 92 → 165 | – |
@@ -63,6 +69,7 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | dhcindhc | Catalan | 48 | 91 → 161 | – |
 | pr6l3incub | prisms and antiprisms | 24 | 137 → 207 | – |
 | sndinsnd | Archimedean | 25 | 7 → 76 | – |
+| hc6inop6 | 6D polytopes | 10 | 68 → 136 | 5 (1 → 2), 8 (1 → 2) |
 | ap5inap5 | prisms and antiprisms | 33 | 37 → 104 | – |
 | cboincbo | Archimedean | 29 | 260 → 327 | – |
 | cubindod | Platonic | 28 | 119 → 185 | – |
@@ -77,34 +84,70 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | dodintet | Platonic | 29 | 5 → 53 | – |
 | idoinido | Archimedean | 38 | 9 → 57 | – |
 | pr3l2incub | prisms and antiprisms | 28 | 9 → 54 | – |
+| c16inc8 | 4D polytopes | 19 | 296 → 337 | – |
 | ktiinkti | Catalan | 31 | 51 → 92 | 13 (1 → 6) |
 | rtcinrtc | Catalan | 36 | 130 → 171 | – |
+| c120inc5 | 4D polytopes | 21 | 14 → 52 | – |
 | octincub | Platonic | 24 | 31 → 68 | 7 (1 → 2), 11 (1 → 6) |
 | tidintid | Archimedean | 32 | 0 → 36 | 4 (1 → 3) |
 | cubinico | Platonic | 19 | 27 → 62 | – |
 | icoinoct | Platonic | 21 | 83 → 118 | 4 (1 → 3) |
 | kthinkth | Catalan | 25 | 99 → 134 | 11 (1 → 2) |
+| c24inc16 | 4D polytopes | 10 | 63 → 94 | – |
 | ditindit | Catalan | 30 | 96 → 127 | – |
 | ticintic | Archimedean | 25 | 10 → 39 | – |
+| c120inc8 | 4D polytopes | 12 | 49 → 77 | – |
 | ap4incub | prisms and antiprisms | 12 | 10 → 37 | – |
 | tdointdo | Archimedean | 22 | 25 → 52 | 10 (1 → 3) |
 | phcinphc | Catalan | 25 | 0 → 25 | – |
+| c8inc8 | 4D polytopes | 7 | 130 → 154 | – |
 | ap4inap4 | prisms and antiprisms | 13 | 14 → 36 | 2 (2 → 4) |
 | ap5incub | prisms and antiprisms | 11 | 0 → 22 | – |
+| c24inc5 | 4D polytopes | 16 | 65 → 85 | – |
 | dodincub | Platonic | 6 | 0 → 20 | – |
+| c8inc16 | 4D polytopes | 14 | 63 → 82 | – |
+| sx6insx6 | 6D polytopes | 9 | 96 → 115 | – |
 | tcointco | Archimedean | 16 | 21 → 40 | 3 (1 → 2), 15 (1 → 4) |
 | dodinoct | Platonic | 15 | 1 → 19 | – |
+| c24inc120 | 4D polytopes | 15 | 2 → 19 | – |
 | ddoinddo | Catalan | 16 | 30 → 47 | – |
 | icoindod | Platonic | 17 | 15 → 32 | 15 (6 → 24) |
+| c24inc8 | 4D polytopes | 4 | 49 → 65 | – |
+| sx5insx5 | 5D polytopes | 10 | 94 → 110 | 4 (1 → 4), 9 (1 → 3) |
 | kttinktt | Catalan | 15 | 103 → 117 | 5 (1 → 3) |
 | sncinsnc | Archimedean | 11 | 3 → 17 | 5 (1 → 4) |
+| c5inc5 | 4D polytopes | 8 | 75 → 88 | 7 (1 → 2) |
+| c16inc5 | 4D polytopes | 9 | 6 → 16 | – |
+| c600inc120 | 4D polytopes | 10 | 0 → 10 | – |
+| op5inop5 | 5D polytopes | 7 | 95 → 105 | – |
 | pitinpit | Catalan | 10 | 3 → 13 | – |
+| c600inc5 | 4D polytopes | 7 | 23 → 32 | – |
+| hc5inop5 | 5D polytopes | 7 | 42 → 51 | 16 (1 → 2) |
+| hc6insx6 | 6D polytopes | 8 | 8 → 17 | – |
+| c16inc16 | 4D polytopes | 7 | 46 → 54 | – |
 | icoincub | Platonic | 7 | 7 → 15 | – |
+| c24inc600 | 4D polytopes | 7 | 0 → 7 | – |
 | octindod | Platonic | 7 | 22 → 29 | 15 (1 → 6), 21 (1 → 6) |
 | octinico | Platonic | 7 | 1 → 8 | – |
+| c16inc120 | 4D polytopes | 6 | 0 → 6 | – |
+| c600inc16 | 4D polytopes | 4 | 12 → 18 | – |
+| sx6inop6 | 6D polytopes | 4 | 24 → 30 | – |
+| c120inc24 | 4D polytopes | 3 | 41 → 46 | – |
+| c16inc600 | 4D polytopes | 5 | 0 → 5 | – |
+| c600inc600 | 4D polytopes | 5 | 0 → 5 | – |
+| c600inc8 | 4D polytopes | 4 | 14 → 18 | – |
+| op5insx5 | 5D polytopes | 3 | 1 → 5 | – |
 | tetincub | Platonic | 4 | 0 → 4 | – |
+| c5inc16 | 4D polytopes | 2 | 3 → 6 | – |
+| c600inc24 | 4D polytopes | 3 | 6 → 9 | – |
 | tetindod | Platonic | 3 | 0 → 3 | – |
 | tetinico | Platonic | 3 | 0 → 3 | 9 (1 → 2) |
+| c120inc600 | 4D polytopes | 2 | 0 → 2 | – |
+| c24inc24 | 4D polytopes | 2 | 12 → 14 | – |
+| c8inc600 | 4D polytopes | 1 | 4 → 6 | – |
+| op6inop6 | 6D polytopes | 2 | 5 → 7 | – |
+| c120inc120 | 4D polytopes | 1 | 1 → 2 | – |
+| sx5inhc5 | 5D polytopes | 1 | 0 → 1 | – |
 
 | record | s_full (unchanged) | symmetric pieces | packing group | certified |
 |---|---|---|---|---|
@@ -417,6 +460,264 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [ap8incub_n97](ap8incub/ap8incub_n97.json) | 8.6511231969779 | 0 → 3 of 97 | 1 → 1 | yes |
 | [ap8incub_n98](ap8incub/ap8incub_n98.json) | 8.6559956968897 | 0 → 1 of 98 | 1 → 1 | yes |
 | [ap8incub_n99](ap8incub/ap8incub_n99.json) | 8.7311481196811 | 0 → 1 of 99 | 1 → 1 | yes |
+| [c120inc120_n18](c120inc120/c120inc120_n18.json) | 2.8354343641693 | 1 → 2 of 18 | 1 → 1 | yes |
+| [c120inc16_n08](c120inc16/c120inc16_n08.json) | 17.1619497085334 | 4 → 7 of 8 | 1 → 1 | yes |
+| [c120inc16_n11](c120inc16/c120inc16_n11.json) | 21.3694044529171 | 3 → 6 of 11 | 1 → 1 | yes |
+| [c120inc16_n13](c120inc16/c120inc16_n13.json) | 21.8140984303127 | 6 → 9 of 13 | 1 → 1 | yes |
+| [c120inc16_n14](c120inc16/c120inc16_n14.json) | 21.8140984306 | 7 → 8 of 14 | 1 → 1 | yes |
+| [c120inc16_n16](c120inc16/c120inc16_n16.json) | 21.8578659337295 | 8 → 12 of 16 | 1 → 1 | yes |
+| [c120inc16_n17](c120inc16/c120inc16_n17.json) | 22.6712318946796 | 3 → 13 of 17 | 1 → 1 | yes |
+| [c120inc16_n18](c120inc16/c120inc16_n18.json) | 22.7821435365857 | 10 → 12 of 18 | 1 → 1 | yes |
+| [c120inc16_n19](c120inc16/c120inc16_n19.json) | 22.8786459638801 | 10 → 14 of 19 | 1 → 1 | yes |
+| [c120inc16_n20](c120inc16/c120inc16_n20.json) | 23.5374998732636 | 9 → 11 of 20 | 1 → 1 | yes |
+| [c120inc16_n21](c120inc16/c120inc16_n21.json) | 23.9521842550598 | 3 → 7 of 21 | 1 → 1 | yes |
+| [c120inc16_n22](c120inc16/c120inc16_n22.json) | 24.0172429986554 | 11 → 12 of 22 | 1 → 1 | yes |
+| [c120inc16_n23](c120inc16/c120inc16_n23.json) | 24.1055336858211 | 4 → 7 of 23 | 1 → 1 | yes |
+| [c120inc16_n24](c120inc16/c120inc16_n24.json) | 24.2244432293446 | 4 → 6 of 24 | 1 → 1 | yes |
+| [c120inc16_n25](c120inc16/c120inc16_n25.json) | 24.2478957327232 | 4 → 7 of 25 | 1 → 1 | yes |
+| [c120inc16_n26](c120inc16/c120inc16_n26.json) | 24.2654371111652 | 5 → 7 of 26 | 1 → 1 | yes |
+| [c120inc16_n27](c120inc16/c120inc16_n27.json) | 24.2843880054575 | 4 → 7 of 27 | 1 → 1 | yes |
+| [c120inc16_n28](c120inc16/c120inc16_n28.json) | 24.3063986416582 | 4 → 6 of 28 | 1 → 1 | yes |
+| [c120inc16_n29](c120inc16/c120inc16_n29.json) | 24.3151419253063 | 5 → 9 of 29 | 1 → 1 | yes |
+| [c120inc16_n30](c120inc16/c120inc16_n30.json) | 24.3184549518238 | 2 → 6 of 30 | 1 → 1 | yes |
+| [c120inc16_n31](c120inc16/c120inc16_n31.json) | 24.3223368236641 | 3 → 6 of 31 | 1 → 1 | yes |
+| [c120inc16_n32](c120inc16/c120inc16_n32.json) | 24.3422585807623 | 2 → 8 of 32 | 1 → 1 | yes |
+| [c120inc16_n33](c120inc16/c120inc16_n33.json) | 24.3835130203095 | 3 → 5 of 33 | 1 → 1 | yes |
+| [c120inc16_n35](c120inc16/c120inc16_n35.json) | 26.8431883323996 | 11 → 14 of 35 | 1 → 1 | yes |
+| [c120inc16_n37](c120inc16/c120inc16_n37.json) | 27.3941508305703 | 16 → 18 of 37 | 1 → 1 | yes |
+| [c120inc16_n38](c120inc16/c120inc16_n38.json) | 27.6600212470156 | 11 → 12 of 38 | 1 → 1 | yes |
+| [c120inc16_n40](c120inc16/c120inc16_n40.json) | 27.9578762888397 | 12 → 15 of 40 | 1 → 1 | yes |
+| [c120inc24_n10](c120inc24/c120inc24_n10.json) | 11.1066935881418 | 9 → 10 of 10 | 1 → 1 | yes |
+| [c120inc24_n26](c120inc24/c120inc24_n26.json) | 13.4157771213519 | 13 → 15 of 26 | 1 → 1 | yes |
+| [c120inc24_n28](c120inc24/c120inc24_n28.json) | 13.5035619317659 | 19 → 21 of 28 | 1 → 1 | yes |
+| [c120inc5_n09](c120inc5/c120inc5_n09.json) | 36.2677266259437 | 0 → 2 of 9 | 1 → 1 | yes |
+| [c120inc5_n16](c120inc5/c120inc5_n16.json) | 39.896330566964 | 3 → 4 of 16 | 1 → 1 | yes |
+| [c120inc5_n18](c120inc5/c120inc5_n18.json) | 41.2589155668277 | 0 → 4 of 18 | 1 → 1 | yes |
+| [c120inc5_n19](c120inc5/c120inc5_n19.json) | 41.5757564961434 | 0 → 2 of 19 | 1 → 1 | yes |
+| [c120inc5_n20](c120inc5/c120inc5_n20.json) | 42.0482354049853 | 0 → 2 of 20 | 1 → 1 | yes |
+| [c120inc5_n22](c120inc5/c120inc5_n22.json) | 43.0679137828346 | 0 → 3 of 22 | 1 → 1 | yes |
+| [c120inc5_n23](c120inc5/c120inc5_n23.json) | 43.1134601424574 | 0 → 1 of 23 | 1 → 1 | yes |
+| [c120inc5_n24](c120inc5/c120inc5_n24.json) | 43.1954608282821 | 0 → 2 of 24 | 1 → 1 | yes |
+| [c120inc5_n25](c120inc5/c120inc5_n25.json) | 43.2330531509744 | 0 → 1 of 25 | 1 → 1 | yes |
+| [c120inc5_n26](c120inc5/c120inc5_n26.json) | 43.2457928315097 | 0 → 3 of 26 | 1 → 1 | yes |
+| [c120inc5_n27](c120inc5/c120inc5_n27.json) | 43.3171215235833 | 0 → 3 of 27 | 1 → 1 | yes |
+| [c120inc5_n28](c120inc5/c120inc5_n28.json) | 43.4402325608321 | 0 → 1 of 28 | 1 → 1 | yes |
+| [c120inc5_n30](c120inc5/c120inc5_n30.json) | 43.4455342796258 | 1 → 2 of 30 | 1 → 1 | yes |
+| [c120inc5_n32](c120inc5/c120inc5_n32.json) | 43.4886639764772 | 2 → 3 of 32 | 1 → 1 | yes |
+| [c120inc5_n34](c120inc5/c120inc5_n34.json) | 43.5300589584743 | 3 → 4 of 34 | 1 → 1 | yes |
+| [c120inc5_n35](c120inc5/c120inc5_n35.json) | 43.5568209863589 | 2 → 3 of 35 | 1 → 1 | yes |
+| [c120inc5_n36](c120inc5/c120inc5_n36.json) | 46.0896935675486 | 0 → 2 of 36 | 1 → 1 | yes |
+| [c120inc5_n37](c120inc5/c120inc5_n37.json) | 46.8286441498683 | 1 → 2 of 37 | 1 → 1 | yes |
+| [c120inc5_n38](c120inc5/c120inc5_n38.json) | 47.294167680086 | 1 → 2 of 38 | 1 → 1 | yes |
+| [c120inc5_n39](c120inc5/c120inc5_n39.json) | 47.4854947823581 | 0 → 1 of 39 | 1 → 1 | yes |
+| [c120inc5_n40](c120inc5/c120inc5_n40.json) | 47.9203074565747 | 1 → 5 of 40 | 1 → 1 | yes |
+| [c120inc600_n36](c120inc600/c120inc600_n36.json) | 7.6587545605274 | 0 → 1 of 36 | 1 → 1 | yes |
+| [c120inc600_n37](c120inc600/c120inc600_n37.json) | 7.6921250095763 | 0 → 1 of 37 | 1 → 1 | yes |
+| [c120inc8_n19](c120inc8/c120inc8_n19.json) | 15.4943141238311 | 7 → 8 of 19 | 1 → 1 | yes |
+| [c120inc8_n26](c120inc8/c120inc8_n26.json) | 16.5579086580965 | 7 → 8 of 26 | 1 → 1 | yes |
+| [c120inc8_n27](c120inc8/c120inc8_n27.json) | 16.6950212307499 | 4 → 8 of 27 | 1 → 1 | yes |
+| [c120inc8_n28](c120inc8/c120inc8_n28.json) | 16.7384612785709 | 5 → 7 of 28 | 1 → 1 | yes |
+| [c120inc8_n30](c120inc8/c120inc8_n30.json) | 16.9956812414713 | 5 → 7 of 30 | 1 → 1 | yes |
+| [c120inc8_n31](c120inc8/c120inc8_n31.json) | 17.0261267704367 | 2 → 3 of 31 | 1 → 1 | yes |
+| [c120inc8_n32](c120inc8/c120inc8_n32.json) | 17.0314762440211 | 4 → 5 of 32 | 1 → 1 | yes |
+| [c120inc8_n34](c120inc8/c120inc8_n34.json) | 17.050034077489 | 4 → 7 of 34 | 1 → 1 | yes |
+| [c120inc8_n35](c120inc8/c120inc8_n35.json) | 17.0510893311329 | 4 → 7 of 35 | 1 → 1 | yes |
+| [c120inc8_n36](c120inc8/c120inc8_n36.json) | 17.0592262181627 | 2 → 6 of 36 | 1 → 1 | yes |
+| [c120inc8_n37](c120inc8/c120inc8_n37.json) | 17.0696028023193 | 2 → 5 of 37 | 1 → 1 | yes |
+| [c120inc8_n38](c120inc8/c120inc8_n38.json) | 17.0858638102531 | 3 → 6 of 38 | 1 → 1 | yes |
+| [c16inc120_n35](c16inc120/c16inc120_n35.json) | 0.4081964741845 | 0 → 1 of 35 | 1 → 1 | yes |
+| [c16inc120_n36](c16inc120/c16inc120_n36.json) | 0.408991584758 | 0 → 1 of 36 | 1 → 1 | yes |
+| [c16inc120_n37](c16inc120/c16inc120_n37.json) | 0.4118967916676 | 0 → 1 of 37 | 1 → 1 | yes |
+| [c16inc120_n38](c16inc120/c16inc120_n38.json) | 0.4162130314766 | 0 → 1 of 38 | 1 → 1 | yes |
+| [c16inc120_n39](c16inc120/c16inc120_n39.json) | 0.4193133480721 | 0 → 1 of 39 | 1 → 1 | yes |
+| [c16inc120_n40](c16inc120/c16inc120_n40.json) | 0.4206690717082 | 0 → 1 of 40 | 1 → 1 | yes |
+| [c16inc16_n09](c16inc16/c16inc16_n09.json) | 2.3333338063767 | 4 → 7 of 9 | 1 → 1 | yes |
+| [c16inc16_n10](c16inc16/c16inc16_n10.json) | 2.3333338063767 | 5 → 6 of 10 | 1 → 1 | yes |
+| [c16inc16_n11](c16inc16/c16inc16_n11.json) | 2.4000004808343 | 7 → 9 of 11 | 1 → 1 | yes |
+| [c16inc16_n18](c16inc16/c16inc16_n18.json) | 2.6467215125215 | 2 → 3 of 18 | 1 → 1 | yes |
+| [c16inc16_n23](c16inc16/c16inc16_n23.json) | 2.8000005374021 | 23 → 23 of 23 | 1 → 1 | yes |
+| [c16inc16_n26](c16inc16/c16inc16_n26.json) | 2.8730207239559 | 4 → 4 of 26 | 1 → 1 | yes |
+| [c16inc16_n30](c16inc16/c16inc16_n30.json) | 2.977345385119 | 1 → 2 of 30 | 1 → 1 | yes |
+| [c16inc5_n07](c16inc5/c16inc5_n07.json) | 4.0634481455521 | 1 → 2 of 7 | 1 → 1 | yes |
+| [c16inc5_n11](c16inc5/c16inc5_n11.json) | 4.2531414868468 | 0 → 1 of 11 | 1 → 1 | yes |
+| [c16inc5_n12](c16inc5/c16inc5_n12.json) | 4.2868227979078 | 1 → 2 of 12 | 1 → 1 | yes |
+| [c16inc5_n15](c16inc5/c16inc5_n15.json) | 4.3696059562406 | 0 → 1 of 15 | 1 → 1 | yes |
+| [c16inc5_n16](c16inc5/c16inc5_n16.json) | 4.5311268280779 | 1 → 3 of 16 | 1 → 1 | yes |
+| [c16inc5_n25](c16inc5/c16inc5_n25.json) | 5.0434004682959 | 0 → 1 of 25 | 1 → 1 | yes |
+| [c16inc5_n26](c16inc5/c16inc5_n26.json) | 5.0575278701244 | 0 → 1 of 26 | 1 → 1 | yes |
+| [c16inc5_n32](c16inc5/c16inc5_n32.json) | 5.1817505501796 | 2 → 3 of 32 | 1 → 1 | yes |
+| [c16inc5_n38](c16inc5/c16inc5_n38.json) | 5.4436708332589 | 1 → 2 of 38 | 1 → 1 | yes |
+| [c16inc600_n32](c16inc600/c16inc600_n32.json) | 0.9391841865461 | 0 → 1 of 32 | 1 → 1 | yes |
+| [c16inc600_n37](c16inc600/c16inc600_n37.json) | 0.9659391431734 | 0 → 1 of 37 | 1 → 1 | yes |
+| [c16inc600_n38](c16inc600/c16inc600_n38.json) | 0.9722400650529 | 0 → 1 of 38 | 1 → 1 | yes |
+| [c16inc600_n39](c16inc600/c16inc600_n39.json) | 0.9772867077498 | 0 → 1 of 39 | 1 → 1 | yes |
+| [c16inc600_n40](c16inc600/c16inc600_n40.json) | 0.9777575702415 | 0 → 1 of 40 | 1 → 1 | yes |
+| [c16inc8_n18](c16inc8/c16inc8_n18.json) | 1.6686586490119 | 13 → 16 of 18 | 1 → 1 | yes |
+| [c16inc8_n19](c16inc8/c16inc8_n19.json) | 1.7388160264178 | 13 → 16 of 19 | 1 → 1 | yes |
+| [c16inc8_n20](c16inc8/c16inc8_n20.json) | 1.7677673029672 | 13 → 17 of 20 | 1 → 1 | yes |
+| [c16inc8_n21](c16inc8/c16inc8_n21.json) | 1.7677673029673 | 20 → 21 of 21 | 1 → 1 | yes |
+| [c16inc8_n22](c16inc8/c16inc8_n22.json) | 1.7677673029673 | 20 → 22 of 22 | 1 → 1 | yes |
+| [c16inc8_n25](c16inc8/c16inc8_n25.json) | 1.8668401932122 | 13 → 15 of 25 | 1 → 1 | yes |
+| [c16inc8_n27](c16inc8/c16inc8_n27.json) | 1.8913927375808 | 17 → 18 of 27 | 1 → 1 | yes |
+| [c16inc8_n28](c16inc8/c16inc8_n28.json) | 1.9198072692796 | 17 → 17 of 28 | 1 → 1 | yes |
+| [c16inc8_n29](c16inc8/c16inc8_n29.json) | 1.9209280206709 | 11 → 18 of 29 | 1 → 1 | yes |
+| [c16inc8_n30](c16inc8/c16inc8_n30.json) | 1.9427657184506 | 15 → 17 of 30 | 1 → 1 | yes |
+| [c16inc8_n31](c16inc8/c16inc8_n31.json) | 1.9445440232643 | 3 → 13 of 31 | 1 → 1 | yes |
+| [c16inc8_n32](c16inc8/c16inc8_n32.json) | 1.9837854301781 | 19 → 19 of 32 | 1 → 1 | yes |
+| [c16inc8_n33](c16inc8/c16inc8_n33.json) | 1.9996768533928 | 16 → 17 of 33 | 1 → 1 | yes |
+| [c16inc8_n35](c16inc8/c16inc8_n35.json) | 2.0130865201483 | 19 → 19 of 35 | 1 → 1 | yes |
+| [c16inc8_n36](c16inc8/c16inc8_n36.json) | 2.0182787225683 | 17 → 17 of 36 | 1 → 1 | yes |
+| [c16inc8_n37](c16inc8/c16inc8_n37.json) | 2.0285361104825 | 18 → 20 of 37 | 1 → 1 | yes |
+| [c16inc8_n38](c16inc8/c16inc8_n38.json) | 2.053087649636 | 19 → 19 of 38 | 1 → 1 | yes |
+| [c16inc8_n39](c16inc8/c16inc8_n39.json) | 2.0649811530163 | 17 → 18 of 39 | 1 → 1 | yes |
+| [c16inc8_n40](c16inc8/c16inc8_n40.json) | 2.0674453641507 | 16 → 18 of 40 | 1 → 1 | yes |
+| [c24inc120_n26](c24inc120/c24inc120_n26.json) | 0.6594248332446 | 0 → 1 of 26 | 1 → 1 | yes |
+| [c24inc120_n27](c24inc120/c24inc120_n27.json) | 0.6689968801665 | 2 → 3 of 27 | 1 → 1 | yes |
+| [c24inc120_n28](c24inc120/c24inc120_n28.json) | 0.6771638852371 | 0 → 1 of 28 | 1 → 1 | yes |
+| [c24inc120_n29](c24inc120/c24inc120_n29.json) | 0.6852582998471 | 0 → 1 of 29 | 1 → 1 | yes |
+| [c24inc120_n30](c24inc120/c24inc120_n30.json) | 0.691249022254 | 0 → 1 of 30 | 1 → 1 | yes |
+| [c24inc120_n31](c24inc120/c24inc120_n31.json) | 0.6988097087956 | 0 → 1 of 31 | 1 → 1 | yes |
+| [c24inc120_n32](c24inc120/c24inc120_n32.json) | 0.701610853599 | 0 → 1 of 32 | 1 → 1 | yes |
+| [c24inc120_n33](c24inc120/c24inc120_n33.json) | 0.7057665612503 | 0 → 1 of 33 | 1 → 1 | yes |
+| [c24inc120_n34](c24inc120/c24inc120_n34.json) | 0.7117176866731 | 0 → 1 of 34 | 1 → 1 | yes |
+| [c24inc120_n35](c24inc120/c24inc120_n35.json) | 0.7158616021975 | 0 → 1 of 35 | 1 → 1 | yes |
+| [c24inc120_n36](c24inc120/c24inc120_n36.json) | 0.7234908659304 | 0 → 1 of 36 | 1 → 1 | yes |
+| [c24inc120_n37](c24inc120/c24inc120_n37.json) | 0.7276521335657 | 0 → 1 of 37 | 1 → 1 | yes |
+| [c24inc120_n38](c24inc120/c24inc120_n38.json) | 0.7281947561155 | 0 → 2 of 38 | 1 → 1 | yes |
+| [c24inc120_n39](c24inc120/c24inc120_n39.json) | 0.7282445382495 | 0 → 2 of 39 | 1 → 1 | yes |
+| [c24inc120_n40](c24inc120/c24inc120_n40.json) | 0.728431279084 | 0 → 1 of 40 | 1 → 1 | yes |
+| [c24inc16_n10](c24inc16/c24inc16_n10.json) | 4.467593668206 | 5 → 8 of 10 | 1 → 1 | yes |
+| [c24inc16_n25](c24inc16/c24inc16_n25.json) | 5.4677627886215 | 5 → 21 of 25 | 1 → 1 | yes |
+| [c24inc16_n26](c24inc16/c24inc16_n26.json) | 5.4932970887616 | 11 → 12 of 26 | 1 → 1 | yes |
+| [c24inc16_n27](c24inc16/c24inc16_n27.json) | 5.5237692084767 | 8 → 9 of 27 | 1 → 1 | yes |
+| [c24inc16_n29](c24inc16/c24inc16_n29.json) | 5.6147057009629 | 6 → 7 of 29 | 1 → 1 | yes |
+| [c24inc16_n30](c24inc16/c24inc16_n30.json) | 5.6188800517705 | 5 → 8 of 30 | 1 → 1 | yes |
+| [c24inc16_n31](c24inc16/c24inc16_n31.json) | 5.6287930785276 | 6 → 7 of 31 | 1 → 1 | yes |
+| [c24inc16_n32](c24inc16/c24inc16_n32.json) | 5.6465398644038 | 6 → 7 of 32 | 1 → 1 | yes |
+| [c24inc16_n33](c24inc16/c24inc16_n33.json) | 5.6474308161624 | 6 → 9 of 33 | 1 → 1 | yes |
+| [c24inc16_n35](c24inc16/c24inc16_n35.json) | 5.91314329831 | 5 → 6 of 35 | 1 → 1 | yes |
+| [c24inc24_n11](c24inc24/c24inc24_n11.json) | 2.4000002404167 | 7 → 8 of 11 | 1 → 1 | yes |
+| [c24inc24_n26](c24inc24/c24inc24_n26.json) | 2.9454763874051 | 5 → 6 of 26 | 1 → 1 | yes |
+| [c24inc5_n11](c24inc5/c24inc5_n11.json) | 8.2223684956169 | 3 → 4 of 11 | 1 → 1 | yes |
+| [c24inc5_n13](c24inc5/c24inc5_n13.json) | 8.3386665514069 | 2 → 3 of 13 | 1 → 1 | yes |
+| [c24inc5_n15](c24inc5/c24inc5_n15.json) | 8.4011943893691 | 2 → 4 of 15 | 1 → 1 | yes |
+| [c24inc5_n16](c24inc5/c24inc5_n16.json) | 8.7140882060483 | 6 → 7 of 16 | 1 → 1 | yes |
+| [c24inc5_n21](c24inc5/c24inc5_n21.json) | 9.4261372731533 | 5 → 7 of 21 | 1 → 1 | yes |
+| [c24inc5_n22](c24inc5/c24inc5_n22.json) | 9.5557709307075 | 4 → 5 of 22 | 1 → 1 | yes |
+| [c24inc5_n23](c24inc5/c24inc5_n23.json) | 9.5783772375271 | 6 → 7 of 23 | 1 → 1 | yes |
+| [c24inc5_n26](c24inc5/c24inc5_n26.json) | 9.7611575582016 | 3 → 4 of 26 | 1 → 1 | yes |
+| [c24inc5_n27](c24inc5/c24inc5_n27.json) | 9.8075751348057 | 2 → 3 of 27 | 1 → 1 | yes |
+| [c24inc5_n28](c24inc5/c24inc5_n28.json) | 9.8543689937197 | 6 → 7 of 28 | 1 → 1 | yes |
+| [c24inc5_n30](c24inc5/c24inc5_n30.json) | 9.9250354697893 | 3 → 4 of 30 | 1 → 1 | yes |
+| [c24inc5_n34](c24inc5/c24inc5_n34.json) | 10.0252113089124 | 3 → 5 of 34 | 1 → 1 | yes |
+| [c24inc5_n36](c24inc5/c24inc5_n36.json) | 10.2164160199512 | 4 → 5 of 36 | 1 → 1 | yes |
+| [c24inc5_n37](c24inc5/c24inc5_n37.json) | 10.3174946518103 | 5 → 6 of 37 | 1 → 1 | yes |
+| [c24inc5_n38](c24inc5/c24inc5_n38.json) | 10.4471730930727 | 8 → 9 of 38 | 1 → 1 | yes |
+| [c24inc5_n39](c24inc5/c24inc5_n39.json) | 10.5471162296691 | 3 → 5 of 39 | 1 → 1 | yes |
+| [c24inc600_n31](c24inc600/c24inc600_n31.json) | 1.6407442502413 | 0 → 1 of 31 | 1 → 1 | yes |
+| [c24inc600_n33](c24inc600/c24inc600_n33.json) | 1.6576755371793 | 0 → 1 of 33 | 1 → 1 | yes |
+| [c24inc600_n34](c24inc600/c24inc600_n34.json) | 1.6656383704914 | 0 → 1 of 34 | 1 → 1 | yes |
+| [c24inc600_n35](c24inc600/c24inc600_n35.json) | 1.672071971068 | 0 → 1 of 35 | 1 → 1 | yes |
+| [c24inc600_n37](c24inc600/c24inc600_n37.json) | 1.708229829275 | 0 → 1 of 37 | 1 → 1 | yes |
+| [c24inc600_n38](c24inc600/c24inc600_n38.json) | 1.7183916874091 | 0 → 1 of 38 | 1 → 1 | yes |
+| [c24inc600_n40](c24inc600/c24inc600_n40.json) | 1.7279078668189 | 0 → 1 of 40 | 1 → 1 | yes |
+| [c24inc8_n19](c24inc8/c24inc8_n19.json) | 3.2998319788714 | 13 → 14 of 19 | 1 → 1 | yes |
+| [c24inc8_n20](c24inc8/c24inc8_n20.json) | 3.3775642915722 | 14 → 16 of 20 | 1 → 1 | yes |
+| [c24inc8_n21](c24inc8/c24inc8_n21.json) | 3.394112889696 | 5 → 14 of 21 | 1 → 1 | yes |
+| [c24inc8_n33](c24inc8/c24inc8_n33.json) | 3.8149177470853 | 17 → 21 of 33 | 1 → 1 | yes |
+| [c5inc16_n05](c5inc16/c5inc16_n05.json) | 1.3117739294339 | 3 → 4 of 5 | 1 → 1 | yes |
+| [c5inc16_n22](c5inc16/c5inc16_n22.json) | 1.8931112159417 | 0 → 2 of 22 | 1 → 1 | yes |
+| [c5inc5_n07](c5inc5/c5inc5_n07.json) | 2.1455520474559 | 3 → 7 of 7 | 1 → 2 | yes |
+| [c5inc5_n08](c5inc5/c5inc5_n08.json) | 2.1986598521006 | 6 → 8 of 8 | 1 → 1 | yes |
+| [c5inc5_n09](c5inc5/c5inc5_n09.json) | 2.2216623561666 | 8 → 9 of 9 | 1 → 1 | yes |
+| [c5inc5_n22](c5inc5/c5inc5_n22.json) | 2.8946537737283 | 8 → 10 of 22 | 1 → 1 | yes |
+| [c5inc5_n23](c5inc5/c5inc5_n23.json) | 2.9345019898398 | 11 → 12 of 23 | 1 → 1 | yes |
+| [c5inc5_n27](c5inc5/c5inc5_n27.json) | 3.0128985307694 | 14 → 15 of 27 | 1 → 1 | yes |
+| [c5inc5_n31](c5inc5/c5inc5_n31.json) | 3.0894837712505 | 12 → 13 of 31 | 1 → 1 | yes |
+| [c5inc5_n34](c5inc5/c5inc5_n34.json) | 3.1500093757816 | 13 → 14 of 34 | 1 → 1 | yes |
+| [c600inc120_n17](c600inc120/c600inc120_n17.json) | 1.2102305209806 | 0 → 1 of 17 | 1 → 1 | yes |
+| [c600inc120_n26](c600inc120/c600inc120_n26.json) | 1.3048052898868 | 0 → 1 of 26 | 1 → 1 | yes |
+| [c600inc120_n27](c600inc120/c600inc120_n27.json) | 1.3167971254474 | 0 → 1 of 27 | 1 → 1 | yes |
+| [c600inc120_n28](c600inc120/c600inc120_n28.json) | 1.3256991488343 | 0 → 1 of 28 | 1 → 1 | yes |
+| [c600inc120_n29](c600inc120/c600inc120_n29.json) | 1.3421162485445 | 0 → 1 of 29 | 1 → 1 | yes |
+| [c600inc120_n30](c600inc120/c600inc120_n30.json) | 1.3502043214235 | 0 → 1 of 30 | 1 → 1 | yes |
+| [c600inc120_n37](c600inc120/c600inc120_n37.json) | 1.4188631830926 | 0 → 1 of 37 | 1 → 1 | yes |
+| [c600inc120_n38](c600inc120/c600inc120_n38.json) | 1.426632646032 | 0 → 1 of 38 | 1 → 1 | yes |
+| [c600inc120_n39](c600inc120/c600inc120_n39.json) | 1.4324089917278 | 0 → 1 of 39 | 1 → 1 | yes |
+| [c600inc120_n40](c600inc120/c600inc120_n40.json) | 1.4409653184551 | 0 → 1 of 40 | 1 → 1 | yes |
+| [c600inc16_n17](c600inc16/c600inc16_n17.json) | 9.8190887074013 | 2 → 5 of 17 | 1 → 1 | yes |
+| [c600inc16_n18](c600inc16/c600inc16_n18.json) | 9.9052233595148 | 1 → 2 of 18 | 1 → 1 | yes |
+| [c600inc16_n35](c600inc16/c600inc16_n35.json) | 11.6469371482072 | 5 → 6 of 35 | 1 → 1 | yes |
+| [c600inc16_n40](c600inc16/c600inc16_n40.json) | 12.0894863121658 | 4 → 5 of 40 | 1 → 1 | yes |
+| [c600inc24_n26](c600inc24/c600inc24_n26.json) | 5.8012620415016 | 0 → 1 of 26 | 1 → 1 | yes |
+| [c600inc24_n27](c600inc24/c600inc24_n27.json) | 5.8593926240158 | 3 → 4 of 27 | 1 → 1 | yes |
+| [c600inc24_n28](c600inc24/c600inc24_n28.json) | 5.8845545928764 | 3 → 4 of 28 | 1 → 1 | yes |
+| [c600inc5_n08](c600inc5/c600inc5_n08.json) | 15.5189219938023 | 3 → 4 of 8 | 1 → 1 | yes |
+| [c600inc5_n20](c600inc5/c600inc5_n20.json) | 17.9884762465044 | 4 → 5 of 20 | 1 → 1 | yes |
+| [c600inc5_n24](c600inc5/c600inc5_n24.json) | 18.5907081389196 | 3 → 4 of 24 | 1 → 1 | yes |
+| [c600inc5_n25](c600inc5/c600inc5_n25.json) | 18.6252037360796 | 4 → 5 of 25 | 1 → 1 | yes |
+| [c600inc5_n31](c600inc5/c600inc5_n31.json) | 18.6568612396998 | 4 → 5 of 31 | 1 → 1 | yes |
+| [c600inc5_n32](c600inc5/c600inc5_n32.json) | 18.6568612408184 | 4 → 5 of 32 | 1 → 1 | yes |
+| [c600inc5_n36](c600inc5/c600inc5_n36.json) | 19.7886062616449 | 1 → 4 of 36 | 1 → 1 | yes |
+| [c600inc600_n26](c600inc600/c600inc600_n26.json) | 3.0525272141841 | 0 → 1 of 26 | 1 → 1 | yes |
+| [c600inc600_n33](c600inc600/c600inc600_n33.json) | 3.2055233331678 | 0 → 1 of 33 | 1 → 1 | yes |
+| [c600inc600_n34](c600inc600/c600inc600_n34.json) | 3.2263372789058 | 0 → 1 of 34 | 1 → 1 | yes |
+| [c600inc600_n35](c600inc600/c600inc600_n35.json) | 3.2504443723224 | 0 → 1 of 35 | 1 → 1 | yes |
+| [c600inc600_n39](c600inc600/c600inc600_n39.json) | 3.3405202211806 | 0 → 1 of 39 | 1 → 1 | yes |
+| [c600inc8_n21](c600inc8/c600inc8_n21.json) | 6.8681967966284 | 2 → 3 of 21 | 1 → 1 | yes |
+| [c600inc8_n22](c600inc8/c600inc8_n22.json) | 6.9079968445356 | 4 → 5 of 22 | 1 → 1 | yes |
+| [c600inc8_n23](c600inc8/c600inc8_n23.json) | 6.9695347255915 | 5 → 6 of 23 | 1 → 1 | yes |
+| [c600inc8_n25](c600inc8/c600inc8_n25.json) | 7.0956816487727 | 3 → 4 of 25 | 1 → 1 | yes |
+| [c8inc16_n20](c8inc16/c8inc16_n20.json) | 4.5782608724615 | 5 → 6 of 20 | 1 → 1 | yes |
+| [c8inc16_n21](c8inc16/c8inc16_n21.json) | 4.59448207394 | 7 → 8 of 21 | 1 → 1 | yes |
+| [c8inc16_n22](c8inc16/c8inc16_n22.json) | 4.605045195338 | 6 → 7 of 22 | 1 → 1 | yes |
+| [c8inc16_n23](c8inc16/c8inc16_n23.json) | 4.6287521769578 | 6 → 8 of 23 | 1 → 1 | yes |
+| [c8inc16_n25](c8inc16/c8inc16_n25.json) | 4.7206548564398 | 5 → 6 of 25 | 1 → 1 | yes |
+| [c8inc16_n26](c8inc16/c8inc16_n26.json) | 4.7522868287522 | 3 → 4 of 26 | 1 → 1 | yes |
+| [c8inc16_n27](c8inc16/c8inc16_n27.json) | 4.7786098250856 | 2 → 3 of 27 | 1 → 1 | yes |
+| [c8inc16_n28](c8inc16/c8inc16_n28.json) | 4.8416437776501 | 3 → 5 of 28 | 1 → 1 | yes |
+| [c8inc16_n32](c8inc16/c8inc16_n32.json) | 4.9173622054181 | 5 → 7 of 32 | 1 → 1 | yes |
+| [c8inc16_n33](c8inc16/c8inc16_n33.json) | 4.9371141277949 | 3 → 4 of 33 | 1 → 1 | yes |
+| [c8inc16_n36](c8inc16/c8inc16_n36.json) | 5.0000005884473 | 2 → 4 of 36 | 1 → 1 | yes |
+| [c8inc16_n38](c8inc16/c8inc16_n38.json) | 5.0505166833709 | 6 → 7 of 38 | 1 → 1 | yes |
+| [c8inc16_n39](c8inc16/c8inc16_n39.json) | 5.0743644461927 | 5 → 7 of 39 | 1 → 1 | yes |
+| [c8inc16_n40](c8inc16/c8inc16_n40.json) | 5.1018558331011 | 5 → 6 of 40 | 1 → 1 | yes |
+| [c8inc5_n07](c8inc5/c8inc5_n07.json) | 6.6443574406998 | 2 → 3 of 7 | 1 → 1 | yes |
+| [c8inc5_n08](c8inc5/c8inc5_n08.json) | 6.7990579119896 | 0 → 2 of 8 | 1 → 1 | yes |
+| [c8inc5_n09](c8inc5/c8inc5_n09.json) | 6.8636518196271 | 0 → 2 of 9 | 1 → 1 | yes |
+| [c8inc5_n14](c8inc5/c8inc5_n14.json) | 7.0285658360437 | 0 → 2 of 14 | 1 → 1 | yes |
+| [c8inc5_n15](c8inc5/c8inc5_n15.json) | 7.0482482199689 | 1 → 2 of 15 | 1 → 1 | yes |
+| [c8inc5_n16](c8inc5/c8inc5_n16.json) | 7.4380163895376 | 1 → 7 of 16 | 1 → 1 | yes |
+| [c8inc5_n17](c8inc5/c8inc5_n17.json) | 7.6443574370079 | 0 → 5 of 17 | 1 → 1 | yes |
+| [c8inc5_n18](c8inc5/c8inc5_n18.json) | 7.6443575237906 | 0 → 8 of 18 | 1 → 1 | yes |
+| [c8inc5_n19](c8inc5/c8inc5_n19.json) | 7.7990579950796 | 0 → 10 of 19 | 1 → 1 | yes |
+| [c8inc5_n20](c8inc5/c8inc5_n20.json) | 7.863138330632 | 1 → 8 of 20 | 1 → 1 | yes |
+| [c8inc5_n21](c8inc5/c8inc5_n21.json) | 7.8682684505058 | 2 → 9 of 21 | 1 → 1 | yes |
+| [c8inc5_n22](c8inc5/c8inc5_n22.json) | 7.9537586483991 | 0 → 4 of 22 | 1 → 1 | yes |
+| [c8inc5_n23](c8inc5/c8inc5_n23.json) | 7.9537586483991 | 0 → 4 of 23 | 1 → 1 | yes |
+| [c8inc5_n24](c8inc5/c8inc5_n24.json) | 8.0338445375819 | 0 → 4 of 24 | 1 → 1 | yes |
+| [c8inc5_n25](c8inc5/c8inc5_n25.json) | 8.0519261009165 | 2 → 5 of 25 | 1 → 1 | yes |
+| [c8inc5_n26](c8inc5/c8inc5_n26.json) | 8.0590985129004 | 0 → 3 of 26 | 1 → 1 | yes |
+| [c8inc5_n27](c8inc5/c8inc5_n27.json) | 8.0904229438243 | 0 → 6 of 27 | 1 → 1 | yes |
+| [c8inc5_n28](c8inc5/c8inc5_n28.json) | 8.1309564043652 | 0 → 2 of 28 | 1 → 1 | yes |
+| [c8inc5_n29](c8inc5/c8inc5_n29.json) | 8.1424933153646 | 1 → 4 of 29 | 1 → 1 | yes |
+| [c8inc5_n30](c8inc5/c8inc5_n30.json) | 8.1620625060884 | 2 → 4 of 30 | 1 → 1 | yes |
+| [c8inc5_n31](c8inc5/c8inc5_n31.json) | 8.1620625173905 | 2 → 3 of 31 | 1 → 1 | yes |
+| [c8inc5_n32](c8inc5/c8inc5_n32.json) | 8.1760456428366 | 1 → 2 of 32 | 1 → 1 | yes |
+| [c8inc5_n34](c8inc5/c8inc5_n34.json) | 8.208239684101 | 1 → 2 of 34 | 1 → 1 | yes |
+| [c8inc5_n36](c8inc5/c8inc5_n36.json) | 8.5223308293939 | 0 → 11 of 36 | 1 → 1 | yes |
+| [c8inc5_n37](c8inc5/c8inc5_n37.json) | 8.6182553798412 | 1 → 10 of 37 | 1 → 1 | yes |
+| [c8inc5_n38](c8inc5/c8inc5_n38.json) | 8.6443575062952 | 1 → 10 of 38 | 1 → 1 | yes |
+| [c8inc5_n39](c8inc5/c8inc5_n39.json) | 8.7029275566892 | 0 → 5 of 39 | 1 → 1 | yes |
+| [c8inc5_n40](c8inc5/c8inc5_n40.json) | 8.7676110621392 | 3 → 8 of 40 | 1 → 1 | yes |
+| [c8inc600_n09](c8inc600/c8inc600_n09.json) | 1.1406839318677 | 4 → 6 of 9 | 1 → 1 | yes |
+| [c8inc8_n18](c8inc8/c8inc8_n18.json) | 2.7071071226273 | 10 → 17 of 18 | 1 → 1 | yes |
+| [c8inc8_n19](c8inc8/c8inc8_n19.json) | 2.7071071226463 | 19 → 19 of 19 | 1 → 1 | yes |
+| [c8inc8_n20](c8inc8/c8inc8_n20.json) | 2.7071071226498 | 20 → 20 of 20 | 1 → 1 | yes |
+| [c8inc8_n21](c8inc8/c8inc8_n21.json) | 2.707107122653 | 21 → 21 of 21 | 1 → 1 | yes |
+| [c8inc8_n26](c8inc8/c8inc8_n26.json) | 2.9428094025482 | 10 → 24 of 26 | 1 → 1 | yes |
+| [c8inc8_n27](c8inc8/c8inc8_n27.json) | 2.9428094025512 | 24 → 25 of 27 | 1 → 1 | yes |
+| [c8inc8_n30](c8inc8/c8inc8_n30.json) | 2.987690243981 | 26 → 28 of 30 | 1 → 1 | yes |
 | [cboincbo_n06](cboincbo/cboincbo_n06.json) | 2.2913623277297 | 0 → 2 of 6 | 1 → 1 | yes |
 | [cboincbo_n09](cboincbo/cboincbo_n09.json) | 2.6509870588953 | 2 → 3 of 9 | 1 → 1 | yes |
 | [cboincbo_n100](cboincbo/cboincbo_n100.json) | 5.3513519279079 | 17 → 26 of 100 | 1 → 1 | yes |
@@ -881,6 +1182,50 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [dtcindtc_n80](dtcindtc/dtcindtc_n80.json) | 5.2722701129331 | 1 → 2 of 80 | 1 → 1 | yes |
 | [dtcindtc_n87](dtcindtc/dtcindtc_n87.json) | 5.3914086831179 | 0 → 1 of 87 | 1 → 1 | yes |
 | [dtcindtc_n97](dtcindtc/dtcindtc_n97.json) | 5.5880587098956 | 0 → 1 of 97 | 1 → 1 | yes |
+| [hc5inop5_n12](hc5inop5/hc5inop5_n12.json) | 4.5703244102548 | 4 → 5 of 12 | 1 → 1 | yes |
+| [hc5inop5_n16](hc5inop5/hc5inop5_n16.json) | 4.7071072974176 | 15 → 16 of 16 | 1 → 2 | yes |
+| [hc5inop5_n17](hc5inop5/hc5inop5_n17.json) | 4.8485709091548 | 4 → 6 of 17 | 1 → 1 | yes |
+| [hc5inop5_n20](hc5inop5/hc5inop5_n20.json) | 4.9782321477252 | 6 → 7 of 20 | 1 → 1 | yes |
+| [hc5inop5_n24](hc5inop5/hc5inop5_n24.json) | 5.2071073474228 | 2 → 4 of 24 | 1 → 1 | yes |
+| [hc5inop5_n26](hc5inop5/hc5inop5_n26.json) | 5.2760611864642 | 6 → 7 of 26 | 1 → 1 | yes |
+| [hc5inop5_n30](hc5inop5/hc5inop5_n30.json) | 5.398719571584 | 5 → 6 of 30 | 1 → 1 | yes |
+| [hc5insx5_n07](hc5insx5/hc5insx5_n07.json) | 7.935351946978 | 1 → 2 of 7 | 1 → 1 | yes |
+| [hc5insx5_n08](hc5insx5/hc5insx5_n08.json) | 7.9353520494861 | 2 → 4 of 8 | 1 → 1 | yes |
+| [hc5insx5_n09](hc5insx5/hc5insx5_n09.json) | 7.9701201551928 | 3 → 5 of 9 | 1 → 1 | yes |
+| [hc5insx5_n10](hc5insx5/hc5insx5_n10.json) | 8.0953713427091 | 1 → 4 of 10 | 1 → 1 | yes |
+| [hc5insx5_n11](hc5insx5/hc5insx5_n11.json) | 8.1528679398409 | 1 → 3 of 11 | 1 → 1 | yes |
+| [hc5insx5_n12](hc5insx5/hc5insx5_n12.json) | 8.2446368834451 | 2 → 5 of 12 | 1 → 1 | yes |
+| [hc5insx5_n13](hc5insx5/hc5insx5_n13.json) | 8.2600382840009 | 1 → 2 of 13 | 1 → 1 | yes |
+| [hc5insx5_n15](hc5insx5/hc5insx5_n15.json) | 8.2840249910346 | 0 → 1 of 15 | 1 → 1 | yes |
+| [hc5insx5_n22](hc5insx5/hc5insx5_n22.json) | 8.7290109904803 | 1 → 13 of 22 | 1 → 1 | yes |
+| [hc5insx5_n23](hc5insx5/hc5insx5_n23.json) | 8.8902775680146 | 1 → 15 of 23 | 1 → 1 | yes |
+| [hc5insx5_n24](hc5insx5/hc5insx5_n24.json) | 8.935352039491 | 0 → 16 of 24 | 1 → 1 | yes |
+| [hc5insx5_n25](hc5insx5/hc5insx5_n25.json) | 8.9527361029392 | 1 → 12 of 25 | 1 → 1 | yes |
+| [hc5insx5_n26](hc5insx5/hc5insx5_n26.json) | 8.952736203919 | 1 → 15 of 26 | 1 → 1 | yes |
+| [hc5insx5_n27](hc5insx5/hc5insx5_n27.json) | 9.1074367011331 | 1 → 16 of 27 | 1 → 1 | yes |
+| [hc5insx5_n28](hc5insx5/hc5insx5_n28.json) | 9.1356735383852 | 0 → 15 of 28 | 1 → 1 | yes |
+| [hc5insx5_n29](hc5insx5/hc5insx5_n29.json) | 9.1724225000632 | 3 → 15 of 29 | 1 → 1 | yes |
+| [hc5insx5_n30](hc5insx5/hc5insx5_n30.json) | 9.2061220290344 | 0 → 12 of 30 | 1 → 1 | yes |
+| [hc5insx5_n31](hc5insx5/hc5insx5_n31.json) | 9.366559535273 | 1 → 10 of 31 | 1 → 1 | yes |
+| [hc5insx5_n32](hc5insx5/hc5insx5_n32.json) | 9.3718936390887 | 1 → 8 of 32 | 1 → 1 | yes |
+| [hc6inop6_n05](hc6inop6/hc6inop6_n05.json) | 4.5621146964126 | 4 → 5 of 5 | 1 → 2 | yes |
+| [hc6inop6_n07](hc6inop6/hc6inop6_n07.json) | 4.7071072690203 | 3 → 7 of 7 | 1 → 1 | yes |
+| [hc6inop6_n08](hc6inop6/hc6inop6_n08.json) | 4.7373113529502 | 6 → 8 of 8 | 1 → 2 | yes |
+| [hc6inop6_n10](hc6inop6/hc6inop6_n10.json) | 4.9100731854541 | 4 → 5 of 10 | 1 → 1 | yes |
+| [hc6inop6_n19](hc6inop6/hc6inop6_n19.json) | 5.0098771802394 | 11 → 19 of 19 | 1 → 1 | yes |
+| [hc6inop6_n20](hc6inop6/hc6inop6_n20.json) | 5.0184308174796 | 9 → 19 of 20 | 1 → 1 | yes |
+| [hc6inop6_n21](hc6inop6/hc6inop6_n21.json) | 5.1632434737838 | 4 → 18 of 21 | 1 → 1 | yes |
+| [hc6inop6_n22](hc6inop6/hc6inop6_n22.json) | 5.2788277891988 | 10 → 21 of 22 | 1 → 1 | yes |
+| [hc6inop6_n23](hc6inop6/hc6inop6_n23.json) | 5.2898844311807 | 12 → 22 of 23 | 1 → 1 | yes |
+| [hc6inop6_n24](hc6inop6/hc6inop6_n24.json) | 5.500000692675 | 5 → 12 of 24 | 1 → 1 | yes |
+| [hc6insx6_n08](hc6insx6/hc6insx6_n08.json) | 9.2446594328207 | 1 → 2 of 8 | 1 → 1 | yes |
+| [hc6insx6_n09](hc6insx6/hc6insx6_n09.json) | 9.244659536514 | 2 → 3 of 9 | 1 → 1 | yes |
+| [hc6insx6_n10](hc6insx6/hc6insx6_n10.json) | 9.2620756044513 | 1 → 3 of 10 | 1 → 1 | yes |
+| [hc6insx6_n12](hc6insx6/hc6insx6_n12.json) | 9.4616683181707 | 2 → 3 of 12 | 1 → 1 | yes |
+| [hc6insx6_n15](hc6insx6/hc6insx6_n15.json) | 9.5825210856064 | 1 → 2 of 15 | 1 → 1 | yes |
+| [hc6insx6_n16](hc6insx6/hc6insx6_n16.json) | 9.5946294938436 | 0 → 1 of 16 | 1 → 1 | yes |
+| [hc6insx6_n20](hc6insx6/hc6insx6_n20.json) | 9.6806433081431 | 1 → 2 of 20 | 1 → 1 | yes |
+| [hc6insx6_n22](hc6insx6/hc6insx6_n22.json) | 9.6880187119773 | 0 → 1 of 22 | 1 → 1 | yes |
 | [icoincub_n14](icoincub/icoincub_n14.json) | 3.8990899328375 | 4 → 6 of 14 | 1 → 1 | yes |
 | [icoincub_n19](icoincub/icoincub_n19.json) | 4.3920294014268 | 2 → 3 of 19 | 1 → 1 | yes |
 | [icoincub_n24](icoincub/icoincub_n24.json) | 4.6680170836887 | 0 → 1 of 24 | 1 → 1 | yes |
@@ -1270,6 +1615,18 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [octintet_n97](octintet/octintet_n97.json) | 8.4264106555116 | 31 → 33 of 97 | 1 → 1 | yes |
 | [octintet_n98](octintet/octintet_n98.json) | 8.4290317889923 | 33 → 34 of 98 | 1 → 1 | yes |
 | [octintet_n99](octintet/octintet_n99.json) | 8.4401966881829 | 47 → 49 of 99 | 1 → 1 | yes |
+| [op5inop5_n11](op5inop5/op5inop5_n11.json) | 2.250000569435 | 7 → 10 of 11 | 1 → 1 | yes |
+| [op5inop5_n12](op5inop5/op5inop5_n12.json) | 2.250000569435 | 7 → 10 of 12 | 1 → 1 | yes |
+| [op5inop5_n13](op5inop5/op5inop5_n13.json) | 2.3000005325529 | 4 → 7 of 13 | 1 → 1 | yes |
+| [op5inop5_n19](op5inop5/op5inop5_n19.json) | 2.4582452838952 | 5 → 6 of 19 | 1 → 1 | yes |
+| [op5inop5_n21](op5inop5/op5inop5_n21.json) | 2.5000005533995 | 21 → 21 of 21 | 1 → 1 | yes |
+| [op5inop5_n22](op5inop5/op5inop5_n22.json) | 2.5000005533995 | 22 → 22 of 22 | 1 → 1 | yes |
+| [op5inop5_n29](op5inop5/op5inop5_n29.json) | 2.6666672464197 | 29 → 29 of 29 | 1 → 1 | yes |
+| [op5insx5_n07](op5insx5/op5insx5_n07.json) | 4.0283228432888 | 0 → 1 of 7 | 1 → 1 | yes |
+| [op5insx5_n12](op5insx5/op5insx5_n12.json) | 4.3448852890003 | 1 → 2 of 12 | 1 → 1 | yes |
+| [op5insx5_n22](op5insx5/op5insx5_n22.json) | 4.5950073653567 | 0 → 2 of 22 | 1 → 1 | yes |
+| [op6inop6_n13](op6inop6/op6inop6_n13.json) | 2.200000554257 | 2 → 3 of 13 | 1 → 1 | yes |
+| [op6inop6_n14](op6inop6/op6inop6_n14.json) | 2.200000554257 | 3 → 4 of 14 | 1 → 1 | yes |
 | [phcinphc_n14](phcinphc/phcinphc_n14.json) | 3.072863764338 | 0 → 1 of 14 | 1 → 1 | yes |
 | [phcinphc_n15](phcinphc/phcinphc_n15.json) | 3.1174620307272 | 0 → 1 of 15 | 1 → 1 | yes |
 | [phcinphc_n16](phcinphc/phcinphc_n16.json) | 3.191110287182 | 0 → 1 of 16 | 1 → 1 | yes |
@@ -2454,6 +2811,30 @@ See [docs/SYMMETRY.md](../../docs/SYMMETRY.md).
 | [sndinsnd_n93](sndinsnd/sndinsnd_n93.json) | 5.3914550712939 | 3 → 13 of 93 | 1 → 1 | yes |
 | [sndinsnd_n94](sndinsnd/sndinsnd_n94.json) | 5.3939066249181 | 4 → 22 of 94 | 1 → 1 | yes |
 | [sndinsnd_n98](sndinsnd/sndinsnd_n98.json) | 5.611178354203 | 0 → 2 of 98 | 1 → 1 | yes |
+| [sx5inhc5_n29](sx5inhc5/sx5inhc5_n29.json) | 0.9784858221175 | 0 → 1 of 29 | 1 → 1 | yes |
+| [sx5insx5_n04](sx5insx5/sx5insx5_n04.json) | 2.0000009787215 | 4 → 4 of 4 | 1 → 4 | yes |
+| [sx5insx5_n09](sx5insx5/sx5insx5_n09.json) | 2.0699844736387 | 3 → 6 of 9 | 1 → 3 | yes |
+| [sx5insx5_n10](sx5insx5/sx5insx5_n10.json) | 2.1164080515124 | 5 → 8 of 10 | 1 → 1 | yes |
+| [sx5insx5_n11](sx5insx5/sx5insx5_n11.json) | 2.1339029672578 | 9 → 10 of 11 | 1 → 1 | yes |
+| [sx5insx5_n14](sx5insx5/sx5insx5_n14.json) | 2.2607026231205 | 10 → 11 of 14 | 1 → 1 | yes |
+| [sx5insx5_n17](sx5insx5/sx5insx5_n17.json) | 2.3923754983686 | 12 → 14 of 17 | 1 → 1 | yes |
+| [sx5insx5_n18](sx5insx5/sx5insx5_n18.json) | 2.4566396252359 | 10 → 12 of 18 | 1 → 1 | yes |
+| [sx5insx5_n21](sx5insx5/sx5insx5_n21.json) | 2.5590288686245 | 13 → 15 of 21 | 1 → 1 | yes |
+| [sx5insx5_n22](sx5insx5/sx5insx5_n22.json) | 2.5841188910835 | 13 → 14 of 22 | 1 → 1 | yes |
+| [sx5insx5_n28](sx5insx5/sx5insx5_n28.json) | 2.7155045559459 | 15 → 16 of 28 | 1 → 1 | yes |
+| [sx6inop6_n09](sx6inop6/sx6inop6_n09.json) | 1.3345890709308 | 3 → 5 of 9 | 1 → 1 | yes |
+| [sx6inop6_n17](sx6inop6/sx6inop6_n17.json) | 1.4783427777348 | 9 → 10 of 17 | 1 → 1 | yes |
+| [sx6inop6_n18](sx6inop6/sx6inop6_n18.json) | 1.5130167628594 | 10 → 12 of 18 | 1 → 1 | yes |
+| [sx6inop6_n23](sx6inop6/sx6inop6_n23.json) | 1.6254784039661 | 2 → 3 of 23 | 1 → 1 | yes |
+| [sx6insx6_n09](sx6insx6/sx6insx6_n09.json) | 2.0256291239862 | 4 → 8 of 9 | 1 → 1 | yes |
+| [sx6insx6_n10](sx6insx6/sx6insx6_n10.json) | 2.0541908583432 | 5 → 8 of 10 | 1 → 1 | yes |
+| [sx6insx6_n11](sx6insx6/sx6insx6_n11.json) | 2.0865368851903 | 9 → 10 of 11 | 1 → 1 | yes |
+| [sx6insx6_n12](sx6insx6/sx6insx6_n12.json) | 2.0869536617585 | 9 → 10 of 12 | 1 → 1 | yes |
+| [sx6insx6_n16](sx6insx6/sx6insx6_n16.json) | 2.1231158690987 | 14 → 14 of 16 | 1 → 1 | yes |
+| [sx6insx6_n17](sx6insx6/sx6insx6_n17.json) | 2.1784370285681 | 12 → 16 of 17 | 1 → 1 | yes |
+| [sx6insx6_n18](sx6insx6/sx6insx6_n18.json) | 2.2695583311727 | 13 → 15 of 18 | 1 → 1 | yes |
+| [sx6insx6_n19](sx6insx6/sx6insx6_n19.json) | 2.28511802731 | 15 → 17 of 19 | 1 → 1 | yes |
+| [sx6insx6_n20](sx6insx6/sx6insx6_n20.json) | 2.3295096959065 | 15 → 17 of 20 | 1 → 1 | yes |
 | [tcointco_n03](tcointco/tcointco_n03.json) | 2.0592089008925 | 0 → 1 of 3 | 1 → 2 | yes |
 | [tcointco_n06](tcointco/tcointco_n06.json) | 2.3390121588412 | 1 → 2 of 6 | 1 → 1 | yes |
 | [tcointco_n14](tcointco/tcointco_n14.json) | 3.0000001044817 | 1 → 4 of 14 | 1 → 1 | yes |
