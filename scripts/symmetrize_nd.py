@@ -27,6 +27,7 @@ MOVE = 0.35                       # largest centre move (piece edges)
 ANGLE = math.radians(25)
 TOL = 1e-6
 _GROUPS = {}
+_SUB = {}
 
 
 def key(M, k=5): return tuple(np.round(np.asarray(M), k).ravel())
@@ -81,7 +82,8 @@ class GeoND:
         self.circ = float(np.linalg.norm(self.V, axis=1).max())
         self.G, self.refl = group(rec['container'])
         self.CV = np.array(Q['Vf'], float)
-        self.subgroups = self._subgroups(Q)
+        if rec['container'] not in _SUB: _SUB[rec['container']] = self._subgroups(Q)      # per container, once
+        self.subgroups = _SUB[rec['container']]
 
     # -- geometry (exact frame; gaps in piece edges)
     def wall(self, c, R):
