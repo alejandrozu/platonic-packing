@@ -63,8 +63,8 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 58 | [4.49853+](octinoct_n58.json) | 4.498539733534 |  | 3.87088 | 0.6371 | ![](octinoct_n58.png) |
 | 59 | [4.49932+](octinoct_n59.json) | 4.499326804648 |  | 3.89300 | 0.6478 | ![](octinoct_n59.png) |
 | 60 | [4.50000+](octinoct_n60.json) | 4.500000167820 | 9/2 | 3.91487 | 0.6584 | ![](octinoct_n60.png) |
-| 61 | [4.50000+](octinoct_n61.json) | 4.500000350000 |  | 3.93650 | 0.6694 | ![](octinoct_n61.png) |
-| 62 | [4.50000+](octinoct_n62.json) | 4.500000350000 |  | 3.95789 | 0.6804 | ![](octinoct_n62.png) |
+| 61 | [4.50000+](octinoct_n61.json) | 4.500000350000 | 9/2 | 3.93650 | 0.6694 | ![](octinoct_n61.png) |
+| 62 | [4.50000+](octinoct_n62.json) | 4.500000350000 | 9/2 | 3.95789 | 0.6804 | ![](octinoct_n62.png) |
 | 63 | [4.50000+](octinoct_n63.json) | 4.500000350000 | 9/2 | 3.97906 | 0.6914 | ![](octinoct_n63.png) |
 | 64 | [4.60850+](octinoct_n64.json) | 4.608506543735 |  | 4.00000 | 0.6539 | ![](octinoct_n64.png) |
 | 65 | [4.61155+](octinoct_n65.json) | 4.611554510956 |  | 4.02073 | 0.6628 | ![](octinoct_n65.png) |
@@ -92,7 +92,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 87 | [5.00000+](octinoct_n87.json) | 5.000000400000 |  | 4.43105 | 0.6960 | ![](octinoct_n87.png) |
 | 88 | [5.00000+](octinoct_n88.json) | 5.000000400000 |  | 4.44796 | 0.7040 | ![](octinoct_n88.png) |
 | 89 | [5.00000+](octinoct_n89.json) | 5.000000400000 | 5 | 4.46475 | 0.7120 | ![](octinoct_n89.png) |
-| 90 | [5.00000+](octinoct_n90.json) | 5.000000400000 |  | 4.48140 | 0.7200 | ![](octinoct_n90.png) |
+| 90 | [5.00000+](octinoct_n90.json) | 5.000000400000 | 5 | 4.48140 | 0.7200 | ![](octinoct_n90.png) |
 | 91 | [5.00000+](octinoct_n91.json) | 5.000000400000 | 5 | 4.49794 | 0.7280 | ![](octinoct_n91.png) |
 | 92 | [5.17290+](octinoct_n92.json) | 5.172907536278 |  | 4.51436 | 0.6646 | ![](octinoct_n92.png) |
 | 93 | [5.21682+](octinoct_n93.json) | 5.216828046021 |  | 4.53065 | 0.6550 | ![](octinoct_n93.png) |

@@ -14,8 +14,8 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 9 | [5.31288+](dodincub_n09.json) | 5.312881186904 |  | 4.10093 | 0.4599 | ![](dodincub_n09.png) |
 | 10 | [5.59263+](dodincub_n10.json) | 5.592638093416 |  | 4.24752 | 0.4381 | ![](dodincub_n10.png) |
 | 11 | [5.84798+](dodincub_n11.json) | 5.847981434928 |  | 4.38463 | 0.4215 | ![](dodincub_n11.png) |
-| 12 | [5.85410+](dodincub_n12.json) | 5.854102613463 |  | 4.51366 | 0.4584 | ![](dodincub_n12.png) |
-| 13 | [5.85410+](dodincub_n13.json) | 5.854102613463 |  | 4.63571 | 0.4966 | ![](dodincub_n13.png) |
+| 12 | [5.85410+](dodincub_n12.json) | 5.854102613463 | 5/2 + 3√5/2 | 4.51366 | 0.4584 | ![](dodincub_n12.png) |
+| 13 | [5.85410+](dodincub_n13.json) | 5.854102613463 | 5/2 + 3√5/2 | 4.63571 | 0.4966 | ![](dodincub_n13.png) |
 | 14 | [5.85410+](dodincub_n14.json) | 5.854102613463 |  | 4.75165 | 0.5348 | ![](dodincub_n14.png) |
 | 15 | [6.35075+](dodincub_n15.json) | 6.350754518760 |  | 4.86219 | 0.4488 | ![](dodincub_n15.png) |
 | 16 | [6.43065+](dodincub_n16.json) | 6.430654167175 |  | 4.96793 | 0.4611 | ![](dodincub_n16.png) |
@@ -30,9 +30,9 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 25 | [7.14960+](dodincub_n25.json) | 7.149607534045 |  | 5.76477 | 0.5242 | ![](dodincub_n25.png) |
 | 26 | [7.17653+](dodincub_n26.json) | 7.176534994149 |  | 5.84063 | 0.5391 | ![](dodincub_n26.png) |
 | 27 | [7.20283+](dodincub_n27.json) | 7.202838457608 |  | 5.91457 | 0.5537 | ![](dodincub_n27.png) |
-| 28 | [7.47213+](dodincub_n28.json) | 7.472136172981 |  | 5.98671 | 0.5143 | ![](dodincub_n28.png) |
-| 29 | [7.47213+](dodincub_n29.json) | 7.472136172981 |  | 6.05714 | 0.5327 | ![](dodincub_n29.png) |
-| 30 | [7.47213+](dodincub_n30.json) | 7.472136172981 |  | 6.12598 | 0.5511 | ![](dodincub_n30.png) |
+| 28 | [7.47213+](dodincub_n28.json) | 7.472136172981 | 3 + 2√5 | 5.98671 | 0.5143 | ![](dodincub_n28.png) |
+| 29 | [7.47213+](dodincub_n29.json) | 7.472136172981 | 3 + 2√5 | 6.05714 | 0.5327 | ![](dodincub_n29.png) |
+| 30 | [7.47213+](dodincub_n30.json) | 7.472136172981 | 3 + 2√5 | 6.12598 | 0.5511 | ![](dodincub_n30.png) |
 | 31 | [7.47213+](dodincub_n31.json) | 7.472137411230 | 3 + 2√5 | 6.19330 | 0.5694 | ![](dodincub_n31.png) |
 | 32 | [7.47213+](dodincub_n32.json) | 7.472137411230 | 3 + 2√5 | 6.25920 | 0.5878 | ![](dodincub_n32.png) |
 | 33 | [7.87119+](dodincub_n33.json) | 7.871193378268 |  | 6.32373 | 0.5186 | ![](dodincub_n33.png) |
@@ -50,15 +50,15 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 45 | [8.90813+](dodincub_n45.json) | 8.908132919622 |  | 7.01250 | 0.4878 | ![](dodincub_n45.png) |
 | 46 | [8.90813+](dodincub_n46.json) | 8.908132919622 |  | 7.06406 | 0.4987 | ![](dodincub_n46.png) |
 | 47 | [8.93485+](dodincub_n47.json) | 8.934856769972 |  | 7.11488 | 0.5049 | ![](dodincub_n47.png) |
-| 48 | [9.09017+](dodincub_n48.json) | 9.090171238177 |  | 7.16499 | 0.4897 | ![](dodincub_n48.png) |
-| 49 | [9.09017+](dodincub_n49.json) | 9.090171238177 |  | 7.21441 | 0.4999 | ![](dodincub_n49.png) |
-| 50 | [9.09017+](dodincub_n50.json) | 9.090171238177 |  | 7.26315 | 0.5101 | ![](dodincub_n50.png) |
-| 51 | [9.09017+](dodincub_n51.json) | 9.090171238177 |  | 7.31125 | 0.5203 | ![](dodincub_n51.png) |
-| 52 | [9.09017+](dodincub_n52.json) | 9.090171238177 |  | 7.35873 | 0.5305 | ![](dodincub_n52.png) |
-| 53 | [9.09017+](dodincub_n53.json) | 9.090171238177 |  | 7.40560 | 0.5407 | ![](dodincub_n53.png) |
-| 54 | [9.09017+](dodincub_n54.json) | 9.090171238177 |  | 7.45189 | 0.5509 | ![](dodincub_n54.png) |
-| 55 | [9.09017+](dodincub_n55.json) | 9.090171238177 |  | 7.49761 | 0.5611 | ![](dodincub_n55.png) |
-| 56 | [9.09017+](dodincub_n56.json) | 9.090171238177 |  | 7.54278 | 0.5713 | ![](dodincub_n56.png) |
+| 48 | [9.09017+](dodincub_n48.json) | 9.090171238177 | 7/2 + 5√5/2 | 7.16499 | 0.4897 | ![](dodincub_n48.png) |
+| 49 | [9.09017+](dodincub_n49.json) | 9.090171238177 | 7/2 + 5√5/2 | 7.21441 | 0.4999 | ![](dodincub_n49.png) |
+| 50 | [9.09017+](dodincub_n50.json) | 9.090171238177 | 7/2 + 5√5/2 | 7.26315 | 0.5101 | ![](dodincub_n50.png) |
+| 51 | [9.09017+](dodincub_n51.json) | 9.090171238177 | 7/2 + 5√5/2 | 7.31125 | 0.5203 | ![](dodincub_n51.png) |
+| 52 | [9.09017+](dodincub_n52.json) | 9.090171238177 | 7/2 + 5√5/2 | 7.35873 | 0.5305 | ![](dodincub_n52.png) |
+| 53 | [9.09017+](dodincub_n53.json) | 9.090171238177 | 7/2 + 5√5/2 | 7.40560 | 0.5407 | ![](dodincub_n53.png) |
+| 54 | [9.09017+](dodincub_n54.json) | 9.090171238177 | 7/2 + 5√5/2 | 7.45189 | 0.5509 | ![](dodincub_n54.png) |
+| 55 | [9.09017+](dodincub_n55.json) | 9.090171238177 | 7/2 + 5√5/2 | 7.49761 | 0.5611 | ![](dodincub_n55.png) |
+| 56 | [9.09017+](dodincub_n56.json) | 9.090171238177 | 7/2 + 5√5/2 | 7.54278 | 0.5713 | ![](dodincub_n56.png) |
 | 57 | [9.09017+](dodincub_n57.json) | 9.090171238177 |  | 7.58741 | 0.5815 | ![](dodincub_n57.png) |
 | 58 | [9.09017+](dodincub_n58.json) | 9.090171238177 |  | 7.63152 | 0.5917 | ![](dodincub_n58.png) |
 | 59 | [9.09017+](dodincub_n59.json) | 9.090171238177 |  | 7.67513 | 0.6019 | ![](dodincub_n59.png) |

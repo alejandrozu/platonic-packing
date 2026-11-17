@@ -74,7 +74,7 @@ published one (cubes in a cube: Friedman's catalogue and later records; octahedr
 non-decreasing in n by construction. The search is still running and this table is regenerated automatically.
 
 <!-- RESULTS:START -->
-_Auto-generated 2026-11-14 22:15 CET from the running search; see [PROGRESS.md](PROGRESS.md) for search statistics._
+_Auto-generated 2026-11-17 20:59 CET from the running search; see [PROGRESS.md](PROGRESS.md) for search statistics._
 
 ### Same solid
 
@@ -139,8 +139,8 @@ _Auto-generated 2026-11-14 22:15 CET from the running search; see [PROGRESS.md](
 | 58 | [4.68094+](records/tetintet/tetintet_n58.json) | [4.49853+](records/octinoct/octinoct_n58.json) | [4.61748+](records/icoinico/icoinico_n58.json) | [4.71488+](records/dodindod/dodindod_n58.json) | [4.00000+](records/cubincub/cubincub_n58.json) |  |
 | 59 | [4.72183+](records/tetintet/tetintet_n59.json) | [4.49932+](records/octinoct/octinoct_n59.json) | [4.67600+](records/icoinico/icoinico_n59.json) | [4.71510+](records/dodindod/dodindod_n59.json) | [4.00000+](records/cubincub/cubincub_n59.json) |  |
 | 60 | [4.72183+](records/tetintet/tetintet_n60.json) | [4.50000+](records/octinoct/octinoct_n60.json) ≈ 9/2 | [4.71183+](records/icoinico/icoinico_n60.json) | [4.72445+](records/dodindod/dodindod_n60.json) | [4.00000+](records/cubincub/cubincub_n60.json) |  |
-| 61 | [4.79809+](records/tetintet/tetintet_n61.json) | [4.50000+](records/octinoct/octinoct_n61.json) | [4.73395+](records/icoinico/icoinico_n61.json) | [4.73770+](records/dodindod/dodindod_n61.json) | [4.00000+](records/cubincub/cubincub_n61.json) |  |
-| 62 | [4.81223+](records/tetintet/tetintet_n62.json) | [4.50000+](records/octinoct/octinoct_n62.json) | [4.78006+](records/icoinico/icoinico_n62.json) | [4.76997+](records/dodindod/dodindod_n62.json) | [4.00000+](records/cubincub/cubincub_n62.json) |  |
+| 61 | [4.79809+](records/tetintet/tetintet_n61.json) | [4.50000+](records/octinoct/octinoct_n61.json) ≈ 9/2 | [4.73395+](records/icoinico/icoinico_n61.json) | [4.73770+](records/dodindod/dodindod_n61.json) | [4.00000+](records/cubincub/cubincub_n61.json) |  |
+| 62 | [4.81223+](records/tetintet/tetintet_n62.json) | [4.50000+](records/octinoct/octinoct_n62.json) ≈ 9/2 | [4.78006+](records/icoinico/icoinico_n62.json) | [4.76997+](records/dodindod/dodindod_n62.json) | [4.00000+](records/cubincub/cubincub_n62.json) |  |
 | 63 | [4.82639+](records/tetintet/tetintet_n63.json) | [4.50000+](records/octinoct/octinoct_n63.json) ≈ 9/2 | [4.81168+](records/icoinico/icoinico_n63.json) | [4.81788+](records/dodindod/dodindod_n63.json) | [4.00000+](records/cubincub/cubincub_n63.json) |  |
 | 64 | [4.83517+](records/tetintet/tetintet_n64.json) | [4.60850+](records/octinoct/octinoct_n64.json) | [4.83935+](records/icoinico/icoinico_n64.json) | [4.84672+](records/dodindod/dodindod_n64.json) | [4.00000+](records/cubincub/cubincub_n64.json) |  |
 | 65 | [4.85771+](records/tetintet/tetintet_n65.json) | [4.61155+](records/octinoct/octinoct_n65.json) | [4.87083+](records/icoinico/icoinico_n65.json) | [4.85833+](records/dodindod/dodindod_n65.json) | [4.63467+](records/cubincub/cubincub_n65.json) |  |
@@ -168,7 +168,7 @@ _Auto-generated 2026-11-14 22:15 CET from the running search; see [PROGRESS.md](
 | 87 | [5.40951+](records/tetintet/tetintet_n87.json) | [5.00000+](records/octinoct/octinoct_n87.json) | [5.38051+](records/icoinico/icoinico_n87.json) | [5.38079+](records/dodindod/dodindod_n87.json) | [5.00000+](records/cubincub/cubincub_n87.json) ≈ 5 |  |
 | 88 | [5.46375+](records/tetintet/tetintet_n88.json) | [5.00000+](records/octinoct/octinoct_n88.json) | [5.39474+](records/icoinico/icoinico_n88.json) | [5.38141+](records/dodindod/dodindod_n88.json) | [5.00000+](records/cubincub/cubincub_n88.json) ≈ 5 |  |
 | 89 | [5.46919+](records/tetintet/tetintet_n89.json) | [5.00000+](records/octinoct/octinoct_n89.json) ≈ 5 | [5.43467+](records/icoinico/icoinico_n89.json) | [5.40149+](records/dodindod/dodindod_n89.json) | [5.00000+](records/cubincub/cubincub_n89.json) ≈ 5 |  |
-| 90 | [5.46995+](records/tetintet/tetintet_n90.json) | [5.00000+](records/octinoct/octinoct_n90.json) | [5.45100+](records/icoinico/icoinico_n90.json) | [5.47213+](records/dodindod/dodindod_n90.json) ≈ 1 + 2√5 | [5.00000+](records/cubincub/cubincub_n90.json) ≈ 5 |  |
+| 90 | [5.46995+](records/tetintet/tetintet_n90.json) | [5.00000+](records/octinoct/octinoct_n90.json) ≈ 5 | [5.45100+](records/icoinico/icoinico_n90.json) | [5.47213+](records/dodindod/dodindod_n90.json) ≈ 1 + 2√5 | [5.00000+](records/cubincub/cubincub_n90.json) ≈ 5 |  |
 | 91 | [5.50766+](records/tetintet/tetintet_n91.json) | [5.00000+](records/octinoct/octinoct_n91.json) ≈ 5 | [5.46106+](records/icoinico/icoinico_n91.json) | [5.47213+](records/dodindod/dodindod_n91.json) ≈ 1 + 2√5 | [5.00000+](records/cubincub/cubincub_n91.json) ≈ 5 |  |
 | 92 | [5.54536+](records/tetintet/tetintet_n92.json) | [5.17290+](records/octinoct/octinoct_n92.json) | [5.47950+](records/icoinico/icoinico_n92.json) | [5.47213+](records/dodindod/dodindod_n92.json) ≈ 1 + 2√5 | [5.00000+](records/cubincub/cubincub_n92.json) ≈ 5 |  |
 | 93 | [5.56052+](records/tetintet/tetintet_n93.json) | [5.21682+](records/octinoct/octinoct_n93.json) | [5.49320+](records/icoinico/icoinico_n93.json) | [5.47817+](records/dodindod/dodindod_n93.json) | [5.00000+](records/cubincub/cubincub_n93.json) ≈ 5 |  |
