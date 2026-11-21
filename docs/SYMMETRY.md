@@ -15,14 +15,15 @@ and `certify_general.py` for the prisms, Archimedean and Catalan records, and `c
 10,402 records were run: 2,475 Platonic, 6,039 family and 1,888 in 4D–6D. The symmetrized packings are in [records/symmetric/](../records/symmetric/README.md), and the records
 themselves are unchanged.
 
-_Updated the same day after [#136](https://github.com/alejandrozu/platonic-packing/issues/136): Hirotaka Nakano's
-submission improved 263 Platonic records, which were symmetrized again. 54 of the new records could be made more
-symmetric, all certified. The older symmetric versions of 17 others were removed, because they belong to the
-packings these records replace. The numbers below are after this update._
+_Updated after the record submissions [#136](https://github.com/alejandrozu/platonic-packing/issues/136) (14 Nov)
+and [#146](https://github.com/alejandrozu/platonic-packing/issues/146) (21 Nov) by Hirotaka Nakano, which improved
+263 and 683 Platonic records. The new records were symmetrized again: 54 and 159 of them could be made more
+symmetric, all certified. The older symmetric versions of 17 and 16 others were removed, because they belong to the
+packings these records replace. The numbers below are after these updates._
 
 **In total:**
-- 2,924 packings changed, all certified in their record's container.
-- Pieces on symmetric placements: 70,822 → 78,921.
+- 2,925 packings changed, all certified in their record's container.
+- Pieces on symmetric placements: 70,234 → 78,328.
 - The packing group grew in 36 records.
 
 ## Method ([scripts/symmetrize.py](../scripts/symmetrize.py))
@@ -50,35 +51,35 @@ to where it was, within 0.35 edge lengths. On a mirror plane it is placed at the
 
 ## Results (all 2,475 Platonic records, n = 2–100)
 
-- 593 packings changed, 1,610 piece moves.
-- Pieces on symmetric placements, over all records: 19,727 → 21,182 of 126,225.
+- 594 packings changed, 1,607 piece moves.
+- Pieces on symmetric placements, over all records: 19,139 → 20,589 of 126,225.
 - The packing group grew in 13 records, for example:
   - 15 icosahedra in a dodecahedron: 6 → 24
   - 11 octahedra in a cube and 15 and 21 octahedra in a dodecahedron: 1 → 6
   - 18 tetrahedra in a tetrahedron, 11 cubes in a cube and 28 octahedra in a tetrahedron: 1 → 3
 
-All 593 symmetrized packings use the record's container (identical `s_full` and n). All 593 are VALID
+All 594 symmetrized packings use the record's container (identical `s_full` and n). All 594 are VALID
 (`verify.py`) and CERTIFIED in exact arithmetic (`certify_exact.py`). Their checker outputs sit next to each file in
 [records/symmetric/](../records/symmetric/README.md).
 
 | problem | packings changed | pieces on symmetric placements (all n) | pieces (all n) |
 |---|---|---|---|
-| cubes in a tetrahedron | 67 | 95 → 341 | 5,049 |
-| dodecahedra in a dodecahedron | 46 | 719 → 924 | 5,049 |
-| icosahedra in an icosahedron | 46 | 369 → 509 | 5,049 |
+| cubes in a tetrahedron | 67 | 94 → 341 | 5,049 |
+| dodecahedra in a dodecahedron | 45 | 712 → 917 | 5,049 |
+| icosahedra in an icosahedron | 45 | 367 → 506 | 5,049 |
 | cubes in a cube | 21 | 4,159 → 4,285 | 5,049 |
 | dodecahedra in an icosahedron | 30 | 56 → 161 | 5,049 |
-| cubes in a dodecahedron | 33 | 872 → 955 | 5,049 |
-| octahedra in an octahedron | 43 | 1,449 → 1,527 | 5,049 |
+| cubes in a dodecahedron | 32 | 873 → 954 | 5,049 |
+| octahedra in an octahedron | 42 | 1,451 → 1,525 | 5,049 |
 | cubes in an octahedron | 42 | 1,174 → 1,238 | 5,049 |
-| octahedra in a tetrahedron | 36 | 1,985 → 2,049 | 5,049 |
-| icosahedra in a tetrahedron | 31 | 381 → 436 | 5,049 |
-| tetrahedra in a tetrahedron | 37 | 833 → 882 | 5,049 |
-| dodecahedra in a tetrahedron | 29 | 537 → 585 | 5,049 |
-| octahedra in a cube | 23 | 884 → 921 | 5,049 |
-| icosahedra in an octahedron | 21 | 2,419 → 2,454 | 5,049 |
+| octahedra in a tetrahedron | 35 | 1,985 → 2,046 | 5,049 |
+| icosahedra in a tetrahedron | 31 | 377 → 434 | 5,049 |
+| tetrahedra in a tetrahedron | 37 | 832 → 879 | 5,049 |
+| dodecahedra in a tetrahedron | 29 | 537 → 584 | 5,049 |
+| icosahedra in an octahedron | 28 | 2,073 → 2,114 | 5,049 |
+| octahedra in a cube | 23 | 642 → 680 | 5,049 |
 | cubes in an icosahedron | 17 | 138 → 171 | 5,049 |
-| the other 10 problems | 71 | 3,657 → 3,744 | 50,490 |
+| the other 10 problems | 70 | 3,669 → 3,754 | 50,490 |
 
 **Examples.** Coloured pieces are mapped onto themselves by the container; darker means more symmetries. The
 container is the same size on both sides.
