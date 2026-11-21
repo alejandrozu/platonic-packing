@@ -18,7 +18,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 13 | [6.37944+](cubintet_n13.json) | 6.379446538026 | 4 + √6/2 + 2√3/3 | 4.79590 | 0.4249 | ![](cubintet_n13.png) |
 | 14 | [6.53414+](cubintet_n14.json) | 6.534146264588 |  | 4.91584 | 0.4258 | ![](cubintet_n14.png) |
 | 15 | [6.53414+](cubintet_n15.json) | 6.534147173547 | 3 + √6/2 + 4√3/3 | 5.03021 | 0.4562 | ![](cubintet_n15.png) |
-| 16 | [6.68056+](cubintet_n16.json) | 6.680564844675 |  | 5.13959 | 0.4554 | ![](cubintet_n16.png) |
+| 16 | [6.68033+](cubintet_n16.json) | 6.680330062304 |  | 5.13959 | 0.4554 | ![](cubintet_n16.png) |
 | 17 | [6.73554+](cubintet_n17.json) | 6.735543992408 | 2 + 5√6/6 + 14√3/9 | 5.24451 | 0.4721 | ![](cubintet_n17.png) |
 | 18 | [6.74250+](cubintet_n18.json) | 6.742507634168 |  | 5.34539 | 0.4983 | ![](cubintet_n18.png) |
 | 19 | [6.75889+](cubintet_n19.json) | 6.758892112362 | 2 + √6 + 4√3/3 | 5.44260 | 0.5221 | ![](cubintet_n19.png) |
@@ -35,8 +35,8 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 30 | [7.91500+](cubintet_n30.json) | 7.915000830178 |  | 6.33766 | 0.5134 | ![](cubintet_n30.png) |
 | 31 | [7.98363+](cubintet_n31.json) | 7.983637351177 |  | 6.40731 | 0.5169 | ![](cubintet_n31.png) |
 | 32 | [7.98363+](cubintet_n32.json) | 7.983637351177 | 2 + 4√3/3 + 3√6/2 | 6.47548 | 0.5336 | ![](cubintet_n32.png) |
-| 33 | [8.06921+](cubintet_n33.json) | 8.069213431661 |  | 6.54224 | 0.5330 | ![](cubintet_n33.png) |
-| 34 | [8.06921+](cubintet_n34.json) | 8.069213457666 |  | 6.60767 | 0.5491 | ![](cubintet_n34.png) |
+| 33 | [7.99788+](cubintet_n33.json) | 7.997888175389 |  | 6.54224 | 0.5473 | ![](cubintet_n33.png) |
+| 34 | [8.01246+](cubintet_n34.json) | 8.012461738503 |  | 6.60767 | 0.5609 | ![](cubintet_n34.png) |
 | 35 | [8.06921+](cubintet_n35.json) | 8.069213458379 |  | 6.67183 | 0.5653 | ![](cubintet_n35.png) |
 | 36 | [8.37944+](cubintet_n36.json) | 8.379445459771 | √(72√2 + 102)/6 + 6 | 6.73477 | 0.5192 | ![](cubintet_n36.png) |
 | 37 | [8.53414+](cubintet_n37.json) | 8.534145999697 | √(144√2 + 246)/6 + 5 | 6.79656 | 0.5051 | ![](cubintet_n37.png) |

@@ -12,18 +12,18 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 7 | [1.23606+](cubindod_n07.json) | 1.236067977500 | -1 + √5 | 0.97028 | 0.4837 | ![](cubindod_n07.png) |
 | 8 | [1.23606+](cubindod_n08.json) | 1.236067977500 | -1 + √5 | 1.01444 | 0.5528 | ![](cubindod_n08.png) |
 | 9 | [1.38812+](cubindod_n09.json) | 1.388124819264 |  | 1.05506 | 0.4391 | ![](cubindod_n09.png) |
-| 10 | [1.41860+](cubindod_n10.json) | 1.418606573447 |  | 1.09278 | 0.4571 | ![](cubindod_n10.png) |
+| 10 | [1.41852+](cubindod_n10.json) | 1.418522363366 |  | 1.09278 | 0.4572 | ![](cubindod_n10.png) |
 | 11 | [1.46645+](cubindod_n11.json) | 1.466453772570 |  | 1.12805 | 0.4552 | ![](cubindod_n11.png) |
 | 12 | [1.47213+](cubindod_n12.json) | 1.472136211230 | 2√5 - 3 | 1.16125 | 0.4908 | ![](cubindod_n12.png) |
 | 13 | [1.47213+](cubindod_n13.json) | 1.472136211230 | 2√5 - 3 | 1.19265 | 0.5317 | ![](cubindod_n13.png) |
 | 14 | [1.53480+](cubindod_n14.json) | 1.534808462364 |  | 1.22248 | 0.5053 | ![](cubindod_n14.png) |
 | 15 | [1.55584+](cubindod_n15.json) | 1.555843472997 |  | 1.25092 | 0.5197 | ![](cubindod_n15.png) |
-| 16 | [1.59888+](cubindod_n16.json) | 1.598888670122 |  | 1.27812 | 0.5108 | ![](cubindod_n16.png) |
+| 16 | [1.59888+](cubindod_n16.json) | 1.598887502778 |  | 1.27812 | 0.5108 | ![](cubindod_n16.png) |
 | 17 | [1.62687+](cubindod_n17.json) | 1.626871504041 |  | 1.30421 | 0.5152 | ![](cubindod_n17.png) |
 | 18 | [1.67257+](cubindod_n18.json) | 1.672572452915 |  | 1.32930 | 0.5020 | ![](cubindod_n18.png) |
-| 19 | [1.72410+](cubindod_n19.json) | 1.724108126107 |  | 1.35347 | 0.4838 | ![](cubindod_n19.png) |
+| 19 | [1.72397+](cubindod_n19.json) | 1.723974387292 |  | 1.35347 | 0.4839 | ![](cubindod_n19.png) |
 | 20 | [1.73892+](cubindod_n20.json) | 1.738922601061 |  | 1.37681 | 0.4963 | ![](cubindod_n20.png) |
-| 21 | [1.76724+](cubindod_n21.json) | 1.767248978822 |  | 1.39939 | 0.4965 | ![](cubindod_n21.png) |
+| 21 | [1.76721+](cubindod_n21.json) | 1.767212042177 |  | 1.39939 | 0.4965 | ![](cubindod_n21.png) |
 | 22 | [1.80901+](cubindod_n22.json) | 1.809009965105 |  | 1.42126 | 0.4849 | ![](cubindod_n22.png) |
 | 23 | [1.83003+](cubindod_n23.json) | 1.830035044330 |  | 1.44247 | 0.4897 | ![](cubindod_n23.png) |
 | 24 | [1.84645+](cubindod_n24.json) | 1.846455193806 |  | 1.46308 | 0.4975 | ![](cubindod_n24.png) |
@@ -31,14 +31,14 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 26 | [1.85410+](cubindod_n26.json) | 1.854101966250 | (-3 + 3√5)/2 | 1.50264 | 0.5323 | ![](cubindod_n26.png) |
 | 27 | [1.85410+](cubindod_n27.json) | 1.854101966250 | (-3 + 3√5)/2 | 1.52167 | 0.5528 | ![](cubindod_n27.png) |
 | 28 | [1.85410+](cubindod_n28.json) | 1.854101978610 | -3/2 + 3√5/2 | 1.54022 | 0.5733 | ![](cubindod_n28.png) |
-| 29 | [1.85951+](cubindod_n29.json) | 1.859518614837 |  | 1.55835 | 0.5886 | ![](cubindod_n29.png) |
+| 29 | [1.85945+](cubindod_n29.json) | 1.859453423305 |  | 1.55835 | 0.5886 | ![](cubindod_n29.png) |
 | 30 | [1.90217+](cubindod_n30.json) | 1.902177758521 |  | 1.57606 | 0.5688 | ![](cubindod_n30.png) |
 | 31 | [1.96555+](cubindod_n31.json) | 1.965558553869 |  | 1.59338 | 0.5327 | ![](cubindod_n31.png) |
-| 32 | [1.98756+](cubindod_n32.json) | 1.987565730789 |  | 1.61033 | 0.5318 | ![](cubindod_n32.png) |
+| 32 | [1.98749+](cubindod_n32.json) | 1.987498463778 |  | 1.61033 | 0.5319 | ![](cubindod_n32.png) |
 | 33 | [2.00000+](cubindod_n33.json) | 2.000000413823 | 2 | 1.62693 | 0.5383 | ![](cubindod_n33.png) |
 | 34 | [2.02257+](cubindod_n34.json) | 2.022575983267 |  | 1.64320 | 0.5362 | ![](cubindod_n34.png) |
 | 35 | [2.04387+](cubindod_n35.json) | 2.043874006559 |  | 1.65916 | 0.5349 | ![](cubindod_n35.png) |
-| 36 | [2.06172+](cubindod_n36.json) | 2.061728258790 |  | 1.67481 | 0.5360 | ![](cubindod_n36.png) |
+| 36 | [2.06169+](cubindod_n36.json) | 2.061690383213 |  | 1.67481 | 0.5361 | ![](cubindod_n36.png) |
 | 37 | [2.08955+](cubindod_n37.json) | 2.089553305008 |  | 1.69018 | 0.5292 | ![](cubindod_n37.png) |
 | 38 | [2.09017+](cubindod_n38.json) | 2.090169958471 | -7/2 + 5√5/2 | 1.70527 | 0.5430 | ![](cubindod_n38.png) |
 | 39 | [2.09017+](cubindod_n39.json) | 2.090169958471 | -7/2 + 5√5/2 | 1.72010 | 0.5573 | ![](cubindod_n39.png) |
@@ -46,7 +46,7 @@ s = container edge / piece edge; every row certified in exact arithmetic.
 | 41 | [2.11803+](cubindod_n41.json) | 2.118034438105 | 1 + √5/2 | 1.74901 | 0.5631 | ![](cubindod_n41.png) |
 | 42 | [2.14589+](cubindod_n42.json) | 2.145898492110 | 11/2 - 3√5/2 | 1.76312 | 0.5546 | ![](cubindod_n42.png) |
 | 43 | [2.14589+](cubindod_n43.json) | 2.145898492110 | 11/2 - 3√5/2 | 1.77700 | 0.5679 | ![](cubindod_n43.png) |
-| 44 | [2.19235+](cubindod_n44.json) | 2.192353930504 |  | 1.79067 | 0.5449 | ![](cubindod_n44.png) |
+| 44 | [2.19233+](cubindod_n44.json) | 2.192331256725 |  | 1.79067 | 0.5449 | ![](cubindod_n44.png) |
 | 45 | [2.20406+](cubindod_n45.json) | 2.204069086146 |  | 1.80413 | 0.5484 | ![](cubindod_n45.png) |
 | 46 | [2.20802+](cubindod_n46.json) | 2.208021129425 |  | 1.81740 | 0.5576 | ![](cubindod_n46.png) |
 | 47 | [2.23606+](cubindod_n47.json) | 2.236068462910 |  | 1.83048 | 0.5486 | ![](cubindod_n47.png) |
