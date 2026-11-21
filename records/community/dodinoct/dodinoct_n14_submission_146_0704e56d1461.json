@@ -1,0 +1,176 @@
+{
+ "problem": "min/dodecahedron_in_octahedron",
+ "piece": "dodecahedron",
+ "container": "octahedron",
+ "n": 14,
+ "s_full": 7.8448003253177,
+ "pieces": [
+  [
+   -1.2421381530967242,
+   1.2356009571885838,
+   1.1407051321707644,
+   0.2692349466441271,
+   0.6876014023495078,
+   -0.24252741680515727,
+   0.6292037087385467
+  ],
+  [
+   0.1692407098517682,
+   -0.013207310876652447,
+   -3.2776807835976185,
+   0.7199185584622382,
+   -0.3472544605635427,
+   -0.564051279440419,
+   0.20731078833963842
+  ],
+  [
+   1.2657697921079847,
+   0.8706451020559581,
+   1.4820293482921294,
+   0.9313537386953357,
+   0.15298799097680665,
+   0.2951264252099042,
+   -0.1485775258170761
+  ],
+  [
+   1.4821170444639424,
+   1.269432503991212,
+   -0.8668946940009178,
+   0.4522776636069055,
+   0.6353597344428443,
+   0.22048906682603422,
+   -0.5857879260117792
+  ],
+  [
+   -0.8626351626454954,
+   1.4726246110751473,
+   -1.2831844687354297,
+   0.10685956666506859,
+   -0.33151188091129635,
+   0.7517150519787216,
+   0.5600048093145596
+  ],
+  [
+   0.01963997574429704,
+   3.2735693833389012,
+   0.1294153681019606,
+   0.12171310923942186,
+   0.5965226394274407,
+   -0.5669577100653049,
+   0.5548924352406491
+  ],
+  [
+   -0.22899501301598504,
+   0.07864688689784345,
+   3.3108023425422433,
+   0.6356366284668338,
+   -0.6548503491419511,
+   -0.2531564187746102,
+   -0.3210123430854259
+  ],
+  [
+   -3.2956786896505177,
+   0.24411866590771136,
+   -0.07864688689784324,
+   0.22181559896473269,
+   0.8527857910589576,
+   -0.020115762363269084,
+   -0.47238711956234514
+  ],
+  [
+   -1.4775083741842403,
+   -1.261217284957467,
+   0.8797185833143649,
+   0.7681860877697546,
+   0.3150408451202636,
+   -0.5435337735235266,
+   -0.1233306024561012
+  ],
+  [
+   0.874820127422828,
+   -1.4800777551696676,
+   1.2635463598635763,
+   0.9211740787465617,
+   -0.02524692336097506,
+   -0.01991441991035816,
+   0.3878199651718083
+  ],
+  [
+   0.07864688689784341,
+   -3.3197903393244563,
+   -0.22000701623377264,
+   0.7835521359746522,
+   -0.2910492540490377,
+   0.5416207746466506,
+   0.08934941744757482
+  ],
+  [
+   1.2186429463731623,
+   -1.1328628628086952,
+   -1.2669384332742148,
+   0.49681617567025377,
+   0.7257853489078604,
+   -0.3597779865337469,
+   -0.31139864371702414
+  ],
+  [
+   -1.2742243223907972,
+   -0.8729045179048556,
+   -1.4713154021604193,
+   0.6571632736844932,
+   0.2440963851517103,
+   -0.6518307702338766,
+   -0.28925772842304337
+  ],
+  [
+   3.3231975679771986,
+   -0.21659978758103024,
+   -0.0786468868978433,
+   0.7400173134816861,
+   0.39070709508776025,
+   0.44750852532194874,
+   0.3153703558668869
+  ]
+ ],
+ "s": 7.8448,
+ "s_plus": "7.84480+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 6.792431e-07,
+  "min_wall_gap": 2e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "randomised multi-start search from random initial placements; contact-preserving descent (rigidity analysis: https://doi.org/10.5281/zenodo.23630728); centres expanded by 3e-7 and the container sized for a 2e-7 wall gap",
+ "date": "2026-11-21",
+ "record_id": "dodinoct_n14_submission_146_0704e56d1461",
+ "title": "14 dodecahedra in an octahedron",
+ "family": "platonic",
+ "source": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/146",
+  "submitted_by": "konoha-ily2"
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 6.105388252109272,
+ "density": 0.4714049932021967,
+ "found_by": "konoha-ily2 (Hirotaka Nakano)",
+ "credit": "konoha-ily2 (Hirotaka Nakano), computed with Claude (Anthropic)",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/146",
+  "submitted_by": "konoha-ily2",
+  "credit": "konoha-ily2 (Hirotaka Nakano)",
+  "kind": "construction",
+  "replayed_on": "2026-11-21",
+  "witness_sha256": "ae2b836fc446ba673c780f5f494e9711f54311676c80d84bfd6df1fc325c584e",
+  "method": "Batch of 646 witnesses in 24 problems (`MANIFEST.json` + `records/<record_id>.json` + `SUMMARY.tsv`), each below the current `records/SUMMARY.csv` entry (main at b99b2d88, checked 2026-11-21). Every record passes `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED) from that commit locally, run on the files extracted from the archive. The changes against the current records: median -0.00 %, largest -2.42 %; 10 records improve by \u2265 1 %, 33 by \u2265 0.1 %.\n\n**Relation to earlier submissions.** the public records were rebuilt after #136 and #143 were merged (main b99b2d88); every record here is below the value in that archive and below the values in open submissions.\n\n**Against PolyPack.** I also compared with PolyPack's published records (https://github.com/sinkomr/PolyPack, `data/polyhedra/records.json`, fetched 2026-11-21) and kept only records that are below both the archive and PolyPack (260 of these records have a PolyPack value; `SUMMARY.tsv` lists both values, `polypack_s`, `change_vs_best`).\n\n**How the records were made.** `found_by`, `credit` and `method` identify where each record starts; `method` or `refinement` gives the steps.\n\n- *Refinements of catalogue records* (426): a contact-preserving descent (sequential linear programming with the contacts as inequalities) started from the catalogue record named in `refinement` (for some, a randomised multi-start search from perturbed copies of that record comes first; `refinement` says so). `found_by`, `credit` and `method` are the catalogue record's own, copied verbatim; my part is in `refined_by` and `refinement_credit`. For 5 of them the start was the record for a different n and the first n pieces were kept (`derived_from`). Rigidity analysis and code: https://doi.org/10.5281/zenodo.23630728\n- *Layer-by-row and lattice constructions* (4): structured constructions with all pieces in one orientation. For cubes, the pieces are stacked in parallel layers and each layer is filled with rows (the frame of la",
+  "archive": "https://github.com/user-attachments/files/35189575/platonic_lattice_646.zip",
+  "archive_sha256": "e68778687681a2a8aa7f6a30e1e2568b621a8881c5c35bf62457f9ad0ed41dce"
+ },
+ "previous_record": {
+  "s_full": 7.845237623897675,
+  "found_by": "PolyPack (Michael Sinko using Opus 5.5) (search started from the packing of Berthold, Kamp, Mexi, Pokutta and P\u00f3lik)",
+  "date": "2026-10-28"
+ },
+ "case_id": "dodinoct_n14"
+}

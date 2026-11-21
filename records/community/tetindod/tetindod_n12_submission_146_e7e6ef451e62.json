@@ -1,0 +1,158 @@
+{
+ "problem": "min/tetrahedron_in_dodecahedron",
+ "piece": "tetrahedron",
+ "container": "dodecahedron",
+ "n": 12,
+ "s_full": 0.7502086226884,
+ "pieces": [
+  [
+   0.04891170228712004,
+   0.5380364026327464,
+   0.258069225244239,
+   0.20218377956899353,
+   0.5455078165183779,
+   0.8090905831402382,
+   0.08315870171147198
+  ],
+  [
+   0.32645317845622185,
+   0.05818517414285198,
+   0.4905401944230437,
+   0.2460052958227611,
+   -0.6800689841823715,
+   -0.35598749721478,
+   0.5918280772378667
+  ],
+  [
+   -0.2557926374051867,
+   0.04650406018400903,
+   0.538420138296406,
+   0.3837141009127801,
+   -0.41399338371762506,
+   0.29026232388117607,
+   0.772735886531632
+  ],
+  [
+   -0.08510356450250466,
+   -0.5628729802434501,
+   -0.11456228984328208,
+   0.9423974637297837,
+   -0.2657426091346426,
+   -0.15797598882223252,
+   0.12771637718640996
+  ],
+  [
+   -0.0005459642279278985,
+   0.46817631132084353,
+   -0.37386153589861343,
+   0.08039326337011209,
+   0.6674305294864888,
+   0.615348478336743,
+   0.4116061973813611
+  ],
+  [
+   0.03142074509602054,
+   -0.2273566685057124,
+   -0.5715194556680263,
+   0.906802405163671,
+   0.13120119531839347,
+   -0.39563536098859153,
+   -0.06299448763053105
+  ],
+  [
+   0.4347381150007452,
+   0.26614165578635557,
+   -0.3070292022166638,
+   0.43699715895058294,
+   -0.7284293088881829,
+   0.36260249214640655,
+   0.3833323071579256
+  ],
+  [
+   -0.005325465646401167,
+   -0.43547947041311574,
+   0.39005866523047,
+   0.10922401386524895,
+   -0.39114014213477416,
+   -0.1463996744470669,
+   0.9020236356813194
+  ],
+  [
+   -0.3380351015211605,
+   0.1607601461736284,
+   -0.4380940047988674,
+   0.7292051841241959,
+   -0.3010362124657127,
+   -0.6002992299446915,
+   0.1314451701604377
+  ],
+  [
+   -0.5260811134336932,
+   -0.23206584762657573,
+   -0.060899076609220906,
+   0.9442607010999488,
+   -0.17730127191972833,
+   0.1622307455380057,
+   -0.2249826049632788
+  ],
+  [
+   -0.5417559984584247,
+   0.21218657448044878,
+   0.08586353130863209,
+   0.19199360362182502,
+   -0.546101787584159,
+   -0.5923332949134651,
+   0.560403927094243
+  ],
+  [
+   0.5064617239024983,
+   -0.14415167976725346,
+   0.016891689081196284,
+   0.056367017067576596,
+   0.7265855903312785,
+   -0.22093252437289404,
+   -0.6481396138055995
+  ]
+ ],
+ "s": 0.7502,
+ "s_plus": "0.75020+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 1.281617e-07,
+  "min_wall_gap": 2.000001e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "randomised multi-start search from random initial placements; contact-preserving descent (rigidity analysis: https://doi.org/10.5281/zenodo.23630728); centres expanded by 3e-7 and the container sized for a 2e-7 wall gap",
+ "date": "2026-11-21",
+ "record_id": "tetindod_n12_submission_146_e7e6ef451e62",
+ "title": "12 tetrahedra in a dodecahedron",
+ "family": "platonic",
+ "source": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/146",
+  "submitted_by": "konoha-ily2"
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 0.5693375263539648,
+ "density": 0.4370823564387023,
+ "found_by": "konoha-ily2 (Hirotaka Nakano)",
+ "credit": "konoha-ily2 (Hirotaka Nakano), computed with Claude (Anthropic)",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/146",
+  "submitted_by": "konoha-ily2",
+  "credit": "konoha-ily2 (Hirotaka Nakano)",
+  "kind": "construction",
+  "replayed_on": "2026-11-21",
+  "witness_sha256": "ea9a55d3e44075c11f92b1a06427d4b99f916e6abcaa6e585e0655a002c56c76",
+  "method": "Batch of 646 witnesses in 24 problems (`MANIFEST.json` + `records/<record_id>.json` + `SUMMARY.tsv`), each below the current `records/SUMMARY.csv` entry (main at b99b2d88, checked 2026-11-21). Every record passes `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED) from that commit locally, run on the files extracted from the archive. The changes against the current records: median -0.00 %, largest -2.42 %; 10 records improve by \u2265 1 %, 33 by \u2265 0.1 %.\n\n**Relation to earlier submissions.** the public records were rebuilt after #136 and #143 were merged (main b99b2d88); every record here is below the value in that archive and below the values in open submissions.\n\n**Against PolyPack.** I also compared with PolyPack's published records (https://github.com/sinkomr/PolyPack, `data/polyhedra/records.json`, fetched 2026-11-21) and kept only records that are below both the archive and PolyPack (260 of these records have a PolyPack value; `SUMMARY.tsv` lists both values, `polypack_s`, `change_vs_best`).\n\n**How the records were made.** `found_by`, `credit` and `method` identify where each record starts; `method` or `refinement` gives the steps.\n\n- *Refinements of catalogue records* (426): a contact-preserving descent (sequential linear programming with the contacts as inequalities) started from the catalogue record named in `refinement` (for some, a randomised multi-start search from perturbed copies of that record comes first; `refinement` says so). `found_by`, `credit` and `method` are the catalogue record's own, copied verbatim; my part is in `refined_by` and `refinement_credit`. For 5 of them the start was the record for a different n and the first n pieces were kept (`derived_from`). Rigidity analysis and code: https://doi.org/10.5281/zenodo.23630728\n- *Layer-by-row and lattice constructions* (4): structured constructions with all pieces in one orientation. For cubes, the pieces are stacked in parallel layers and each layer is filled with rows (the frame of la",
+  "archive": "https://github.com/user-attachments/files/35189575/platonic_lattice_646.zip",
+  "archive_sha256": "e68778687681a2a8aa7f6a30e1e2568b621a8881c5c35bf62457f9ad0ed41dce"
+ },
+ "previous_record": {
+  "s_full": 0.7502522256414512,
+  "found_by": "PolyPack (Michael Sinko using Opus 5.5) (search started from the packing of Berthold, Kamp, Mexi, Pokutta and P\u00f3lik)",
+  "date": "2026-10-28"
+ },
+ "case_id": "tetindod_n12"
+}

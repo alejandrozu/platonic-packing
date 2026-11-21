@@ -1,0 +1,149 @@
+{
+ "problem": "min/icosahedron_in_octahedron",
+ "piece": "icosahedron",
+ "container": "octahedron",
+ "n": 11,
+ "s_full": 4.7669065595805,
+ "pieces": [
+  [
+   1.4257707927530152e-16,
+   2.0616946127768636,
+   6.459844392790194e-17,
+   0.5720614028176845,
+   0.5720614028176844,
+   0.5720614028176843,
+   -0.1350453783688632
+  ],
+  [
+   -1.9726480060458305,
+   -0.00623393277277996,
+   0.00995767448688311,
+   0.6500458055700571,
+   -0.5525632098346809,
+   0.09458081325089011,
+   0.5129998241352235
+  ],
+  [
+   -0.010780349382622793,
+   0.8517033849043332,
+   1.1457141580104355,
+   0.568889336469576,
+   0.1262487715854334,
+   -0.6433668385262958,
+   0.4964929824368657
+  ],
+  [
+   0.014064968845473959,
+   -2.0098087417215966,
+   -0.014784315796523622,
+   0.5563061087814154,
+   -0.5391115887654816,
+   -0.11592941754486248,
+   -0.6216450581633762
+  ],
+  [
+   0.7423618826513251,
+   -0.7264197757135891,
+   0.5415733958728444,
+   0.7318487970927282,
+   0.04889019690022303,
+   0.6796089818333676,
+   -0.011777888282612569
+  ],
+  [
+   2.0226853389677966,
+   -0.012458142689028385,
+   -0.009421862502518478,
+   0.5604844601380295,
+   0.12002590053032185,
+   -0.6077149850607794,
+   0.5496666717914082
+  ],
+  [
+   0.738381861756586,
+   0.5095190301308552,
+   -0.7361601922568525,
+   0.7139567253546699,
+   0.412667375999841,
+   -0.3985852544752908,
+   -0.4013741720902208
+  ],
+  [
+   -0.744361575240624,
+   0.7634117619187273,
+   -0.4841572538666991,
+   0.15500036028067593,
+   -0.23587504581684604,
+   -0.9124469591115246,
+   -0.296274193749461
+  ],
+  [
+   -0.7421473116986028,
+   -0.43216755822588,
+   0.81452474338101,
+   0.5600660518159454,
+   0.10951689228308639,
+   -0.6493591195081704,
+   0.5026577382469383
+  ],
+  [
+   0.0013113349538162293,
+   -0.013325447238165146,
+   -1.9748072175018223,
+   0.5683198135460781,
+   0.09679940657623302,
+   -0.6462222069259888,
+   0.5000393221469137
+  ],
+  [
+   -0.5525424233045436,
+   -0.7398768376355168,
+   -0.7099916743416285,
+   0.5289938749816594,
+   0.5641597173352036,
+   -0.6258188726042438,
+   0.10119304452631721
+  ]
+ ],
+ "s": 4.7669,
+ "s_plus": "4.76690+",
+ "measure": "edge length of the container divided by the edge length of the pieces",
+ "clearance": {
+  "min_pair_gap": 4.534568e-07,
+  "min_wall_gap": 2e-07
+ },
+ "format": "[x, y, z, qw, qx, qy, qz] per canonical piece; scalar-first quaternion; container = s_full times canonical container",
+ "method": "randomised multi-start search from random initial placements; contact-preserving descent (rigidity analysis: https://doi.org/10.5281/zenodo.23630728); centres expanded by 3e-7 and the container sized for a 2e-7 wall gap",
+ "date": "2026-11-21",
+ "record_id": "icoinoct_n11_submission_146_12cd444bc339",
+ "title": "11 icosahedra in an octahedron",
+ "family": "platonic",
+ "source": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/146",
+  "submitted_by": "konoha-ily2"
+ },
+ "s_tight": null,
+ "closed_form_conjecture": null,
+ "volume_lower_bound": 3.706218266259811,
+ "density": 0.4699839851363518,
+ "found_by": "konoha-ily2 (Hirotaka Nakano)",
+ "credit": "konoha-ily2 (Hirotaka Nakano), computed with Claude (Anthropic)",
+ "certificate": "exact certificate: certify_general.py (src/solids_exact.json)",
+ "contribution": {
+  "issue": "https://github.com/alejandrozu/platonic-packing/issues/146",
+  "submitted_by": "konoha-ily2",
+  "credit": "konoha-ily2 (Hirotaka Nakano)",
+  "kind": "construction",
+  "replayed_on": "2026-11-21",
+  "witness_sha256": "bd4f2e6253530d457ea276f7d5d6f4b9234b041b8881446a2870e528e33f4d58",
+  "method": "Batch of 646 witnesses in 24 problems (`MANIFEST.json` + `records/<record_id>.json` + `SUMMARY.tsv`), each below the current `records/SUMMARY.csv` entry (main at b99b2d88, checked 2026-11-21). Every record passes `verify_general.py` (VALID) and `certify_general.py` (CERTIFIED) from that commit locally, run on the files extracted from the archive. The changes against the current records: median -0.00 %, largest -2.42 %; 10 records improve by \u2265 1 %, 33 by \u2265 0.1 %.\n\n**Relation to earlier submissions.** the public records were rebuilt after #136 and #143 were merged (main b99b2d88); every record here is below the value in that archive and below the values in open submissions.\n\n**Against PolyPack.** I also compared with PolyPack's published records (https://github.com/sinkomr/PolyPack, `data/polyhedra/records.json`, fetched 2026-11-21) and kept only records that are below both the archive and PolyPack (260 of these records have a PolyPack value; `SUMMARY.tsv` lists both values, `polypack_s`, `change_vs_best`).\n\n**How the records were made.** `found_by`, `credit` and `method` identify where each record starts; `method` or `refinement` gives the steps.\n\n- *Refinements of catalogue records* (426): a contact-preserving descent (sequential linear programming with the contacts as inequalities) started from the catalogue record named in `refinement` (for some, a randomised multi-start search from perturbed copies of that record comes first; `refinement` says so). `found_by`, `credit` and `method` are the catalogue record's own, copied verbatim; my part is in `refined_by` and `refinement_credit`. For 5 of them the start was the record for a different n and the first n pieces were kept (`derived_from`). Rigidity analysis and code: https://doi.org/10.5281/zenodo.23630728\n- *Layer-by-row and lattice constructions* (4): structured constructions with all pieces in one orientation. For cubes, the pieces are stacked in parallel layers and each layer is filled with rows (the frame of la",
+  "archive": "https://github.com/user-attachments/files/35189575/platonic_lattice_646.zip",
+  "archive_sha256": "e68778687681a2a8aa7f6a30e1e2568b621a8881c5c35bf62457f9ad0ed41dce"
+ },
+ "previous_record": {
+  "s_full": 4.766959690951313,
+  "found_by": "PolyPack (Michael Sinko using Opus 5.5) (search started from the packing of Berthold, Kamp, Mexi, Pokutta and P\u00f3lik)",
+  "date": "2026-10-28"
+ },
+ "case_id": "icoinoct_n11"
+}
